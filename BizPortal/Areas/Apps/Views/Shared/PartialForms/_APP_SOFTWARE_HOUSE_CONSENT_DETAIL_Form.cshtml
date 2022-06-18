@@ -1,0 +1,69 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@model FormSection
+@{
+    //Field Data
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+
+    var rd = string.Empty;
+    var rd2 = string.Empty;
+    if (Model.PartialReadonly)
+    {
+        rd = "disabled";
+        rd2 = "readonly";
+    }
+}
+<div style="margin-left: 30px;">
+    <div class="row M-12">
+        <p style="white-space: pre-wrap;">
+            ข้าพเจ้า ยินยอมให้เปิดเผยข้อมูลส่วนบุคคลดังต่อไปนี้เพื่อจัดทำใบอนุญาตการยื่นคำขอมีเลขประจำตัวซอฟต์แวร์เฮาส์ ของ กรมสรรพากร ประกอบด้วยข้อมูล
+        </p>
+    </div>
+    <div class="row M-12">
+        <p style="white-space: pre-wrap;">
+            1.  ชื่อ-สกุล/ชื่อนิติบุคคลภาษาไทยและภาษาอังกฤษ
+            2.  หมายเลขบัตรประชาชน/หมายเลขประจำตัวนิติบุคคล
+            3.  อายุ/สัญชาติ
+            4.  ประเภทนิติบุคคล/วันเดือนปีที่จดทะเบียนนิติบุคคล
+            5.  กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล
+            6.  ที่อยู่ที่สามารถติดต่อได้/ โทรศัพท์/ อีเมล
+            7.  ที่อยู่สถานประกอบการ/โทรศัพท์/โทรสาร/อีเมล
+            8.  ข้อมูลการยื่นแบบแสดงรายการ ภ.พ.30
+            9.  จำนวนสาขา/ที่อยู่สาขา/โทรศัพท์/โทรสาร
+            10. ประเภทของการประกอบกิจการ
+            11. คุณสมบัติและข้อมูลของผู้ประกอบการซอฟต์แวร์
+            12. ชื่อซอฟต์แวร์/เวอร์ชั่นซอฟต์แวร์/ชนิดของซอฟต์แวร์/ชื่อโมดูล/จำนวนโมดูล
+            13. เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง
+            14. หนังสือมอบอำนาจ/เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจและผู้รับมอบอำนาจ
+            15. เอกสารแสดงลักษณะกรรมสิทธิ์การเป็นเจ้าของอาคารที่ตั้งร้าน/สถานประกอบการ
+            16. ผังการทำงานรวมของโปรแกรมทั้งระบบ
+            17. คู่มือการใช้ซอฟต์แวร์แต่ละชนิด หรือคำอธิบายรายละเอียดของโปรแกรม
+        </p>
+    </div>
+    <div class="row M-12">
+        <div class="checkbox" style="margin-left: 30px;">
+            <label for="consent-APP_SOFTWARE_HOUSE">
+                <input id="consent-APP_SOFTWARE_HOUSE" type="checkbox" value="false">
+                ข้าพเจ้าขอรับรองความถูกต้องของข้อมูลทั้งหมดที่ปรากฏในแบบการให้ความยินยอมนี้ และยินยอม เปิดเผยข้อมูลดังกล่าวให้แก่กรมสรรพากร
+            </label>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnNextAppSingleForm").attr('disabled', 'disabled');
+        $("#btnSaveDraftSingleForm").hide();
+        $("#consent-APP_SOFTWARE_HOUSE").attr('checked', false);
+
+        $("#consent-APP_SOFTWARE_HOUSE").change(function () {
+            if (this.checked) {
+                $("#btnNextAppSingleForm").removeAttr('disabled');
+            }
+            else {
+                $("#btnNextAppSingleForm").attr('disabled', 'disabled');
+            }
+        });
+    });
+</script>
+

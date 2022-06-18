@@ -1,0 +1,25 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_LAW_OFFICE_EDIT_LAWYER_JOIN_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>ชื่อ : </label>
+            {{ this.DROPDOWN_APP_LAW_OFFICE_EDIT_LAWYER_JOIN_SECTION_TITLE_TEXT }} {{ this.APP_LAW_OFFICE_EDIT_LAWYER_JOIN_SECTION_FIRSTNAME }} {{ this.APP_LAW_OFFICE_EDIT_LAWYER_JOIN_SECTION_LASTNAME }}
+            <br />
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_LAW_OFFICE_EDIT.APP_LAW_OFFICE_EDIT_LAWYER_JOIN_SECTION_LICENSE_NUMBER :</label>
+            {{ this.APP_LAW_OFFICE_EDIT_LAWYER_JOIN_SECTION_LICENSE_NUMBER }}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

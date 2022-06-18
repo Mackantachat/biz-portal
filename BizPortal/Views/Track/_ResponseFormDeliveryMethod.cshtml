@@ -1,0 +1,378 @@
+﻿@model BizPortal.DAL.MongoDB.ApplicationRequestEntity
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using BizPortal.AppsHook
+@using BizPortal.DAL.MongoDB;
+@using BizPortal.ViewModels.Constant;
+@using BizPortal.Service;
+@{
+    var app = Model.ApplicationID;
+    string OSSAddress = System.Configuration.ConfigurationManager.AppSettings["OSSAddress"];
+    decimal ems = Model.EMSFee.HasValue ? Model.EMSFee.Value : 0;
+    decimal fee = Model.Fee.HasValue ? (decimal)Model.Fee : 0;
+    decimal total = (fee + ems);
+    string thisPageDateFormat = "dd/MM/yyyy";
+    bool isHaveFees = Model.Fee > 0 ? true : false;
+
+    if (!string.IsNullOrEmpty(Model.OrgAddress))
+    {
+        Model.OrgAddress = Model.OrgAddress.Replace("\n", " ");
+    }
+}
+<style>
+    .section-box {
+        padding: 8px;
+    }
+</style>
+
+<link href="@Url.Content("~/Content/Theme/biz-v2/css/custom-formpay.css?")@(Guid.NewGuid())" rel="stylesheet" type="text/css" />
+
+<form id="frmPayFee" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")">
+    @Html.HiddenFor(o => o.ApplicationID)
+    @Html.HiddenFor(o => o.ApplicationRequestID)
+
+    <div class="row agent-remark-box">
+        <div class="col-md-8">
+            <strong>กรุณาเลือกช่องทางรับใบอนุญาต</strong>
+        </div>
+        <div class="col-md-4  text-right">
+            @{
+
+                if (!string.IsNullOrEmpty((string)ViewData[ViewDataDictConst.AGENT_REMARK]))
+                {
+                    <strong>@Resource.ApplicationStatusRequests.AGENT_COMMENT_REMARK : </strong>
+                    string remark = (string)ViewData[ViewDataDictConst.AGENT_REMARK];
+                    @remark
+                }
+
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 section-box">
+            <div class="form-group rdb-permit-delivery-type-box">
+                @{
+                    bool isFoundPDT_OSS = ApplicationStatusService.IsFoundPermitDeliveryType(Model.PermitDeliveryTypeEnabledChoice, PermitDeliveryTypeValueConst.AT_OSS);
+                    string disabledClassOSS = isFoundPDT_OSS == true ? "" : "disabled";
+                    bool isFoundPDT_OwnerOrg = ApplicationStatusService.IsFoundPermitDeliveryType(Model.PermitDeliveryTypeEnabledChoice, PermitDeliveryTypeValueConst.AT_OWNER_ORG);
+                    string disabledClassOwnerOrg = isFoundPDT_OwnerOrg == true ? "" : "disabled";
+                    bool isFoundPDT_Mail = ApplicationStatusService.IsFoundPermitDeliveryType(Model.PermitDeliveryTypeEnabledChoice, PermitDeliveryTypeValueConst.BY_MAIL);
+                    string disabledClassMail = isFoundPDT_Mail == true ? "" : "disabled";
+
+                    bool checkedOss = false;
+                    bool checkedOwnerOrg = false;
+                    bool checkedByMail = false;
+
+                    if (Model.NoDocument)
+                    {
+                        isFoundPDT_OSS = false;
+                        isFoundPDT_OwnerOrg = false;
+                        isFoundPDT_Mail = false;
+                        disabledClassOSS = "disabled";
+                        disabledClassOwnerOrg = "disabled";
+                        disabledClassMail = "disabled";
+                    }
+                    else
+                    {
+                        if (isFoundPDT_OwnerOrg)
+                        {
+                            checkedOwnerOrg = true;
+                            checkedOss = false;
+                            checkedByMail = false;
+                        }
+                        else if (isFoundPDT_OSS)
+                        {
+                            checkedOss = true;
+                            checkedOwnerOrg = false;
+                            checkedByMail = false;
+                        }
+                        else if (isFoundPDT_Mail)
+                        {
+                            checkedOss = false;
+                            checkedOwnerOrg = false;
+                            checkedByMail = true;
+                        }
+
+                        if (Model.PermitDeliveryTypeEnabledChoice == null
+                            || Model.PermitDeliveryTypeEnabledChoice.Count <= 0)
+                        {
+                            checkedOss = false;
+                            checkedOwnerOrg = true;
+                            checkedByMail = false;
+                            isFoundPDT_OwnerOrg = true;
+
+                            disabledClassOSS = "disabled";
+                            disabledClassOwnerOrg = "";
+                            disabledClassMail = disabledClassOSS;
+                        }
+                    }
+                }
+                <div class="col-md-12">
+                    <p>เลือกช่องทางรับใบอนุญาต</p>
+                </div>
+                <div class="col-md-12 rdb-item-col @disabledClassOSS">
+                    <div class="rdb-item">
+                        @if (!isFoundPDT_OSS)
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.AT_OSS, false, new { disabled = "disabled" }) @Resource.ApplicationStatusRequests.PDT_AT_OSS</label>
+                        }
+                        else
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.AT_OSS, checkedOss) @Resource.ApplicationStatusRequests.PDT_AT_OSS</label>
+                        }
+                    </div>
+                    <div class="desc-item pmdt-at-oss-desc-box">@OSSAddress</div>
+                </div>
+                <div class="col-md-12 rdb-item-col @disabledClassOwnerOrg">
+                    <div class="rdb-item">
+                        @if (!isFoundPDT_OwnerOrg)
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.AT_OWNER_ORG, false, new { disabled = "disabled" }) @Model.OrgNameTH.Trim()</label>
+                        }
+                        else
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.AT_OWNER_ORG, checkedOwnerOrg) @Model.OrgNameTH.Trim()</label>
+                        }
+
+                    </div>
+                    <div class="desc-item pmdt-at-owner-org-desc-box">@Model.OrgAddress</div>
+                </div>
+                <div class="col-md-12 rdb-item-col @disabledClassMail">
+                    <div class="rdb-item">
+                        @if (!isFoundPDT_Mail)
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.BY_MAIL, false, new { disabled = "disabled" }) @Resource.ApplicationStatusRequests.PDT_BY_MAIL</label>
+                        }
+                        else
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.BY_MAIL, checkedByMail) @Resource.ApplicationStatusRequests.PDT_BY_MAIL</label>
+                        }
+
+                    </div>
+                    <div class="desc-item pmdt-address-box" style="display:none;">
+                        <label for="PermitDeliveryAddress">@Resource.ApplicationStatusRequests.PMD_ADDRESS_BY_MAIL</label>: <span style="color:red;">*</span>
+                        <div class="form-group">
+
+                            @if (!isFoundPDT_Mail)
+                            {
+                                Model.PermitDeliveryAddress = "";
+                                @Html.TextAreaFor(model => model.PermitDeliveryAddress, new { @class = "form-control ", @rows = 3, @disabled = "disabled" })
+                            }
+                            else
+                            {
+                                @Html.TextAreaFor(model => model.PermitDeliveryAddress, new { @class = "form-control ", @rows = 3 })
+                            }
+                        </div>
+                        <span id="error-PermitDeliveryAddress" style="color: red; display: none">@Resource.ApplicationStatusRequests.BY_MAIL_SUGGEST_TEXT</span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                        <div class="form-group text-center pull-right">
+                            <button id="btnModalAtOwnerOrg" data-backdrop="static" type="button" class="btn btn-primary btnConfirm" data-toggle1="modal" data-target="#modalAtOwnerOrg" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        string dueDateText = "-";
+        if (Model.DueDateForPayFee.HasValue)
+        {
+            dueDateText = Convert.ToDateTime(Model.DueDateForPayFee).ToLocalTime().ToString("dd MMM yyyy");
+        }
+    }
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAtOwnerOrg" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">กรุณายืนยันช่องทางรับใบอนุญาต</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><b>@Resource.ApplicationStatusRequests.NAME_IN_MODAL:</b> @BizPortal.Service.TrackService.GetDisPlayIdentityName(Model.IdentityType, BizPortal.Service.TrackService.GetStoreName(Model.Data), Model.IdentityName)</p>
+                        </div>
+                    </div>
+                    <p><b><u>@Resource.ApplicationStatusRequests.SUMMARY_LOCATION_GOT_APP_HEADER</u></b></p>
+                    <p><b>@Resource.ApplicationStatusRequests.RECEIVE_APP_CHANNEL:</b> <span class="display-permit-delivery-type"></span></p>
+                    <p><b>@Resource.ApplicationStatusRequests.PERMIT_GET_ADDRESS:</b> <span class="display-location-got-app"></span></p>
+
+                    @if (BizPortal.Service.TrackService.IsCanGotApplicationNow(Model.PermitCanBeDeliveredOnPayment, Model.PaymentMethod, Model.PermitDeliveryType))
+                    {
+                        <p><b>@Resource.ApplicationStatusRequests.GOT_APP_WHEN:</b> <span class="lbl-got-app-when">@Resource.ApplicationStatusRequests.PERMIT_CAN_BE_DERIVERED_ON_PAYMENT</span></p>
+                    }
+                    else
+                    {
+                        if (Model.UserCanGetAppDate.HasValue)
+                        {
+                            <p><b>@Resource.ApplicationStatusRequests.GOT_APP_WHEN:</b> <span class="lbl-got-app-when"> @Model.UserCanGetAppDate.Value.ToString(thisPageDateFormat) @Resource.Global.TO @Model.UserCanGetAppDateEnd.Value.ToString(thisPageDateFormat)</span></p>
+                        }
+                    }
+
+                    <p>@Resource.ApplicationStatusRequests.ASK_AGENT_TEL</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p><b>@Resource.ApplicationStatusRequests.WARNING_HEADER</b></p>
+                            <p>@Resource.ApplicationStatusRequests.WARNING_DESCRIPTION</p>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button style="width:100px;" type="button" class="btn btn-default" data-dismiss="modal">@Resource.Global.BTN_CLOSE</button>
+                            <button style="width:100px;" type="submit" class="btn btn-primary" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var requestManage = {
+        controls: {
+            form: '#frmPayFee',
+            formApplicationID: '#frmPayFee #ApplicationID',
+            formApplicationRequestID: '#frmPayFee #ApplicationRequestID',
+            formPermitDeliveryType: '#frmPayFee input[name="PermitDeliveryType"]',
+            formPermitDeliveryTypeSelected: '#frmPayFee input[name="PermitDeliveryType"]:checked',
+            formPaymentMethod: '#frmPayFee input[name="PaymentMethod"]',
+            formPaymentMethodSelected: '#frmPayFee input[name="PaymentMethod"]:checked',
+            formPermitDeliveryAddress: '#frmPayFee #PermitDeliveryAddress',
+            boxDisplayConfirm: '#frmPayFee .confirm-display-box',
+            boxPDTAtOSS: '.pmdt-at-oss-desc-box',
+            boxPDTAtOwnerOrg: '.pmdt-at-owner-org-desc-box',
+            boxPDTByMailAddress: '.pmdt-address-box',
+            lblPDT: '.display-permit-delivery-type',
+            lblPaymentMethod: '.display-payment-medthod',
+            boxPMQMRCodeDesc: '.pmm-qr-code-desc-box',
+            boxPMMBillPaymentDesc: '.pmm-bill-payment-desc-box',
+            boxPMMAtOSSDesc: '.pmm-at-oss-desc-box',
+            boxPMMAtOwnerOrgDesc: '.pmm-at-owner-org-desc-box',
+            boxEMS : '.ems-box',
+            boxTotal : '.total-box',
+            tableConfirmInModal: '.modal-body table',
+            tableQRcodeInModal: '.modal-body .tb-qrcode'
+        },
+        variables: {
+            modalConfirm: "",
+            totalFee: 0,
+            appFee: @fee,
+            emsFee: @ems,
+            isNoPermit: ('@Model.NoDocument' == 'True')
+        },
+        functions: {
+            preventRadioButtonSubmitByKeyboard:function(){
+                $('input[type="radio"]').keydown(function(event){
+                    if(event.keyCode == 13) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+            },
+            init: function () {
+                requestManage.functions.preventRadioButtonSubmitByKeyboard();
+                $(requestManage.controls.form).data('validator', null).validate();
+                $(requestManage.controls.formStatus).select2();
+                $(requestManage.controls.form + ' button[type=submit]').ladda('bind');
+                $(requestManage.controls.form).ajaxForm({
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    clearForm: true,
+                    customData: function (data, jqForm, options) {
+                        var l = $(requestManage.controls.form + ' button[type=submit]').ladda();
+                        l.ladda('start');
+
+                        if(requestManage.variables.totalFee <= 0){
+                            paymentMethod = "";
+                        }
+
+                        options.data = JSON.stringify({
+                            ApplicationID: $(requestManage.controls.formApplicationID).val(),
+                            ApplicationRequestID: $(requestManage.controls.formApplicationRequestID).val(),
+                            Status: '@ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE',
+                            StatusOther: '@ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING',
+                            PermitDeliveryType: $(requestManage.controls.formPermitDeliveryTypeSelected+':checked').val(),
+                            PaymentMethod: "AT_OWNER_ORG",
+                            PermitDeliveryAddress: $(requestManage.controls.formPermitDeliveryAddress).val(),
+                            NoDocument : requestManage.variables.isNoPermit
+                        });
+                    },
+                    error: function (xhr, status, error, $form) {
+                        var data = xhr.responseJSON;
+                        $(requestManage.variables.modalConfirm).modal('hide');
+                        $.ladda('stopAll');
+                        notify('error', data.Message);
+                    },
+                    success: function (responseText, statusText, xhr, $form) {
+                        var data = xhr.responseJSON;
+                        $(requestManage.variables.modalConfirm).modal('hide');
+                        $.ladda('stopAll');
+                        swal({
+                            title: decodeURIComponent(data.Message),
+                            text: '',
+                            type: 'success',
+                        }, function (isConfirm) {
+                            location.reload();
+                        });
+                        $("div.sa-confirm-button-container button.confirm").text("ตกลง");
+                    }
+                });
+
+                $('[name="PermitDeliveryType"]').on('change', function (e) {
+                    $('.pmdt-address-box').hide();
+                    $('#PermitDeliveryAddress').val('');
+
+                    if ($('[name="PermitDeliveryType"]:checked').val() == "BY_MAIL") {
+                        $('.pmdt-address-box').show();
+                    }
+                });
+
+                $('.btnConfirm').click(function() {
+                    var selectedPDT = $(requestManage.controls.formPermitDeliveryType+':checked').val();
+                    var locationGotApp = "@Model.OrgNameTH.Trim()";
+                    var locationGotAppAddress = "@Model.OrgAddress";
+
+                    if(selectedPDT == "@PermitDeliveryTypeValueConst.BY_MAIL"){
+                        locationGotApp = $(requestManage.controls.formPermitDeliveryAddress).val();
+                        if($('#PermitDeliveryAddress').val().trim() == '') {
+                            $('#error-PermitDeliveryAddress').show();
+                        }
+                        else {
+                            $($(this).data('target')).modal('show');
+                            $('#error-PermitDeliveryAddress').hide();
+                        }
+                    }
+                    else {
+                        if (selectedPDT == "@PermitDeliveryTypeValueConst.AT_OSS") {
+                            locationGotApp = "@Resource.ApplicationStatusRequests.PDT_AT_OSS";
+                            locationGotAppAddress = "@OSSAddress";
+                        }
+
+                        $($(this).data('target')).modal('show');
+                    }
+
+                    $('.display-permit-delivery-type').html(locationGotApp);
+                    $('.display-location-got-app').html(locationGotAppAddress);
+                });
+
+                $('#PermitDeliveryAddress').focusout(function() {
+                    if($(this).val().trim()) {
+                        $('#error-PermitDeliveryAddress').hide();
+                    }
+                });
+
+                $('[name="PermitDeliveryType"]').change();
+            }
+        }
+    };
+
+    $(document).ready(function () {
+        requestManage.functions.init();
+    });
+</script>

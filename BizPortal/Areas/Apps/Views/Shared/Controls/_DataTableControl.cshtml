@@ -1,0 +1,573 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var cols = Model.DataTableColumns.Length;
+    double maxCols = 12;
+    int colLen = (int)Math.Floor(maxCols / cols);
+
+    // container id of this repeater
+    string datatableId = string.Format("{0}_DATATABLE", Model.DataKey);
+
+    var properties = Model.DatePickerPropertiesConfig;
+}
+
+<style>
+    .@Model.DataKey-control-has-error {
+        border-color: #C10000;
+        color: #C10000;
+    }
+</style>
+
+<input type="hidden" id="@Model.DataKey" role="DATATABLE_VALUE" name="@Model.DataKey" value="[]" />
+<div class="@datatableId" id="@datatableId">
+    @if (Model.DataTableColumns.Any(o => !string.IsNullOrEmpty(o.Title)))
+    {
+        @* Show header when needed. *@
+        <text> <div class="row" style="padding-bottom: 5px; width: 94%;"> </text>
+        @*foreach (var column in Model.DataTableColumns)
+        {
+            bool isRequired = !column.IsIndexColumn && column.Control.Rules != null && column.Control.Rules.Any(o => o.Type == ValidationType.Required);
+            <div class="col-md-@(column.CustomColFixed > 0 ? column.CustomColFixed : colLen)" style="padding-right: 0px;">
+                <label>@ResourceHelper.GetResourceWordWithDefault(column.Title, Model.ResourceName, column.Title) @(isRequired ? "" : "")</label>
+            </div>
+        }*@
+        @* Dummy column for delete button *@
+        <div class="col-md-1" style="padding-right: 0px;">&nbsp;</div>
+        <text>@Html.Raw("</div>")</text>
+    }
+</div>
+<button id="@(datatableId)_addButton" type="button" data-repeater-create class="btn btn-primary" style="margin-bottom: 20px;"><i class="fa fa-plus-circle"> เพิ่มข้อมูล</i></button>
+
+<script type="text/javascript">
+
+    // Init dropdown options
+    var @(datatableId)selectOptions = [];
+    var @(datatableId)isDataBinding = false;
+
+    @foreach (var col in Model.DataTableColumns)
+    {
+        string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+
+        if (col.Control.Type == ControlType.Dropdown)
+        {
+            if (col.Control.Select2Opts != null && col.Control.Select2Opts.Length > 0)
+            {
+                // Use fixed options
+                <text>
+                @(datatableId)selectOptions['@ctrlID'] = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(col.Control.Select2Opts));
+                </text>
+            }
+            else if (col.Control.IsAjaxDropdown && !string.IsNullOrEmpty(col.Control.AjaxUrl))
+            {
+                <text>
+                $.ajax({
+                    url: '@Url.Content(col.Control.AjaxUrl)' + '?@col.Control.AjaxQueryString',
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    timeout: 30000,
+                    success: function (data) {
+                        @(datatableId)selectOptions['@ctrlID'] = data.results;
+                    },
+                    error: function (err) {
+                        console.log('error', err);
+                    }
+                });
+                </text>
+            }
+        }
+    }
+
+    function @(datatableId)_AddRow(data) {
+        var rowIndex = $('#@datatableId').find('div.datatable-row').length + 1;
+        var rowId = 'row-' + new Date().getTime();  // Use timestamp to create rowId as a reference.
+        var row = "<div id='" + rowId + "' class='row datatable-row' style='padding-bottom: 10px; width: 94%;' >";
+        @foreach (var col in Model.DataTableColumns)
+        {
+            bool isRequired = !col.IsIndexColumn && col.Control.Rules != null && col.Control.Rules.Any(o => o.Type == ValidationType.Required);
+
+            // Render control for each column
+            string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+            <text>
+                row += "<div class='col-md-@(col.CustomColFixed > 0 ? col.CustomColFixed : colLen)' style='padding-right: 0px;'>";
+                row += "<label>@ResourceHelper.GetResourceWordWithDefault(col.Title, Model.ResourceName, col.Title) @(isRequired ? "" : "")</label>"
+            </text>
+
+            if (col.IsIndexColumn)
+            {
+                <text>
+                row += '<input type="hidden" class="form-control @ctrlID" value="' + rowIndex + '" /><div class="@ctrlID" style="width: 100%; text-align: center;">' + rowIndex + '</div>';
+                </text>
+            }
+            else if (col.Control.Type == ControlType.Dropdown)
+            {
+                <text>
+                row += '<select class="form-control @ctrlID"    \
+                                data-control-name="@ctrlID" >   \
+                            <option></option>           \
+                        </select>';
+                </text>
+            }
+            else if (col.Control.Type == ControlType.DatePicker)
+            {
+                <text>
+                row += '<div class="input-group date"> \
+                            <input type="text" value="" class="form-control datatable-date @ctrlID" style="background-color: white;" readonly tabindex="-1" /> \
+                            <span class="input-group-addon"> \
+                                <span class="glyphicon glyphicon-calendar"></span> \
+                            </span> \
+                        </div>';
+                </text>
+            }
+            else
+            {
+                <text>
+                row += '<input class="form-control @ctrlID" type="text" value="" />';
+                </text>
+            }
+
+            // Render extra control in column (usually it will be other textbox control)
+            if (col.ExtraControl != null)
+            {
+                ctrlID = string.Format("{0}_{1}_EXTRA", Model.DataKey, col.Name);
+                <text>
+                row += '<input class="form-control @ctrlID " type="text" value="" style="display: none;" />';
+                </text>
+            }
+
+            <text>
+            row += '@Html.Raw("</div>")';
+            </text>
+        }
+
+        // Delete button
+        row += '    <div class="col-md-1" style="padding-left: 0px; margin-right: -200px;"> \
+                        <button type="button" datable-row-id="' + rowId + '" class="btn btn-danger datatable-delbtn" style="margin-left: 5px;"><i class="fa fa-minus-circle"> ลบ</i></button>  \
+                    </div>';
+        row += "</div>";
+
+        $('#@datatableId').append(row);
+
+        @foreach (var col in Model.DataTableColumns)
+        {
+            string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+
+            // init DatePicker
+            if (col.Control.Type == ControlType.DatePicker)
+            {
+            <text>
+            $('#' + rowId).find('.@ctrlID').datepicker({
+                autoclose: true,
+                language: "th-th",
+                format: 'dd/mm/yyyy',
+                startView: 'decade',
+                forceParse: false,
+            </text>
+                properties = col.Control.DatePickerPropertiesConfig;
+                if (properties != null)
+                {
+                    if (!string.IsNullOrEmpty(properties.StartDate))
+                    {
+                        <text>
+                        startDate: '@properties.StartDate',
+                        </text>
+                    }
+                    if (!string.IsNullOrEmpty(properties.EndDate))
+                    {
+                        <text>
+                        endDate: '@properties.EndDate',
+                        </text>
+                    }
+                    if (properties.WeekDayStart >= 0 && properties.WeekDayStart <= 6)
+                    {
+                        <text>
+                        weekStart: @properties.WeekDayStart,
+                        </text>
+                    }
+                    if (properties.ShowCalendarWeeksNumbers)
+                    {
+                        <text>
+                        calendarWeeks: true,
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                        calendarWeeks: false,
+                        </text>
+                    }
+                    if (!string.IsNullOrEmpty(properties.DaysOfWeekDisabled))
+                    {
+                        <text>
+                        daysOfWeekDisabled: '@properties.DaysOfWeekDisabled',
+                        </text>
+                    }
+                }
+            <text>});</text>
+            }
+        }
+
+        //init DatePicker
+        //$('#' + rowId).find('.datatable-date').datepicker({
+        //    autoclose: true,
+        //    language: "th-th",
+        //    format: 'dd/mm/yyyy',
+        //    startView: 'decade',
+        //    forceParse: false,
+        //});
+
+        // init select2
+        @foreach (var col in Model.DataTableColumns.Where(o => o.Control != null && o.Control.Type == ControlType.Dropdown))
+        {
+            string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+
+            <text>
+            $('#' + rowId).find("select.@ctrlID").select2({
+                data: @(datatableId)selectOptions['@ctrlID'],
+                allowClear: true,
+                width: '100%'
+            });
+            </text>
+
+        }
+
+        // init mask input
+        @foreach (var col in Model.DataTableColumns.Where(o => o.Control != null
+                                                            && o.Control.Type == ControlType.TextBox
+                                                            && o.Control.DisplayMaskInput
+                                                            && !string.IsNullOrEmpty(o.Control.MaskInputPattern)))
+        {
+            string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+
+            <text>
+            $('#' + rowId).find("input.@ctrlID").mask('@col.Control.MaskInputPattern',
+            {
+                clearIfNotMatch: true,
+                @if (col.Control.MaskInputReverse)
+                {
+                    <text>
+                    reverse: true,
+                </text>
+                }
+                @if (col.Control.MaskInputPatternTranslation != null)
+                {
+                    <text>
+                    translation: {
+                    </text>
+                    foreach (var k in col.Control.MaskInputPatternTranslation.Keys)
+                    {
+                        <text>
+                        "@Html.Raw(k)": @Html.Raw(col.Control.MaskInputPatternTranslation[k]),
+                        </text>
+                    }
+                    <text>
+                    }
+                    </text>
+                }
+            });
+            </text>
+
+        }
+
+        // Set display condition for extra control
+        @foreach (var col in Model.DataTableColumns.Where(o => o.ExtraControl != null))
+        {
+            string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+            string extraCtrlID = string.Format("{0}_{1}_EXTRA", Model.DataKey, col.Name);
+            <text>
+            $('#' + rowId).find(".@ctrlID").change(function (e) {
+                var expectedAns = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(col.AnswersForExtraControl));
+
+                if (expectedAns.includes($(this).val())) {
+                    $('#' + rowId).find(".@extraCtrlID").show();
+                } else {
+                    $('#' + rowId).find(".@extraCtrlID").hide();
+                }
+            });
+            </text>
+
+        }
+
+        // set default value if data provided
+        if (data) {
+            @foreach (var col in Model.DataTableColumns)
+            {
+                string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+                <text>
+                if (data && data.hasOwnProperty('@col.Name')) {
+                    $('#' + rowId).find('.@ctrlID').val(data['@col.Name']).trigger('change');
+                }
+                </text>
+
+                if (col.ExtraControl != null)
+                {
+                    ctrlID = string.Format("{0}_{1}_EXTRA", Model.DataKey, col.Name);
+                    <text>
+                    if (data && data.hasOwnProperty('@(col.Name)_EXTRA')) {
+                        $('#' + rowId).find('.@ctrlID').val(data['@(col.Name)_EXTRA']).trigger('change');
+                    }
+                    </text>
+                }
+            }
+        }
+
+        @foreach (var col in Model.DataTableColumns.Where(o => o.IsReadOnly).ToList())
+        {
+            // Set readonly on control if required.
+            string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+            if (col.Control.Type == ControlType.Dropdown)
+            {
+                <text>
+                window.singleFormHelpers.form.setSelect2Readonly($('#' + rowId).find(".@ctrlID"), true);
+                </text>
+            }
+            else if (col.Control.Type == ControlType.DatePicker)
+            {
+                <text>
+                window.singleFormHelpers.form.setDatePickerReadonly($('#' + rowId).find(".@ctrlID"), true);
+                </text>
+            }
+            else
+            {
+                <text>
+                $('#' + rowId).find(".@ctrlID").prop('readonly', true);
+                </text>
+            }
+
+            // Render extra control in column (usually it will be other textbox control)
+            if (col.ExtraControl != null)
+            {
+                ctrlID = string.Format("{0}_{1}_EXTRA", Model.DataKey, col.Name);
+                <text>
+                $('#' + rowId).find(".@ctrlID").prop('readonly', true);
+                </text>
+            }
+
+            <text>
+            row += '@Html.Raw("</div>")';
+            </text>
+        }
+
+
+        var fncClearCss = function (el) {
+            $(el).parent().find('span.select2-selection--single').css('border-color', '');
+            $(el).removeClass('@Model.DataKey-control-has-error');
+        }
+
+        $('#' + rowId).find('input').change(function (e) {
+            fncClearCss(this);
+            @(Model.DataKey)_updateDataValues();
+        });
+
+        $('#' + rowId).find('select').change(function (e) {
+            fncClearCss(this);
+            @(Model.DataKey)_updateDataValues();
+        });
+
+        $('#' + rowId).find('.datatable-delbtn').click(function (e) {
+            var delRowId = $(this).attr('datable-row-id');
+            $('#' + delRowId).remove();
+            @(Model.DataKey)_updateDataValues();
+        });
+
+        if (!@(datatableId)isDataBinding)  @(Model.DataKey)_updateDataValues();
+    }
+
+    function @(Model.DataKey)_updateDataValues() {
+
+        var dataList = [];
+        var rows = $('#@datatableId').find('.datatable-row');
+        $(rows).each(function (index, row) {
+            // Read all values in datatable
+            var data = {};
+            var value = '';
+            @foreach (var col in Model.DataTableColumns)
+            {
+                <text>value = '';</text>
+                string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+                if (col.IsIndexColumn)
+                {
+                    <text>
+                    value = "" + (index + 1);
+                    $(this).find('input.@ctrlID').val(value);
+                    $(this).find('div.@ctrlID').text(value);
+                    </text>
+                }
+                else if (col.Control.Type == ControlType.Dropdown)
+                {
+                    <text>
+                    value = $(this).find('select.@ctrlID').val();
+                    data['@(col.Name)_TEXT'] = $(this).find('select.@ctrlID option:selected').html();
+                    </text>
+                }
+                else
+                {
+                    <text>
+                    value = $(this).find('input.@ctrlID').val();
+                    </text>
+                }
+
+                <text>
+                data['@col.Name'] = value;
+                </text>
+
+                if (col.ExtraControl != null)
+                {
+                    ctrlID = string.Format("{0}_{1}_EXTRA", Model.DataKey, col.Name);
+                    <text>
+                    value = $(this).find('.@ctrlID').val();
+                    data['@(col.Name)_EXTRA'] = value;
+                    </text>
+                }
+
+            }
+            dataList.push(data);
+        });
+
+        $('#@Model.DataKey').val(JSON.stringify(dataList));
+
+        @* Trigger datatable-binded event to all listeners. *@
+        $('#@Model.DataKey').trigger('datatable-binded', [dataList, @(datatableId)selectOptions]);
+    }
+
+    /// Check if data in each row are valid.
+    function @(datatableId)_validate() {
+
+        if ($('#@Model.DataKey').hasClass('ignore')) return true;
+
+        // clear existing error message
+        $('#@Model.DataKey').siblings('span.custom-req-danger').remove();
+        $('#@Model.DataKey').siblings('span.error').remove();
+
+        if (!$('#@Model.DataKey').val()) {
+            $('#@Model.DataKey').val('[]');
+        }
+
+        var rowKeys = [];
+        @if (Model.DataTableRowKeys != null)
+        {
+            <text>
+            rowKeys = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.DataTableRowKeys));
+            </text>
+        }
+
+        var hasError = false;
+        var hasDuplicate = false;
+        var checkDuplicate = @(Model.DataTableRowKeys != null && Model.DataTableRowKeys.Length > 0 ? "true" : "false");
+        var rows = $('#@datatableId').find('.datatable-row');
+        var rowDataTexts = [];
+        $(rows).each(function (row, index) {
+            var rowData = { };
+            @foreach(var col in Model.DataTableColumns)
+            {
+                if (col.Control == null) { continue; }
+
+                string ctrlID = string.Format("{0}_{1}", Model.DataKey, col.Name);
+                if (Model.DataTableRowKeys != null && Model.DataTableRowKeys.Contains(col.Name))
+                {
+                    <text>
+                    rowData['@col.Name'] = $(this).find('.@ctrlID').val();
+                    </text>
+                }
+
+                // Skip validation code on control with no rules.
+                if (col.Control.Rules == null || col.Control.Rules.Length == 0)
+                {
+                    continue;
+                }
+
+                foreach(var rule in col.Control.Rules)
+                {
+                    if (rule.Type == ValidationType.Required)
+                    {
+                        if (col.Control.Type == ControlType.Dropdown)
+                        {
+                            <text>
+                            if (!$(this).find('select.@ctrlID').val()) {
+                                $(this).find('span.select2-selection--single').css('border-color', '#C10000');
+                                hasError = true;
+                            }
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                            if (!$(this).find('input.@ctrlID').val()) {
+                                $(this).find('input.@ctrlID').addClass('@Model.DataKey-control-has-error');
+                                hasError = true;
+                            }
+                            </text>
+                        }
+                    }
+                }
+
+                if (col.ExtraControl != null)
+                {
+                    ctrlID = string.Format("{0}_{1}_EXTRA", Model.DataKey, col.Name);
+                    <text>
+                    if ($(this).find('.@ctrlID').is(':visible') && !$(this).find('.@ctrlID').val()) {
+                        $(this).find('.@ctrlID').addClass('@Model.DataKey-control-has-error');
+                        hasError = true;
+                    }
+                    </text>
+                }
+            }
+
+            if (checkDuplicate) {
+                var str = JSON.stringify(rowData);
+                if (rowDataTexts.includes(str)) {
+                    hasDuplicate = true;
+                }
+
+                rowDataTexts.push(str);
+            }
+        });
+
+        if (checkDuplicate && hasDuplicate) {
+            $('<span class="custom-req-danger">@ResourceHelper.GetResourceWordWithDefault(Model.DataKey + "_ERROR_DUPLICATE", Model.ResourceName, Model.DataKey + "_ERROR_DUPLICATE")</span>').insertAfter('div#@(Model.DataKey)_DATATABLE')
+            hasError = true;
+        }
+
+        return !hasError;
+    }
+
+    // Get list of data
+    function @(datatableId)_getData() {
+        var strData = $('#@Model.DataKey').val();
+        return JSON.parse(strData || '[]');
+    }
+
+    $(document).ready(function () {
+        $('#@(datatableId)_addButton').click(function (e) {
+            @(datatableId)_AddRow(null);
+        });
+
+        // This event sould only be fired once data loaded from server.
+        $('input#@Model.DataKey').change(function (e) {
+
+            // clear existing rows
+            $('#@datatableId').find('.datatable-row').remove();
+
+            // clear existing error messages
+            $('#@Model.DataKey').siblings('span.custom-req-danger').remove();
+            $('#@Model.DataKey').siblings('span.error').remove();
+
+            if (!$(this).val()) $(this).val('[]');
+
+            var data = JSON.parse($(this).val());
+            @(datatableId)isDataBinding = true;
+
+            $(data).each(function (index, d) {
+                @(datatableId)_AddRow(d);
+            });
+
+            @(datatableId)isDataBinding = false;
+
+            @(Model.DataKey)_updateDataValues();
+        });
+    });
+
+</script>

@@ -1,0 +1,33 @@
+﻿@using BizPortal.Models
+@using Resource = BizPortal.Resources
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+        <div class="featured-box featured-box-primary align-left mt-xlg">
+            <div class="box-content">
+                <h5 class="heading-primary text-uppercase mb-md">INFORMATION GATEWAY FOR BUSINESS</h5>
+                <h5 class="heading-primary text-uppercase mb-md">รวมข้อมูลการติดต่อราชการสำหรับภาคธุรกิจ</h5>
+                <div class="col-md-12 text-center p-none">
+                    
+                        @Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row center">
+    © 2015 EGA. All rights reserved.
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

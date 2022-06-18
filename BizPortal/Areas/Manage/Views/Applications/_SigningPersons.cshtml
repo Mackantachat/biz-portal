@@ -1,0 +1,759 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@model ApplicationViewModel
+
+@{
+    string x = String.Empty;
+
+
+}
+
+<style type="text/css">
+    .model-label {
+        display: inline-block;
+        padding-left: 0 !important;
+        max-width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .model-validate {
+        display: none;
+    }
+
+    .model-validateCitizenDup {
+        display: none;
+    }
+
+    .model-validateCitizenFormat {
+        display: none;
+    }
+
+    a.dtMoveUp, a.dtMoveDown, a.openFileSignature {
+        margin-right: 5px;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .ValidatePersons {
+        display: none;
+    }
+</style>
+
+@Html.Hidden("lsSigningPersons", new { id = "lsSigningPersons" })
+
+<br/>
+<br/>
+<div>
+    @Html.Raw(Resources.Application.SP_TITLE)
+    <button type="button" id="btnAddSP" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#modalSP" data-backdrop="static" data-keyboard="false">@Html.Raw(Resources.Application.SP_MODAL_ADD_TITLE)</button>
+    <div class="validate-SP hide" style="margin-bottom: 10px;"><span style="color:red;"></span></div>
+</div>
+
+
+<div>
+    <table id="SigningPersonsTable" class="table table-striped table-bordered dataTable"></table>
+</div>
+
+<div id="div_persons">
+    <span id="spValidatePersons" class="text-danger ValidatePersons">กรุณาระบุผู้มีอำนาจการลงลายมือชื่อแบบดิจิทัล</span>
+</div>
+
+<div class="modal fade" id="modalSP" role="dialog" aria-labelledby="modalSPLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalSPLabel">@Html.Raw(Resources.Application.SP_ADD_ITEM)</h4>
+            </div>
+            <div class="modal-body">
+                <div id="frmSP">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="model-label">@Resources.Application.SP_NAME</label>
+                                <input type="text" id="txtSPName" class="form-control" placeholder="" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_TEXT_VAL</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="model-label">@Resources.Application.SP_LAST_NAME</label>
+                                <input type="text" id="txtSPLastName" class="form-control" placeholder="" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_TEXT_VAL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="model-label">@Resources.Application.SP_IDCARD</label>
+                                <input type="text" id="txtSPIdCard" class="form-control" placeholder="" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_TEXT_VAL</span>
+                                <span class="text-danger model-validateCitizenDup">@Resources.Application.SP_VALIDATE_TEXT_VAL_DUP</span>
+                                <span class="text-danger model-validateCitizenFormat">@Resources.Application.SP_VALIDATE__IDCard_Format</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="model-label">@Resources.Application.SP_POSITION</label>
+                                <input type="text" id="txtSPPosition" class="form-control" placeholder="" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_TEXT_VAL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="model-label">@Resources.Application.SP_UPLOAD_SIGNATURE</label><spand style="color:red">(กว้าง 200px สูง 50px)</spand>
+                                <div>
+                                    <img id="appSignature" style="display: none; max-width: 150px; margin-bottom: 10px;" />
+                                </div>
+                                <div id="uploadSignatureContainer"></div>
+                                <button id="btnUploadSignature" type="button" tabindex="-1" class="btn btn-info"><i class="fa fa-upload"></i> Upload</button>
+                                <label id="img_signing_error" style="color:red"></label>
+                                <input type="hidden" id="SignatureImageName" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_UPLOAD_VAL</span>
+
+                                <input type="hidden" id="SignatureImageFile" />
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSPCancel" class="btn btn-default" data-dismiss="modal">@Resources.Global.BTN_CANCEL</button>
+                <button type="button" id="btnSPOK" class="btn btn-primary">@Resources.Global.BTN_OK</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="modalSPFile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h6 class="modal-title" id="myModalLabel">@Resources.Application.SP_SIGNATURE</h6>
+            </div>
+            <div class="modal-body">
+                <img id="imagefile" style="margin:auto" src="" class="img-responsive">
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    var jsonDB =  '@ViewBag.jsonSPersons';
+    var jsonStr = '[]';
+    var index = 1;
+    function initSP() {
+        var jsonInit = jsonDB.replace(/&quot;/g,'"');
+        console.log(jsonInit);
+        var objSP = JSON.parse(jsonInit);
+        objSP.sort(function(a, b){ return a.Order - b.Order;});
+         var obj = JSON.parse(jsonStr);
+         $.each(objSP, function (i, item) {
+            // coords.push({ 'Latitude': value, 'Longitude': longitudes[index] });
+          obj.push({ "name": item.FirstName , "lastname" :item.LastName, "idcard": item.CitizenID, "position": item.Position, "order": item.Order ,"imagename":item.SignatureFileName,"imagefile":item.SignatureBase64});
+             jsonStr = JSON.stringify(obj);
+
+           // alert(item.name);
+         });
+         dataTable();
+        console.log(jsonStr);
+
+        var $modal = $('#modalSP');
+
+        $('#btnSPOK', $modal).on('click', function () {
+
+            var $message = $('#frmSP .form-group').children('.model-validateCitizenFormat');
+            $message.hide();
+
+
+            if (validateSP()) {
+
+                if ($('#modalSP').attr('row-id')) {
+                    updateSP($('#modalSP').attr('row-id'));
+                    $modal.modal('hide');
+                }
+                else if (validateCitizenDup() && checkForm()){
+                    //if(validateCitizenDup()) {
+                    //alert("valDup" + validateCitizenDup());
+                    //alert("check1"+checkForm());
+                    updateSP($('#modalSP').attr('row-id'));
+                    $modal.modal('hide');
+                   //}
+                    //if (checkForm()) {
+                    //    alert("check2" + checkForm());
+                    //}
+                }
+                //   else if (checkForm()){
+                //    updateSP($('#modalSP').attr('row-id'));
+                //    $modal.modal('hide');
+                //}
+            }
+        });
+
+
+
+        function checkID(id) {
+            if (id.length != 13) {
+                return false;
+            }
+            for (i = 0, sum = 0; i < 12; i++)
+                sum += parseFloat(id.charAt(i)) * (13 - i);
+            if ((11 - sum % 11) % 10 != parseFloat(id.charAt(12))) return false; return true;
+
+        }
+
+        function checkForm() {
+            //alert($('#txtSPIdCard').val());
+            var isValid = true;
+            //alert($('#txtSPIdCard').val());
+
+            var $message = $('#frmSP .form-group').children('.model-validateCitizenFormat');
+            $message.hide();
+
+            if (!checkID($('#txtSPIdCard').val())) {
+                //alert('รหัสประชาชนไม่ถูกต้อง');
+                isValid = false;
+                $message.show();
+            }
+            else {
+                //alert('รหัสประชาชนถูกต้อง เชิญผ่านได้');
+                isValid = true;
+            }
+            return isValid;
+
+        }
+
+
+
+        //$("#myModal").on("hidden.bs.modal", function () {
+        //    // put your default event here
+        //});
+
+        $modal.on('hide.bs.modal', function () {
+
+
+            // alert("model close");
+
+             $('#modalSP').removeAttr('row-id');
+             $modal.find('.modal-title').text('@Html.Raw(Resources.Application.SP_ADD_ITEM)');
+                $('#txtSPName', $modal).val('');
+                $('#txtSPLastName', $modal).val('');
+                $('#txtSPIdCard', $modal).val('');
+                $('#txtSPPosition', $modal).val('');
+                $('#SignatureImageName', $modal).val('');
+                $('#SignatureImageFile', $modal).val('');
+
+                $("#img_signing_error").text("");
+                $("#uploadSignatureContainer").empty();
+                $('.model-validate').hide();
+
+                var $message = $('#frmSP .form-group').children('.model-validateCitizenFormat');
+                $message.hide();
+
+        });
+    }
+    function openFileSP(id) {
+        //
+
+        //alert(id);
+         var $modal = $('#modalSPFile');
+       // var $row = $(el).parent('td').parent('tr');
+         var obj = JSON.parse(jsonStr);
+         for (var i = 0; i < obj.length; i++){
+      // look for the entry with a matching `code` value
+       if (obj[i].order == id){
+     // we found it
+    // obj[i].name is the matched result
+       $modal.attr('row-id', index.id);
+                 $('#imagefile').attr('src', obj[i].imagefile);
+          }
+        }
+
+        $modal.modal('show');
+
+    }
+
+    function GetFileSigner(id) {
+       // alert(id);
+        var resultfile = null;
+        var resultfileName = null;
+        var $modal = $('#modalSPFile');
+        // var $row = $(el).parent('td').parent('tr');
+        var obj = JSON.parse(jsonStr);
+        for (var i = 0; i < obj.length; i++) {
+            // look for the entry with a matching `code` value
+            if (obj[i].order == id) {
+
+                resultfile = obj[i].imagefile;
+                resultName = obj[i].imagename;
+            }
+        }
+        return [resultName, resultfile];
+    }
+
+
+    function updateSP(id) {
+
+        var $table = $('#tableSP tbody');
+        var name = $('#txtSPName').val();
+        var lastname = $('#txtSPLastName').val();
+        var idcard = $('#txtSPIdCard').val();
+        var imagename = $('#SignatureImageName').val();
+        var position = $('#txtSPPosition').val();
+        var imagefile = $('#SignatureImageFile').val();
+
+        console.log(name);
+        console.log(lastname);
+        console.log(idcard);
+        console.log(position);
+        console.log(imagename);
+        console.log(imagefile);
+        var obj = JSON.parse(jsonStr);
+
+       // console.log("Obj " + obj);
+       // alert("id is = "+id);
+        if (id) {
+                 for (var i = 0; i < obj.length; i++) {
+            // look for the entry with a matching `code` value
+            if (obj[i].order == id) {
+                obj[i].name = name;
+                obj[i].lastname = lastname;
+                obj[i].idcard = idcard;
+                obj[i].position = position;
+                 obj[i].imagename = imagename;
+                obj[i].imagefile = imagefile;
+
+               break;
+
+            }
+        }
+        }
+        else {
+            console.log("persons obj push length"+obj.length);
+
+            if (obj.length > 0) {
+                //console.log(obj[0].order);
+                //for (var j = 0; j < obj.length; j++) {
+                //     index = obj[j].order;
+                //}
+                index = obj.length + 1;
+                parseInt(index)
+            }
+            else {
+                index = 1;
+                index = obj.length + 1;
+                parseInt(index)
+            }
+            obj.push({ "name": name ,"lastname": lastname, "idcard": idcard, "position": position, "order": parseInt(index) ,"imagename":imagename,"imagefile":imagefile});
+        }
+
+
+        jsonStr = JSON.stringify(obj);
+
+
+
+      //  console.log(SignPersons);
+
+
+        console.log(jsonStr);
+        console.log(JSON.parse(jsonStr))
+
+
+            //index++;
+            //console.log("incres index:" + index);
+            dataTable();
+
+        }
+    function dataTable() {
+        var obj = JSON.parse(jsonStr);
+          var SignPersons = [];
+        $.each(obj, function (i, item) {
+
+            SignPersons.push({ 'Order': item.order, 'CitizenID': item.idcard, 'FirstName': item.name, 'LastName': item.lastname, 'Position': item.position, 'SignatureBase64': item.imagefile ,'SignatureFileName':item.imagename});
+
+           // alert(item.name);
+        });
+
+        var jsonSingPersons = JSON.stringify(SignPersons);
+
+        console.log(jsonSingPersons);
+        $("#lsSigningPersons").val(jsonSingPersons);
+        console.log(JSON.parse(jsonStr));
+             var table = $('#SigningPersonsTable').DataTable({
+             paging: false,
+           searching: false,
+            destroy: true,
+		data: JSON.parse(jsonStr),
+		columns: [
+			{
+				name: 'order',
+				title:  '@Html.Raw(Resources.Application.SP_INDEX)',
+				data: 'order',
+                sortable: false,
+                 className: "text-center"
+			},
+			{
+				name: 'order',
+				data: 'order',
+				visible: false
+			},
+			{
+				name: 'name',
+				data: null,
+				title: '@Resources.Application.SP_NAME_LASTNAME',
+				searchable: true,
+                sortable: false,
+                 className: "text-center",
+                render: function ( data, type, row ) {
+                    // Combine the first and last names into a single table field
+                    return data.name+' '+data.lastname;
+                },
+			},
+			{
+				name: 'idcard',
+				data: 'idcard',
+				title: '@Resources.Application.SP_IDCARD',
+				searchable: true,
+                sortable: false,
+                 className: "text-center"
+            },
+            {
+				name: 'position',
+				data: 'position',
+				title: '@Resources.Application.SP_POSITION',
+				searchable: true,
+                sortable: false,
+                  className: "text-center",
+            },
+             {
+				name: 'actionFile',
+				data: null,
+				title: '@Resources.Application.SP_SIGNATURE',
+				searchable: false,
+                 sortable: false,
+                  className: "text-center",
+                width : "10%",
+                render: function (data, type, full, meta) {
+					if (type === 'display') {
+                        var $span = $('<span></span>');
+					$('<a class="openFileSignature" onClick="openFileSP(\'' + data.order + '\')" > <i class="fa fa-edit" style="font-size:24px"></i></a>').appendTo($span);		return $span.html();
+					}
+					return data;
+				}
+			}
+            ,
+			{
+				name: 'action',
+				data: null,
+				title: '@Resources.Application.SP_ACTION',
+				searchable: false,
+                sortable: false,
+                width: "10%",
+                  className: "text-center",
+                render: function (data, type, full, meta) {
+
+                    //console.log(type + "-meta row :" + meta.row);
+					if (type === 'display') {
+						var $span = $('<span></span>');
+
+						if (meta.row > 0) {
+                            $('<a class="dtMoveUp"><i class="fa fa-arrow-circle-up" style="font-size:24px"></i></a>').appendTo($span);
+						}
+
+                        $('<a class="dtMoveDown"><i class="fa fa-arrow-circle-down" style="font-size:24px"></i></a>').appendTo($span);
+
+						return $span.html();
+					}
+					return data;
+				}
+            },
+            {
+				name: 'actionButton',
+				data: null,
+				title: '@Resources.Application.SP_ACTION_BUTTON',
+				searchable: false,
+                sortable: false,
+                width : "15%",
+                render: function (data, type, full, meta) {
+					if (type === 'display') {
+						var $span = $('<span></span>');
+						$('<button type="button" class="btn btn-sm btn-warning" onClick="editSP(\'' + data.order + '\')" > @Html.Raw(Resources.Global.BTN_EDIT)</button>').appendTo($span);
+						$('<button type="button" class="btn btn-sm btn-danger"  onClick="deleteSP(\'' + data.order + '\')" > @Html.Raw(Resources.Global.BTN_DELETE)</button>').appendTo($span);
+						return $span.html();
+					}
+					return data;
+				}
+			}
+		],
+		'drawCallback': function (settings) {
+			$('#SigningPersonsTable tr:last .dtMoveDown').remove();
+
+			// Remove previous binding before adding it
+			$('.dtMoveUp').unbind('click');
+			$('.dtMoveDown').unbind('click');
+
+			// Bind clicks to functions
+			$('.dtMoveUp').click(moveUp);
+			$('.dtMoveDown').click(moveDown);
+		}
+	});
+
+	// Move the row up
+    function moveUp() {
+		var tr = $(this).parents('tr');
+		moveRow(tr, 'up');
+	}
+
+	// Move the row down
+	function moveDown() {
+		var tr = $(this).parents('tr');
+		moveRow(tr, 'down');
+	}
+
+      // Move up or down (depending...)
+      function moveRow(row, direction) {
+
+        //  dataTable();
+
+
+         //   alert("Move");
+
+          console.log('direction:' + direction);
+            var index = table.row(row).index();
+
+          console.log('index:' + index);
+
+            var order = -1; // up
+            if (direction === 'down') {
+              order = 1;
+            }
+
+            var data1 = table.row(index).data();
+
+
+
+            console.log("old data1.order" + data1.order);
+
+            data1.order += order;
+
+            console.log("newe data1.order :" + data1.order);
+
+
+
+            var data2 = table.row(index + order).data();
+            data2.order += -order;
+
+            console.log("data2.order :" + data2.order)
+
+
+            table.row(index).data(data2);
+            table.row(index + order).data(data1);
+            table.page(0).draw(false);
+
+
+            var OrderObj = JSON.parse(jsonStr);
+
+                                  $('#SigningPersonsTable > tbody  > tr').each(function (index, tr) {
+                                      var $tds = $(this).find('td');
+                                      Order_IndexRow = $tds.eq(0).text();
+                                      //console.log("Order_IndexRow:"+Order_IndexRow);
+                                      ID_Card = $tds.eq(2).text();
+                                  //    //Img = GetFileSigner(ID_Card);
+                                  //    // Img[0]  filenaem
+                                  //    // Img[1]  fileData
+                                      console.log("Order_IndexRow:" + Order_IndexRow + "-ID_Card:" + ID_Card);
+                                         $.each(OrderObj, function (i, item) {
+
+                                              if (item.idcard === ID_Card) {
+                                                  console.log("match index" + i);
+                                                  //var key = "idcard";
+                                                  //parseInt(index)
+                                                  OrderObj[i].order = parseInt(Order_IndexRow);
+                                                  //delete obj[i];
+                                                  //console.log(obj);
+                                              }
+                                              else {
+                                                  console.log("not match");
+                                                  // console.log(obj);
+                                              }
+
+                                          });
+                                          OrderObj.sort((a, b) => (a.order > b.order) ? 1 : -1)
+                                          jsonStr = JSON.stringify(OrderObj);
+                                          console.log(jsonStr);
+                                  //    //  console.log(typeof(obj));
+
+                                  });
+
+	       }
+
+    }
+    function editSP(id) {
+           console.log(id);
+        var $modal = $('#modalSP');
+        $modal.modal({backdrop: 'static', keyboard: false})
+
+       // var $row = $(el).parent('td').parent('tr');
+         var obj = JSON.parse(jsonStr);
+         for (var i = 0; i < obj.length; i++){
+  // look for the entry with a matching `code` value
+             if (obj[i].order == id) {
+                 console.log(obj[i].imagename);
+                 // we found it
+                 // obj[i].name is the matched result
+                 $modal.attr('row-id', obj[i].order);
+                 $('#txtSPName', $modal).val(obj[i].name);
+                 $('#txtSPLastName', $modal).val(obj[i].lastname);
+                 $('#txtSPIdCard', $modal).val(obj[i].idcard);
+
+                 $('#SignatureImageName', $modal).val(obj[i].imagename);
+                 $('#SignatureImageFile', $modal).val(obj[i].imagefile);
+
+                 $('#txtSPPosition', $modal).val(obj[i].position);
+                 $('#SignatureImageFile', $modal).val(obj[i].imagefile);
+                  $("#uploadSignatureContainer").empty();
+                  $("#uploadSignatureContainer").append(obj[i].imagename);
+
+             }
+             else {
+                 console.log(obj);
+             }
+}
+        $modal.find('.modal-title').text('@Html.Raw(Resources.Application.SP_EDIT_ITEM)');
+        $modal.modal('show');
+
+    }
+    function deleteSP(id) {
+
+        console.log(id);
+        var obj = JSON.parse(jsonStr);
+
+        const index = obj.findIndex(x => x.order === parseInt(id));
+            console.log(index);
+        if (index !== undefined) obj.splice(index, 1);
+        //console.log("After removal:Obj", obj);
+        obj.sort((a, b) => (a.order > b.order) ? 1 : -1)
+        jsonStr = JSON.stringify(obj);
+        //console.log("After removal:", jsonStr);
+        //dataTable();
+
+
+
+        var objUpdate = JSON.parse(jsonStr);
+        num = 0;
+        $('#SigningPersonsTable > tbody  > tr').each(function (row_index, tr) {
+            var $tds = $(this).find('td');
+            ID_Card = $tds.eq(2).text();
+            tdOrder = $tds.eq(0).text();
+           // alert(tdOrder);
+           // console.log("Index- " + row_index + '-' + ID_Card);
+            Objindex = objUpdate.findIndex(x => x.order === parseInt(tdOrder));
+            if (Objindex >= 0) {
+                console.log('old:' + num);
+                num = num + 1;
+                $tds.eq(0).text(num)
+                console.log("row_index:" + num + "-idcard:" + objUpdate[Objindex].idcard);
+            //    console.log("row_index: " + row_index + '-idcard:' + ID_Card);
+                objUpdate[Objindex].order = parseInt(num);
+
+                console.log(objUpdate);
+                //jsonStr = JSON.stringify(objUpdate);
+                //console.log("After removal:", jsonStr);
+            //    jsonStr = JSON.stringify(obj);
+            //    console.log("After:json:", jsonStr);
+            //    dataTable();
+            }
+           // console.log("After:Obj:", obj);
+           // jsonStr = JSON.stringify(obj);
+
+            objUpdate.sort((a, b) => (a.order > b.order) ? 1 : -1)
+            jsonStr = JSON.stringify(objUpdate);
+            console.log("After removal:", jsonStr);
+            //dataTable();
+            //dataTable();
+           // jsonStr = JSON.stringify(obj);
+
+        });
+
+             dataTable();
+
+    }
+    function validateCitizenDup(el) {
+        var isValid = true;
+
+            $('#frmSP .form-group').each(function (i,e) {
+
+                var $message = $(e).children('.model-validateCitizenDup');
+                $message.hide();
+               var id =  $('#txtSPIdCard').val();
+
+                var obj = JSON.parse(jsonStr);
+                if (obj.length > 0) {
+                for (var i = 0; i < obj.length; i++) {
+                    // look for the entry with a matching `code` value
+                    if (obj[i].idcard == id) {
+                        $message.show();
+                        isValid = false;
+                    }
+
+                }
+                }
+
+
+
+            });
+
+        return isValid;
+    }
+     function validateSP(el) {
+         var isValid = true;
+        // alert(el);
+        if (el) {
+
+            var val = $(el).val();
+            var $message = $(el).parent('.form-group').children('.model-validateDup');
+          //  alert($message);
+            $message.hide();
+
+            if (val == undefined || val == 'undefined' || val == null || val == '' || val == 0 || val == -1) {
+                $message.show();
+                isValid = false;
+            }
+        }
+        else {
+            $('#frmSP .form-group').each(function (i,e) {
+
+                var $message = $(e).children('.model-validate');
+               // alert($message);
+                $message.hide();
+
+                if ($(e).children('input').length > 0) {
+                   // if ($(e).children('input').attr('type') != 'hidden' && $(e).children('input').attr('type') != 'number') {
+                        var val = $(e).children('input').val();
+
+                        if (val == undefined || val == 'undefined' || val == null || val == '' || val == 0 || val == -1) {
+                            $message.show();
+                            isValid = false;
+                        }
+                   // }
+                }
+
+
+            });
+        }
+        return isValid;
+    }
+
+
+
+</script>

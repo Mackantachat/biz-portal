@@ -1,0 +1,75 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@model FormSection
+@{ 
+    var rd = string.Empty;
+    if (Model.PartialReadonly)
+    {
+        rd = "disabled";
+    }
+}
+
+<div class="col-md-12">
+    <div class="checkbox">
+        <label for="VAT_CONFIRMATION_1_CHECK_TRUE" class="bold">
+            <input type="checkbox" name="VAT_CONFIRMATION_1_CHECK_TRUE" id="VAT_CONFIRMATION_1_CHECK_TRUE" value="true" @rd />
+            @ResourceHelper.GetResourceWordWithDefault("VAT_CONFIRMATION_1_CHECK_TRUE_1", "Apps_SingleForm", "VAT_CONFIRMATION_1_CHECK_TRUE_1") <a href="http://www.rd.go.th/publish/5206.0.html#mata81" target="_blank">@ResourceHelper.GetResourceWordWithDefault("VAT_CONFIRMATION_1_CHECK_TRUE_2", "Apps_SingleForm", "VAT_CONFIRMATION_1_CHECK_TRUE_2")</a>
+        </label>
+    </div>
+    <div class="checkbox">
+        <label for="VAT_CONFIRMATION_2_CHECK_TRUE" class="bold">
+            <input type="checkbox" name="VAT_CONFIRMATION_2_CHECK_TRUE" id="VAT_CONFIRMATION_2_CHECK_TRUE" value="true" @rd />
+            @ResourceHelper.GetResourceWordWithDefault("VAT_CONFIRMATION_2_CHECK_TRUE", "Apps_SingleForm", "VAT_CONFIRMATION_2_CHECK_TRUE")
+        </label>
+    </div>
+    <div class="checkbox">
+        <label for="VAT_CONFIRMATION_3_CHECK_TRUE" class="bold">
+            <input type="checkbox" name="VAT_CONFIRMATION_3_CHECK_TRUE" id="VAT_CONFIRMATION_3_CHECK_TRUE" value="true" @rd />
+            @ResourceHelper.GetResourceWordWithDefault("VAT_CONFIRMATION_3_CHECK_TRUE", "Apps_SingleForm", "VAT_CONFIRMATION_3_CHECK_TRUE")
+        </label>
+    </div>
+    <div class="checkbox">
+        <label for="VAT_CONFIRMATION_4_CHECK_TRUE" class="bold">
+            <input type="checkbox" name="VAT_CONFIRMATION_4_CHECK_TRUE" id="VAT_CONFIRMATION_4_CHECK_TRUE" value="true" @rd />
+            @ResourceHelper.GetResourceWordWithDefault("VAT_CONFIRMATION_4_CHECK_TRUE", "Apps_SingleForm", "VAT_CONFIRMATION_4_CHECK_TRUE")
+        </label>
+    </div>
+    <div class="checkbox">
+        <label for="VAT_CONFIRMATION_5_CHECK_TRUE" class="bold">
+            <input type="checkbox" name="VAT_CONFIRMATION_5_CHECK_TRUE" id="VAT_CONFIRMATION_5_CHECK_TRUE" value="true" @rd />
+            @ResourceHelper.GetResourceWordWithDefault("VAT_CONFIRMATION_5_CHECK_TRUE", "Apps_SingleForm", "VAT_CONFIRMATION_5_CHECK_TRUE")
+        </label>
+    </div>
+    @*<div class="checkbox">
+        <label for="VAT_CONFIRMATION_6_CHECK_TRUE" class="bold">
+            <input type="checkbox" name="VAT_CONFIRMATION_6_CHECK_TRUE" id="VAT_CONFIRMATION_6_CHECK_TRUE" value="true" @rd />
+            @ResourceHelper.GetResourceWordWithDefault("VAT_CONFIRMATION_6_CHECK_TRUE", "Apps_SingleForm", "VAT_CONFIRMATION_6_CHECK_TRUE")
+        </label>
+    </div>*@
+</div>
+
+@if (!Model.PartialReadonly)
+{
+    <script type="text/javascript">
+    $(function () {
+        singleForm.customRules['VAT_CONFIRMATION_1_CHECK_TRUE'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณายืนยันความถูกต้อง' }
+        };
+        singleForm.customRules['VAT_CONFIRMATION_2_CHECK_TRUE'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณายืนยันความถูกต้อง' }
+        };
+        singleForm.customRules['VAT_CONFIRMATION_3_CHECK_TRUE'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณายืนยันความถูกต้อง' }
+        };
+        singleForm.customRules['VAT_CONFIRMATION_4_CHECK_TRUE'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณายืนยันความถูกต้อง' }
+        };
+        singleForm.customRules['VAT_CONFIRMATION_5_CHECK_TRUE'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณายืนยันความถูกต้อง' }
+        };
+        @*singleForm.customRules['VAT_CONFIRMATION_6_CHECK_TRUE'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณายืนยันความถูกต้อง' }
+        };*@
+    });
+    </script>
+}

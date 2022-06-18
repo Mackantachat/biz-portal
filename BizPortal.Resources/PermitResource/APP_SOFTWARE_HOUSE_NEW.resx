@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_SOFTWARE_HOUSE" xml:space="preserve">
+    <value>ข้อมูลการยื่นคำขอมีเลขประจำตัวซอฟต์แวร์เฮ้าส์​</value>
+  </data>
+  <data name="LATEST_SOFTWARE_ID_NUMBER" xml:space="preserve">
+    <value>เลขประจำตัวซอฟต์แวร์เฮ้าส์ที่เคยได้รับจากกรมสรรพากร</value>
+  </data>
+  <data name="NUMBER_OF_BRANCH" xml:space="preserve">
+    <value>จำนวนสาขาทั้งสิ้น</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_CONFIRMATION_INFO_NEW" xml:space="preserve">
+    <value>เอกสารแนบประกอบการพิจารณา มีดังนี้&lt;br/&gt;
+1. ผังการทำงานรวมของโปรแกรมทั้งระบบ&lt;br/&gt;
+2. คู่มือการใช้ซอฟต์แวร์แต่ละชนิด หรือคำอธิบายรายละเอียดของโปรแกรมฯ&lt;br/&gt;
+3. สำเนาบัตรประจำตัวประชาชนของผู้ขอมีเลขประจำตัวซอฟต์แวร์เฮ้าส์ (กรณีบุคคลธรรมดา)&lt;br/&gt;
+4. บัตรประจำตัวผู้เสียภาษีอากร (กรณีนิติบุคคล)&lt;br/&gt;
+5. หนังสือรับรองการจดทะเบียนนิติบุคคลที่มีอายุไม่เกิน 6 เดือน&lt;br/&gt;
+6. สำเนาบัตรประจำตัวประชาชนหรือหนังสือเดินทางของกรรมการผู้มีอำนาจลงนาม&lt;br/&gt;</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_CONFIRMATION_NEW" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_CONFIRMATION__TRUE_NEW" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่ารายการที่แจ้งไว้ข้างต้นเป็นรายการที่ถูกต้องสมบูรณ์ทุกประการ</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_CONFIRM_NEW" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_DETAIL_NEW" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_SOFTWARE_DETAIL_MODULE" xml:space="preserve">
+    <value>ชื่อโมดูล</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_SOFTWARE_DETAIL_MODULE_ADDMSG" xml:space="preserve">
+    <value>เพิ่มชื่อโมดูล</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_SOFTWARE_DETAIL_MODULE_EMPTYMSG" xml:space="preserve">
+    <value>ไม่มีข้อมูล ชื่อโมดูล ในขณะนี้ คุณสามารถเพิ่มข้อมูลชื่อโมดูล &lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มชื่อโมดูล"</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_SOFTWARE_DETAIL_MODULE_SUMITMSG" xml:space="preserve">
+    <value>เพิ่มชื่อโมดูล</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_PROP_AND_INFO_NEW" xml:space="preserve">
+    <value>คุณสมบัติและข้อมูลของผู้ประกอบการซอฟต์แวร์</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_REQ_DATE" xml:space="preserve">
+    <value>มีความประสงค์ขอมีเลขประจำตัวซอฟต์แวร์เฮ้าส์ตามประกาศกรมสรรพกร เรื่อง การกำหนดคุณสมบัติ หลักเกณฑ์ วิธีการ และเงื่อนไข ในการขอเลขประจำตัวซอฟต์แวร์เฮ้าส์ ลงวันที่</value>
+  </data>
+  <data name="SOFTWARE_ID_NUMBER_REQUIREMENT" xml:space="preserve">
+    <value>คุณมีความประสงค์ขอมีเลขซอฟต์แวร์เฮ้าส์เนื่องจาก</value>
+  </data>
+  <data name="SOFTWARE_MODULE_NAME" xml:space="preserve">
+    <value>ชื่อโมดูล</value>
+  </data>
+  <data name="SOFTWARE_NAME" xml:space="preserve">
+    <value>ชื่อซอฟต์แวร์</value>
+  </data>
+  <data name="SOFTWARE_PRODUCT_OR_SERVICE_OPT_4_ANS" xml:space="preserve">
+    <value>ระบุ อื่นๆ</value>
+  </data>
+  <data name="SOFTWARE_PRODUCT_OR_SERVICE_TYPE" xml:space="preserve">
+    <value>กิจการประเภท</value>
+  </data>
+  <data name="SOFTWARE_PRODUCT_OR_SERVICE_TYPE_OPT_1" xml:space="preserve">
+    <value>กิจการประเภท ซื้อ-ขาย</value>
+  </data>
+  <data name="SOFTWARE_PRODUCT_OR_SERVICE_TYPE_OPT_2" xml:space="preserve">
+    <value>กิจการประเภท บริการ</value>
+  </data>
+  <data name="SOFTWARE_PRODUCT_OR_SERVICE_TYPE_OPT_3" xml:space="preserve">
+    <value>กิจการประเภท ผลิต</value>
+  </data>
+  <data name="SOFTWARE_PRODUCT_OR_SERVICE_TYPE_OPT_4" xml:space="preserve">
+    <value>กิจการประเภท อื่นๆ</value>
+  </data>
+  <data name="SOFTWARE_TOTAL_MODULE" xml:space="preserve">
+    <value>จำนวนโมดูล</value>
+  </data>
+  <data name="SOFTWARE_TYPE_INFO" xml:space="preserve">
+    <value>ประกาศอธิบดีกรมสรรพากรเกี่ยวกับภาษีมูลค่าเพิ่ม (ฉบับที่ 89)ฯ ลงวันที่ 29 เมษายน พ.ศ. 2542 และที่แก้ไขเพิ่มเติม&lt;br/&gt;
+&lt;br/&gt;
+ชนิด ก.&lt;br/&gt;
+1. เป็นโปรแกรมที่เมื่อบันทึกข้อมูล และโอนเข้าบัญชีแยกประเภทแล้ว จะแก้ไขรายการนั้น ๆ โดยไร้ร่องรอยไม่ได้ ถ้าจะแก้ไขต้องบันทึกรายการปรับปรุงตามวิธีการทางบัญชี​&lt;br/&gt;
+2. เป็นโปรแกรมที่ช่วยไม่ให้หลีกเลี่ยงภาษี&lt;br/&gt;
+3. เป็นโปรแกรมที่มีระบบรักษาความปลอดภัยเพื่อควบคุมการเข้าถึงข้อมูลได้​&lt;br/&gt;
+4. เป็นโปรแกรมที่การบันทึกรายการเป็นไปตามระบบบัญชีคู่&lt;br/&gt;
+​&lt;br/&gt;
+ชนิด ข.​&lt;br/&gt;
+1. เป็นโปรแกรมที่เมื่อบันทึกข้อมูล และโอนเข้าบัญชีแยกประเภทแล้ว จะแก้ไขรายการนั้น ๆ โดยไร้ร่องรอยไม่ได้ ถ้าจะแก้ไขต้องบันทึกรายการปรับปรุงตามวิธีการทางบัญชี​&lt;br/&gt;
+2. เป็นโปรแกรมที่ช่วยไม่ให้หลีกเลี่ยงภาษี​&lt;br/&gt;
+3. เป็นโปรแกรมที่มีระบบรักษาความปลอดภัยเพื่อควบคุมการเข้าถึงข้อมูลได้​&lt;br/&gt;
+4. เป็นโปรแกรมที่การบันทึกรายการเป็นไปตามระบบบัญชีคู่​&lt;br/&gt;
+5. เป็นโปรแกรมที่มีระบบซอฟต์แวร์ในระบบงานบางระบบใช้ระบบคอมพิวเตอร์ เช่น ระบบขาย ระบบพัสดุ ฯลฯ ระบบซอฟต์แวร์นั้นต้องโอนเข้าระบบบัญชีแยกประเภทได้โดยตรง&lt;br/&gt;
+​&lt;br/&gt;
+ชนิด ค.​&lt;br/&gt;
+1. เป็นโปรแกรมที่เมื่อบันทึกข้อมูล และโอนเข้าบัญชีแยกประเภทแล้ว จะแก้ไขรายการนั้น ๆ โดยไร้ร่องรอยไม่ได้ ถ้าจะแก้ไขต้องบันทึกรายการปรับปรุงตามวิธีการทางบัญชี​&lt;br/&gt;
+2. เป็นโปรแกรมที่ช่วยไม่ให้หลีกเลี่ยงภาษี​&lt;br/&gt;
+3. เป็นโปรแกรมที่มีระบบรักษาความปลอดภัยเพื่อควบคุมการเข้าถึง ข้อมูลได้​&lt;br/&gt;
+4. เป็นโปรแกรมที่การบันทึกรายการเป็นไปตามระบบบัญชีคู่​&lt;br/&gt;
+5. เป็นโปรแกรมที่มีระบบซอฟต์แวร์ในระบบงานทุกระบบใช้ระบบคอมพิวเตอร์ ระบบซอฟต์แวร์นั้นทุกระบบต้องโอนเข้าระบบบัญชีแยกประเภทได้โดยตรง​&lt;br/&gt;
+​&lt;br/&gt;
+ชนิด ง.​&lt;br/&gt;
+1. เป็นโปรแกรมที่เมื่อบันทึกข้อมูล และโอนเข้าบัญชีแยกประเภทแล้ว จะแก้ไขรายการนั้น ๆ โดยไร้ร่องรอยไม่ได้ ถ้าจะแก้ไขต้องบันทึกรายการปรับปรุงตามวิธีการทางบัญชี​&lt;br/&gt;
+2. เป็นโปรแกรมที่ช่วยไม่ให้หลีกเลี่ยงภาษี​&lt;br/&gt;
+3. เป็นโปรแกรมที่มีระบบรักษาความปลอดภัยเพื่อควบคุมการเข้าถึงข้อมูลได้​&lt;br/&gt;
+4. เป็นโปรแกรมที่การบันทึกรายการเป็นไปตามระบบบัญชีคู่​&lt;br/&gt;
+5. เป็นโปรแกรมที่มีระบบซอฟต์แวร์ในระบบงานทุกระบบใช้ระบบคอมพิวเตอร์ ระบบซอฟต์แวร์นั้นทุกระบบต้องโอนเข้าระบบบัญชีแยกประเภทได้โดยตรง​
+มีการแจ้งรหัสผ่านต่อกรมสรรพากร เพื่อให้สามารถผ่านระบบรักษาความปลอดภัยได้ โดยให้ใส่ซองปิดผนึก ซึ่งกรมสรรพากรจะไม่เปิด เว้นแต่จะเปิดต่อหน้าผู้ประกอบการ​&lt;br/&gt;
+&lt;br/&gt;
+https://www.rd.go.th/publish/3374.0.html</value>
+  </data>
+  <data name="SOFTWARE_TYPE_NEW" xml:space="preserve">
+    <value>ชนิดของซอฟต์แวร์ตามมาตรฐานซอฟต์แวร์</value>
+  </data>
+  <data name="SOFTWARE_VERSION" xml:space="preserve">
+    <value>เวอร์ชั่นของซอฟต์แวร์</value>
+  </data>
+  <data name="STORE_SIZE" xml:space="preserve">
+    <value>ขนาดของกิจการ</value>
+  </data>
+  <data name="STORE_SIZE_OTHER" xml:space="preserve">
+    <value>อื่นๆ (ระบุ)</value>
+  </data>
+  <data name="VAT_LICENSE_LIST_AT" xml:space="preserve">
+    <value>ยื่นแบบแสดงรายการ ภ.พ. 30 รวมกันที่</value>
+  </data>
+  <data name="VAT_LICENSE_LIST_AT_BRANCH_NO" xml:space="preserve">
+    <value>สาขาที่</value>
+  </data>
+</root>

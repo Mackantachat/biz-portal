@@ -1,0 +1,39 @@
+﻿@using BizPortal.Utils.Helpers
+@model BizPortal.DAL.MongoDB.FormSection
+    <script id="@(Model.Section)Template" type="text/x-handlebars-template">
+        {{#xif " data.length > 0 " }}
+        <div class="row">
+            <div class="col-md-5">
+                <label>@BizPortal.Resources.Apps_SingleForm.TYPE_OF_PRODUCT :</label>
+            </div>
+            <div class="col-md-4">
+                <label>@BizPortal.Resources.Apps_SingleForm.MANUFACTURING_PER_YEAR :</label>
+            </div>
+            <div class="col-md-3">
+                <label>@BizPortal.Resources.Apps_SingleForm.SELL_PRODUCT_LOCATION_FOOD_AND_DRINK :</label>
+            </div>
+        </div>
+        {{#each data}}
+
+        <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+            <div class="col-md-5">
+                <p class="bold form-control-static">{{this.TYPE_OF_PRODUCT}}</p>
+            </div>
+            <div class="col-md-4">
+                <p class="bold form-control-static">{{this.MANUFACTURING_PER_YEAR}} {{this.MANUFACTURING_PER_YEAR_UNIT}}</p>
+            </div>
+            <div class="col-md-3">
+                <p class="bold form-control-static">{{this.SELL_PRODUCT_LOCATION_FOOD_AND_DRINK}}</p>
+            </div>
+        </div>
+
+        {{/each}}
+        {{else}}
+        <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+            <div class="col-md-12 text-center">
+                ไม่มีข้อมูลผลิตภัณฑ์
+            </div>
+        </div>
+        {{/xif}}
+
+    </script>

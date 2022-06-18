@@ -1,0 +1,149 @@
+﻿@using Resources = BizPortal.Resources
+@{
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/rd-logo.png");
+
+    ViewBag.Title = Resources.Apps_VAT.APPS_TITLE;
+
+    string homeUrl = Url.BizAction("Index", "Home", new{ area = "",language = ViewBag.CurrentLang });
+}
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">@Resources.Apps_VAT.APP_TITLE</div>
+        <div class="panel-body">
+            <!--ผู้มีสิทธิยื่นคำขอจดทะเบียน-->
+            <div class="row">
+                <div class="col-md-12 form-group ">
+                    <strong><u>@Resources.Apps_VAT.APPLICANT</u></strong>
+                </div>
+            </div>
+            <div class="row pl30">
+                <!--1.-->
+                <div class="col-md-12 form-group">
+                    1.@Resources.Apps_VAT.REG_OPTION_DESC
+                </div>
+                <div class="col-md-12 form-group pl30">
+                    1.1 @Resources.Apps_VAT.APP_1_1
+                </div>
+                <div class="col-md-12 form-group pl30">
+                    1.2 @Resources.Apps_VAT.APP_1_2
+                </div>
+                <div class="col-md-12 form-group pl30">
+                    <strong><u>@Resources.Apps_VAT.APP_FORM_USE</u></strong> @Resources.Apps_VAT.APP_USE_FORM_PP01
+                </div>
+
+                <!--2.-->
+                <div class="col-md-12 form-group">
+                    2.@Resources.Apps_VAT.APP_2
+                </div>
+                <div class="col-md-12 form-group pl30">
+                    2.1 @Resources.Apps_VAT.APP_2_1
+                </div>
+                <div class="col-md-12 form-group pl30">
+                    2.2 @Resources.Apps_VAT.APP_2_2
+                </div>
+                <div class="col-md-12 form-group pl30">
+                    <strong><u>@Resources.Apps_VAT.APP_FORM_USE</u></strong> @Resources.Apps_VAT.THEREIS
+                </div>
+                <div class="row pl30">
+                    <div class="col-md-12 form-group ">
+                        (1)@Resources.Apps_VAT.REG_EXCEPT_FORM_PP011
+                    </div>
+                    <div class="col-md-12 form-group ">
+                        (2)@Resources.Apps_VAT.APP_USE_FORM_PP01
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <ul>
+                            <li>@Resources.Apps_VAT.REG_EXCEPT_PP01_DESC1</li>
+                            <li>@Resources.Apps_VAT.REG_EXCEPT_PP01_DESC2</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--การให้บริการ-->
+            <div class="row">
+                <div class="col-md-12 form-group ">
+                    <strong><u>@Resources.Apps_VAT.SERVICE</u></strong>
+                </div>
+            </div>
+            <div class="row pl30">
+                <div class="col-md-12 form-group">
+                    1.@Resources.Apps_VAT.SERVICE_1
+                </div>
+                <div class="col-md-12 form-group">
+                    2.@Resources.Apps_VAT.SERVICE_2
+                </div>
+                <div class="col-md-12 form-group">
+                    3.@Resources.Apps_VAT.SERVICE_3
+                </div>
+                <div class="col-md-12 form-group">
+                    4.@Resources.Apps_VAT.SERVICE_4
+                </div>
+            </div>
+
+            <!--คำเตือน-->
+            <div class="row">
+                <div class="col-md-12 form-group ">
+                    <strong><u>@Resources.Apps_VAT.WARNING</u></strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <ul>
+                        <li>@Resources.Apps_VAT.WARNING_1</li>
+                        <li>@Resources.Apps_VAT.WARNING_2</li>
+                        <li>@Resources.Apps_VAT.WARNING_3</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <a href="@Url.Action("Form", "VAT")" class="btn btn-success btn-sm">ยืนยันการจดทะเบียน</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="informModal" tabindex="-1" role="dialog" aria-labelledby="informModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 pl30">
+                        <p>@Html.Raw(string.Format(Resources.Apps_VAT.HTML_FORMAT, Resources.Apps_VAT.INFORM_DESC))</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnInformModalClose">@Resources.Apps_VAT.CLOSE</button>
+                        <button class="btn btn-success" data-dismiss="modal" id="btnInformModalNext">@Resources.Apps_VAT.NEXT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageScripts {
+    <script type="text/javascript">
+        $(function () {
+
+            $('#informModal').modal('show');
+
+            $("#btnInformModalClose").click(function (e) {
+                window.location.replace("@homeUrl");
+            });
+
+            $("#btnInformModalNext").click(function (e) {
+                $('#informModal').modal('hide');
+            });
+
+        })
+    </script>
+   }
+

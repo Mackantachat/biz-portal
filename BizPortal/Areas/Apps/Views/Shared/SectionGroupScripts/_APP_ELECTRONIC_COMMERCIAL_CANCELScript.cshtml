@@ -1,0 +1,88 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    
+    
+    $(document).ready(function (e) {
+        // User cannot manually select request type.
+        
+        $(document).find('section').each(function () {
+            if (this.dataset.sectionName !== 'APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION_2') {
+                window.singleFormHelpers.form.setReadonly(this);
+
+                // All fields should not required.
+                window.singleFormHelpers.form.ignoreValidations(this);
+            }
+        });
+                
+        // listen on databinding
+        window.singleFormHelpers.form.onDraftDataLoading(function (sectionGroup) {
+            /*setTimeout(function () {
+                swal({
+                    title: 'กรุณารอสักครู่',
+                    text: 'กำลังดึงข้อมูลจากกรมธุรกิจการค้า...',
+                    type: 'info',
+                    showConfirmButton: false
+                });
+            }, 500);*/
+        
+        });
+
+        window.singleFormHelpers.form.onDraftDataLoaded(function (sectionGroup) {
+            //swal.close();
+        });
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            $(document).find('section').each(function () {
+                if (this.dataset.sectionName !== 'APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION_2') {
+                    window.singleFormHelpers.form.setReadonly(this);
+
+                    // All fields should not required.
+                    window.singleFormHelpers.form.ignoreValidations(this);
+                }
+            });
+        });
+
+        var fncDayDiff = function(date1, date2) {
+            var diff = date2 - date1;    // get diff in timestamp
+            return Math.floor(diff / (1000 * 60 * 60 * 24));  // convert to years
+        }
+
+        $("input[name='APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION_2_DATE']").change(function () {
+            
+            var dateStr = $(this).val();
+            var dayDiff = 0;
+            if (dateStr) {
+                var parts = dateStr.split('/');
+                var year = parseInt(parts[2]);
+                if (year > 2300) year -= 543;
+                var mydate = new Date(year, parseInt(parts[1]) - 1, parseInt(parts[0]));
+                dayDiff = fncDayDiff(mydate.getTime(), new Date().getTime());
+            }
+            
+            if (dayDiff > 30 && $(this).parent().parent().find("div.lbl-warning").length == 0) {
+                //'ผู้ใช้งานต้องเสียค่าปรับ เนื่องจากแจ้งยกเลิกล่าช้าเกิน 30 วัน'
+                $(this).parent().parent().append('<div class="lbl-warning">ผู้ใช้งานต้องเสียค่าปรับ เนื่องจากแจ้งยกเลิกล่าช้าเกิน 30 วัน</div>');
+            } else if (dayDiff <= 30) {
+                $(this).parent().parent().find("div.lbl-warning").remove();
+            }
+
+            
+        });
+
+        $('#btnNextAppSingleForm, #btnSaveDraftSingleForm').removeAttr('disabled');
+	});
+	
+</script>
+
+<style type="text/css">
+    .lbl-warning {
+        padding-top: 10px;
+        color: orangered;
+    }
+</style>
+

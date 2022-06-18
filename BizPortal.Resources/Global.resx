@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ABOUT_INVESTMENT" xml:space="preserve">
+    <value>เกี่ยวกับการลงทุนในไทย</value>
+  </data>
+  <data name="BUSINESS_CATEGORY" xml:space="preserve">
+    <value>หมวดหมู่</value>
+  </data>
+  <data name="BUSINESS_DESCRIPTION" xml:space="preserve">
+    <value>รายละเอียด</value>
+  </data>
+  <data name="BUSINESS_DETAILS" xml:space="preserve">
+    <value>รายละเอียด</value>
+  </data>
+  <data name="BUSINESS_INFO" xml:space="preserve">
+    <value>ข้อมูลพื้นฐาน</value>
+  </data>
+  <data name="BUSINESS_PARTNER" xml:space="preserve">
+    <value>หน่วยงานที่เกี่ยวข้อง</value>
+  </data>
+  <data name="CATEGORY" xml:space="preserve">
+    <value>หมวดหมู่</value>
+  </data>
+  <data name="COMPANY_PROFILE" xml:space="preserve">
+    <value>ข้อมูลบริษัท</value>
+  </data>
+  <data name="CONTACT_US" xml:space="preserve">
+    <value>ติดต่อเรา</value>
+  </data>
+  <data name="DASHBOARD" xml:space="preserve">
+    <value>แดชบอร์ด</value>
+  </data>
+  <data name="LASTEST_POST" xml:space="preserve">
+    <value>ข้อมูล/คำแนะนำ/บทความ</value>
+  </data>
+  <data name="LOGIN" xml:space="preserve">
+    <value>เข้าสู่ระบบ</value>
+  </data>
+  <data name="LOGOUT" xml:space="preserve">
+    <value>ออกจากระบบ</value>
+  </data>
+  <data name="PLACE_SEARCH" xml:space="preserve">
+    <value>ระบุคำค้นหา</value>
+  </data>
+  <data name="POWERED_BY" xml:space="preserve">
+    <value>หน่วยงานผู้ให้บริการ</value>
+  </data>
+  <data name="PROFILE" xml:space="preserve">
+    <value>ข้อมูลส่วนตัว</value>
+  </data>
+  <data name="READ_MORE" xml:space="preserve">
+    <value>เพิ่มเติม...</value>
+  </data>
+  <data name="SEARCH" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="SEARCH_KEYWORD" xml:space="preserve">
+    <value>คำค้นหา</value>
+  </data>
+  <data name="SERVICE" xml:space="preserve">
+    <value>บริการ</value>
+  </data>
+  <data name="TRACKING_STASUS" xml:space="preserve">
+    <value>ติดตามสถานะ</value>
+  </data>
+  <data name="SYS_NAME" xml:space="preserve">
+    <value>Business Portal</value>
+  </data>
+  <data name="BTN_ACTIVE" xml:space="preserve">
+    <value>&lt;i class="fa fa-play"&gt;&lt;/i&gt; เปิดใช้งาน</value>
+  </data>
+  <data name="BTN_ADD" xml:space="preserve">
+    <value>&lt;i class="fa fa-plus-circle"&gt;&lt;/i&gt; เพิ่ม</value>
+  </data>
+  <data name="BTN_BACK" xml:space="preserve">
+    <value>&lt;i class="fa fa-eject"&gt;&lt;/i&gt; ย้อนกลับ</value>
+  </data>
+  <data name="BTN_DELETE" xml:space="preserve">
+    <value>&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt; ลบ</value>
+  </data>
+  <data name="BTN_EDIT" xml:space="preserve">
+    <value>&lt;i class="fa fa-floppy-o"&gt;&lt;/i&gt; แก้ไข</value>
+  </data>
+  <data name="BTN_INACTIVE" xml:space="preserve">
+    <value>&lt;i class="fa fa-pause"&gt;&lt;/i&gt; ปิดใช้งาน</value>
+  </data>
+  <data name="BTN_SEARCH" xml:space="preserve">
+    <value>&lt;i class="fa fa-search"&gt;&lt;/i&gt; ค้นหา</value>
+  </data>
+  <data name="TABLE_ACTION_HEADING" xml:space="preserve">
+    <value>ดูรายละเอียด</value>
+  </data>
+  <data name="TABLE_ACTIVE_HEADING" xml:space="preserve">
+    <value>เปิดใช้งาน/ปิดใช้งาน</value>
+  </data>
+  <data name="DDL_SELECT" xml:space="preserve">
+    <value>[------ กรุณาเลือก ------]</value>
+  </data>
+  <data name="DDL_SELECT_ALL" xml:space="preserve">
+    <value>[------ เลือกทั้งหมด ------]</value>
+  </data>
+  <data name="DDL_SELECT_SHOWALL" xml:space="preserve">
+    <value>[------ แสดงทั้งหมด ------]</value>
+  </data>
+  <data name="MSG_VALIDATE_REQUIRED" xml:space="preserve">
+    <value>กรุณาระบุ {0}</value>
+  </data>
+  <data name="LABEL_ALIAS" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="LABEL_PUBLISH" xml:space="preserve">
+    <value>เผยแพร่</value>
+  </data>
+  <data name="PASSWORD" xml:space="preserve">
+    <value>รหัสผ่าน</value>
+  </data>
+  <data name="USERNAME" xml:space="preserve">
+    <value>ชื่อผู้ใช้งาน</value>
+  </data>
+  <data name="WELCOME" xml:space="preserve">
+    <value>ยินดีต้อนรับ</value>
+  </data>
+  <data name="BTN_UPLOADING_THUMBNAIL" xml:space="preserve">
+    <value>&lt;i class="fa fa-spinner fa fa-spin"&gt;&lt;/i&gt; กำลังอัปโหลดรูปภาพประจำตัว</value>
+  </data>
+  <data name="BTN_UPLOAD_THUMBNAIL" xml:space="preserve">
+    <value>&lt;i class="fa fa-upload"&gt;&lt;/i&gt; อัปโหลดรูปภาพประจำตัว</value>
+  </data>
+  <data name="MSG_UPLOAD_THUMBNAIL_CONFIRM" xml:space="preserve">
+    <value>กรุณายืนยันการอัปโหลดรูปภาพประจำตัว</value>
+  </data>
+  <data name="MSG_UPLOAD_THUMBNAIL_FAILED" xml:space="preserve">
+    <value>ไม่สามารถอัปโหลดรูปภาพประจำตัวได้</value>
+  </data>
+  <data name="WEB_TITLE_NAME" xml:space="preserve">
+    <value>Biz Portal</value>
+  </data>
+  <data name="BTN_COPY" xml:space="preserve">
+    <value>&lt;i class="fa fa-filter"&gt;&lt;/i&gt; คัดลอก</value>
+  </data>
+  <data name="BTN_DETAIL" xml:space="preserve">
+    <value>ดูรายละเอียด</value>
+  </data>
+  <data name="BTN_PRINT" xml:space="preserve">
+    <value>&lt;i class="fa fa-print"&gt;&lt;/i&gt; ปรินท์</value>
+  </data>
+  <data name="SELECT_ALL" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="SEARCH_NOTFOUND" xml:space="preserve">
+    <value>ไม่พบข้อมูล</value>
+  </data>
+  <data name="LASTEST_POST_EMPTY" xml:space="preserve">
+    <value>ยังไม่มีบทความที่ถูกเผยแพร่</value>
+  </data>
+  <data name="NEXT" xml:space="preserve">
+    <value>ถัดไป</value>
+  </data>
+  <data name="PREVIOUS" xml:space="preserve">
+    <value>ก่อนหน้า</value>
+  </data>
+  <data name="NEXT_ARTICLE" xml:space="preserve">
+    <value>บทความถัดไป </value>
+  </data>
+  <data name="PREVIOUS_ARTICLE" xml:space="preserve">
+    <value>บทความก่อนหน้า</value>
+  </data>
+  <data name="PLACE_TAG" xml:space="preserve">
+    <value>ระบุป้ายคำ</value>
+  </data>
+  <data name="SEARCH_TAG" xml:space="preserve">
+    <value>ป้ายคำ</value>
+  </data>
+  <data name="ORDER" xml:space="preserve">
+    <value>ลำดับ</value>
+  </data>
+  <data name="APPLICATION_REQUEST" xml:space="preserve">
+    <value>คำร้อง</value>
+  </data>
+  <data name="ARTICLE" xml:space="preserve">
+    <value>จัดการบทความ</value>
+  </data>
+  <data name="APPS" xml:space="preserve">
+    <value>จัดการบริการ</value>
+  </data>
+  <data name="APPS_MANAGE" xml:space="preserve">
+    <value>บริการ</value>
+  </data>
+  <data name="REMARK" xml:space="preserve">
+    <value>หมายเหตุ</value>
+  </data>
+  <data name="BTN_SUBMIT" xml:space="preserve">
+    <value>&lt;i class="fa fa-edit"&gt;&lt;/i&gt; บันทึก</value>
+  </data>
+  <data name="JURISTIC" xml:space="preserve">
+    <value>บริษัท</value>
+  </data>
+  <data name="BACKEND_MANAGEMENT" xml:space="preserve">
+    <value>ระบบจัดการหลังบ้าน</value>
+  </data>
+  <data name="RELATED_DOCUMENT" xml:space="preserve">
+    <value>บทความที่้เกี่ยวข้อง</value>
+  </data>
+  <data name="ORGANIZATION" xml:space="preserve">
+    <value>หน่วยงาน</value>
+  </data>
+  <data name="APPLICATION_MANAGEMENT" xml:space="preserve">
+    <value>จัดการสถานะบริการ</value>
+  </data>
+  <data name="CHANGE_PASSWORD" xml:space="preserve">
+    <value>เปลี่ยนรหัสผ่าน</value>
+  </data>
+  <data name="EDIT_CONTACT_NO" xml:space="preserve">
+    <value>ปรับปรุงเบอร์ติดต่อ</value>
+  </data>
+  <data name="EDIT_JURISTIC_PROFILE" xml:space="preserve">
+    <value>ปรับปรุงข้อมูลนิติบุคคล</value>
+  </data>
+  <data name="EDIT_PROFILE" xml:space="preserve">
+    <value>แก้ไขข้อมูลผู้ใช้</value>
+  </data>
+  <data name="PAGE_TITLE_ATICLE" xml:space="preserve">
+    <value>บทความ</value>
+  </data>
+  <data name="PAGE_TITLE_CATEGORY" xml:space="preserve">
+    <value>ค้นหาบทความ</value>
+  </data>
+  <data name="PAGE_TITLE_HOME" xml:space="preserve">
+    <value>ศูนย์กลางบริการภาครัฐเพื่อภาคธุรกิจ</value>
+  </data>
+  <data name="MSG_WARNING_INVALID_ACCOUNT" xml:space="preserve">
+    <value>ไม่สามารถเข้าสู่ระบบได้ เนื่องจากบัญชีของท่านไม่มีสิทธิ์เข้าใช้งานระบบสารสนเทศเพื่ออำนวยความสะดวกในการทำธุรกิจ (Biz Portal)</value>
+  </data>
+  <data name="MSG_WARNING_UNAUTHORIZED" xml:space="preserve">
+    <value>ท่านไม่สามารถเข้าถึงหน้าจอดังกล่าวได้ เนื่องจากท่านยังไม่ได้ลงชื่อเข้าใช้งานระบบหรือบัญชีของท่านไม่มีสิทธิ์ในการเข้าใช้งานหน้าดังกล่าว</value>
+  </data>
+  <data name="RELATED_LINK" xml:space="preserve">
+    <value>ลิงค์ที่เกี่ยวข้อง</value>
+  </data>
+  <data name="PAGE_ABOUTUS" xml:space="preserve">
+    <value>เกี่ยวกับเรา</value>
+  </data>
+  <data name="PAGE_CONTACTUS" xml:space="preserve">
+    <value>ติดต่อเรา</value>
+  </data>
+  <data name="PAGE_FAQ" xml:space="preserve">
+    <value>คำถามที่พบบ่อย</value>
+  </data>
+  <data name="DOWNLOAD_MANUAL" xml:space="preserve">
+    <value>ดาวโหลดคู่มือ</value>
+  </data>
+  <data name="MANUAL" xml:space="preserve">
+    <value>คู่มือ</value>
+  </data>
+  <data name="MSG_ERROR_FAILED_TO_UPDATE" xml:space="preserve">
+    <value>แก้ไขข้อมูลส่วนตัวไม่สำเร็จ กรุณาลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="MSG_SUCCESS_PROFILE_UPDATED" xml:space="preserve">
+    <value>แก้ไขข้อมูลส่วนตัวสำเร็จ</value>
+  </data>
+  <data name="HOW_TO_FRONT" xml:space="preserve">
+    <value>วิธีใช้งาน และวิธีการยื่นคำร้อง</value>
+  </data>
+  <data name="HOW_TO_REGISTER_MEMBER" xml:space="preserve">
+    <value>วิธีตั้งค่าผู้ใช้งาน</value>
+  </data>
+  <data name="HOW_TO_USE_DOWNLOAD" xml:space="preserve">
+    <value>ดาวโหลดคู่มือการใช้งาน</value>
+  </data>
+  <data name="HOW_TO_USE_PDF" xml:space="preserve">
+    <value>คู่มือการใช้งาน</value>
+  </data>
+  <data name="HOW_TO_USE_VIEW" xml:space="preserve">
+    <value>ดูวิธีการใช้งาน</value>
+  </data>
+  <data name="HOW_TO_USE_YOUTUBE" xml:space="preserve">
+    <value>วีดีโอการใช้งาน</value>
+  </data>
+  <data name="MSG_ERROR_APPLICATION_NOT_FOUND" xml:space="preserve">
+    <value>ไม่พบบริการออนไลน์</value>
+  </data>
+  <data name="FLASH_NEWS" xml:space="preserve">
+    <value>แนะนำบริการ</value>
+  </data>
+  <data name="PAGE404_NOT_FOUND_HEADING" xml:space="preserve">
+    <value>ขออภัย ไม่พบหน้าที่ท่านต้องการ</value>
+  </data>
+  <data name="PAGE404_NOT_FOUND_SUGGEST_LINKS" xml:space="preserve">
+    <value>ลิงค์ข้างล่างอาจเป็นประโยชน์ต่อท่าน</value>
+  </data>
+  <data name="PAGE_SEARCH_ARTICLES" xml:space="preserve">
+    <value>ค้นหาบทความ</value>
+  </data>
+  <data name="PAGE_MAIN" xml:space="preserve">
+    <value>หน้าหลัก</value>
+  </data>
+  <data name="WAIT_FOR_DOWNLOAD" xml:space="preserve">
+    <value>&lt;p id="waiting"&gt;ระบบจะดำเนินการดาวน์โหลดแบบฟอร์มให้ท่านภายใน &lt;span id="seconds" class="fs18 fw600"&gt;5&lt;/span&gt; วินาที หากบราวเซอร์ไม่ตอบสนองท่านสามารถ &lt;a id="dlButton" href="?dl=true" target="_blank"&gt;คลิกที่นี่&lt;/a&gt; เพื่อดาวน์โหลดแบบฟอร์ม&lt;/p&gt;</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>โทรศัพท์ : (+66) 0 2612 6000 โทรสาร : (+66) 0 2612 6011-12 อีเมล์ :</value>
+  </data>
+  <data name="COPYRIGHTS" xml:space="preserve">
+    <value>สงวนลิขสิทธิ์ พ.ศ. {0:yyyy} ตามพระราชบัญญัติลิขสิทธิ์ {1} สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน)</value>
+  </data>
+  <data name="CITIZEN" xml:space="preserve">
+    <value>ประชาชน</value>
+  </data>
+  <data name="FOREIGNER" xml:space="preserve">
+    <value>ชาวต่างชาติ</value>
+  </data>
+  <data name="GOVERNMENTAGENT" xml:space="preserve">
+    <value>เจ้าหน้าที่รัฐ</value>
+  </data>
+  <data name="E_AUTHENTICATION" xml:space="preserve">
+    <value>ระบบยืนยันตัวบุคคลกลางภาครัฐ</value>
+  </data>
+  <data name="LOGIN_CITIZEN" xml:space="preserve">
+    <value>เข้าสู่ระบบด้วยบัญชีประชาชน / เจ้าหน้าที่</value>
+  </data>
+  <data name="LOGIN_JUIRSTIC" xml:space="preserve">
+    <value>เข้าสู่ระบบด้วยบัญชีนิติบุคคล</value>
+  </data>
+  <data name="NEED_VERIFY_TITLE" xml:space="preserve">
+    <value>กรุณายืนยันข้อมูลส่วนของท่าน</value>
+  </data>
+  <data name="PAGE_ERROR_HEADING1" xml:space="preserve">
+    <value>ขออภัย ระบบเกิดข้อผิดพลาด</value>
+  </data>
+  <data name="BTN_PRINT_BILL_PAYMENT" xml:space="preserve">
+    <value>พิมพ์ Bill Payment</value>
+  </data>
+  <data name="STATUS_OTHER" xml:space="preserve">
+    <value>ผลการกิจรณา</value>
+  </data>
+  <data name="DRAFT_REQUEST" xml:space="preserve">
+    <value>คำร้อง/คำขอที่ร่างค้างไว้</value>
+  </data>
+  <data name="PENDING_REQUEST" xml:space="preserve">
+    <value>คำร้อง/คำขอที่รออนุมัติ</value>
+  </data>
+  <data name="MANAGE_DRAFT_REQUEST" xml:space="preserve">
+    <value>จัดการคำร้อง/คำขอที่ร่างค้างไว้</value>
+  </data>
+  <data name="CORPORATE_IDENTIFICATION_NUMBER" xml:space="preserve">
+    <value>เลขประจำตัวนิติบุคคล</value>
+  </data>
+  <data name="CONFIRM_INFORMATION" xml:space="preserve">
+    <value>ยืนยันข้อมูล</value>
+  </data>
+  <data name="REQUIRED_INFORMATION" xml:space="preserve">
+    <value>ข้อมูลที่ต้องกรอก</value>
+  </data>
+  <data name="REQUIRED_ATTACHMENT" xml:space="preserve">
+    <value>เอกสารที่ต้องแนบ</value>
+  </data>
+  <data name="TRACK_SUBMISSION_STATUS" xml:space="preserve">
+    <value>ติดตามสถานะคำร้อง/คำขอที่ยื่นส่งแล้ว</value>
+  </data>
+  <data name="EXPECTED_COMPLETE_DATE" xml:space="preserve">
+    <value>คาดว่าจะแล้วเสร็จ</value>
+  </data>
+  <data name="AGENCY_RESPONSIBLE" xml:space="preserve">
+    <value>หน่วยงานรับผิดชอบ</value>
+  </data>
+  <data name="REQUEST_DENIED" xml:space="preserve">
+    <value>คำขอถูกปฏิเสธ</value>
+  </data>
+  <data name="LAST_UPDATE_DATE" xml:space="preserve">
+    <value>วันที่ปรับปรุงข้อมูลล่าสุด</value>
+  </data>
+  <data name="PETITION" xml:space="preserve">
+    <value>ยื่นคำร้อง/คำขอ</value>
+  </data>
+  <data name="BTN_CONFIRM" xml:space="preserve">
+    <value>ยืนยัน</value>
+  </data>
+  <data name="BTN_CLOSE" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="BTN_CANCEL_REQUEST" xml:space="preserve">
+    <value>ยกเลิกคำขอ</value>
+  </data>
+  <data name="BTN_VIEW_DESCRIPTION" xml:space="preserve">
+    <value>ดูรายละเอียด</value>
+  </data>
+  <data name="BTN_NO" xml:space="preserve">
+    <value>ไม่ใช่</value>
+  </data>
+  <data name="BTN_YES" xml:space="preserve">
+    <value>ใช่</value>
+  </data>
+  <data name="RESPONSE_MSG_SUCCESS" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+  </data>
+  <data name="MEMBER_MANAGE" xml:space="preserve">
+    <value>จัดการสมาชิก</value>
+  </data>
+  <data name="RESET" xml:space="preserve">
+    <value>ล้างค่า</value>
+  </data>
+  <data name="REQUEST_CANCELED" xml:space="preserve">
+    <value>คำขอถูกยกเลิก</value>
+  </data>
+  <data name="BTN_DOWNLOAD_BILL_PAYMENT" xml:space="preserve">
+    <value>ดาวน์โหลด "บิลเพย์เมนต์"</value>
+  </data>
+  <data name="BTN_DOWNLOAD_QR_CODE" xml:space="preserve">
+    <value>ดาวน์โหลด "คิวอาร์โค๊ด"</value>
+  </data>
+  <data name="BTN_DOWNLOAD_BILL_OSS_OWNERORG" xml:space="preserve">
+    <value>ดาวน์โหลด "ใบแจ้งชำระเงิน"</value>
+  </data>
+  <data name="CITIZEN_IDENTIFICATION_NUMBER" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน</value>
+  </data>
+  <data name="EDIT_CITIZEN_PROFILE" xml:space="preserve">
+    <value>ปรับปรุงข้อมูลผู้ใช้</value>
+  </data>
+  <data name="CITIZEN_new_flow" xml:space="preserve">
+    <value>ประชาชน</value>
+  </data>
+  <data name="GOVERNMENTAGENT_new_flow" xml:space="preserve">
+    <value>เจ้าหน้าที่</value>
+  </data>
+  <data name="JURISTIC_new_flow" xml:space="preserve">
+    <value>บริษัท</value>
+  </data>
+  <data name="MSG_ERROR_ACCOUNT_NEED_VALIDATE" xml:space="preserve">
+    <value>กรุณายืนยันข้อมูลส่วนบุคคลก่อนเข้าใช้งานระบบ</value>
+  </data>
+  <data name="BTN_OK" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="SUCCESS_REQUEST" xml:space="preserve">
+    <value>คำร้อง/คำขอที่อนุมัติแล้ว</value>
+  </data>
+  <data name="TRACK_SUBMISSION_STATUS_APPROVE" xml:space="preserve">
+    <value>ติดตามสถานะคำร้อง/คำขอที่อนุมัติแล้ว</value>
+  </data>
+  <data name="ALLOWED" xml:space="preserve">
+    <value>คำร้องที่ได้รับอนุญาตแล้ว</value>
+  </data>
+  <data name="LOGIN_NDID" xml:space="preserve">
+    <value>เข้าสู่ระบบด้วยบัญชีการพิสูจน์และยืนยันตัวตนทางดิจิทัล</value>
+  </data>
+  <data name="BTN_CANCEL" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="BTN_LOGIN" xml:space="preserve">
+    <value>เข้าสู่ระบบ</value>
+  </data>
+  <data name="LOGIN_ACCOUNT" xml:space="preserve">
+    <value>ชื่อบัญชีผู้ใช้งาน :</value>
+  </data>
+  <data name="LOGIN_DETAIL" xml:space="preserve">
+    <value>ลงชื่อเข้าใช้งาน</value>
+  </data>
+  <data name="LOGIN_FAILED" xml:space="preserve">
+    <value>ไม่สามารถเข้าสู่ระบบได้ &lt;br/&gt; กรุณาลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="LOGIN_NDID_PROVIDER" xml:space="preserve">
+    <value>ระบบยืนยันตัวบุคคล National Digital ID</value>
+  </data>
+  <data name="LOGIN_PROCESSING" xml:space="preserve">
+    <value>กำลังนำท่านเข้าสู่ระบบ...</value>
+  </data>
+  <data name="LOGIN_PROVIDER" xml:space="preserve">
+    <value>ผู้ให้บริการยืนยันตัวตัน :</value>
+  </data>
+  <data name="LOGIN_REJECT" xml:space="preserve">
+    <value>การยืนยันตัวตนไม่สมบูรณ์ &lt;br/&gt; กรุณาทำการเข้าสู่ระบบอีกครั้ง</value>
+  </data>
+  <data name="LOGIN_VERIFICATION" xml:space="preserve">
+    <value>กรุณาทำการยืนยันตัวตนกับมือถือของท่าน...</value>
+  </data>
+  <data name="MSG_ERROR" xml:space="preserve">
+    <value>เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="BTN_NEXT" xml:space="preserve">
+    <value>ขั้นตอนถัดไป &lt;i class="fa fa-arrow-circle-right" &gt;&lt;/i&gt;</value>
+  </data>
+  <data name="FILE_NOT_FOUND" xml:space="preserve">
+    <value>ไม่มีรายการเอกสาร</value>
+  </data>
+  <data name="HAVE" xml:space="preserve">
+    <value>มี</value>
+  </data>
+  <data name="NOT_HAVE" xml:space="preserve">
+    <value>ไม่มี</value>
+  </data>
+  <data name="BROWSE" xml:space="preserve">
+    <value>เลือกเอกสาร</value>
+  </data>
+  <data name="BATH" xml:space="preserve">
+    <value>บาท</value>
+  </data>
+  <data name="REPORT" xml:space="preserve">
+    <value>รายงาน</value>
+  </data>
+  <data name="TO" xml:space="preserve">
+    <value>ถึง</value>
+  </data>
+  <data name="REPORT_OVERALL" xml:space="preserve">
+    <value>ภาพรวมการขออนุญาต</value>
+  </data>
+  <data name="REPORT_STATISTICS" xml:space="preserve">
+    <value>สถิติคำขออนุญาต</value>
+  </data>
+  <data name="REPORT_ON_PROCESS_REQUEST" xml:space="preserve">
+    <value>คำขอที่อยู่ระหว่างดำเนินการ</value>
+  </data>
+</root>

@@ -1,0 +1,48 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_ARR_GOVTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-8">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PLAN.APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE  :</label>
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE == 'APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_1' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE == 'APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_2' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE == 'APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_3' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE == 'APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_4' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE == 'APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_5' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE == 'APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_6' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE_TEXT}}
+            {{else}}
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+            <br />
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PLAN.APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_AMOUNT :</label>
+            {{this.APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_AMOUNT}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลผู้ดำเนินการ
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

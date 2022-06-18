@@ -1,0 +1,31 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resources = BizPortal.Resources
+@using BizPortal.ViewModels.Constant;
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2>@Resources.ApplicationStatusRequests.CONGRAT_TITLE</h2>
+        <p>@string.Format(Resources.ApplicationStatusRequests.CONGRAT_AT_OWNER_ORG, Model.OrgAddress)</p>
+        @if (Model.LastRequestorUpdateEmail != null)
+        {
+            <p>@Html.Raw(string.Format(Resources.ApplicationStatusRequests.CONGRAT_AT_ADDITIONAL, Model.LastRequestorUpdateEmail))</p>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        @{
+
+            if (!string.IsNullOrEmpty((string)ViewData[ViewDataDictConst.AGENT_REMARK]))
+            {
+                <strong>@Resources.ApplicationStatusRequests.AGENT_COMMENT_REMARK : </strong>
+                string remark = (string)ViewData[ViewDataDictConst.AGENT_REMARK];
+                @remark
+            }
+
+        }
+    </div>
+</div>
+
+@Html.Partial("~/Views/Track/CongratulationForm/_CongratDescModal.cshtml", Model, ViewData)

@@ -1,0 +1,355 @@
+﻿@using Resource = BizPortal.Resources;
+
+@{
+    ViewBag.Title = Resource.Apps_EmployerRegis.APPS_NAME;
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/sso_full_logo.jpg");
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+}
+
+<div class="container">
+
+    @if (string.IsNullOrEmpty(ViewBag.NotifyMsg))
+    {
+        <div class="row">
+            <div class="col-md-12 font-size-lg">
+                @Html.Raw(Resource.Apps_EmployerRegis.APPS_DESCRIPTION)
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-md-12">
+                <h3>@Resource.Apps_EmployerRegis.APPS_STEPS</h3>
+                <ol>
+                    <li>
+                        <p class="font-size-lg">
+                            @Resource.Apps_EmployerRegis.APPS_STEP_1 <br />
+                            <a target="_blank" href="@Url.Action("EmployerRegisForm", "SSO")"> @Resource.Apps_EmployerRegis.APPS_STEP_1_DL </a> &nbsp;&nbsp; <a target="_blank" href="@Url.Content("~/Uploads/apps/sso/แบบสปส.1-01.pdf")"> @Resource.Apps_EmployerRegis.APPS_STEP_1_DL_EX </a>
+                        </p>
+                    </li>
+                    <li id="pnlBrowseFile">
+                        <p class="font-size-lg">@Resource.Apps_EmployerRegis.APPS_STEP_2</p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-default">
+                                @Resource.Apps_EmployerRegis.APPS_STEP_2_PANEL_HEADER
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <div id="pnlCorporate" class="fade in">
+                                        <form id="frmEmployerRegis" novalidate>
+                                            @foreach (var upload in ViewBag.CoperateFileList)
+                                            {
+                                                <div class="form-group">
+                                                    <label> @Html.Raw(upload.Validation == "required" ? "<span class=\"text-danger\">*</span>" : "") @Html.Raw(@upload.Text) </label>
+                                                    <br />
+                                                    <input type="text" id="Corporate_@upload.Name" name="Corporate_@upload.Name" class="uploader invisibility" data-uploaderType="@upload.Description" data-fileType="@upload.Type" data-fileTypeName="@upload.Description" @upload.Validation data-msg-required="@Resource.Apps_EmployerRegis.APPS_SELECT_AND_WAIT" />
+                                                    <div><i class="font-size-sm">@Resource.Apps_EmployerRegis.APPS_ALLOWED_EXTENSIONS</i></div>
+                                                </div>
+                                            }
+                                        </form>
+                                        <p>@Html.Raw(Resource.Apps_EmployerRegis.APPS_STEP_2_REMARK)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="font-size-lg">@Resource.Apps_EmployerRegis.APPS_STEP_3</p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-default">
+                                @Resource.Apps_EmployerRegis.APPS_STEP_3_PANEL_HEADER
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <table id="tableUploadFiles" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" style="width:45%;">@Resource.Application.TABLE_FILE_TYPE</th>
+                                                <th class="text-center" style="width:45%;">@Resource.Application.TABLE_FILE_NAME</th>
+                                                <th class="text-center" style="width:30px;">@Resource.Application.TABLE_FILE_TOOL</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var upload in ViewBag.CoperateFileList)
+                                        {
+                                            <tbody data-uploaderId="Corporate_@upload.Name" data-uploadertypename="@upload.Description" data-filetypecode="@upload.Type"></tbody>
+                                        }
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4" class="emptyRow">
+                                                    @Resource.Application.MSG_TABLE_EMPTY
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Raw(string.Format(Resource.Apps_EmployerRegis.APPS_STEP_3_REMARK, Url.Action("Index", "Track", new { area = "" })))
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 center">
+                <button type="button" id="btnRequestDraft" class="btn btn-default">@Html.Raw(Resource.Application.BTN_SAVE_DRAFT)</button>
+                <button type="button" id="btnRequestSubmit" class="btn btn-success"> @Html.Raw(Resource.Application.BTN_SUBMIT_FILE) </button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-12 center">
+                <i class="fa fa-exclamation-circle " style="font-size:8em; color:#fee355;"></i>
+                <br /><br />
+                <p class="font-size-xl">@Html.Raw(ViewBag.NotifyMsg)</p> <a href="@Url.Action("Index", "Track", new { area="" })" class="btn btn-primary"> @Resource.Apps_EmployerRegis.APPS_TRACKING_YOUR_REQUEST </a>
+            </div>
+        </div>
+    }
+
+    <br /><br />
+</div>
+
+
+@section PageScripts {
+    <script type="text/javascript">
+        var datatable;
+        var fileUploaded = [];
+
+        $(function () {
+            initComponent();
+            initDatatable();
+        });
+
+        function initComponent() {
+            $.get('@Url.Content(string.Format("~/api/v2/ApplicationRequests/{0}/Draft", ViewBag.AppID))', function (res) {
+                if (res) {
+                    datatable.update(res);
+                }
+            });
+
+            $('input[type="text"].uploader').uploader({
+                oldfileBrowse: true,
+                url: {
+                    fileConsumerKey: '@System.Configuration.ConfigurationManager.AppSettings["FileConsumerKey"]',
+                    fileServiceUrl: '@Url.Action("Upload","File", new { Area="", language = ViewBag.CurrentLang })', 
+                    fileSignedInfoUrl: '@Url.Content("~/Api/V2/File/SignedFileInfo")',
+                    fileUploadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceUploadTokenPath"]',
+                    fileDownloadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceDownloadTokenPath"]',
+                    fileOldUploadUrl: '@Url.Content("~/Api/v2/FileExplorer/List")'
+                },
+                events: {
+                    onFileSelected: function (fileInfo) {
+                        if (isDupplicateFile(fileInfo)) {
+                            notify('warning', '@Resource.Application.DUPPLICATE_FILE', false);
+                        }
+                        else {
+                            datatable.add(fileInfo);
+                        }
+
+                        if ($('#frmEmployerRegis').hasClass('submited')) {
+                            $('#frmEmployerRegis').valid();
+                        }
+                    }
+                }
+            });
+
+            $('#btnRequestDraft').click(function (e) {
+                buttonSpinner('#btnRequestDraft, #btnRequestSubmit');
+                save('@ApplicationStatusV2Enum.DRAFT');
+            });
+
+
+            $('#btnRequestSubmit').click(function (e) {
+                $('#frmEmployerRegis').addClass('submited');
+
+                if ($('#frmEmployerRegis').valid()) {
+                    buttonSpinner('#btnRequestDraft, #btnRequestSubmit');
+                    save('@ApplicationStatusV2Enum.CHECK');
+                }
+                else {
+                    swal({ title: '@Resource.Apps_EmployerRegis.APPS_MSG_TITLE', text: '@Resource.Apps_EmployerRegis.APPS_MSG_FILES_REQUIRED', type: 'error' }, function () {
+                        $.scrollTo('#pnlBrowseFile', 800);
+                    });
+                }
+            });
+        }
+
+        function initDatatable(tableId) {
+            datatable = {
+                add: function (fileInfo, requestId) {
+                    var $group = $('#tableUploadFiles tbody[data-uploaderid="' + fileInfo.UploaderID + '"]');
+                    var $row = $('<tr></tr>');
+                    $row.attr('data-RequestID', requestId);
+                    $row.attr('data-FileGroupID', fileInfo.FileGroupID);
+                    $row.attr('data-UploaderID', fileInfo.UploaderID);
+                    $row.attr('data-FileID', fileInfo.FileID);
+                    $row.attr('data-FileName', fileInfo.FileName);
+                    $row.attr('data-FileTypeCode', fileInfo.FileTypeCode);
+                    $row.attr('data-ContentType', fileInfo.ContentType);
+                    $row.attr('data-FileSize', fileInfo.FileSize);
+                    $row.attr('data-IsPublic', fileInfo.IsPublic);
+
+                    $row.append('<td>' + fileInfo.FileTypeName + '</td>');
+                    $row.append('<td>' + fileInfo.FileName + '</td>');
+                    $row.append('<td class="text-center"><button type="button" class="btn btn-sm btn-danger" onclick="datatable.delete(this)"><i class="fa fa-trash-o"></i> ลบ</button></td>');
+
+                    if ($group.children('tr.header-group').length == 0) {
+                        $group.append('<tr class="header-group font-bold"><td style="font-weight:bold;" colspan=3 >' + $group.data('uploadertypename') + '</td></tr>');
+                    }
+
+                    $group.append($row);
+                    $('#tableUploadFiles').trigger('change');
+                },
+                delete: function (e) {
+                    // remove form table
+                    var $group = $(e).closest('tbody');
+                    var $row = $(e).closest('tr');
+                    if ($group.children('tr').length < 3) {
+                        $group.empty();
+                    }
+                    else {
+                        $row.remove();
+                    }
+
+                    // remove from required button
+                    var $uploader = $('#' + $group.data('uploaderid'));
+                    $uploader.val($uploader.val().replace($row.data('fileid') + ',', ''));
+                    $uploader.val($uploader.val().replace($row.data('fileid'), ''));
+
+                    // remove file from server
+                    if ($row.data('requestid')) {
+                        $.ajax({
+                            url: '@Url.Content("~/Api/V2/Applications/Requests")/' + $row.data('requestid') + "/files/uploaded/" + $row.data('fileid') + "/" + $row.data('filegroupid'),
+                            type: 'DELETE',
+                            success: function (res) { }
+                        });
+                    }
+
+                    $('#tableUploadFiles').trigger('change');
+                },
+                update: function (uploaded) {
+                    var reqId = uploaded.ApplicationRequestID;
+
+                    $('#tableUploadFiles tbody').empty();
+                    $.each(uploaded.UploadedFiles, function (i, data) {
+
+                        var uploaderId = data.Extras.UPLOADERID;
+                        var fileGroupId = data.FileGroupID;
+                        $('#tableUploadFiles tbody[data-uploaderid="' + uploaderId + '"]').attr('data-FileGroupID', fileGroupId);
+
+                        $.each(data.Files, function (j, file) {
+                            file.UploaderID = uploaderId;
+                            file.FileGroupID = fileGroupId;
+                            datatable.add(file, reqId);
+                            $('#' + uploaderId).val(file.FileID); // for validation
+                        });
+                    });
+                }
+            }
+
+            $('#tableUploadFiles').on('change', function () {
+                if ($('#tableUploadFiles tr').length < 3) {
+                    $(this).children('tfoot').show();
+                }
+                else {
+                    $(this).children('tfoot').hide();
+                }
+            });
+        }
+
+        function isDupplicateFile(fileInfo) {
+            var uploadesFiles = getUploadedFiles();
+            if (uploadesFiles.length > 0) {
+                var group = $.grep(uploadesFiles, function (e) { return e.Extras.UPLOADERID == fileInfo.UploaderID });
+                if (group.length > 0) {
+                    var files = group[0].Files;
+                    if (files.length > 0) {
+                        var duplicates = $.grep(files, function (e) { return e.fileid == fileInfo.FileID });
+                        if (duplicates.length > 0) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        function getUploadedFiles() {
+            var uploadedFiles = [];
+            $('#tableUploadFiles tbody').each(function (groupIndex, group) {
+                var uploaderID = $(group).data('uploaderid');
+                var fileGroupID = $(group).data('filegroupid');
+                var fileTypeCode = $(group).data('filetypecode');
+                var files = $(group).children('tr:not(.header-group)');
+                var fileData = [];
+
+                $.each(files, function (fileIndex, file) {
+                    fileData.push($(file).data());
+                });
+
+                var fileGroup = {
+                    FileGroupID: fileGroupID,
+                    Extras: {
+                        UPLOADERID: uploaderID,
+                        FILETYPECODE: fileTypeCode
+                    },
+                    Files: fileData
+                };
+
+                uploadedFiles.push(fileGroup);
+            });
+
+            return uploadedFiles;
+        }
+
+        function save(type) {
+            var postedData = {
+                ApplicationID: '@ViewBag.AppID',
+                Status: type,
+                StatusOther: '@ApplicationStatusOtherValueConst.WAITING_AGENT_READ_REQUEST',
+                Extras: {},
+                UploadedFiles: getUploadedFiles()
+            };
+
+            $.ajax({
+                url: '@Url.Content("~/Api/V2/Applications/Requests")',
+                type: 'POST',
+                data: JSON.stringify(postedData),
+                contentType: 'application/json',
+                success: function (res) {
+
+                    if (res) {
+                        if (res.Type == '@((int)ResultDataType.Success)' || res.Type == '@((int)ResultDataType.SuccessWithErrors)') {
+                            swal({ type: 'success', title: res.Message, text: '' }, function () {
+                                if (res.ApplicationRequestData.Status == '@((int)ApplicationStatusV2Enum.CHECK)') {
+                                    window.location = '@Url.Action("Index", "Track", new { area="" })';
+                                } else {
+                                    location.reload();
+                                }
+                            });
+                        }
+                        else if (res.Type == '@((int)ResultDataType.Error)') {
+                            swal({ type: 'error', title: res.Message, text: '' });
+                        }
+                        else {
+                            swal({ type: 'error', title: res.Message, text: '' });
+                        }
+                    }
+                    else {
+                        swal({ type: 'error', title: '', text: res.Message });
+                    }
+                }
+            }).error(function (res) {
+                swal({ type: 'error', title: '@Resource.Apps_EmployerRegis.APPS_MSG_ERROR_TRY_AGAIN', text: '' });
+                buttonReset('#btnRequestDraft, #btnRequestSubmit');
+            }).done(function (res) {
+                buttonReset('#btnRequestDraft, #btnRequestSubmit');
+            });
+        }
+
+    </script>
+}

@@ -1,0 +1,32 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_BUILDING_G1_TITLE_DEEDTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>เจ้าของที่ดินลำดับที่ {{this.ARR_IDX}}</label>
+        </div>
+        <div class="col-md-6">
+            <label>ประเภทของที่ดิน :</label>
+            {{this.DROPDOWN_APP_BUILDING_G1_TITLE_DEED_ID_TYPE_TEXT}}
+        </div>
+        <div class="col-md-6">
+            <label>เลขที่ :</label>
+            {{this.APP_BUILDING_G1_TITLE_DEED_ID}}
+        </div>
+        <div class="col-md-12">
+            <label>ชื่อ :</label>{{this.APP_BUILDING_G1_TITLE_DEED_OWNER_NAME}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

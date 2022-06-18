@@ -1,0 +1,30 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_CLINIC_LICENSE_DETAIL_SECTION_ENTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_CLINIC_LICENSE.APP_CLINIC_LICENSE_DETAIL_SECTION_EN_DAY_EN :</label>
+            {{this.DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_EN_DAY_EN_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_CLINIC_LICENSE.APP_CLINIC_LICENSE_DETAIL_SECTION_EN_START_TIME_EN :</label>
+            {{this.DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_EN_START_TIME_EN_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_CLINIC_LICENSE.APP_CLINIC_LICENSE_DETAIL_SECTION_EN_TIME_OUT_EN :</label>
+            {{this.DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_EN_TIME_OUT_EN_TEXT}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

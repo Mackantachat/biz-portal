@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APPS_ALLOWED_EXTENSIONS" xml:space="preserve">
+    <value>รองรับเอกสารชนิด pdf, png, jpg และมีขนาดของเอกสารไม่เกิน 5 เมกะไบต์</value>
+  </data>
+  <data name="APPS_DESCRIPTION" xml:space="preserve">
+    <value>&lt;ul&gt;
+                    &lt;li&gt;
+                        นายจ้างที่มีลูกจ้างตั้งแต่ 1 คนขึ้นไป ต้องขึ้นทะเบียนนายจ้างพร้อมกับขึ้นทะเบียนลูกจ้าง เป็นผู้ประกันตน ภายใน 30 วัน และเมื่อมีการรับลูกจ้างใหม่เพิ่มขึ้นต้องแจ้งขึ้นทะเบียนลูกจ้างใหม่ภายใน 30 วัน เช่นกัน
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        ผู้ประกันตน คือ ลูกจ้างที่มีอายุไม่ต่ำกว่า 15 ปีบริบูรณ์ และไม่เกิน 60 ปีบริบูรณ์ในวันเข้าทำงาน  และทำงานอยู่ในสถานประกอบการที่มีลูกจ้างตั้งแต่ 1 คนขึ้นไป
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        เงินสมทบ คือ เงินที่นายจ้าง ลูกจ้างจะต้องนำส่งเข้ากองทุนประกันสังคมทุกเดือน  โดยคำนวณจากค่าจ้างที่ลูกจ้างได้รับ  ซึ่งกำหนดจากฐานค่าจ้างเป็นรายเดือนต่ำสุดเดือนละ 1,650 บาท  สูงสุดเดือนละ 15,000 บาท ทั้งนี้รัฐบาลจะออกเงินสมทบเข้ากองทุนอีกส่วนหนึ่ง
+                    &lt;/li&gt;
+                &lt;/ul&gt;</value>
+  </data>
+  <data name="APPS_DOC_CitizenCard" xml:space="preserve">
+    <value>สําเนาหรือภาพถ๋ายบัตรประจําตัวประชาชน (คนต่างด้าวใช้สําเนาหนังสือเดินทางหรือใบสําคัญประจำตัวคนต่างด้าว)</value>
+  </data>
+  <data name="APPS_DOC_CitizenCard_DESC" xml:space="preserve">
+    <value>สําเนาหรือภาพถ๋ายบัตรประจําตัวประชาชน (คนต่างด้าวใช้สําเนาหนังสือเดินทางหรือใบสําคัญประจำตัวคนต่างด้าว)</value>
+  </data>
+  <data name="APPS_DOC_Contract" xml:space="preserve">
+    <value>สำเนาหนังสือสัญญาเช่า</value>
+  </data>
+  <data name="APPS_DOC_Contract_DESC" xml:space="preserve">
+    <value>สำเนาหนังสือสัญญาเช่า หรือหนังสือยินยอมให้ใช้สถานที่พร้อมสำเนาบัตรประจำตัวประชาชนและสำเนาทะเบียนบ้านของผู้ให้เช่า หรือสัญญาเช่าแผง หรือหลักฐานแสดงเลขที่แผงและที่ตั้งของตลาด หรือห้างสรรพสินค้า</value>
+  </data>
+  <data name="APPS_DOC_EmployerDoc" xml:space="preserve">
+    <value>หลักฐานการแสดงตัวของนายจ้าง</value>
+  </data>
+  <data name="APPS_DOC_EmployerDoc_DESC" xml:space="preserve">
+    <value>หลักฐานการแสดงตัวของนายจ้าง เช่น สำเนาบัตรประจำตัวประชาชน หรือสำเนาทะเบียนบ้านของนายจ้างหรือกรรมการผู้มีอำนาจลงนาม (กรณีกรรมการบริษัทเป็นชาวต่างชาติ ใช้สำเนาPASSPORT หรือWORK PERMIT หรือVISA)(คนต่างด้าวใช้สำเนาหนังสือเดินทาง หรือสำเนาใบสำคัญประจำตัวคนต่างด้าว) หรือสำเนาใบสำคัญถิ่นที่อยู่ในราชอาณาจักร หรือหลักฐานการได้รับอนุญาตให้เข้ามาในราชอาณาจักรเป็นการชั่วคราวตามกฎหมายว่าด้วยคนเข้ามืองของผู้มีอำนาจผูกพันนิติบุคคล เป็นต้น</value>
+  </data>
+  <data name="APPS_DOC_Map" xml:space="preserve">
+    <value>แผนที่ตั้งและภาพถ่ายของสถานประกอบการ</value>
+  </data>
+  <data name="APPS_DOC_Map_DESC" xml:space="preserve">
+    <value>แผนที่ตั้งและภาพถ่ายของสถานประกอบการ</value>
+  </data>
+  <data name="APPS_DOC_PowerOfAttorney" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="APPS_DOC_PowerOfAttorney_DESC" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ (เฉพาะกรณีมอบอำนาจให้บุคคลอื่นกระทำการแทนพร้อมติดอากรแสตมป์ตามที่ประมวลรัษฎากรกำหนด) แนบสำเนาบัตรประจำตัวประชำชนของผู้มอบอำนาจและผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="APPS_DOC_RegistrationBook" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายทะเบียนบ้าน</value>
+  </data>
+  <data name="APPS_DOC_RegistrationBook_DESC" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายทะเบียนบ้าน</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm" xml:space="preserve">
+    <value>แบบขึ้นทะเบียนนายจ้าง (สปส.1-01)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm_DESC" xml:space="preserve">
+    <value>แบบขึ้นทะเบียนายจ้าง (สปส.1-01) &lt;br/&gt;  (ในกรณีที่เนื้อที่กรอกข้อมูลในแบบฟอร์มข้อ 2, ข้อ 3.2 และข้อ 6 ไม่เพียงพอ ขอให้ใช้กระดาษอื่นกรอกข้อมูลต่อไปจนครบ จากนั้นบันทึกไฟล์เอกสารและอัปโหลดเพิ่ม)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationJuristic" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายหนังสือรับรองการจดทะเบียนนิติบุคคลพร้อมวัตถุประสงค์</value>
+  </data>
+  <data name="APPS_DOC_RegistrationJuristic_DESC" xml:space="preserve">
+    <value>สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล พร้อมวัตถุประสงค์ หรือสำเนาใบทะเบียนพาณิชย์ หรือหนังสือรับรองตามพระราชบัญญัติประกอบธุรกิจคนต่างด้าว พ.ศ.2542 หรือสำเนาสัญญาร่วมค้า หรือสำเนาหนังสือรับรองแสดงการ จดทะเบียนนิติบุคคลของทุกรายที่ร่วมค้ำ หรือสำเนาหนังสือรับรองหรือหลักฐานการเป็นนิติบุคคลซึ่งแสดงรายการเกี่ยวกับชื่อ ทุน วัตถุประสงค์ รายชื่อกรรมการและผู้มีอำนาจลงนามผูกพันนิติบุคคล และหนังสือแต่งตั้งผู้แทนโดยผู้มีอำนาจลงนามผูกพันนิติบุคคลที่ขอจดทะเบียนนายจ้างเป็นผู้แต่งตั้งให้มีหน้าที่รับผิดชอบดำเนินกิจการในประเทศไทยแทนนิติบุคคล หรือใบอนุญาตให้ประกอบกิจการที่ออกตามกฎหมายอื่น</value>
+  </data>
+  <data name="APPS_DOC_RegistrationPersonalVat" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่าย บัตรประจำตัวผู้เสียภาษีอากร/ร.ง. 4/ภ.พ.20/ภ.ธ. 20</value>
+  </data>
+  <data name="APPS_DOC_RegistrationPersonalVat_DESC" xml:space="preserve">
+    <value>สําเนาบัตรประจำตัวผู้เสียภาษีอากร หรือสําเนาภาพถ่ายใบอนุญาตประกอบกิจการโรงงาน (ร.ง. 4) หรือสําเนาหรือภาพถ่ายใบทะเบียนภาษีมูลคาเพิ่ม (ภ.พ.20) หรือสําเนาภาพถ่ายภาษีธุรกิจเฉพาะ (ภ.ธ. 20)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationVat" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่าย ภ.พ.01/ ภธ.20/ ใบอนุญาตประกอบธุรกิจของคนต่างด้าว</value>
+  </data>
+  <data name="APPS_DOC_RegistrationVat_DESC" xml:space="preserve">
+    <value>สำเนาบัตรประจำตัวผู้เสียภาษีอากร หรือสำเนาคำขอจดทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.01) หรือสำเนาภาษีธุรกิจเฉพาะ (ภธ.20) หรือใบอนุญาตประกอบธุรกิจของคนต่างด้าว</value>
+  </data>
+  <data name="APPS_FILES_ERROR_EXTENSION" xml:space="preserve">
+    <value>ระบบรองรับเอกสารประเภท .pdf, .png และ .jpg เท่านั้น</value>
+  </data>
+  <data name="APPS_FILES_ERROR_SIZE" xml:space="preserve">
+    <value>ระบบรองรับเอกสารที่มีขนาดสูงสุดไม่เกิน 5 เมกะไบต์</value>
+  </data>
+  <data name="APPS_FILES_ERROR_UPLOAD_FAILED" xml:space="preserve">
+    <value>ไม่สามารถอัปโหลดไฟล์เอกสารได้</value>
+  </data>
+  <data name="APPS_MSG_CANCEL" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="APPS_MSG_DRAFT_ERROR_TRY_AGAIN" xml:space="preserve">
+    <value>เกิดข้อผิดพลาด ไม่บันทึกฉบับร่างได้กรุณาลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="APPS_MSG_DRAFT_TITLE" xml:space="preserve">
+    <value>บันทึกแบบร่าง</value>
+  </data>
+  <data name="APPS_MSG_ENTER_EMAIL" xml:space="preserve">
+    <value>กรอกอีเมล์</value>
+  </data>
+  <data name="APPS_MSG_ERROR_TRY_AGAIN" xml:space="preserve">
+    <value>เกิดข้อผิดพลาด ไม่สามารถยื่นคำร้องได้กรุณาลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="APPS_MSG_FILES_REQUIRED" xml:space="preserve">
+    <value>กรุณาอัปโหลดไฟล์เอกสารที่จำเป็นให้ครบถ้วน</value>
+  </data>
+  <data name="APPS_MSG_TITLE" xml:space="preserve">
+    <value>ส่งคำร้อง</value>
+  </data>
+  <data name="APPS_NAME" xml:space="preserve">
+    <value>ขึ้นทะเบียนนายจ้าง</value>
+  </data>
+  <data name="APPS_SELECT_AND_WAIT" xml:space="preserve">
+    <value>กรุณาเลือกเอกสาร หรือหากกำลังนำเอกสารเข้าสู่ระบบกรุณารอสักครู่</value>
+  </data>
+  <data name="APPS_STEPS" xml:space="preserve">
+    <value>ขั้นตอนการขึ้นทะเบียนนายจ้าง</value>
+  </data>
+  <data name="APPS_STEP_1" xml:space="preserve">
+    <value>กรอกและยื่นเอกสารแบบฟอร์มขึ้นทะเบียนนายจ้างล่วงหน้า ผ่านระบบอินเตอร์เน็ต</value>
+  </data>
+  <data name="APPS_STEP_1_DL" xml:space="preserve">
+    <value>[ดาวน์โหลดแบบฟอร์มขึ้นทะเบียนนายจ้าง]</value>
+  </data>
+  <data name="APPS_STEP_1_DL_EX" xml:space="preserve">
+    <value>[ตัวอย่างการกรอกแบบฟอร์มขึ้นทะเบียนนายจ้าง]</value>
+  </data>
+  <data name="APPS_STEP_2" xml:space="preserve">
+    <value>อัปโหลดส่งแบบฟอร์มขึ้นทะเบียนนายจ้างและเอกสารที่เกี่ยวข้อง</value>
+  </data>
+  <data name="APPS_STEP_2_PANEL_HEADER" xml:space="preserve">
+    <value>เลือกเอกสาร</value>
+  </data>
+  <data name="APPS_STEP_2_REMARK" xml:space="preserve">
+    <value>&lt;strong&gt;หมายเหตุ&lt;/strong&gt; * เอกสารที่จำเป็นต้องส่ง</value>
+  </data>
+  <data name="APPS_STEP_3" xml:space="preserve">
+    <value>ตรวจสอบความถูกต้องสมบูรณ์ของเอกสาร</value>
+  </data>
+  <data name="APPS_STEP_3_PANEL_HEADER" xml:space="preserve">
+    <value>ตรวจสอบเอกสาร</value>
+  </data>
+  <data name="APPS_STEP_3_REMARK" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;หมายเหตุ&lt;/strong&gt; เมื่อท่านได้รับการอนุมัติแล้ว  ในการติดต่อสำนักงานฯ ขอให้ท่านแจ้งเลขที่บัญชีดังกล่าวทุกครั้ง  และขอเรียนชี้แจงเพิ่มเติมดังนี้&lt;/p&gt;
+                &lt;ol&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;
+                            กองทุนเงินทดแทน  ให้ความคุ้มครองแก่ลูกจ้างที่ประสบอันตราย  เจ็บป่วย  ทุพพลภาพ
+                            หรือตาย  อันเนื่องจากการทำงานให้นายจ้าง  โดยนายจ้างเป็นผู้จ่ายเงินสมทบฝ่ายเดียว  ปีละ  1  ครั้ง ทั้งนี้ สำนักงานประกันสังคมจะส่งใบประเมินเงินสมทบ(กท.26ก) ให้ท่านหลังจากอนุมัติทาง e-mail หรือดูได้ที่ &lt;a target="_blank" href="{0}"&gt; [ติดตามสถานะ]&lt;/a&gt;  โดยชำระเงินผ่าน ธนาคารกรุงไทย ธนาคารกรุงศรีอยุธยา ธนาคารธนชาต  และเคาน์เตอร์เซอร์วิส ชำระเงินภายใน  30  วันหากพ้นกำหนดแล้วจะต้องชำระเงินเพิ่มอีกร้อยละ 3 ต่อเดือน ในปีต่อๆไปชำระภายในเดือนมกราคมของทุกปี
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;
+                            กองทุนประกันสังคม  ให้ความคุ้มครองแก่ผู้ประกันตนที่ประสบอันตรายหรือเจ็บป่วย
+                            ทุพพลภาพ  ตาย อันมิใช่เนื่องจากการทำงาน คลอดบุตร  สงเคราะห์บุตร  ชราภาพ  และว่างงาน โดยให้นายจ้างหักค่าจ้างลูกจ้างทุกครั้งที่มีการจ่ายค่าจ้างในอัตราเงินสมทบร้อยละ 5 ของค่าจ้าง
+                            &lt;span style="text-decoration: underline;"&gt; ซึ่งกำหนดจาก ฐานค่าจ้างเป็นรายเดือนไม่ต่ำกว่าเดือนละ 1,650 บาท และไม่เกินเดือนละ 15,000 บาท&lt;/span&gt; และนายจ้างสมทบ เท่ากับจำนวนที่หักจากลูกจ้าง ดังนี้
+                        &lt;/p&gt;
+                        &lt;ol style="list-style-type:disc;"&gt;
+                            &lt;li&gt;
+                                &lt;p&gt;
+                                    ยื่นแบบแสดงรายการนำส่งเงินสมทบ (สปส. 1-10 ส่วนที่ 1 และส่วนที่ 2) &lt;a target="_blank" href="http://www.sso.go.th/wpr/uploads/uploadImages/file/sps1-10-041055(3)(1).pdf "&gt; [ดาวน์โหลดแบบฟอร์ม สปส. 1-10 ส่วนที่ 1 และส่วนที่ 2]&lt;/a&gt;
+                                    และแบบสรุปการนำส่งเงินสมทบกรณีนายจ้างยื่นชำระเงินสมทบรวมกับสาขา (สปส.1-10/1) &lt;a target="_blank" href="http://www.sso.go.th/sites/default/files/12_2.pdf"&gt; [ดาวน์โหลดแบบฟอร์ม สปส.1-10/1]&lt;/a&gt; ภายในวันที่ 15 ของเดือนถัดไป
+                                &lt;/p&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;
+                                &lt;p&gt;
+                                    ส่งข้อมูลเงินสมทบได้ที่บริการอิเล็กทรอนิกส์ (e-service) &lt;a target="_blank" href="http://www.sso.go.th/eservices/home.do"&gt; [บริการอิเล็กทรอนิกส์]&lt;/a&gt;
+                                &lt;/p&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;
+                                &lt;p&gt;
+                                    ชำระเงินผ่านเคาน์เตอร์ธนาคารได้ 3 ธนาคาร ได้แก่ ธนาคารกรุงไทย ธนาคารกรุงศรีอยุธยา ธนาคารธนชาต และบริการผ่าน E-Paymant 7 ธนาคาร  ได้แก่ ธนาคารกรุงศรีอยุธยา  ธนาคารซิตี้แบงค์  ธนาคารมิซูโฮ คอร์ปอเรต ธนาคารซูมิโตโม มิตซุยแบงกิ้ง คอร์ปอเรชั่น ธนาคารไทยพาณิชย์
+                                    ธนาคารกรุงไทย ธนาคารกสิกรไทย หากพ้นกำหนดชำระแล้วจะต้องชำระเพิ่มเติมอีกร้อยละ 2 ต่อเดือน &lt;a target="_blank" href="http://www.sso.go.th/wpr/content.jsp?lang=th&amp;cat=970&amp;id=4468"&gt; [ช่องทางการจ่ายเงินสมทบกองทุนประกันสังคมของนายจ้างและผู้ประกันตน]&lt;/a&gt;
+                                &lt;/p&gt;
+                            &lt;/li&gt;
+                        &lt;/ol&gt;
+
+                    &lt;/li&gt;
+                &lt;/ol&gt;
+                &lt;p&gt;
+                    ทั้งนี้ หากท่านประสงค์จะติดต่อกับสำนักงานประกันสังคม สามารถติดต่อได้ที่
+                    &lt;a target="_blank" href="http://www.sso.go.th/wpr/category.jsp?lang=th&amp;cat=860 "&gt;[ติดต่อกับสำนักงานประกันสังคม]&lt;/a&gt;
+                &lt;/p&gt;</value>
+  </data>
+  <data name="APPS_TRACKING_YOUR_REQUEST" xml:space="preserve">
+    <value>ดูสถานะการขึ้นทะเบียนนายจ้าง</value>
+  </data>
+  <data name="ATTACHED_FILE" xml:space="preserve">
+    <value>เอกสารแนบ</value>
+  </data>
+  <data name="BACK_TO_EMPLOYER_REGIS_APP" xml:space="preserve">
+    <value>กลับไปยังหน้าจอขึ้นทะเบียนนายจ้าง</value>
+  </data>
+  <data name="DELETE" xml:space="preserve">
+    <value>ลบ</value>
+  </data>
+  <data name="DOWNLOAD_EMPLOYER_REGIS_FORM" xml:space="preserve">
+    <value>ดาวน์โหลดแบบฟอร์มขึ้นทะเบียนนายจ้าง</value>
+  </data>
+  <data name="MSG_COMPLETED_REQ" xml:space="preserve">
+    <value>ท่านได้ยื่นคำร้องการขึ้นทะเบียนนายจ้าง และได้รับการอนุมัติเป็นที่เรียบร้อยแล้ว</value>
+  </data>
+  <data name="MSG_PENDING_REQ" xml:space="preserve">
+    <value>ท่านได้ยื่นคำร้องการขึ้นทะเบียนนายจ้างเป็นที่เรียบร้อยแล้ว กรุณารอการอนุมัติจากเจ้าหน้าที่</value>
+  </data>
+  <data name="MSG_UNKNOWN_STATUS" xml:space="preserve">
+    <value>ไม่สามารถเข้าถึงบริการได้กรุณาติดต่อเจ้าหน้าที่</value>
+  </data>
+  <data name="MSG_WAITING_REQ" xml:space="preserve">
+    <value>ท่านได้ยื่นคำร้องการขึ้นทะเบียนนายจ้างเป็นที่เรียบร้อยแล้ว กรุณารอการตอบรับจากเจ้าหน้าที่</value>
+  </data>
+  <data name="REGISTRATION_FORM" xml:space="preserve">
+    <value>แบบฟอร์มขึ้นทะเบียน</value>
+  </data>
+</root>

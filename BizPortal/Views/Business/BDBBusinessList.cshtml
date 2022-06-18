@@ -1,0 +1,233 @@
+﻿@model BizPortal.ViewModels.BusinessListViewModel
+@using BizPortal.ViewModels;
+@using BizPortal.Utils.Extensions;
+
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutV2DBD.cshtml";
+}
+
+<link rel="stylesheet" href="@Url.Content("~/Scripts/datatables/datatables.css")" />
+<style>
+    .custom-table {
+        font-size: smaller;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .custom-table td, .custom-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .custom-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .custom-table tr:hover {
+            background-color: #ddd;
+        }
+
+        .custom-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4E94B1;
+            color: white;
+        }
+
+    .D-6 {
+        width: 100% !important;
+    }
+
+    .fa-info-circle {
+        color: #4E94B1;
+    }
+
+        .fa-info-circle:hover {
+            cursor: pointer;
+        }
+
+    #TSICList_paginate {
+        font-size: initial;
+    }
+
+    .row {
+        letter-spacing: normal !important;
+    }
+
+    body {
+        font-family: 'TH SarabunPSK', sans-serif;
+    }
+
+    .swal2-header {
+        font-family: 'TH SarabunPSK', sans-serif;
+    }
+
+    .swal2-content {
+        font-family: 'TH SarabunPSK', sans-serif;
+        font-size: x-large !important;
+    }
+
+    .swal2-actions {
+        font-family: 'TH SarabunPSK', sans-serif;
+    }
+
+    .swal2-confirm {
+        font-size: x-large !important;
+    }
+
+    .swal2-cancel {
+        font-size: x-large !important;
+    }
+</style>
+
+<section class="banner-subpage" style="background: transparent url('@Url.Content("~/Content/SingleForm-frontis/v2/images/landing.png")') no-repeat center center;
+    background-size: cover;">
+</section>
+
+<section class="landing-component">
+    <div class="container">
+        <h2>@ViewBag.Title : ประเภทธุรกิจที่เกี่ยวข้อง</h2>
+        <div class="row">
+            <div class="D-6 T-12">
+                @{
+                    string des = "<h4>{0}</h4>";
+                    if (Model.AppModel.Count > 0)
+                    {
+                        switch (Model.AppModel[0].BusinessType.ToUpper())
+                        {
+                            default:
+                                des = string.Format(des, "หมายเหตุ: แสดงข้อมูลประกอบการเฉพาะนิติบุคคลที่จดทะเบียนนิติบุคคลกับกรมพัฒนาธุรกิจการค้า");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        des = string.Format(des, "หมายเหตุ: แสดงข้อมูลประกอบการเฉพาะนิติบุคคลที่จดทะเบียนนิติบุคคลกับกรมพัฒนาธุรกิจการค้า");
+                    }
+                }
+                @Html.Raw(des)
+            </div>
+        </div>
+        <div class="row">
+            <div class="D-6 T-12" style="margin-top:2%;">
+                <table class="custom-table" id="TSICList">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width:5%;">ลำดับ</th>
+                            <th class="text-center" style="width:15%">รหัสประเภทธุรกิจ</th>
+                            <th class="text-center" style="width:25%">ชื่อประเภทธุรกิจ</th>
+                            <th class="text-center" style="width:30%">ข้อมูลภาพรวมของประเภทธุรกิจ</th>
+                            <th class="text-center" style="width:25%">หมายเหตุ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int rowID = 1;
+                            foreach (DBDBusinessModel app in Model.AppModel)
+                            {
+                                <tr>
+                                    <td class="text-center">@rowID</td>
+                                    <td class="text-center">@app.TSIC</td>
+                                    <td>@app.BusinessName <a onclick="@Html.Raw(string.Format("ShowInfo_{0}()", rowID));"><i class="fa fa-info-circle"></i></a></td>
+                                    <td><a class="button primary large gotoDBD" style="margin-right: 0;width:100%;font-size:larger !important;" attr-tsicid="@app.SecretKey">ดูข้อมูลภาพรวมของประเภทธุรกิจ</a></td>
+                                    <td class="text-center">@app.Remark</td>
+                                </tr>
+
+                                rowID++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row" style="margin-top:2%;">
+            <div class="D-6 T-12">
+                <a href="https://www.dbd.go.th/download/PDF_/book_business_man.pdf" target="_blank" class="button primary large" style="font-size:smaller !important;">ดูข้อมูลการจัดประเภทธุรกิจของนิติบุคคล​</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@{
+    foreach (DBDBusinessModel app in Model.AppModel)
+    {
+
+        <form style="display:none;" action="https://datawarehouse.dbd.go.th/business/profile" id="@app.SecretKey" method="post" target="_blank">
+        
+            <input type="hidden" value="@app.SecretKey" name="code" />
+            <input type="submit" value="submit" />
+
+        </form>
+           
+    }
+
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#TSICList').dataTable({
+                                "ordering": false,
+            "language": {
+                                    "lengthMenu": "แสดง _MENU_ รายการ ต่อ หน้า",
+                "zeroRecords": "ไม่พบข้อมูล",
+                "info": "แสดง หน้า _PAGE_ ของทั้งหมด _PAGES_",
+                "infoEmpty": "ไม่พบข้อมูล",
+                "infoFiltered": "(กรองข้อมูลจากทั้งหมด _MAX_ รายการ)",
+                "search": "ค้นหา",
+                "paginate": {
+                                        "previous": "ก่อนหน้า",
+                    "next": "ถัดไป"
+                }
+                                }
+                            });
+
+    });
+
+    $('.gotoDBD').click(function () {
+
+        Swal.fire({
+            title: '<strong>ขั้นตอนการดูข้อมูลภาพรวมประเภทธุรกิจ</strong>',
+            html: '@Html.Raw(string.Format("<b>หากไม่ทราบวิธีการค้นหาข้อมูล สามารถดูรายละเอียดได้<a href=\"{0}\" target=\"_blank\">ที่นี่</a></b>", Url.Content("~/Content/Images/biz-v2/business/คู่มือDBDDataWarehouse.png")))',
+            focusConfirm: true,
+            confirmButtonText: 'ค้นหาข้อมูล',
+            confirmButtonColor: '#4E94B1',
+            showCancelButton: true,
+            cancelButtonText: 'ปิด',
+        }).then((result) => {
+            if (result.value) {
+                //window.open('@(Url.BizAction("DBDHtmlRender", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))' + '?tsicID=' + $(this).attr('attr-tsicid').trim());
+                document.getElementById($(this).attr('attr-tsicid').trim()).submit();
+            }
+        })
+
+    });
+
+@{
+    rowID = 1;
+
+    foreach (DBDBusinessModel info in Model.AppModel)
+    {
+
+        <text>
+
+            function @Html.Raw(string.Format("ShowInfo_{0}()",rowID)) {
+                Swal.fire({
+                    title: '<strong>คำอธิบายประเภทธุรกิจ</strong>',
+                    html: '@Html.Raw(string.Format("<b>ประเภทธุรกิจ : {0}</b> <br/> {1}", info.InfoTitle,info.InfoMessage))',
+                    focusConfirm: true,
+                    confirmButtonText: 'ตกลง',
+                    confirmButtonColor: '#4E94B1',
+                })
+            }
+
+        </text>
+
+        rowID++;
+    }
+}
+
+            </script>

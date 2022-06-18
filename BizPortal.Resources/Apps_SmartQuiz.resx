@@ -1,0 +1,2228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="QUESTION_RESTUARANT_SELL_ALCOHOL" xml:space="preserve">
+    <value>ร้านอาหารของคุณขายเครื่องดื่มแอลกอฮอลหรือไม่ เช่น เบียร์ ไวน์ เหล้า</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_AREA" xml:space="preserve">
+    <value>ร้านอาหารของคุณมีพื้นที่ใช้สอยเท่าใด (ไม่รวมที่จอดรถ)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_AREA__GE200SQM" xml:space="preserve">
+    <value>มีพื้นที่ (ไม่รวมที่จอดรถ) ตั้งแต่ 200 ตารางเมตรขึ้นไป</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_AREA__LT200SQM" xml:space="preserve">
+    <value>มีพื้นที่ (ไม่รวมที่จอดรถ) น้อยกว่า 200 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER" xml:space="preserve">
+    <value>ร้านอาหารของคุณมีการผลิตอาหาร/เครื่องดื่มเชิงอุตสาหกรรม เพื่อขายแยกส่วนจากการขายอาหารหลักหรือไม่? (ตัวอย่างเช่น เปิดร้านขายก๋วยเตี๋ยวเป็นหลัก ในขณะเดียวกันก็ผลิตลูกชิ้นเป็นแพ็คเพื่อให้ลูกค้าซื้อกลับบ้าน)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_DETAIL" xml:space="preserve">
+    <value>ร้านอาหารของคุณมีการผลิต สะสม หรือแบ่งบรรจุ &lt;info&gt;อาหาร/เครื่องดื่มเหล่านี้&lt;/info&gt; &lt;br/&gt;เพื่อขายเป็นผลิตภัณฑ์ให้ลูกค้าซื้อกลับบ้านหรือไม่</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_DETAIL__INFO" xml:space="preserve">
+    <value>&lt;div class="D-6 M-12"&gt;
+    &lt;p class="info"&gt;- น้ําพริกแกง น้ําพริกปรุงสําเร็จ เต้าเจี้ยว ซีอิ๊ว น้ําจิ้ม หรือซอสปรุงรสชนิดต่าง ๆ&lt;/p&gt;
+    &lt;p class="info"&gt;
+        - อาหารหมัก ดอง จากสัตว์ ได้แก่ ปลาร้า
+        ปลาเจ่า กุ้งเจ่า ปลาส้ม ปลาจ่อม แหนม หม่ํา ไส้กรอก กะปิ น้ําปลา หอยดอง น้ําเคย น้ําบูดู ไตปลา หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน
+    &lt;/p&gt;
+    &lt;p class="info"&gt;- อาหารหมัก ดอง แช่อิ่ม จากผัก ผลไม้ หรือพืชอย่างอื่น&lt;/p&gt;
+    &lt;p class="info"&gt;- อาหารจากพืชหรือสัตว์โดยตาก บด นึ่ง ต้ม ตุ๋น เคี่ยว กวน ฉาบ ทอด อบ รมควัน ปิ้ง ย่าง เผา หรือวิธีอื่นใด&lt;/p&gt;
+    &lt;p class="info"&gt;- ลูกชิ้น&lt;/p&gt;
+    &lt;p class="info"&gt;- เส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋ เนื้อสัตว์เทียม หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน&lt;/p&gt;
+    &lt;p class="info"&gt;- บะหมี่ มักกะโรนี สปาเกตตี้ พาสตา หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน (เฉพาะผลิตเท่านั้น ไม่รวมเก็บสะสม แบ่งบรรจุ)&lt;/p&gt;
+    &lt;p class="info"&gt;- ขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ ขนมอบอื่น ๆ&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+    &lt;p class="info"&gt;- น้ํานม หรือผลิตภัณฑ์จากน้ํานมสัตว์&lt;/p&gt;
+    &lt;p class="info"&gt;- เนย เนยเทียม เนยผสม ผลิตภัณฑ์เนย ผลิตภัณฑ์เนยเทียม และผลิตภัณฑ์เนยผสม&lt;/p&gt;
+    &lt;p class="info"&gt;- ไอศกรีม (เฉพาะผลิตเท่านั้น ไม่รวมเก็บสะสม แบ่งบรรจุ)&lt;/p&gt;
+    &lt;p class="info"&gt;- กาแฟ (คั่ว เก็บสะสม หรือบรรจุ)&lt;/p&gt;
+    &lt;p class="info"&gt;- ใบชาแห้ง ชาผง หรือเครื่องดื่มชนิดผงอื่น ๆ&lt;/p&gt;
+    &lt;p class="info"&gt;- เอทิลแอลกอฮอล์ สุรา เบียร์ ไวน์ น้ําส้มสายชู ข้าวหมาก น้ําตาลเมา&lt;/p&gt;
+    &lt;p class="info"&gt;- น้ํากลั่น น้ําบริโภค น้ําดื่มจากเครื่องจําหน่ายอัตโนมัติ &lt;/p&gt;
+    &lt;p class="info"&gt;- น้ําแข็ง (รวมถึงการขนส่ง)&lt;/p&gt;
+    &lt;p class="info"&gt;- น้ําอัดลม น้ําหวาน น้ําโซดา น้ําจากพืชผัก ผลไม้ เครื่องดื่มชนิดต่าง ๆ บรรจุกระป๋อง ขวดหรือภาชนะอื่นใด&lt;/p&gt;
+    &lt;p class="info"&gt;- ผงชูรส หรือสารปรุงแต่งอาหาร&lt;/p&gt;
+    &lt;p class="info"&gt;- น้ําตาล น้ําเชื่อม&lt;/p&gt;
+    &lt;p class="info"&gt;- แบะแซ (น้ำเชื่อมข้าวโพด)&lt;/p&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_DETAIL__NO" xml:space="preserve">
+    <value>ไม่ใช่ ร้านของฉันไม่ได้ผลิต สะสมหรือแบ่งบรรจุอาหาร/เครื่องดื่มเหล่านี้</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_DETAIL__YES" xml:space="preserve">
+    <value>ใช่ ร้านของฉันผลิต สะสมหรือแบ่งบรรจุอาหาร/เครื่องดื่มเหล่านี้</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER__NO" xml:space="preserve">
+    <value>ไม่ใช่ ร้านอาหารของฉันไม่ได้ผลิตอาหาร/เครื่องดื่มเชิงอุตสาหกรรม เพื่อขายแยกส่วนจากการขายอาหารหลัก</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER__YES" xml:space="preserve">
+    <value>ใช่ ร้านอาหารของฉันผลิตอาหาร/เครื่องดื่มเชิงอุตสาหกรรม เพื่อขายแยกส่วนจากการขายอาหารหลัก</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_FOOTPATH" xml:space="preserve">
+    <value>ร้านอาหารของคุณมีการใช้พื้นที่ที่เป็นทางสาธารณะหรือไม่ เช่น ฟุตบาท ทางเท้า</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_FOOTPATH__INFO" xml:space="preserve">
+    <value>&lt;div class="M-12"&gt;คุณสามารถขายของบนทางสาธารณะได้เฉพาะในเขตพระนคร และบางแคเท่านั้น&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_FOOTPATH__NO" xml:space="preserve">
+    <value>ไม่ใช่ ร้านของฉันไม่ใช่พื้นที่ที่เป็นทางสาธารณะ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_FOOTPATH__YES" xml:space="preserve">
+    <value>ใช่ ร้านของฉันใช้พื้นที่ที่เป็นทางสาธารณะ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SELL_ALCOHOL__CHOICE_NO" xml:space="preserve">
+    <value>ไม่ใช่ ร้านของฉันไม่ขายเครื่องดื่มแอลกอฮอล์</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SELL_ALCOHOL__CHOICE_YES" xml:space="preserve">
+    <value>ใช่ ร้านของฉันขายเครื่องดื่มแอลกอฮอล์</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SERVICE" xml:space="preserve">
+    <value>ร้านอาหารของคุณมีบริการเหล่านี้หรือไม่ (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SERVICE__DANCE" xml:space="preserve">
+    <value>มีการเต้น เช่น เต้นบริเวณโต๊ะ หรือ เต้นบนเวที</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SERVICE__DANCE_FLOOR" xml:space="preserve">
+    <value>มีฟลอร์สำหรับเต้นหรือเต้นรำ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SERVICE__DRINK_PARTNER" xml:space="preserve">
+    <value>มีการให้พนักงานนั่งบริการลูกค้าโดยเฉพาะ เช่น ปรนนิบัติ นั่งเป็นเพื่อน หรือร้องเพลงด้วย</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SERVICE__KARAOKE" xml:space="preserve">
+    <value>มีการให้บริการคาราโอเกะ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SERVICE__LIVE_PERFORM_AFTER_MIDNIGHT" xml:space="preserve">
+    <value>มีโชว์เพื่อความบันเทิงหลังเที่ยงคืน เช่น การแสดงดนตรีสด ตลก หรือศิลปวัฒนธรรม เป็นต้น</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SERVICE__LIVE_PERFORM_BEFORE_MIDNIGHT" xml:space="preserve">
+    <value>มีโชว์เพื่อความบันเทิงก่อนเที่ยงคืน เช่น การแสดงดนตรีสด ตลก หรือศิลปวัฒนธรรม เป็นต้น</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT" xml:space="preserve">
+    <value>ร้านค้าของคุณขายสินค้าอะไรบ้าง</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__ALCOHOL" xml:space="preserve">
+    <value>เครื่องดื่มแอลกอฮอล เช่น เบียร์ ไวน์ เหล้า</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__ANIMAL" xml:space="preserve">
+    <value>สัตว์มีชีวิต เช่น สุนัข แมว นก เป็นต้น</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__ANIMAL_FOOD" xml:space="preserve">
+    <value>อาหารสัตว์ควบคุมเฉพาะ</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__CARCASSES" xml:space="preserve">
+    <value>ซากสัตว์ เช่น เนื้อหมูสด นมดิบ ไข่ดิบ หรือชิ้นส่วนของสัตว์อื่นๆที่ยังไม่ผ่านการแปรรูป เป็นต้น</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__COSMETIC" xml:space="preserve">
+    <value>เครื่องสำอาง</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__DVD" xml:space="preserve">
+    <value>แผ่นภาพยนตร์และการแสดงอื่นๆ เช่น ละครซี่รีย์ บันทึกการแสดงสด</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__FERTILIZER" xml:space="preserve">
+    <value>ปุ๋ย</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__KARAOKE" xml:space="preserve">
+    <value>แผ่นเพลงคาราโอเกะ หรือ แผ่นเกม</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__MEDICINE" xml:space="preserve">
+    <value>ยาแผนปัจจุบัน (ยาที่ต้องขายโดยเภสัชกรเท่านั้น)</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__SEED" xml:space="preserve">
+    <value>เมล็ดพันธุ์ควบคุม</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__TOBACCO" xml:space="preserve">
+    <value>ยาสูบ เช่น บุหรี่ ซิการ์ ยาเส้นสด ยาเส้นปรุง</value>
+  </data>
+  <data name="QUESTION_RETAIL_AGENT" xml:space="preserve">
+    <value>คุณขายสินค้าผ่านตัวแทนขายตรงหรือตัวแทนอิสระนำเสนอขายสินค้าต่อผู้บริโภคโดยตรงที่บ้าน ที่ทำงาน หรือสถานที่อื่นที่มิใช่ร้านค้าหรือไม่?</value>
+  </data>
+  <data name="QUESTION_RETAIL_AGENT__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันไม่ได้ขายสินค้าผ่านตัวแทนขายตรงฯ</value>
+  </data>
+  <data name="QUESTION_RETAIL_AGENT__YES" xml:space="preserve">
+    <value>ใช่ ฉันขายสินค้าผ่านตัวแทนขายตรงฯ</value>
+  </data>
+  <data name="QUESTION_RETAIL_AREA" xml:space="preserve">
+    <value>ร้านค้าของคุณมีพื้นที่ใช้สอยเท่าใด (ไม่รวมที่จอดรถ)</value>
+  </data>
+  <data name="QUESTION_RETAIL_AREA__GE200SQM" xml:space="preserve">
+    <value>มีพื้นที่ (ไม่รวมที่จอดรถ) ตั้งแต่ 200 ตารางเมตรขึ้นไป</value>
+  </data>
+  <data name="QUESTION_RETAIL_AREA__LT200SQM" xml:space="preserve">
+    <value>มีพื้นที่ (ไม่รวมที่จอดรถ) น้อยกว่า 200 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__ANIMAL_FOOD_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;
+  &lt;span&gt;1) วัตถุดิบ มี 25 ชนิด :&lt;/span&gt;
+  &lt;div class="row" style="margin-left: 1em"&gt;
+    &lt;div class="D-6 M-12"&gt;
+    &lt;p class="info"&gt;1.1 กากถั่วเหลือง &lt;/p&gt;
+    &lt;p class="info"&gt;1.2 ถั่วเหลืองอบ &lt;/p&gt;
+    &lt;p class="info"&gt;1.3 กากถั่วลิสง &lt;/p&gt;
+    &lt;p class="info"&gt;1.4 รำสกัดน้ำมัน &lt;/p&gt;
+    &lt;p class="info"&gt;1.5 ข้าวโพดป่นเกรด 1 &lt;/p&gt;
+    &lt;p class="info"&gt;1.6 ข้าวโพดป่นเกรด 2 &lt;/p&gt;
+    &lt;p class="info"&gt;1.7 โปรตีนข้าวโพดหรือกลูเทนข้าวโพด &lt;/p&gt;
+    &lt;p class="info"&gt;1.8 กากดีดีจีเอส &lt;/p&gt;
+    &lt;p class="info"&gt;1.9 กากเรปซีดหรือกากคาโนลา &lt;/p&gt;
+    &lt;p class="info"&gt;1.10 กากเมล็ดทานตะวัน &lt;/p&gt;
+    &lt;p class="info"&gt;1.11 ปลาป่น ชั้นคุณภาพที่ 1  &lt;/p&gt;
+    &lt;p class="info"&gt;1.12 ปลาป่น ชั้นคุณภาพที่ 2 &lt;/p&gt;
+    &lt;p class="info"&gt;1.13 ปลาป่น ชั้นคุณภาพที่ 3 &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="D-6 M-12"&gt;
+    &lt;p class="info"&gt;1.14 ปลาและกระดูกปลาป่น &lt;/p&gt;
+    &lt;p class="info"&gt;1.15 เนื้อป่น &lt;/p&gt;
+    &lt;p class="info"&gt;1.16 เนื้อป่นสกัดไขมัน &lt;/p&gt;
+    &lt;p class="info"&gt;1.17 เนื้อและกระดูกป่น (โปรตีนร้อยละ 50) &lt;/p&gt;
+    &lt;p class="info"&gt;1.18 เนื้อและกระดูกป่น (โปรตีนร้อยละ 45) &lt;/p&gt;
+    &lt;p class="info"&gt;1.19 เนื้อสัตว์ปีกป่น &lt;/p&gt;
+    &lt;p class="info"&gt;1.20 ผลพลอยได้จากสัตว์ปีกป่น &lt;/p&gt;
+    &lt;p class="info"&gt;1.21 ขนสัตว์ปีกป่น &lt;/p&gt;
+    &lt;p class="info"&gt;1.22 ข้าวสาลีเมล็ด &lt;/p&gt;
+    &lt;p class="info"&gt;1.23 กากเนื้อในเมล็ดปาล์ม &lt;/p&gt;
+    &lt;p class="info"&gt;1.24 กากปาล์มทั้งหมด &lt;/p&gt;
+    &lt;p class="info"&gt;1.25 รำข้าวสาลี&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;&lt;span&gt;2) ผลิตภัณฑ์นมสำหรับสัตว์ มี 8 ชนิด :&lt;/span&gt;
+  &lt;div class="row" style="margin-left: 1em"&gt;
+  &lt;div class="D-6 M-12"&gt;
+  &lt;p class="info"&gt;2.1 นมผงสำหรับสัตว์ &lt;/p&gt;
+  &lt;p class="info"&gt;2.2 หางนมผงขาดมันเนยสำหรับสัตว์ &lt;/p&gt;
+  &lt;p class="info"&gt;2.3 หางนมผงพร่องมันเนยสำหรับสัตว์ &lt;/p&gt;
+  &lt;p class="info"&gt;2.4 หางนมผงดัดแปลงสำหรับสัตว์ &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="D-6 M-12"&gt;
+  &lt;p class="info"&gt;2.5 หางเนยผงสำหรับสัตว์ &lt;/p&gt;
+  &lt;p class="info"&gt;2.6 อาหารแทนนมสำหรับสัตว์ &lt;/p&gt;
+  &lt;p class="info"&gt;2.7 หางเนยผงดัดแปลงสำหรับสัตว์ &lt;/p&gt;
+  &lt;p class="info"&gt;2.8 หางเนยผงผ่านกระบวนการสำหรับสัตว์&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;&lt;span&gt;3) วัตถุผสมแล้ว มี 8 ชนิด :&lt;/span&gt;
+  &lt;div class="row" style="margin-left: 1em"&gt;
+&lt;div class="D-6 M-12"&gt;
+&lt;p class="info"&gt;3.1 หัวอาหารสัตว์&lt;/p&gt;
+&lt;p class="info"&gt;3.2 อาหารสัตว์ผสมแปรรูป &lt;/p&gt;
+&lt;p class="info"&gt;3.3 อาหารสัตว์ผสมล่วงหน้า (พรีมิกซ์)&lt;/p&gt;
+&lt;p class="info"&gt;3.4 อาหารสัตว์เลี้ยงที่มีโภชนาการครบถ้วน &lt;/p&gt;
+&lt;p class="info"&gt;3.5 อาหารขบเคี้ยว/อาหารว่างสำหรับสัตว์เลี้ยง&lt;/p&gt;
+&lt;p class="info"&gt;3.6 อาหารประกอบการรักษาโรคสำหรับสัตว์เลี้ยง&lt;/p&gt;
+&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;&lt;span&gt;4) อาหารเสริมสำหรับสัตว์ มี 4 ชนิด :&lt;/span&gt;
+  &lt;div class="row" style="margin-left: 1em"&gt;
+&lt;div class="D-12 M-12"&gt;
+&lt;p class="info"&gt;4.1 อาหารเสริมโปรตีน &lt;/p&gt;
+&lt;p class="info"&gt;4.2 อาหารเสริมแร่ธาตุ &lt;/p&gt;
+&lt;p class="info"&gt;4.3 อาหารเสริมวิตามิน  &lt;/p&gt;
+&lt;p class="info"&gt;4.4 อาหารเสริมไขมัน  &lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__ANIMAL_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;สัตว์ที่ต้องขออนุญาตมีทั้งสิ้น 16 ชนิด ดังนี้&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+  &lt;p class="info"&gt;1. ช้าง&lt;/p&gt;
+  &lt;p class="info"&gt;2. ม้า&lt;/p&gt;
+  &lt;p class="info"&gt;3. โค&lt;/p&gt;
+  &lt;p class="info"&gt;4. กระบือ&lt;/p&gt;
+  &lt;p class="info"&gt;5. แพะ&lt;/p&gt;
+  &lt;p class="info"&gt;6. แกะ&lt;/p&gt;
+  &lt;p class="info"&gt;7. กวาง&lt;/p&gt;
+  &lt;p class="info"&gt;8. สุกร&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+  &lt;p class="info"&gt;9. หมูป่า&lt;/p&gt;
+  &lt;p class="info"&gt;10. สุนัข&lt;/p&gt;
+  &lt;p class="info"&gt;11. แมว&lt;/p&gt;
+  &lt;p class="info"&gt;12. นก&lt;/p&gt;
+  &lt;p class="info"&gt;13. ไก่&lt;/p&gt;
+  &lt;p class="info"&gt;14. เป็ด&lt;/p&gt;
+  &lt;p class="info"&gt;15. ห่าน&lt;/p&gt;
+  &lt;p class="info"&gt;16. ไข่สำหรับใช้ทำพันธุ์ของนก ไก่ เป็ด ห่าน&lt;/p&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__CARCASSES_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;ซากสัตว์ที่ต้องขออนุญาตมีทั้งสิ้น 16 ชนิด ดังนี้&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+  &lt;p class="info"&gt;1. ช้าง&lt;/p&gt;
+  &lt;p class="info"&gt;2. ม้า&lt;/p&gt;
+  &lt;p class="info"&gt;3. โค&lt;/p&gt;
+  &lt;p class="info"&gt;4. กระบือ&lt;/p&gt;
+  &lt;p class="info"&gt;5. แพะ&lt;/p&gt;
+  &lt;p class="info"&gt;6. แกะ&lt;/p&gt;
+  &lt;p class="info"&gt;7. กวาง&lt;/p&gt;
+  &lt;p class="info"&gt;8. สุกร&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+  &lt;p class="info"&gt;9. หมูป่า&lt;/p&gt;
+  &lt;p class="info"&gt;10. สุนัข&lt;/p&gt;
+  &lt;p class="info"&gt;11. แมว&lt;/p&gt;
+  &lt;p class="info"&gt;12. นก&lt;/p&gt;
+  &lt;p class="info"&gt;13. ไก่&lt;/p&gt;
+  &lt;p class="info"&gt;14. เป็ด&lt;/p&gt;
+  &lt;p class="info"&gt;15. ห่าน&lt;/p&gt;
+  &lt;p class="info"&gt;16. ไข่สำหรับใช้ทำพันธุ์ของนก ไก่ เป็ด ห่าน&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;ประเภทซากสัตว์มีทั้งสิ้น 8 ประเภท ดังนี้&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+  &lt;p class="info"&gt;1. เนื้อ เครื่องในสัตว์ รวมถึงชิ้นส่วนของซากสัตว์&lt;/p&gt;
+  &lt;p class="info"&gt;2. หนังสัตว์&lt;/p&gt;
+  &lt;p class="info"&gt;3. ไข่&lt;/p&gt;
+  &lt;p class="info"&gt;4. น้ำนมดิบ&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+  &lt;p class="info"&gt;5. มูลสัตว์&lt;/p&gt;
+  &lt;p class="info"&gt;6. กระดูก&lt;/p&gt;
+  &lt;p class="info"&gt;7. เขา&lt;/p&gt;
+  &lt;p class="info"&gt;8. กีบ&lt;/p&gt;
+
+&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__COSMETIC_INFO" xml:space="preserve">
+    <value>&lt;div class="M-12"&gt;ผลิตภัณฑ์ที่มีไว้ใช้เพื่อทำความสะอาดและบำรุงรักษาส่วนต่างๆ ของร่างกาย รวมทั้งเครื่องประทินผิวเพื่อเพิ่มความสวยงาม&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__MEDICINE_FORBIDDEN_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;กรณีขายสินค้าอื่นในร้าน...&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;
+&lt;p class="info"&gt;1. คุณไม่สามารถขาย สุรา ยาสูบ สัตว์ ซากสัตว์ ปุ๋ยอื่นๆ ที่ก่อเกิดความชื้น ฝุ่นควัน สิ่งสกปรก ที่เป็นสาเหตุทำให้ยาเสื่อมคุณภาพ &lt;/p&gt;
+&lt;p class="info"&gt;2. คุณไม่สามารถประกอบในร้าน แต่คุณสามารถขายอาหารที่มีการแพค หรือบรรจุหีบห่อมิดชิดได้&lt;/p&gt;
+&lt;p class="info"&gt;3. คุณต้องแยกโซนขายยาออกจากโซนขายสินค้าอื่นๆ อย่างชัดเจน&lt;/p&gt;
+&lt;p class="info"&gt;4. คุณสามารถขายเมล็ดพันธุ์ควบคุมเฉพาะได้ แต่จะต้องบรรจุในถุงที่มีการปิดป้องกันอย่างมิดชิด เพื่อป้องกันฝุ่นละออง&lt;/p&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__MEDICINE_INFO" xml:space="preserve">
+    <value>&lt;div class="M-12"&gt;ผลิตภัณฑ์ที่มีไว้ใช้เพื่อบำบัด รักษา หรือป้องกันโรค ของมนุษย์หรือสัตว์&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__SEED_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;เมล็ดพันธุ์ควบคุมมีทั้งสิ้น 44 ดังนี้&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+&lt;p class="info"&gt;1. กระเจี๊ยบเขียว&lt;/p&gt;
+&lt;p class="info"&gt;2. กระเทียมใบ&lt;/p&gt;
+&lt;p class="info"&gt;3. กะหล่ําปลี&lt;/p&gt;
+&lt;p class="info"&gt;4. กะหล่ําดอก &lt;/p&gt;
+&lt;p class="info"&gt;5. คะน้า&lt;/p&gt;
+&lt;p class="info"&gt;6. บรอคโคล&lt;/p&gt;
+&lt;p class="info"&gt;7. ข้าวเปลือก&lt;/p&gt;
+&lt;p class="info"&gt;8. ข้าวโพด&lt;/p&gt;
+&lt;p class="info"&gt;9. ข้าวโพดหวาน&lt;/p&gt;
+&lt;p class="info"&gt;10. ข้าวฟ่าง&lt;/p&gt;
+&lt;p class="info"&gt;11. แคนตาลูป&lt;/p&gt;
+&lt;p class="info"&gt;12. แตงเทศ&lt;/p&gt;
+&lt;p class="info"&gt;13. เมล่อน&lt;/p&gt;
+&lt;p class="info"&gt;14. แตงกวา&lt;/p&gt;
+&lt;p class="info"&gt;15. แตงร้าน&lt;/p&gt;
+&lt;p class="info"&gt;16. แตงโม&lt;/p&gt;
+&lt;p class="info"&gt;17. ถั่วฝักยาว&lt;/p&gt;
+&lt;p class="info"&gt;18. ถั่วลันเตา&lt;/p&gt;
+&lt;p class="info"&gt;19. ถั่วเขียว&lt;/p&gt;
+&lt;p class="info"&gt;20.ถั่วเขียวผิวดํา&lt;/p&gt;
+&lt;p class="info"&gt;21. ถั่วเหลือง&lt;/p&gt;
+&lt;p class="info"&gt;22. ทานตะวัน&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="D-6 M-12"&gt;
+&lt;p class="info"&gt;23. บวบเหลี่ยม&lt;/p&gt;
+&lt;p class="info"&gt;24. ปาล์มน้ํามัน&lt;/p&gt;
+&lt;p class="info"&gt;25. ผักกาดกวางตงุ้&lt;/p&gt;
+&lt;p class="info"&gt;26. ผักกาดขาว&lt;/p&gt;
+&lt;p class="info"&gt;27. ผักกาดเขียว&lt;/p&gt;
+&lt;p class="info"&gt;28. ผักกาดหอม&lt;/p&gt;
+&lt;p class="info"&gt;29. ผักกาดหัว&lt;/p&gt;
+&lt;p class="info"&gt;30. ผักชี&lt;/p&gt;
+&lt;p class="info"&gt;31. ผักบุ้งจีน&lt;/p&gt;
+&lt;p class="info"&gt;32. ฝ้าย&lt;/p&gt;
+&lt;p class="info"&gt;33. พริก&lt;/p&gt;
+&lt;p class="info"&gt;34. ฟักทอง&lt;/p&gt;
+&lt;p class="info"&gt;35. ฟัก&lt;/p&gt;
+&lt;p class="info"&gt;36. แฟง&lt;/p&gt;
+&lt;p class="info"&gt;37. มะระจีน&lt;/p&gt;
+&lt;p class="info"&gt;38. มะระขี้นก&lt;/p&gt;
+&lt;p class="info"&gt;39. มะเขือยาว&lt;/p&gt;
+&lt;p class="info"&gt;40. มะเขือม่วง&lt;/p&gt;
+&lt;p class="info"&gt;41. มะเขือเปราะ&lt;/p&gt;
+&lt;p class="info"&gt;42. มะเขือเทศ&lt;/p&gt;
+&lt;p class="info"&gt;43. หอมหัวใหญ่&lt;/p&gt;
+&lt;p class="info"&gt;44. มะละกอ&lt;/p&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_SELL_FOOD" xml:space="preserve">
+    <value>ร้านค้าของคุณขายหรือเก็บสะสมอาหารหรือไม่</value>
+  </data>
+  <data name="QUESTION_RETAIL_SELL_FOOD__NO" xml:space="preserve">
+    <value>ไม่ใช่ ร้านของฉันไม่ได้ขายหรือเก็บสะสมอาหาร</value>
+  </data>
+  <data name="QUESTION_RETAIL_SELL_FOOD__YES" xml:space="preserve">
+    <value>ใช่ ร้านของฉันขายอาหารหรือเก็บสะสมอาหาร</value>
+  </data>
+  <data name="QUESTION_RETAIL_TELESALE" xml:space="preserve">
+    <value>คุณเสนอขายสินค้าผ่านสื่อต่างๆ ซึ่งได้แก่ โทรทัศน์ สิ่งพิมพ์ วิทยุ หรือ &lt;info&gt;เว็บไซต์ระบบตะกร้าสินค้าที่คุณเป็นเจ้าของเอง&lt;/info&gt; แล้วให้ผู้บริโภคตอบกลับเพื่อซื้อสินค้าหรือบริการผ่านสื่อหรือไม่ (ไม่นับรวมการขายผ่าน Facebook, Line, Instagram)</value>
+  </data>
+  <data name="QUESTION_RETAIL_TELESALE__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันไม่ได้ขายสินค้าในลักษณะที่ให้ลูกค้าสั่งซื้อสินค้าผ่านสื่อ</value>
+  </data>
+  <data name="QUESTION_RETAIL_TELESALE__YES" xml:space="preserve">
+    <value>ใช่ ฉันขายสินค้าในลักษณะที่ให้ลูกค้าสั่งซื้อสินค้าผ่านสื่อ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SERVICE__NO" xml:space="preserve">
+    <value>ไม่มี ร้านของฉันไม่มีบริการดังกล่าว</value>
+  </data>
+  <data name="QUESTION_RETAIL_SHOP_OWNER" xml:space="preserve">
+    <value>เจ้าของธุรกิจร้านค้าปลีกของคุณมีลักษณะตรงกับข้อใด</value>
+  </data>
+  <data name="QUESTION_RETAIL_SHOP_OWNER_CITIZEN_ABOVE_18M" xml:space="preserve">
+    <value>บุคคลธรรมดา ที่มีรายได้จากการจำหน่ายสินค้าหรือบริการ ตั้งแต่ 1.8 ล้านบาทขึ้นไปต่อปี</value>
+  </data>
+  <data name="QUESTION_RETAIL_SHOP_OWNER_CITIZEN_BELOW_18M" xml:space="preserve">
+    <value>บุคคลธรรมดา ที่มีรายได้จากการจำหน่ายสินค้าหรือบริการ น้อยกว่า 1.8 ล้านบาทต่อปี</value>
+  </data>
+  <data name="QUESTION_RETAIL_SHOP_OWNER_JURISTIC_ABOVE_60M" xml:space="preserve">
+    <value>บริษัท หรือห้างหุ้นส่วนที่มิได้จดทะเบียนผู้ประกอบการวิสาหกิจขนาดกลางและขนาดย่อม (SMEs) กับ สสว.</value>
+  </data>
+  <data name="QUESTION_RETAIL_SHOP_OWNER_JURISTIC_BELOW_60M" xml:space="preserve">
+    <value>บริษัท หรือห้างหุ้นส่วนที่ได้จดทะเบียนผู้ประกอบการวิสาหกิจขนาดกลางและขนาดย่อม (SMEs) กับ สสว.</value>
+  </data>
+  <data name="QUESTION_RETAIL_SHOP_OWNER_OTOP" xml:space="preserve">
+    <value>วิสาหกิจชุมชน เช่น กลุ่มแม่บ้าน หรือ กลุ่มผู้จำหน่ายสินค้าโครงการ OTOP</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM" xml:space="preserve">
+    <value>ร้านอาหารของคุณผลิตอาหาร/เครื่องดื่มเหล่านี้เชิงอุตสาหกรรม เพื่อขายแยกส่วนจากการขายอาหารหลักหรือไม่ (ตอบได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Alcohol" xml:space="preserve">
+    <value>เอทิลแอลกอฮอล์ สุรา เบียร์ ไวน์ น้ำส้มสายชู ข้าวหมาก น้ำตาลเมา</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Bread" xml:space="preserve">
+    <value>ขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ ขนมอบอื่น ๆ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Butter" xml:space="preserve">
+    <value>เนย เนยเทียม เนยผสม ผลิตภัณฑ์เนย
+ผลิตภัณฑ์เนยเทียม และผลิตภัณฑ์เนยผสม</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_CarbonateDrink" xml:space="preserve">
+    <value>น้ำอัดลม น้ำหวาน น้ำโซดา น้ำจากพืช
+ผัก ผลไม้ เครื่องดื่มชนิดต่าง ๆ บรรจุกระป๋อง ขวดหรือภาชนะอื่นใด</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Coffee" xml:space="preserve">
+    <value>กาแฟ (คั่ว เก็บสะสม หรือบรรจุ)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_CookedFood" xml:space="preserve">
+    <value>อาหารจากพืชหรือสัตว์โดยตาก บด
+นึ่ง ต้ม ตุ๋น เคี่ยว กวน ฉาบ ทอด อบ รมควัน ปิ้ง ย่าง เผา หรือวิธีอื่นใด</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_CornSyrup" xml:space="preserve">
+    <value>แบะแซ (น้ำเชื่อมข้าวโพด)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_FermentedFruit" xml:space="preserve">
+    <value>อาหารหมัก ดอง แช่อิ่ม จากผัก ผลไม้
+หรือพืชอย่างอื่น</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_FermentedMeat" xml:space="preserve">
+    <value>อาหารหมัก ดอง จากสัตว์ ได้แก่ ปลาร้า
+ปลาเจ่า กุ้งเจ่า ปลาส้ม ปลาจ่อม แหนม หม่ํา ไส้กรอก กะปิ น้ำปลา หอยดอง น้ำเคย น้ำบูดู
+ไตปลา หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Ice" xml:space="preserve">
+    <value>น้ำแข็ง (รวมถึงการขนส่ง)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_IceCream" xml:space="preserve">
+    <value>ไอศกรีม (เฉพาะผลิตเท่านั้น ไม่รวมเก็บสะสม แบ่งบรรจุ)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_MeatBall" xml:space="preserve">
+    <value>ลูกชิ้น</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Milk" xml:space="preserve">
+    <value>น้ำนม หรือผลิตภัณฑ์จากน้ำนมสัตว์</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_None" xml:space="preserve">
+    <value>ไม่มี ร้านของฉันไม่ได้ผลิตอาหาร/เครื่องดื่มเหล่านี้</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Noodle" xml:space="preserve">
+    <value>เส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย
+เต้าหู้ วุ้นเส้น เกี้ยมอี๋ เนื้อสัตว์เทียม หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_PASTE" xml:space="preserve">
+    <value>น้ำพริกแกง น้ำพริกปรุงสําเร็จ เต้าเจี้ยว
+ซีอิ๊ว น้ำจิ้ม หรือซอสปรุงรสชนิดต่าง ๆ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_SeasoningPowder" xml:space="preserve">
+    <value>ผงชูรส หรือสารปรุงแต่งอาหาร</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Spagetthi" xml:space="preserve">
+    <value>บะหมี่ มักกะโรนี สปาเกตตี้ พาสตา หรือผลิตภัณฑ์อื่น ๆ
+ที่คล้ายคลึงกัน (เฉพาะผลิตเท่านั้น ไม่รวมเก็บสะสม แบ่งบรรจุ)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Sugar" xml:space="preserve">
+    <value>น้ำตาล น้ำเชื่อม</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Tea" xml:space="preserve">
+    <value>ใบชาแห้ง ชาผง หรือเครื่องดื่มชนิดผงอื่น ๆ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_Water" xml:space="preserve">
+    <value>น้ำกลั่น น้ำบริโภค น้ำดื่มจากเครื่องจําหน่ายอัตโนมัติ</value>
+  </data>
+  <data name="TITLE_SMART_QUIZ" xml:space="preserve">
+    <value>แนะนำใบอนุญาตสำหรับคุณ</value>
+  </data>
+  <data name="QUESTION_RETAIL_COSMETIC_PRODUCER" xml:space="preserve">
+    <value>คุณมีการผลิตหรือนำเข้า &lt;info&gt;เครื่องสำอาง&lt;/info&gt; เพื่อขายในร้านค้าหรือไม่</value>
+  </data>
+  <data name="QUESTION_RETAIL_COSMETIC_PRODUCER_INFO" xml:space="preserve">
+    <value>&lt;div class="M-12"&gt;&lt;p&gt;เครื่องสำอาง หมายถึง ผลิตภัณฑ์ที่มีไว้ใช้เพื่อทำความสะอาดและบำรุงรักษาส่วนต่างๆ ของร่างกาย รวมทั้งเครื่องประทินผิวเพื่อเพิ่มความสวยงาม&lt;/p&gt;&lt;p&gt;ตัวอย่างผลิตภัณฑ์ที่เข้าข่ายเป็นเครื่องสำอาง เช่น ครีมทาหน้า โลชั่นทาผิวกาย สบู่ แชมพูครีมนวดผม ยาสีฟัน น้ำยาบ้วนปาก ลิปสติก บลัชออน อายแชโดว์ อายไลน์เนอร์ สีทาเล็บ แป้งทาหน้า แป้งฝุ่นโรยตัว ผ้าเย็น/กระดาษเย็น ผ้าอนามัย ผลิตภัณฑ์ย้อมผม ผลิตภัณฑ์ดัดผม ผลิตภัณฑ์กำจัดขน ผลิตภัณฑ์ฟอกสีผม ผลิตภัณฑ์ฟอกสีฟัน ผลิตภัณฑ์ระงับกลิ่นกาย และ น้ำหอม เป็นต้น&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_COSMETIC_PRODUCER_PERMIT" xml:space="preserve">
+    <value>คุณได้จดแจ้งรายละเอียดการผลิต หรือนำเข้าเครื่องสำอางของคุณกับทางสำนักงานคณะกรรมการอาหารและยา (อย.) ครบถ้วนทุกผลิตภัณฑ์แล้วหรือไม่</value>
+  </data>
+  <data name="QUESTION_RETAIL_COSMETIC_PRODUCER_PERMIT__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังจดแจ้งรายละเอียดกับ อย. ไม่ครบถ้วนทุกผลิตภัณฑ์/ไม่เคยจดแจ้งรายละเอียดกับทาง อย.เลย</value>
+  </data>
+  <data name="QUESTION_RETAIL_COSMETIC_PRODUCER_PERMIT__YES" xml:space="preserve">
+    <value>ใช่ ฉันจดแจ้งรายละเอียดกับ อย. ครบถ้วนทุกผลิตภัณฑ์แล้ว</value>
+  </data>
+  <data name="QUESTION_RETAIL_COSMETIC_PRODUCER__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันไม่ได้ผลิต หรือนำเข้าเครื่องสำอางเพื่อขายในร้านค้า</value>
+  </data>
+  <data name="QUESTION_RETAIL_COSMETIC_PRODUCER__YES" xml:space="preserve">
+    <value>ใช่ ฉันมีการผลิต หรือนำเข้าเครื่องสำอางเพื่อขายในร้านค้า</value>
+  </data>
+  <data name="QUESTION_RETAIL_TELESALE_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;&lt;b&gt;เว็บไซต์ระบบตะกร้าสินค้าที่คุณเป็นเจ้าของเอง&lt;/b&gt; หมายถึง เว็บไซต์ที่มีการซื้อขายสินค้า  และกำหนดให้ผู้บริโภคสั่งซื้อได้ทันที โดยไม่มีการพูดคุย หรือต่อรองราคากับผู้ขาย โดยคุณต้องเป็นเจ้าของเว็บไซต์เอง ไม่ได้ขายผ่านเว็บไซต์ของผู้อื่น (เช่น หากคุณขายสินค้าผ่าน Lazada หรือ Shopee จะถือว่าคุณไม่ได้เป็นเจ้าของเว็บไซต์เอง เป็นต้น)&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SELL_TOBACCO" xml:space="preserve">
+    <value>ร้านอาหารของคุณขายยาสูบ เช่น บุหรี่ ซิการ์ ยาเส้นสด ยาเส้นปรุง หรือไม่</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SELL_TOBACCO__CHOICE_NO" xml:space="preserve">
+    <value>ไม่ใช่ ร้านของฉันไม่ได้ขายยาสูบ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_SELL_TOBACCO__CHOICE_YES" xml:space="preserve">
+    <value>ใช่ ร้านของฉันขายยาสูบ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_STORE_GAS" xml:space="preserve">
+    <value>ร้านอาหารของคุณมีถังก๊าซหุงต้มรวมกัน ในปริมาณเท่าใด ( 1 ถังใหญ่หนักประมาณ 50 กิโลกรัม)</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_STORE_GAS__CHOICE_GT1000KG" xml:space="preserve">
+    <value>ตั้งแต่ 1,001 กิโลกรัมขึ้นไป</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_STORE_GAS__CHOICE_LE1000KG" xml:space="preserve">
+    <value>251 – 1,000 กิโลกรัม</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_STORE_GAS__CHOICE_NO" xml:space="preserve">
+    <value>0 – 250 กิโลกรัม</value>
+  </data>
+  <data name="QUESTION_RETAIL_AGENT_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;&lt;p&gt;&lt;b&gt;ผู้จำหน่ายอิสระ&lt;/b&gt; หมายถึง สมาชิกตัวแทนจำหน่าย ที่ซื้อสินค้าจากบริษัทของคุณก่อน แล้วจึงนำไปขายแก่ผู้บริโภค เช่น นาย A ซื้อสินค้าจากบริษัทของคุณโดยตรง แล้วจึงนำไปขายต่อยังผู้บริโภค&lt;/p&gt;&lt;p&gt;&lt;b&gt;ตัวแทนขายตรง&lt;/b&gt; หมายถึง สมาชิกตัวแทนจำหน่าย ที่นำสินค้าจากบริษัทของคุณไปเสนอขายแก่ผู้บริโภค เมื่อมีการสั่งซื้อจึงนำคำสั่งซื้อพร้อมเงิน มาออกของกับทางบริษัท และนำสินค้าไปให้แก่ผู้บริโภค
+&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__CARCASSES2" xml:space="preserve">
+    <value>อาหารแปรรูปจากสัตว์&lt;u&gt;ที่คุณผลิตเอง&lt;/u&gt; เช่น กุนเชียง ไส้กรอก ลูกชิ้น เป็นต้น</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__CARCASSES3" xml:space="preserve">
+    <value>สิ่งประดิษฐ์จากสัตว์&lt;u&gt;ที่คุณผลิตเอง&lt;/u&gt; เช่น กระเป๋าหนัง รองเท้าหนัง ผ้าพันคอขนสัตว์ เป็นต้น</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C1" xml:space="preserve">
+    <value>การผลิตเนย เนยกระเทียม</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C10" xml:space="preserve">
+    <value>การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C11" xml:space="preserve">
+    <value>การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C12" xml:space="preserve">
+    <value>การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C13" xml:space="preserve">
+    <value>การผลิต การแบ่งบรรจุน้ำตาล</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C14" xml:space="preserve">
+    <value>การผลิตผลิตภัณฑ์จากน้ำนมวัว</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C15" xml:space="preserve">
+    <value>การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C16" xml:space="preserve">
+    <value>การคั่วกาแฟ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C17" xml:space="preserve">
+    <value>การผลิตลูกชิ้นด้วยเครื่องจักร</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C18" xml:space="preserve">
+    <value>การผลิตผงชูรส</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C19" xml:space="preserve">
+    <value>การผลิตน้ำกลั่น น้ำบริโภค</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C2" xml:space="preserve">
+    <value>การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C20" xml:space="preserve">
+    <value>การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C21" xml:space="preserve">
+    <value>การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C22" xml:space="preserve">
+    <value>การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C23" xml:space="preserve">
+    <value>การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C24" xml:space="preserve">
+    <value>การประกอบกิจการห้องเย็น แช่แข็งอาหาร</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C25" xml:space="preserve">
+    <value>การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C26" xml:space="preserve">
+    <value>การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C3" xml:space="preserve">
+    <value>การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C4" xml:space="preserve">
+    <value>การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C5" xml:space="preserve">
+    <value>การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C6" xml:space="preserve">
+    <value>การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C7" xml:space="preserve">
+    <value>การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C8" xml:space="preserve">
+    <value>การผลิตแบะแซ</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_ITEM_C9" xml:space="preserve">
+    <value>การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด</value>
+  </data>
+  <data name="QUESTION_INSTALL_TYPE" xml:space="preserve">
+    <value>ประเภทการติดตั้ง</value>
+  </data>
+  <data name="QUESTION_INSTALL_TYPE_PERMANENT" xml:space="preserve">
+    <value>ถาวร</value>
+  </data>
+  <data name="QUESTION_INSTALL_TYPE_TEMPORARILY" xml:space="preserve">
+    <value>ชั่วคราว</value>
+  </data>
+  <data name="QUESTION_METRO_OR_PROVINCE" xml:space="preserve">
+    <value>สถานที่ที่ต้องการขอติดตั้งสาธารณูปโภคอยู่ภายในเขต</value>
+  </data>
+  <data name="QUESTION_METRO_OR_PROVINCE_METRO" xml:space="preserve">
+    <value>กรุงเทพ นนทบุรี และสมุทรปราการ</value>
+  </data>
+  <data name="QUESTION_METRO_OR_PROVINCE_PROVINCE" xml:space="preserve">
+    <value>ส่วนภูมิภาค</value>
+  </data>
+  <data name="QUESTION_UTILITIES_HAS_HOME_NUMBER_YES" xml:space="preserve">
+    <value>มีแล้ว</value>
+  </data>
+  <data name="QUESTION_UTILITIES_HOME_NUMBER" xml:space="preserve">
+    <value>ท่านมีเลขประจำบ้าน 11 หลักแล้วหรือยัง</value>
+  </data>
+  <data name="QUESTION_UTILITIES_HOME_NUMBER_NO" xml:space="preserve">
+    <value>ไม่มี</value>
+  </data>
+  <data name="QUESTION_UTILITY_SERVICES" xml:space="preserve">
+    <value>บริการที่ต้องการขอติดตั้ง</value>
+  </data>
+  <data name="QUESTION_UTILITY_SERVICES_ELECTRIC" xml:space="preserve">
+    <value>ไฟฟ้า</value>
+  </data>
+  <data name="QUESTION_UTILITY_SERVICES_PHONE" xml:space="preserve">
+    <value>โทรศัพท์/อินเทอร์เน็ต</value>
+  </data>
+  <data name="QUESTION_UTILITY_SERVICES_WATER" xml:space="preserve">
+    <value>ประปา</value>
+  </data>
+  <data name="QUIZ_OPEN_UTILITIES" xml:space="preserve">
+    <value>แบบสอบถามการขอติดตั้งสาธารณูปโภค</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE" xml:space="preserve">
+    <value>ธุรกิจของคุณเข้าข่ายประเภทกิจการใดบ้าง (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_ALL_5_DOMESTIC_GOODS" xml:space="preserve">
+    <value>นำเข้าสินค้าตาม 5  ประเภทข้างบน</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_CDS_DVDS_TAPES_FOR_SELL_OR_RENT" xml:space="preserve">
+    <value>ขาย ให้เช่า ผลิต แผ่นซีดี แถบบันทึก วีดิทัศน์ แผ่นวีดิทัศน์ ดีวีดี หรือแผ่นวีดิทัศน์ระบบดิจิทัล</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_DECREE_NO239_GOODS_AND_SERVICES" xml:space="preserve">
+    <value>ขายสินค้า หรือการให้บริการอื่นๆตามที่กำหนดโดยพระราชกฤษฎีกาฯ (ฉบับที่ 239) พ.ศ.2534</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_DOMESTIC_AGRICULTURAL_CROPS" xml:space="preserve">
+    <value>ขายพืชผลทางการเกษตรแบบสด ภายในประเทศ เช่น ข้าว ข้าวโพด มันสำปะหลัง ผัก ผลไม้ เป็นต้น</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_DOMESTIC_ANIMALS_AND_UNPROCESSED_MEAT" xml:space="preserve">
+    <value>ขายสัตว์มีชีวิต หนังสัตว์ที่ยังไม่ได้ฟอก และเนื้อสัตว์ที่ยังไม่ได้แปรรูป ภายในประเทศ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_DOMESTIC_ANIMAL_FOODS" xml:space="preserve">
+    <value>ขายปลาป่น หรืออาหารสัตว์ ภายในประเทศ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_DOMESTIC_FERTILIZERS_CHEMICALS_MEDICINES" xml:space="preserve">
+    <value>ขายปุ๋ย เคมีภัณฑ์ หรือยาสำหรับใช้ในพืชและสัตว์ ภายในประเทศ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_DOMESTIC_NEWSPAPER_MAGAZINES_AND_TEXTBOOKS" xml:space="preserve">
+    <value>ขายหนังสือพิมพ์ นิตยสาร หรือตำราเรียน ภายในประเทศ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_EXPORTED_GOODS_BY_INDUSTRIAL_PARK" xml:space="preserve">
+    <value>ขายสินค้าส่งออก โดยดำเนินการในเขตอุตสาหกรรมส่งออกของนิคมอุตสาหกรรม</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_GEMSTONE_AND_JEWELRY" xml:space="preserve">
+    <value>ขายอัญมณี หรือเครื่องประดับอัญมณี</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_GOODS_AND_SERVICES_FOR_MINISTRY" xml:space="preserve">
+    <value>ขายสินค้าหรือการให้บริการของกระทรวง ทบวง กรม ซึ่งส่งรายรับทั้งสิ้นให้แก่รัฐโดยไม่หักรายจ่าย</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_GOOD_TYPES_ETC" xml:space="preserve">
+    <value>ขายสินค้าอื่นๆนอกเหนือจากที่ระบุข้างต้น</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_IVORY_AND_CARVED_IVORY" xml:space="preserve">
+    <value>ขายงาช้างและผลิตภัณฑ์ที่เกี่ยวข้อง หรือแปรสภาพ แกะสลัก และทำหัตถกรรมจากงาช้าง</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_GOODS_TYPE_RELIGION_AND_DOMESTIC_CHARITY" xml:space="preserve">
+    <value>ขายสินค้าหรือการให้บริการเพื่อประโยชน์แก่การศาสนา หรือการสาธารณกุศลภายในประเทศ ซึ่งไม่นำผลกำไรไปจ่ายในทางอื่น</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE" xml:space="preserve">
+    <value>ธุรกิจของคุณเข้าข่ายประเภทกิจการใดบ้าง (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_COMPETITIVE_SPORTS_SERVICE" xml:space="preserve">
+    <value>ให้บริการจัดแข่งขันกีฬาสมัครเล่น</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_CULTURAL_AND_ART_SERVICES" xml:space="preserve">
+    <value>ให้บริการแสดงศิลปวัฒนธรรม ได้แก่ การแสดงพื้นเมือง ระบำ ละคร และโขน หรือการแสดงดนตรีไทยและไม่ได้เรียกเก็บค่าบริการโดยตรงจากผู้ชม</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_DATACENTER_AND_HOST_SERVICES" xml:space="preserve">
+    <value>ให้บริการตลาดกลางผ่านอินเทอร์เน็ต บริการอินเทอร์เน็ต ให้เช่าเครื่องคอมพิวเตอร์ หรือให้เช่าพื้นที่เครื่องคอมพิวเตอร์แม่ข่าย</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_DOMESTIC_FUEL_TRANSPORTATION" xml:space="preserve">
+    <value>ให้บริการการขนส่งน้ำมันเชื้อเพลิงทางท่อภายในประเทศ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_DOMESTIC_TRANSPORTATION_BY_AIR" xml:space="preserve">
+    <value>ให้บริการขนส่งภายในประเทศโดยอากาศยาน</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_DOMESTIC_TRANSPORTATION_BY_LANDWATER" xml:space="preserve">
+    <value>ให้บริการขนส่งภายในประเทศไม่ว่าจะเป็นทางบกหรือทางน้ำ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_EDUCATIONAL_SERVICES" xml:space="preserve">
+    <value>ให้บริการด้านการศึกษาของสถานศึกษารัฐและเอกชน</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_HOSPITAL_SERVICES" xml:space="preserve">
+    <value>ให้บริการรักษาพยาบาลของสถานพยาบาลรัฐและเอกชน</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_INTERNATIONAL_SHIPPING_BY_LANDWATER" xml:space="preserve">
+    <value>ให้บริการขนส่งระหว่างประเทศทางบกและทางเรือซึ่งมิใช่เรือเดินทะเล</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_KARAOKE_GAME_CONSOLE_SERVICES" xml:space="preserve">
+    <value>ให้บริการคาราโอเกะ เครื่องเล่นเกมส์ หรือตู้เพลง</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_LABOR_CONTRACT_SERVICES" xml:space="preserve">
+    <value>ให้บริการตามสัญญาจ้างแรงงาน</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_LIBRARY_MUSEUM_ZOO" xml:space="preserve">
+    <value>ให้บริการห้องสมุด พิพิธภัณฑ์ สวนสัตว์</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_MEDICAL_TREATMENT_AUDIT_AND_LAWYER" xml:space="preserve">
+    <value>ให้บริการประกอบโรคศิลปะ การสอบบัญชี การว่าความ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_REAL_ESTATE_REANTAL_SERVICE" xml:space="preserve">
+    <value>ให้บริการเช่าอสังหาริมทรัพย์</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_BUSINESS_SERVICES_TYPE_SERVICE_TYPES_ETC" xml:space="preserve">
+    <value>อื่นๆ นอกเหนือจากที่ระบุข้างต้น</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_HAS_ONLINE_STORE" xml:space="preserve">
+    <value>ธุรกิจของคุณขายสินค้าหรือให้บริการผ่านอินเทอร์เน็ตหรือไม่</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_HAS_ONLINE_STORE_NO" xml:space="preserve">
+    <value>ไม่ ฉันไม่ได้ทำธุรกิจผ่านอินเทอร์เน็ต</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_HAS_ONLINE_STORE_YES" xml:space="preserve">
+    <value>ใช่ ฉันทำธุรกิจโดยใช้อินเตอร์เน็ต</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_BUSINESS_PROVIDE_SERVICES" xml:space="preserve">
+    <value>กิจการของคุณมีการให้บริการหรือไม่</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_BUSINESS_PROVIDE_SERVICES_NO" xml:space="preserve">
+    <value>ไม่ กิจการของฉันไม่มีการให้บริการ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_BUSINESS_PROVIDE_SERVICES_YES" xml:space="preserve">
+    <value>ใช่ กิจการของฉันมีการให้บริการ</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_BUSINESS_SELLING_GOODS" xml:space="preserve">
+    <value>กิจการของคุณมีการค้าขายสินค้าหรือไม่</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_BUSINESS_SELLING_GOODS_NO" xml:space="preserve">
+    <value>ไม่ กิจการของฉันไม่มีการค้าขายสินค้า</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_BUSINESS_SELLING_GOODS_YES" xml:space="preserve">
+    <value>ใช่ กิจการของฉันมีการค้าขายสินค้า</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_REGISTERED_JURISTIC" xml:space="preserve">
+    <value>คุณได้จดทะเบียนนิติบุคคลกับกรมพัฒนาธุรกิจการค้าจนเสร็จสิ้นแล้วหรือไม่</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_REGISTERED_JURISTIC_NO" xml:space="preserve">
+    <value>ไม่ ฉันยังไม่ได้จดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_IS_REGISTERED_JURISTIC_YES" xml:space="preserve">
+    <value>ใช่ ฉันจดทะเบียนนิติบุคคลแล้ว</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_NUMBER_OF_EMPLOYEES" xml:space="preserve">
+    <value>ธุรกิจของคุณมีลูกจ้างกี่คน</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_NUMBER_OF_EMPLOYEES_01" xml:space="preserve">
+    <value>ยังไม่มีลูกจ้าง</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_NUMBER_OF_EMPLOYEES_02" xml:space="preserve">
+    <value>มีลูกจ้าง 1-9 คน</value>
+  </data>
+  <data name="QUESTION_STARTINGBUSINESS_NUMBER_OF_EMPLOYEES_03" xml:space="preserve">
+    <value>มีลูกจ้าง 10 คนขึ้นไป</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_CONST_C1" xml:space="preserve">
+    <value>การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_OTHER_C1" xml:space="preserve">
+    <value>การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_PETRO_C1" xml:space="preserve">
+    <value>การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_AUTO_C1" xml:space="preserve">
+    <value>การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_RESTAURANT_C1" xml:space="preserve">
+    <value>การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_HOTEL_C1" xml:space="preserve">
+    <value>การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน</value>
+  </data>
+  <data name="QUESTION_RESTUARANT_DANGER_FITNESS_C1" xml:space="preserve">
+    <value>การประกอบกิจการสถานที่ออกกำลังกาย</value>
+  </data>
+  <data name="QUESTION_ELECTRONIC_PRODUCT" xml:space="preserve">
+    <value>ร้านซ่อมและขายอุปกรณ์อิเล็กทรอนิกส์ของคุณมีให้บริการอะไรบ้าง</value>
+  </data>
+  <data name="QUESTION_ELECTRONIC_PRODUCT__ALL" xml:space="preserve">
+    <value>มีให้บริการทั้งซ่อมแซม และขายอุปกรณ์อิเล็กทรอนิกส์</value>
+  </data>
+  <data name="QUESTION_ELECTRONIC_PRODUCT__REPAIR" xml:space="preserve">
+    <value>มีให้บริการซ่อมแซมอุปกรณ์อิเล็กทรอนิกส์เพียงอย่างเดียว</value>
+  </data>
+  <data name="QUESTION_ELECTRONIC_PRODUCT__SELL" xml:space="preserve">
+    <value>มีให้บริการขายอุปกรณ์อิเล็กทรอนิกส์เพียงอย่างเดียวเท่านั้น</value>
+  </data>
+  <data name="QUESTION_ELECTRONIC_SIGN_TAX" xml:space="preserve">
+    <value>ในกรณีที่คุณมีป้ายและได้ทำการติดตั้งป้ายเป็นที่เรียบร้อยแล้ว ต้องการยื่นชำระภาษีป้ายด้วยหรือไม่</value>
+  </data>
+  <data name="QUESTION_ELECTRONIC_SIGN_TAX__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังไม่ต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_ELECTRONIC_SIGN_TAX__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUIZ_OPEN_ELECTRONIC" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตธุรกิจซ่อมและขายอุปกรณ์อิเล็กทรอนิกส์</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตเพื่อเปิดธุรกิจคาร์แคร์</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT__COAT" xml:space="preserve">
+    <value>บริการเคลือบสี หรือ เคลือบแก้ว</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT__INNER_WASH" xml:space="preserve">
+    <value>บริการซักฟอกภายใน (เบาะหนัง เบาะผ้า พรม หลังคา)</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT__OIL_CHANGE" xml:space="preserve">
+    <value>บริการเปลี่ยนถ่ายน้ำมันเครื่อง</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT__OIL_CHECKUP" xml:space="preserve">
+    <value>บริการตรวจเช็คสภาพรถยนต์เบื้องต้น</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT__PURIFY" xml:space="preserve">
+    <value>บริการฟอกอากาศ</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT__SCRUB" xml:space="preserve">
+    <value>บริการขัดสีรถ ลบริ้วรอย ลบคราบแมลง ยางมะตอย</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT__VACUUM" xml:space="preserve">
+    <value>บริการดูดฝุ่น</value>
+  </data>
+  <data name="QUESTION_CARCARE_PRODUCT__WASH" xml:space="preserve">
+    <value>บริการล้างสี</value>
+  </data>
+  <data name="QUESTION_CARCARE_SIGN_TAX" xml:space="preserve">
+    <value>ในกรณีที่คุณมีป้ายและได้ทำการติดตั้งป้ายเป็นที่เรียบร้อยแล้ว ต้องการยื่นชำระภาษีป้ายด้วยหรือไม่</value>
+  </data>
+  <data name="QUESTION_CARCARE_SIGN_TAX__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังไม่ต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_CARCARE_SIGN_TAX__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SELL_FOOD" xml:space="preserve">
+    <value>ร้าน Co-working space ของคุณมีการจำหน่ายอาหารหรือเครื่องดื่มหรือไม่</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SELL_FOOD_AREA" xml:space="preserve">
+    <value>ร้าน Co-working space ของคุณมีพื้นที่ใช้สอยเท่าใด (ไม่รวมที่จอดรถ)</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SELL_FOOD_AREA__GT200" xml:space="preserve">
+    <value>มีพื้นที่ (ไม่รวมที่จอดรถ) ตั้งแต่ 200 ตารางเมตรขึ้นไป</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SELL_FOOD_AREA__LT200" xml:space="preserve">
+    <value>มีพื้นที่ (ไม่รวมที่จอดรถ) น้อยกว่า 200 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SELL_FOOD__NO" xml:space="preserve">
+    <value>ไม่ใช่ ร้านของฉันไม่มีการจำหน่ายอาหารหรือเครื่องดื่ม</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SELL_FOOD__YES" xml:space="preserve">
+    <value>ใช่ ร้านของฉันมีการจำหน่ายอาหารหรือเครื่องดื่ม</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SIGN_TAX" xml:space="preserve">
+    <value>ในกรณีที่คุณมีป้ายและได้ทำการติดตั้งป้ายเป็นที่เรียบร้อยแล้ว ต้องการยื่นชำระภาษีป้ายด้วยหรือไม่</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SIGN_TAX__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังไม่ต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_COFFEESHOP_SIGN_TAX__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_FITNESS_SELL_FOOD" xml:space="preserve">
+    <value>ฟิตเนสของคุณมีการจำหน่ายอาหารหรือเครื่องดื่มหรือไม่</value>
+  </data>
+  <data name="QUESTION_FITNESS_SELL_FOOD_AREA" xml:space="preserve">
+    <value>ฟิตเนสของคุณมีพื้นที่ใช้สอยเท่าใด (ไม่รวมที่จอดรถ)</value>
+  </data>
+  <data name="QUESTION_FITNESS_SELL_FOOD_AREA__GT200" xml:space="preserve">
+    <value>มีพื้นที่ (ไม่รวมที่จอดรถ) ตั้งแต่ 200 ตารางเมตรขึ้นไป</value>
+  </data>
+  <data name="QUESTION_FITNESS_SELL_FOOD_AREA__LT200" xml:space="preserve">
+    <value>มีพื้นที่ (ไม่รวมที่จอดรถ) น้อยกว่า 200 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_FITNESS_SELL_FOOD__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฟิตเนสของฉันไม่มีการจำหน่ายอาหารหรือเครื่องดื่ม</value>
+  </data>
+  <data name="QUESTION_FITNESS_SELL_FOOD__YES" xml:space="preserve">
+    <value>ใช่ ฟิตเนสของฉันมีการจำหน่ายอาหารหรือเครื่องดื่ม</value>
+  </data>
+  <data name="QUESTION_FITNESS_SIGN_TAX" xml:space="preserve">
+    <value>ในกรณีที่คุณมีป้ายและได้ทำการติดตั้งป้ายเป็นที่เรียบร้อยแล้ว ต้องการยื่นชำระภาษีป้ายด้วยหรือไม่</value>
+  </data>
+  <data name="QUESTION_FITNESS_SIGN_TAX__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังไม่ต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_FITNESS_SIGN_TAX__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUIZ_OPEN_COFFEESHOP" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตธุรกิจ Co-working space</value>
+  </data>
+  <data name="QUIZ_OPEN_FITNESS" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตเพื่อเปิดธุรกิจฟิตเนส</value>
+  </data>
+  <data name="QUESTION_ANIMAL_SELL_FOOD" xml:space="preserve">
+    <value>สถานพยาบาลสัตว์ของคุณมีการจำหน่ายอาหารสัตว์ (วัตถุดิบ, อาหารสำเร็จรูป, อาหารเสริม) หรือไม่</value>
+  </data>
+  <data name="QUESTION_ANIMAL_SELL_FOOD__NO" xml:space="preserve">
+    <value>ไม่ใช่ สถานพยาบาลสัตว์ของฉันไม่มีการจำหน่ายอาหารสัตว์</value>
+  </data>
+  <data name="QUESTION_ANIMAL_SELL_FOOD__YES" xml:space="preserve">
+    <value>ใช่ สถานพยาบาลสัตว์ของฉันมีการจำหน่ายอาหารสัตว์</value>
+  </data>
+  <data name="QUESTION_ANIMAL_SIGN_TAX" xml:space="preserve">
+    <value>ในกรณีที่คุณมีป้ายและได้ทำการติดตั้งป้ายเป็นที่เรียบร้อยแล้ว ต้องการยื่นชำระภาษีป้ายด้วยหรือไม่</value>
+  </data>
+  <data name="QUESTION_ANIMAL_SIGN_TAX__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังไม่ต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_ANIMAL_SIGN_TAX__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_ALCOHOL" xml:space="preserve">
+    <value>รีสอร์ท/โรงแรมของคุณขายเครื่องดื่มแอลกอฮอลหรือไม่ เช่น เบียร์ ไวน์ เหล้า</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_ALCOHOL__NO" xml:space="preserve">
+    <value>ไม่ใช่ รีสอร์ท/โรงแรมของฉันไม่ขายเครื่องดื่มแอลกอฮอล</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_ALCOHOL__YES" xml:space="preserve">
+    <value>ใช่ รีสอร์ท/โรงแรมของฉันขายเครื่องดื่มแอลกอฮอล</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_FOOD" xml:space="preserve">
+    <value>รีสอร์ท/โรงแรมของคุณมีร้านจำหน่ายอาหารหรือเครื่องดื่มหรือไม่</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_FOOD_AREA" xml:space="preserve">
+    <value>ร้านจำหน่ายอาหารหรือเครื่องดื่มในรีสอร์ท/โรงแรมของคุณมีพื้นที่ใช้สอยเท่าใด (ไม่รวมที่จอดรถ)</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_FOOD_AREA__GT200" xml:space="preserve">
+    <value>มีพื้นที่ตั้งแต่ 200 ตารางเมตรขึ้นไป</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_FOOD_AREA__LT200" xml:space="preserve">
+    <value>มีพื้นที่น้อยกว่า 200 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_FOOD__NO" xml:space="preserve">
+    <value>ไม่ใช่ รีสอร์ท/โรงแรมของฉันไม่มีร้านจำหน่ายอาหารหรือเครื่องดื่ม</value>
+  </data>
+  <data name="QUESTION_HOTEL_SELL_FOOD__YES" xml:space="preserve">
+    <value>ใช่ รีสอร์ท/โรงแรมของฉันมีร้านจำหน่ายอาหารหรือเครื่องดื่ม</value>
+  </data>
+  <data name="QUESTION_HOTEL_SIGN_TAX" xml:space="preserve">
+    <value>ในกรณีที่คุณมีป้ายและได้ทำการติดตั้งป้ายเป็นที่เรียบร้อยแล้ว ต้องการยื่นชำระภาษีป้ายด้วยหรือไม่</value>
+  </data>
+  <data name="QUESTION_HOTEL_SIGN_TAX__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังไม่ต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_HOTEL_SIGN_TAX__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_SPA_PRODUCT" xml:space="preserve">
+    <value>ร้านของคุณมีการให้บริการเหล่านี้หรือไม่ (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_SPA_PRODUCT__BEAUTY" xml:space="preserve">
+    <value>บริการเสริมความงาม เช่น การเสริมสวย การขัดผิว การแต่งผม</value>
+  </data>
+  <data name="QUESTION_SPA_PRODUCT__MASSAGE" xml:space="preserve">
+    <value>บริการนวดเพื่อสุขภาพเพื่อผ่อนคลายกล้ามเนื้อ เช่นการกด การคลึง การบีบ การจับ การดัด การดึง การประคบ การอบ และการนวดแผนไทย (ที่ไม่ใช่การรักษาโรค)</value>
+  </data>
+  <data name="QUESTION_SPA_PRODUCT__WATER_TREATMENT" xml:space="preserve">
+    <value>บริการสปาเพื่อดูแลและสร้างเสริมสุขภาพ เช่น การบำบัดด้วยน้ำ หรือการนวดร่างกาย</value>
+  </data>
+  <data name="QUESTION_SPA_SIGN_TAX" xml:space="preserve">
+    <value>ในกรณีที่คุณมีป้ายและได้ทำการติดตั้งป้ายเป็นที่เรียบร้อยแล้ว ต้องการยื่นชำระภาษีป้ายด้วยหรือไม่</value>
+  </data>
+  <data name="QUESTION_SPA_SIGN_TAX__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังไม่ต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_SPA_SIGN_TAX__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUIZ_OPEN_ANIMAL" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตธุรกิจสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="QUIZ_OPEN_HOTEL" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตเพื่อเปิดธุรกิจรีสอร์ทขนาดเล็ก/โรงแรม</value>
+  </data>
+  <data name="QUIZ_OPEN_SPA" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตเพื่อเปิดธุรกิจสปา</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_MIXED_MATERIAL" xml:space="preserve">
+    <value>การก่อสร้างดัดแปลง หรือรื้อถอนอาคาร ของคุณ มีการสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร หรือไม่</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_MIXED_MATERIAL__NO" xml:space="preserve">
+    <value>ไม่ใช่ การก่อสร้างดัดแปลง หรือรื้อถอนอาคารของฉัน ไม่มีการสะสมและผสมวัสดุก่อสร้าง รวมถึงการใช้เครื่องจักร</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_MIXED_MATERIAL__YES" xml:space="preserve">
+    <value>ใช่ การก่อสร้างดัดแปลง หรือรื้อถอนอาคารของฉัน มีการสะสมและผสมวัสดุก่อสร้าง รวมถึงการใช้เครื่องจักร</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE" xml:space="preserve">
+    <value>อาคารที่คุณต้องการก่อสร้าง ดัดแปลง หรือรื้อถอน มีลักษณะดังต่อไปนี้หรือไม่  (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE_IS_LARGE" xml:space="preserve">
+    <value>อาคารที่คุณต้องการก่อสร้าง ดัดแปลง หรือรื้อถอน เข้าข่ายอาคารขนาดใหญ่หรือไม่ (พื้นที่รวมกันทุกชั้นในหลังเดียวกันเกิน 2,000 ตร.ม. หรือ ความสูง 15 เมตรขึ้นไปและมีพื้นที่ตั้งแต่ 1,000 ตร.ม. ขึ้นไป)</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE_IS_LARGE__NO" xml:space="preserve">
+    <value>ไม่ใช่ อาคารที่ฉันจะก่อสร้าง ดัดแปลง หรือรื้อถอน ไม่เข้าข่ายอาคารขนาดใหญ่</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE_IS_LARGE__YES" xml:space="preserve">
+    <value>ใช่ อาคารที่ฉันจะก่อสร้าง ดัดแปลง หรือรื้อถอน เข้าข่ายอาคารขนาดใหญ่</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE_ORG_PLACE" xml:space="preserve">
+    <value>คุณต้องการยื่นเรื่องและรับใบอนุญาตก่อสร้าง ดัดแปลง หรือรื้อถอนอาคาร ที่ใด</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE_ORG_PLACE__BANGKOK" xml:space="preserve">
+    <value>ที่ สำนักการโยธา กรุงเทพมหานคร (ศาลาว่าการกรุงเทพมหานครดินแดง)</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE_ORG_PLACE__LOCAL" xml:space="preserve">
+    <value>ที่ สำนักงานเขตในพื้นที่ที่อาคารที่คุณต้องการก่อสร้าง ดัดแปลง หรือรื้อถอน ตั้งอยู่</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE__EXTRA_LARGE" xml:space="preserve">
+    <value>อาคารขนาดใหญ่พิเศษ - อาคารที่พื้นที่รวมกันทุกชั้นในหลังเดียวกันตั้งแต่ 10,000 ตร.ม.ขึ้นไป</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE__HIGH" xml:space="preserve">
+    <value>อาคารสูง - อาคารที่บุคคลอาจเข้าอยู่หรือเข้าใช้สอยได้ที่มีความสูงตั้งแต่ 23 เมตรขึ้นไป</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE__NONE" xml:space="preserve">
+    <value>ไม่ใช่ อาคารที่ฉันจะก่อสร้าง ดัดแปลง หรือรื้อถอนไม่มีลักษณะดังกล่าว</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE__OIL" xml:space="preserve">
+    <value>อาคารที่ใช้เพื่อกิจการตามกฎหมายว่าด้วยการควบคุมน้ำมันเชื้อเพลิง เช่น ปั๊มน้ำมัน</value>
+  </data>
+  <data name="QUESTION_CONSTRUCTION_TYPE__PUBLIC" xml:space="preserve">
+    <value>อาคารสาธารณะ - อาคารที่ใช้เพื่อประโยชน์ในการชุมนุมคนได้ เพื่อกิจกรรมทางราชการ การศึกษา หรือการพานิชกรรม เช่น สถานศึกษา</value>
+  </data>
+  <data name="QUIZ_OPEN_CONSTRUCTION" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตเพื่อเปิดธุรกิจก่อสร้างและรับเหมาก่อสร้าง</value>
+  </data>
+  <data name="QUESTION_HOTEL_STORE_GAS" xml:space="preserve">
+    <value>รีสอร์ท/โรงแรมของคุณมีถังก๊าซหุงต้มรวมกัน ในปริมาณเท่าใด ( 1 ถังใหญ่หนักประมาณ 50 กิโลกรัม)</value>
+  </data>
+  <data name="QUESTION_HOTEL_STORE_GAS__CHOICE_GT1000KG" xml:space="preserve">
+    <value>ตั้งแต่ 1,001 กิโลกรัมขึ้นไป</value>
+  </data>
+  <data name="QUESTION_HOTEL_STORE_GAS__CHOICE_LE1000KG" xml:space="preserve">
+    <value>251 – 1,000 กิโลกรัม</value>
+  </data>
+  <data name="QUESTION_HOTEL_STORE_GAS__CHOICE_NO" xml:space="preserve">
+    <value>0 – 250 กิโลกรัม</value>
+  </data>
+  <data name="QUESTION_RETAIL_STORE_GAS" xml:space="preserve">
+    <value>ร้านค้าของคุณมีถังก๊าซหุงต้มรวมกัน ในปริมาณเท่าใด ( 1 ถังใหญ่หนักประมาณ 50 กิโลกรัม)</value>
+  </data>
+  <data name="QUESTION_RETAIL_STORE_GAS__CHOICE_GT1000KG" xml:space="preserve">
+    <value>ตั้งแต่ 1,001 กิโลกรัมขึ้นไป</value>
+  </data>
+  <data name="QUESTION_RETAIL_STORE_GAS__CHOICE_LE1000KG" xml:space="preserve">
+    <value>251 – 1,000 กิโลกรัม</value>
+  </data>
+  <data name="QUESTION_RETAIL_STORE_GAS__CHOICE_NO" xml:space="preserve">
+    <value>0 – 250 กิโลกรัม</value>
+  </data>
+  <data name="QUESTION_COMMON_SIGN_TAX" xml:space="preserve">
+    <value>ในกรณีที่คุณมีป้ายและได้ทำการติดตั้งป้ายเป็นที่เรียบร้อยแล้ว ต้องการยื่นชำระภาษีป้ายด้วยหรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_SIGN_TAX__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังไม่ต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_COMMON_SIGN_TAX__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการยื่นขอชำระภาษีป้าย</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__CARD" xml:space="preserve">
+    <value>ไพ่</value>
+  </data>
+  <data name="QUESTION_RETAIL_PRODUCT__INSECTICIDE" xml:space="preserve">
+    <value>ยาฆ่าแมลง หรือ สารกำจัดศัตรูพืช และพาหะนำโรค</value>
+  </data>
+  <data name="QUESTION_COMMON_CONSTRUCTION" xml:space="preserve">
+    <value>คุณต้องการที่จะก่อสร้าง ดัดแปลง หรือรื้อถอนอาคาร สำหรับใช้เป็นธุรกิจของคุณหรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_CONSTRUCTION__NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันไม่ต้องการที่จะก่อสร้าง ดัดแปลง หรือรื้อถอนอาคารสำหรับใช้เป็นธุรกิจ</value>
+  </data>
+  <data name="QUESTION_COMMON_CONSTRUCTION__YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการที่จะก่อสร้าง ดัดแปลง หรือรื้อถอนอาคารสำหรับใช้เป็นธุรกิจ</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST" xml:space="preserve">
+    <value>ธุรกิจของคุณเกี่ยวข้องกับ &lt;info&gt;นักท่องเที่ยว&lt;/info&gt;หรือไม่</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่เกี่ยวข้องกับนักท่องเที่ยว</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_SERVICE" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการให้บริการอะไรบ้างแก่นักท่องเที่ยว (ตอบได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_SERVICE_All" xml:space="preserve">
+    <value>บริการนำนักท่องเที่ยวเดินทางไปท่องเที่ยวหรือเดินทางไปเพื่อวัตถุประสงค์อื่น โดยจัดให้มีบริการหรือการอำนวยความสะดวกอย่างใดอย่างหนึ่งหรือหลายอย่าง อันได้แก่ สถานที่พัก อาหาร มัคคุเทศก์ โดยมีการคิด&lt;info&gt;ค่าบริการ&lt;/info&gt; เช่น ขายโปรแกรมท่องเที่ยวภายในประเทศ ขายโปรแกรมท่องเที่ยวต่างประเทศ</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_SERVICE_All__INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;&lt;p&gt;ค่าบริการ หมายถึง ค่าจ้างและค่าใช้จ่ายต่างๆ ที่นักท่องเที่ยวจ่ายให้แก่ผู้ประกอบธุรกิจนำเที่ยว สำหรับการจัดการให้บริการ หรือการอำนวยความสะดวกเกี่ยวกับการเดินทาง สถานที่พัก อาหาร หรือการอื่นใด&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_SERVICE_FOOD" xml:space="preserve">
+    <value>บริการเฉพาะอาหาร</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_SERVICE_FOOD_HOTEL" xml:space="preserve">
+    <value>บริการสถานที่พักและอาหาร</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_SERVICE_GUIDE" xml:space="preserve">
+    <value>บริการนักท่องเที่ยวโดยเป็นธุระจัดหามัคคุเทศก์เพื่อนำนักท่องเที่ยวไปยังสถานที่ต่างๆ</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_SERVICE_HOTEL" xml:space="preserve">
+    <value>บริการเฉพาะสถานที่พัก</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_SERVICE_TRANSPORT" xml:space="preserve">
+    <value>บริการนำส่งจากจุดหนึ่งไปอีกจุดหนึ่งในลักษณะการโดยสาร</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_TOUR" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการนำเที่ยวในลักษณะใด (เลือกได้มากกกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_TOUR_DOMESTIC" xml:space="preserve">
+    <value>นำเที่ยวภายในประเทศ โดยนำนักท่องเที่ยวไปเที่ยวตามสถานที่ต่างๆ ในประเทศไทย (ไม่จำกัดจังหวัดใดจังหวัดหนึ่ง)</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_TOUR_INBOUND" xml:space="preserve">
+    <value>นำเที่ยวนักท่องเที่ยวจากต่างประเทศ โดยนำนักท่องเที่ยวต่างชาติเข้ามาเที่ยวตามสถานที่ต่างๆ ในประเทศไทย (ไม่จำกัดจังหวัดใดจังหวัดหนึ่ง)</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_TOUR_LOCAL" xml:space="preserve">
+    <value>นำเที่ยวเฉพาะพื้นที่ โดยนำนักท่องเที่ยวไปเที่ยวในจังหวัดใดจังหวัดหนึ่ง และจังหวัดที่มีเขตติดต่อกับจังหวัดนั้น</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_TOUR_NO" xml:space="preserve">
+    <value>ไม่มี ธุรกิจของฉันไม่มีการนำเที่ยวในลักษณะดังกล่าว</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_TOUR_OUTBOUND" xml:space="preserve">
+    <value>นำเที่ยวทั่วไป โดยนำนักท่องเที่ยวไปเที่ยวตามสถานที่ต่างๆในประเทศไทย และในต่างประเทศ</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันเกี่ยวข้องกับนักท่องเที่ยว</value>
+  </data>
+  <data name="QUESTION_TOURISM_TOURIST__INFO" xml:space="preserve">
+    <value>&lt;div class="M-12"&gt;&lt;p&gt;นักท่องเที่ยว หมายถึง ผู้เดินทางจากที่หนึ่งไปยังอีกที่หนึ่งเพื่อประโยชน์ในการพักผ่อนหย่อนใจ การศึกษาหาความรู้ การบันเทิง หรือการอื่นใด&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="QUIZ_OPEN_TOURISM" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตประกอบธุรกิจนำเที่ยว</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการให้บริการด้านการทำบัญชี และ/หรือด้านการสอบบัญชี หรือไม่</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่มีการให้บริการด้านการทำบัญชี และ/หรือด้านการสอบบัญชี</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING_OBJECTIVE" xml:space="preserve">
+    <value>ธุรกิจของคุณมีรายละเอียดวัตถุประสงค์ด้านการทำบัญชี และ/หรือสอบด้านการบัญชี ในหนังสือรับรองการจดทะเบียนนิติบุคคล หรือไม่</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING_OBJECTIVE_NO" xml:space="preserve">
+    <value>ไม่มี  ในหนังสือรับรองการจดทะเบียนนิติบุคคล ไม่มีวัตถุประสงค์ด้านการทำบัญชี และ/หรือสอบบัญชี</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING_OBJECTIVE_YES" xml:space="preserve">
+    <value>มี  ในหนังสือรับรองการจดทะเบียนนิติบุคคล มีวัตถุประสงค์ด้านการทำบัญชี และ/หรือสอบบัญชี</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING_TYPE" xml:space="preserve">
+    <value>การรับทำบัญชี และ/หรือสอบบัญชีของคุณเป็นรูปแบบบุคคลธรรมดา หรือนิติบุคคล</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING_TYPE_INDIVIDUAL" xml:space="preserve">
+    <value>รับทำบัญชี และ/หรือสอบบัญชี ในรูปแบบบุคคลธรรมดา</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING_TYPE_JURISTIC" xml:space="preserve">
+    <value>รับทำบัญชี และ/หรือสอบบัญชี ในรูปแบบนิติบุคคล</value>
+  </data>
+  <data name="QUESTION_ACCOUNTING_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีการให้บริการด้านการทำบัญชี และ/หรือด้านการสอบบัญชี</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการให้บริการที่ปรึกษาทางกฎหมาย ใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_NO" xml:space="preserve">
+    <value>ไม่ ธุรกิจของฉันไม่มีการให้คำปรึกษาด้านกฎหมาย</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_REGISTER_OFFICE" xml:space="preserve">
+    <value>หัวหน้าสำนักงานทนายความของคุณได้จดทะเบียนสำนักงานทนายความกับสำนักงานทนายความอื่น ใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_REGISTER_OFFICE_HEAD" xml:space="preserve">
+    <value>ธุรกิจของคุณมีหัวหน้าสำนักงานทนายความที่ได้รับอนุญาตจากสภาทนายความหรือไม่</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_REGISTER_OFFICE_HEAD_NO" xml:space="preserve">
+    <value>ไม่ ธุรกิจของฉันไม่มีหัวหน้าสำนักงานทนายความที่ได้รับอนุญาตจากสภาทนายความ</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_REGISTER_OFFICE_HEAD_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีหัวหน้าสำนักงานทนายความที่ได้รับอนุญาตจากสภาทนายความ</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_REGISTER_OFFICE_HEAD_YES_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;กรณีที่ไม่มีกรรมการท่านไหนเป็นทนายความเลยให้แนบหนังสือแต่งตั้งหัวหน้าสำนักงานทนายความ&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_REGISTER_OFFICE_NO" xml:space="preserve">
+    <value>ไม่ หัวหน้าสำนักงานทนายความของฉันไม่เคยจดทะเบียนสำนักงานทนายความกับสำนักงานทนายความอื่น</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_REGISTER_OFFICE_YES" xml:space="preserve">
+    <value>ใช่ หัวหน้าสำนักงานทนายความของฉันจดทะเบียนสำนักงานทนายความกับสำนักงานทนายความอื่น&lt;info&gt;&lt;/info&gt;</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_REGISTER_OFFICE_YES__INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;&lt;p&gt;หัวหน้าสำนักงานทนายความต้องมีสำนักงานที่จดทะเบียนเพียงแห่งเดียว&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_LEGAL_COUNSEL_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีการให้คำปรึกษาด้านกฎหมาย</value>
+  </data>
+  <data name="QUESTION_LEGAL_LAW_FIRM_NAME" xml:space="preserve">
+    <value>ชื่อสำนักงานทนายความของคุณเป็นไปตามข้อกำหนดระเบียบว่าด้วยการขึ้นทะเบียนสำนักงานทนายความ พ.ศ. 2546 หรือไม่ (โดยที่มาตรา 42 แห่งพระราชบัญญัติทนายความ พ.ศ. 2528)</value>
+  </data>
+  <data name="QUESTION_LEGAL_LAW_FIRM_NAME_NO" xml:space="preserve">
+    <value>ไม่ ชื่อสำนักงานของฉันไม่ได้เป็นไปตามข้อกำหนดระเบียบว่าด้วยการขึ้นทะเบียนสำนักงานทนายความ พ.ศ. 2546</value>
+  </data>
+  <data name="QUESTION_LEGAL_LAW_FIRM_NAME_YES" xml:space="preserve">
+    <value>ใช่ ชื่อสำนักงานของฉันเป็นไปตามข้อกำหนดระเบียบว่าด้วยการขึ้นทะเบียนสำนักงานทนายความ พ.ศ. 2546</value>
+  </data>
+  <data name="QUIZ_OPEN_LEGAL" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตธุรกิจเกี่ยวกับให้คำปรึกษาด้านกฎหมายหรือให้บริการด้านวิชาชีพบัญชี</value>
+  </data>
+  <data name="QUESTION_EDUCATION_ART_SPORT" xml:space="preserve">
+    <value>ประเภทศิลปะและกีฬา - เป็นโรงเรียนที่จัดตั้งขึ้นโดยมีวัตถุประสงค์ให้การศึกษาเกี่ยวกับ ดนตรี ศิลปะและกีฬา เช่น โรงเรียนที่เปิดสอนศิลปะ, โรงเรียนสอนดนตรี, โรงเรียนสอนกีฬา เป็นต้น</value>
+  </data>
+  <data name="QUESTION_EDUCATION_CONTRUCTION_CERT" xml:space="preserve">
+    <value>คุณมีใบรับรองการก่อสร้างอาคาร ดัดแปลงอาคาร หรือเคลื่อนย้ายอาคาร หรือใบอนุญาตเปลี่ยนการใช้อาคารโดยต้องระบุเป็นอาคารเพื่อการศึกษา หรือโรงเรียน หรือสถานศึกษา หรือไม่</value>
+  </data>
+  <data name="QUESTION_EDUCATION_CONTRUCTION_CERT_NO" xml:space="preserve">
+    <value>ไม่มี ฉันยังไม่มีใบรับรองการก่อสร้างอาคาร ดัดแปลงอาคาร ดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_EDUCATION_CONTRUCTION_CERT_YES" xml:space="preserve">
+    <value>ใช่ ฉันมีใบรับรองการก่อสร้างอาคาร ดัดแปลงอาคาร ดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_EDUCATION_COURSES" xml:space="preserve">
+    <value>หลักสูตร/วิชาที่สอนในโรงเรียนนอกระบบเปิดสอนมีระยะเวลาเรียนรวมเท่าใดและ มีพื้นที่ใช้สอยสำหรับแต่ละประเภทอย่างไร</value>
+  </data>
+  <data name="QUESTION_EDUCATION_COURSES_LESS600" xml:space="preserve">
+    <value>ระยะเวลารวมแต่ละประเภทน้อยกว่า 600 ชั่วโมง</value>
+  </data>
+  <data name="QUESTION_EDUCATION_COURSES_MORE600" xml:space="preserve">
+    <value>ระยะเวลารวมแต่ละประเภทมากกว่า 600 ชั่วโมง</value>
+  </data>
+  <data name="QUESTION_EDUCATION_FOUNDER_TYPE" xml:space="preserve">
+    <value>ผู้ขอจัดตั้งโรงเรียนนอกระบบของคุณเป็นบุคคลธรรมดา หรือนิติบุคคล</value>
+  </data>
+  <data name="QUESTION_EDUCATION_FOUNDER_TYPE_INDIVIDUAL" xml:space="preserve">
+    <value>บุคคลธรรมดา</value>
+  </data>
+  <data name="QUESTION_EDUCATION_FOUNDER_TYPE_JURISTIC" xml:space="preserve">
+    <value>นิติบุคคล</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION" xml:space="preserve">
+    <value>สถานที่และบริเวณที่จะใช้เป็นที่ตั้งโรงเรียนนอกระบบมีคุณสมบัติครบถ้วนดังนี้หรือไม่
+&lt;div class="D-12 M-12"&gt;1 ไม่ขัดต่อสุขลักษณะหรืออนามัยของนักเรียน&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;2 มีการคมนาคมสะดวก &lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;3 ตั้งอยู่ในสภาพแวดล้อมที่ดี &lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;4 ไม่อยู่ใกล้โรงงานที่อาจเกิดอันตรายหรืออยู่ใกล้สถานที่ที่ไม่เหมาะสมแก่กิจการของโรงเรียนนอกระบบ&lt;/div&gt;&lt;/br&gt;</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_NO" xml:space="preserve">
+    <value>ไม่ใช่ สถานที่และบริเวณที่จะใช้เป็นที่ตั้งโรงเรียนนอกระบบมีคุณสมบัติไม่ครบถ้วนตามที่ระบุไว้ข้างต้น</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_TYPE" xml:space="preserve">
+    <value>อาคารสถานที่และบริเวณที่ใช้การจัดการเรียนการสอนมีลักษณะแบบใด</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_TYPE_COM_BUILDING" xml:space="preserve">
+    <value>อาคารพาณิชย์</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_TYPE_CONDO" xml:space="preserve">
+    <value>คอนโด</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_TYPE_HOME" xml:space="preserve">
+    <value>บ้าน</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_TYPE_OFFICE_BUILDING" xml:space="preserve">
+    <value>อาคารสำนักงาน</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_TYPE_SHOPPING_CENTER" xml:space="preserve">
+    <value>ศูนย์การค้า</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_TYPE_TOWN_HOME" xml:space="preserve">
+    <value>ทาวน์โฮม</value>
+  </data>
+  <data name="QUESTION_EDUCATION_LOCATION_YES" xml:space="preserve">
+    <value>ใช่ สถานที่และบริเวณที่จะใช้เป็นที่ตั้งโรงเรียนนอกระบบมีคุณสมบัติครบถ้วนตามที่ระบุไว้ข้างต้น</value>
+  </data>
+  <data name="QUESTION_EDUCATION_QUALIFIED_INDIVIDUAL" xml:space="preserve">
+    <value>ผู้ขอจัดตั้งโรงเรียนนอกระบบ มีคุณสมบัติครบถ้วน &lt;info&gt;&lt;/info&gt; หรือไม่</value>
+  </data>
+  <data name="QUESTION_EDUCATION_QUALIFIED_INDIVIDUAL_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;1.สัญชาติไทย&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;2.อายุเกิน 20 ปี&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;3.สำเร็จการศึกษาไม่ต่ำกว่าปริญญาตรี&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;4.ไม่เป็นบุคคลล้มละลาย&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_EDUCATION_QUALIFIED_INDIVIDUAL_NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันมีคุณสมบัติ ไม่ครบถ้วนดังกล่าว</value>
+  </data>
+  <data name="QUESTION_EDUCATION_QUALIFIED_INDIVIDUAL_YES" xml:space="preserve">
+    <value>ใช่ ฉันมีคุณสมบัติครบถ้วนดังกล่าว</value>
+  </data>
+  <data name="QUESTION_EDUCATION_QUALIFIED_JURISTIC" xml:space="preserve">
+    <value>ผู้ขอจัดตั้งโรงเรียนนอกระบบ มีคุณสมบัติครบถ้วน &lt;info&gt;&lt;/info&gt;หรือไม่</value>
+  </data>
+  <data name="QUESTION_EDUCATION_QUALIFIED_JURISTIC_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;1.นิติบุคคลที่เป็นบริษัทมหาชนจำกัด บริษัทจำกัดหรือห้างหุ้นส่วน  ต้องมีจำนวนหุ้นหรือทุนเป็นของผู้ถือหุ้นหรือผู้เป็นหุ้นส่วนที่มีสัญชาติไทยไม่น้อยกว่ากึ่งหนึ่งของจำนวนหุ้นหรือทุนทั้งหมด &lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;2.มีจำนวนผู้ถือหุ้นหรือผู้เป็นหุ้นส่วนที่มีสัญชาติไทยไม่น้อยกว่ากึ่งหนึ่งของจำนวนผู้ถือหุ้นหรือผู้เป็นหุ้นส่วนทั้งหมด&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_EDUCATION_QUALIFIED_JURISTIC_NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันมีคุณสมบัติ ไม่ครบถ้วนดังกล่าว</value>
+  </data>
+  <data name="QUESTION_EDUCATION_QUALIFIED_JURISTIC_YES" xml:space="preserve">
+    <value>ใช่ ฉันมีคุณสมบัติครบถ้วนดังกล่าว</value>
+  </data>
+  <data name="QUESTION_EDUCATION_SPACE" xml:space="preserve">
+    <value>คุณมีพื้นที่ใช้สอยแต่ละประเภทการสอนเท่าใด</value>
+  </data>
+  <data name="QUESTION_EDUCATION_SPACE_LESS100" xml:space="preserve">
+    <value>มีพื้นที่ใช้สอยสำหรับแต่ละประเภทน้อยกว่า 100 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_EDUCATION_SPACE_LESS200" xml:space="preserve">
+    <value>มีพื้นที่ใช้สอยสำหรับแต่ละประเภทน้อยกว่า 200 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_EDUCATION_SPACE_MORE100" xml:space="preserve">
+    <value>มีพื้นที่ใช้สอยสำหรับแต่ละประเภทมากกว่า 100 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_EDUCATION_SPACE_MORE200" xml:space="preserve">
+    <value>มีพื้นที่ใช้สอยสำหรับแต่ละประเภทมากกว่า 200 ตารางเมตร</value>
+  </data>
+  <data name="QUESTION_EDUCATION_TYPE_TUTOR" xml:space="preserve">
+    <value>ประเภทกวดวิชา - เป็นโรงเรียนที่ตั้งขึ้นโดยมีวัตถุประสงค์ให้เสริมความรู้บางรายวิชา ตามหลักสูตรการศึกษาขั้นพื้นฐาน</value>
+  </data>
+  <data name="QUESTION_EDUCATION_TYPE" xml:space="preserve">
+    <value>ธุรกิจของคุณเปิดสอนเกี่ยวกับอะไร (สามารถเลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_EDUCATION_TYPE_LIFE_SKILLS" xml:space="preserve">
+    <value>ประเภทสร้างเสริมทักษะชีวิต - เป็นโรงเรียนที่ตั้งขึ้นโดยมีวัตถุประสงค์ให้สร้างเสริมความคิด เชาว์ปัญญาและทักษะอื่นๆ</value>
+  </data>
+  <data name="QUESTION_EDUCATION_TYPE_NO" xml:space="preserve">
+    <value>ไม่ใช่ประเภทการสอนข้างต้น</value>
+  </data>
+  <data name="QUESTION_EDUCATION_TYPE_PROFESSIONAL" xml:space="preserve">
+    <value>ประเภทวิชาชีพ - เป็นโรงเรียนที่ตั้งขึ้นโดยมีวัตถุประสงค์ให้การศึกษาเกี่ยวกับวิชาชีพ เพื่อให้นักเรียนนำไปประกอบอาชีพ หรือเพิ่มเติมทักษะในการประกอบอาชีพ เช่น โรงเรียนสอนทำอาหาร, โรงเรียนออกแบบ, โรงเรียนเสริมสวย, โรงเรียนตัดเสื้อ เป็นต้น</value>
+  </data>
+  <data name="QUESTION_EDUCATION_TYPE_RELIGION" xml:space="preserve">
+    <value>ประเภทสอนศาสนา - เป็นโรงเรียนที่จัดตั้งขึ้นโดยมีวัตถุประสงค์เฉพาะการสอนศาสนา</value>
+  </data>
+  <data name="QUESTION_LOGISTICS" xml:space="preserve">
+    <value>ธุรกิจของคุณใช้รถบรรทุกในการขนส่งใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_LOGISTICS_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันใช้รถบรรทุกในการขนส่ง</value>
+  </data>
+  <data name="QUESTION_LOGISTICS_TYPE" xml:space="preserve">
+    <value>ธุรกิจของคุณเป็นการรับจ้างขนส่งสินค้าหรือขนส่งสินค้าในกิจการตัวเอง</value>
+  </data>
+  <data name="QUESTION_LOGISTICS_TYPE_HIRE" xml:space="preserve">
+    <value>ธุรกิจของฉันเป็นการรับจ้างขนส่งสินค้า</value>
+  </data>
+  <data name="QUESTION_LOGISTICS_TYPE_OWNER" xml:space="preserve">
+    <value>ธุรกิจของฉันเป็นการขนส่งสินค้าในกิจการตัวเอง</value>
+  </data>
+  <data name="QUESTION_LOGISTICS_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันใช้รถบรรทุกในการขนส่ง</value>
+  </data>
+  <data name="QUESTION_REGISTER_VAT" xml:space="preserve">
+    <value>ธุรกิจของคุณได้จดทะเบียนเป็นผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่ม ใช่หรือไม่ ?</value>
+  </data>
+  <data name="QUESTION_REGISTER_VAT_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่ได้จดทะเบียนเป็นผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="QUESTION_REGISTER_VAT_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันได้จดทะเบียนเป็นผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_SPEC" xml:space="preserve">
+    <value>ซอฟต์แวร์ที่คุณจำหน่ายมีคุณสมบัติครบถ้วนตามข้อกำหนดนี้ ใช่หรือไม่&lt;div class="D-12 M-12"&gt;
+1) สามารถลงรายการในรายงานภาษีขาย รายงานภาษีซื้อ รายงานสินค้าและวัตถุดิบ และโอนเข้าบัญชีแยกประเภทได้พร้อมกัน&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;2) เมื่อบันทึกข้อมูลและโอนเข้าบัญชีแยกประเภทแล้วจะแก้ไขรายการนั้นๆ โดยไร้ร่องรอยไม่ได้ ถ้าจะแก้ไขต้องบันทึกรายการปรับปรุงตามวิธีการทางบัญชี&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;3) เป็นซอฟต์แวร์ที่ช่วยไม่ให้หลีกเลี่ยงภาษี&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;4) มีระบบรักษาความปลอดภัยเพื่อควบคุมการเข้าถึงข้อมูลได้&lt;/div&gt;
+&lt;div class="D-12 M-12"&gt;5) ซอฟต์แวร์ที่คุณจำหน่าย มีการบันทึกรายการเป็นไปตามระบบบัญชีคู่&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_SPEC_ADDITIONAL" xml:space="preserve">
+    <value>ซอฟต์แวร์ที่คุณจำหน่ายมีคุณสมบัติเพิ่มเติม ดังนี้หรือไม่</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_SPEC_ADDITIONAL_All" xml:space="preserve">
+    <value>มีระบบซอฟต์แวร์ในระบบงานทุกระบบ ใช้ระบบคอมพิวเตอร์ ระบบซอฟต์แวร์นั้นทุกระบบต้องโอนเข้าบัญชีแยกประเภทได้โดยตรง</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_SPEC_ADDITIONAL_NO" xml:space="preserve">
+    <value>ไม่มีคุณสมบัติเพิ่มเติม</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_SPEC_ADDITIONAL_SECURITY" xml:space="preserve">
+    <value>มีการแจ้งรหัสผ่านต่อกรมสรรพากร เพื่อสามารถผ่านระบบรักษาความปลอดภัยได้ โดยรหัสผ่านจะถูกบรรจุในซองปิดผนึก และกรมสรรพากรจะเปิดต่อหน้าผู้ประกอบการ</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_SPEC_ADDITIONAL_SOME" xml:space="preserve">
+    <value>มีระบบซอฟต์แวร์ในระบบงานบางระบบใช้ระบบคอมพิวเตอร์ เช่นระบบขาย ระบบพัสดุ ฯลฯ และระบบซอฟต์แวร์นั้นต้องโอนเข้าระบบบัญชีแยกประเภทได้โดยตรง</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_SPEC_NO" xml:space="preserve">
+    <value>ไม่ใช่ ซอฟต์แวร์ที่ฉันจำหน่ายไม่มีคุณสมบัติเหล่านี้</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_SPEC_YES" xml:space="preserve">
+    <value>ใช่ ซอฟต์แวร์ที่ฉันจำหน่ายมีคุณสมบัติครบถ้วนตามข้อกำหนดนี้</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_TYPE" xml:space="preserve">
+    <value>ธุรกิจของคุณมีลักษณะดังนี้</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_TYPE_DEALER" xml:space="preserve">
+    <value>เป็นตัวแทนจำหน่ายซอฟต์แวร์ที่เขียนหรือพัฒนาในประเทศหรือต่างประเทศ</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_TYPE_DEVELOP_IMPORT" xml:space="preserve">
+    <value>เขียนซอฟต์แวร์หรือพัฒนาซอฟต์แวร์หรือนำเข้าซอฟต์แวร์จากต่างประเทศเพื่อใช้ในธุรกิจของคุณและนำซอฟต์แวร์ดังกล่าวไปให้บุคคลหรือนิติบุคคลหรือบริษัทหรือห้างหุ้นส่วนนิติบุคคล ในเครือเดียวกันใช้</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_TYPE_INHOUSE" xml:space="preserve">
+    <value>จำหน่ายซอฟต์แวร์ที่ได้มาจากการเขียนหรือพัฒนาด้วยตนเอง</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_TYPE_LOCAL_INTERNATIONAL" xml:space="preserve">
+    <value>จำหน่ายซอฟต์แวร์ที่เขียนหรือพัฒนาในประเทศหรือต่างประเทศ</value>
+  </data>
+  <data name="QUESTION_SOFTWARE_TYPE_NO" xml:space="preserve">
+    <value>ธุรกิจของฉันไม่เข้าข่ายลักษณะข้างต้น</value>
+  </data>
+  <data name="QUIZ_OPEN_EDUCATION" xml:space="preserve">
+    <value>แบบสอบถามการขออนุญาตจัดตั้งโรงเรียนนอกระบบ</value>
+  </data>
+  <data name="QUIZ_OPEN_LOGISTICS" xml:space="preserve">
+    <value>แบบสอบถามการขอใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก</value>
+  </data>
+  <data name="QUIZ_OPEN_SOFTWARE" xml:space="preserve">
+    <value>แบบสอบถามขออนุญาตประกอบธุรกิจการพัฒนาแอปพลิเคชัน ซอฟต์แวร์ ซื้อมา-ขายไป</value>
+  </data>
+  <data name="QUESTION_COMMON_ACHIEVEMENT" xml:space="preserve">
+    <value>ธุรกิจของคุณนำเข้าเครื่องมือแพทย์มีผลสัมฤทธิ์ตามความมุ่งหมายของสิ่งที่กล่าวถึงซึ่งเกิดขึ้นในร่างกายมนุษย์หรือสัตว์นั้นเกิดจากทางเภสัชวิทยา วิทยาภูมิคุ้มกัน หรือปฏิกิริยาเผาผลาญให้เกิดพลังงานเป็นหลัก หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_ACHIEVEMENT_NO" xml:space="preserve">
+    <value>ไม่ใช่ ผลสัมฤทธิ์ตามความมุ่งหมายของสิ่งที่กล่าวถึงมิได้เกิดจากทางเภสัชวิทยา วิทยาภูมิคุ้มกันหรือปฏิกิริยาเผาผลาญให้เกิดพลังงานเป็นหลัก</value>
+  </data>
+  <data name="QUESTION_COMMON_ACHIEVEMENT_YES" xml:space="preserve">
+    <value>ใช่ ผลสัมฤทธิ์ตามความมุ่งหมายของสิ่งที่กล่าวถึงเกิดจากทางเภสัชวิทยา วิทยาภูมิคุ้มกันหรือปฏิกิริยาเผาผลาญให้เกิดพลังงานเป็นหลัก</value>
+  </data>
+  <data name="QUESTION_COMMON_APPROVAL_PLAN" xml:space="preserve">
+    <value>คุณมีใบคำขออนุมัติแผนงานการจัดตั้งสถานพยาบาล (ประเภทที่รับผู้ป่วยไว้ค้างคืน) หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_APPROVAL_PLAN_NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันไม่มีใบคำขออนุมัติแผนงานการจัดตั้งสถานพยาบาล</value>
+  </data>
+  <data name="QUESTION_COMMON_APPROVAL_PLAN_YES" xml:space="preserve">
+    <value>ใช่ ฉันมีใบคำขออนุมัติแผนงานการจัดตั้งสถานพยาบาล</value>
+  </data>
+  <data name="QUESTION_COMMON_DOCTOR" xml:space="preserve">
+    <value>สถานพยาบาลของคุณมีผู้ประกอบวิชาชีพและผู้ประกอบโรคศิลปะใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_DOCTOR_NO" xml:space="preserve">
+    <value>ไม่ใช่ สถานพยาบาลของฉันไม่มีผู้ประกอบวิชาชีพและผู้ประกอบโรคศิลปะ</value>
+  </data>
+  <data name="QUESTION_COMMON_DOCTOR_YES" xml:space="preserve">
+    <value>ใช่ สถานพยาบาลของฉันมีผู้ประกอบวิชาชีพและผู้ประกอบโรคศิลปะ</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT" xml:space="preserve">
+    <value>อุปกรณ์ที่ธุรกิจนำเข้า คือรายการดังต่อไปนี้หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_ALCOHOL" xml:space="preserve">
+    <value>เครื่องตรวจวัดระดับแอลกอฮอล์ในร่างกาย</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_CONTACTLENS_CARE" xml:space="preserve">
+    <value>ผลิตภัณฑ์ดูแลเลนส์สัมผัส</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_DRUGTEST" xml:space="preserve">
+    <value>ชุดทดสอบสารเสพติดเมทแอมเฟตามีนในปัสสาวะ ที่ใช้หลักการอิมมูโนโครมาโตกราฟี (Immunochromatography)</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_EYE_SURGERY" xml:space="preserve">
+    <value>ผลิตภัณฑ์ที่มีสมบัติหนืดสำหรับใช้ในกระบวนการผ่าตัดตา</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_INSULIN" xml:space="preserve">
+    <value>กระบอกฉีดอินซูลินปราศจากเชื้อชนิดใช้ครั้งเดียว ที่ไม่ใช่ขนาด 40 หรือ 100 ยูนิต</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_KIDNEY_CLENSER" xml:space="preserve">
+    <value>น้ำยาล้างไตด้วยเครื่องไตเทียม</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_NO" xml:space="preserve">
+    <value>ไม่ใช่รายการดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_PHYSICAL_THERAPY" xml:space="preserve">
+    <value>อุปกรณ์กายภาพบำบัด</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_SILICONE" xml:space="preserve">
+    <value>เต้านมเทียมซิลิโคนใช้ฝังในร่างกาย</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_TEETH_WHITENING" xml:space="preserve">
+    <value>ผลิตภัณฑ์ฟอกสีฟัน</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT2_TIGHTEN_BREAST" xml:space="preserve">
+    <value>เครื่องหรืออุปกรณ์ที่ใช้ภายนอกเพื่อเสริมหรือกระชับเต้านม</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT_BLOODBAG" xml:space="preserve">
+    <value>ถุงบรรจุเลือดมนุษย์</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT_CONDOM" xml:space="preserve">
+    <value>ถุงยางอนามัย</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT_CONTACTLENS" xml:space="preserve">
+    <value>เลนส์สัมผัส (Contact Lens)</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT_GLOVES" xml:space="preserve">
+    <value>ถุงมือสำหรับการศัลยกรรม เช่น ถุงมือผ่าตัด</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT_HIVTEST" xml:space="preserve">
+    <value>ชุดตรวจที่เกี่ยวกับ HIV</value>
+  </data>
+  <data name="QUESTION_COMMON_EQUIPMENT_NO" xml:space="preserve">
+    <value>ไม่ใช่รายการดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_IMPORT" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการนำเข้าอุปกรณ์เครื่องมือทางการแพทย์หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_IMPORT_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่มีการนำเข้าอุปกรณ์เครื่องมือทางการแพทย์</value>
+  </data>
+  <data name="QUESTION_COMMON_IMPORT_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีการนำเข้าอุปกรณ์เครื่องมือทางการแพทย์</value>
+  </data>
+  <data name="QUESTION_COMMON_PRIVATE" xml:space="preserve">
+    <value>ธุรกิจของคุณเป็นของเอกชนใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_PRIVATE_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันเป็นของภาครัฐ</value>
+  </data>
+  <data name="QUESTION_COMMON_PRIVATE_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันเป็นของเอกชน</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET" xml:space="preserve">
+    <value>ธุรกิจของคุณนำเข้าเครื่องมือแพทย์ &lt;info&gt;&lt;/info&gt; ที่มีเป้าหมายผลิตภัณฑ์ดังต่อไปนี้หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_A" xml:space="preserve">
+    <value>(ก) วินิจฉัย ป้องกัน ติดตาม บำบัด บรรเทา หรือรักษาโรคของมนุษย์หรือสัตว์</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_B" xml:space="preserve">
+    <value>(ข) วินิจฉัย ติดตาม บำบัด บรรเทา หรือรักษา การบาดเจ็บของมนุษย์หรือสัตว์</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_C" xml:space="preserve">
+    <value>(ค) ตรวจสอบ ทดแทน แก้ไข ดัดแปลง พยุง ค้ำหรือจุนด้านกายวิภาค หรือกระบวนการทางสรีระของร่างกายมนุษย์หรือสัตว์</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_D" xml:space="preserve">
+    <value>(ง) ประคับประคองหรือช่วยชีวิตมนุษย์หรือสัตว์</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_E" xml:space="preserve">
+    <value>(จ) คุมกำเนิด หรือช่วยการเจริญพันธุ์ของมนุษย์หรือสัตว์</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_F" xml:space="preserve">
+    <value>(ฉ) ช่วยเหลือหรือช่วยชดเชยความทุพพลภาพหรือพิการของมนุษย์ หรือสัตว์</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_G" xml:space="preserve">
+    <value>(ช) ให้ข้อมูลจากการตรวจสิ่งส่งตรวจจากร่างกายมนุษย์หรือสัตว์ เพื่อวัตถุประสงค์ทางการแพทย์หรือการวินิจฉัย</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_H" xml:space="preserve">
+    <value>(ซ) ทำลายหรือฆ่าเชื้อสำหรับเครื่องมือแพทย์</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;เครื่องมือ เครื่องใช้ เครื่องกล วัตถุที่ใช้ใส่เข้าไปในร่างกาย น้ำยาที่ใช้ตรวจในห้องปฏิบัติการ ผลิตภัณฑ์ ซอฟต์แวร์ หรือวัตถุอื่นใด&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_COMMON_PRODUCT_TARGET_NO" xml:space="preserve">
+    <value>ไม่ใช่รายการดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_TYPE" xml:space="preserve">
+    <value>สถานพยาบาลที่คุณเป็นสถานพยาบาลประเภทใด</value>
+  </data>
+  <data name="QUESTION_COMMON_TYPE_CLINIC" xml:space="preserve">
+    <value>ประเภทที่ไม่รับผู้ป่วยค้างคืน (คลินิก)</value>
+  </data>
+  <data name="QUESTION_COMMON_TYPE_HOSPITAL" xml:space="preserve">
+    <value>ประเภทที่รับผู้ป่วยไว้ค้างคืน (โรงพยาบาล)</value>
+  </data>
+  <data name="QUESTION_ENERGY_DISTRIBUTE_CAP_LESS1000" xml:space="preserve">
+    <value>ธุรกิจระบบจําหน่ายไฟฟ้าของคุณมีผู้ผลิตไฟฟ้ามีกําลังการผลิตรวมตํ่ากว่า 1,000 kVA หรือไม่</value>
+  </data>
+  <data name="QUESTION_ENERGY_DISTRIBUTE_CAP_LESS1000_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจระบบจําหน่ายไฟฟ้าของฉันมีผู้ผลิตไฟฟ้ามีกําลังการผลิตรวมสูงกว่า 1,000 kVA</value>
+  </data>
+  <data name="QUESTION_ENERGY_DISTRIBUTE_CAP_LESS1000_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจระบบจําหน่ายไฟฟ้าของฉันมีผู้ผลิตไฟฟ้ามีกําลังการผลิตรวมต่ำกว่า 1,000 kVA</value>
+  </data>
+  <data name="QUESTION_ENERGY_DISTRIBUTE_SIZE_LESS1000" xml:space="preserve">
+    <value>ธุรกิจระบบจําหน่ายไฟฟ้าของคุณที่มีขนาดการจําหน่ายมีกําลังการผลิตรวมตํ่ากว่า 1,000 kVA  โดยผ่านระบบจําหน่ายไฟฟ้าหรือไม่</value>
+  </data>
+  <data name="QUESTION_ENERGY_DISTRIBUTE_SIZE_LESS1000_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจระบบจําหน่ายไฟฟ้าของฉันมีขนาดการจําหน่ายมีกําลังการผลิตรวมสูงกว่า 1,000 kVA โดยผ่านระบบจําหน่ายไฟฟ้า</value>
+  </data>
+  <data name="QUESTION_ENERGY_DISTRIBUTE_SIZE_LESS1000_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจระบบจําหน่ายไฟฟ้าของฉันมีขนาดการจําหน่ายมีกําลังการผลิตรวมตํ่ากว่า 1,000 kVA โดยผ่านระบบจําหน่ายไฟฟ้า</value>
+  </data>
+  <data name="QUESTION_ENERGY_EM_BACKUP" xml:space="preserve">
+    <value>ธุรกิจของคุณผลิตไฟฟ้าเพื่อการผลิตไฟฟ้าเฉพาะกรณีฉุกเฉินเท่านั้น (Emergency Backup) หรือ ใช้ในกิจการของตนเอง (Stand Alone) ใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_ENERGY_EM_BACKUP_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่ได้ผลิตไฟฟ้าเพื่อการผลิตไฟฟ้าเฉพาะกรณีฉุกเฉินเท่านั้น (Emergency Backup)  หรือ ใช้ในกิจการของตนเอง (Stand Alone)</value>
+  </data>
+  <data name="QUESTION_ENERGY_EM_BACKUP_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันผลิตไฟฟ้าเพื่อการผลิตไฟฟ้าเฉพาะกรณีฉุกเฉินเท่านั้น (Emergency Backup)  หรือ ใช้ในกิจการของตนเอง (Stand Alone)</value>
+  </data>
+  <data name="QUESTION_ENERGY_kVA" xml:space="preserve">
+    <value>ธุรกิจของคุณผลิตไฟฟ้ารวม กี่กิโลโวลต์แอมแปร์ (kVA)</value>
+  </data>
+  <data name="QUESTION_ENERGY_kVA_LESS200" xml:space="preserve">
+    <value>ธุรกิจของฉันผลิตไฟฟ้ารวม น้อยกว่า 200 กิโลโวลต์แอมแปร์ (kVA)</value>
+  </data>
+  <data name="QUESTION_ENERGY_kVA_MORE200" xml:space="preserve">
+    <value>ธุรกิจของฉันผลิตไฟฟ้ารวม มากกว่า 200 กิโลโวลต์แอมแปร์ (kVA)</value>
+  </data>
+  <data name="QUESTION_ENERGY_PRODUCTION_CAP_LESS100" xml:space="preserve">
+    <value>ธุรกิจผลิตไฟฟ้าจากเซลล์แสงอาทิตย์ที่ติดตั้งบนหลังคาของท่านมีกําลังการผลิตรวมของ Inverter ตํ่ากว่า 1,000 kVA หรือไม่</value>
+  </data>
+  <data name="QUESTION_ENERGY_PRODUCTION_CAP_LESS100_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจผลิตไฟฟ้าจากเซลล์แสงอาทิตย์ที่ติดตั้งบนหลังคาของฉันมีกําลังการผลิตรวมของ Inverter มากกว่า 1,000 kVA</value>
+  </data>
+  <data name="QUESTION_ENERGY_PRODUCTION_CAP_LESS100_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจผลิตไฟฟ้าจากเซลล์แสงอาทิตย์ที่ติดตั้งบนหลังคาของฉันมีกําลังการผลิตรวมของ Inverter ตํ่ากว่า 1,000 kVA</value>
+  </data>
+  <data name="QUESTION_ENERGY_ROOFTOP" xml:space="preserve">
+    <value>ธุรกิจผลิตไฟฟ้าของคุณอยู่ในโครงการผลิตไฟฟ้าพลังงาแสงอาทิตย์ที่ติดตั้งบนหลังคา (Rooftop PV System) และ มีกำลังผลิตรวมต่ำกว่า 1,000 kWp หรือไม่</value>
+  </data>
+  <data name="QUESTION_ENERGY_ROOFTOP_NO" xml:space="preserve">
+    <value>ไม่ใช่  ธุรกิจผลิตไฟฟ้าของฉันไม่ได้อยู่ในโครงการผลิตไฟฟ้าพลังงาแสงอาทิตย์ที่ติดตั้งบนหลังคา (Rooftop PV System) หรือ มีกำลังผลิตรวมสูงกว่า 1,000 kWp</value>
+  </data>
+  <data name="QUESTION_ENERGY_ROOFTOP_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจผลิตไฟฟ้าของฉันอยู่ในโครงการผลิตไฟฟ้าพลังงาแสงอาทิตย์ที่ติดตั้งบนหลังคา (Rooftop PV System) และ มีกำลังผลิตรวมต่ำกว่า 1,000 kWp</value>
+  </data>
+  <data name="QUESTION_ORGANIC_ACT" xml:space="preserve">
+    <value>ธุรกิจของคุณดำเนินกิจกรรมอะไรบ้างเกี่ยวกับเกษตรอินทรีย์</value>
+  </data>
+  <data name="QUESTION_ORGANIC_ACT_COLLECT" xml:space="preserve">
+    <value>มีการรวบรวมผลิตผล/ผลิตภัณฑ์พืชอินทรีย์</value>
+  </data>
+  <data name="QUESTION_ORGANIC_ACT_IMPORT" xml:space="preserve">
+    <value>มีการนำเข้าผลิตผล/ผลิตภัณฑ์พืชอินทรีย์</value>
+  </data>
+  <data name="QUESTION_ORGANIC_ACT_PACKING" xml:space="preserve">
+    <value>มีการคัดบรรจุพืชอินทรีย์</value>
+  </data>
+  <data name="QUESTION_ORGANIC_ACT_SELL" xml:space="preserve">
+    <value>มีการจัดจำหน่ายผลิตผล/ผลิตภัณฑ์พืชอินทรีย์</value>
+  </data>
+  <data name="QUESTION_ORGANIC_ACT_SOURCE" xml:space="preserve">
+    <value>เป็นแหล่งผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="QUESTION_ORGANIC_ACT_TRANSFORM" xml:space="preserve">
+    <value>มีการแปรรูปผลิตภัณฑ์พืชอินทรีย์</value>
+  </data>
+  <data name="QUESTION_ORGANIC_FARMING" xml:space="preserve">
+    <value>ธุรกิจของคุณจัดเป็นเกษตรอินทรีย์เป็นระบบการจัดการการผลิตด้านการเกษตรแบบองค์รวม ที่มีวัตถุประสงค์เพื่อให้เกิด ความยั่งยืนในระยะยาว ทั้งในด้านสุขภาพ ดิน หรือสัตว์ มนุษย์ และสิ่งแวดล้อม จึงให้ความสำคัญกับการจัดการที่ส่งเสริมให้เกิดความหลากหลายทางชีวภาพ การสร้างความสมดุลของสภาพแวดล้อมกับสิ่งมีชีวิต เนื่องจากสิ่งมีชีวิตที่หลากหลายช่วยฟื้นฟูและสร้างสมดุลของธรรมชาติในระยะยาว หรือไม่</value>
+  </data>
+  <data name="QUESTION_ORGANIC_FARMING_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่จัดเป็นเกษตรอินทรีย์เป็นระบบการจัดการการผลิตด้านการเกษตรแบบองค์รวม</value>
+  </data>
+  <data name="QUESTION_ORGANIC_FARMING_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันจัดเป็นเกษตรอินทรีย์เป็นระบบการจัดการการผลิตด้านการเกษตรแบบองค์รวม</value>
+  </data>
+  <data name="QUIZ_OPEN_ELDERLYCARE" xml:space="preserve">
+    <value>แบบสอบถามการขอให้บริการสถานดูแลผู้ป่วย ผู้สูงอายุ</value>
+  </data>
+  <data name="QUIZ_OPEN_ENERGY" xml:space="preserve">
+    <value>แบบสอบถามธุรกิจผลิตพลังงานสำรอง พลังงานทดแทน และขายกระแสไฟฟ้าให้ภาครัฐ</value>
+  </data>
+  <data name="QUIZ_OPEN_MEDICALTOOLS" xml:space="preserve">
+    <value>แบบสอบถามขอธุรกิจอุปกรณ์เครื่องมือทางการแพทย์</value>
+  </data>
+  <data name="QUIZ_OPEN_ORGANICFARMING" xml:space="preserve">
+    <value>แบบสอบถามธุรกิจเกษตรปลอดสารพิษ</value>
+  </data>
+  <data name="QUESTION_COMMON_DANGER_MEDICINE" xml:space="preserve">
+    <value>กิจการที่เกี่ยวกับยา เวชภัณฑ์ อุปกรณ์การแพทย์ เครื่องสำอาง ผลิตภัณฑ์ทำความสะอาด</value>
+  </data>
+  <data name="QUESTION_COSMETICS_TYPE" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการผลิตและบรรจุผลิตภัณฑ์อะไรบ้าง</value>
+  </data>
+  <data name="QUESTION_COSMETICS_TYPE_COSMETICS" xml:space="preserve">
+    <value>เครื่องสำอาง เช่น ลิปสติก น้ำหอม ครีมทาผิว หรือผลิตภัณฑ์ตกแต่งผม</value>
+  </data>
+  <data name="QUESTION_COSMETICS_TYPE_OTHER" xml:space="preserve">
+    <value>ไม่ใช่ รายการดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_COSMETICS_TYPE_SOAP" xml:space="preserve">
+    <value>สบู่ ครีมล้างหน้าหรือแชมพู</value>
+  </data>
+  <data name="QUESTION_COSMETICS_TYPE_TOOTHPASTE" xml:space="preserve">
+    <value>ยาสีฟัน หรือน้ำยาบ้วนปาก</value>
+  </data>
+  <data name="QUESTION_COSMETIC_PRODUCER_PERMIT" xml:space="preserve">
+    <value>คุณได้จดแจ้งรายละเอียดการผลิตเครื่องสำอางของคุณกับทางสำนักงานคณะกรรมการอาหารและยา (อย.) ครบถ้วนทุกผลิตภัณฑ์แล้วหรือไม่</value>
+  </data>
+  <data name="QUESTION_COSMETIC_PRODUCER_PERMIT_NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันยังจดแจ้งรายละเอียดกับ อย. ไม่ครบถ้วนทุกผลิตภัณฑ์/ไม่เคยจดแจ้งรายละเอียดกับทาง อย.เลย</value>
+  </data>
+  <data name="QUESTION_COSMETIC_PRODUCER_PERMIT_YES" xml:space="preserve">
+    <value>ใช่ ฉันจดแจ้งรายละเอียดกับ อย. ครบถ้วนทุกผลิตภัณฑ์แล้ว</value>
+  </data>
+  <data name="QUESTION_COMMON_WORKER" xml:space="preserve">
+    <value>ธุรกิจของคุณใช้คนงานน้อยกว่า 50 คน หรือ ใช้กำลังเครื่องจักรรวมน้อยกว่า 50 แรงม้า ใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_WORKER_LESS50" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีคนงานน้อยกว่า 50 คน หรือ ใช้กำลังเครื่องจักรรวมน้อยกว่า 50 แรงม้า</value>
+  </data>
+  <data name="QUESTION_COMMON_WORKER_MORE50" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันมีคนงานมากกว่า 50 คน หรือ ใช้กำลังเครื่องจักรรวมมากกว่า 50 แรงม้า</value>
+  </data>
+  <data name="QUIZ_OPEN_COSMETICS" xml:space="preserve">
+    <value>แบบสอบถามธุรกิจผลิตครีมบำรุง เครื่องสำอาง น้ำหอม</value>
+  </data>
+  <data name="QUESTION_COMMON_BUYSELL" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการขาย (ซื้อมา-ขายไป) หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_BUYSELL_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่มีการขาย (ซื้อมา-ขายไป)</value>
+  </data>
+  <data name="QUESTION_COMMON_BUYSELL_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีการขาย (ซื้อมา-ขายไป)</value>
+  </data>
+  <data name="QUESTION_COMMON_CHANNEL" xml:space="preserve">
+    <value>ผู้ซื้อสามารถเลือกช่องทางการรับสินค้า ผ่านช่องทางใดได้บ้าง  (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_COMMON_CHANNEL_DELIVERY" xml:space="preserve">
+    <value>พนักงานส่งสินค้า</value>
+  </data>
+  <data name="QUESTION_COMMON_CHANNEL_DOWNLOAD" xml:space="preserve">
+    <value>ดาวน์โหลด</value>
+  </data>
+  <data name="QUESTION_COMMON_CHANNEL_EMAIL" xml:space="preserve">
+    <value>อีเมล์</value>
+  </data>
+  <data name="QUESTION_COMMON_CHANNEL_NO" xml:space="preserve">
+    <value>ไม่ใช่รายการดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_CHANNEL_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+  </data>
+  <data name="QUESTION_COMMON_CHANNEL_POST" xml:space="preserve">
+    <value>ไปรษณีย์ เช่น ไปรษณีย์ลงทะเบียน EMS เป็นต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_CHANNEL_TRANSPOT" xml:space="preserve">
+    <value>บริษัทขนส่ง เช่น Kerry Express Lalamove เป็นต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_LOCATION" xml:space="preserve">
+    <value>คุณมีสถานที่ตั้งที่แน่นอนสำหรับการขายของคุณ หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_LOCATION_NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันไม่มีที่ตั้งที่แน่นอนสำหรับการขาย แต่ฉันขายใบรูปแบบค้าเร่ ค้าแผงลอย</value>
+  </data>
+  <data name="QUESTION_COMMON_LOCATION_YES" xml:space="preserve">
+    <value>ใช่ ฉันมีที่ตั้งที่แน่นอนสำหรับการขายของฉัน</value>
+  </data>
+  <data name="QUESTION_COMMON_ORDER" xml:space="preserve">
+    <value>ผู้ซื้อสามารถสั่งจอง/สั่งซื้อสินค้าของคุณผ่านช่องทางใดได้บ้าง (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_COMMON_ORDER_EMAIL" xml:space="preserve">
+    <value>อีเมล์</value>
+  </data>
+  <data name="QUESTION_COMMON_ORDER_FAX" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="QUESTION_COMMON_ORDER_FORM" xml:space="preserve">
+    <value>ระบบกรอกฟอร์ม</value>
+  </data>
+  <data name="QUESTION_COMMON_ORDER_NO" xml:space="preserve">
+    <value>ไม่ใช่รายการดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_ORDER_OTHER" xml:space="preserve">
+    <value>อื่น ๆ</value>
+  </data>
+  <data name="QUESTION_COMMON_ORDER_PHONE" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="QUESTION_COMMON_ORDER_SHOPPINGCART" xml:space="preserve">
+    <value>ระบบตะกร้า (Shopping Cart)</value>
+  </data>
+  <data name="QUESTION_COMMON_PAY" xml:space="preserve">
+    <value>ผู้ซื้อสามารถชำระเงิน ผ่านช่องทางใดได้บ้าง (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="QUESTION_COMMON_PAY_CREDIT" xml:space="preserve">
+    <value>ชำระเงินผ่านบัตรเครดิต</value>
+  </data>
+  <data name="QUESTION_COMMON_PAY_EBANKING" xml:space="preserve">
+    <value>ชำระเงินผ่าน E-Banking</value>
+  </data>
+  <data name="QUESTION_COMMON_PAY_NO" xml:space="preserve">
+    <value>ไม่ใช่รายการดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_PAY_OFFLINE" xml:space="preserve">
+    <value>ชำระเงินแบบออฟไลน์ เช่น โอนเงินผ่านธนาคาร ชำระเงินทางไปรษณีย์ ชำระเงินกับพนักงาน เป็นต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_PAY_PAYOTHER" xml:space="preserve">
+    <value>อื่น ๆ</value>
+  </data>
+  <data name="QUESTION_COMMON_PAY_PAYPAL" xml:space="preserve">
+    <value>ชำระเงินผ่านตัวกลางชำระเงิน เช่น PayPal, PaySbuy เป็นต้น</value>
+  </data>
+  <data name="QUESTION_COMMON_SALE_ONLINE" xml:space="preserve">
+    <value>คุณขาย (ซื้อมา-ขายไป) ผ่านช่องทาง online เช่น เว็บไซต์ เฟสบุ๊ค อินสตาแกรม ไลน์ หรือไม่</value>
+  </data>
+  <data name="QUESTION_COMMON_SALE_ONLINE_NO" xml:space="preserve">
+    <value>ไม่ใช่ ฉันไม่ได้ขาย (ซื้อมา-ขายไป) ผ่านช่องทาง online เช่น เว็บไซต์ เฟสบุ๊ค อินสตาแกรม ไลน์</value>
+  </data>
+  <data name="QUESTION_COMMON_SALE_ONLINE_YES" xml:space="preserve">
+    <value>ใช่ ฉันขาย (ซื้อมา-ขายไป) ผ่านช่องทาง online เช่น เว็บไซต์ เฟสบุ๊ค อินสตาแกรม ไลน์</value>
+  </data>
+  <data name="QUESTION_COMMON_SALE_ROUTINE" xml:space="preserve">
+    <value>การขายของคุณ โดยหลักจะเป็นการขายประจำ ไม่ใช่ขายตามเทศกาลต่างๆ</value>
+  </data>
+  <data name="QUESTION_COMMON_SALE_ROUTINE_NO" xml:space="preserve">
+    <value>ไม่ใช่ การขายของฉัน ไม่ได้เป็นการขายประจำ แต่ขายตามเทศกาลต่างๆ</value>
+  </data>
+  <data name="QUESTION_COMMON_SALE_ROUTINE_YES" xml:space="preserve">
+    <value>ใช่ การขายของฉัน โดยหลักจะเป็นการขายประจำ</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_AD" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการโฆษณา ให้ประชาชนเห็นหรือทราบข้อความเกี่ยวกับอาหาร ส่วนประกอบของอาหาร เพื่อประโยชน์ในทางการค้า ด้วยวิธีการต่อไปนี้หรือไม่
+ &lt;div class="D-12 M-12"&gt;(ก) การโฆษณาที่ปรากฏด้วยข้อความ ข้อความเสียง เสียง ภาพ รูปภาพ รอยประดิษฐ์เครื่องหมายสัญลักษณ์ หรือการกระทำอื่นใดที่เข้าใจได้ในความหมาย &lt;/div&gt;
+ &lt;div class="D-12 M-12"&gt;(ข) การโฆษณาด้วยสื่อโฆษณา เช่น วิทยุ โทรทัศน์ ภาพยนตร์ หนังสือพิมพ์ นิตยสาร วารสาร แผ่นป้าย หนังสือ แผ่นพับ ตัวอักษรไฟวิ่ง อินเตอร์เน็ต ป่าวประกาศ โทรศัพท์ หรือด้วยวิธีอื่นใด ทั้งในสถานที่กลางแจ้ง สาธารณะ และสถานที่ส่วนบุคคล เช่น ภายในบริษัท ห้างสรรพสินค้า ลิฟต์&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_AD_BENEFIT" xml:space="preserve">
+    <value>ในการโฆษณามีเนื้อหาเพื่อชี้แจงสรรพคุณ คุณภาพ คุณประโยชน์ของอาหาร หรือไม่</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_AD_BENEFIT_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉัน ไม่มีการโฆษณาเนื้อหาดังกล่าว หรือไม่แน่ใจว่าเนื้อหาเข้าข่ายหรือไม่</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_AD_BENEFIT_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉัน มีการโฆษณาเนื้อหาดังกล่าว</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_AD_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉัน ไม่มีการโฆษณาดังกล่าว</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_AD_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉัน มีการโฆษณาดังกล่าว</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_BUSINESS_TYPE_BURNING_JEWEL" xml:space="preserve">
+    <value>การเผาหรืออบพลอยหรืออัญมณีอื่น ๆ</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_BUSINESS_TYPE_CONVEYING_STONES" xml:space="preserve">
+    <value>การลำเลียงหิน กรวด ทราย หรือดิน ด้วยระบบสายพานลำเลียง</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_BUSINESS_TYPE_OTHER" xml:space="preserve">
+    <value>ไม่ใช่ โรงงานของฉันไม่ใช่ประเภทหรือชนิดที่กล่าวมาข้างต้น</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_BUSINESS_TYPE_SAND_SUCTION" xml:space="preserve">
+    <value>การดูดทราย</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_EXPORT" xml:space="preserve">
+    <value>ธุรกิจของคุณมีการส่งออกผลิตภัณฑ์อาหารไปขายยังต่างประเทศที่ต้องการหนังสือรับรองหรือไม่</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_EXPORT_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่มีการส่งออกผลิตภัณฑ์อาหารไปขายยังต่างประเทศที่ต้องการหนังสือรับรอง</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_EXPORT_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีการส่งออกผลิตภัณฑ์อาหารไปขายยังต่างประเทศที่ต้องการหนังสือรับรอง</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM1" xml:space="preserve">
+    <value>ลำดับที่ 2 : โรงงานประกอบกิจการเกี่ยวกับผลิตผลเกษตรกรรมอย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การหีบหรืออัดฝ้าย หรือการปั่นหรืออัดนุ่น,การเผาถ่านจากกะลามะพร้าว หรือการบดถ่านหรือแบ่งบรรจุผงถ่าน ที่เผาได้จากกะลามะพร้าวการโม่ บด หรือย่อยหิน</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM10" xml:space="preserve">
+    <value>ลำดับที่ 32 : โรงงานผลิตผลิตภัณฑ์หรือชิ้นส่วนของผลิตภัณฑ์ ซึ่งมิใช่เครื่องแต่งกาย หรือรองเท้าจาก เช่น ใยแก้ว</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM11" xml:space="preserve">
+    <value>ลำดับที่ 34 : โรงงานประกอบกิจการเกี่ยวกับไม้ อย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การเลื่อย ไส ซอย เซาะร่อง หรือการแปรรูปไม้ด้วยวิธีอื่น ที่คล้ายคลึงกัน, การทำวงกบ ขอบประตู ขอบหน้าต่าง บานหน้าต่าง บานประตู หรือส่วนประกอบที่ทำด้วยไม้ของอาคาร, การทำไม้วีเนียร์ หรือไม้อัดทุกชนิด, การทำฝอยไม้ การบด ป่น หรือย่อยไม้, การถนอมเนื้อไม้ หรือการอบไม้, การเผาถ่านจากไม้</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM12" xml:space="preserve">
+    <value>ลำดับที่ 36 : โรงงานประกอบกิจการเกี่ยวกับผลิตภัณฑ์จากไม้หรือไม้ก๊อกอย่างใดอย่างหนึ่ง หรือหลายอย่าง ดังต่อไปนี้ การทำภาชนะบรรจุเครื่องมือ หรือเครื่องใช้จากไม้และรวมถึงชิ้นส่วนของผลิตภัณฑ์ดังกล่าว, การทำรองเท้า ชิ้นส่วนของรองเท้าหรือหุ่นรองเท้าจากไม้, การทำกรอบรูปหรือกรอบกระจกจากไม้</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM13" xml:space="preserve">
+    <value>ลำดับที่ 37 : โรงงานทำเครื่องเรือนหรือเครื่องตบแต่งภายในอาคารจากไม้ แก้ว ยาง หรืออโลหะอื่น ซึ่งมิใช่เครื่องเรือนหรือเครื่องตบแต่งภายในอาคารจากพลาสติกอัดเข้ารูป และรวมถึงชิ้นส่วนของผลิตภัณฑ์ดังกล่าว</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM14" xml:space="preserve">
+    <value>ลำดับที่ 38 : โรงงานผลิตเยื่อ หรือกระดาษอย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำเยื่อจากไม้ หรือวัสดุอื่น, การทำกระดาษ กระดาษแข็ง หรือกระดาษที่ใช้ในการก่อสร้างชนิดที่ทำจากเส้นใย (fibre) หรือแผ่นกระดาษไฟเบอร์ (fiber board)</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM15" xml:space="preserve">
+    <value>ลำดับที่ 40 : โรงงานประกอบกิจการเกี่ยวกับเยื่อ กระดาษ หรือกระดาษแข็งอย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้  การฉาบ ขัดมัน หรือทากาวกระดาษ หรือกระดาษแข็ง หรือการอัดกระดาษหรือกระดาษแข็งหลายชั้นเข้าด้วยกัน</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM16" xml:space="preserve">
+    <value>ลำดับที่ 43 : โรงงานประกอบกิจการเกี่ยวกับปุ๋ย หรือสารป้องกันหรือกำจัดศัตรูพืชหรือสัตว์ (pesticides) อย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำปุ๋ย หรือสารป้องกันหรือกำจัดศัตรูพืชหรือสัตว์, การบดดินหรือการเตรียมวัสดุอื่นเพื่อผสมทำปุ๋ยหรือสารป้องกันหรือกำจัดศัตรูพืชหรือสัตว์</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM17" xml:space="preserve">
+    <value>ลำดับที่ 46 : โรงงานประกอบกิจการเกี่ยวกับ ยา อย่างใดอย่างหนึ่ง หรือหลายอย่าง ดังต่อไปนี้ การผลิตวัตถุที่รับรองไว้ในตำรายาที่รัฐมนตรีว่าการกระทรวงสาธารณสุขประกาศ, การผลิตวัตถุที่มุ่งหมายสำหรับใช้ในการวิเคราะห์ บำบัด บรรเทา รักษา หรือป้องกันโรค หรือความเจ็บป่วยของมนุษย์ หรือสัตว์, การผลิตวัตถุที่มุ่งหมายสำหรับให้เกิดผลแก่สุขภาพ โครงสร้างหรือการกระทำหน้าที่ใด ๆ ของร่างกายมนุษย์ หรือสัตว์ ที่รัฐมนตรีว่าการกระทรวงสาธารณสุขประกาศ แต่วัตถุตาม (1) หรือ (2) ไม่รวมถึงวัตถุที่มุ่งหมายสำหรับใช้เป็นอาหาร เครื่องกีฬา เครื่องสำอาง เครื่องมือ ที่ใช้ในการประกอบโรคศิลปะและส่วนประกอบของเครื่องมือที่ใช้ในการนั้น</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM18" xml:space="preserve">
+    <value>ลำดับที่ 48 : โรงงานประกอบกิจการเกี่ยวกับผลิตภัณฑ์เคมี อย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำยาขัดเครื่องเรือน หรือโลหะ ขี้ผึ้งหรือวัสดุสำหรับตบแต่งอาคาร,  การทำยาฆ่าเชื้อโรค หรือยาดับกลิ่น, การทำผลิตภัณฑ์สำหรับกันน้ำ ผลิตภัณฑ์ที่เป็นตัวทำให้เปียกน้ำ ผลิตภัณฑ์ที่เป็นตัวทำให้ตีเข้าด้วยกันได้ ผลิตภัณฑ์ที่เป็นตัวทำให้ซึมเข้าไป (wetting agents. emulsifiers of penetrants) ผลิตภัณฑ์สำหรับใช้ผนึกหรือกาวผลิตภัณฑ์สำหรับใช้เป็นตัวผสม (sizes) ผลิตภัณฑ์สำหรับใช้เป็นตัวเชื่อมหรืออุด (cements) ที่ทำจากพืช สัตว์ หรือพลาสติก ที่ได้มาจากแหล่งผลิตอื่น ซึ่งมิใช่ผลิตภัณฑ์สำหรับใช้อุดรูฟัน (dental cements), การทำไม้ขีดไฟ วัตถุระเบิด หรือดอกไม้เพลิง, การทำเทียนไข,  การทำหมึกหรือคาร์บอนดำ, การทำผลิตภัณฑ์ที่มีกลิ่น หรือควันเมื่อเผาไหม้, การทำผลิตภัณฑ์ที่มีการบูร, การทำหัวน้ำมันระเหย (essential oils),การทำครามหรือวัสดุฟอกขาวที่ใช้ในการซักผ้า, การทำผลิตภัณฑ์สำหรับใช้เป็นฉนวนหุ้มหม้อน้ำหรือกับความร้อน, การทำถ่านกัมมันต์ (activated carbon)</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM19" xml:space="preserve">
+    <value>ลำดับที่ 52 : โรงงานประกอบกิจการเกี่ยวกับยาง อย่างใด อย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำยางแผ่นรมควัน การทำยางเครป ยางแท่ง ยางน้ำ หรือการทำยางให้เป็นรูปแบบอื่นใดที่คล้ายคลึงกันจากยางธรรมชาติ</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM2" xml:space="preserve">
+    <value>ลำดับที่ 5 : โรงงานประกอบกิจการเกี่ยวกับน้ำนมอย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำนมสดจากนมผงและไขมัน, การทำนมข้น นมผง หรือนมระเหย</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM20" xml:space="preserve">
+    <value>ลำดับที่ 103 : โรงงานประกอบกิจการเกี่ยวกับเกลืออย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำเกลือให้บริสุทธิ์</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM3" xml:space="preserve">
+    <value>ลำดับที่ 7 : โรงงานประกอบกิจการเกี่ยวกับน้ำมัน จากพืชหรือ สัตว์ หรือไขมันจากสัตว์อย่างใดอย่างหนึ่ง หรือหลายอย่าง ดังต่อไปนี้ การสกัดน้ำมันจากพืช หรือสัตว์ หรือไขมันจากสัตว์, การอัดหรือป่นกากพืช หรือสัตว์ที่สกัดน้ำมันออกแล้ว, การทำน้ำมันจากพืช หรือสัตว์ หรือไขมันจากสัตว์ ให้แข็งโดยการเติมไฮโดรเจน, การทำน้ำมันจากพืช หรือสัตว์หรือไขมันจากสัตว์ให้บริสุทธิ์ , การทำเนยเทียม ครีมเนียม หรือน้ำมันผสมสำหรับปรุงอาหาร</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM4" xml:space="preserve">
+    <value>ลำดับที่ 11 : โรงงานประกอบกิจการเกี่ยวกับ น้ำตาล ซึ่งทำจากอ้อย บีช หญ้าหวาน หรือพืชอื่นที่ให้ความหวานอย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำน้ำตาลทรายดิบ หรือน้ำตาลทรายขาว, การทำน้ำตาลทรายดิบ หรือน้ำตาลทรายขาวให้บริสุทธิ์, การทำกลูโคส เดกซ์โทรส ฟรักโทส หรือผลิตภัณฑ์อื่นที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM5" xml:space="preserve">
+    <value>ลำดับที่ 13 : โรงงานประกอบกิจการเกี่ยวกับเครื่องปรุงหรือเครื่องประกอบอาหารอย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำผงฟู,  การทำเครื่องปรุงกลิ่น รส หรือสีของอาหาร, การทำแป้งเชื้อ, การทำน้ำส้มสายชู</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM6" xml:space="preserve">
+    <value>ลำดับที่ 15 : โรงงานประกอบกิจการเกี่ยวกับ อาหารสัตว์อย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การป่นหรือบด พืช เมล็ดพืช กากพืช เนื้อสัตว์ กระดูกสัตว์ ขนสัตว์ หรือเปลือกหอยสำหรับทำหรือผสมเป็นอาหารสัตว์</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM7" xml:space="preserve">
+    <value>ลำดับที่ 16 : โรงงานต้ม กลั่น หรือผสมสุรา</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM8" xml:space="preserve">
+    <value>ลำดับที่ 18 : โรงงานทำหรือผสมสุราจากผลไม้ หรือสุราแช่อื่นๆ แต่ไม่รวมถึงโรงงานประกอบกิจการเกี่ยวกับมอลต์หรือเบียร์ในลำดับที่ 19</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM9" xml:space="preserve">
+    <value>ลำดับที่ 19 : โรงงานประกอบกิจการเกี่ยวกับมอลค์ หรือเบียร์ อย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำป่น หรือบดมอลค์, การทำเบียร์</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_A_ITEM_NONE" xml:space="preserve">
+    <value>ไม่ใช่ โรงงานของฉันไม่ใช่ประเภทหรือชนิดที่กล่าวมาข้างต้น</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM1" xml:space="preserve">
+    <value>ลำดับที่ 4 : โรงงานประกอบกิจการเกี่ยวกับสัตว์ ซึ่งมิใช่สัตว์น้ำ อย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การฆ่าสัตว์</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM10" xml:space="preserve">
+    <value>ลำดับที่ 46 : โรงงานประกอบกิจการเกี่ยวกับ ยา อย่างใดอย่างหนึ่ง หรือหลายอย่าง(46) ดังต่อไปนี้ การผลิตวัตถุที่รับรองไว้ในตำรายาที่รัฐมนตรีว่าการกระทรวงสาธารณสุขประกาศ, การผลิตวัตถุที่มุ่งหมายสำหรับใช้ในการวิเคราะห์ บำบัด บรรเทา รักษา หรือป้องกันโรค หรือความเจ็บป่วยของมนุษย์ หรือสัตว์, การผลิตวัตถุที่มุ่งหมายสำหรับให้เกิดผลแก่สุขภาพ โครงสร้างหรือการกระทำหน้าที่ใด ๆ ของร่างกายมนุษย์ หรือสัตว์ ที่รัฐมนตรีว่าการกระทรวงสาธารณสุขประกาศ แต่วัตถุตาม (1) หรือ (2) ไม่รวมถึงวัตถุที่มุ่งหมายสำหรับใช้เป็นอาหาร เครื่องกีฬา เครื่องสำอาง เครื่องมือ ที่ใช้ในการประกอบโรคศิลปะและส่วนประกอบของเครื่องมือที่ใช้ในการนั้น</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM11" xml:space="preserve">
+    <value>ลำดับที่ 48 : โรงงานประกอบกิจการเกี่ยวกับผลิตภัณฑ์เคมี อย่างใดอย่างหนึ่งหรือหลายอย่าง ดังต่อไปนี้ การทำยาขัดเครื่องเรือน หรือโลหะ ขี้ผึ้งหรือวัสดุสำหรับตบแต่งอาคาร,  การทำยาฆ่าเชื้อโรค หรือยาดับกลิ่น, การทำผลิตภัณฑ์สำหรับกันน้ำ ผลิตภัณฑ์ที่เป็นตัวทำให้เปียกน้ำ ผลิตภัณฑ์ที่เป็นตัวทำให้ตีเข้าด้วยกันได้ ผลิตภัณฑ์ที่เป็นตัวทำให้ซึมเข้าไป (wetting agents. emulsifiers of penetrants) ผลิตภัณฑ์สำหรับใช้ผนึกหรือกาวผลิตภัณฑ์สำหรับใช้เป็นตัวผสม (sizes) ผลิตภัณฑ์สำหรับใช้เป็นตัวเชื่อมหรืออุด (cements) ที่ทำจากพืช สัตว์ หรือพลาสติก ที่ได้มาจากแหล่งผลิตอื่น ซึ่งมิใช่ผลิตภัณฑ์สำหรับใช้อุดรูฟัน (dental cements), การทำไม้ขีดไฟ วัตถุระเบิด หรือดอกไม้เพลิง, การทำเทียนไข,  การทำหมึกหรือคาร์บอนดำ, การทำผลิตภัณฑ์ที่มีกลิ่น หรือควันเมื่อเผาไหม้, การทำผลิตภัณฑ์ที่มีการบูร, การทำหัวน้ำมันระเหย (essential oils),การทำครามหรือวัสดุฟอกขาวที่ใช้ในการซักผ้า, การทำผลิตภัณฑ์สำหรับใช้เป็นฉนวนหุ้มหม้อน้ำหรือกับความร้อน, การทำถ่านกัมมันต์ (activated carbon)</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM2" xml:space="preserve">
+    <value>ลำดับที่ 5 : โรงงานประกอบกิจการเกี่ยวกับน้ำนมอย่างใดอย่างหนึ่งหรือหลายอย่าง(5) ดังต่อไปนี้ การทำนมสดจากนมผงและไขมัน, การทำนมข้น นมผง หรือนมระเหย</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM3" xml:space="preserve">
+    <value>ลำดับที่ 7 : โรงงานประกอบกิจการเกี่ยวกับน้ำมัน จากพืชหรือ สัตว์ หรือไขมันจากสัตว์อย่างใดอย่างหนึ่ง หรือหลายอย่าง(7) ดังต่อไปนี้ การสกัดน้ำมันจากพืช หรือสัตว์ หรือไขมันจากสัตว์, การอัดหรือป่นกากพืช หรือสัตว์ที่สกัดน้ำมันออกแล้ว, การทำน้ำมันจากพืช หรือสัตว์ หรือไขมันจากสัตว์ ให้แข็งโดยการเติมไฮโดรเจน, การทำน้ำมันจากพืช หรือสัตว์หรือไขมันจากสัตว์ให้บริสุทธิ์ , การทำเนยเทียม ครีมเนียม หรือน้ำมันผสมสำหรับปรุงอาหาร</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM4" xml:space="preserve">
+    <value>ลำดับที่ 15 : โรงงานประกอบกิจการเกี่ยวกับ อาหารสัตว์อย่างใดอย่างหนึ่งหรือหลายอย่าง(15) ดังต่อไปนี้ การป่นหรือบด พืช เมล็ดพืช กากพืช เนื้อสัตว์ กระดูกสัตว์ ขนสัตว์ หรือเปลือกหอยสำหรับทำหรือผสมเป็นอาหารสัตว์</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM5" xml:space="preserve">
+    <value>ลำดับที่ 27 : โรงงานประกอบกิจการเกี่ยวกับผลิตภัณฑ์ ซึ่งมิใช่ทำด้วยวิธีถัก หรือทออย่างใดอย่างหนึ่ง หรือหลายอย่าง(27) ดังต่อไปนี้ การทำผ้าน้ำมัน หรือหนังเทียม ซึ่งมิได้ทำจากพลาสติกล้วน, การทำวัสดุจากเส้นใยสำหรับใช้ทำเบาะ นวม หรือสิ่งที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM6" xml:space="preserve">
+    <value>ลำดับที่ 29 : โรงงานหมักแต่ง ชำแหละ อบ ปนหรือบด ฟอก ขัดและแต่งสำเร็จ อัดให้เป็นลายนูน หรือเคลือบสีหนังสัตว์(29)</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM7" xml:space="preserve">
+    <value>ลำดับที่ 30 : โรงงานสาง ฟอก ฟอกสี ย้อมสี ขัดหรือแต่งขนสัตว์(30)</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM8" xml:space="preserve">
+    <value>ลำดับที่ 31 : โรงงานทำพรม หรือเครื่องใช้จากหนังสัตว์หรือขนสัตว์(31)</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM9" xml:space="preserve">
+    <value>ลำดับที่ 47 : โรงงานประกอบกิจการเกี่ยวกับ สบู่ เครื่องสำอาง หรือสิ่งปรุงแต่งร่างกาย อย่างใดอย่างหนึ่งหรือหลายอย่างดังต่อไปนี้, การทำสบู่ วัสดุสังเคราะห์ สำหรับซักฟอก แชมพู ผลิตภัณฑ์สำหรับโกนหนวด หรือผลิตภัณฑ์สำหรับชำระล้างหรือขัดถู, การทำกลีเซอรีนดิบ หรือกลีเซอรีนบริสุทธิ์ จากน้ำมันพืช หรือสัตว์ หรือไขมันสัตว์</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_B_ITEM_NONE" xml:space="preserve">
+    <value>ไม่ใช่ โรงงานของฉันไม่ใช่ประเภทหรือชนิดที่กล่าวมาข้างต้น</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_TYPE" xml:space="preserve">
+    <value>ธุรกิจของคุณอยู่ในประเภทหรือชนิดโรงงานดังนี้ ใช่หรือไม่ &lt;info&gt;&lt;/info&gt;</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FACTORY_TYPE_INFO" xml:space="preserve">
+    <value>&lt;div class="M-12"&gt;สามารถศึกษาข้อมูลเพิ่มเติมประเภท ชนิดและขนานของโรงงาน&lt;a href='http://www.diw.go.th/hawk/data/factype.php'&gt; http://www.diw.go.th/hawk/data/factype.php &lt;/a&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FUEL" xml:space="preserve">
+    <value>โรงงานของคุณเป็นโรงงานที่ประกอบกิจการโดยใช้ฟืน ขี้เลื่อยหรือแกลบเป็นเชื้อเพลิง หรือมีหม้อน้ำ ใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FUEL_NO" xml:space="preserve">
+    <value>ไม่ใช่ โรงงานของฉันไม่ได้ป็นโรงงานที่ประกอบกิจการโดยใช้ฟืน ขี้เลื่อยหรือแกบเป็นเชื้อเพลิง หรือมีหม้อน้ำ</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_FUEL_YES" xml:space="preserve">
+    <value>ใช่ โรงงานของฉันเป็นโรงงานที่ประกอบกิจการโดยใช้ฟืน ขี้เลื่อยหรือแกบเป็นเชื้อเพลิง หรือมีหม้อน้ำ</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_GROUP_TYPE" xml:space="preserve">
+    <value>โรงงานของคุณผลิตสินค้าการเกษตรประเภทใด</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_GROUP_TYPE_ANIMAL" xml:space="preserve">
+    <value>สัตว์</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_GROUP_TYPE_PLANT" xml:space="preserve">
+    <value>พืช</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRIVATIZE" xml:space="preserve">
+    <value>ธุรกิจแปรรูปเกษตรของคุณเข้าข่ายลักษณะใดด่อไปนี้</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRIVATIZE_HIRER" xml:space="preserve">
+    <value>เป็นผู้ว่าจ้าง</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRIVATIZE_IMPORTER" xml:space="preserve">
+    <value>เป็นผู้นำเข้า</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRIVATIZE_PRODUCER" xml:space="preserve">
+    <value>เป็นผู้ผลิต</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRODUCT" xml:space="preserve">
+    <value>ธุรกิจของคุณมีสินค้าที่เข้าข่ายรายการต่อไปนี้หรือไม่</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRODUCT_GMP" xml:space="preserve">
+    <value>(ค) อาหารทั่วไปที่ผ่านการตรวจสถานที่ตามเกณฑ์ GMP/Primary GMP  ได้แก่ อาหารนอกเหนือจากอาหารควบคุมเฉพาะ อาหารกำหนดคุณภาพหรือมาตรฐาน และอาหารที่ต้องมีฉลาก เช่น พืชและผลิตภัณฑ์, สัตว์และผลิตภัณฑ์, สารสกัด/สารสังเคราะห์ จากพืชที่ใช้เป็นวัตถุดิบ, สารอาหาร, แป้งและผลิตภัณฑ์, ผลิตภัณฑ์สำหรับทำอาหารชนิดต่างๆ ที่ยังไม่พร้อมบริโภค, เครื่องปรุงรส, น้ำตาล, เครื่องเทศ</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRODUCT_LEBEL" xml:space="preserve">
+    <value>(ข) อาหารที่ต้องมีฉลาก ได้แก่ ขนมปัง, ซอสในภาชนะบรรจุที่ปิดสนิท, แป้งข้าวกล้อง, ผลิตภัณฑ์จากเนื้อสัตว์, วัตถุแต่งกลิ่นรส, วุ้นสำเร็จรูปและขนมเยลลี่, หมากฝรั่งและลูกอม, อาหารพร้อมปรุง และอาหารสำเร็จรูปที่พร้อมบริโภคทันที</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRODUCT_NO" xml:space="preserve">
+    <value>ไม่ใช่รายการดังกล่าวข้างต้น</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_PRODUCT_STANDARD" xml:space="preserve">
+    <value>(ก) อาหารกำหนดคุณภาพหรือมาตรฐาน ได้แก่ กาแฟ 100%, เกลือบริโภค, ข้าวเติมวิตามิน, ไข่เยี่ยวม้า, ครีม, ช็อกโกแลต, ชา, ชาสมุนไพร, ซอสบางชนิด, น้ำแข็ง, น้ำนมถั่วเหลืองในภาชนะบรรจุที่ปิดสนิท, น้ำบริโภคในภาชนะบรรจุที่ปิดสนิท, น้ำปลา, น้ำผึ้ง, น้ำมันถั่วลิสง, น้ำมันเนย, น้ำมันปาล์ม, น้ำมันมะพร้าว, น้ำมันและไขมัน, น้ำแร่ธรรมชาติ, น้ำส้มสายชู, เนย, เนยแข็ง, เนยเทียม เนยผสม ผลิตภัณฑ์เนยเทียม ผลิตภัณฑ์เนยผสม, เนยใส หรือกี, ผลิตภัณฑ์ปรุงรสที่ได้จากการย่อย โปรตีนของถั่วเหลือง, แยม เยลลี่ และมาร์มาเลดในภาชนะบรรจุที่ปิดสนิท, อาหารกึ่งสำเร็จรูป, น้ำเกลือปรุงรสอาหาร</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_SUGAR" xml:space="preserve">
+    <value>ธุรกิจของคุณอยู่ในประเภทการทำน้ำตาลจากน้ำหวานของต้นมะพร้าว ต้นตาลโตนดหรือพืชอื่น ๆ ซึ่งมิใช่อ้อย หรือการฟักไข่ โดยใช้ตู้อบ ใช่หรือไม่</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_SUGAR_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่ได้อยู่ในประเภทการทำน้ำตาลจากน้ำหวานของต้นมะพร้าว ต้นตาลโตนดหรือพืชอื่น ๆ ซึ่งมิใช่อ้อย หรือการฟักไข่ โดยใช้ตู้อบ</value>
+  </data>
+  <data name="QUESTION_SMALLAGRICULTURAL_SUGAR_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันอยู่ในประเภทการทำน้ำตาลจากน้ำหวานของต้นมะพร้าว ต้นตาลโตนดหรือพืชอื่น ๆ ซึ่งมิใช่อ้อย หรือการฟักไข่ โดยใช้ตู้อบ</value>
+  </data>
+  <data name="QUIZ_OPEN_ECOMCLOTHES" xml:space="preserve">
+    <value>แบบสอบถามธุรกิจ e-Commerce (ด้านเสื้อผ้า)</value>
+  </data>
+  <data name="QUIZ_OPEN_SMALLAGRICULTURAL" xml:space="preserve">
+    <value>แบบสอบถามธุรกิจแปรรูปสินค้าเกษตรขนาดเล็ก</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT" xml:space="preserve">
+    <value>ธุรกิจของคุณมีกิจกรรมอะไรบ้าง</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT_INFO" xml:space="preserve">
+    <value>ธุรกิจสัญญาซื้อขายล่วงหน้าจะอนุญาตเฉพาะนิติบุคคลไทย</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT_CONSULTANT" xml:space="preserve">
+    <value>รับเป็นที่ปรึกษา ให้คำแนะนำด้านการลงทุนแก่ลูกค้า</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT_CONTRACT" xml:space="preserve">
+    <value>รับคำสั่งซื้อขายจากลูกค้า สำหรับตราสารประเภทต่าง ๆ จำพวก "สัญญาซื้อขายล่วงหน้า"</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT_DEBT" xml:space="preserve">
+    <value>รับคำสั่งซื้อขายจากลูกค้า สำหรับตราสารประเภทต่าง ๆ จำพวก"ตราสารหนี้"</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT_FUNDS" xml:space="preserve">
+    <value>รับบริหารเงินของลูกค้าหรือจัดตั้งกองทุนเพื่อเสนอขายแก่ลูกค้า</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT_INVESTMENT" xml:space="preserve">
+    <value>รับคำสั่งซื้อขายจากลูกค้า สำหรับตราสารประเภทต่าง ๆ จำพวก "หน่วยลงทุน"</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT_STOCK" xml:space="preserve">
+    <value>รับคำสั่งซื้อขายจากลูกค้า สำหรับตราสารประเภทต่าง ๆ จำพวก "หุ้น"</value>
+  </data>
+  <data name="QUESTION_FINANCE_OTHER_ACT" xml:space="preserve">
+    <value>ธุรกิจของคุณ มีกิจกรรมอื่น นอกจากจากข้อ 1 และ 2 หรือไม่</value>
+  </data>
+  <data name="QUESTION_FINANCE_OTHER_ACT_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่มีกิจกรรมอื่น นอกจากข้อ 1 และ 2</value>
+  </data>
+  <data name="QUESTION_FINANCE_SECURITIES" xml:space="preserve">
+    <value>ธุรกิจของคุณมีกิจกรรมยืมหรือให้ยืมหลักทรัพย์ หรือไม่</value>
+  </data>
+  <data name="QUESTION_FINANCE_SECURITIES_NO" xml:space="preserve">
+    <value>ไม่ใช่ ธุรกิจของฉันไม่มีกิจกรรม“ยืมหรือให้ยืมหลักทรัพย์”</value>
+  </data>
+  <data name="QUESTION_FINANCE_SECURITIES_YES" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีกิจกรรม“ยืมหรือให้ยืมหลักทรัพย์”</value>
+  </data>
+  <data name="QUIZ_OPEN_FINANCE" xml:space="preserve">
+    <value>แบบสอบถามธุรกิจทางการเงิน</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>ใช่ ธุรกิจของฉันมีกิจกรรมอื่น นอกจากข้อ 1 และ 2</value>
+  </data>
+  <data name="QUESTION_HOTEL_PEOPLE_CAN_LIVE" xml:space="preserve">
+    <value>บริการที่พักของคุณสามารถรองรับผู้อยู่อาศัยได้มากกว่า 20 คนหรือไม่</value>
+  </data>
+  <data name="QUESTION_HOTEL_PEOPLE_CAN_LIVE__NO" xml:space="preserve">
+    <value>ไม่ใช่ บริการที่พักของฉันไม่สามารถรองรับผู้อยู่อาศัยได้ถึง 20 คน</value>
+  </data>
+  <data name="QUESTION_HOTEL_PEOPLE_CAN_LIVE__YES" xml:space="preserve">
+    <value>ใช่ บริการที่พักของฉันสามารถรองรับผู้อยู่อาศัยได้มากกว่า 20 คนขึ้นไป</value>
+  </data>
+  <data name="QUESTION_HOTEL_ROOMS" xml:space="preserve">
+    <value>บริการที่พักของคุณมีจำนวนห้องพักมากกว่า 4 ห้องหรือไม่</value>
+  </data>
+  <data name="QUESTION_HOTEL_ROOMS__NO" xml:space="preserve">
+    <value>ไม่ใช่ จำนวนห้องห้องพักของฉันน้อยกว่าหรือเท่ากับ 4 ห้อง</value>
+  </data>
+  <data name="QUESTION_HOTEL_ROOMS__YES" xml:space="preserve">
+    <value>ใช่ จำนวนห้องพักของฉันมากกว่า 4 ห้อง</value>
+  </data>
+  <data name="QUESTION_HOTEL_SERVICE" xml:space="preserve">
+    <value>บริการที่พักของคุณเป็นที่พักให้บริการมากกว่ารายเดือนหรือไม่</value>
+  </data>
+  <data name="QUESTION_HOTEL_SERVICE__NO" xml:space="preserve">
+    <value>ไม่ใช่ บริการของฉันน้อยกว่าหรือเท่ากับรายเดือน</value>
+  </data>
+  <data name="QUESTION_HOTEL_SERVICE__YES" xml:space="preserve">
+    <value>ใช่ บริการของฉันมากกว่ารายเดือน</value>
+  </data>
+  <data name="QUESTION_LEGAL_LAW_FIRM_NAME__INFO" xml:space="preserve">
+    <value>&lt;div class="D-12 M-12"&gt;&lt;p&gt;มาตรา 42 ทนายความต้องมีสำนักงานที่จดทะเบียนเพียงแห่งเดียวตามที่ระบุไว้ในคำขอจดทะเบียนและรับใบอนุญาต หรือตามที่ได้แจ้งย้ายสำนักงานต่อนายทะเบียนทยายความในภายหลัง  ให้นายทะเบียนทนายความจดแจ้งสำนักงานทนายความตามวรรคหนึ่งไว้ในทะเบียนทนายความ&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="QUESTION_FINANCE_ACT_STOCK_SBL" xml:space="preserve">
+    <value>ยืมหรือให้ยืมหลักทรัพย์</value>
+  </data>
+</root>

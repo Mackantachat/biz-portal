@@ -1,0 +1,60 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    
+    
+    $(document).ready(function (e) {
+        // User cannot manually select request type.
+        
+        $(document).find('section').each(function () {
+            if (this.dataset.sectionName !== 'APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_CONFIRM_SECTION') {
+                debugger;
+                window.singleFormHelpers.form.setReadonly(this);
+
+                // All fields should not required.
+                window.singleFormHelpers.form.ignoreValidations(this);
+            }
+        });
+                
+        // listen on databinding
+        window.singleFormHelpers.form.onDraftDataLoading(function (sectionGroup) {
+            /*setTimeout(function () {
+                swal({
+                    title: 'กรุณารอสักครู่',
+                    text: 'กำลังดึงข้อมูลจากกรมธุรกิจการค้า...',
+                    type: 'info',
+                    showConfirmButton: false
+                });
+            }, 500);*/
+        
+        });
+
+        window.singleFormHelpers.form.onDraftDataLoaded(function (sectionGroup) {
+            //swal.close();
+        });
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            $(document).find('section').each(function () {
+                if (this.dataset.sectionName !== 'APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_CONFIRM_SECTION') {
+                    window.singleFormHelpers.form.setReadonly(this);
+
+                    // All fields should not required.
+                    window.singleFormHelpers.form.ignoreValidations(this);
+                }
+            });
+        });
+    });
+	
+</script>
+
+<style type="text/css">
+    .lbl-warning {
+        padding-top: 10px;
+        color: orangered;
+    }
+</style>
+

@@ -1,0 +1,27 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="SOFTWARE_HOUSE_BUSINESS_SOFTWARE_DETAIL_MODULE_EDITTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <label>ชื่อโมดูล : {{this.SOFTWARE_MODULE_NAME_EDIT}}</label>
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่พบข้อมูล
+        </div>
+    </div>
+    {{/xif}}
+</script>

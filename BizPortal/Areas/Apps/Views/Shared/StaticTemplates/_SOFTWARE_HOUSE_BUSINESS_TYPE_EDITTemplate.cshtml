@@ -1,0 +1,35 @@
+﻿@using BizPortal.Utils.Helpers
+@model BizPortal.DAL.MongoDB.FormSection
+    <script id="@(Model.Section)Template" type="text/x-handlebars-template">
+        {{#xif " data.length > 0 " }}
+        <div class="row">
+            <div class="col-md-8">
+                <label>@BizPortal.Resources.Apps_SingleForm.PRODUCT_AND_OR_SERVICE_TYPE :</label>
+            </div>
+        </div>
+        {{#each data}}
+
+        <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+            <div class="col-md-8">
+                <p class="bold form-control-static">{{this.SOFTWARE_PRODUCT_OR_SERVICE_TYPE}}</p>
+            </div>
+            <div class="col-md-2 pr5">
+                @*<button type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>*@
+            </div>
+            <div class="col-md-2 pl5">
+                @*<button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>*@
+            </div>
+        </div>
+
+        {{/each}}
+        {{else}}
+        <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+            <div class="col-md-12 text-center">
+                ไม่มีข้อมูลวัตถุดิบ
+            </div>
+        </div>
+        {{/xif}}
+
+    </script>
+
+

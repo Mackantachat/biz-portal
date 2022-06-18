@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ALL_5_DOMESTIC_GOODS" xml:space="preserve">
+    <value>นำเข้าสินค้าตาม 5  ประเภทข้างบน</value>
+  </data>
+  <data name="BUSINESS_GOODS_TYPE" xml:space="preserve">
+    <value>2.1 ธุรกิจของคุณเข้าข่ายประเภทกิจการใดบ้าง (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="BUSINESS_SERVICES_TYPE" xml:space="preserve">
+    <value>3.1 ธุรกิจของคุณเข้าข่ายประเภทกิจการใดบ้าง (เลือกได้มากกว่า 1 ข้อ)</value>
+  </data>
+  <data name="CDS_DVDS_TAPES_FOR_SELL_OR_RENT" xml:space="preserve">
+    <value>ขาย ให้เช่า ผลิต แผ่นซีดี แถบบันทึก วีดิทัศน์ แผ่นวีดิทัศน์ ดีวีดี หรือแผ่นวีดิทัศน์ระบบดิจิทัล</value>
+  </data>
+  <data name="COMPETITIVE_SPORTS_SERVICE" xml:space="preserve">
+    <value>ให้บริการจัดแข่งขันกีฬาสมัครเล่น</value>
+  </data>
+  <data name="CULTURAL_AND_ART_SERVICES" xml:space="preserve">
+    <value>ให้บริการแสดงศิลปวัฒนธรรม ได้แก่ การแสดงพื้นเมือง ระบำ ละคร และโขน หรือการแสดงดนตรีไทยและไม่ได้เรียกเก็บค่าบริการโดยตรงจากผู้ชม</value>
+  </data>
+  <data name="DATACENTER_AND_HOST_SERVICES" xml:space="preserve">
+    <value>ให้บริการตลาดกลางผ่านอินเทอร์เน็ต บริการอินเทอร์เน็ต ให้เช่าเครื่องคอมพิวเตอร์ หรือให้เช่าพื้นที่เครื่องคอมพิวเตอร์แม่ข่าย</value>
+  </data>
+  <data name="DECREE_NO239_GOODS_AND_SERVICES" xml:space="preserve">
+    <value>ขายสินค้า หรือการให้บริการอื่นๆตามที่กำหนดโดยพระราชกฤษฎีกาฯ (ฉบับที่ 239) พ.ศ.2534</value>
+  </data>
+  <data name="DOMESTIC_AGRICULTURAL_CROPS" xml:space="preserve">
+    <value>ขายพืชผลทางการเกษตรแบบสด ภายในประเทศ เช่น ข้าว ข้าวโพด มันสำปะหลัง ผัก ผลไม้ เป็นต้น</value>
+  </data>
+  <data name="DOMESTIC_ANIMALS_AND_UNPROCESSED_MEAT" xml:space="preserve">
+    <value>ขายสัตว์มีชีวิต หนังสัตว์ที่ยังไม่ได้ฟอก และเนื้อสัตว์ที่ยังไม่ได้แปรรูป ภายในประเทศ</value>
+  </data>
+  <data name="DOMESTIC_ANIMAL_FOODS" xml:space="preserve">
+    <value>ขายปลาป่น หรืออาหารสัตว์ ภายในประเทศ</value>
+  </data>
+  <data name="DOMESTIC_FERTILIZERS_CHEMICALS_MEDICINES" xml:space="preserve">
+    <value>ขายปุ๋ย เคมีภัณฑ์ หรือยาสำหรับใช้ในพืชและสัตว์ ภายในประเทศ</value>
+  </data>
+  <data name="DOMESTIC_FUEL_TRANSPORTATION" xml:space="preserve">
+    <value>ให้บริการการขนส่งน้ำมันเชื้อเพลิงทางท่อภายในประเทศ</value>
+  </data>
+  <data name="DOMESTIC_NEWSPAPER_MAGAZINES_AND_TEXTBOOKS" xml:space="preserve">
+    <value>ขายหนังสือพิมพ์ นิตยสาร หรือตำราเรียน ภายในประเทศ</value>
+  </data>
+  <data name="DOMESTIC_TRANSPORTATION_BY_AIR" xml:space="preserve">
+    <value>ให้บริการขนส่งภายในประเทศโดยอากาศยาน</value>
+  </data>
+  <data name="DOMESTIC_TRANSPORTATION_BY_LANDWATER" xml:space="preserve">
+    <value>ให้บริการขนส่งภายในประเทศไม่ว่าจะเป็นทางบกหรือทางน้ำ</value>
+  </data>
+  <data name="EDUCATIONAL_SERVICES" xml:space="preserve">
+    <value>ให้บริการด้านการศึกษาของสถานศึกษารัฐและเอกชน</value>
+  </data>
+  <data name="EXPORTED_GOODS_BY_INDUSTRIAL_PARK" xml:space="preserve">
+    <value>ขายสินค้าส่งออก โดยดำเนินการในเขตอุตสาหกรรมส่งออกของนิคมอุตสาหกรรม</value>
+  </data>
+  <data name="GEMSTONE_AND_JEWELRY" xml:space="preserve">
+    <value>ขายอัญมณี หรือเครื่องประดับอัญมณี</value>
+  </data>
+  <data name="GOODS_AND_SERVICES_FOR_MINISTRY" xml:space="preserve">
+    <value>ขายสินค้าหรือการให้บริการของกระทรวง ทบวง กรม ซึ่งส่งรายรับทั้งสิ้นให้แก่รัฐโดยไม่หักรายจ่าย</value>
+  </data>
+  <data name="GOOD_TYPES_ETC" xml:space="preserve">
+    <value>ขายสินค้าอื่นๆนอกเหนือจากที่ระบุข้างต้น</value>
+  </data>
+  <data name="HAS_HOME_NUMBER" xml:space="preserve">
+    <value>1. ท่านมีเลขประจำบ้าน 11 หลักแล้วหรือยัง</value>
+  </data>
+  <data name="HAS_ONLINE_STORE" xml:space="preserve">
+    <value>4. ธุรกิจของคุณขายสินค้าหรือให้บริการผ่านอินเทอร์เน็ตหรือไม่</value>
+  </data>
+  <data name="HAS_ONLINE_STORE_NO" xml:space="preserve">
+    <value>ไม่ ฉันไม่ได้ทำธุรกิจผ่านอินเทอร์เน็ต</value>
+  </data>
+  <data name="HAS_ONLINE_STORE_YES" xml:space="preserve">
+    <value>ใช่ ฉันทำธุรกิจโดยใช้อินเตอร์เน็ต</value>
+  </data>
+  <data name="HOSPITAL_SERVICES" xml:space="preserve">
+    <value>ให้บริการรักษาพยาบาลของสถานพยาบาลรัฐและเอกชน</value>
+  </data>
+  <data name="INSTALL_TYPE" xml:space="preserve">
+    <value>4. ประเภทการติดตั้ง</value>
+  </data>
+  <data name="INTERNATIONAL_SHIPPING_BY_LANDWATER" xml:space="preserve">
+    <value>ให้บริการขนส่งระหว่างประเทศทางบกและทางเรือซึ่งมิใช่เรือเดินทะเล</value>
+  </data>
+  <data name="IS_BUSINESS_PROVIDE_SERVICES" xml:space="preserve">
+    <value>3. กิจการของคุณมีการให้บริการหรือไม่</value>
+  </data>
+  <data name="IS_BUSINESS_PROVIDE_SERVICES_NO" xml:space="preserve">
+    <value>ไม่ กิจการของฉันไม่มีการให้บริการ</value>
+  </data>
+  <data name="IS_BUSINESS_PROVIDE_SERVICES_YES" xml:space="preserve">
+    <value>ใช่ กิจการของฉันมีการให้บริการ</value>
+  </data>
+  <data name="IS_BUSINESS_SELLING_GOODS" xml:space="preserve">
+    <value>2. กิจการของคุณมีการค้าขายสินค้าหรือไม่</value>
+  </data>
+  <data name="IS_BUSINESS_SELLING_GOODS_NO" xml:space="preserve">
+    <value>ไม่ กิจการของฉันไม่มีการค้าขายสินค้า</value>
+  </data>
+  <data name="IS_BUSINESS_SELLING_GOODS_YES" xml:space="preserve">
+    <value>ใช่ กิจการของฉันมีการค้าขายสินค้า</value>
+  </data>
+  <data name="IS_NEED_VAT" xml:space="preserve">
+    <value>3.3 ประเภทกิจการของคุณ “ไม่เข้าข่าย” ที่ต้องจดทะเบียนภาษีมูลค่าเพิ่ม แต่คุณสามารถจดทะเบียนภาษีมูลค่าเพิ่มได้</value>
+  </data>
+  <data name="IS_NEED_VAT_NO" xml:space="preserve">
+    <value>ไม่ ฉันยังไม่ต้องการจดทะเบียนภาษีมูลค่าเพิ่มตอนนี้</value>
+  </data>
+  <data name="IS_NEED_VAT_YES" xml:space="preserve">
+    <value>ใช่ ฉันต้องการจดทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="IS_REGISTERED_JURISTIC" xml:space="preserve">
+    <value>1. คุณได้จดทะเบียนนิติบุคคลกับกรมพัฒนาธุรกิจการค้าจนเสร็จสิ้นแล้วหรือไม่</value>
+  </data>
+  <data name="IS_REGISTERED_JURISTIC_NO" xml:space="preserve">
+    <value>ไม่ ฉันยังไม่ได้จดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="IS_REGISTERED_JURISTIC_YES" xml:space="preserve">
+    <value>ใช่ ฉันจดทะเบียนนิติบุคคลแล้ว</value>
+  </data>
+  <data name="IVORY_AND_CARVED_IVORY" xml:space="preserve">
+    <value>ขายงาช้างและผลิตภัณฑ์ที่เกี่ยวข้อง หรือแปรสภาพ แกะสลัก และทำหัตถกรรมจากงาช้าง</value>
+  </data>
+  <data name="KARAOKE_GAME_CONSOLE_SERVICES" xml:space="preserve">
+    <value>ให้บริการคาราโอเกะ เครื่องเล่นเกมส์ หรือตู้เพลง</value>
+  </data>
+  <data name="LABOR_CONTRACT_SERVICES" xml:space="preserve">
+    <value>ให้บริการตามสัญญาจ้างแรงงาน</value>
+  </data>
+  <data name="LIBRARY_MUSEUM_ZOO" xml:space="preserve">
+    <value>ให้บริการห้องสมุด พิพิธภัณฑ์ สวนสัตว์</value>
+  </data>
+  <data name="MEDICAL_TREATMENT_AUDIT_AND_LAWYER" xml:space="preserve">
+    <value>ให้บริการประกอบโรคศิลปะ การสอบบัญชี การว่าความ</value>
+  </data>
+  <data name="METRO_OR_PROVINCE" xml:space="preserve">
+    <value>2. สถานที่ที่ต้องการขอติดตั้งสาธารณูปโภคอยู่ภายในเขต</value>
+  </data>
+  <data name="NUMBER_OF_EMPLOYEES" xml:space="preserve">
+    <value>5. ธุรกิจของคุณมีลูกจ้างกี่คน</value>
+  </data>
+  <data name="NUMBER_OF_EMPLOYEES_1_TO_9" xml:space="preserve">
+    <value>มีลูกจ้าง 1-9 คน</value>
+  </data>
+  <data name="NUMBER_OF_EMPLOYEES_MORETHAN_10" xml:space="preserve">
+    <value>มีลูกจ้าง 10 คนขึ้นไป</value>
+  </data>
+  <data name="NUMBER_OF_EMPLOYEES_NO" xml:space="preserve">
+    <value>ยังไม่มีลูกจ้าง</value>
+  </data>
+  <data name="REAL_ESTATE_REANTAL_SERVICE" xml:space="preserve">
+    <value>ให้บริการเช่าอสังหาริมทรัพย์</value>
+  </data>
+  <data name="RELIGION_AND_DOMESTIC_CHARITY" xml:space="preserve">
+    <value>ขายสินค้าหรือการให้บริการเพื่อประโยชน์แก่การศาสนา หรือการสาธารณกุศลภายในประเทศ ซึ่งไม่นำผลกำไรไปจ่ายในทางอื่น</value>
+  </data>
+  <data name="SERVICE_TYPES_ETC" xml:space="preserve">
+    <value>อื่นๆ นอกเหนือจากที่ระบุข้างต้น</value>
+  </data>
+  <data name="SPECIAL_ANNUAL_REVENUE_18_1" xml:space="preserve">
+    <value>3.2 ธุรกิจของคุณดังต่อไปนี้...</value>
+  </data>
+  <data name="SPECIAL_ANNUAL_REVENUE_18_2" xml:space="preserve">
+    <value>มีรายรับรวมเกิน 1.8 ล้านบาทต่อปีใช่หรือไม่</value>
+  </data>
+  <data name="SPECIAL_ANNUAL_REVENUE_18_NO" xml:space="preserve">
+    <value>ไม่ ฉันยังมีรายรับไม่ถึง 1.8 ล้านบาทต่อปี</value>
+  </data>
+  <data name="SPECIAL_ANNUAL_REVENUE_18_YES" xml:space="preserve">
+    <value>ใช่ ฉันมีรายรับรวมเกิน 1.8 ล้านบาทต่อปี</value>
+  </data>
+  <data name="TITLE_UTILITIES" xml:space="preserve">
+    <value>แบบสอบถามการขอติดตั้งสาธารณูปโภค</value>
+  </data>
+  <data name="UTILITY_SERVICES" xml:space="preserve">
+    <value>3. บริการที่ต้องการขอติดตั้ง</value>
+  </data>
+  <data name="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" xml:space="preserve">
+    <value />
+  </data>
+</root>

@@ -1,0 +1,716 @@
+﻿@model BizPortal.ViewModels.SingleForm.SingleFormAppsViewModel[]
+@using BizPortal.DAL.MongoDB
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+
+
+@{
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+    FormSectionGroup[] sectionGroups = ViewBag.SectionGroups;
+    FormSection[] sections = ViewBag.Sections;
+    FormSectionRow[] sectionRows = ViewBag.SectionRows;
+
+    var requestViewModel = (BizPortal.ViewModels.SingleForm.SingleFormRequestViewModel)ViewBag.SingleFormData;
+    ViewBag.RequestIdentityType = (requestViewModel != null) ? requestViewModel.IdentityType : IdentityType;
+
+    var appNumber = 1;
+    var appNumberText = 1;
+    var trackingUrl = Url.BizAction("Index", "Track", new { area = "", language = ViewBag.CurrentLang });
+    var finishUrl = Url.BizAction("Finish", "SingleForm", new { area = "Apps", language = ViewBag.CurrentLang });
+    bool hasDupAddress = false;
+    bool hasDupTitleDBD = false;
+}
+
+<div class="single-form">
+    @foreach (var group in sectionGroups)
+    {
+        string appHeader = string.Empty;
+        appHeader = ResourceHelper.GetResourceWordWithDefault(group.SectionGroup, StringHelper.DefaultIfEmpty(group.ResourceName, "Apps_SingleForm_SectionGroup"), group.SectionGroup);
+        var orderedSec = sections.Where(o => o.SectionGroup == group.SectionGroup && !o.HideOnConfirmationPage).OrderBy(o => o.Ordering).ToList();
+        bool firstSection = true;
+        if (orderedSec.Count > 0)
+        {
+            <div class="row">
+                <section data-section-group-name="@group.SectionGroup" class="col-md-12 mt15 mb15">
+                    <div class="text-center"><h4 style="line-height: 1.6em;">@string.Format("{0}. {1}", appNumberText, appHeader)</h4></div>
+                    @for (var i = 0; i < orderedSec.Count; i++)
+                    {
+                        //@foreach (var sec in sections.Where(o => o.SectionGroup == group.SectionGroup))
+                        //{
+                        var sec = orderedSec[i];
+                        var templateName = sec.TemplateName != null ? sec.TemplateName : sec.Section;
+                        var secRows = sectionRows.Where(o => o.Section == sec.Section).OrderBy(o => o.RowNumber).ToArray();
+                        var sectionEmpty = false;
+
+                        bool existingINFORMATION_STORE = secRows.Any(o => o.Section.Equals("INFORMATION_STORE"));
+                        bool existingGENERAL_INFORMATION = secRows.Any(o => o.Section.Equals("GENERAL_INFORMATION"));
+
+                        if (existingINFORMATION_STORE)
+                        {
+                            bool findAddressBKK = false;
+                            bool findAddressAll = false;
+                            foreach (var row in secRows)
+                            {
+                                foreach (var ctrl in row.Controls)
+                                {
+                                    if (ctrl.Control.Equals("INFORMATION_STORE__ADDRESS"))
+                                    {
+
+                                        System.Reflection.PropertyInfo prop = ctrl.GetType().GetProperty("AddressForm_ProvinceType", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+                                        object propVal = prop.GetValue((object)ctrl, null);
+                                        ProvinceType propProvinceTypeVal = (ProvinceType)Enum.Parse(typeof(ProvinceType), propVal.ToString());
+                                        if (propProvinceTypeVal == ProvinceType.All)
+                                        {
+                                            findAddressAll = true;
+                                        }
+                                        else if (propProvinceTypeVal == ProvinceType.BKK)
+                                        {
+                                            findAddressBKK = true;
+                                        }
+                                        if (findAddressAll & findAddressBKK)
+                                        {
+                                            hasDupAddress = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (hasDupAddress) { break; }
+                            }
+                        }
+
+                        if (existingGENERAL_INFORMATION)
+                        {
+                            bool foundTitleDBD = false;
+                            bool foundTitleBiz = false;
+
+                            foreach (var row in secRows)
+                            {
+                                foreach (var ctrl in row.Controls)
+                                {
+                                    if (ctrl.Control.Equals("CITIZEN_TITLE"))
+                                    {
+                                        System.Reflection.PropertyInfo prop = ctrl.GetType().GetProperty("AjaxUrl", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+                                        object propVal = prop.GetValue((object)ctrl, null);
+                                        string propTitleDBD = propVal == null ? string.Empty : propVal.ToString();
+                                        if (!propTitleDBD.Equals(string.Empty))
+                                        {
+                                            foundTitleDBD = true;
+                                        }
+                                        else if (propTitleDBD.Equals(string.Empty))
+                                        {
+                                            foundTitleBiz = true;
+                                        }
+                                        if (foundTitleBiz & foundTitleDBD)
+                                        {
+                                            hasDupTitleDBD = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (hasDupTitleDBD) { break; }
+                            }
+                        }
+
+                        if (secRows.Length == 0)
+                        {
+                            sectionEmpty = true;
+                            for (var j = i + 1; j < orderedSec.Count; j++)
+                            {
+                                var nextSec = orderedSec[j];
+                                if (!nextSec.HideSectionHeader && !nextSec.NoHeader)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    if (sectionRows.Where(o => o.Section == nextSec.Section).Count() > 0)
+                                    {
+                                        // Not empty
+                                        sectionEmpty = false;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (!sectionEmpty || sec.IsPartialView)
+                        {
+                            var sectionAttr = DisplayConditionHelper.GetAttributes(sec);
+                            if (sec.Type == SectionType.Form)
+                            {
+                                <div class="row mt20 @sectionAttr.Class"
+                                     style="@sectionAttr.Style"
+                                     data-display-condition="@sectionAttr.Data">
+                                    <section data-section-group-name="@sec.Section" class="col-md-12">
+                                        @if (!sec.HideSectionHeader && !sec.NoHeader)
+                                        {
+                                            <h5 style="line-height: 40px;">
+                                                @Html.Raw(ResourceHelper.GetResourceWordWithDefault(templateName, StringHelper.DefaultIfEmpty(group.ResourceName, "Apps_SingleForm"), templateName))
+                                                @if (!ViewBag.IsDetailView && firstSection)
+                                                {
+                                                    firstSection = false;
+                                                    <a href="@Url.EncodedAction("Index", "SingleForm",
+                                                                            new { area = "Apps", language = ViewBag.CurrentLang, trid=ViewBag.trid, app=appNumber, edit=1 })"
+                                                       class="pull-right"
+                                                       style="font-size: 0.8em;"><i class="fa fa-edit"></i>แก้ไข</a>
+                                                }
+                                            </h5>
+                                            <hr />
+                                        }
+                                        @if (sec.IsPartialView)
+                                        {
+                                            sec.PartialReadonly = true;
+                                            <div class="row">
+                                                @{ Html.RenderPartial("~/Areas/Apps/Views/Shared/PartialForms/_" + sec.Section + "_Form.cshtml", sec); }
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            foreach (var row in secRows)
+                                            {
+                                                var cols = row.Controls.Count();
+                                                double maxCols = 12;
+                                                int colLen = (int)Math.Ceiling(maxCols / cols);
+                                                var rowAttr = DisplayConditionHelper.GetAttributes(row);
+                                                <div class="row @rowAttr.Class"
+                                                     style="@rowAttr.Style"
+                                                     data-display-condition="@rowAttr.Data">
+
+                                                    @foreach (var ctrl in row.Controls)
+                                                    {
+                                                        if (ctrl.Type == ControlType.AddressForm & hasDupAddress)
+                                                        {
+                                                            if (ctrl.Control.Equals("INFORMATION_STORE__ADDRESS") & ctrl.AddressForm_ProvinceType == ProvinceType.All)
+                                                            {
+                                                                colLen = 12;
+                                                                continue;
+                                                            }
+                                                        }
+
+                                                        if (ctrl.Type == ControlType.Dropdown && hasDupTitleDBD)
+                                                        {
+                                                            if (ctrl.Control.Equals("CITIZEN_TITLE") && ctrl.AjaxUrl == null)
+                                                            {
+                                                                continue;
+                                                            }
+                                                        }
+
+                                                        if (ctrl.IsNotDisplayControl == true)
+                                                        {
+                                                            continue;
+                                                        }
+
+                                                        ctrl.SectionName = sec.Section;
+                                                        ctrl.ClientID = string.Format("{0}-{1}", ctrl.DataKey, DateTime.Now.Ticks);
+
+                                                        var ctrlDataKey = ctrl.DataKey;
+                                                        if (ctrl.Type == ControlType.RadioGroup)
+                                                        {
+                                                            ctrlDataKey = ctrl.RadioGroup.RadioGroupName;
+                                                        }
+                                                        else if (ctrl.Type == ControlType.Dropdown)
+                                                        {
+                                                            if (ctrl.IsAjaxDropdown)
+                                                            {
+                                                                ctrlDataKey = "AJAX_DROPDOWN_" + ctrl.DataKey;
+                                                            }
+                                                            else
+                                                            {
+
+                                                                ctrlDataKey = "DROPDOWN_" + ctrl.DataKey;
+                                                            }
+                                                        }
+
+                                                        if (defaults.ContainsKey(sec.Section + "::" + ctrlDataKey))
+                                                        {
+                                                            var data = defaults[sec.Section + "::" + ctrlDataKey];
+                                                            if (data != null && (data.GetType() != typeof(string) || (data.GetType() == typeof(string) && !string.IsNullOrEmpty(data.ToString()))))
+                                                            {
+                                                                if (ctrl.Type == ControlType.Dropdown || (ctrl.Type == ControlType.AjaxStaticControl && ctrl.Control == "PWA_BRANCH"))
+                                                                {
+                                                                    var ddVal = defaults[sec.Section + "::" + ctrlDataKey + "_TEXT"];
+                                                                    ctrl.Data = new BizPortal.ViewModels.Select2.Select2Opt[]
+                                                                    {
+                                                                                    new BizPortal.ViewModels.Select2.Select2Opt
+                                                                                    {
+                                                                                        ID = data as string,
+                                                                                        Text = ddVal as string,
+                                                                                    }
+                                                                    };
+                                                                }
+                                                                else
+                                                                {
+                                                                    ctrl.Data = data;
+                                                                }
+                                                            }
+                                                        }
+
+                                                        else if (defaults.ContainsKey(ctrl.DataKey))
+                                                        {
+                                                            var data = defaults[ctrl.DataKey];
+                                                            if (data != null && (data.GetType() != typeof(string) || (data.GetType() == typeof(string) && !string.IsNullOrEmpty(data.ToString()))))
+                                                            {
+                                                                ctrl.Data = defaults[ctrl.DataKey];
+                                                            }
+                                                        }
+
+                                                        if (ctrl.ColFixed > 0 && ctrl.ColFixed <= 12)
+                                                        {
+                                                            colLen = ctrl.ColFixed;
+                                                        }
+                                                        var addClass = ctrl.IsCustomClass ? ctrl.CustomClassName : string.Empty;
+                                                        var ctrlAttr = DisplayConditionHelper.GetAttributes(ctrl);
+
+                                                        if (ctrl.Type == ControlType.Hidden)
+                                                        {
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_HiddenControl.cshtml", ctrl);
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-md-@colLen form-group @addClass @ctrlAttr.Class"
+                                                                 style="@ctrlAttr.Style"
+                                                                 data-display-condition="@ctrlAttr.Data">
+
+                                                                @if (ctrl.Control != "TOT_BRANCH" && ((ctrl.Type != ControlType.AddressForm && ctrl.Type != ControlType.AddressFormEN && ctrl.Type != ControlType.ChainedDropdown) || (ctrl.Type == ControlType.AddressForm && ctrl.Type != ControlType.AddressFormEN && ctrl.DisplayStaticIfHasData)))
+                                                                {
+                                                                    if (ctrl.Type == ControlType.Heading)
+                                                                    {
+                                                                        <label>
+                                                                            @ResourceHelper.GetResourceWordWithDefault(ctrl.Control, StringHelper.DefaultIfEmpty(group.ResourceName, "Apps_SingleForm"), ctrl.Control)
+                                                                            @if (!ctrl.Info.IsEmpty() && !ViewBag.IsDetailView)
+                                                                            {
+                                                                                <a href="#" class="form-info" data-target="info-@ctrl.ClientID">
+                                                                                    <i class="fa fa-info-circle"></i>
+                                                                                </a>
+                                                                            }
+                                                                        </label>
+                                                                    }
+                                                                    else if (ctrl.Type == ControlType.Signature)
+                                                                    {
+                                                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_SignatureControl.cshtml", ctrl);
+                                                                    }
+                                                                    else if (!ctrl.HideLabel)
+                                                                    {
+                                                                        <label>
+                                                                            @ResourceHelper.GetResourceWordWithDefault(ctrl.Control, StringHelper.DefaultIfEmpty(group.ResourceName, "Apps_SingleForm"), ctrl.Control) :
+                                                                            @if (!ctrl.Info.IsEmpty() && !ViewBag.IsDetailView)
+                                                                            {
+                                                                                <a href="#" class="form-info" data-target="info-@ctrl.ClientID">
+                                                                                    <i class="fa fa-info-circle"></i>
+                                                                                </a>
+                                                                            }
+                                                                        </label>
+                                                                    }
+                                                                }
+                                                                @if (!ctrl.Info.IsEmpty())
+                                                                {
+                                                                    <div class="form-control-info" id="info-@ctrl.ClientID" style="@(ctrl.DefaultShowInfo ? "" : "display:none")">
+                                                                        @if (!ViewBag.IsDetailView)
+                                                                        {
+                                                                            <a href="#" class="form-control-info-close" data-target="info-@ctrl.ClientID"><i class="fa fa-times-circle"></i></a>
+                                                                        }
+                                                                        <div class="row">
+                                                                            <div class="M-12 col-md-12">@Html.Raw(ResourceHelper.GetResourceWordWithDefault(ctrl.Info, StringHelper.DefaultIfEmpty(group.ResourceName, "Apps_SingleForm"), ctrl.Info))</div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                                @if ((ctrl.DisplayStaticIfHasData) && ctrl.Data != null)
+                                                                {
+                                                                    Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_StaticControl.cshtml", ctrl);
+                                                                }
+                                                                else if (ctrl.Control == "MEA_BRANCH" || ctrl.Control == "MWA_BRANCH" || ctrl.Control == "TOT_BRANCH" || ctrl.Control == "PWA_BRANCH")
+                                                                {
+                                                                    if (ctrl.Data != null)
+                                                                    {
+                                                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_AjaxStaticDisplay.cshtml", ctrl);
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    switch (ctrl.Type)
+                                                                    {
+                                                                        case ControlType.BKKBuildingFormFooter:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_BKKBuildingFormFooter.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.BKKBuildingRenewFormFooter:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_BKKBuildingRenewFormFooter.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.BKKBuildingNoteFooter:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_BKKBuildingNoteFooter.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.OCPBFormFooter:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_OCPBFormFooter.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignature:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureAnimal:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureAnimalControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureEDIT:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureEDITControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureFood:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureFoodControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureDangerFood:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureDangerFoodControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureFoodEdit:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureFoodEditControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureFoodLicense:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureFoodLicenseControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureBoard:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureBoardControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureFoodRenew:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureFoodRenewControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureBuilding:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureBuildingControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureBuildingOwn:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureBuildingOwnControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.AnimalMedFormFooter:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_AnimalMedFormFooterControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.TextBox:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_TextboxDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.Label:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_LabelControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.DataLabel:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_DataLabelDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.DatePicker:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_TextboxDisplay.cshtml", ctrl, new ViewDataDictionary() { { "DataValues", defaults } });
+                                                                            break;
+                                                                        case ControlType.DateRangePicker:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_DateRangePickerDisplay.cshtml", ctrl, new ViewDataDictionary() { { "DataValues", defaults } });
+                                                                            break;
+                                                                        case ControlType.Email:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_TextboxDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.CheckBox:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_CheckBoxDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.CheckBoxWithDropdown:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_CheckBoxWithDropdownDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.CheckBoxWithText:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_CheckBoxWithTextDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.RadioGroup:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_RadioGroupDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.RadioGroupWithDropdownETC:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_RadioGroupWithDropdownETCDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.Dropdown:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_DropdownDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ChainedDropdown:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ChainedDropdownDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.Chained5Dropdown:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_Chained5DropdownDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.GeoDropdown:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_GeoDropdownDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.AddressForm:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_AddressFormDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.AddressFormEN:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_AddressFormENDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.DataTable:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_DataTableDisplay.cshtml", ctrl);
+                                                                            break;
+                                                                        //case ControlType.Hidden:
+                                                                        //    Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_HiddenDisplay.cshtml", ctrl);
+                                                                        //    break;
+                                                                        case ControlType.ConfirmSignatureFactoryClass2New:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureFactoryClass2NewControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.ConfirmSignatureFactoryClass2Edit:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_ConfirmSignatureFactoryClass2EditControl.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.Confirm_SEC_NEW_A:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_ConfirmSignature_SEC_NEW_A.cshtml", ctrl);
+                                                                            break;
+                                                                        case ControlType.Confirm_SEC_EDIT:
+                                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_ConfirmSignatureControl_APP_SEC_EDIT.cshtml", ctrl);
+                                                                            break;
+                                                                        //case ControlType.AjaxStaticControl:
+                                                                        //    Html.RenderPartial("~/Areas/Apps/Views/Shared/StaticControls/_AjaxStaticDisplay.cshtml", ctrl);
+                                                                        //    break;
+                                                                        default:
+                                                                            break;
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        }
+                                                    }
+                                                </div>
+                                            }
+                                        }
+                                    </section>
+
+                                </div>
+                            }
+                            else if (sec.Type == SectionType.ArrayOfForms)
+                            {
+                                //if (sec.Section == "APP_COMMERCIAL_PARTNER_SECTION_PART" &&
+                                //    defaults.TryGetString("APP_cscoART::APP_COMMERCIAL_REGISTRATION_TYPE_OPTION", "") == "APP_COMMERCIAL_REGISTRATION_TYPE_CITIZEN")
+                                //{
+
+                                //}
+                                //else
+                                //{
+                                <div class="row mt20 mb20 @sectionAttr.Class"
+                                 style="@sectionAttr.Style"
+                                 data-display-condition="@sectionAttr.Data">
+                                    <section data-section-name="@sec.Section" class="col-md-12">
+                                        @if (!sec.HideSectionHeader && !sec.NoHeader)
+                                        {
+                                            <h5 style="line-height: 40px;">
+                                                @Html.Raw(ResourceHelper.GetResourceWordWithDefault(templateName, StringHelper.DefaultIfEmpty(group.ResourceName, "Apps_SingleForm"), templateName))
+                                                @if (!ViewBag.IsDetailView && firstSection)
+                                                {
+                                                    <a href="@Url.EncodedAction("Index", "SingleForm", new { area = "Apps", language = ViewBag.CurrentLang, trid=ViewBag.trid, app=appNumber, edit=1 })"
+                                                       class="pull-right"
+                                                       style="font-size: 0.8em;"><i class="fa fa-edit"></i>แก้ไข</a>
+                                                }
+                                            </h5>
+                                            <hr />
+                                            firstSection = false;
+                                        }
+                                        <div class="row">
+                                            <div class="col-md-12 form-group">
+                                                <div id="insert_@sec.Section"></div>
+                                                @Html.Partial("~/Areas/Apps/Views/Shared/StaticTemplates/_" + templateName + "Template.cshtml", sec)
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                //}
+                            }
+                        }
+                    }
+                </section>
+            </div>
+
+            appNumberText++;
+        }
+
+        appNumber++;
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        var getWorkerNumber = function (name) {
+            var value = $('input[name=' + name + ']').val();
+            if (value == '' || isNaN(value)) {
+                value = '0';
+            }
+            return parseInt(value);
+        };
+
+        var updateWorkerCount = function () {
+            var worker = 0;
+            var executive = 0;
+            worker += getWorkerNumber('MALE_WORKER');
+            worker += getWorkerNumber('FEMALE_WORKER');
+
+            executive += getWorkerNumber('EXECUTIVE_OFFICER_AND_ACADEMICIAN');
+            executive += getWorkerNumber('FOREIGNER_PROFESSIONAL');
+            executive += getWorkerNumber('THAI_TECHNICIAN_AND_FOREIGNER_TECHNICIAN');
+
+            $('input[name=TOTAL_WORKER_AMOUNT]').val(worker);
+            $('input[name=GRAND_TOTAL_WORKER_AMOUNT]').val(executive + worker);
+        };
+
+        if ($('input[name=GRAND_TOTAL_WORKER_AMOUNT]').length > 0) {
+            $('input[name=MALE_WORKER]').change(updateWorkerCount);
+            $('input[name=FEMALE_WORKER]').change(updateWorkerCount);
+            $('input[name=EXECUTIVE_OFFICER_AND_ACADEMICIAN]').change(updateWorkerCount);
+            $('input[name=FOREIGNER_PROFESSIONAL]').change(updateWorkerCount);
+            $('input[name=THAI_TECHNICIAN_AND_FOREIGNER_TECHNICIAN]').change(updateWorkerCount);
+            $('input[name=TOTAL_WORKER_AMOUNT]').attr('disabled', 'disabled');
+            $('input[name=GRAND_TOTAL_WORKER_AMOUNT]').attr('disabled', 'disabled');
+            setTimeout(updateWorkerCount, 1000);
+        }
+
+        var F01_getWorkerNumber = function (name) {
+            var value = $('input[name=' + name + ']').val();
+            if (value == '' || isNaN(value)) {
+                value = '0';
+            }
+            return parseInt(value);
+        };
+
+        var F01_updateWorkerCount = function () {
+            var worker = 0;
+            var executive = 0;
+            worker += F01_getWorkerNumber('F01_MALE_WORKER');
+            worker += F01_getWorkerNumber('F01_FEMALE_WORKER');
+
+            executive += F01_getWorkerNumber('F01_EXECUTIVE_OFFICER_AND_ACADEMICIAN');
+            executive += F01_getWorkerNumber('F01_FOREIGNER_PROFESSIONAL');
+            executive += F01_getWorkerNumber('F01_THAI_TECHNICIAN_AND_FOREIGNER_TECHNICIAN');
+
+            $('input[name=F01_TOTAL_WORKER_AMOUNT]').val(worker);
+            $('input[name=F01_GRAND_TOTAL_WORKER_AMOUNT]').val(executive + worker);
+        };
+
+        if ($('input[name=F01_GRAND_TOTAL_WORKER_AMOUNT]').length > 0) {
+            $('input[name=F01_MALE_WORKER]').change(F01_updateWorkerCount);
+            $('input[name=F01_FEMALE_WORKER]').change(F01_updateWorkerCount);
+            $('input[name=F01_EXECUTIVE_OFFICER_AND_ACADEMICIAN]').change(F01_updateWorkerCount);
+            $('input[name=F01_FOREIGNER_PROFESSIONAL]').change(F01_updateWorkerCount);
+            $('input[name=F01_THAI_TECHNICIAN_AND_FOREIGNER_TECHNICIAN]').change(F01_updateWorkerCount);
+            $('input[name=F01_TOTAL_WORKER_AMOUNT]').attr('disabled', 'disabled');
+            $('input[name=F01_GRAND_TOTAL_WORKER_AMOUNT]').attr('disabled', 'disabled');
+            setTimeout(F01_updateWorkerCount, 1000);
+        }
+
+        var getAreaNumber = function(name) {
+            var value = $('input[name=' + name + ']').val();
+            if (value == '' || isNaN(value)) {
+                value = '0';
+            }
+            return parseInt(value);
+        };
+        var updateAreaCount = function() {
+            var taxlong = 0;
+            var taxwidth = 0;
+            taxlong += getAreaNumber('APP_TAX_LONG');
+            taxwidth += getAreaNumber('APP_TAX_WIDTH');
+
+            $('input[name=APP_TAX_CENTIMETER]').val(taxlong * taxwidth);
+        };
+        var checkValidManagerHSS_SPA = function() {
+            const value = $('input[name="APP_HEALTH_CARE_MANAGER_ID"]').val();
+
+            $.ajax({
+                url: "@BASE_URL_API.HSS_SPA" + "/CheckManager",
+                type: "POST",
+                data: {
+                    IdCard: value,
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                timeout: 30000,
+                success: function (data) {
+                    if (data['RESULT']) {
+                        $('input[name="APP_HEALTH_CARE_MANAGER_NAME"]').val(data['VALUE']);
+                    } else {
+                        $('input[name="APP_HEALTH_CARE_MANAGER_NAME"]').val(data['VALUE']);
+                    }
+                },
+                error: function () {
+                    $('input[name="APP_HEALTH_CARE_MANAGER_NAME"]').val("");
+                }
+            });
+        };
+        var checkValidSpaNameHSS_SPA = function () {
+            let SpaNameTh = $('input[name="INFORMATION_STORE_NAME_TH"]').val();
+            let ProvinceId = "";
+
+            @{
+                string ProvinceId = "";
+
+                foreach(var row in sectionRows)
+                {
+                    foreach(var ctrl in row.Controls)
+                    {
+                        if(ctrl.DataKey == "INFORMATION_STORE__ADDRESS")
+                        {
+                            ProvinceId = string.Format("{0}_{1}", "ADDRESS_PROVINCE", ctrl.ClientID);
+                            <Text>
+            ProvinceId = $("#@ProvinceId").val();
+                            </Text>
+                        }
+                    }
+                }
+            }
+
+            $.ajax({
+                url: "@BASE_URL_API.HSS_SPA" + "/CheckSpaName",
+                type: "POST",
+                data: JSON.stringify({
+                    SpaNameTh: SpaNameTh,
+                    ProvinceId: ProvinceId,
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                timeout: 30000,
+                success: function (data) {
+                    if (data['RESULT']) {
+                        $('input[name="INFORMATION_STORE_HEALTH_CARE_STATUS"]').val(data['VALUE']);
+                    } else {
+                        $('input[name="INFORMATION_STORE_HEALTH_CARE_STATUS"]').val(data['VALUE']);
+                    }
+                },
+                error: function () {
+                    $('input[name="INFORMATION_STORE_HEALTH_CARE_STATUS"]').val("");
+                }
+            });
+        };
+        var checkValidProviderHSS_SPA = function () {
+            const value = $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_ID"]').val();
+
+            $.ajax({
+                url: "@BASE_URL_API.HSS_SPA" + "/CheckPersonal",
+                data: {
+                    IdCard: value,
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                timeout: 30000,
+                success: function (data) {
+                    if (data['RESULT']) {
+                        $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_NAME"]').val(data['VALUE']);
+                    } else {
+                        $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_NAME"]').val(data['VALUE']);
+                    }
+                },
+                error: function () {
+                    $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_NAME"]').val("");
+                }
+            });
+        };
+
+
+        if ($('input[name=APP_TAX_CENTIMETER]').length > 0) {
+            $('input[name=APP_TAX_LONG]').change(updateAreaCount);
+            $('input[name=APP_TAX_WIDTH]').change(updateAreaCount);
+            $('input[name=APP_TAX_CENTIMETER]').attr('disabled', 'disabled');
+            setTimeout(updateAreaCount, 1000);
+        }
+
+        $('input[name="APP_HEALTH_CARE_MANAGER_ID"]').change(checkValidManagerHSS_SPA);
+        $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_ID"]').change(checkValidProviderHSS_SPA);
+
+        if ($('section[data-section-group-name="COMMITTEE_INFORMATION_LAWYER"]').length > 0) {
+            $('section[data-section-group-name="COMMITTEE_INFORMATION_LAWYER"]').parent().hide();
+        }
+
+        @*$('input[name="INFORMATION_STORE_NAME_TH"]').change(singleForm.functions.checkValidSpaNameHSS_SPA);
+        $("#@ProvinceId").change(singleForm.functions.checkValidSpaNameHSS_SPA);*@
+
+    });
+
+</script>
+
+@{
+    var mapControl = sectionRows.Where(o => o.Controls.Any(p => p.AddressForm_ShowMapControl)).ToList();
+    if (mapControl != null && mapControl.Count > 0)
+    {
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=@(ConfigurationValues.GoogleMapsKey)&libraries=places&callback=initialGoogleMap"></script>
+    }
+}

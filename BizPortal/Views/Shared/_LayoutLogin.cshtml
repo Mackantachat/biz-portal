@@ -1,0 +1,40 @@
+﻿@using BizPortal.Utils;
+@using Resource = BizPortal.Resources;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Biz Portal" />
+    <meta name="description" content="Biz Portal">
+    <meta name="author" content="electronic government agency (public organization) (ega)">
+    <!-- Favicon -->
+    @*<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png">*@
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/login/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="height:100%;">
+    <div class="body" >
+        <div role="main" class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

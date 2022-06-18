@@ -1,0 +1,429 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@model ApplicationViewModel
+
+@{
+    string x = String.Empty;
+}
+
+<style type="text/css">
+    .model-validate1 {
+        display: none;
+    }
+</style>
+
+@Html.Hidden("lsPED", new { id = "lsPED" })
+
+<br/>
+<div>
+    @Html.Raw(Resources.Application.SP_EXTENDED_DATA_TITLE)
+    <button type="button" id="btnAddPED" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#modalPED" data-backdrop="static" data-keyboard="false">@Html.Raw(Resources.Application.PED_MODAL_ADD_TITLE)</button>
+   </div>
+
+<div>
+    <table id="PEDTable" class="table table-striped table-bordered dataTable"></table>
+</div>
+
+<div class="modal fade" id="modalPED" role="dialog" aria-labelledby="modalPEDLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalPEDLabel">@Html.Raw(Resources.Application.PED_ADD)</h4>
+            </div>
+            <div class="modal-body">
+                <div id="frmPED">
+
+                    <div class="form-group">
+                        <label for="txtPED_LABEL" class="col-form-label">@Resources.Application.PED_LABEL:</label>
+                        <input type="text" class="form-control" id="txtPED_LABEL" placeholder="">
+                        <span class="text-danger model-validate1">@Resources.Application.SP_VALIDATE_TEXT_VAL</span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputGroupSelectType" class="col-form-label">@Resources.Application.PED_TYPE</label>
+                        <select class="custom-select" id="inputGroupSelectType" disabled>
+                            <option selected value="1">TEXT</option>
+                            <option value="2">NUMBER</option>
+                            <option value="3">DATE</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtPED_VALUE" class="col-form-label"> @Resources.Application.PED_VALUE</label>
+                        <input type="text" class="form-control" id="txtPED_VALUE" placeholder="">
+                       @* <span class="text-danger model-validate1">@Resources.Application.SP_VALIDATE_TEXT_VAL</span>*@
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="txtPED_Mapping_Name" class="col-form-label"> @Resources.Application.PAD_MAPPING_NAME</label>
+                        <input type="text" class="form-control" id="txtPED_Mapping_Name" placeholder="">
+                        <span class="text-danger model-validate1">@Resources.Application.SP_VALIDATE_TEXT_VAL</span>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="btnPEDCancel" class="btn btn-default" data-dismiss="modal">@Resources.Global.BTN_CANCEL</button>
+                    <button type="button" id="btnPEDOK" class="btn btn-primary">@Resources.Global.BTN_OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var dict = {
+        1: "TEXT",
+        2: "NUMBER",
+        3: "DATE"
+  // etc.
+};
+    var jsonDBPED =  '@ViewBag.jsonPED';
+    var jsonStrPED = '[]';
+    var index_position = 1;
+
+
+    function initPaymentExtendData() {
+        var jsonInitPED = jsonDBPED.replace(/&quot;/g,'"');
+        console.log(jsonInitPED);
+
+        var objPED = JSON.parse(jsonInitPED);
+        //objPaymentExtendData.sort(function(a, b){ return a.Order - b.Order;});
+        var objStrPED = JSON.parse(jsonStrPED);
+        var j = 1;
+         $.each(objPED, function (i, item) {
+            // coords.push({ 'Latitude': value, 'Longitude': longitudes[index] });
+             objStrPED.push({
+                 "id":guid()
+                 , "label": item.Label,"Name":item.Name, "type": item.Type,"typetxt": dict[item.Type], "value": item.Value ,"order": j++
+             });
+             jsonStrPED = JSON.stringify(objStrPED);
+             console.log(jsonStrPED);
+           // alert(item.name);
+         });
+         dataTablePED();
+        //console.log(jsonStrPositons);
+
+        var $modal = $('#modalPED');
+
+        $('#btnPEDOK', $modal).on('click', function () {
+            //if (true) {
+            //        updatePED($('#modalPED').attr('row-id'));
+            //         $modal.modal('hide');
+            //}
+            if (validateSPositions()) {
+
+                        //alert(validateSPositions());
+                        updatePED($('#modalPED').attr('row-id'));
+                        $modal.modal('hide');
+            }
+
+        });
+
+
+
+        function validateSPositions(el) {
+
+            var isValid = true;
+            $('#frmPED .form-group').each(function (i, e) {
+
+                var $message1 = $(e).children('.model-validate1');
+                //alert($message1);
+                var val = $(e).children('input').val();
+
+                //alert($(e).children('input').attr('type'));
+                if ($(e).children('input').attr('id') != "txtPED_VALUE") {
+
+                    if ($(e).children('input').attr('type') == "text") {
+                        if (val == undefined || val == 'undefined' || val == null || val == '' || val == 0 || val == -1) {
+                            $message1.show();
+                            isValid = false;
+                        }
+                        else {
+                            $message1.hide();
+                        }
+
+                    }
+                }
+
+            });
+
+           // alert(isValid);
+
+            return isValid;
+        }
+
+
+
+
+        $modal.on('hide.bs.modal', function () {
+            $modal.find('.modal-title').text('@Html.Raw(Resources.Application.PED_ADD)');
+             $('#modalPED').removeAttr('row-id');
+
+
+
+                $('#txtPED_LABEL', $modal).val('');
+                //$('#inputGroupSelectType', $modal).val('');
+                $('#txtPED_VALUE', $modal).val('');
+
+                $('#txtPED_Mapping_Name', $modal).val('');
+
+               // $('.model-validate').hide();
+        });
+    }
+
+    function updatePED(id) {
+
+        var label  = $('#txtPED_LABEL').val();
+        var type = $('#inputGroupSelectType').val();
+        var value  = $('#txtPED_VALUE').val();
+        var Name = $('#txtPED_Mapping_Name').val();
+
+        var obj = JSON.parse(jsonStrPED);
+
+        console.log("id " + id);
+
+        if (id) {
+                 for (var i = 0; i < obj.length; i++) {
+            // look for the entry with a matching `code` value
+            if (obj[i].order == id) {
+
+
+              //  alert(dict[type]);
+
+                obj[i].label = label;
+                obj[i].type = type;
+                obj[i].value = value;
+                obj[i].typetxt = dict[type];
+                obj[i].Name = Name;
+               break;
+
+            }
+         }
+        }
+        else {
+            console.log("positions obj push length" + obj.length);
+
+            if (obj.length > 0) {
+                //console.log(obj[0].order);
+                //for (var j = 0; j < obj.length; j++) {
+                //     index = obj[j].order;
+                //}
+                index_position = obj.length + 1;
+                parseInt(index_position)
+            }
+            else {
+                index_position = 1;
+                index_position = obj.length + 1;
+                parseInt(index_position)
+            }
+
+            obj.push({ "order": parseInt(index_position), "id": guid(), "label": label, "value": value, "type": type, "typetxt": dict[type], "Name": Name});
+        }
+
+
+        jsonStrPED = JSON.stringify(obj);
+
+
+
+            //index++;
+            console.log("json" + jsonStrPED);
+            dataTablePED();
+
+        }
+    function dataTablePED() {
+
+        var obj = JSON.parse(jsonStrPED);
+      //  document.getElementById('CountSigningPositions').value = obj.length;
+       // alert( document.getElementById('CountSigningPositions').value);
+          var PED = [];
+        $.each(obj, function (i, item) {
+            // coords.push({ 'Latitude': value, 'Longitude': longitudes[index] });
+            PED.push({  'Label': item.label, 'Type': item.type, 'Value': item.value ,'Name':item.Name ,'UserType':0});
+
+           // alert(item.name);
+        });
+
+        var jsonPED = JSON.stringify(PED);
+
+        //console.log(jsonSingPositions);
+        $("#lsPED").val(jsonPED);
+        console.log(JSON.parse(jsonStrPED));
+             var table = $('#PEDTable').DataTable({
+             paging: false,
+           searching: false,
+            destroy: true,
+		data: JSON.parse(jsonStrPED),
+		columns: [
+			{
+				name: 'order',
+				title:  '@Html.Raw(Resources.Application.SP_INDEX)',
+				data: 'order',
+                sortable: false,
+                 className: "text-center",
+                width : "15px"
+			},
+			{
+				name: 'order',
+				data: 'order',
+				visible: false
+            }
+            ,
+			{
+				name: 'id',
+				data: 'id',
+				visible: false
+			},
+               {
+				name: 'label',
+				data: 'label',
+				title: '@Resources.Application.PED_LABEL',
+				searchable: true,
+                   sortable: false,
+                 className: "text-center",
+                width : "15px"
+            },
+                 {
+				name: 'type',
+				data: 'type',
+                 visible: false,
+            },
+                 {
+				name: 'typetxt',
+				data: 'typetxt',
+				title: '@Resources.Application.PED_TYPE',
+				searchable: true,
+                     sortable: false,
+                 className: "text-center",
+                width : "15px"
+            }
+            ,
+                   {
+				name: 'value',
+				data: 'value',
+				title: '@Resources.Application.PED_VALUE',
+				searchable: true,
+                       sortable: false,
+                 className: "text-center",
+                width : "15px"
+            },
+            {
+				name: 'Name',
+				data: 'Name',
+				title: '@Resources.Application.PAD_MAPPING_NAME',
+				searchable: true,
+                       sortable: false,
+                 className: "text-center",
+                width : "15px"
+            },
+            {
+				name: 'actionButton',
+				data: null,
+				title: '@Resources.Application.SP_ACTION_BUTTON',
+				searchable: false,
+                sortable: false,
+                width: "5px",
+                render: function (data, type, full, meta) {
+					if (type === 'display') {
+						var $span = $('<span></span>');
+						$('<button type="button" class="btn btn-sm btn-warning" onClick="editPED(\'' + data.order + '\')" > @Html.Raw(Resources.Global.BTN_EDIT)</button>').appendTo($span);
+						$('<button type="button" class="btn btn-sm btn-danger"  onClick="deletePED(\'' + data.order + '\')" > @Html.Raw(Resources.Global.BTN_DELETE)</button>').appendTo($span);
+						return $span.html();
+					}
+					return data;
+				}
+			}
+		]
+	});
+
+
+
+
+
+
+    }
+    function editPED(id) {
+           console.log(id);
+        var $modal = $('#modalPED');
+        $modal.modal({backdrop: 'static', keyboard: false})
+        $modal.find('.modal-title').text('@Html.Raw(Resources.Application.PED_EDIT)')
+       // var $row = $(el).parent('td').parent('tr');
+         var obj = JSON.parse(jsonStrPED);
+         for (var i = 0; i < obj.length; i++){
+  // look for the entry with a matching `code` value
+             if (obj[i].order == id) {
+                 // we found it
+                 // obj[i].name is the matched result
+                 $modal.attr('row-id', obj[i].order);
+
+                 $('#txtPED_LABEL', $modal).val(obj[i].label);
+                 $('#inputGroupSelectType', $modal).val(obj[i].type);
+                 $('#txtPED_VALUE', $modal).val(obj[i].value);
+                 $('#txtPED_Mapping_Name', $modal).val(obj[i].Name);
+             }
+             else {
+                 console.log(obj);
+             }
+}
+
+        $modal.modal('show');
+    }
+    function deletePED(id) {
+
+        console.log(id);
+        var obj = JSON.parse(jsonStrPED);
+
+        const index = obj.findIndex(x => x.order === parseInt(id));
+            console.log(index);
+        if (index !== undefined) obj.splice(index, 1);
+        //console.log("After removal:Obj", obj);
+        obj.sort((a, b) => (a.order > b.order) ? 1 : -1)
+        jsonStrPED = JSON.stringify(obj);
+        //console.log("After removal:", jsonStr);
+        //dataTable();
+
+
+
+        var objUpdate = JSON.parse(jsonStrPED);
+        num = 0;
+        $('#PEDTable > tbody  > tr').each(function (row_index, tr) {
+            var $tds = $(this).find('td');
+
+            tdOrder = $tds.eq(0).text();
+           // alert(tdOrder);
+           // console.log("Index- " + row_index + '-' + ID_Card);
+            Objindex = objUpdate.findIndex(x => x.order === parseInt(tdOrder));
+            if (Objindex >= 0) {
+                console.log('old:' + num);
+                num = num + 1;
+                $tds.eq(0).text(num)
+                console.log("row_index:" + num + "-idcard:" + objUpdate[Objindex].idcard);
+            //    console.log("row_index: " + row_index + '-idcard:' + ID_Card);
+                objUpdate[Objindex].order = parseInt(num);
+
+                console.log(objUpdate);
+
+            }
+
+
+            objUpdate.sort((a, b) => (a.order > b.order) ? 1 : -1)
+            jsonStrPED = JSON.stringify(objUpdate);
+            console.log("After removal:", jsonStrPED
+            );
+
+
+        });
+
+             dataTablePED();
+
+    }
+
+
+
+</script>

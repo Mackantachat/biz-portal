@@ -1,0 +1,415 @@
+﻿@using BizPortal.Utils;
+@using EGA.Owin.Security.Utils.Extensions;
+@using Resource = BizPortal.Resources;
+@using Microsoft.Owin.Security
+@using BizPortal.Utils.Extensions;
+@{
+    string returnUrl;
+    if (ViewBag.ReturnUrl != null && !string.IsNullOrEmpty(ViewBag.ReturnUrl))
+    {
+        returnUrl = ViewBag.ReturnUrl;
+    }
+    else
+    {
+        bool applyDomainRoute = ViewBag.ApplyDomainRoute;
+        if (applyDomainRoute)
+        {
+            returnUrl = ViewBag.BizDomain + Request.Url.AbsolutePath;
+        }
+        else
+        {
+            returnUrl = Request.Url.AbsolutePath;
+        }
+    }
+
+    var testuser = User.Identity.GetUserProfile();
+    var juristicID = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.JuristicID);
+    var identityProvider = User.Identity.IsAuthenticated ? User.Identity.GetClaimValueOrDefault(BizPortal.Utils.Helpers.OpenIdAttributeExchangeType.LoginProvider) : "";
+}
+<!DOCTYPE html>
+<html lang="@((string)ViewBag.CurrentLang)">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Biz Portal" />
+    <meta name="description" content="Biz Portal">
+    <meta name="author" content="electronic government agency (public organization) (ega)">
+    <!-- Favicon -->
+    @*<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png">*@
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Web Fonts  -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+
+    <title>@ViewBag.Title</title>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-19394801-61', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+    @Styles.Render("~/Bundles/NewBizUI/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("PageStyles", required: false)
+</head>
+<body>
+    <div class="body" id="wrapper">
+        <div class="overlay"></div>
+        <nav class="navbar navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            @if (User.Identity.IsAuthenticated)
+            {
+                var userType = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.UserType);
+                <div class="sidebar-authen-user navbar-fixed-top">
+                    <div class="row">
+                        <img class="img-responsive img-center" src="@Url.Content("~/Content/Images/biz-v2/logos/test-user2.png")" style="max-height: 80px;" />
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-center" style="padding-bottom: 10px;">
+                            @juristicID
+
+                        </div>
+                        <div class="col-xs-12 text-center" style="padding-bottom: 10px;">
+                            @testuser.FullName
+                        </div>
+                    </div>
+                </div>
+            }
+            <ul class="nav sidebar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var userType = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.UserType);
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp;@Resource.GlobalV2.USER_MENU <span class="fa fa-chevron-right span-right"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            @if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                            {
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ViewJuristicProfile?site=biz">@Resource.Global.PROFILE</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditUser?site=biz">@Resource.Global.EDIT_PROFILE</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                            }
+                            else if (userType == UserTypeEnum.Juristic.GetEnumStringValue())
+                            {
+                                @*<li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ViewJuristicProfile?site=biz">@Resource.Global.PROFILE</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditJuristicProfile?site=biz">@Resource.Global.EDIT_JURISTIC_PROFILE</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditJuristicContact?site=biz&callbackUrl=@HttpUtility.UrlEncode( BizPortal.Utils.Extensions.UrlHelperExtensions.AbsoluteAction(Url, "InitUserData", "Account", new { area = "", returnUrl = returnUrl, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.Global.EDIT_CONTACT_NO</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>*@
+                            }
+                            else if (userType == UserTypeEnum.Citizen.GetEnumStringValue())
+                            {
+                                if (identityProvider == UserProviderEnum.EGAOpenID.GetEnumStringValue())
+                                {
+                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Details?site=biz">@Resource.Global.PROFILE</a></li>
+                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Edit?site=biz">@Resource.Global.EDIT_PROFILE</a></li>
+                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Verification/Mobile?site=biz">@Resource.Global.EDIT_CONTACT_NO</a></li>
+                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                                }
+                            }
+                            @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                            {
+                                <li><a href="@Url.ServiceAction("Index","Article",new { Area="Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.Global.BACKEND_MANAGEMENT</a></li>
+                            }
+                            @if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                            {
+                                <li><a href="@Url.ServiceAction("Index","ApplicationStatus",new { Area="Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">@Resource.Global.APPLICATION_MANAGEMENT</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                            }
+                            else if (userType == UserTypeEnum.Juristic.GetEnumStringValue())
+                            {
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                            }
+                            else if (userType == UserTypeEnum.Citizen.GetEnumStringValue())
+                            {
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                            }
+                        </ul>
+                    </li>
+                    if (userType != UserTypeEnum.GovernmentAgent.GetEnumStringValue() && !User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                    {
+                        <li class="dropdown">
+                            <a href="@Url.BizAction("Index", "Track", new { @area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                &nbsp;@Resource.Global.TRACKING_STASUS
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+            <div class="sidebar-user text-center">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.BizAction("LogOff","Account",new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName, returnUrl = returnUrl})" class="btn btn-biz-blue">@Resource.GlobalV2.LOGOUT</a>
+                }
+                else
+                {
+                    using (Html.BeginForm("ExternalLogin", "Account", new { area = "", ReturnUrl = returnUrl, language = ViewBag.CurrentLang }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-biz-blue" id="EGA OpenID Citizen" name="provider" value="EGA OpenID Citizen">@Resource.GlobalV2.LOGIN</button>
+                    }
+                }
+            </div>
+        </nav>
+        <header class="colored flat-menu">
+            <div class="header-top">
+                <div class="container">
+                    <div class="row" style="color: #fff;">
+                        <div class="col-md-12">
+                            @*<div class="biz-lang pull-right">
+                                    <nav>
+                                        <ul>
+                                            <li><a href="@Url.UpdateLanguage("th")">@Resource.Language.THAI</a></li>
+                                            <li><a href="@Url.UpdateLanguage("en")">@Resource.Language.ENGLISH</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>*@
+                            <div class="header-top-text pull-right">@Resource.GlobalV2.SUPERVISION</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="header-body">
+                <div class="container">
+                    <div class="row hidden-xs">
+                        <div class="col-sm-1 col-md-1">
+                            <h1 class="logo">
+                                <a href="@Url.BizAction("View","Content", new { area="Landing", id = 41, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">
+                                    <img src="~/Content/Images/logo/GovChannel-nourl-onerow.png" alt="bizportal" />
+                                </a>
+                            </h1>
+                        </div>
+                        <div class="col-sm-11 col-md-11">
+                            <div class="biz-user">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    var userType = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.UserType);
+
+                                    <ul class="nav nav-pills">
+                                        @if (userType != UserTypeEnum.GovernmentAgent.GetEnumStringValue() && !User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                                        {
+                                            <li>
+                                                <a class="btn btn-biz-blue" href="@Url.BizAction("Index", "Track", new { @area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                                    @Resource.Global.TRACKING_STASUS
+                                                </a>
+                                            </li>
+                                        }
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="dropdown-toggle dropdown-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-user"></i> @User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name)
+                                                <i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                @if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                                                {
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ViewJuristicProfile?site=biz">@Resource.Global.PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditUser?site=biz">@Resource.Global.EDIT_PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                                                }
+                                                else if (userType == UserTypeEnum.Juristic.GetEnumStringValue())
+                                                {
+                                                    @*<li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ViewJuristicProfile?site=biz">@Resource.Global.PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditJuristicProfile?site=biz">@Resource.Global.EDIT_JURISTIC_PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditJuristicContact?site=biz&callbackUrl=@HttpUtility.UrlEncode(BizPortal.Utils.Extensions.UrlHelperExtensions.AbsoluteAction(Url, "InitUserData", "Account", new { area = "", returnUrl = returnUrl, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.Global.EDIT_CONTACT_NO</a></li>*@
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                                                }
+                                                else if (userType == UserTypeEnum.Citizen.GetEnumStringValue())
+                                                {
+                                                    if (identityProvider == UserProviderEnum.EGAOpenID.GetEnumStringValue())
+                                                    {
+                                                        <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Details?site=biz">@Resource.Global.PROFILE</a></li>
+                                                        <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Edit?site=biz">@Resource.Global.EDIT_PROFILE</a></li>
+                                                        <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Verification/Mobile?site=biz">@Resource.Global.EDIT_CONTACT_NO</a></li>
+                                                        <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                                                    }
+                                                }
+                                                @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                                                {
+                                                    <li><a href="@Url.ServiceAction("Index","Article",new { Area="Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.Global.BACKEND_MANAGEMENT</a></li>
+                                                }
+                                                @if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                                                {
+                                                    <li><a href="@Url.ServiceAction("Index","ApplicationStatus",new { Area="Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">@Resource.Global.APPLICATION_MANAGEMENT</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                                                }
+                                                else if (userType == UserTypeEnum.Juristic.GetEnumStringValue())
+                                                {
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                                                }
+                                                else if (userType == UserTypeEnum.Citizen.GetEnumStringValue())
+                                                {
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                                                }
+                                                <li>
+                                                    <a href="@Url.BizAction("LogOff","Account",new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName, returnUrl = returnUrl})">@Resource.GlobalV2.LOGOUT</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                    @*<a href="@Url.BizAction("LogOff","Account",new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName, returnUrl = returnUrl})" class="btn btn-biz-blue">@Resource.Global.LOGOUT</a>*@
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("ExternalLogin", "Account", new { area = "", ReturnUrl = returnUrl, language = ViewBag.CurrentLang }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-biz-blue" id="EGA OpenID Citizen" name="provider" value="EGA OpenID Citizen">@Resource.GlobalV2.LOGIN</button>
+                                    }
+                                }
+                            </div>
+                            <div class="header-search">
+                                <input type="text" class="form-control" id="biz-search" placeholder="@Resource.GlobalV2.PLACEHOLDER_SEARCH" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row visible-xs">
+                        <div class="col-xs-4">
+                            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                                <span class="hamb-top"></span>
+                                <span class="hamb-middle"></span>
+                                <span class="hamb-bottom"></span>
+                            </button>
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="@Url.BizAction("View","Content", new { area="Landing", id = 41, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">
+                                <img class="img-responsive img-center" src="~/Content/Images/logo/GovChannel-nourl-onerow.png" alt="bizportal" style="margin-top: 7px; max-height: 50px;" />
+                            </a>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="biz-search-mobile">
+                                <a href="#mobileSearch" data-toggle="collapse" aria-expanded="false" aria-controls="mobileSearch"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse hidden-sm hidden-md hidden-lg" id="mobileSearch">
+                <input type="text" class="biz-searchbox-mobile" placeholder="@Resource.GlobalV2.PLACEHOLDER_SEARCH" />
+            </div>
+        </header>
+
+
+
+        <div role="main" class="main">
+            <div class="breadcrump-colored mb15">
+                @RenderSection("breadcrumb", required: false)
+            </div>
+            @RenderBody()
+        </div>
+
+        <footer>
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-12 text-center">
+                            @Html.Raw(string.Format(Resource.Global.COPYRIGHTS, DateTime.Today, ViewBag.CurrentLang == "th" ? 2537 : 2537 - 543))
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <nav id="sub-menu">
+                                <ul>
+                                    <li><a href="#">@Resource.GlobalV2.HELP</a></li>
+                                    <li><a href="#">@Resource.GlobalV2.FAQ</a></li>
+                                    <li><a href="@Url.BizAction("Index","AboutUs",new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="footer-link">@Resource.GlobalV2.ABOUTUS</a></li>
+                                    <li><a href="#">@Resource.GlobalV2.PRIVACY</a></li>
+                                    <li><a href="#">@Resource.GlobalV2.TOU</a></li>
+                                    <li><a href="#">@Resource.GlobalV2.SITEMAP</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Bundles/NewBizUI/scripts")
+    @RenderSection("PageScripts", required: false)
+
+    @*<script type="text/javascript">
+            $(function () {
+                calert('@BizPortalSetting.ALERT_COOKIE');
+                cmodal('@BizPortalSetting.MODAL_COOKIE')
+            });
+        </script>*@
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+        var sc_project = 10891367;
+        var sc_invisible = 1;
+        var sc_security = "9d850f87";
+        var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+        document.write("<script type='text/javascript' src='" + scJsHost + "statcounter.com/counter/counter.js'></" + "script>");
+
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("active");
+        });
+
+        $(document).ready(function () {
+            var trigger = $('.hamburger'),
+                overlay = $('.overlay'),
+               isClosed = false;
+
+            trigger.click(function () {
+                hamburger_cross();
+            });
+
+            function hamburger_cross() {
+
+                if (isClosed == true) {
+                    overlay.hide();
+                    trigger.removeClass('is-open');
+                    trigger.addClass('is-closed');
+                    isClosed = false;
+                } else {
+                    overlay.show();
+                    trigger.removeClass('is-closed');
+                    trigger.addClass('is-open');
+                    isClosed = true;
+                }
+            }
+
+            $('[data-toggle="offcanvas"]').click(function () {
+                $('#wrapper').toggleClass('toggled');
+            });
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <text>
+            $('#sidebar-wrapper .sidebar-nav').addClass('authen');
+                </text>
+            } else
+            {
+                <text>
+            $('#sidebar-wrapper .sidebar-nav').removeClass('authen');
+                </text>
+            }
+        });
+    </script>
+    <noscript>
+        <div class="statcounter">
+            <a title="shopify visitor statistics" href="http://statcounter.com/shopify/" target="_blank">
+                <img class="statcounter" src="http://c.statcounter.com/10891367/0/9d850f87/1/" alt="shopify visitor statistics" />
+            </a>
+        </div>
+    </noscript>
+    <!-- End of StatCounter Code for Default Guide -->
+</body>
+</html>

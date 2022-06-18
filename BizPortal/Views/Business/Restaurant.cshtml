@@ -1,0 +1,999 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+
+@{
+    ViewBag.Title = @Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO_RESTAURANT;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@section breadcrumb {
+    <section class="breadcrumb">
+        <div class="container">
+            <h2>@Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO_RESTAURANT</h2>
+            <ul>
+                <li class="">
+                    <a href="@Url.BizAction("Index", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                        @Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO
+                    </a>
+                </li>
+                <li class="">
+                    <a>@Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO_RESTAURANT</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+}
+
+<section class="banner-subpage" style="background: transparent url('@Url.Content("~/Content/SingleForm-frontis/v2/images/drink.png")') no-repeat center center;
+        background-size: cover;">
+    <!--         <div class="container" style="">
+                <h1>ข้อมูลสำหรับธุรกิจ</h1>
+                <p>คุณสามารถค้นหาข้อมูลจากหลายหน่วยงานได้ในที่เดียว</p>
+            </div> -->
+</section>
+<section class="business-food">
+    <div class="container">
+        <h2>ธุรกิจร้านอาหารและเครื่องดื่ม คืออะไร</h2>
+        <hr>
+        <p class="subtitle">
+            ธุรกิจร้านอาหารและเครื่องดื่ม คือ ธุรกิจที่มีการทำอาหาร เครื่องดื่ม ไอศกรีม ขนมหรือเค้ก โดยมีการขายและ
+            ให้บริการ เช่น เสิร์ฟให้กินที่ร้าน ตักเองจากชั้นวาง ห่อ หรือสั่งให้จัดส่งถึงบ้าน ทั้งนี้ไม่รวมโรงงานผลิตอาหารที่มีเครื่องจักรอุตสาหกรรม
+        </p>
+        <br>
+        <!--             <h2>จะทำธุรกิจอาหารต้องของขออนุญาตอะไรบ้าง ?</h2>
+                    <hr>
+                    <div class="blog-detail">
+                        <div class="tag"><i class="fa fa-hashtag"></i> ข้อควรรู้ก่อนเริ่มต้น</div>
+                        <ul>
+                            <li>หากมีการใช้อาคารในการประกอบธุรกิจ คุณจะต้องมีใบอนุญาตก่อสร้างอาคาร (อ.1) หรือใบรับรองการเปิดใช้</li>
+                            <li>อาคารจากกรมโยธาธิการและผังเมือง ก่อนที่จะขอใบอนุญาตอื่น ๆ ผู้ที่ประกอบอาหารและมีส่วนเกี่ยวข้องกับอาหาร เช่น พนักงานล้างจานพนักงานเสิร์ฟอาหาร จะต้องผ่านหลักสูตรการอบรมเป็นผู้สัมผัสอาหาร ที่ได้รับการรับรองจากกรมอนามัย
+                            </li>
+                        </ul>
+                    </div> -->
+    </div>
+</section>
+<section class="business-info">
+    <div class="container">
+        <h2 id="i-info">ร้านของคุณต้องขออนุญาตอะไรบ้าง</h2>
+        <h3>หากร้านของคุณ...</h3>
+        <div class="row">
+            <div class="D-9 T-12">
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/1 company.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีเจ้าของหรือหุ้นส่วนตั้งแต่ 2 คนขึ้นไป ที่ต้องการแบ่งกำไรและความรับผิดชอบจากธุรกิจนั้นร่วมกัน</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนนิติบุคคล</p>
+                                    <p class="detail">ที่กรมพัฒนาธุรกิจการค้า หรือสำนักงานพาณิชย์จังหวัด</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนจำกัด / ห้างหุ้นส่วนสามัญนิติบุคคล</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/244/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบริษัทจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/2652/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบริษัทมหาชนจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/2653/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ<span class="regular"> ตาม พ.ร.บ. กำหนดความผิดเกี่ยวกับห้างหุ้นส่วนจดทะเบียน ห้างหุ้นส่วนจำกัด บริษัทจำกัด สมาคม และมูลนิธิ พ.ศ. 2499</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--1 company -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/2 bag.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายของให้ลูกค้าซื้อกลับบ้าน (ยกเว้นขายเร่ และแผงลอย)</p>
+                            <p class="detail hide">โดยที่ร้านของคุณเป็นกิจการเจ้าของคนเดียว ห้างหุ้นส่วนสามัญ หรือคณะบุคคล</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนพาณิชย์</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบุคคลธรรมดา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนสามัญ คณะบุคคลและกิจการร่วมค้า</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1422/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ <span class="regular">ตาม พ.ร.บ. ทะเบียนพาณิชย์ พ.ศ. 2499</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 2 bag -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/3 money.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">ขายได้มากกว่า 1.8 ล้านบาทต่อปี</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">จดทะเบียนภาษีมูลค่าเพิ่ม</p>
+                                    <p class="detail">ที่สำนักบริหารภาษีธุรกิจขนาดใหญ่สำนักงานสรรพากรพื้นที่ หรือสำนักงานสรรพากรพื้นที่สาขา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/5234/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B5%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%93%E0%B8%B5%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A1%E0%B8%B5%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B9%83%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ <span class="regular">ตามบทบัญญัติแห่งประมวลรัษฎากรหมวด 4 ภาษีมูลค่าเพิ่ม</span></p>
+                            <div class="btn-hold">
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!--3 money-->
+
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/4 building.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการก่อสร้างหรือดัดแปลงบ้าน ห้องแถว หรืออาคารประเภทอื่น ๆ </p>
+                            <p class="detail hide">ซึ่งรวมถึง ตึก เรือน โรง ร้าน แพ สำนักงาน และสิ่งที่สร้างขึ้นอย่างอื่น ซึ่งบุคคลอาจเข้าอยู่หรือเข้าใช้สอยได้</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาต ก่อสร้าง ดัดแปลง หรือขอเปลี่ยนแปลงการใช้อาคาร</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/4905/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%20%E0%B8%94%E0%B8%B1%E0%B8%94%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B8%87%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%A3%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%96%E0%B8%AD%E0%B8%99%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%20(%E0%B9%81%E0%B8%9A%E0%B8%9A%20%E0%B8%82.1)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ
+                                <span class="regular"> ตาม พ.ร.บ. ควบคุมอาคาร พ.ศ. 2522</span>
+                            </p>
+                            <br>
+                            <div class="btn-hold">
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!--4 building-->
+
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/5 street.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายของบนฟุตบาท การเร่ขายตามถนน หรือใช้พื้นที่สาธารณะ</p>
+                            <p class="detail hide">ซึ่งรวมถึง สถานที่หรือทางซึ่งมิใช่เป็นของเอกชนและประชาชนสามารถใช้ประโยชน์หรือใช้สัญจรได้</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">ขออนุญาตจำหน่ายสินค้าในที่หรือทางสาธารณะ <span class="rmk">*</span></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- องค์การปกครองส่วนท้องถิ่น (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8618/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%88%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%84%E0%B9%89%E0%B8%B2%E0%B9%83%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%AA%E0%B8%B2%E0%B8%98%E0%B8%B2%E0%B8%A3%E0%B8%93%E0%B8%B0/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="remark"><span class="rmk">*</span> ปัจจุบัน กทม. ได้ยกเลิกการอนุญาตจำหน่ายสินค้าในที่หรือทางสาธารณะสำหรับผู้ประกอบการรายใหม่แล้ว แต่บางพื้นที่ในต่างจังหวัดยังมีการอนุญาตให้อยู่</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                คุณอาจถูกปรับ
+                                <span class="regular"> ตาม พ.ร.บ. การสาธารณสุข พ.ศ. 2535</span>
+                            </p>
+                            <br>
+                            <div class="btn-hold">
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!--5 street-->
+                <div class="item-info">
+                    <!-- internet -->
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/earth.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายของผ่านอินเตอร์เน็ท</p>
+                            <p class="detail hide">เช่น เว็บไซต์ของตัวเอง ผ่านเว็บไซต์อื่น (เช่น Ebay, Amazon) หรือโซเชียลมีเดีย (เช่น Line, Facebook, Twitter, Instragram เป็นต้น)</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนพาณิชย์</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบุคคลธรรมดา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนสามัญ คณะบุคคลและกิจการร่วมค้า</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1422/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนจดทะเบียน บริษัทจำกัด บริษัทมหาชนจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1482/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                คุณอาจถูกปรับ
+                                <span class="regular"> ตาม พ.ร.บ. ทะเบียนพาณิชย์ พ.ศ. 2499</span>
+                            </p>
+                            <br>
+                            <div class="btn-hold">
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- internet -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/6 noodles.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายอาหารหรือเครื่องดื่ม </p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                ให้ผู้สัมผัสอาหาร รวมถึงคนเสิร์ฟและคนล้างภาชนะเข้ารับการอบรมเป็นผู้สัมผัสอาหาร
+                                <span class="regular">ซึ่งรวมถึง ผู้เตรียมอาหาร ผู้ปรุงอาหาร ผู้จำหน่ายอาหาร ผู้ลำเลียงอาหาร ผู้ขนส่งอาหาร ผู้เก็บล้างภาชนะอุปกรณ์</span>
+                            </p>
+                            <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">หากพื้นที่ร้านน้อยกว่า 200 ตารางเมตร ต้องแจ้งจัดตั้งสถานที่จำหน่ายหรือสะสมอาหาร ที่</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำนักงานเขต (สำหรับพื้นที่กรุงเทพมหานคร) หรือ</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/4887/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B7%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B0%E0%B8%AA%E0%B8%A1%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3/​" class="button primary _center" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- องค์กรปกครองส่วนท้องถิ่น (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8598/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B7%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B0%E0%B8%AA%E0%B8%A1%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%20%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%80%E0%B8%81%E0%B8%B4%E0%B8%99%20200%20%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%A3/​" class="button primary _center" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">หากพื้นที่ร้านมากกว่า 200 ตารางเมตร ต้องขออนุญาตจัดตั้งสถานที่จำหน่ายหรือสะสมอาหาร ที่</p>
+                                </div>
+                            </div><!-- row -->
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำนักงานเขต (สำหรับพื้นที่กรุงเทพมหานคร) หรือ</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/3871/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B0%E0%B8%AA%E0%B8%A1%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%20(%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary _center" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- องค์กรปกครองส่วนท้องถิ่น (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8348/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B0%E0%B8%AA%E0%B8%A1%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%20%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%81%E0%B8%B4%E0%B8%99%20200%20%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%A3/​" class="button primary _center" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div><!-- right-tab -->
+                    </div><!-- row-bar -->
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ<span class="regular"> ตาม พ.ร.บ. การสาธารณสุข พ.ศ. 2535</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--6 noodles-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/7 wine.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายเบียร์ ไวน์ เหล้าหรือเครื่องดื่มแอลกอฮอล์อื่น</p>
+                            <!-- <p class="detail hide">ซึ่งรวมถึง ตึก เรือน โรง ร้าน แพ สำนักงาน และสิ่งที่สร้างขึ้นอย่างอื่น ซึ่งบุคคลอาจเข้าอยู่หรือเข้าใช้สอยได้</p> -->
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตขายสุรา</p>
+                                    <p class="detail">ที่กรมสรรพสามิตในพื้นที่</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/48626/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B8%E0%B8%A3%E0%B8%B2%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%E0%B8%97%E0%B8%B5%E0%B9%88%203%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%E0%B8%97%E0%B8%B5%E0%B9%88%204%20(%E0%B8%A2%E0%B8%81%E0%B9%80%E0%B8%A7%E0%B9%89%E0%B8%99%E0%B9%81%E0%B8%AD%E0%B8%A5%E0%B8%81%E0%B8%AD%E0%B8%AE%E0%B8%AD%E0%B8%A5%E0%B9%8C)%C2%A0(%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%B2%2017)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ<span class="regular"> ตาม พ.ร.บ. สุรา พ.ศ. 2493</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--7 wine-->
+
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/8 dance.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการเต้น เช่น บริเวณโต๊ะ หรือเต้นบนเวที หรือมีฟลอร์สำหรับเต้น </p>
+                            <!-- <p class="detail hide">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p> -->
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">ขออนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ ที่</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำนักงานเขต (สำหรับพื้นที่กรุงเทพมหานคร) หรือ </p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/5014/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E%20(%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/%E2%80%8B​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- องค์กรปกครองส่วนท้องถิ่น (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8183/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E/%E2%80%8B​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">ขออนุญาตตั้งสถานบริการ ที่</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- ตำรวจนครบาล (สำหรับพื้นที่กรุงเทพมหานคร) หรือ </p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8655/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%99%E0%B8%97%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- ผู้ว่าราชการจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/9183/%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ
+                                <span class="regular"> ตาม พ.ร.บ. การสาธารณสุข พ.ศ. 2535</span>
+                                <!-- <a href="" class="hiperlink">อ่านข้อกฎหมายที่เกี่ยวข้อง</a> -->
+                            </p>
+                            <p class="head">
+                                คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ
+                                <span class="regular"> ตาม พ.ร.บ. สถานบริการ พ.ศ. 2509</span>
+                                <!-- <a href="" class="hiperlink">อ่านข้อกฎหมายที่เกี่ยวข้อง</a> -->
+                            </p>
+                            <br>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 8 dance -->
+
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/play.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีโชว์เพื่อความบันเทิง เช่น การแสดงดนตรีสด ตลก หรือศิลปวัฒนธรรม เป็นต้น​</p>
+                            <!-- <p class="detail hide">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p> -->
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">ขออนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ ที่</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำนักงานเขต (สำหรับพื้นที่กรุงเทพมหานคร) หรือ </p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/5014/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E%20(%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/%E2%80%8B​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- องค์กรปกครองส่วนท้องถิ่น (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8183/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E/%E2%80%8B​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">ขออนุญาตตั้งสถานบริการ ที่</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- ตำรวจนครบาล (สำหรับพื้นที่กรุงเทพมหานคร) หรือ </p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8655/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%99%E0%B8%97%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- ผู้ว่าราชการจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/9183/%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ
+                                <span class="regular"> ตาม พ.ร.บ. การสาธารณสุข พ.ศ. 2535</span>
+                                <!-- <a href="" class="hiperlink">อ่านข้อกฎหมายที่เกี่ยวข้อง</a> -->
+                            </p>
+                            <p class="head">
+                                คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ
+                                <span class="regular"> ตาม พ.ร.บ. สถานบริการ พ.ศ. 2509</span>
+                                <!-- <a href="" class="hiperlink">อ่านข้อกฎหมายที่เกี่ยวข้อง</a> -->
+                            </p>
+                            <br>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 8 dance -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/desk.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการให้พนักงานนั่งบริการลูกค้าโดยเฉพาะ เช่น ปรนนิบัติ นั่งเป็นเพื่อน หรือร้องเพลงด้วย​</p>
+                            <!-- <p class="detail hide">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p> -->
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">ขออนุญาตตั้งสถานบริการ ที่</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- ตำรวจนครบาล (สำหรับพื้นที่กรุงเทพมหานคร) หรือ </p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8655/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%99%E0%B8%97%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- ผู้ว่าราชการจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/9183/%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ
+                                <span class="regular"> ตาม พ.ร.บ. สถานบริการ พ.ศ. 2509</span>
+                                <!-- <a href="" class="hiperlink">อ่านข้อกฎหมายที่เกี่ยวข้อง</a> -->
+                            </p>
+                            <br>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 8 dance -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/micro.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการร้องคาราโอเกะ</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนพาณิชย์ ที่..</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่นสำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำหรับบุคคลธรรมดา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำหรับห้างหุ้นส่วนสามัญ คณะบุคคลและกิจการร่วมค้า</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1422/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำหรับห้างหุ้นส่วนจดทะเบียน บริษัทจำกัด บริษัทมหาชนจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1482/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตประกอบการร้านวีดิทัศน์ ที่..</p>
+                                    <p class="detail">- สำนักงานพิจารณาภาพยนต์และวิดีทัศน์ (สำหรับพื้นที่ในกรุงเทพมหานคร) หรือ</p>
+                                    <p class="detail">- สำนักงานวัฒนธรรมประจำจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/6629/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%81%E0%B8%B0/
+" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i>ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">ขออนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ ที่</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำนักงานเขต (สำหรับพื้นที่กรุงเทพมหานคร) หรือ </p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/5014/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E%20(%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/%E2%80%8B​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- องค์กรปกครองส่วนท้องถิ่น (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8183/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E/%E2%80%8B​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                คุณอาจถูกปรับ
+                                <span class="regular"> ตาม พ.ร.บ. ทะเบียนพาณิชย์ พ.ศ. 2499</span>
+                            </p>
+                            <p class="head">
+                                คุณอาจถูกปรับ
+                                <span class="regular"> ตาม พ.ร.บ. ภาพยนต์และวีดิทัศน์ พ.ศ. 2551</span>
+                            </p>
+                            <p class="head">
+                                คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ
+                                <span class="regular"> ตาม พ.ร.บ. การสาธารณสุข พ.ศ. 2535</span>
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                </div><!-- 8 dance -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/9 oven.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการทำอาหารหรือเครื่องดื่มในปริมาณมากจนอาจรบกวนผู้อื่น เช่น มีเสียงดัง หรือส่งกลิ่นเหม็นที่รุนแรง</p>
+                            <p class="detail hide">
+                                ซึ่งรวมถึงการผลิต สะสม หรือแบ่งบรรจุ อาหารดังนี้ <br>
+                                - น้ำพริกแกง น้ำพริกปรุงสําเร็จ เต้าเจี้ยว ซีอิ๊ว น้ำจิ้ม หรือซอสปรุงรสชนิดต่าง ๆ<br>
+                                - อาหารหมัก ดอง จากสัตว์ ได้แก่ ปลาร้า ปลาเจ่า กุ้งเจ่า ปลาส้ม ปลาจ่อม แหนม หม่ำ ไส้กรอก กะปิ น้ำปลา หอยดอง น้ำเคย น้ำบูดู ไตปลา หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน<br>
+                                - อาหารหมัก ดอง แช่อิ่ม จากผัก ผลไม้ หรือพืชอย่างอื่น<br>
+                                - อาหารจากพืชหรือสัตว์โดยตาก บด นึ่ง ต้ม ตุ๋น เคี่ยว กวน ฉาบ ทอด อบ รมควัน ปิ้ง ย่าง เผา หรือวิธีอื่นใด<br>
+                                - ลูกชิ้น<br>
+                                - เส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋ เนื้อสัตว์เทียม หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน<br>
+                                - บะหมี่ มักกะโรนี สปาเกตตี้ พาสตา หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน (เฉพาะผลิตเท่านั้น ไม่รวมเก็บสะสม แบ่งบรรจุ)<br>
+                                - ขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ ขนมอบอื่น ๆ<br>
+                                - น้ำนม หรือผลิตภัณฑ์จากน้ำนมสัตว์<br>
+                                - เนย เนยเทียม เนยผสม ผลิตภัณฑ์เนย ผลิตภัณฑ์เนยเทียม และผลิตภัณฑ์เนยผสม<br>
+                                - ไอศกรีม (เฉพาะผลิตเท่านั้น ไม่รวมเก็บสะสม แบ่งบรรจุ)<br>
+                                - กาแฟ (คั่ว เก็บสะสม หรือบรรจุ)<br>
+                                - ใบชาแห้ง ชาผง หรือเครื่องดื่มชนิดผงอื่น ๆ<br>
+                                - เอทิลแอลกอฮอล์ สุรา เบียร์ ไวน์ น้ำส้มสายชู ข้าวหมาก น้ำตาลเมา<br>
+                                - น้ำกลั่น น้ำบริโภค น้ำดื่มจากเครื่องจําหน่ายอัตโนมัติ<br>
+                                - น้ำแข็ง (รวมถึงการขนส่ง)<br>
+                                - น้ำอัดลม น้ำหวาน น้ำโซดา น้ำจากพืชผัก ผลไม้ เครื่องดื่มชนิดต่าง ๆ บรรจุกระป๋อง ขวดหรือภาชนะอื่นใด<br>
+                                - ผงชูรส หรือสารปรุงแต่งอาหาร<br>
+                                - น้ำตาล น้ำเชื่อม<br>
+                                - แบะแซ (น้ำเชื่อมข้าวโพด)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">ขออนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ ที่</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- สำนักงานเขต (สำหรับพื้นที่กรุงเทพมหานคร) หรือ</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/5014/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E%20(%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="detail">- องค์กรปกครองส่วนท้องถิ่น (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8183/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%AD%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ<span class="regular"> ตาม พ.ร.บ. การสาธารณสุข พ.ศ. 2535</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 9 oven -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/10 gas.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีก๊าซหุงต้มมากกว่า 250 กก. (ประมาณ 5 ถังใหญ่)</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">หากน้อยกว่า 1,000 กก. (ประมาณ 20 ถังใหญ่) ต้องแจ้งครอบครองวัตถุอันตราย ที่...</p>
+                                    <p class="detail">- ศูนย์บริการธุรกิจพลังงาน (สำหรับพื้นที่กรุงเทพมหานคร) หรือ</p>
+                                    <p class="detail">- สำนักงานพลังงานจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/6947/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%252F%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%81%E0%B8%81%E0%B9%89%E0%B9%84%E0%B8%82%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B8%87%252F%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B9%82%E0%B8%AD%E0%B8%99%20%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%81%E0%B9%8A%E0%B8%B2%E0%B8%8B%E0%B8%9B%E0%B8%B4%E0%B9%82%E0%B8%95%E0%B8%A3%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B8%A2%E0%B8%A1%E0%B9%80%E0%B8%AB%E0%B8%A5%E0%B8%A7%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%83%E0%B8%8A%E0%B9%89%20%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%93%E0%B8%B0%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%AD%E0%B8%87/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">หากมากกว่า 1,000 กก. (ประมาณ 20 ถังใหญ่) ต้องขออนุญาตครอบครองวัตถุอันตรายที่..</p>
+                                    <p class="detail">- ศูนย์บริการธุรกิจพลังงาน (สำหรับพื้นที่กรุงเทพมหานคร) หรือ</p>
+                                    <p class="detail">- สำนักงานพลังงานจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/46214/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%20%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%B2%E0%B8%81%E0%B9%8A%E0%B8%B2%E0%B8%8B%E0%B8%9B%E0%B8%B4%E0%B9%82%E0%B8%95%E0%B8%A3%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B8%A2%E0%B8%A1%E0%B9%80%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%83%E0%B8%8A%E0%B9%89%20%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%93%E0%B8%B0%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B2%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%93%E0%B8%B5%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%96%E0%B8%B1%E0%B8%87%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%9A%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%88%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B9%8A%E0%B8%B2%E0%B8%8B%E0%B8%81%E0%B9%8A%E0%B8%B2%E0%B8%8B%E0%B8%9B%E0%B8%B4%E0%B9%82%E0%B8%95%E0%B8%A3%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B8%A2%E0%B8%A1%E0%B9%80%E0%B8%AB%E0%B8%A5%E0%B8%A7%20%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%AD%E0%B8%81%20(%E0%B8%A3%E0%B8%B0%E0%B8%A2%E0%B8%B0%E0%B8%97%E0%B8%B5%E0%B9%88%201%20:%20%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B8%84%E0%B8%B3%E0%B8%AA%E0%B8%B1%E0%B9%88%E0%B8%87%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%B3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">หากไม่ปฏิบัติตามอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ<span class="regular">ตาม พ.ร.บ. ควบคุมน้ำมันเชื้อเพลิง พ.ศ. 2542</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--10 gas-->
+            </div>
+            <div class="D-3 T-12">
+                <div class="btn-group-sticky">
+                    <h3>
+                        ช่องทางการให้บริการข้อมูล และขออนุญาตออนไลน์</h3>
+                        <div class="row">
+                            <div class="D-12 T-6 SM-12">
+                                <a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#restaurant"
+                                   class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/folder.svg")" type=""></object><p>ขอใบอนุญาตได้ทันทีที่ Biz Portal</p></a>
+                            </div>
+                            <div class="D-12 T-6 SM-12">
+                                <a href="" class="button-icon primary" id="chat-up"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/customer.svg")" type=""></object><p>สอบถามเจ้าหน้าที่ผ่าน Chat</p></a>
+                            </div>
+                            <div class="D-12 T-6 SM-12">
+                                <a href="@Url.BizAction("Business", "Quiz", new { area="", id="Restaurant", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                   class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")" type=""></object><p>ร้านของฉันต้องขออนุญาตอะไรบ้าง?</p></a>
+                            </div>
+                            <div class="D-12 T-6 SM-12">
+                                <a href="@(Url.BizAction("BDBBusinessList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName,parmBType = "Restaurant" }))"
+                                   class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/statistics.svg")" type=""></object><p style="font-size: larger;">ดูข้อมูลสถิติของธุรกิจที่เกี่ยวข้องที่ DBD DataWarehouse+</p></a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--         <section class="information-way">
+                <div class="container">
+                    <hr>
+                    <h2>ช่องทางการให้บริการข้อมูล และขออนุญาตออนไลน์</h2>
+                    <div class="btn-group">
+                        <div class="row">
+                            <div class="D-4 T-6 SM-12"><a href="landing.html" class="button-icon primary"><object data="images/folder.svg" type=""></object><p>ขอใบอนุญาตได้ทันทีที่ Biz Portal</p></a></div>
+                            <div class="D-4 T-6 SM-12"><a href="" class="button-icon primary" id="chat-up"><object data="images/customer.svg" type=""></object><p>สอบถามเจ้าหน้าที่ผ่าน Chat</p></a></div>
+                            <div class="D-4 T-6 SM-12"><a href="http://slatest.info.go.th/BizPortal/th/Quiz/Business/Restaurant" class="button-icon primary"><object data="images/smartquiz.svg" type=""></object><p>ร้านของฉันต้องขออนุญาตอะไรบ้าง?</p></a></div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+</section>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+        $.src="https://v2.zopim.com/?51QWbJHtlTd1CZbVRcYvrExRiI1ShrJo";z.t=+new Date;$.
+        type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+
+        var userImage = document.getElementById('chat-up');
+        userImage.onclick = function(e) {
+          e.preventDefault();
+          $zopim.livechat.window.show();
+        };
+    </script>
+}

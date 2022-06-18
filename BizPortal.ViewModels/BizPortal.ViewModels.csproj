@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{03404C37-AF53-461A-A8D6-3FFB5B390395}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BizPortal.ViewModels</RootNamespace>
+    <AssemblyName>BizPortal.ViewModels</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PreRelease|AnyCPU'">
+    <OutputPath>bin\PreRelease\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Training|AnyCPU'">
+    <OutputPath>bin\Training\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Training165|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Training165\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core.UI, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.Core.UI.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.InfoCard, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.InfoCard.4.3.4.13329\lib\net45-full\DotNetOpenAuth.InfoCard.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.InfoCard.UI, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.InfoCard.UI.4.3.4.13329\lib\net45-full\DotNetOpenAuth.InfoCard.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Common.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.ServiceProvider, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.ServiceProvider.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.ServiceProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth2.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.AuthorizationServer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.AuthorizationServer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth2.AuthorizationServer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.Client, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.Client.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth2.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.Client.UI, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.Client.UI.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth2.Client.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.ClientAuthorization, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.ClientAuthorization.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth2.ClientAuthorization.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth2.ResourceServer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth2.ResourceServer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth2.ResourceServer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.Provider, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Provider.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.Provider.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.Provider.UI, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Provider.UI.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.Provider.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty.UI, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.UI.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.UI, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.UI.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenIdInfoCard.UI, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenIdInfoCard.UI.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenIdInfoCard.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenIdOAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenIdOAuth.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenIdOAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="EGA.EGA_CAS.Data, Version=1.0.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EGA.EGA_CAS.Data.1.5.0\lib\EGA.EGA_CAS.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="EGA.EGA_CAS.Util, Version=1.4.0.0, Culture=neutral, PublicKeyToken=0ff8b336b58fdd62, processorArchitecture=MSIL">
+      <HintPath>..\packages\EGA.EGA_CAS.Util.1.4.0\lib\EGA.EGA_CAS.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="EGA.EGA_Development.Util, Version=1.3.6.0, Culture=neutral, PublicKeyToken=348cf1e7fb9e7c45, processorArchitecture=MSIL">
+      <HintPath>..\packages\EGA.EGA_Development.Util.1.3.6\lib\EGA.EGA_Development.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="EGA.Owin.Security.EGAOpenID, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EGA.Owin.Security.EGAOpenID.1.1.0\lib\EGA.Owin.Security.EGAOpenID.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EGA.Owin.Security.Utils, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EGA.Owin.Security.Utils.1.0.3\lib\EGA.Owin.Security.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="EGA.WS, Version=1.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EGA.WS.1.3.6\lib\EGA.WS.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExpressiveAnnotations, Version=2.7.4.0, Culture=neutral, PublicKeyToken=d3e372f3c1e83cec, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExpressiveAnnotations.dll.2.7.4\lib\net45\ExpressiveAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.0.3\lib\net45\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapster, Version=3.1.8.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mapster.3.1.8\lib\net45\Mapster.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.0.3\lib\net45\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PhoneNumbers, Version=8.9.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\libphonenumber-csharp.8.9.5\lib\net40\PhoneNumbers.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountViewModels.cs" />
+    <Compile Include="ApplicationArticleViewModel.cs" />
+    <Compile Include="ApplicationDataTables.cs" />
+    <Compile Include="ApplicationStatusApiModel.cs" />
+    <Compile Include="ApplicationTransactionViewModel.cs" />
+    <Compile Include="ApplicationViewModel.cs" />
+    <Compile Include="Apps\DBDStandard\BaseAddress.cs" />
+    <Compile Include="Apps\DBDStandard\BaseFileMetaData.cs" />
+    <Compile Include="Apps\DBDStandard\BasePerson.cs" />
+    <Compile Include="Apps\DBDStandard\DBDBusiness.cs" />
+    <Compile Include="Apps\DBDStandard\DBDPerson.cs" />
+    <Compile Include="Apps\DBDStandard\DBDPlace.cs" />
+    <Compile Include="Apps\DEDEStandard\Class1.cs" />
+    <Compile Include="Apps\DEDEStandard\communication.cs" />
+    <Compile Include="Apps\DEDEStandard\DEDEBusiness.cs" />
+    <Compile Include="Apps\DEDEStandard\personel.cs" />
+    <Compile Include="Apps\DLTStandard\Application.cs" />
+    <Compile Include="Apps\DOAStandard\DOAPlants.cs" />
+    <Compile Include="Apps\DOTStandard\DOTTourismBase.cs" />
+    <Compile Include="Apps\DPTStandard\DPTFile.cs" />
+    <Compile Include="Apps\DPTStandard\DPTLicense.cs" />
+    <Compile Include="Apps\DPTStandard\DPTR6.cs" />
+    <Compile Include="Apps\DPTStandard\DPTG1.cs" />
+    <Compile Include="Apps\DPTStandard\DPTRequest.cs" />
+    <Compile Include="Apps\EDocument\OrgByPersonApproveRequest.cs" />
+    <Compile Include="Apps\EDocument\PersonalQrCodeRequest.cs" />
+    <Compile Include="Apps\EDocument\PersonalQrCodeResponse.cs" />
+    <Compile Include="Apps\EDocument\PersonalSignedDocumentViewModel.cs" />
+    <Compile Include="Apps\EDocument\PersonalSignedDocument.cs" />
+    <Compile Include="Apps\EDocument\PersonalSignerResponse.cs" />
+    <Compile Include="Apps\EDocument\PersonalSigningDataTable.cs" />
+    <Compile Include="Apps\EDocument\PersonalSignTokenRequest.cs" />
+    <Compile Include="Apps\EDocument\SignedDocumentResponse.cs" />
+    <Compile Include="Apps\EXCISEStandard\ExciseRequest.cs" />
+    <Compile Include="Apps\HSSStandard\HSSExportData.cs" />
+    <Compile Include="Apps\HSSStandard\HSSFileMetaData.cs" />
+    <Compile Include="Apps\HSSStandard\SpaRegisterRequest.cs" />
+    <Compile Include="Apps\JuristicProfile.cs" />
+    <Compile Include="Apps\MEAUtilityRequest.cs" />
+    <Compile Include="Apps\MWAUtilityRequest.cs" />
+    <Compile Include="Apps\NBTCStandard\NBTCRequest.cs" />
+    <Compile Include="Apps\Plant2Model.cs" />
+    <Compile Include="Apps\PlantModel.cs" />
+    <Compile Include="Apps\PoliceTicket\PoliceTicketViewModel.cs" />
+    <Compile Include="Apps\PWABranch.cs" />
+    <Compile Include="Apps\PWAUtilityRequest.cs" />
+    <Compile Include="Apps\SRATStandard\Base.cs" />
+    <Compile Include="Apps\SRATStandard\BkkSellFoodSmallRequest.cs" />
+    <Compile Include="Apps\TFACStandard\Address.cs" />
+    <Compile Include="Apps\TFACStandard\BaseFileMetaData.cs" />
+    <Compile Include="Apps\TFACStandard\Guarantee.cs" />
+    <Compile Include="Apps\TFACStandard\Person.cs" />
+    <Compile Include="Apps\TFACStandard\TFACBusiness.cs" />
+    <Compile Include="DBDBusinessList.cs" />
+    <Compile Include="SendAlertEmailViewModel.cs" />
+    <Compile Include="ELicenseViewModel.cs" />
+    <Compile Include="BillpaymentManageViewModel.cs" />
+    <Compile Include="BusinessSecuredViewModel.cs" />
+    <Compile Include="Constant\ViewDataDictConst.cs" />
+    <Compile Include="ControlData\CommitteeControlData.cs" />
+    <Compile Include="Edocument\EdocAdmin.cs" />
+    <Compile Include="Edocument\EdocOfficer.cs" />
+    <Compile Include="Edocument\EdocUser.cs" />
+    <Compile Include="RDSoftwareHouseRequestViewModel.cs" />
+    <Compile Include="DBDCommearceData.cs" />
+    <Compile Include="IdentityAddress.cs" />
+    <Compile Include="MemberDataTables.cs" />
+    <Compile Include="MemberServiceViewModel.cs" />
+    <Compile Include="MemberViewModel.cs" />
+    <Compile Include="NDIDViewModel.cs" />
+    <Compile Include="PermitSummaryViewModel.cs" />
+    <Compile Include="ReportAdminDataTable.cs" />
+    <Compile Include="Report\Constant.cs" />
+    <Compile Include="Report\Enum.cs" />
+    <Compile Include="Report\Page1\PermitRequestSummary.cs" />
+    <Compile Include="Report\Page2\PermitRequestStatistics.cs" />
+    <Compile Include="Report\Page3\ApplicationModel.cs" />
+    <Compile Include="Select2\PaymentCostCenterSelect2Opt.cs" />
+    <Compile Include="Select2\PaymentCatalogSelect2Opt.cs" />
+    <Compile Include="Select2\BranchSelect2Opt.cs" />
+    <Compile Include="Select2\ProvinceSelect2Opt.cs" />
+    <Compile Include="Select2\TSICSelect2Opt.cs" />
+    <Compile Include="SingleForm\SingleForm.cs" />
+    <Compile Include="SingleForm\SingleFormAppsViewModel.cs" />
+    <Compile Include="SingleForm\SingleFormAttachmentViewModel.cs" />
+    <Compile Include="SingleForm\SingleFormFileUploadViewModel.cs" />
+    <Compile Include="SingleForm\SingleFormRequestViewModel.cs" />
+    <Compile Include="SingleForm\SingleFormSectionDataViewModel.cs" />
+    <Compile Include="Apps\TOTCitizenRequest.cs" />
+    <Compile Include="Apps\TOTJuristicRequest.cs" />
+    <Compile Include="Apps\UtilityForm.cs" />
+    <Compile Include="Apps\VATUtilityRequest.cs" />
+    <Compile Include="ArticleDataTables.cs" />
+    <Compile Include="ArticleSearchViewModel.cs" />
+    <Compile Include="ArticleViewModel.cs" />
+    <Compile Include="Base\BaseDatatable.cs" />
+    <Compile Include="Base\CmsViewModel.cs" />
+    <Compile Include="CategoryDataTables.cs" />
+    <Compile Include="CategoryViewModel.cs" />
+    <Compile Include="ControlData\AddressControlData.cs" />
+    <Compile Include="DataTables.cs" />
+    <Compile Include="DataTablesResult.cs" />
+    <Compile Include="EmailViewModel.cs" />
+    <Compile Include="Extensions\DictionaryViewExtension.cs" />
+    <Compile Include="FileUploadViewModel.cs" />
+    <Compile Include="HolidayViewModel.cs" />
+    <Compile Include="JuristicApplicationStatusRequestViewModel.cs" />
+    <Compile Include="JuristicRequestFileUploadType.cs" />
+    <Compile Include="ManageViewModels.cs" />
+    <Compile Include="OrderJsonModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseData.cs" />
+    <Compile Include="SectionDataTables.cs" />
+    <Compile Include="SectionViewModel.cs" />
+    <Compile Include="Select2\Select2GroupOpt.cs" />
+    <Compile Include="Select2\Select2Opt.cs" />
+    <Compile Include="StandardApi\StandardApiFileInfo.cs" />
+    <Compile Include="StandardApi\StandardApiRequestModel.cs" />
+    <Compile Include="StandardApi\StandardApiTransactionModel.cs" />
+    <Compile Include="StatusDetailDataTables.cs" />
+    <Compile Include="StatusDataTables.cs" />
+    <Compile Include="V2\ApplicationRequestDataGroupViewModel.cs" />
+    <Compile Include="V2\ApplicationRequestSearchResultViewModel.cs" />
+    <Compile Include="V2\ApplicationRequestViewModel.cs" />
+    <Compile Include="V2\ChatViewModel.cs" />
+    <Compile Include="V2\DashboardViewModel.cs" />
+    <Compile Include="V2\FileExplorerDatatables.cs" />
+    <Compile Include="V2\FileExplorerViewModel.cs" />
+    <Compile Include="V2\FileGroup.cs" />
+    <Compile Include="V2\FileMetadata.cs" />
+    <Compile Include="V2\FileInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BizPortal.DAL\BizPortal.DAL.csproj">
+      <Project>{97541e65-9d5b-48bb-9d5c-e6e6e6073559}</Project>
+      <Name>BizPortal.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizPortal.Models\BizPortal.Models.csproj">
+      <Project>{68a18c29-03d7-417c-9398-67e1fd7e771e}</Project>
+      <Name>BizPortal.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizPortal.Resources\BizPortal.Resources.csproj">
+      <Project>{2fb5419d-3ddf-459c-a747-3edfcb3b6dcb}</Project>
+      <Name>BizPortal.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizPortal.Utils\BizPortal.Utils.csproj">
+      <Project>{a365956c-6ef1-42eb-aef9-38cb882de63b}</Project>
+      <Name>BizPortal.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,736 @@
+﻿@using BizPortal.Utils.Helpers
+@using Resources = BizPortal.Resources
+@{
+    ViewBag.Title = "StartingBusiness";
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+    //Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<form id="frmStartingQuiz" method="post" autocomplete="off">
+    <div class="single-form">
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>@ResourceHelper.GetResourceWordWithDefault("IS_REGISTERED_JURISTIC", "Quiz", "IS_REGISTERED_JURISTIC") :</label>
+                <div class="pl15">
+                    <div class="radio">
+                        <label for="IS_REGISTERED_JURISTIC_YES">@Html.RadioButton("IS_REGISTERED_JURISTIC", "Yes", new { id = "IS_REGISTERED_JURISTIC_YES" }) @ResourceHelper.GetResourceWordWithDefault("IS_REGISTERED_JURISTIC_YES", "Quiz", "IS_REGISTERED_JURISTIC_YES")</label>
+                    </div>
+                    <div class="radio">
+                        <label for="IS_REGISTERED_JURISTIC_NO">@Html.RadioButton("IS_REGISTERED_JURISTIC", "No", new { id = "IS_REGISTERED_JURISTIC_NO" }) @ResourceHelper.GetResourceWordWithDefault("IS_REGISTERED_JURISTIC_NO", "Quiz", "IS_REGISTERED_JURISTIC_NO")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>@ResourceHelper.GetResourceWordWithDefault("IS_BUSINESS_SELLING_GOODS", "Quiz", "IS_BUSINESS_SELLING_GOODS") :</label>
+                <div class="pl15">
+                    <div class="radio">
+                        <label for="IS_BUSINESS_SELLING_GOODS_YES">@Html.RadioButton("IS_BUSINESS_SELLING_GOODS", "Yes", new { id = "IS_BUSINESS_SELLING_GOODS_YES" }) @ResourceHelper.GetResourceWordWithDefault("IS_BUSINESS_SELLING_GOODS_YES", "Quiz", "IS_BUSINESS_SELLING_GOODS_YES")</label>
+                    </div>
+                    <div class="radio">
+                        <label for="IS_BUSINESS_SELLING_GOODS_NO">@Html.RadioButton("IS_BUSINESS_SELLING_GOODS", "No", new { id = "IS_BUSINESS_SELLING_GOODS_NO" }) @ResourceHelper.GetResourceWordWithDefault("IS_BUSINESS_SELLING_GOODS_NO", "Quiz", "IS_BUSINESS_SELLING_GOODS_NO")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="business2_1" hidden>
+            <div class="col-md-12 form-group pl30">
+                <label>@ResourceHelper.GetResourceWordWithDefault("BUSINESS_GOODS_TYPE", "Quiz", "BUSINESS_GOODS_TYPE") :</label>
+                <div class="pl15">
+                    <div class="checkbox">
+                        <label for="DOMESTIC_AGRICULTURAL_CROPS">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="DOMESTIC_AGRICULTURAL_CROPS" value="DOMESTIC_AGRICULTURAL_CROPS" />
+                            @ResourceHelper.GetResourceWordWithDefault("DOMESTIC_AGRICULTURAL_CROPS", "Quiz", "DOMESTIC_AGRICULTURAL_CROPS")
+                        </label>
+                        <a href="http://www.rd.go.th/publish/3608.0.html" target="_blank"><i class="fa fa-info-circle"></i></a>
+                    </div>
+                    <div class="checkbox">
+                        <label for="DOMESTIC_ANIMALS_AND_UNPROCESSED_MEAT">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="DOMESTIC_ANIMALS_AND_UNPROCESSED_MEAT" value="DOMESTIC_ANIMALS_AND_UNPROCESSED_MEAT" />
+                            @ResourceHelper.GetResourceWordWithDefault("DOMESTIC_ANIMALS_AND_UNPROCESSED_MEAT", "Quiz", "DOMESTIC_ANIMALS_AND_UNPROCESSED_MEAT")
+                        </label>
+                        <a href="http://www.rd.go.th/publish/3607.0.html" target="_blank"><i class="fa fa-info-circle"></i></a>
+                    </div>
+                    <div class="checkbox">
+                        <label for="DOMESTIC_FERTILIZERS_CHEMICALS_MEDICINES">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="DOMESTIC_FERTILIZERS_CHEMICALS_MEDICINES" value="DOMESTIC_FERTILIZERS_CHEMICALS_MEDICINES" />
+                            @ResourceHelper.GetResourceWordWithDefault("DOMESTIC_FERTILIZERS_CHEMICALS_MEDICINES", "Quiz", "DOMESTIC_FERTILIZERS_CHEMICALS_MEDICINES")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="DOMESTIC_ANIMAL_FOODS">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="DOMESTIC_ANIMAL_FOODS" value="DOMESTIC_ANIMAL_FOODS" />
+                            @ResourceHelper.GetResourceWordWithDefault("DOMESTIC_ANIMAL_FOODS", "Quiz", "DOMESTIC_ANIMAL_FOODS")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="DOMESTIC_NEWSPAPER_MAGAZINES_AND_TEXTBOOKS">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="DOMESTIC_NEWSPAPER_MAGAZINES_AND_TEXTBOOKS" value="DOMESTIC_NEWSPAPER_MAGAZINES_AND_TEXTBOOKS" />
+                            @ResourceHelper.GetResourceWordWithDefault("DOMESTIC_NEWSPAPER_MAGAZINES_AND_TEXTBOOKS", "Quiz", "DOMESTIC_NEWSPAPER_MAGAZINES_AND_TEXTBOOKS")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="ALL_5_DOMESTIC_GOODS">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="ALL_5_DOMESTIC_GOODS" value="ALL_5_DOMESTIC_GOODS" />
+                            @ResourceHelper.GetResourceWordWithDefault("ALL_5_DOMESTIC_GOODS", "Quiz", "ALL_5_DOMESTIC_GOODS")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="EXPORTED_GOODS_BY_INDUSTRIAL_PARK">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="EXPORTED_GOODS_BY_INDUSTRIAL_PARK" value="EXPORTED_GOODS_BY_INDUSTRIAL_PARK" />
+                            @ResourceHelper.GetResourceWordWithDefault("EXPORTED_GOODS_BY_INDUSTRIAL_PARK", "Quiz", "EXPORTED_GOODS_BY_INDUSTRIAL_PARK")
+                        </label>
+                        <a href="http://search.customs.go.th:8090/TaxPrivilege/TaxPrivilege3/TaxPrivilege3.jsp" target="_blank"><i class="fa fa-info-circle"></i></a>
+                    </div>
+                    <div class="checkbox">
+                        <label for="CDS_DVDS_TAPES_FOR_SELL_OR_RENT">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="CDS_DVDS_TAPES_FOR_SELL_OR_RENT" value="CDS_DVDS_TAPES_FOR_SELL_OR_RENT" />
+                            @ResourceHelper.GetResourceWordWithDefault("CDS_DVDS_TAPES_FOR_SELL_OR_RENT", "Quiz", "CDS_DVDS_TAPES_FOR_SELL_OR_RENT")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="GEMSTONE_AND_JEWELRY">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="GEMSTONE_AND_JEWELRY" value="GEMSTONE_AND_JEWELRY" />
+                            @ResourceHelper.GetResourceWordWithDefault("GEMSTONE_AND_JEWELRY", "Quiz", "GEMSTONE_AND_JEWELRY")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="RELIGION_AND_DOMESTIC_CHARITY">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="RELIGION_AND_DOMESTIC_CHARITY" value="RELIGION_AND_DOMESTIC_CHARITY" />
+                            @ResourceHelper.GetResourceWordWithDefault("RELIGION_AND_DOMESTIC_CHARITY", "Quiz", "RELIGION_AND_DOMESTIC_CHARITY")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="GOODS_AND_SERVICES_FOR_MINISTRY">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="GOODS_AND_SERVICES_FOR_MINISTRY" value="GOODS_AND_SERVICES_FOR_MINISTRY" />
+                            @ResourceHelper.GetResourceWordWithDefault("GOODS_AND_SERVICES_FOR_MINISTRY", "Quiz", "GOODS_AND_SERVICES_FOR_MINISTRY")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="DECREE_NO239_GOODS_AND_SERVICES">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="DECREE_NO239_GOODS_AND_SERVICES" value="DECREE_NO239_GOODS_AND_SERVICES" />
+                            @ResourceHelper.GetResourceWordWithDefault("DECREE_NO239_GOODS_AND_SERVICES", "Quiz", "DECREE_NO239_GOODS_AND_SERVICES")
+                        </label>
+                        <a href="http://www.rd.go.th/publish/2384.0.html" target="_blank"><i class="fa fa-info-circle"></i></a>
+                    </div>
+                    <div class="checkbox">
+                        <label for="IVORY_AND_CARVED_IVORY">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="IVORY_AND_CARVED_IVORY" value="IVORY_AND_CARVED_IVORY" />
+                            @ResourceHelper.GetResourceWordWithDefault("IVORY_AND_CARVED_IVORY", "Quiz", "IVORY_AND_CARVED_IVORY")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="GOOD_TYPES_ETC">
+                            <input type="checkbox" name="BUSINESS_GOODS_TYPE" id="GOOD_TYPES_ETC" value="GOOD_TYPES_ETC" />
+                            @ResourceHelper.GetResourceWordWithDefault("GOOD_TYPES_ETC", "Quiz", "GOOD_TYPES_ETC")
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>@ResourceHelper.GetResourceWordWithDefault("IS_BUSINESS_PROVIDE_SERVICES", "Quiz", "IS_BUSINESS_PROVIDE_SERVICES") :</label>
+                <div class="pl15">
+                    <div class="radio">
+                        <label for="IS_BUSINESS_PROVIDE_SERVICES_YES">@Html.RadioButton("IS_BUSINESS_PROVIDE_SERVICES", "Yes", new { id = "IS_BUSINESS_PROVIDE_SERVICES_YES" }) @ResourceHelper.GetResourceWordWithDefault("IS_BUSINESS_PROVIDE_SERVICES_YES", "Quiz", "IS_BUSINESS_PROVIDE_SERVICES_YES")</label>
+                    </div>
+                    <div class="radio">
+                        <label for="IS_BUSINESS_PROVIDE_SERVICES_NO">@Html.RadioButton("IS_BUSINESS_PROVIDE_SERVICES", "No", new { id = "IS_BUSINESS_PROVIDE_SERVICES_NO" }) @ResourceHelper.GetResourceWordWithDefault("IS_BUSINESS_PROVIDE_SERVICES_NO", "Quiz", "IS_BUSINESS_PROVIDE_SERVICES_NO")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="business3_1" hidden>
+            <div class="col-md-12 form-group pl30">
+                <label>@ResourceHelper.GetResourceWordWithDefault("BUSINESS_SERVICES_TYPE", "Quiz", "BUSINESS_SERVICES_TYPE") :</label>
+                <div class="pl15">
+                    <div class="checkbox">
+                        <label for="DOMESTIC_FUEL_TRANSPORTATION">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="DOMESTIC_FUEL_TRANSPORTATION" value="DOMESTIC_FUEL_TRANSPORTATION" />
+                            @ResourceHelper.GetResourceWordWithDefault("DOMESTIC_FUEL_TRANSPORTATION", "Quiz", "DOMESTIC_FUEL_TRANSPORTATION")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="DOMESTIC_TRANSPORTATION_BY_LANDWATER">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="DOMESTIC_TRANSPORTATION_BY_LANDWATER" value="DOMESTIC_TRANSPORTATION_BY_LANDWATER" />
+                            @ResourceHelper.GetResourceWordWithDefault("DOMESTIC_TRANSPORTATION_BY_LANDWATER", "Quiz", "DOMESTIC_TRANSPORTATION_BY_LANDWATER")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="DOMESTIC_TRANSPORTATION_BY_AIR">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="DOMESTIC_TRANSPORTATION_BY_AIR" value="DOMESTIC_TRANSPORTATION_BY_AIR" />
+                            @ResourceHelper.GetResourceWordWithDefault("DOMESTIC_TRANSPORTATION_BY_AIR", "Quiz", "DOMESTIC_TRANSPORTATION_BY_AIR")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="INTERNATIONAL_SHIPPING_BY_LANDWATER">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="INTERNATIONAL_SHIPPING_BY_LANDWATER" value="INTERNATIONAL_SHIPPING_BY_LANDWATER" />
+                            @ResourceHelper.GetResourceWordWithDefault("INTERNATIONAL_SHIPPING_BY_LANDWATER", "Quiz", "INTERNATIONAL_SHIPPING_BY_LANDWATER")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="REAL_ESTATE_REANTAL_SERVICE">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="REAL_ESTATE_REANTAL_SERVICE" value="REAL_ESTATE_REANTAL_SERVICE" />
+                            @ResourceHelper.GetResourceWordWithDefault("REAL_ESTATE_REANTAL_SERVICE", "Quiz", "REAL_ESTATE_REANTAL_SERVICE")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="CULTURAL_AND_ART_SERVICES">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="CULTURAL_AND_ART_SERVICES" value="CULTURAL_AND_ART_SERVICES" />
+                            @ResourceHelper.GetResourceWordWithDefault("CULTURAL_AND_ART_SERVICES", "Quiz", "CULTURAL_AND_ART_SERVICES")
+                        </label>
+                        <a href="http://www.rd.go.th/publish/3412.0.html" target="_blank"><i class="fa fa-info-circle"></i></a>
+                    </div>
+                    <div class="checkbox">
+                        <label for="COMPETITIVE_SPORTS_SERVICE">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="COMPETITIVE_SPORTS_SERVICE" value="COMPETITIVE_SPORTS_SERVICE" />
+                            @ResourceHelper.GetResourceWordWithDefault("COMPETITIVE_SPORTS_SERVICE", "Quiz", "COMPETITIVE_SPORTS_SERVICE")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="EDUCATIONAL_SERVICES">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="EDUCATIONAL_SERVICES" value="EDUCATIONAL_SERVICES" />
+                            @ResourceHelper.GetResourceWordWithDefault("EDUCATIONAL_SERVICES", "Quiz", "EDUCATIONAL_SERVICES")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="LABOR_CONTRACT_SERVICES">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="LABOR_CONTRACT_SERVICES" value="LABOR_CONTRACT_SERVICES" />
+                            @ResourceHelper.GetResourceWordWithDefault("LABOR_CONTRACT_SERVICES", "Quiz", "LABOR_CONTRACT_SERVICES")
+                        </label>
+                        <a href="http://sanpakornsarn.com/backend/magazine-file/file1331608002.pdf" target="_blank"><i class="fa fa-info-circle"></i></a>
+                    </div>
+                    <div class="checkbox">
+                        <label for="MEDICAL_TREATMENT_AUDIT_AND_LAWYER">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="MEDICAL_TREATMENT_AUDIT_AND_LAWYER" value="MEDICAL_TREATMENT_AUDIT_AND_LAWYER" />
+                            @ResourceHelper.GetResourceWordWithDefault("MEDICAL_TREATMENT_AUDIT_AND_LAWYER", "Quiz", "MEDICAL_TREATMENT_AUDIT_AND_LAWYER")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="HOSPITAL_SERVICES">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="HOSPITAL_SERVICES" value="HOSPITAL_SERVICES" />
+                            @ResourceHelper.GetResourceWordWithDefault("HOSPITAL_SERVICES", "Quiz", "HOSPITAL_SERVICES")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="LIBRARY_MUSEUM_ZOO">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="LIBRARY_MUSEUM_ZOO" value="LIBRARY_MUSEUM_ZOO" />
+                            @ResourceHelper.GetResourceWordWithDefault("LIBRARY_MUSEUM_ZOO", "Quiz", "LIBRARY_MUSEUM_ZOO")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="KARAOKE_GAME_CONSOLE_SERVICES">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="KARAOKE_GAME_CONSOLE_SERVICES" value="KARAOKE_GAME_CONSOLE_SERVICES" />
+                            @ResourceHelper.GetResourceWordWithDefault("KARAOKE_GAME_CONSOLE_SERVICES", "Quiz", "KARAOKE_GAME_CONSOLE_SERVICES")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="DATACENTER_AND_HOST_SERVICES">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="DATACENTER_AND_HOST_SERVICES" value="DATACENTER_AND_HOST_SERVICES" />
+                            @ResourceHelper.GetResourceWordWithDefault("DATACENTER_AND_HOST_SERVICES", "Quiz", "DATACENTER_AND_HOST_SERVICES")
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="SERVICE_TYPES_ETC">
+                            <input type="checkbox" name="BUSINESS_SERVICES_TYPE" id="SERVICE_TYPES_ETC" value="SERVICE_TYPES_ETC" />
+                            @ResourceHelper.GetResourceWordWithDefault("SERVICE_TYPES_ETC", "Quiz", "SERVICE_TYPES_ETC")
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="business3_2" hidden>
+            <div class="col-md-12 form-group pl30">
+                <label>@ResourceHelper.GetResourceWordWithDefault("SPECIAL_ANNUAL_REVENUE_18_1", "Quiz", "SPECIAL_ANNUAL_REVENUE_18_1")</label>
+                <div class="pl15">
+                    <span class="display-block mb5" id="CDS_DVDS_TAPES_FOR_SELL_OR_RENT" hidden>- @ResourceHelper.GetResourceWordWithDefault("CDS_DVDS_TAPES_FOR_SELL_OR_RENT", "Quiz", "CDS_DVDS_TAPES_FOR_SELL_OR_RENT")</span>
+                    <span class="display-block mb5" id="GEMSTONE_AND_JEWELRY" hidden>- @ResourceHelper.GetResourceWordWithDefault("GEMSTONE_AND_JEWELRY", "Quiz", "GEMSTONE_AND_JEWELRY")</span>
+                    <span class="display-block mb5" id="RELIGION_AND_DOMESTIC_CHARITY" hidden>- @ResourceHelper.GetResourceWordWithDefault("RELIGION_AND_DOMESTIC_CHARITY", "Quiz", "RELIGION_AND_DOMESTIC_CHARITY")</span>
+                    <span class="display-block mb5" id="IVORY_AND_CARVED_IVORY" hidden>- @ResourceHelper.GetResourceWordWithDefault("IVORY_AND_CARVED_IVORY", "Quiz", "IVORY_AND_CARVED_IVORY")</span>
+                    <span class="display-block mb5" id="GOOD_TYPES_ETC" hidden>- @ResourceHelper.GetResourceWordWithDefault("GOOD_TYPES_ETC", "Quiz", "GOOD_TYPES_ETC")</span>
+                    <span class="display-block mb5" id="KARAOKE_GAME_CONSOLE_SERVICES" hidden>- @ResourceHelper.GetResourceWordWithDefault("KARAOKE_GAME_CONSOLE_SERVICES", "Quiz", "KARAOKE_GAME_CONSOLE_SERVICES")</span>
+                    <span class="display-block mb5" id="DATACENTER_AND_HOST_SERVICES" hidden>- @ResourceHelper.GetResourceWordWithDefault("DATACENTER_AND_HOST_SERVICES", "Quiz", "DATACENTER_AND_HOST_SERVICES")</span>
+                    <span class="display-block mb5" id="SERVICE_TYPES_ETC" hidden>- @ResourceHelper.GetResourceWordWithDefault("SERVICE_TYPES_ETC", "Quiz", "SERVICE_TYPES_ETC")</span>
+                </div>
+                <label class="ar18lab">@ResourceHelper.GetResourceWordWithDefault("SPECIAL_ANNUAL_REVENUE_18_2", "Quiz", "SPECIAL_ANNUAL_REVENUE_18_2") :</label>
+                <div class="pl15">
+                    <div class="radio">
+                        <label for="SPECIAL_ANNUAL_REVENUE_18_YES">@Html.RadioButton("SPECIAL_ANNUAL_REVENUE_18", "Yes", new { id = "SPECIAL_ANNUAL_REVENUE_18_YES" }) @ResourceHelper.GetResourceWordWithDefault("SPECIAL_ANNUAL_REVENUE_18_YES", "Quiz", "SPECIAL_ANNUAL_REVENUE_18_YES")</label>
+                    </div>
+                    <div class="radio">
+                        <label for="SPECIAL_ANNUAL_REVENUE_18_NO">@Html.RadioButton("SPECIAL_ANNUAL_REVENUE_18", "No", new { id = "SPECIAL_ANNUAL_REVENUE_18_NO" }) @ResourceHelper.GetResourceWordWithDefault("SPECIAL_ANNUAL_REVENUE_18_NO", "Quiz", "SPECIAL_ANNUAL_REVENUE_18_NO")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="business3_3" hidden>
+            <div class="col-md-12 form-group pl30">
+                <label>@ResourceHelper.GetResourceWordWithDefault("IS_NEED_VAT", "Quiz", "IS_NEED_VAT") :</label>
+                <div class="pl15">
+                    <div class="radio">
+                        <label for="IS_NEED_VAT_YES">@Html.RadioButton("IS_NEED_VAT", "Yes", new { id = "IS_NEED_VAT_YES" }) @ResourceHelper.GetResourceWordWithDefault("IS_NEED_VAT_YES", "Quiz", "IS_NEED_VAT_YES")</label>
+                    </div>
+                    <div class="radio">
+                        <label for="IS_NEED_VAT_NO">@Html.RadioButton("IS_NEED_VAT", "No", new { id = "IS_NEED_VAT_NO" }) @ResourceHelper.GetResourceWordWithDefault("IS_NEED_VAT_NO", "Quiz", "IS_NEED_VAT_NO")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>@ResourceHelper.GetResourceWordWithDefault("HAS_ONLINE_STORE", "Quiz", "HAS_ONLINE_STORE") :</label>
+                <div class="pl15">
+                    <div class="radio">
+                        <label for="HAS_ONLINE_STORE_NO">@Html.RadioButton("HAS_ONLINE_STORE", "No", new { id = "HAS_ONLINE_STORE_NO" }) @ResourceHelper.GetResourceWordWithDefault("HAS_ONLINE_STORE_NO", "Quiz", "HAS_ONLINE_STORE_NO")</label>
+                    </div>
+                    <div class="radio">
+                        <label for="HAS_ONLINE_STORE_YES">@Html.RadioButton("HAS_ONLINE_STORE", "Yes", new { id = "HAS_ONLINE_STORE_YES" }) @ResourceHelper.GetResourceWordWithDefault("HAS_ONLINE_STORE_YES", "Quiz", "HAS_ONLINE_STORE_YES")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>@ResourceHelper.GetResourceWordWithDefault("NUMBER_OF_EMPLOYEES", "Quiz", "NUMBER_OF_EMPLOYEES") :</label>
+                <div class="pl15">
+                    <div class="radio">
+                        <label for="NUMBER_OF_EMPLOYEES_NO">@Html.RadioButton("NUMBER_OF_EMPLOYEES", "01", new { id = "NUMBER_OF_EMPLOYEES_NO" }) @ResourceHelper.GetResourceWordWithDefault("NUMBER_OF_EMPLOYEES_NO", "Quiz", "NUMBER_OF_EMPLOYEES_NO")</label>
+                    </div>
+                    <div class="radio">
+                        <label for="NUMBER_OF_EMPLOYEES_1_TO_9">@Html.RadioButton("NUMBER_OF_EMPLOYEES", "02", new { id = "NUMBER_OF_EMPLOYEES_1_TO_9" }) @ResourceHelper.GetResourceWordWithDefault("NUMBER_OF_EMPLOYEES_1_TO_9", "Quiz", "NUMBER_OF_EMPLOYEES_1_TO_9")</label>
+                    </div>
+                    <div class="radio">
+                        <label for="NUMBER_OF_EMPLOYEES_MORETHAN_10">@Html.RadioButton("NUMBER_OF_EMPLOYEES", "03", new { id = "NUMBER_OF_EMPLOYEES_MORETHAN_10" }) @ResourceHelper.GetResourceWordWithDefault("NUMBER_OF_EMPLOYEES_MORETHAN_10", "Quiz", "NUMBER_OF_EMPLOYEES_MORETHAN_10")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt10 mb20">
+            <div class="col-md-12 text-center">
+                <button type="submit" id="btnSubmitStartingQuiz" class="btn btn-success">ดำเนินการต่อ</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form id="frmApps" method="post" action="@Url.Action("List", "SingleForm", new { area = "Apps", id="startingbusiness", language = ViewBag.CurrentLang })" autocomplete="off">
+
+</form>
+
+@section PageScripts {
+    <script type="text/javascript">
+        var startingQuiz = {
+            controls: {
+                form: '#frmStartingQuiz',
+                formApps: '#frmApps'
+            },
+            variables: {
+                apps: Array(),
+                isDbd: false
+            },
+            functions: {
+                init: function () {
+                    $(startingQuiz.controls.form + ' button[type=submit]').ladda('bind');
+                    $('input[type=radio][name=IS_REGISTERED_JURISTIC]').change(function () {
+                        if (this.value == "No") {
+                            swal({
+                                title: "เราขอแนะนำ...",
+                                text: "ให้คุณจดทะเบียนเพื่อรับเลขนิติบุคคล 13 หลักก่อน หลังจากนั้นคุณจะสามารถขออนุญาตออนไลน์อื่น ๆ จาก Biz Portal ได้ทันที",
+                                showCancelButton: true,
+                                closeOnCancel: true,
+                                cancelButtonText: "ไปจดทะเบียนนิติบุคคลออนไลน์กับกรมพัฒนาธุรกิจการค้า",
+                                closeOnConfirm: true,
+                                confirmButtonText: "ต้องการตอบแบบสอบถามต่อ"
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    startingQuiz.variables.isDbd = true;
+                                } else {
+                                    window.location.href = "https://ereg.dbd.go.th/ERegistMemberWeb/nonmemberpages/home.xhtml";
+                                }
+                            });
+                        } else if (this.value == "Yes" && startingQuiz.variables.isDbd == true) {
+                            startingQuiz.variables.isDbd = false;
+                        }
+                    });
+
+                    $('input[type=radio][name=IS_BUSINESS_SELLING_GOODS]').change(function () {
+                        if (this.value == "Yes") {
+                            $('#business2_1').show();
+                        } else if (this.value == "No") {
+                            $('#business2_1').hide();
+                        }
+                        startingQuiz.functions.renderQuiz();
+                    });
+
+                    $('input[type=checkbox][name=BUSINESS_GOODS_TYPE]').change(function () {
+                        startingQuiz.functions.renderQuiz();
+                    });
+
+                    $('input[type=radio][name=IS_BUSINESS_PROVIDE_SERVICES]').change(function () {
+                        if (this.value == "Yes") {
+                            $('#business3_1').show();
+                        } else if (this.value == "No") {
+                            $('#business3_1').hide();
+                        }
+                        startingQuiz.functions.renderQuiz();
+                    });
+
+                    $('input[type=checkbox][name=BUSINESS_SERVICES_TYPE]').change(function () {
+                        startingQuiz.functions.renderQuiz();
+                    });
+
+                    $('input[type=radio][name=SPECIAL_ANNUAL_REVENUE_18]').change(function () {
+                        startingQuiz.functions.renderQuiz();
+                    });
+
+                    $(startingQuiz.controls.form).submit(function (e) {
+                        e.preventDefault();
+
+                        // Before Submit
+                        var formValid = $(startingQuiz.controls.form).validate().form();
+                        var errors = 0;
+
+                        $("span.custom-req-danger").remove();
+
+                        if ($('#business2_1:visible').length > 0) {
+                            var quiz2_1 = $('input[name=BUSINESS_GOODS_TYPE]:checkbox:checked').length > 0 ? true : false;
+                            if (!quiz2_1) {
+                                $(":input[type=checkbox][name^=BUSINESS_GOODS_TYPE]").parents('.form-group:first').find('label:first').after("<span class='text-danger custom-req-danger'>@ResourceHelper.GetResourceWordWithDefault("BUSINESS_GOODS_TYPE", "QuizRequired", "BUSINESS_GOODS_TYPE")</span>");
+                                errors++;
+                            }
+                        }
+
+                        if ($('#business3_1:visible').length > 0) {
+                            var quiz3_1 = $('input[name=BUSINESS_SERVICES_TYPE]:checkbox:checked').length > 0 ? true : false;
+                            if (!quiz3_1) {
+                                $(":input[type=checkbox][name^=BUSINESS_SERVICES_TYPE]").parents('.form-group:first').find('label:first').after("<span class='text-danger custom-req-danger'>@ResourceHelper.GetResourceWordWithDefault("BUSINESS_SERVICES_TYPE", "QuizRequired", "BUSINESS_SERVICES_TYPE")</span>");
+                                errors++;
+                            }
+                        }
+
+                        formValid = formValid && errors == 0;
+                        if (!formValid) {
+                            swal("ไม่สามารถดำเนินการต่อได้", "กรุณาตรวจสอบข้อมูลให้ถูกต้องและครบถ้วน", "warning");
+                            $.ladda('stopAll');
+                        } else {
+                            startingQuiz.functions.generateApps();
+                        }
+
+                    });
+
+                    startingQuiz.functions.renderQuiz();
+                    startingQuiz.functions.formValidate();
+                },
+                renderQuiz: function () {
+                    var ans2_1 = Array();
+                    var ans3_1 = Array();
+                    var quiz3_2 = 0;
+                    var quiz3_3 = 0;
+                    var app3_2 = Array();
+
+                    // ข้อ 2 ตอบ Yes
+                    if ($('input[type=radio][name=IS_BUSINESS_SELLING_GOODS]:checked').val() == "Yes") {
+                        if ($('input[name=BUSINESS_GOODS_TYPE]:checkbox:checked').length > 0) {
+
+                            $('input[name=BUSINESS_GOODS_TYPE]:checkbox:checked').each(function () {
+                                ans2_1.push(this.value);
+                            });
+
+                            var orangeAns2_1 = $.grep(ans2_1, function (e) {
+                                return (e == "DOMESTIC_AGRICULTURAL_CROPS" ||
+                                        e == "DOMESTIC_ANIMALS_AND_UNPROCESSED_MEAT" ||
+                                        e == "DOMESTIC_FERTILIZERS_CHEMICALS_MEDICINES" ||
+                                        e == "DOMESTIC_ANIMAL_FOODS" ||
+                                        e == "DOMESTIC_NEWSPAPER_MAGAZINES_AND_TEXTBOOKS" ||
+                                        e == "EXPORTED_GOODS_BY_INDUSTRIAL_PARK")
+                            });
+                            //console.log(orangeAns2_1);
+
+                            var greenAns2_1 = $.grep(ans2_1, function (e) {
+                                return (e == "CDS_DVDS_TAPES_FOR_SELL_OR_RENT" ||
+                                        e == "GEMSTONE_AND_JEWELRY" ||
+                                        e == "RELIGION_AND_DOMESTIC_CHARITY" ||
+                                        e == "IVORY_AND_CARVED_IVORY" ||
+                                        e == "GOOD_TYPES_ETC")
+                            });
+                            if (greenAns2_1 != null && greenAns2_1 != undefined && greenAns2_1.length > 0) {
+                                for (var i = 0; i < greenAns2_1.length; i++) {
+                                    app3_2.push(greenAns2_1[i]);
+                                }
+                            }
+                            //console.log(greenAns2_1);
+
+                            var redAns2_1 = $.grep(ans2_1, function (e) {
+                                return (e == "ALL_5_DOMESTIC_GOODS" ||
+                                        e == "GOODS_AND_SERVICES_FOR_MINISTRY" ||
+                                        e == "DECREE_NO239_GOODS_AND_SERVICES")
+                            });
+                            //console.log(redAns2_1);
+
+                            if ($('input[type=radio][name=IS_BUSINESS_PROVIDE_SERVICES]:checked').val() == "Yes") { // ข้อ 2 ตอบ Yes + ข้อ 3 ตอบ Yes
+                                if ($('input[name=BUSINESS_SERVICES_TYPE]:checkbox:checked').length > 0) {
+
+                                    $('input[name=BUSINESS_SERVICES_TYPE]:checkbox:checked').each(function () {
+                                        ans3_1.push(this.value);
+                                    });
+
+                                    var orangeAns3_1 = $.grep(ans3_1, function (e) {
+                                        return (e == "DOMESTIC_FUEL_TRANSPORTATION" ||
+                                                e == "DOMESTIC_TRANSPORTATION_BY_AIR")
+                                    });
+                                    //console.log(orangeAns3_1);
+
+                                    var greenAns3_1 = $.grep(ans3_1, function (e) {
+                                        return (e == "KARAOKE_GAME_CONSOLE_SERVICES" ||
+                                                e == "DATACENTER_AND_HOST_SERVICES" ||
+                                                e == "SERVICE_TYPES_ETC")
+                                    });
+                                    if (greenAns3_1 != null && greenAns3_1 != undefined && greenAns3_1.length > 0) {
+                                        for (var i = 0; i < greenAns3_1.length; i++) {
+                                            app3_2.push(greenAns3_1[i]);
+                                        }
+                                    }
+                                    //console.log(greenAns3_1);
+
+                                    var redAns3_1 = $.grep(ans3_1, function (e) {
+                                        return (e == "DOMESTIC_TRANSPORTATION_BY_LANDWATER" ||
+                                                e == "INTERNATIONAL_SHIPPING_BY_LANDWATER" ||
+                                                e == "REAL_ESTATE_REANTAL_SERVICE" ||
+                                                e == "CULTURAL_AND_ART_SERVICES" ||
+                                                e == "COMPETITIVE_SPORTS_SERVICE" ||
+                                                e == "EDUCATIONAL_SERVICES" ||
+                                                e == "LABOR_CONTRACT_SERVICES" ||
+                                                e == "MEDICAL_TREATMENT_AUDIT_AND_LAWYER" ||
+                                                e == "HOSPITAL_SERVICES" ||
+                                                e == "LIBRARY_MUSEUM_ZOO")
+                                    });
+                                    //console.log(redAns3_1);
+
+                                    if (orangeAns3_1.length > 0 && greenAns2_1.length > 0) {
+                                        quiz3_2++;
+                                    }
+                                    if (orangeAns3_1.length > 0 && greenAns2_1.length == 0) {
+                                        quiz3_3++;
+                                    }
+
+                                    if (redAns3_1.length > 0 && greenAns2_1.length > 0) {
+                                        quiz3_2++;
+                                    }
+                                    if (redAns3_1.length > 0 && orangeAns2_1.length > 0) {
+                                        quiz3_3++;
+                                    }
+
+                                    if (greenAns3_1.length > 0) {
+                                        quiz3_2++;
+                                    }
+
+                                }
+                            } else if ($('input[type=radio][name=IS_BUSINESS_PROVIDE_SERVICES]:checked').val() == "No") { // ข้อ 2 ตอบ Yes + ข้อ 3 ตอบ No
+                                if (greenAns2_1.length > 0) {
+                                    quiz3_2++;
+                                }
+                                if (orangeAns2_1.length > 0) {
+                                    quiz3_3++;
+                                }
+                            }
+                        }
+                    } else if ($('input[type=radio][name=IS_BUSINESS_SELLING_GOODS]:checked').val() == "No" && $('input[type=radio][name=IS_BUSINESS_PROVIDE_SERVICES]:checked').val() == "Yes") {
+                        if ($('input[name=BUSINESS_SERVICES_TYPE]:checkbox:checked').length > 0) {
+
+                            $('input[name=BUSINESS_SERVICES_TYPE]:checkbox:checked').each(function () {
+                                ans3_1.push(this.value);
+                            });
+
+                            var greenAns3_1 = $.grep(ans3_1, function (e) {
+                                return (e == "KARAOKE_GAME_CONSOLE_SERVICES" ||
+                                        e == "DATACENTER_AND_HOST_SERVICES" ||
+                                        e == "SERVICE_TYPES_ETC")
+                            });
+                            if (greenAns3_1 != null && greenAns3_1 != undefined && greenAns3_1.length > 0) {
+                                for (var i = 0; i < greenAns3_1.length; i++) {
+                                    app3_2.push(greenAns3_1[i]);
+                                }
+                            }
+
+                            if (greenAns3_1.length > 0) {
+                                quiz3_2++;
+                            }
+                        }
+                    }
+
+                    if ($('input[type=radio][name=SPECIAL_ANNUAL_REVENUE_18]:checked').val() == "No") {
+                        quiz3_3++;
+                    }
+
+                    if (quiz3_2 > 0) {
+                        $('#business3_2').show();
+                        $('#business3_2 span.display-block').hide();
+                        for (var i = 0; i < app3_2.length; i++) {
+                            var app = app3_2[i];
+                            $('#business3_2 #' + app).show();
+                        }
+                    } else {
+                        $('#business3_2').hide();
+                        $('#business3_2 span.display-block').hide();
+                    }
+
+                    if (quiz3_3 > 0) {
+                        $('#business3_3').show();
+                    } else {
+                        $('#business3_3').hide();
+                    }
+                },
+                generateApps: function () {
+                    var ans2_1 = Array();
+                    var ans3_1 = Array();
+                    var commCnt = 0;
+                    var ssoCnt = 0;
+                    var vatCnt = 0;
+                    var regCnt = 0;
+
+                    if ($('input[type=radio][name=IS_BUSINESS_SELLING_GOODS]:checked').val() == "Yes" && $('input[name=BUSINESS_GOODS_TYPE]:checkbox:checked').length > 0) {
+                        $('input[name=BUSINESS_GOODS_TYPE]:checkbox:checked').each(function () {
+                            ans2_1.push(this.value);
+                        });
+
+                        var commApps = $.grep(ans2_1, function (e) {
+                            return (e == "CDS_DVDS_TAPES_FOR_SELL_OR_RENT" ||
+                                    e == "GEMSTONE_AND_JEWELRY" ||
+                                    e == "RELIGION_AND_DOMESTIC_CHARITY" ||
+                                    e == "IVORY_AND_CARVED_IVORY")
+                        });
+
+                        if (commApps.length > 0) {
+                            commCnt++;
+                        }
+                    }
+
+                    if ($('input[type=radio][name=IS_BUSINESS_PROVIDE_SERVICES]:checked').val() == "Yes" && $('input[name=BUSINESS_SERVICES_TYPE]:checkbox:checked').length > 0) {
+                        $('input[name=BUSINESS_SERVICES_TYPE]:checkbox:checked').each(function () {
+                            ans3_1.push(this.value);
+                        });
+
+                        var commApps = $.grep(ans3_1, function (e) {
+                            return (e == "KARAOKE_GAME_CONSOLE_SERVICES" ||
+                                    e == "DATACENTER_AND_HOST_SERVICES")
+                        });
+
+                        if (commApps.length > 0) {
+                            commCnt++;
+                        }
+                    }
+
+                    if($('input[type=radio][name=HAS_ONLINE_STORE]:checked').val() == "Yes") {
+                        commCnt++;
+                    }
+
+                    if ($('input[type=radio][name=SPECIAL_ANNUAL_REVENUE_18]:checked').val() == "Yes" || $('input[type=radio][name=IS_NEED_VAT]:checked').val() == "Yes") {
+                        vatCnt++;
+                    }
+
+                    if ($('input[type=radio][name=NUMBER_OF_EMPLOYEES]:checked').val() == "02") {
+                        ssoCnt++;
+                    } else if ($('input[type=radio][name=NUMBER_OF_EMPLOYEES]:checked').val() == "03") {
+                        ssoCnt++;
+                        regCnt++;
+                    }
+
+                    if (startingQuiz.variables.isDbd) {
+                        startingQuiz.variables.apps.push({ AppSysName: "DBD", OnlineRequestAllowed: false, NotAllowedReason: "ท่านยังไม่ได้จดทะเบียนนิติบุคคล" });
+                        if (commCnt > 0) {
+                            startingQuiz.variables.apps.push({ AppSysName: "COMMERCIAL", OnlineRequestAllowed: false, NotAllowedReason: "ท่านยังไม่ได้จดทะเบียนนิติบุคคล" });
+                        }
+                        if (vatCnt > 0) {
+                            startingQuiz.variables.apps.push({ AppSysName: "แบบฟอร์มขอจดทะเบียนภาษีมูลค่าเพิ่ม", OnlineRequestAllowed: false, NotAllowedReason: "ท่านยังไม่ได้จดทะเบียนนิติบุคคล" });
+                        }
+                        if (ssoCnt > 0) {
+                            startingQuiz.variables.apps.push({ AppSysName: "การขอขึ้นทะเบียนนายจ้างและผู้ประกันตน", OnlineRequestAllowed: false, NotAllowedReason: "ท่านยังไม่ได้จดทะเบียนนิติบุคคล" });
+                            //startingQuiz.variables.apps.push({ AppSysName: "SSO Register Employee", OnlineRequestAllowed: false, NotAllowedReason: "ท่านยังไม่ได้จดทะเบียนนิติบุคคล" });
+                        }
+                        if (regCnt > 0) {
+                            startingQuiz.variables.apps.push({ AppSysName: "การยื่นข้อบังคับการทำงาน", OnlineRequestAllowed: false, NotAllowedReason: "ท่านยังไม่ได้จดทะเบียนนิติบุคคล" });
+                        }
+                    } else {
+                        if (commCnt > 0) {
+                            startingQuiz.variables.apps.push({ AppSysName: "COMMERCIAL", OnlineRequestAllowed: false, NotAllowedReason: "ไปยื่นที่หน้าเวป" });
+                        }
+                        if (vatCnt > 0) {
+                            startingQuiz.variables.apps.push({ AppSysName: "แบบฟอร์มขอจดทะเบียนภาษีมูลค่าเพิ่ม", OnlineRequestAllowed: true, NotAllowedReason: null });
+                        }
+                        if (ssoCnt > 0) {
+                            startingQuiz.variables.apps.push({ AppSysName: "SSO Register Employer", OnlineRequestAllowed: true, NotAllowedReason: null });
+                            //startingQuiz.variables.apps.push({ AppSysName: "SSO Register Employee", OnlineRequestAllowed: true, NotAllowedReason: null });
+                        }
+                        if (regCnt > 0) {
+                            startingQuiz.variables.apps.push({ AppSysName: "การยื่นข้อบังคับการทำงาน", OnlineRequestAllowed: false, NotAllowedReason: "ไปยื่นที่หน้าเวป" });
+                        }
+                    }
+                    
+
+                    for (var i = 0; i < startingQuiz.variables.apps.length; i++) {
+                        $('#frmApps').append('<input type="hidden" name="Apps[' + i + '].AppSysName" value="' + startingQuiz.variables.apps[i].AppSysName + '" />');
+                        $('#frmApps').append('<input type="hidden" name="Apps[' + i + '].OnlineRequestAllowed" value="' + startingQuiz.variables.apps[i].OnlineRequestAllowed + '" />');
+                        $('#frmApps').append('<input type="hidden" name="Apps[' + i + '].NotAllowedReason" value="' + startingQuiz.variables.apps[i].NotAllowedReason + '" />');
+                    }
+
+                    //แสดง alert ก่อน submit
+                    swal({
+                        title: "กำลังไปยังหน้าถัดไป",
+                        type: "success",
+                        showConfirmButton: false
+                    });
+                    
+                    window.setTimeout(function () {
+                        $('#frmApps').submit();
+                    }, 1500);
+                },
+                formValidate: function () {
+                    $(startingQuiz.controls.form).validate({
+                        errorElement: 'span',
+                        errorClass: 'error text-danger',
+                        invalidHandler: function (e, validator) {
+                            $.ladda('stopAll');
+                        },
+                        errorPlacement: function (error, element) {
+                            if (element[0].type == 'radio') {
+                                if (element[0].name == 'SPECIAL_ANNUAL_REVENUE_18') {
+                                    error.insertAfter(element.parents(".form-group:first").find("label.ar18lab"));
+                                } else {
+                                    error.insertAfter(element.parents(".form-group:first").find("label:first"));
+                                }
+                            } else if (element[0].type == 'text' && $(element).parent().hasClass('date')) {
+                                error.insertAfter(element.parent());
+                            } else {
+                                error.appendTo(element.parent());
+                            }
+                        }
+                    });
+
+                    $('[name=IS_REGISTERED_JURISTIC]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault("IS_REGISTERED_JURISTIC", "QuizRequired", "IS_REGISTERED_JURISTIC")' } });
+                    $('[name=IS_BUSINESS_SELLING_GOODS]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault("IS_BUSINESS_SELLING_GOODS", "QuizRequired", "IS_BUSINESS_SELLING_GOODS")' } });
+                    $('[name=IS_BUSINESS_PROVIDE_SERVICES]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault("IS_BUSINESS_PROVIDE_SERVICES", "QuizRequired", "IS_BUSINESS_PROVIDE_SERVICES")' } });
+                    $('[name=SPECIAL_ANNUAL_REVENUE_18]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault("SPECIAL_ANNUAL_REVENUE_18", "QuizRequired", "SPECIAL_ANNUAL_REVENUE_18")' } });
+                    $('[name=IS_NEED_VAT]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault("IS_NEED_VAT", "QuizRequired", "IS_NEED_VAT")' } });
+                    $('[name=HAS_ONLINE_STORE]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault("HAS_ONLINE_STORE", "QuizRequired", "HAS_ONLINE_STORE")' } });
+                    $('[name=NUMBER_OF_EMPLOYEES]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault("NUMBER_OF_EMPLOYEES", "QuizRequired", "NUMBER_OF_EMPLOYEES")' } });
+                }
+            }
+        };
+
+        $(document).ready(function () {
+            startingQuiz.functions.init();
+        });
+    </script>
+}

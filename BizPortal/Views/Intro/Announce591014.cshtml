@@ -1,0 +1,102 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>ศูนย์กลางบริการภาครัฐเพื่อภาคธุรกิจ</title>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-19394801-61', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    @Styles.Render("~/Content/css")
+
+    <style type="text/css">
+
+        /*TH Sarabun PSK*/
+        @@font-face {
+            font-family: 'TH SarabunPSK';
+            src: url("/fonts//THSarabunNew.eot");
+            src: url("/fonts/THSarabunNew.eot?#iefix") format("embedded-opentype"),url("../fonts/THSarabunNew.woff") format("woff"),url("../fonts/THSarabunNew.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100%;
+            background-color: #F2F7FA;
+            color:black;
+        }
+
+        .btn-blue {
+            color: white;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+            background-color: #5CA1BF;
+            border-color: #5CA1BF;
+        }
+    </style>
+
+    <script type="text/JavaScript">
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <br />
+                <br />
+                <b style="font-size:1.8em">ประกาศ</b>
+                <div class="font-size-lg">
+                    <br />
+                    <div class="text-left">
+                        ตั้งแต่วันที่ 20 เมษายน พ.ศ.2563 เป็นต้นไป ระบบศูนย์กลางบริการภาครัฐเพื่อภาคธุรกิจ (Biz Portal) จะเปลี่ยนไปใช้ระบบการยืนยันตัวนิติบุคคล เป็นบัญชีผู้ใช้งานและรหัสผ่าน ชุดเดียวกับระบบจดทะเบียนนิติบุคคลทางอิเล็กทรอนิกส์ (e-Registration : <a href="http://ereg.dbd.go.th">ereg.dbd.go.th</a>) และระบบยื่นงบการเงินผ่านทางอิเล็กทรอนิกส์ (DBD e-Filing : <a href="http://efiling.dbd.go.th">efiling.dbd.go.th</a>) ที่ออกโดยกรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์ ในการยื่นคำขอบริการสำหรับนิติบุคคล
+                    </div>
+                    <br />
+                    <br />
+                    <img src="~/img/dbdid.png" style="height:350px;" />
+                    <br />
+                    <br />
+                    <div class="text-left">
+                        <u>หมายเหตุ</u>
+                        <br />
+                        <br />
+                        1.ขอบัญชีผู้ใช้โดย กรมพัฒนาธุรกิจการค้าจะออกให้แก่ห้างหุ้นส่วน/บริษัทจำกัด จากระบบจดทะเบียนนิติบุคคลทางอิเล็กทรอนิกส์ (e-Registration : ereg.dbd.go.th) โดยชื่อผู้ใช้งานและรหัสผ่านนี้ จะส่งไปยังอีเมลของผู้ขอจดทะเบียน เมื่อการจดทะเบียนจัดตั้งนิติบุคคลผ่านระบบดังกล่าวเสร็จสิ้นแล้ว
+                        <br />
+                        <br />
+                        2.กรณีนิติบุคคลลืมรหัสผ่านสำหรับการใช้งาน ท่านสามารถกำหนดรหัสผ่านใหม่ได้ผ่าน <a href="https://ereg.dbd.go.th/RegistMemberWeb/forgetpassword.xhtml"> https://ereg.dbd.go.th/RegistMemberWeb/forgetpassword.xhtml</a>
+                        <br />
+                        <br />
+                        3.ระบบ Biz Portal จะยกเลิกการใช้งานการยืนยันตัวนิติบุคคลในรูปแบบเดิม ในวันที่ 31 ตุลาคม พ.ศ. 2563 ซึ่งในระหว่างนี้นิติบุคคลยังสามารถใช้รหัสผ่านชุดเดิมเข้าใช้งานระบบได้
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <br />
+                <br />
+                <a class="btn btn-blue" href="@Url.Content(ViewBag.ReturnUrl)" title="เข้าสู่ระบบ ศูนย์กลางบริการภาครัฐเพื่อภาคธุรกิจ">เข้าสู่ระบบ ศูนย์กลางบริการภาครัฐเพื่อภาคธุรกิจ</a>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

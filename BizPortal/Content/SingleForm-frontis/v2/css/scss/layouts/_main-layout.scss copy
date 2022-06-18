@@ -1,0 +1,503 @@
+body{
+  @extend .f-24;
+  font-family: "TH Sarabun New","TH", serif;
+  &.disable-scroll{
+    position: fixed;
+    overflow: hidden;
+  }
+}
+
+.header > h2{
+  @extend .f-50;
+}
+.subtitle > p{
+  color: $c-title;
+  @extend .f-36;
+}
+
+
+.section-padding{
+  padding: 100px 0;
+}
+
+.menu-padding{
+  padding: 30px 50px;
+}
+
+section.header{
+  height: 30px;
+  padding: 5px 0px;
+  background: $c-main-blue;
+  .top{
+    @extend .f-20;
+    //line-height:;
+    text-align: right;
+    color: $c-white; 
+  }
+}
+
+section.navbar{
+  width: 100%;
+  height: 80px;
+  background: $c-white;
+  z-index: 2;
+  @include transition(0.3s, ease-in);
+  @include box-shadow(0px, 3px, 5px, rgba(0, 0, 0, 0.05));
+  &.fixed{
+    .nav{
+      height: 65px;  
+    }
+    position: fixed;
+    height: 65px;
+    top: 0;
+    left: 0;
+    ul.navbar{
+      li > a{
+        line-height: 1.5;
+      }
+    }
+    .logo > img{width: 80px;}
+  }
+  .nav{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    .burger{
+      visibility: hidden;
+      position: absolute;
+      a{
+        display: inline-block;
+        color: $c-main-blue;
+        &:active, &:hover, &:focus{
+          color: $c-main-blue-h;
+        }
+      }
+    }
+    .logo{
+      @include transition(0.2s, ease-in);
+      position: static;
+      display: inline-block;
+      margin-right: 20px;
+      width: 130px;
+      text-align: left;
+      >img{width: 90px;}
+    }
+    ul.navbar{
+      list-style-type: none;
+      margin-right: auto;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      li{
+        height: 100%;
+        float: left;
+        a{
+          @extend .f-24;
+          line-height: 2;
+          display: block;
+          height: 100%;
+          color: $c-header-menu;
+          text-align: center;
+          padding: 15px 20px;
+          text-decoration: none;
+          &:hover, &.active{
+            color: $c-main-blue;
+            background: $c-bg3;
+          }
+        }
+      }
+    }
+    .group-button{
+      padding-right: 20px;
+      border-right: 2px solid #95989A;
+    }
+    .language{
+      padding-left: 20px;
+      a.item{
+        color: #3A3A3A;
+        padding: 0 10px;
+        border-right: 1px solid #DEDEDE;
+        &.active, &:active, &:hover, &:focus{
+          color: $c-main-blue;
+        }
+        &:last-child{
+          padding-left: 0 0 0 10px;
+          border: none; 
+        }
+      }
+    }
+  }
+}
+
+section.mask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  @include transition(.3s, ease-in); 
+  &.active{
+    opacity: 1;
+    visibility: visible;
+  }
+  .close{
+    @extend .f-20;
+    position: absolute;
+    cursor: pointer;
+    top: 20px;
+    right: 20px;
+    color: $c-white;
+  }
+}
+
+section.menu-mobile{
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 60px;
+  z-index: 10;
+  padding-bottom: 60px;
+  @include translateX(-100%);
+  @include transition(.7s, cubic-bezier(0, 0.01, 0.05, 0.99), .3s);
+  &.active{
+    @include translateX(0);
+  }
+  .content{
+    height: 100%;
+    background: $c-main-blue;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    >.main{
+     @include transition(.5s, cubic-bezier(0, 0.01, 0.05, 0.99));
+     &.disactive{
+        left: -100%;
+      }
+      position: relative;
+      width: 100%;
+      display: inline-block;
+      @extend .profile-menu;
+      ul.main{
+          list-style-type: none;
+          margin-top: 40px;
+          padding-left: 0px;
+          text-align: left;
+        li{
+          &:last-child a{
+            border-bottom: 1px solid $c-main-blue-h;
+          }
+          a{
+            i{
+              position: absolute;
+              right: 16px;
+              font-weight: normal;
+            }
+            @extend .f-24;
+            @include transition(.2s, ease-in);
+            position: relative;
+            font-weight: bold;
+            display: block;
+            color: $c-white;
+            padding: 8px 16px;
+            &:active, &:hover, &:focus{
+            }
+            border-top: 1px solid $c-main-blue-h;
+          }
+        } 
+      }
+    }
+    >.menu{
+      @include transition(.5s, cubic-bezier(0, 0.01, 0.05, 0.99));
+      &.active{
+        @include translateX(0);
+        visibility: visible;
+      }
+      position: absolute;
+      display: inline-block;
+      width: 100%;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      visibility: hidden;
+      @include translateX(100%);
+      @include box-shadow(-3px, 0px, 5px, rgba(0, 0, 0, 0.2));
+      background: $c-main-blue;
+      //@include box-shadow(2, 2, 5, $c-black, false)
+      h3{@extend .f-24; padding: 15px; color: $c-white;}
+      .back a{
+        display: block;
+        @extend .f-24;
+        @include transition(.5s, cubic-bezier(0, 0.01, 0.05, 0.99));
+        padding: 15px;
+        color: $c-black;
+      }
+      ul.menu{
+          list-style-type: none;
+          margin: 0;
+          padding-left: 0px;
+          text-align: left;
+        li{
+          &:last-child a{
+            border-bottom: 1px solid $c-main-blue-h;
+          }
+          a{
+            @extend .f-24;
+            @include transition(.2s, ease-in);
+            position: relative;
+            display: block;
+            color: $c-white;
+            padding: 8px 30px;
+            &:active, &:hover, &:focus{
+            }
+            border-top: 1px solid $c-main-blue-h;
+          }
+        } 
+      }
+    }
+    >.group-button{
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      text-align: center;
+      background: $c-white;
+      padding: 10px;
+      @include box-shadow(0px, -3px, 5px, rgba(0, 0, 0, 0.2));
+    }
+  }
+}
+
+section.menu-list{
+  background: $c-white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  padding: 0px 50px;
+  z-index: 15;
+  //@include box-shadow(0px, 3px, 5px, rgba(0, 0, 0, 0.1), true);
+  .container-list{
+    @include flex(row, initial, left);
+    .menu, .menu-main{
+      &.last{
+        //@include box-shadow(0px, 3px, 5px, rgba(0, 0, 0, 0.1), true);
+        background: $c-bg3;
+      }
+      &.active{
+        display: block;
+        flex: 1 1 auto;
+      }
+      display: none;
+      max-width: 33.3%;
+      ul{
+        list-style-type: none;
+        margin-top: 40px;
+        padding-left: 0px;
+        text-align: left;
+        li a {
+          i{
+            position: absolute;
+            right: 16px;
+            font-weight: normal;
+          }
+          @extend .f-24;
+          @include transition(.2s, ease-in);
+          position: relative;
+          display: block;
+          color: $c-body;
+          padding: 8px 16px;
+          -webkit-filter: opacity(50%);
+          filter: opacity(50%);
+          &:active, &:hover, &:focus, &.active{
+            color: $c-main-blue;
+            -webkit-filter: opacity(100%);
+            filter: opacity(100%);
+            background: $c-bg3;
+          }
+        } 
+      }
+    }
+  }
+  &.fixed{
+    position: fixed;
+    top: 65px;
+  }
+  &.active{
+    //@extend .menu-padding;
+    visibility: visible;
+    height: auto;
+    //display: block;
+  }
+}
+
+section.menu{
+  background: $c-bg3;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  padding: 0px 50px;
+  z-index: 15;
+  .row-menu-width{
+    width: 19.5%;
+  }
+  .row-menu{
+    // display: inline-block;
+    // width: 19.5%;
+    margin-bottom: 40px;
+    padding: 0px 10px;
+    //vertical-align: top;
+  }
+  //@include transition(.3s, ease-in-out);
+  &.fixed{
+    position: fixed;
+    top: 65px;
+  }
+  &.active{
+    @extend .menu-padding;
+    visibility: visible;
+    height: auto;
+    //display: block;
+  }
+  h3{@extend .f-22; margin-bottom: 10px; color: $c-main-blue;}
+  ul.menu{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    //padding-left: 10px;
+    li a {
+      @extend .f-20;
+      @include transition(.2s, ease-in);
+      display: block;
+      color: $c-body;
+      //padding: 8px 16px;
+      padding: 4px 0px;
+      -webkit-filter: opacity(50%);
+      filter: opacity(50%);
+      &:active, &:hover, &:focus{
+        -webkit-filter: opacity(100%);
+        filter: opacity(100%);
+      }
+    }
+
+  }
+}
+
+section.cover{
+  height: 560px;
+  background:transparent url('../images/cover.jpg') no-repeat center center;
+  color: $c-white;
+  text-align: center;
+  @include background-size(cover);
+  @include flex(column, center, center);
+  img{
+    margin-bottom: 40px;
+  }
+  .title{
+    @extend .f-42;
+    margin: 5px;
+  }
+  .subtitle{
+    @extend .f-36;
+    margin: 5px;
+  }
+  a{
+    margin-top: 20px;
+  }
+}
+
+section.start{
+  @extend .section-padding;
+  text-align: center;
+  background: $c-white;
+  .header > h2{
+    margin-top: 50px;
+    margin-bottom: 30px;
+  } 
+}
+
+section.easy{
+  @extend .section-padding;
+  @include flex(column, center, center);
+  text-align: center;
+  background: $c-bg2;
+  img{
+    width: 100%;
+    max-width: 620px;
+    margin-bottom: 50px;
+  }
+  .header > h2{
+     margin-bottom: 20px;
+  }
+}
+
+section.security{
+  @extend .section-padding;
+  @include flex(column, center, center);
+  text-align: center;
+  background: $c-bg3;
+  .header > h2{ 
+    margin-bottom: 20px;
+  }
+  .subtitle > p{
+    margin-bottom: 0px;
+  }
+}
+
+section.footer{
+  @extend .section-padding;
+  @include flex(column, center, center);
+  text-align: center;
+  background: $c-main-blue;
+  :before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: $c-main-blue;
+  }
+  background:linear-gradient(rgba(92, 161, 191, 0.95), rgba(92, 161, 191, 0.95)), url('../images/footer.jpg') no-repeat center center fixed;
+  @include background-size(cover);
+  color: $c-white;
+  .header > h2{
+    margin-bottom: 20px;
+  }
+  .subtitle > p{
+    color: $c-white; 
+  }
+}
+
+section.end{
+  @include flex(column, center, center);
+  @extend .f-22;
+  padding: 17px;
+  background: $c-header;
+  text-align: center;
+  color: $c-white;
+  p{margin-bottom: 5px;}
+  .link{
+    a{
+      color: $c-white;
+      padding: 0 10px;
+      background: url('../images/line.jpg') center right no-repeat;
+      //border-right: 1px solid $c-white;
+      &:active, &:hover, &:focus{
+        color: $c-hover;
+      }
+      &:last-child{
+        padding-left: 0 0 0 10px;
+        background: none;
+      }
+    }
+  }
+}

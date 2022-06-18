@@ -1,0 +1,63 @@
+﻿/* tag */
+$tag-label-color: #eeeeee;
+$tag-label-backgroud: #0088cc;
+$tag-label-backgroud-hover: #0088cc;
+$tag-label-fontsize: 16px;
+
+.tag-labels {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tag-labels li {
+    float: left;
+    cursor: pointer;
+}
+
+.tag-label {
+    font-size: $tag-label-fontsize;
+    background: $tag-label-backgroud;
+    border-radius: 3px 0 0 3px;
+    color: #eeeeee;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 10px 0 13px;
+    position: relative;
+    margin: 0 5px 10px 0;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+}
+
+.tag-label::before {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    content: '';
+    height: 5px;
+    left: 5px;
+    position: absolute;
+    width: 5px;
+    top: 7px;
+}
+
+.tag-label::after {
+    background: #fff;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid $tag-label-backgroud;
+    border-top: 10px solid transparent;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.tag-label:hover {
+    background-color: $tag-label-backgroud-hover;
+    color: $tag-label-color;
+}
+
+.tag-label:hover::after {
+    border-left-color: $tag-label-backgroud-hover;
+}

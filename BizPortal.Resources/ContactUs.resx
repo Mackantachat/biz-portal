@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CITIZEN_ID" xml:space="preserve">
+    <value>เลขบัตรประชาชน</value>
+  </data>
+  <data name="CLOSE" xml:space="preserve">
+    <value>ปิดทำการ</value>
+  </data>
+  <data name="CONTACT_ADDRESS" xml:space="preserve">
+    <value>ศูนย์บริการประชาชน 
+(จุดบริการประชาชน 1111) 
+สำนักงานปลัดสำนักนายกรัฐมนตรีทำเนียบรัฐบาล ถนนพิษณุโลก เขตดุสิต กทม. (ประตู 4)</value>
+  </data>
+  <data name="CONTACT_EMAIL" xml:space="preserve">
+    <value>administrator@opdc.go.th</value>
+  </data>
+  <data name="CONTACT_MAIL" xml:space="preserve">
+    <value>ตู้ ปณ.1111 ทำเนียบรัฐบาล กรุงเทพมหานคร 10302 (ไม่ต้องติดแสตมป์)</value>
+  </data>
+  <data name="CONTACT_NO" xml:space="preserve">
+    <value>สายด่วน 1111 กด 22 (24 ชั่วโมง)</value>
+  </data>
+  <data name="CONTACT_US" xml:space="preserve">
+    <value>ติดต่อเรา</value>
+  </data>
+  <data name="CONTACT_WEB" xml:space="preserve">
+    <value>http://www.1111.go.th</value>
+  </data>
+  <data name="EMAIL" xml:space="preserve">
+    <value>อีเมล</value>
+  </data>
+  <data name="EMAIL_BODY" xml:space="preserve">
+    <value>คุณ {{FULL_NAME}} ได้ติดต่อเรื่อง {{TYPE}} โดยมีรายละเอียดดังนี้ &lt;p&gt;&lt;/p&gt; {{DETAIL}} &lt;p&gt;&lt;/p&gt; &lt;b&gt;ข้อมูลผู้ติดต่อ&lt;/b&gt; &lt;br/&gt; &lt;b&gt;เลขบัตรประชาชน&lt;/b&gt; {{CITIZENID}}&lt;b&gt;อีเมล&lt;/b&gt; {{EMAIL}}&lt;br/&gt;&lt;b&gt;เบอร์โทรศัพท์&lt;/b&gt; {{MOBILENO}}&lt;br/&gt;</value>
+  </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>อีเมลไม่ถูกต้อง</value>
+  </data>
+  <data name="EMAIL_SUBJECT" xml:space="preserve">
+    <value>[BizPortal] ติดต่อเรื่อง {0}</value>
+  </data>
+  <data name="GOVERNMENT_CLOSE" xml:space="preserve">
+    <value>วันหยุดราชการที่ปิดทำการ</value>
+  </data>
+  <data name="IS_CONTACT_BACK" xml:space="preserve">
+    <value>ต้องการให้ติดต่อกลับ</value>
+  </data>
+  <data name="NAME" xml:space="preserve">
+    <value>ชื่อ นามสกุล</value>
+  </data>
+  <data name="OFFICE_HOUR" xml:space="preserve">
+    <value>เวลาเปิด - ปิดทำการวันนี้</value>
+  </data>
+  <data name="OPEN" xml:space="preserve">
+    <value>เปิดทำการ</value>
+  </data>
+  <data name="OPEN_TIME" xml:space="preserve">
+    <value>จันทร์ - ศุกร์ 8:30 - 16:30</value>
+  </data>
+  <data name="OWNER_NAME" xml:space="preserve">
+    <value>ศูนย์บริการประชาชน 
+สำนักงานปลัดนายกรัฐมนตรี</value>
+  </data>
+  <data name="PLACE_CITIZEN_ID" xml:space="preserve">
+    <value>พิมพ์เลขบัตรประชาชน...</value>
+  </data>
+  <data name="PLACE_DETAIL" xml:space="preserve">
+    <value>พิมพ์รายละเอียด</value>
+  </data>
+  <data name="PLACE_EMAIL" xml:space="preserve">
+    <value>พิมพ์อีเมล...</value>
+  </data>
+  <data name="PLACE_NAME" xml:space="preserve">
+    <value>พิมพ์ชื่อ - นามสกุล...</value>
+  </data>
+  <data name="PLACE_PHONE_NO" xml:space="preserve">
+    <value>พิมพ์เบอร์โทรศัพท์...</value>
+  </data>
+  <data name="PLEASE_ENTER_CITIZENID" xml:space="preserve">
+    <value>กรุณาระบุเลขบัตรประชาชน</value>
+  </data>
+  <data name="PLEASE_ENTER_EMAIL" xml:space="preserve">
+    <value>กรุณาระบุอีเมล</value>
+  </data>
+  <data name="PLEASE_ENTER_MESSAGE" xml:space="preserve">
+    <value>กรุณาระบุข้อความ</value>
+  </data>
+  <data name="PLEASE_ENTER_MORE_DETAIL" xml:space="preserve">
+    <value>หากต้องการให้เราติดต่อกลับ กรุณากรอกข้อมูลเพิ่มเติม</value>
+  </data>
+  <data name="PLEASE_ENTER_NAME" xml:space="preserve">
+    <value>กรุณาระบุชื่อ นามสกุล</value>
+  </data>
+  <data name="PLEASE_ENTER_TELEPHONE" xml:space="preserve">
+    <value>กรุณาระบุเบอร์โทรศัพท์</value>
+  </data>
+  <data name="PLEASE_SELECT_QUESTION" xml:space="preserve">
+    <value>กรุณาเลือกคำถาม</value>
+  </data>
+  <data name="QUESTION_CLAIM" xml:space="preserve">
+    <value>ร้องเรียนงานบริการภาครัฐ</value>
+  </data>
+  <data name="QUESTION_CONTACT" xml:space="preserve">
+    <value>สอบถามข้อมูลเพิ่มเติมเกี่ยวกับการติดต่อราชการ</value>
+  </data>
+  <data name="QUESTION_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+  </data>
+  <data name="QUESTION_WEBSITE" xml:space="preserve">
+    <value>แจ้งปัญหาการใช้งานเว็บไซต์</value>
+  </data>
+  <data name="SEND" xml:space="preserve">
+    <value>ส่ง</value>
+  </data>
+  <data name="SEND_MAIL_COMPLETED" xml:space="preserve">
+    <value>ส่งอีเมลสำเร็จ</value>
+  </data>
+  <data name="SEND_MAIL_FAILED" xml:space="preserve">
+    <value>ส่งอีเมลไม่สำเร็จ กรุณาลองอีกครั้ง</value>
+  </data>
+  <data name="SUBJECT" xml:space="preserve">
+    <value>เรื่อง...</value>
+  </data>
+  <data name="TELEPHONE" xml:space="preserve">
+    <value>เบอร์โทรศัพท์</value>
+  </data>
+</root>

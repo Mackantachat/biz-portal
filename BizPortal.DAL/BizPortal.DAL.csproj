@@ -1,0 +1,902 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97541E65-9D5B-48BB-9D5C-E6E6E6073559}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BizPortal.DAL</RootNamespace>
+    <AssemblyName>BizPortal.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PreRelease|AnyCPU'">
+    <OutputPath>bin\PreRelease\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Training|AnyCPU'">
+    <OutputPath>bin\Training\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Training165|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Training165\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThaiBahtText, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThaiBahtText.1.0.103\lib\net40\ThaiBahtText.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\201601050936191_InitBizPortal.cs" />
+    <Compile Include="Migrations\201601050936191_InitBizPortal.Designer.cs">
+      <DependentUpon>201601050936191_InitBizPortal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601070304243_SysName.cs" />
+    <Compile Include="Migrations\201601070304243_SysName.Designer.cs">
+      <DependentUpon>201601070304243_SysName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601081050413_FileUpload.cs" />
+    <Compile Include="Migrations\201601081050413_FileUpload.Designer.cs">
+      <DependentUpon>201601081050413_FileUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601110340258_ThumbnailFile.cs" />
+    <Compile Include="Migrations\201601110340258_ThumbnailFile.Designer.cs">
+      <DependentUpon>201601110340258_ThumbnailFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601110358214_SectionView.cs" />
+    <Compile Include="Migrations\201601110358214_SectionView.Designer.cs">
+      <DependentUpon>201601110358214_SectionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601110410142_CategoryView.cs" />
+    <Compile Include="Migrations\201601110410142_CategoryView.Designer.cs">
+      <DependentUpon>201601110410142_CategoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601110424531_ArticleView.cs" />
+    <Compile Include="Migrations\201601110424531_ArticleView.Designer.cs">
+      <DependentUpon>201601110424531_ArticleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601110753376_RemoveAlias.cs" />
+    <Compile Include="Migrations\201601110753376_RemoveAlias.Designer.cs">
+      <DependentUpon>201601110753376_RemoveAlias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601110755073_RemoveAlias1.cs" />
+    <Compile Include="Migrations\201601110755073_RemoveAlias1.Designer.cs">
+      <DependentUpon>201601110755073_RemoveAlias1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601110833306_ArticleView1.cs" />
+    <Compile Include="Migrations\201601110833306_ArticleView1.Designer.cs">
+      <DependentUpon>201601110833306_ArticleView1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601130329301_IntroText.cs" />
+    <Compile Include="Migrations\201601130329301_IntroText.Designer.cs">
+      <DependentUpon>201601130329301_IntroText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601130333314_ArticleView2.cs" />
+    <Compile Include="Migrations\201601130333314_ArticleView2.Designer.cs">
+      <DependentUpon>201601130333314_ArticleView2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601130411463_NullableUpdatedDate.cs" />
+    <Compile Include="Migrations\201601130411463_NullableUpdatedDate.Designer.cs">
+      <DependentUpon>201601130411463_NullableUpdatedDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601141031468_Application.cs" />
+    <Compile Include="Migrations\201601141031468_Application.Designer.cs">
+      <DependentUpon>201601141031468_Application.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601180657077_UserInformation.cs" />
+    <Compile Include="Migrations\201601180657077_UserInformation.Designer.cs">
+      <DependentUpon>201601180657077_UserInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601180830287_OrgInformation.cs" />
+    <Compile Include="Migrations\201601180830287_OrgInformation.Designer.cs">
+      <DependentUpon>201601180830287_OrgInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601180912148_OrgInformation1.cs" />
+    <Compile Include="Migrations\201601180912148_OrgInformation1.Designer.cs">
+      <DependentUpon>201601180912148_OrgInformation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601180921164_OrgInformation2.cs" />
+    <Compile Include="Migrations\201601180921164_OrgInformation2.Designer.cs">
+      <DependentUpon>201601180921164_OrgInformation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601181030589_PreviousNextArticle.cs" />
+    <Compile Include="Migrations\201601181030589_PreviousNextArticle.Designer.cs">
+      <DependentUpon>201601181030589_PreviousNextArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601190445074_ArticleView3.cs" />
+    <Compile Include="Migrations\201601190445074_ArticleView3.Designer.cs">
+      <DependentUpon>201601190445074_ArticleView3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601190844118_Tag.cs" />
+    <Compile Include="Migrations\201601190844118_Tag.Designer.cs">
+      <DependentUpon>201601190844118_Tag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601211036334_ArticleView4.cs" />
+    <Compile Include="Migrations\201601211036334_ArticleView4.Designer.cs">
+      <DependentUpon>201601211036334_ArticleView4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602050745042_ChangeCompanyToJuristic.cs" />
+    <Compile Include="Migrations\201602050745042_ChangeCompanyToJuristic.Designer.cs">
+      <DependentUpon>201602050745042_ChangeCompanyToJuristic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602050813591_addJuristicRequest.cs" />
+    <Compile Include="Migrations\201602050813591_addJuristicRequest.Designer.cs">
+      <DependentUpon>201602050813591_addJuristicRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602051104332_addArticleApplicationMapping.cs" />
+    <Compile Include="Migrations\201602051104332_addArticleApplicationMapping.Designer.cs">
+      <DependentUpon>201602051104332_addArticleApplicationMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602080501291_alterJusristicIntToString.cs" />
+    <Compile Include="Migrations\201602080501291_alterJusristicIntToString.Designer.cs">
+      <DependentUpon>201602080501291_alterJusristicIntToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602081059444_addJuristicRequestView3.cs" />
+    <Compile Include="Migrations\201602081059444_addJuristicRequestView3.Designer.cs">
+      <DependentUpon>201602081059444_addJuristicRequestView3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602081220054_addJuristicRequestLogView.cs" />
+    <Compile Include="Migrations\201602081220054_addJuristicRequestLogView.Designer.cs">
+      <DependentUpon>201602081220054_addJuristicRequestLogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602180341177_alterJuristicRequestViewsAddConsumerKey.cs" />
+    <Compile Include="Migrations\201602180341177_alterJuristicRequestViewsAddConsumerKey.Designer.cs">
+      <DependentUpon>201602180341177_alterJuristicRequestViewsAddConsumerKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602180344453_alterJuristicRequestViewsAddConsumerKey2.cs" />
+    <Compile Include="Migrations\201602180344453_alterJuristicRequestViewsAddConsumerKey2.Designer.cs">
+      <DependentUpon>201602180344453_alterJuristicRequestViewsAddConsumerKey2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602180456328_alterJuristicRequestViewsAddConsumerKey3.cs" />
+    <Compile Include="Migrations\201602180456328_alterJuristicRequestViewsAddConsumerKey3.Designer.cs">
+      <DependentUpon>201602180456328_alterJuristicRequestViewsAddConsumerKey3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602190810270_MailMessage.cs" />
+    <Compile Include="Migrations\201602190810270_MailMessage.Designer.cs">
+      <DependentUpon>201602190810270_MailMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602200753382_AlterMailMessage2.cs" />
+    <Compile Include="Migrations\201602200753382_AlterMailMessage2.Designer.cs">
+      <DependentUpon>201602200753382_AlterMailMessage2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602230357154_ApplicationMultipleRequestSupport.cs" />
+    <Compile Include="Migrations\201602230357154_ApplicationMultipleRequestSupport.Designer.cs">
+      <DependentUpon>201602230357154_ApplicationMultipleRequestSupport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602230733100_AppUrlOnRequest.cs" />
+    <Compile Include="Migrations\201602230733100_AppUrlOnRequest.Designer.cs">
+      <DependentUpon>201602230733100_AppUrlOnRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602260335000_addSubmitMailMessageInApplicationTranslation.cs" />
+    <Compile Include="Migrations\201602260335000_addSubmitMailMessageInApplicationTranslation.Designer.cs">
+      <DependentUpon>201602260335000_addSubmitMailMessageInApplicationTranslation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602260512025_addSubmitMailMessageInApplicationTranslation2.cs" />
+    <Compile Include="Migrations\201602260512025_addSubmitMailMessageInApplicationTranslation2.Designer.cs">
+      <DependentUpon>201602260512025_addSubmitMailMessageInApplicationTranslation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603140936268_AddUserAuthToken.cs" />
+    <Compile Include="Migrations\201603140936268_AddUserAuthToken.Designer.cs">
+      <DependentUpon>201603140936268_AddUserAuthToken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603300444391_LabourRegisStatusTable.cs" />
+    <Compile Include="Migrations\201603300444391_LabourRegisStatusTable.Designer.cs">
+      <DependentUpon>201603300444391_LabourRegisStatusTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603300704589_RenameApplication.cs" />
+    <Compile Include="Migrations\201603300704589_RenameApplication.Designer.cs">
+      <DependentUpon>201603300704589_RenameApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603310840593_UnlistedCategory.cs" />
+    <Compile Include="Migrations\201603310840593_UnlistedCategory.Designer.cs">
+      <DependentUpon>201603310840593_UnlistedCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603310855213_AlterCategoryView.cs" />
+    <Compile Include="Migrations\201603310855213_AlterCategoryView.Designer.cs">
+      <DependentUpon>201603310855213_AlterCategoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604210741303_NotLinkedToJuristicUser.cs" />
+    <Compile Include="Migrations\201604210741303_NotLinkedToJuristicUser.Designer.cs">
+      <DependentUpon>201604210741303_NotLinkedToJuristicUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605160303151_TagLanguage.cs" />
+    <Compile Include="Migrations\201605160303151_TagLanguage.Designer.cs">
+      <DependentUpon>201605160303151_TagLanguage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605160509308_AlterArticleView.cs" />
+    <Compile Include="Migrations\201605160509308_AlterArticleView.Designer.cs">
+      <DependentUpon>201605160509308_AlterArticleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605170845438_ApplicationStatusRequestTransaction.cs" />
+    <Compile Include="Migrations\201605170845438_ApplicationStatusRequestTransaction.Designer.cs">
+      <DependentUpon>201605170845438_ApplicationStatusRequestTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606241015211_RenameColumn.cs" />
+    <Compile Include="Migrations\201606241015211_RenameColumn.Designer.cs">
+      <DependentUpon>201606241015211_RenameColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608080706412_ApplicationRequestMigrationData.cs" />
+    <Compile Include="Migrations\201608080706412_ApplicationRequestMigrationData.Designer.cs">
+      <DependentUpon>201608080706412_ApplicationRequestMigrationData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608171020194_AppsHookClassNameColumn.cs" />
+    <Compile Include="Migrations\201608171020194_AppsHookClassNameColumn.Designer.cs">
+      <DependentUpon>201608171020194_AppsHookClassNameColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610170348007_LastestLoginProvider.cs" />
+    <Compile Include="Migrations\201610170348007_LastestLoginProvider.Designer.cs">
+      <DependentUpon>201610170348007_LastestLoginProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704190754206_MoiPostalCodeTable.cs" />
+    <Compile Include="Migrations\201704190754206_MoiPostalCodeTable.Designer.cs">
+      <DependentUpon>201704190754206_MoiPostalCodeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704210405060_DbdTitleTable.cs" />
+    <Compile Include="Migrations\201704210405060_DbdTitleTable.Designer.cs">
+      <DependentUpon>201704210405060_DbdTitleTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707030435449_AppSingleFormEnabled.cs" />
+    <Compile Include="Migrations\201707030435449_AppSingleFormEnabled.Designer.cs">
+      <DependentUpon>201707030435449_AppSingleFormEnabled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708150434563_ApplicationInformation.cs" />
+    <Compile Include="Migrations\201708150434563_ApplicationInformation.Designer.cs">
+      <DependentUpon>201708150434563_ApplicationInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708280457519_ApplicationInformation1.cs" />
+    <Compile Include="Migrations\201708280457519_ApplicationInformation1.Designer.cs">
+      <DependentUpon>201708280457519_ApplicationInformation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708280518029_ApplicationInformation2.cs" />
+    <Compile Include="Migrations\201708280518029_ApplicationInformation2.Designer.cs">
+      <DependentUpon>201708280518029_ApplicationInformation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710030831245_UserInformation1.cs" />
+    <Compile Include="Migrations\201710030831245_UserInformation1.Designer.cs">
+      <DependentUpon>201710030831245_UserInformation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710120319393_ApplicationInformation3.cs" />
+    <Compile Include="Migrations\201710120319393_ApplicationInformation3.Designer.cs">
+      <DependentUpon>201710120319393_ApplicationInformation3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710120643171_ApplicationRoleInformation.cs" />
+    <Compile Include="Migrations\201710120643171_ApplicationRoleInformation.Designer.cs">
+      <DependentUpon>201710120643171_ApplicationRoleInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710160717468_ApplicationInformation4.cs" />
+    <Compile Include="Migrations\201710160717468_ApplicationInformation4.Designer.cs">
+      <DependentUpon>201710160717468_ApplicationInformation4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803261717295_RequestAtOrg.cs" />
+    <Compile Include="Migrations\201803261717295_RequestAtOrg.Designer.cs">
+      <DependentUpon>201803261717295_RequestAtOrg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804020421087_TSICinformation.cs" />
+    <Compile Include="Migrations\201804020421087_TSICinformation.Designer.cs">
+      <DependentUpon>201804020421087_TSICinformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805210359516_TSICinformation1.cs" />
+    <Compile Include="Migrations\201805210359516_TSICinformation1.Designer.cs">
+      <DependentUpon>201805210359516_TSICinformation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805210453078_MinimumWageInformation.cs" />
+    <Compile Include="Migrations\201805210453078_MinimumWageInformation.Designer.cs">
+      <DependentUpon>201805210453078_MinimumWageInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805210454298_MinimumWageInformation1.cs" />
+    <Compile Include="Migrations\201805210454298_MinimumWageInformation1.Designer.cs">
+      <DependentUpon>201805210454298_MinimumWageInformation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809130344256_alterApplication.cs" />
+    <Compile Include="Migrations\201809130344256_alterApplication.Designer.cs">
+      <DependentUpon>201809130344256_alterApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809130449523_alterApplication1.cs" />
+    <Compile Include="Migrations\201809130449523_alterApplication1.Designer.cs">
+      <DependentUpon>201809130449523_alterApplication1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811180808218_memberService.cs" />
+    <Compile Include="Migrations\201811180808218_memberService.Designer.cs">
+      <DependentUpon>201811180808218_memberService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811181003159_memberService1.cs" />
+    <Compile Include="Migrations\201811181003159_memberService1.Designer.cs">
+      <DependentUpon>201811181003159_memberService1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811181012416_memberService2.cs" />
+    <Compile Include="Migrations\201811181012416_memberService2.Designer.cs">
+      <DependentUpon>201811181012416_memberService2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811190113430_memberServiceArea.cs" />
+    <Compile Include="Migrations\201811190113430_memberServiceArea.Designer.cs">
+      <DependentUpon>201811190113430_memberServiceArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811251909282_memberManageService.cs" />
+    <Compile Include="Migrations\201811251909282_memberManageService.Designer.cs">
+      <DependentUpon>201811251909282_memberManageService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811261650044_role.cs" />
+    <Compile Include="Migrations\201811261650044_role.Designer.cs">
+      <DependentUpon>201811261650044_role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811271902360_role1.cs" />
+    <Compile Include="Migrations\201811271902360_role1.Designer.cs">
+      <DependentUpon>201811271902360_role1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812140850136_payment.cs" />
+    <Compile Include="Migrations\201812140850136_payment.Designer.cs">
+      <DependentUpon>201812140850136_payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812260816404_payment1.cs" />
+    <Compile Include="Migrations\201812260816404_payment1.Designer.cs">
+      <DependentUpon>201812260816404_payment1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812261024195_payment2.cs" />
+    <Compile Include="Migrations\201812261024195_payment2.Designer.cs">
+      <DependentUpon>201812261024195_payment2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901070409015_role2.cs" />
+    <Compile Include="Migrations\201901070409015_role2.Designer.cs">
+      <DependentUpon>201901070409015_role2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905100723193_updateApplication.cs" />
+    <Compile Include="Migrations\201905100723193_updateApplication.Designer.cs">
+      <DependentUpon>201905100723193_updateApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907010927382_AddDBDCommerceTable.cs" />
+    <Compile Include="Migrations\201907010927382_AddDBDCommerceTable.Designer.cs">
+      <DependentUpon>201907010927382_AddDBDCommerceTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907020341402_AddDBDCommerceTable1.cs" />
+    <Compile Include="Migrations\201907020341402_AddDBDCommerceTable1.Designer.cs">
+      <DependentUpon>201907020341402_AddDBDCommerceTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907050357295_addServiceCategoryList.cs" />
+    <Compile Include="Migrations\201907050357295_addServiceCategoryList.Designer.cs">
+      <DependentUpon>201907050357295_addServiceCategoryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907110810368_updateDBDmasterData.cs" />
+    <Compile Include="Migrations\201907110810368_updateDBDmasterData.Designer.cs">
+      <DependentUpon>201907110810368_updateDBDmasterData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908010359407_ApplicationStatusSequence.cs" />
+    <Compile Include="Migrations\201908010359407_ApplicationStatusSequence.Designer.cs">
+      <DependentUpon>201908010359407_ApplicationStatusSequence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908080722442_AddReceiptRunning.cs" />
+    <Compile Include="Migrations\201908080722442_AddReceiptRunning.Designer.cs">
+      <DependentUpon>201908080722442_AddReceiptRunning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908131023056_DeleteReceiptTable.cs" />
+    <Compile Include="Migrations\201908131023056_DeleteReceiptTable.Designer.cs">
+      <DependentUpon>201908131023056_DeleteReceiptTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909050554518_CreateTransactionReport.cs" />
+    <Compile Include="Migrations\201909050554518_CreateTransactionReport.Designer.cs">
+      <DependentUpon>201909050554518_CreateTransactionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909050806431_CreateReportStatusTableAndEditColumn.cs" />
+    <Compile Include="Migrations\201909050806431_CreateReportStatusTableAndEditColumn.Designer.cs">
+      <DependentUpon>201909050806431_CreateReportStatusTableAndEditColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909090803361_AddColumnPermitReport.cs" />
+    <Compile Include="Migrations\201909090803361_AddColumnPermitReport.Designer.cs">
+      <DependentUpon>201909090803361_AddColumnPermitReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909100344534_CreateTBL.cs" />
+    <Compile Include="Migrations\201909100344534_CreateTBL.Designer.cs">
+      <DependentUpon>201909100344534_CreateTBL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909110327560_deleteColumnRport.cs" />
+    <Compile Include="Migrations\201909110327560_deleteColumnRport.Designer.cs">
+      <DependentUpon>201909110327560_deleteColumnRport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909120416115_updateDB.cs" />
+    <Compile Include="Migrations\201909120416115_updateDB.Designer.cs">
+      <DependentUpon>201909120416115_updateDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910091229064_addTableBusinessGroup.cs" />
+    <Compile Include="Migrations\201910091229064_addTableBusinessGroup.Designer.cs">
+      <DependentUpon>201910091229064_addTableBusinessGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911191040429_mgDB.cs" />
+    <Compile Include="Migrations\201911191040429_mgDB.Designer.cs">
+      <DependentUpon>201911191040429_mgDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005140900500_updateApplidationSigning.cs" />
+    <Compile Include="Migrations\202005140900500_updateApplidationSigning.Designer.cs">
+      <DependentUpon>202005140900500_updateApplidationSigning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005301800283_updateApplicationSinging.cs" />
+    <Compile Include="Migrations\202005301800283_updateApplicationSinging.Designer.cs">
+      <DependentUpon>202005301800283_updateApplicationSinging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006160212168_updateApplicationSigning.cs" />
+    <Compile Include="Migrations\202006160212168_updateApplicationSigning.Designer.cs">
+      <DependentUpon>202006160212168_updateApplicationSigning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006181504108_updateSigningPerson.cs" />
+    <Compile Include="Migrations\202006181504108_updateSigningPerson.Designer.cs">
+      <DependentUpon>202006181504108_updateSigningPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007290942370_addPaymentExtendData.cs" />
+    <Compile Include="Migrations\202007290942370_addPaymentExtendData.Designer.cs">
+      <DependentUpon>202007290942370_addPaymentExtendData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008180703489_updateFormExtendData.cs" />
+    <Compile Include="Migrations\202008180703489_updateFormExtendData.Designer.cs">
+      <DependentUpon>202008180703489_updateFormExtendData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008260659378_updateSigning.cs" />
+    <Compile Include="Migrations\202008260659378_updateSigning.Designer.cs">
+      <DependentUpon>202008260659378_updateSigning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009080926517_updateApplication1.cs" />
+    <Compile Include="Migrations\202009080926517_updateApplication1.Designer.cs">
+      <DependentUpon>202009080926517_updateApplication1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009230809116_updateApplicationEdocument.cs" />
+    <Compile Include="Migrations\202009230809116_updateApplicationEdocument.Designer.cs">
+      <DependentUpon>202009230809116_updateApplicationEdocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010210742152_updateApplicationType.cs" />
+    <Compile Include="Migrations\202010210742152_updateApplicationType.Designer.cs">
+      <DependentUpon>202010210742152_updateApplicationType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seeds\20200908_ELicenseConfig.cs" />
+    <Compile Include="Seeds\20190919_ApplicationStatusFlowSeed.cs" />
+    <Compile Include="Seeds\20190514_Phase3PermitSeed.cs" />
+    <Compile Include="Seeds\20190312_ClearNotUseAplicationSeed.cs" />
+    <Compile Include="Seeds\20190318_CmsSeed.cs" />
+    <Compile Include="Seeds\20190104_OrganizationSeed.cs" />
+    <Compile Include="Seeds\20181217_Phase2PermitSeed.cs" />
+    <Compile Include="Seeds\20180316_RestaurantRetailPermitSeed.cs" />
+    <Compile Include="Seeds\20180316_SearchArticleSeed.cs" />
+    <Compile Include="Seeds\20181214_PaymentSeed.cs" />
+    <Compile Include="Seeds\20180402_TSICcodeSeed.cs" />
+    <Compile Include="Seeds\20180521_SSOMinimumWageSeed.cs" />
+    <Compile Include="Seeds\20190418_AddApplicationSeed.cs" />
+    <Compile Include="Seeds\20190911_BusinessList.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BizPortal.Models\BizPortal.Models.csproj">
+      <Project>{68a18c29-03d7-417c-9398-67e1fd7e771e}</Project>
+      <Name>BizPortal.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizPortal.Resources\BizPortal.Resources.csproj">
+      <Project>{2fb5419d-3ddf-459c-a747-3edfcb3b6dcb}</Project>
+      <Name>BizPortal.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601050936191_InitBizPortal.resx">
+      <DependentUpon>201601050936191_InitBizPortal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601070304243_SysName.resx">
+      <DependentUpon>201601070304243_SysName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601081050413_FileUpload.resx">
+      <DependentUpon>201601081050413_FileUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110340258_ThumbnailFile.resx">
+      <DependentUpon>201601110340258_ThumbnailFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110358214_SectionView.resx">
+      <DependentUpon>201601110358214_SectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110410142_CategoryView.resx">
+      <DependentUpon>201601110410142_CategoryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110424531_ArticleView.resx">
+      <DependentUpon>201601110424531_ArticleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110753376_RemoveAlias.resx">
+      <DependentUpon>201601110753376_RemoveAlias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110755073_RemoveAlias1.resx">
+      <DependentUpon>201601110755073_RemoveAlias1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601110833306_ArticleView1.resx">
+      <DependentUpon>201601110833306_ArticleView1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601130329301_IntroText.resx">
+      <DependentUpon>201601130329301_IntroText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601130333314_ArticleView2.resx">
+      <DependentUpon>201601130333314_ArticleView2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601130411463_NullableUpdatedDate.resx">
+      <DependentUpon>201601130411463_NullableUpdatedDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601141031468_Application.resx">
+      <DependentUpon>201601141031468_Application.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601180657077_UserInformation.resx">
+      <DependentUpon>201601180657077_UserInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601180830287_OrgInformation.resx">
+      <DependentUpon>201601180830287_OrgInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601180912148_OrgInformation1.resx">
+      <DependentUpon>201601180912148_OrgInformation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601180921164_OrgInformation2.resx">
+      <DependentUpon>201601180921164_OrgInformation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601181030589_PreviousNextArticle.resx">
+      <DependentUpon>201601181030589_PreviousNextArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601190445074_ArticleView3.resx">
+      <DependentUpon>201601190445074_ArticleView3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601190844118_Tag.resx">
+      <DependentUpon>201601190844118_Tag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601211036334_ArticleView4.resx">
+      <DependentUpon>201601211036334_ArticleView4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602050745042_ChangeCompanyToJuristic.resx">
+      <DependentUpon>201602050745042_ChangeCompanyToJuristic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602050813591_addJuristicRequest.resx">
+      <DependentUpon>201602050813591_addJuristicRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602051104332_addArticleApplicationMapping.resx">
+      <DependentUpon>201602051104332_addArticleApplicationMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602080501291_alterJusristicIntToString.resx">
+      <DependentUpon>201602080501291_alterJusristicIntToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602081059444_addJuristicRequestView3.resx">
+      <DependentUpon>201602081059444_addJuristicRequestView3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602081220054_addJuristicRequestLogView.resx">
+      <DependentUpon>201602081220054_addJuristicRequestLogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602180341177_alterJuristicRequestViewsAddConsumerKey.resx">
+      <DependentUpon>201602180341177_alterJuristicRequestViewsAddConsumerKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602180344453_alterJuristicRequestViewsAddConsumerKey2.resx">
+      <DependentUpon>201602180344453_alterJuristicRequestViewsAddConsumerKey2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602180456328_alterJuristicRequestViewsAddConsumerKey3.resx">
+      <DependentUpon>201602180456328_alterJuristicRequestViewsAddConsumerKey3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602190810270_MailMessage.resx">
+      <DependentUpon>201602190810270_MailMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602200753382_AlterMailMessage2.resx">
+      <DependentUpon>201602200753382_AlterMailMessage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602230357154_ApplicationMultipleRequestSupport.resx">
+      <DependentUpon>201602230357154_ApplicationMultipleRequestSupport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602230733100_AppUrlOnRequest.resx">
+      <DependentUpon>201602230733100_AppUrlOnRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602260335000_addSubmitMailMessageInApplicationTranslation.resx">
+      <DependentUpon>201602260335000_addSubmitMailMessageInApplicationTranslation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602260512025_addSubmitMailMessageInApplicationTranslation2.resx">
+      <DependentUpon>201602260512025_addSubmitMailMessageInApplicationTranslation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603140936268_AddUserAuthToken.resx">
+      <DependentUpon>201603140936268_AddUserAuthToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603300444391_LabourRegisStatusTable.resx">
+      <DependentUpon>201603300444391_LabourRegisStatusTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603300704589_RenameApplication.resx">
+      <DependentUpon>201603300704589_RenameApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603310840593_UnlistedCategory.resx">
+      <DependentUpon>201603310840593_UnlistedCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603310855213_AlterCategoryView.resx">
+      <DependentUpon>201603310855213_AlterCategoryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604210741303_NotLinkedToJuristicUser.resx">
+      <DependentUpon>201604210741303_NotLinkedToJuristicUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605160303151_TagLanguage.resx">
+      <DependentUpon>201605160303151_TagLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605160509308_AlterArticleView.resx">
+      <DependentUpon>201605160509308_AlterArticleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605170845438_ApplicationStatusRequestTransaction.resx">
+      <DependentUpon>201605170845438_ApplicationStatusRequestTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606241015211_RenameColumn.resx">
+      <DependentUpon>201606241015211_RenameColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608080706412_ApplicationRequestMigrationData.resx">
+      <DependentUpon>201608080706412_ApplicationRequestMigrationData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608171020194_AppsHookClassNameColumn.resx">
+      <DependentUpon>201608171020194_AppsHookClassNameColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610170348007_LastestLoginProvider.resx">
+      <DependentUpon>201610170348007_LastestLoginProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704190754206_MoiPostalCodeTable.resx">
+      <DependentUpon>201704190754206_MoiPostalCodeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704210405060_DbdTitleTable.resx">
+      <DependentUpon>201704210405060_DbdTitleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707030435449_AppSingleFormEnabled.resx">
+      <DependentUpon>201707030435449_AppSingleFormEnabled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708150434563_ApplicationInformation.resx">
+      <DependentUpon>201708150434563_ApplicationInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708280457519_ApplicationInformation1.resx">
+      <DependentUpon>201708280457519_ApplicationInformation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708280518029_ApplicationInformation2.resx">
+      <DependentUpon>201708280518029_ApplicationInformation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710030831245_UserInformation1.resx">
+      <DependentUpon>201710030831245_UserInformation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710120319393_ApplicationInformation3.resx">
+      <DependentUpon>201710120319393_ApplicationInformation3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710120643171_ApplicationRoleInformation.resx">
+      <DependentUpon>201710120643171_ApplicationRoleInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710160717468_ApplicationInformation4.resx">
+      <DependentUpon>201710160717468_ApplicationInformation4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803261717295_RequestAtOrg.resx">
+      <DependentUpon>201803261717295_RequestAtOrg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804020421087_TSICinformation.resx">
+      <DependentUpon>201804020421087_TSICinformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805210359516_TSICinformation1.resx">
+      <DependentUpon>201805210359516_TSICinformation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805210453078_MinimumWageInformation.resx">
+      <DependentUpon>201805210453078_MinimumWageInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805210454298_MinimumWageInformation1.resx">
+      <DependentUpon>201805210454298_MinimumWageInformation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809130344256_alterApplication.resx">
+      <DependentUpon>201809130344256_alterApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809130449523_alterApplication1.resx">
+      <DependentUpon>201809130449523_alterApplication1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811180808218_memberService.resx">
+      <DependentUpon>201811180808218_memberService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811181003159_memberService1.resx">
+      <DependentUpon>201811181003159_memberService1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811181012416_memberService2.resx">
+      <DependentUpon>201811181012416_memberService2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811190113430_memberServiceArea.resx">
+      <DependentUpon>201811190113430_memberServiceArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811251909282_memberManageService.resx">
+      <DependentUpon>201811251909282_memberManageService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811261650044_role.resx">
+      <DependentUpon>201811261650044_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811271902360_role1.resx">
+      <DependentUpon>201811271902360_role1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812140850136_payment.resx">
+      <DependentUpon>201812140850136_payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812260816404_payment1.resx">
+      <DependentUpon>201812260816404_payment1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812261024195_payment2.resx">
+      <DependentUpon>201812261024195_payment2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901070409015_role2.resx">
+      <DependentUpon>201901070409015_role2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905100723193_updateApplication.resx">
+      <DependentUpon>201905100723193_updateApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907010927382_AddDBDCommerceTable.resx">
+      <DependentUpon>201907010927382_AddDBDCommerceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907020341402_AddDBDCommerceTable1.resx">
+      <DependentUpon>201907020341402_AddDBDCommerceTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907050357295_addServiceCategoryList.resx">
+      <DependentUpon>201907050357295_addServiceCategoryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907110810368_updateDBDmasterData.resx">
+      <DependentUpon>201907110810368_updateDBDmasterData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908010359407_ApplicationStatusSequence.resx">
+      <DependentUpon>201908010359407_ApplicationStatusSequence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908080722442_AddReceiptRunning.resx">
+      <DependentUpon>201908080722442_AddReceiptRunning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908131023056_DeleteReceiptTable.resx">
+      <DependentUpon>201908131023056_DeleteReceiptTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909050554518_CreateTransactionReport.resx">
+      <DependentUpon>201909050554518_CreateTransactionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909050806431_CreateReportStatusTableAndEditColumn.resx">
+      <DependentUpon>201909050806431_CreateReportStatusTableAndEditColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909090803361_AddColumnPermitReport.resx">
+      <DependentUpon>201909090803361_AddColumnPermitReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909100344534_CreateTBL.resx">
+      <DependentUpon>201909100344534_CreateTBL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909110327560_deleteColumnRport.resx">
+      <DependentUpon>201909110327560_deleteColumnRport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909120416115_updateDB.resx">
+      <DependentUpon>201909120416115_updateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910091229064_addTableBusinessGroup.resx">
+      <DependentUpon>201910091229064_addTableBusinessGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911191040429_mgDB.resx">
+      <DependentUpon>201911191040429_mgDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005140900500_updateApplidationSigning.resx">
+      <DependentUpon>202005140900500_updateApplidationSigning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005301800283_updateApplicationSinging.resx">
+      <DependentUpon>202005301800283_updateApplicationSinging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006160212168_updateApplicationSigning.resx">
+      <DependentUpon>202006160212168_updateApplicationSigning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006181504108_updateSigningPerson.resx">
+      <DependentUpon>202006181504108_updateSigningPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007290942370_addPaymentExtendData.resx">
+      <DependentUpon>202007290942370_addPaymentExtendData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008180703489_updateFormExtendData.resx">
+      <DependentUpon>202008180703489_updateFormExtendData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008260659378_updateSigning.resx">
+      <DependentUpon>202008260659378_updateSigning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009080926517_updateApplication1.resx">
+      <DependentUpon>202009080926517_updateApplication1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009230809116_updateApplicationEdocument.resx">
+      <DependentUpon>202009230809116_updateApplicationEdocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010210742152_updateApplicationType.resx">
+      <DependentUpon>202010210742152_updateApplicationType.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

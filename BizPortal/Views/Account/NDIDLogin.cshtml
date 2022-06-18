@@ -1,0 +1,536 @@
+﻿@using Resource = BizPortal.Resources
+
+@{
+    ViewBag.Title = Resource.Global.E_AUTHENTICATION;
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style type="text/css">
+    .input-hidden {
+        visibility: hidden;
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+
+    .sweet-alert button {
+        font-size: 20px;
+        padding: 8px 32px;
+    }
+
+    .subheader {
+        color: rgba(119, 119, 119, 0.80) !important;
+    }
+
+    /* validation */
+    label.error {
+        float: left;
+    }
+
+    /* radio */
+    label > input {
+        visibility: hidden;
+        position: absolute;
+    }
+
+        label > input:checked + img {
+            border: 2px solid #f00;
+        }
+
+    label > img {
+        border-radius: 5px;
+    }
+
+    /* btn */
+    .btn-success[disabled] {
+        border-color: #86cb86;
+        background-color: #86cb86;
+        color: #fff;
+    }
+
+    /* loading */
+    .circle-loader {
+        margin-bottom: 1em;
+        border: 4px solid rgba(0, 0, 0, 0.2);
+        border-left-color: #03a9f4;
+        animation-name: loader-spin;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        box-sizing: content-box;
+    }
+
+        .circle-loader,
+        .circle-loader:after {
+            border-radius: 50%;
+            width: 3.6em;
+            height: 3.6em;
+        }
+
+    .load-complete {
+        -webkit-animation: none;
+        animation: none;
+        border-color: #5cb85c;
+        transition: border 500ms ease-out;
+    }
+
+    .load-error {
+        -webkit-animation: none;
+        animation: none;
+        border-color: red;
+        transition: border 500ms ease-out;
+    }
+
+    .checkmark {
+        display: none;
+        box-sizing: content-box;
+    }
+
+        .checkmark.draw:after {
+            opacity: 1;
+            height: 2.5em;
+            width: 1.25em;
+            transform-origin: left top;
+            border-right: 3.5px solid #5cb85c;
+            border-top: 3.5px solid #5cb85c;
+            content: '';
+            left: 0.5em;
+            top: 1.9em;
+            position: absolute;
+            animation-duration: 1.2s;
+            animation-timing-function: ease;
+            animation-name: checkmark;
+            transform: scaleX(-1) rotate(135deg);
+        }
+
+        .checkmark.error:before, .checkmark.error:after {
+            position: absolute;
+            content: ' ';
+            left: 0.65em;
+            top: 1.8em;
+            width: 2.5em;
+            height: 2px;
+            background-color: #f00;
+            animation-duration: 0.6s;
+            animation-timing-function: ease;
+            animation-name: cross;
+        }
+
+        .checkmark.error:before {
+            transform: rotate(45deg);
+        }
+
+        .checkmark.error:after {
+            transform: rotate(-45deg);
+        }
+
+    @@keyframes loader-spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes checkmark {
+        0% {
+            height: 0;
+            width: 0;
+            opacity: 1;
+        }
+
+        20% {
+            height: 0;
+            width: 1.25em;
+            opacity: 1;
+        }
+
+        40% {
+            height: 2.5em;
+            width: 1.25em;
+            opacity: 1;
+        }
+
+        100% {
+            height: 2.5em;
+            width: 1.25em;
+            opacity: 1;
+        }
+    }
+
+    @@keyframes cross {
+        /*0% {
+            left: 2em;
+            width: 0;
+            opacity: 1;
+        }*/
+        100% {
+            left: 1.25em;
+            width: 2.5em;
+            opacity: 1;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="row" style="text-align: center;margin: 40px 0 0 0;">
+        <a href="https://www.digitalid.or.th" title="@Resource.Global.LOGIN_NDID_PROVIDER">
+            <img alt="e-Authentication Service" width="245" src="~/Content/Images/logo/ndid.png" style="margin-right:25px;">
+        </a>
+    </div>
+    <div class="row">
+        <h3 class="bold center mt-xlg mb-md" style="color:rgba(119, 119, 119, 0.80); text-transform:none;">
+            @Resource.Global.LOGIN_NDID_PROVIDER
+        </h3>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="featured-boxes">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                            <div class="featured-box featured-box-primary mt-xs">
+                                <div class="box-content" style="padding-top:20px;padding-left:8%;padding-right:8%;border-top :4px solid rgba(119, 119, 119, 0.38);border-bottom: 4px solid rgba(119, 119, 119, 0.38);top:0;">
+                                    <h4 class="center mb-sm bold subheader">
+                                        @Resource.Global.LOGIN_DETAIL
+                                    </h4>
+                                    <form id="frmLogin" action="@Url.Action("NDIDLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl, language = ViewBag.CurrentLang })" method="post" novalidate>
+                                        @Html.AntiForgeryToken()
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12 align-left">
+                                                    @Resource.Global.LOGIN_ACCOUNT
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input type="text" id="identityId" name="identityId" value="" placeholder="หมายเลขบัตรประชาชน" class="form-control input-lg" style="max-width:100%;" data-msg-required="กรุณาระบุชื่อบัญชีผู้ใช้งาน" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12 align-left">
+                                                    @Resource.Global.LOGIN_PROVIDER
+                                                </div>
+                                                <div class="col-md-12 align-left">
+                                                    @{
+                                                        if (ViewBag.IDP != null)
+                                                        {
+                                                            int count = 1;
+                                                            foreach (NDIDIdp idp in (List<NDIDIdp>)ViewBag.IDP)
+                                                            {
+                                                                <div class="col-md-3 col-sm-4 col-xs-6 center" style="height:120px;">
+                                                                    <label>
+                                                                        <input type="radio" name="provider" value="@string.Join(",", idp.NodeIds)" data-maxial="@idp.MaxIAL" data-maxaal="@idp.MaxAAL" data-providercode="@idp.Code" @(count == 1 ? "checked" : "") />
+                                                                        <img class="bank-logo" src="@Url.Content("~/" + idp.ImageUrl)" alt="@idp.NameEN" height="100" onerror="onBankLogoError(this);" />
+                                                                    </label>
+                                                                </div>
+
+                                                                if (count == 1)
+                                                                {
+                                                                    <input type="text" id="providerCode" name="providerCode" class="input-hidden" value="@idp.Code" />
+                                                                    <input type="text" id="maxIAL" name="maxIAL" class="input-hidden" value="@idp.MaxIAL" />
+                                                                    <input type="text" id="maxAAL" name="maxAAL" class="input-hidden" value="@idp.MaxAAL" />
+                                                                }
+
+                                                                count++;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    <input type="text" id="returnUrl" name="returnUrl" class="input-hidden" value="@ViewBag.ReturnUrl">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mt-md mb-sm" style="text-align:center;">
+                                                <input type="submit" value="@Resource.Global.BTN_LOGIN" style="min-width:120px;" class="btn btn-success ml-xs mb-sm" title="@Resource.Global.BTN_LOGIN">
+                                                <a href="@Url.Action("Index","Home", new { area="" })" style="min-width:120px;" class="btn btn-danger ml-xs mb-sm" title="@Resource.Global.BTN_CANCEL">@Resource.Global.BTN_CANCEL</a>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <footer class="center">
+        <p>
+            © 2561 ตามพระราชบัญญัติลิขสิทธิ์ 2537 สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน) (สพร.) <br class="hidden-md hidden-lg"><span class="hidden-xs hidden-sm"></span>
+        </p>
+    </footer>
+</div>
+
+<div class="modal fade bs-example-modal-lg" id="modalDisclaimer" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">เงื่อนไขการให้บริการ(Terms and Conditions)</h4>
+            </div>
+            <div class="modal-body">
+                <p style="padding: 10px 20px 0 20px;">
+                    สำนักงานคณะกรรมการพัฒนาระบบราชการ ร่วมกับสำนักงานพัฒนารัฐบาลดิจิทัล(องค์การมหาชน) จัดทำเว็บไซต์ BizPortal นี้ เพื่อให้ข้อมูลและให้บริการเกี่ยวกับบริการต่าง ๆ ของหน่วยงานภาครัฐ เพื่ออำนวยความสะดวกในการรับบริการอนุญาตด้านธุรกิจระหว่างท่านกับหน่วยงานภาครัฐที่ให้บริการ ทั้งนี้ ไม่ว่าในขณะใดขณะหนึ่งก็ตาม ผู้จัดทำ สามารถทำการแก้ไขปรับปรุงข้อกำหนดและเงื่อนไขต่าง ๆ ที่ปรากฏในเว็บไซต์นี้ได้ อีกทั้ง ผู้จัดทำ สงวนสิทธิ์ในการเปลี่ยนแปลงเว็บไซต์ ข้อกำหนดและเงื่อนไขต่าง ๆ ในเว็บไซต์นี้ได้ โดยไม่ต้องทำการแจ้งให้ท่านทราบแต่อย่างใด
+
+                    <br /><br />
+                    กรุณาอ่านข้อกำหนดและเงื่อนไขต่าง ๆ เหล่านี้โดยละเอียด โดยในการเข้าถึงเว็บไซต์นี้ และหน้าจอใดๆ ของเว็บไซต์ หมายถึงท่านตกลงที่จะผูกพันตามข้อกำหนดและเงื่อนไขข้างล่างนี้ ทั้งนี้ หากท่านไม่ตกลงตามข้อกำหนดและเงื่อนไขข้างล่างนี้ กรุณาหยุดการเข้าเว็บไซต์ในขณะนี้
+
+                    <br /><br />
+                    <b>การยินยอมให้เปิดเผยข้อมูลของผู้ใช้งาน(Consent)</b>
+                    <br />
+                    ท่านที่ประสงค์จะใช้บริการที่ดำเนินการผ่านเว็บไซต์นี้ รวมถึงบริการยืนยันตัวตนกับ Identity Provider ที่ทาง BizPortal กำหนด ต้องยินยอมให้ข้อมูลส่วนตัวของท่านที่จำเป็นต่อการให้บริการ เมื่อผู้ใช้ประสงค์จะยื่นขอรับขอรับบริการออนไลน์ผ่านเว็บไซต์นี้ โดยข้อมูลประกอบด้วย
+                    <br />
+                    1. ข้อมูลเลขประจำตัวประชาชน <br />
+                    2. ชื่อ และนามสกุล <br />
+                    3. วันเกิด <br />
+                    4. เพศ <br />
+                    5. ที่อยู่ <br />
+                    6. เบอร์โทรศัพท์ <br />
+                    <br />
+                    <b>ความถูกต้องของข้อมูล</b> <br />
+                    หากมีการเปลี่ยนแปลงข้อมูลส่วนบุคคลของคุณ กรุณาแจ้งให้ทางผู้จัดทำทราบ เพื่อทำการอัพเดทเป็นข้อมูลปัจจุบันและถูกต้องในการให้บริการ
+
+                </p>
+            </div>
+            <div class="modal-footer">
+                <span style="margin-right:15px;"><input type="checkbox" id="chkAcceptDisclaimer" /> <label for="chkAcceptDisclaimer">ยอมรับข้อตกลงและเงื่อนไข</label></span>
+                <button type="button" class="btn btn-success" id="btnAcceptDisclaimer" disabled>ตกลง</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    @if (ViewBag.IDP == null)
+    {
+        <text>
+            swal({
+                type: 'error',
+                title: '',
+                text: '@Html.Raw(Resource.Global.LOGIN_FAILED)',
+                html: true,
+                confirmButtonText  : 'ตกลง'
+            }, function (e) {
+                window.location = '@Url.Action("ChooseType","Account", new { area="Apps" })';
+            });
+        </text>
+    }
+
+    function onBankLogoError(el) {
+        $(el).attr('src', '@Url.Content("~/content/images/banklogo/default.png")');
+        $('<dev style="position: absolute; top: 28%; left:calc(50% - ' + ($(el).attr('alt').length * 5) + 'px); font-weight: 700; font-size: 18px;">' + $(el).attr('alt') + '</div>').insertAfter(el);
+    }
+
+    /* js cookie */
+    function setCookie(name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function updateCookie(name, value) {
+        setCookie(name, value, 1);
+    }
+
+    function delCookie(name) {
+        setCookie(name, "", -1);
+    }
+
+</script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval");
+    @Scripts.Render("~/Scripts/jquery.signalR-2.3.0.min.js");
+    @Scripts.Render("~/signalr/hubs");
+
+    <script type="text/javascript">
+
+        var hub;
+        var connection;
+        var intervalCheckStatus;
+        var isRedirect = false;
+        var redirectUrl = '@Html.Raw(@ViewBag.ReturnUrl)';
+
+
+        $(function () {
+            initForm();
+            initModal();
+            initSignalr();
+
+            @if (ViewBag.IDP == null)
+            {
+                <text>
+                    swal({
+                        type: 'error',
+                        title: '',
+                        text: '@Html.Raw(Resource.Global.LOGIN_FAILED)',
+                        html: true,
+                        confirmButtonText  : 'ตกลง'
+                    }, function (e) {
+                        window.location = '@Url.Action("ChooseType","Account", new { area="Apps" })';
+                    });
+                </text>
+            }
+        });
+
+        function initForm() {
+
+            $('input[name="provider"]').on('change', function (e) {
+                $('#maxIAL').val($(this).attr('data-maxial'));
+                $('#maxAAL').val($(this).attr('data-maxaal'));
+                $('#providerCode').val($(this).attr('data-providercode'));
+            });
+
+            $('form').submit(function (e) {
+                e.preventDefault();
+
+                if ($('form').valid()) {
+
+                    var isAcceptDisclaimer = getCookie('IsAcceptNDIDDisclaimer');
+
+                    if (isAcceptDisclaimer != 'true') {
+                        setCookie('IsAcceptNDIDDisclaimer', true);
+                        $('#modalDisclaimer').modal();
+                    }
+                    else
+                    {
+                        sendRequest();
+                    }
+                }
+            });
+        }
+
+        function initModal() {
+             $('#chkAcceptDisclaimer').on('change', function (e) {
+                if ($(this).is(':checked')) {
+                    $('#btnAcceptDisclaimer').removeAttr('disabled');
+                }
+                else {
+                    $('#btnAcceptDisclaimer').attr('disabled', true);
+                }
+            });
+
+            $('#btnAcceptDisclaimer').on('click', function (e) {
+                $('#modalDisclaimer').modal('hide');
+                sendRequest();
+            });
+        }
+
+        function initSignalr() {
+            connection = $.hubConnection('@Url.Content("~/signalr")', { useDefaultPath: true });
+            hub = connection.createHubProxy('NDIDHub');
+            hub.on("AuthenCallback", function (e) {
+                if (e.Status == 'completed') {
+                    $('.circle-loader').addClass('load-complete');
+                    $('.checkmark').addClass('draw').show();
+                    $('#status').html('@Resource.Global.LOGIN_PROCESSING');
+
+                    clearInterval(intervalCheckStatus);
+
+                    if (isRedirect == false) {
+
+                        var url = e.Result.LoginUrl + "&ReturnUrl=" + encodeURI(redirectUrl).replace('&', '%26');
+                        window.location = url; 
+                        isRedirect = true;
+                    }
+                }
+                else if (e.Status == 'rejected') {
+
+                    clearInterval(intervalCheckStatus);
+
+                    swal({
+                        type: 'error',
+                        title: '',
+                        html: true,
+                        text: '@Html.Raw(Resource.Global.LOGIN_REJECT)',
+                        confirmButtonText  : 'ตกลง'
+                    });
+                }
+
+                //console.log(e);
+            });
+
+            connection.error(function (ex) {
+                //console.error(ex);
+            });
+
+            $.connection.hub.disconnected(function() {
+               setTimeout(function() {
+                   connection.start();
+               }, 5000);
+            });
+
+            connection.start();
+        }
+
+        function sendRequest() {
+            var form = $('#frmLogin');
+            var connectionId = connection.id;
+
+            swal({
+                title: '',
+                text: '<div class="status-container">\
+                            <div class="circle-loader">\
+                                <div class="checkmark"></div>\
+                            </div>\
+                            <div id="status"> @Resource.Global.LOGIN_VERIFICATION </div>\
+                        </div>',
+                html: true,
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+
+            $.ajax({
+                url: $(form).attr('action'),
+                type: $(form).attr('method'),
+                data: $(form).serialize() + '&connectionId=' + connectionId,
+                success: function (res) {
+                    if (res.Status == true) {
+                        intervalCheckStatus = setInterval(function () {
+                            //console.log('check request status');
+                            $.post('@Url.Action("NDIDCheckRequestStatus","Account")', { connectionId: connectionId, requestId: res.Result.request_id, returnUrl: '@ViewBag.ReturnUrl' }, function (e) {});
+                        }, (1000*15));
+                    }
+                    else {
+                        swal({
+                            type: 'error',
+                            title: '',
+                            html: true,
+                            text: '@Html.Raw(Resource.Global.LOGIN_FAILED)',
+                            confirmButtonText: 'ตกลง'
+                        });
+                    }
+                    //console.log(res);
+                },
+                error: function (jXHR, textStatus, ex) {
+                    //console.log(ex);
+                }
+            });
+        }
+
+    </script>
+}

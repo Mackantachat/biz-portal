@@ -1,0 +1,293 @@
+.button-style{
+  border-radius: 3px;
+  padding: 6px 10px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: top;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  box-shadow:0 1px 1px rgba(0,0,0,0.2);
+  text-align: center;
+  @include transition(0.2s);
+  i{
+    margin-right: 5px;
+  }
+   &:active, &:hover, &:focus{
+    text-decoration: none;
+  }
+}
+.button{
+  @extend .button-style;
+  $size : (
+    1200px : 20px,
+    568px : 18px,
+  );
+  @include fluid-sizing('font-size', $size);
+  i{
+    @include fluid-sizing('font-size', $size);
+  }
+  color: $c-white;
+  &.primary{
+    background: $c-main-blue;
+    border: 1px solid $c-main-blue;
+    &:active, &:hover, &:focus{
+      background: $c-main-blue-h;
+      border-color: $c-main-blue-h;
+    }
+  }
+  &.secondary{
+    background: $c-hover;
+    border: 1px solid $c-hover;
+    &:active, &:hover, &:focus{
+      background: $c-main-blue;
+      border-color: $c-main-blue;
+    }
+  }
+  &.cancel{
+    background: $c-grey2;
+    border: 1px solid $c-grey2;
+    &:active, &:hover, &:focus{
+      background: $c-grey2;
+      border-color: $c-grey2;
+    }
+  }
+  &.large{
+     $size : (
+      1200px : 30px,
+      568px : 22px,
+    );
+    @include fluid-sizing('font-size', $size);
+    padding: 5px 30px;
+  }
+}
+
+.button-outline{
+  object{
+    width: 60px;
+    margin-right: 10px;
+  }
+  &.block{
+    border: 1px solid $c-line;
+    background: #F4F4F4;
+    color: $c-main-blue;
+    &:active, &:hover, &:focus{
+      background: $c-main-blue;
+      color: $c-white;
+    }
+  }
+  @extend .button-style;
+  $size : (
+    1000px : 20px,
+    568px : 18px,
+  );
+  i{
+    @include fluid-sizing('font-size', $size);
+  }
+  @include fluid-sizing('font-size', $size);
+  color: $c-white;
+  background: $c-white;
+  &.primary{
+    border: 1px solid $c-main-blue;
+    color: $c-main-blue;
+    &:active, &:hover, &:focus{
+      background: $c-main-blue;
+      color: $c-white;
+    }
+  }
+  &.secondary{
+    border: 1px solid $c-hover;
+    color: $c-hover;
+    &:active, &:hover, &:focus{
+      background: $c-hover;
+      color: $c-white;
+    }
+  }
+  &.large{
+     $size : (
+      1200px : 30px,
+      568px : 22px,
+    );
+    @include fluid-sizing('font-size', $size);
+    padding: 5px 30px;
+  }
+}
+
+.button-outline-icon{
+  width: 300px;
+  @include flex(row, center, center);
+  object{
+    width: 60px;
+    margin-right: 10px;
+  }
+  &.block{
+    border: 1px solid $c-line;
+    background: #F4F4F4;
+    color: $c-main-blue;
+    &:active, &:hover, &:focus{
+      background: $c-main-blue;
+      color: $c-white;
+    }
+  }
+  @extend .button-style;
+  $size : (
+    1000px : 20px,
+    568px : 18px,
+  );
+  i{
+    @include fluid-sizing('font-size', $size);
+  }
+  @include fluid-sizing('font-size', $size);
+  color: $c-white;
+  background: $c-white;
+  &.primary{
+    border: 1px solid $c-main-blue;
+    color: $c-main-blue;
+    &:active, &:hover, &:focus{
+      background: $c-main-blue;
+      color: $c-white;
+    }
+  }
+  &.secondary{
+    border: 1px solid $c-hover;
+    color: $c-hover;
+    &:active, &:hover, &:focus{
+      background: $c-hover;
+      color: $c-white;
+    }
+  }
+  &.large{
+     $size : (
+      1200px : 30px,
+      568px : 22px,
+    );
+    @include fluid-sizing('font-size', $size);
+    padding: 5px 30px;
+  }
+}
+
+.button-icon{
+  min-height: 45px;
+  width: 300px;
+  @include flex(row, center, center);
+  object{
+    display: inline-block;
+    height: 30px;
+    margin-right: 10px;
+    max-width: 100px;
+    //flex: 1 0 0%;
+    //
+  }
+  p{
+    //flex: 0 1 100%;
+  }
+  &.block{
+    border: 1px solid $c-line;
+    background: #F4F4F4;
+    color: $c-main-blue;
+    &:active, &:hover, &:focus{
+      background: $c-main-blue;
+      color: $c-white;
+    }
+  }
+  @extend .button-style;
+  $size : (
+    1000px : 20px,
+    568px : 18px,
+  );
+  i{
+    @include fluid-sizing('font-size', $size);
+  }
+  @include fluid-sizing('font-size', $size);
+ // color: $c-white;
+ // background: $c-white;
+  &.primary{
+    border: 1px solid $c-main-blue;
+    color: $c-white;
+    background: $c-main-blue;
+    &:active, &:hover, &:focus{
+      background: $c-main-blue-h;
+      color: $c-white;
+    }
+  }
+  &.secondary{
+    border: 1px solid $c-hover;
+    color: $c-hover;
+    &:active, &:hover, &:focus{
+      background: $c-hover;
+      color: $c-white;
+    }
+  }
+  &.large{
+     $size : (
+      1200px : 30px,
+      568px : 22px,
+    );
+    @include fluid-sizing('font-size', $size);
+    padding: 5px 30px;
+  }
+}
+
+
+.button-group{
+  letter-spacing: -0.33em;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  >a, button{
+    display: table-cell;
+    letter-spacing: normal;
+    border-radius: 0;
+    border-left-width: 0px;
+  }
+  >a:first-child, button:first-child{
+    border-left-width: 1px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  >a:last-child, button:last-child{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+}
+.button-group.vertical{
+  display: block;
+  >a, button{
+    display: block;
+    border-left-width: 1px;
+    border-top-width: 0px;
+  }
+  >a:first-child, button:first-child{
+    border-top-width: 1px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 0px;
+  }
+  >a:last-child, button:last-child{
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+}
+
+.button-checkbox {
+  @extend .button;
+  color: #fff;
+  font-size: 14px;
+  vertical-align: middle;
+  @include transition(.3s);
+  &:before {
+    display: inline-block;
+    width: 20px;
+    vertical-align: middle;
+    margin-right: 20px;
+    color: #fff;
+    font-size: 24px;
+    content: '\f096';
+    font-family: 'FontAwesome';
+  }
+  &.active:before {
+    font-size: 23px;
+    content: '\f14a';
+  }
+}

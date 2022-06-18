@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_SEC_NEW_G_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="APP_SEC_NEW_G_CONFIRM_CHECK_BOX" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ</value>
+  </data>
+  <data name="APP_SEC_NEW_G_CONFIRM_INFO" xml:space="preserve">
+    <value>&lt;p&gt;คำรับรองของผู้ขอรับใบอนุญาต&lt;/p&gt;&lt;br&gt;
+&lt;p&gt;1.&amp;nbsp;&amp;nbsp;บริษัทมีคุณสมบัติครบถ้วนตามที่กำหนดในกฎกระทรวงว่าด้วยการอนุญาตการประกอบธุรกิจหลักทรัพย์ เรื่อง การอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งออกความในพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ.2546&lt;/p&gt;&lt;br&gt;
+&lt;p&gt;2.&amp;nbsp;&amp;nbsp;ผู้ถือหุ้นรายใหญ่ กรรมการ ผู้จัดการ และบุคคลผู้มีอำนาจในการจัดการของบริษัทมีคุณสมบัติครบถ้วน และไม่มี ลักษณะต้องห้ามตามที่กำหนดในพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546 และประกาศที่ออกโดยอาศัยอำนาจแห่งกฎหมายดังกล่าว&lt;/p&gt;&lt;br&gt;
+&lt;p&gt;3.&amp;nbsp;&amp;nbsp;ข้อความในแบบคำขอรับใบอนุญาตและเอกสารหลักฐานประกอบแบบคำขอที่แนบมาพร้อมนี้มีความครบถ้วน ถูกต้อง และเป็นจริงทุกประการ&lt;/p&gt;&lt;br&gt;
+&lt;p&gt;4.&amp;nbsp;&amp;nbsp;บริษัทขอรับรองว่า แบบคำขอรับใบอนุญาตประกอบสัญญาซื้อขายล่วงหน้า ซึ่งลงนามโดย บริษัท (ระบุชื่อบริษัทที่ยื่นขอรับใบอนุญาต หรือ บริษัทที่ได้รับมอบอำนาจจากบริษัทในกลุ่มนิติบุคคลเดียวกันให้เป็นผู้ยื่นคำขอ) เป็นการกระทำแทนและเพื่อบริษัท และให้มีผลผูกพันเสมือนเป็นการกระทำของบริษัททุกประการ&lt;/p&gt;&lt;br&gt;
+&lt;p&gt;5.&amp;nbsp;&amp;nbsp;ข้าพเจ้ายินยอมและจะอำนวยความสะดวกให้พนักงานเจ้าหน้าที่เข้าไปในสถานที่ประกอบธุรกิจหรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน&lt;/p&gt;&lt;br&gt;</value>
+  </data>
+  <data name="APP_SEC_NEW_G_CURRENT_SECTION_REQUEST" xml:space="preserve">
+    <value>ใบอนุญาตที่มีในปัจจุบัน</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION" xml:space="preserve">
+    <value>ข้อมูลเจ้าหน้าที่ผู้ขอรับใบอนุญาตที่สำนักงาน ก.ล.ต. ติดต่อได้</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_EMAIL_1" xml:space="preserve">
+    <value>อีเมล</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_EMAIL_2" xml:space="preserve">
+    <value>อีเมล</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_FAX_1" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_FAX_2" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_FIRST_NAME_1" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_FIRST_NAME_2" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_HEADER_1" xml:space="preserve">
+    <value>ลำดับที่ 1</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_HEADER_2" xml:space="preserve">
+    <value>ลำดับที่ 2</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_LAST_NAME_1" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_LAST_NAME_2" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_POSITION_1" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_POSITION_2" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_TELL_1" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_TELL_2" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_TITLE_1" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+  </data>
+  <data name="APP_SEC_NEW_G_OFFICER_SECTION_CONTACT_TITLE_2" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+  </data>
+  <data name="APP_SEC_NEW_G_PAY_BACK_SECTION" xml:space="preserve">
+    <value>ข้อมูลกรณีที่ต้องมีการคืนใบอนุญาต</value>
+  </data>
+  <data name="APP_SEC_NEW_G_PAY_BACK_SECTION_INFO" xml:space="preserve">
+    <value>สามารถติดต่อสอบถามข้อมูลเพิ่มเติมได้ที่สำนักงานคณะกรรมการกำกับหลักทรัพย์และตลาดหลักทรัพย์: 02 033 9999</value>
+  </data>
+  <data name="APP_SEC_NEW_G_PAY_BACK_SECTION_REQUEST" xml:space="preserve">
+    <value>ใบอนุญาตที่ต้องคืน</value>
+  </data>
+  <data name="APP_SEC_NEW_G_SECTION_GROUP" xml:space="preserve">
+    <value>ข้อมูลการประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1</value>
+  </data>
+  <data name="APP_SEC_NEW_G_SECTION_REQUEST_INFO" xml:space="preserve">
+    <value>ข้อมูลสถานะผู้ขอรับใบอนุญาต</value>
+  </data>
+  <data name="APP_SEC_NEW_G_SECTION_REQUEST_INFO_CONTROL" xml:space="preserve">
+    <value>สถานะผู้ขอรับใบอนุญาต</value>
+  </data>
+  <data name="APP_SEC_NEW_G_SECTION_REQUEST_OTHER" xml:space="preserve">
+    <value>ระบุ</value>
+  </data>
+  <data name="APP_SEC_NEW_G_SECTION_REQUEST_STOCK_HOLDER" xml:space="preserve">
+    <value>คุณมีใบอนุญาตที่ต้องคืนหรือไม่</value>
+  </data>
+  <data name="CHK_1" xml:space="preserve">
+    <value>การเป็นตัวแทนสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="CHK_2" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="CHK_3" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="CHK_4" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="CHK_5" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+  </data>
+  <data name="CHK_6" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+  </data>
+  <data name="CHK_7" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับโลหะมีค่า</value>
+  </data>
+  <data name="CHK_8" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="CHK_9" xml:space="preserve">
+    <value>แบบ ส-2</value>
+  </data>
+</root>

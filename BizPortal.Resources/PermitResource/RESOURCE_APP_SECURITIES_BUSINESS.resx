@@ -1,0 +1,1680 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_SECURITIES_BUSINESS" xml:space="preserve">
+    <value>ข้อมูลการประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</value>
+    <comment>SectionGroup: APP_SECURITIES_BUSINESS</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลทุน</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_INFO_SECTION</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_REGISTERED_CAPITAL" xml:space="preserve">
+    <value>ทุนจดทะเบียน</value>
+    <comment>FieldID: F40_01_01</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนหุ้นสามัญ (หุ้น)</value>
+    <comment>FieldID: F40_01_02</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_VALUE_EACH" xml:space="preserve">
+    <value>มูลค่าหุ้นละ (บาท)</value>
+    <comment>FieldID: F40_01_03</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_TOTAL_VALUE" xml:space="preserve">
+    <value>รวมมูลค่าหุ้น (บาท)</value>
+    <comment>FieldID: F40_01_04</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_AMOUNT_SHARE" xml:space="preserve">
+    <value>จำนวนหุ้นบุริมสิทธิ (หุ้น)</value>
+    <comment>FieldID: F40_01_05</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_VALUE_EACH_SHARE" xml:space="preserve">
+    <value>มูลค่าหุ้นละ (บาท)</value>
+    <comment>FieldID: F40_01_06</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_TOTAL_VALUE_SHARE" xml:space="preserve">
+    <value>รวมมูลค่าหุ้น (บาท)</value>
+    <comment>FieldID: F40_01_07</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_SHARE_TEXT" xml:space="preserve">
+    <value>ระบุเงื่อนไขเกี่ยวกับหุ้นบุริมสิทธิ</value>
+    <comment>FieldID: F40_01_08</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_REGISTERED_CAPITAL_PAID" xml:space="preserve">
+    <value>ทุนจดทะเบียนซึ่งชำระแล้ว</value>
+    <comment>FieldID: F40_01_09</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_AMOUNT_ORDINARY" xml:space="preserve">
+    <value>จำนวนหุ้นสามัญ (หุ้น)</value>
+    <comment>FieldID: F40_01_10</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_VALUE_EACH_ORDINARY" xml:space="preserve">
+    <value>มูลค่าหุ้นละ (บาท)</value>
+    <comment>FieldID: F40_01_11</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_TOTAL_VALUE_ORDINARY" xml:space="preserve">
+    <value>รวมมูลค่าหุ้น (บาท)</value>
+    <comment>FieldID: F40_01_12</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_PERCENT_ORDINARY" xml:space="preserve">
+    <value>มูลค่าคิดเป็นร้อยละของทุนจดทะเบียน (%)</value>
+    <comment>FieldID: F40_01_13</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_AMOUNT_SHARE_ORDINARY" xml:space="preserve">
+    <value>จำนวนหุ้นบุริมสิทธิ (หุ้น)</value>
+    <comment>FieldID: F40_01_14</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_VALUE_EACH_SHARE_ORDINARY" xml:space="preserve">
+    <value>มูลค่าหุ้นละ (บาท)</value>
+    <comment>FieldID: F40_01_15</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_TOTAL_VALUE_SHARE_ORDINARY" xml:space="preserve">
+    <value>รวมมูลค่าหุ้น (บาท)</value>
+    <comment>FieldID: F40_01_16</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_PERCENT_SHARE_ORDINARY" xml:space="preserve">
+    <value>มูลค่าคิดเป็นร้อยละของทุนจดทะเบียน (%)</value>
+    <comment>FieldID: F40_01_17</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER" xml:space="preserve">
+    <value>ข้อมูลผู้ถือหุ้นรายใหญ่</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_SHARE_HOLDER</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_SHARE_HOLDER_TYPE" xml:space="preserve">
+    <value>ผู้ถือหุ้นรายใหญ่ของคุณเป็นบุคคลธรรมดา หรือนิติบุคคล</value>
+    <comment>FieldID: F40_01_18</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_SHARE_HOLDER_TYPE_INFO" xml:space="preserve">
+    <value>* กรุณากรอกรายชื่อของผู้ถือหุ้นรายใหญ่ทุกราย "ผู้ถือหุ้นรายใหญ่” หมายถึง  บุคคลที่ถือหุ้นบริษัทหลักทรัพย์ไม่ว่าโดยทางตรงหรือทางอ้อมเกินกว่าร้อยละสิบของจำนวนสิทธิออกเสียงทั้งหมดของบริษัทหลักทรัพย์นั้น </value>
+    <comment>FieldID: F40_01_18</comment>
+  </data>
+  <data name="CITIZEN" xml:space="preserve">
+    <value>บุคคลธรรมดา</value>
+    <comment>FieldID: F40_01_18</comment>
+  </data>
+  <data name="JURISTIC" xml:space="preserve">
+    <value>นิติบุคคล</value>
+    <comment>FieldID: F40_01_18</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_SHARE_CAPITAL_HOLDER_COMPANY_TYPE" xml:space="preserve">
+    <value>บริษัทของคุณมี 1 หุ้น/1 สิทธิออกเสียงใช่หรือไม่</value>
+    <comment>FieldID: F40_01_19</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_SHARE_CAPITAL_HOLDER_COMPANY_TYPE_YES" xml:space="preserve">
+    <value>ใช่</value>
+    <comment>FieldID: F40_01_19</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_SHARE_CAPITAL_HOLDER_COMPANY_TYPE_NO" xml:space="preserve">
+    <value>ไม่ใช่</value>
+    <comment>FieldID: F40_01_19</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1" xml:space="preserve">
+    <value>ข้อมูลผู้ถือหุ้นรายใหญ่</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_SHARE_HOLDER_1</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลผู้ถือหุ้นรายใหญ่ ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลผู้ถือหุ้นรายใหญ่&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลผู้ถือหุ้นรายใหญ่"&lt;/div&gt;</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_SHARE_HOLDER_1</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ถือหุ้นรายใหญ่</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_SHARE_HOLDER_1</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ถือหุ้นรายใหญ่</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_SHARE_HOLDER_1</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_TYPE" xml:space="preserve">
+    <value>ประเภทผู้ถือหุ้น (ผู้ถือหุ้นทางตรง, ผู้ถือหุ้นทางอ้อม)</value>
+    <comment>FieldID: F40_01_20</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_TYPE_DIRECT" xml:space="preserve">
+    <value>ผู้ถือหุ้นทางตรง</value>
+    <comment>FieldID: F40_01_20</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_TYPE_INDIRECT" xml:space="preserve">
+    <value>ผู้ถือหุ้นทางอ้อม</value>
+    <comment>FieldID: F40_01_20</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_NAME" xml:space="preserve">
+    <value>ชื่อ ภาษาไทย</value>
+    <comment>FieldID: F40_01_21</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_NAME_EN" xml:space="preserve">
+    <value>ชื่อ ภาษาอังกฤษ</value>
+    <comment>FieldID: F40_01_22</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+    <comment>FieldID: F40_01_23</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_ID" xml:space="preserve">
+    <value>เลขทะเบียนบริษัท/เลขบัตรประจำตัวประชาชน 13 หลัก/เลขที่หนังสือเดินทาง</value>
+    <comment>FieldID: F40_01_24</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_AMOUNT" xml:space="preserve">
+    <value>จำนวนหุ้นที่ถือ</value>
+    <comment>FieldID: F40_01_25</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHARE_HOLDER_1_SHARE_CAPITAL_HOLDER_AMOUNT_PERCENT" xml:space="preserve">
+    <value>ร้อยละของสิทธิออกเสียงทั้งหมด (%)</value>
+    <comment>FieldID: F40_01_26</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER" xml:space="preserve">
+    <value>กรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลของผู้ถือหุ้นรายใหญ่</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_INFO" xml:space="preserve">
+    <value>กรณีผู้ถือหุ้นรายใหญ่เป็นนิติบุคคล ให้ระบุชื่อกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลนั้นด้วย พร้อมทั้งแนบหนังสือรับรองนิติบุคคลดังกล่าว</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล กรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลของผู้ถือหุ้นรายใหญ่ ในขณะนี้ คุณสามารถเพิ่มข้อมูลกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลของผู้ถือหุ้นรายใหญ่&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลของผู้ถือหุ้นรายใหญ่"&lt;/div&gt;</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_ADD" xml:space="preserve">
+    <value>เพิ่มกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลของผู้ถือหุ้นรายใหญ่</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_SUBMIT" xml:space="preserve">
+    <value>เพิ่มกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลของผู้ถือหุ้นรายใหญ่</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_FULLNAME" xml:space="preserve">
+    <value>ชื่อนิติบุคคล </value>
+    <comment>FieldID: F40_01_27</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ ภาษาไทย</value>
+    <comment>FieldID: F40_01_28</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ ภาษาไทย</value>
+    <comment>FieldID: F40_01_29</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_LASTNAME" xml:space="preserve">
+    <value>นามสกุล ภาษาไทย</value>
+    <comment>FieldID: F40_01_30</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_TITLE_EN" xml:space="preserve">
+    <value>คำนำหน้าชื่อ ภาษาอังกฤษ</value>
+    <comment>FieldID: F40_01_31</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_NAME_EN" xml:space="preserve">
+    <value>ชื่อ ภาษาอังกฤษ</value>
+    <comment>FieldID: F40_01_32</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_LASTNAME_EN" xml:space="preserve">
+    <value>นามสกุล ภาษาอังกฤษ</value>
+    <comment>FieldID: F40_01_33</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+    <comment>FieldID: F40_01_34</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก/เลขที่หนังสือเดินทาง</value>
+    <comment>FieldID: F40_01_35</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_POSITION" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+    <comment>FieldID: F40_01_36</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_AUTHORITY" xml:space="preserve">
+    <value>อำนาจกระทำแทนบริษัท (มี/ไม่มี)</value>
+    <comment>FieldID: F40_01_37</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_AUTHORITY_YES" xml:space="preserve">
+    <value>มี</value>
+    <comment>FieldID: F40_01_37</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_OR_MANAGER_COMMITTEE_AUTHORITY_NO" xml:space="preserve">
+    <value>ไม่มี</value>
+    <comment>FieldID: F40_01_37</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY" xml:space="preserve">
+    <value>ข้อมูลกรรมการ ผู้จัดการ และบุคคลที่มีอำนาจในการจัดการ ของผู้ขอรับใบอนุญาต</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลกรรมการ ผู้จัดการ และบุคคลที่มีอำนาจในการจัดการ ของผู้ขอรับใบอนุญาต ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลกรรมการ ผู้จัดการ และบุคคลที่มีอำนาจในการจัดการ ของผู้ขอรับใบอนุญาต&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลกรรมการ ผู้จัดการ และบุคคลที่มีอำนาจในการจัดการ ของผู้ขอรับใบอนุญาต"&lt;/div&gt;</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลกรรมการ ผู้จัดการ และบุคคลที่มีอำนาจในการจัดการ ของผู้ขอรับใบอนุญาต</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลกรรมการ ผู้จัดการ และบุคคลที่มีอำนาจในการจัดการ ของผู้ขอรับใบอนุญาต</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ ภาษาไทย</value>
+    <comment>FieldID: F40_01_38</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_NAME" xml:space="preserve">
+    <value>ชื่อ ภาษาไทย</value>
+    <comment>FieldID: F40_01_39</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_LASTNAME" xml:space="preserve">
+    <value>นามสกุล ภาษาไทย</value>
+    <comment>FieldID: F40_01_40</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_TITLE_EN" xml:space="preserve">
+    <value>คำนำหน้าชื่อ ภาษาอังกฤษ</value>
+    <comment>FieldID: F40_01_41</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_NAME_EN" xml:space="preserve">
+    <value>ชื่อ ภาษาอังกฤษ</value>
+    <comment>FieldID: F40_01_42</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_LASTNAME_EN" xml:space="preserve">
+    <value>นามสกุล ภาษาอังกฤษ</value>
+    <comment>FieldID: F40_01_43</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+    <comment>FieldID: F40_01_44</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F40_01_45</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_AUTHOR" xml:space="preserve">
+    <value>อำนาจกระทำแทนบริษัท (มี/ไม่มี)</value>
+    <comment>FieldID: F40_01_46</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_AUTHOR_YES" xml:space="preserve">
+    <value>มี</value>
+    <comment>FieldID: F40_01_46</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_AUTHOR_NO" xml:space="preserve">
+    <value>ไม่มี</value>
+    <comment>FieldID: F40_01_46</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_OFFICER" xml:space="preserve">
+    <value>เป็นข้าราชการ หรือเจ้าหน้าที่ของ ธปท/คปภ/กลต./กระทรวงการคลัง หรือไม่ (เป็น/ไม่เป็น)</value>
+    <comment>FieldID: F40_01_47</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_OFFICER_YES" xml:space="preserve">
+    <value>เป็น</value>
+    <comment>FieldID: F40_01_47</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_OFFICER_NO" xml:space="preserve">
+    <value>ไม่เป็น</value>
+    <comment>FieldID: F40_01_47</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_POSITION" xml:space="preserve">
+    <value>ตำแหน่ง (หากไม่เป็นข้าราชการ หรือเจ้าหน้าที่ของ ธปท/คปภ/กลต./กระทรวงการคลัง ให้ระบุตำแหน่งในบริษัท)</value>
+    <comment>FieldID: F40_01_48</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION" xml:space="preserve">
+    <value>ข้อมูลเจ้าหน้าที่ผู้ขอรับใบอนุญาตที่สำนักงาน ก.ล.ต. ติดต่อได้</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_OFFICER_SECTION</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_NUMBER_1" xml:space="preserve">
+    <value>ลำดับที่ 1</value>
+    <comment>FieldID: F40_01_49</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+    <comment>FieldID: F40_01_50</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_NAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F40_01_51</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F40_01_52</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_POSITION" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+    <comment>FieldID: F40_01_53</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_PHONE" xml:space="preserve">
+    <value>โทรศัพท์</value>
+    <comment>FieldID: F40_01_54</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_FAX" xml:space="preserve">
+    <value>โทรสาร</value>
+    <comment>FieldID: F40_01_55</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_EMAIL" xml:space="preserve">
+    <value>อีเมล์</value>
+    <comment>FieldID: F40_01_56</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_NUMBER_2" xml:space="preserve">
+    <value>ลำดับที่ 2</value>
+    <comment>FieldID: F40_01_57</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_TITLE_2" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+    <comment>FieldID: F40_01_58</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_NAME_2" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F40_01_59</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_LASTNAME_2" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F40_01_60</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_POSITION_2" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+    <comment>FieldID: F40_01_61</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_PHONE_2" xml:space="preserve">
+    <value>โทรศัพท์</value>
+    <comment>FieldID: F40_01_62</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_FAX_2" xml:space="preserve">
+    <value>โทรสาร</value>
+    <comment>FieldID: F40_01_63</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_OFFICER_SECTION_OFFICER_EMAIL_2" xml:space="preserve">
+    <value>อีเมล์</value>
+    <comment>FieldID: F40_01_64</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_1" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_INFO_SECTION_1</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_1_INFO_TEXT_2" xml:space="preserve">
+    <value>ประเภทแบบคำขอที่คุณต้องการขออนุญาตสำหรับประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_INFO_SECTION_1_INFO_TEXT_2_INFO" xml:space="preserve">
+    <value>ใบอนุญาตแบบ ก หมายถึง ใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบครบวงจร อันประกอบด้วย&lt;br/&gt;การประกอบธุรกิจหลักทรัพย์ ประเภท (1) การเป็นนายหน้าซื้อขายหลักทรัพย์  (2) การค้าหลักทรัพย์  (3) การจัดจำหน่ายหลักทรัพย์ (4) การเป็นที่ปรึกษาการลงทุน (5) การจัดการกองทุนรวม (6) การจัดการกองทุนส่วนบุคคล (7) กิจการการยืมและให้ยืมหลักทรัพย์ (8) การจัดการเงินร่วมลงทุน และการประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ประเภท (9) การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้า (10) การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า (11) การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า (12) การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า&lt;br/&gt;ใบอนุญาตแบบ ข หมายถึง ใบอนุญาตประกอบธุรกิจหลักทรัพย์อันเป็นตราสารแห่งหนี้ อันประกอบด้วย&lt;br/&gt;การประกอบธุรกิจหลักทรัพย์ ประเภท (1) การเป็นนายหน้าซื้อขายหลักทรัพย์ อันเป็นตราสารแห่งหนี้  (2) การค้าหลักทรัพย์อันเป็นตราสารแห่งหนี้ (3) การจัดจำหน่ายหลักทรัพย์อันเป็นตราสารแห่งหนี้ (4) การเป็นที่ปรึกษาการลงทุน  (5) กิจการการยืมและให้ยืมหลักทรัพย์  และการประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ประเภท (6) การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้ (7) การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขาย ล่วงหน้าที่เกี่ยวกับตราสารหนี้ (8) การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า&lt;br/&gt;ใบอนุญาตแบบ ค หมายถึง ใบอนุญาตประกอบธุรกิจหลักทรัพย์ด้านการจัดการกองทุน อันประกอบด้วย&lt;br/&gt;การประกอบธุรกิจหลักทรัพย์ ประเภท (1) การจัดการกองทุนรวม (2) การจัดการกองทุนส่วนบุคคล (3) การเป็นนายหน้าซื้อขายหลักทรัพย์ที่เป็นหน่วยลงทุน (4) การค้าหลักทรัพย์ที่เป็นหน่วยลงทุน (5) การจัดจำหน่ายหลักทรัพย์ที่เป็นหน่วยลงทุน (6) การเป็นที่ปรึกษาการลงทุน  (7) การจัดการเงินร่วมลงทุน และ&lt;br/&gt;การประกอบธุรกิจสัญญาซื้อขายล่วงหน้าประเภท (8) การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า (9) การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้าใบอนุญาตแบบ ง หมายถึง ใบอนุญาตประกอบธุรกิจหลักทรัพย์ที่เป็นหน่วยลงทุน อันประกอบด้วย&lt;br/&gt;การประกอบธุรกิจหลักทรัพย์ ประเภท  (1) การเป็นนายหน้าซื้อขายหลักทรัพย์ที่เป็นหน่วยลงทุน  (2) การค้าหลักทรัพย์ที่เป็นหน่วยลงทุน (3) การจัดจำหน่ายหลักทรัพย์ที่เป็นหน่วยลงทุน&lt;br/&gt;ใบอนุญาตแบบ ส-1  หมายถึง ใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบครบวงจร อันประกอบด้วย&lt;br/&gt;การประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ประเภท (1) การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้า (2) การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า (3) การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า (4) การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า&lt;br/&gt;</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="TYPE_1" xml:space="preserve">
+    <value>ใบอนุญาตแบบ ก</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="TYPE_2" xml:space="preserve">
+    <value>ใบอนุญาตแบบ ข</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="TYPE_3" xml:space="preserve">
+    <value>ใบอนุญาตแบบ ค</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="TYPE_4" xml:space="preserve">
+    <value>ใบอนุญาตแบบ ง</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="TYPE_5" xml:space="preserve">
+    <value>คำขอรับใบอนุญาตประเภทการเป็นที่ปรึกษาการลงทุนและการเป็นทีปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="TYPE_6" xml:space="preserve">
+    <value>คำขอรับใบอนุญาตประเภทกิจการการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="TYPE_7" xml:space="preserve">
+    <value>แบบ ส-1</value>
+    <comment>FieldID: F40_01_65</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1" xml:space="preserve">
+    <value>ข้อมูลสถานะผู้ขอรับใบอนุญาต แบบ ก</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_TYPE" xml:space="preserve">
+    <value>สถานะผู้ขอรับใบอนุญาต</value>
+    <comment>FieldID: F40_01_66</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_TYPE_TYPE_1" xml:space="preserve">
+    <value>1.บริษัทหลักทรัพย์ที่ได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการเป็นนายหน้าซื้อขายหลักทรัพย์แต่ไม่รวมถึงบริษัทหลักทรัพย์ที่ได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการเป็นนายหน้าซื้อขายหลักทรัพย์อันเป็นตราสารแห่งหนี้ หรือการเป็นนายหน้าซื้อขายหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_66</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_TYPE_TYPE_2" xml:space="preserve">
+    <value>2.บริษัทหลักทรัพย์นอกเหนือจากบริษัทหลักทรัพย์ตาม 1  แต่ไม่รวมถึงสถาบันการเงินที่จัดตั้งขึ้นตามกฎหมายอื่นซึ่งได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ภายหลังจากมีสถานะเป็นสถาบันการเงินแล้ว</value>
+    <comment>FieldID: F40_01_66</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_TYPE_TYPE_3" xml:space="preserve">
+    <value>3.ธนาคารพาณิชย์</value>
+    <comment>FieldID: F40_01_66</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_TYPE_TYPE_4" xml:space="preserve">
+    <value>4.สถาบันการเงินอื่นตามที่คณะกรรมการ ก.ล.ต. ประกาศกำหนด </value>
+    <comment>FieldID: F40_01_66</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_TYPE_TYPE_5" xml:space="preserve">
+    <value>5.บริษัทที่จัดตั้งขึ้นใหม่เพื่อขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ก และธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1 (ใบอนุญาตครบวงจร)</value>
+    <comment>FieldID: F40_01_66</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุุ</value>
+    <comment>FieldID: F40_01_67</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_RETURN_LICENSE_1" xml:space="preserve">
+    <value>คุณมีใบอนุญาตที่ต้องคืนหรือไม่</value>
+    <comment>FieldID: F40_01_68</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_RETURN_LICENSE_1_YES_RETURN" xml:space="preserve">
+    <value>มีใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_68</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_RETURN_LICENSE_1_NO_NOT_RETURN" xml:space="preserve">
+    <value>ไม่มีใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_68</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_LICENSE_1_HEAD" xml:space="preserve">
+    <value>กรณีที่ต้องมีการคืนใบอนุญาต</value>
+    <comment>FieldID: F40_01_69</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_LICENSE_1_PRESENT" xml:space="preserve">
+    <value>ใบอนุญาตที่มีในปัจจุบัน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_1" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_2" xml:space="preserve">
+    <value>การค้าหลักทรัพย์</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_3" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_4" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาการลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_5" xml:space="preserve">
+    <value>การจัดการกองทุนรวม</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_6" xml:space="preserve">
+    <value>การจัดการกองทุนส่วนบุคคล</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_7" xml:space="preserve">
+    <value>กิจการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_8" xml:space="preserve">
+    <value>การจัดการเงินร่วมลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_9" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_10" xml:space="preserve">
+    <value>การค้าหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_11" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_12" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์ ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_13" xml:space="preserve">
+    <value>การค้าหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_14" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_15" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_16" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_17" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_18" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_19" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_20" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_21" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับทองคำ</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_22" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_23" xml:space="preserve">
+    <value>การค้าหลักทรัพย์</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_24" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_25" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาการลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_26" xml:space="preserve">
+    <value>การจัดการกองทุนรวม</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_27" xml:space="preserve">
+    <value>การจัดการกองทุนส่วนบุคคล</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_28" xml:space="preserve">
+    <value>กิจการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_29" xml:space="preserve">
+    <value>การจัดการเงินร่วมลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_30" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_31" xml:space="preserve">
+    <value>การค้าหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_32" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_33" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์ ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_34" xml:space="preserve">
+    <value>การค้าหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_35" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_36" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_37" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_38" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_39" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_40" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_41" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="RETURN_42" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับทองคำ</value>
+    <comment>FieldID: F40_01_70</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_1_LICENSE_1_RETURN" xml:space="preserve">
+    <value>ใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_1" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_2" xml:space="preserve">
+    <value>การค้าหลักทรัพย์</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_3" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_4" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาการลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_5" xml:space="preserve">
+    <value>การจัดการกองทุนรวม</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_6" xml:space="preserve">
+    <value>การจัดการกองทุนส่วนบุคคล</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_7" xml:space="preserve">
+    <value>กิจการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_8" xml:space="preserve">
+    <value>การจัดการเงินร่วมลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_9" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_10" xml:space="preserve">
+    <value>การค้าหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_11" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_12" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์ ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_13" xml:space="preserve">
+    <value>การค้าหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_14" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_15" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_16" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_17" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_18" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_19" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_20" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_21" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับทองคำ</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_22" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_23" xml:space="preserve">
+    <value>การค้าหลักทรัพย์</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_24" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_25" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาการลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_26" xml:space="preserve">
+    <value>การจัดการกองทุนรวม</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_27" xml:space="preserve">
+    <value>การจัดการกองทุนส่วนบุคคล</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_28" xml:space="preserve">
+    <value>กิจการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_29" xml:space="preserve">
+    <value>การจัดการเงินร่วมลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_30" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_31" xml:space="preserve">
+    <value>การค้าหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_32" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_33" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์ ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_34" xml:space="preserve">
+    <value>การค้าหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_35" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_36" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_37" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_38" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_39" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_40" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_41" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="OWNED_42" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับทองคำ</value>
+    <comment>FieldID: F40_01_71</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_1" xml:space="preserve">
+    <value>ข้อมูลการคืนใบอนุญาตและขอเริ่มประกอบธุรกิจ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_1</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_1_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า
+</value>
+    <comment>FieldID: F40_01_72</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_1_CONFIRM_INFO" xml:space="preserve">
+    <value>คำรับรองของผู้ขอรับใบอนุญาต &lt;br/&gt;1. บริษัทมีคุณสมบัติครบถ้วนตามที่กำหนดในกฎกระทรวงว่าด้วยการอนุญาตการประกอบธุรกิจหลักทรัพย์ พ.ศ. 2551 ซึ่งออกตามความในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และ/หรือ มีคุณสมบัติครบถ้วนตามที่กำหนดในประกาศคณะกรรมการกำกับหลักทรัพย์และตลาดหลักทรัพย์ เรื่อง การอนุญาตการประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งออกตามความในพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546 &lt;br/&gt;2. ผู้ถือหุ้นรายหญ่ กรรมการ ผู้จัดการ และบุคคลผู้มีอำนาจในการจัดการของบริษัทมีคุณสมบัติครบถ้วน และไม่มีลักษณะต้องห้ามตามที่กำหนดในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และ/หรือพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546  และประกาศที่ออกโดยอาศัยอำนาจแห่งกฎหมายดังกล่าว&lt;br/&gt;3. ข้อความในแบบคำขอรับใบอนุญาตและเอกสารหลักฐานประกอบแบบคำขอที่แนบมาพร้อมนี้มีความครบถ้วน ถูกต้อง และเป็นจริงทุกประการ &lt;br/&gt;4. บริษัทขอรับรองว่า แบบคำขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์ และ/หรือ ธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งลงนามโดย บริษัท (ระบุชื่อบริษัทที่ยื่นขอรับใบอนุญาต หรือ บริษัทที่ได้รับมอบอำนาจจากบริษัทในกลุ่มนิติบุคคลเดียวกันให้เป็นผู้ยื่นคำขอ) เป็นการกระทำแทนและเพื่อบริษัท และให้มีผลผูกพันเสมือนเป็นการกระทำของบริษัททุกประการ&lt;br/&gt;5. ข้าพเจ้ายินยอมและจะอำนวยความสะดวกให้พนักงานเจ้าหน้าที่เข้าไปในสถานที่ประกอบธุรกิจหรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน</value>
+    <comment>FieldID: F40_01_72</comment>
+  </data>
+  <data name="CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ</value>
+    <comment>FieldID: F40_01_102</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2" xml:space="preserve">
+    <value>ข้อมูลสถานะผู้ขอรับใบอนุญาต แบบ ข</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_TYPE" xml:space="preserve">
+    <value>สถานะผู้ขอรับใบอนุญาต</value>
+    <comment>FieldID: F40_01_73</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_TYPE_TYPE_1" xml:space="preserve">
+    <value>1.บริษัทหลักทรัพย์ที่ได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการค้าหลักทรัพย์หรือการจัดจำหน่ายหลักทรัพย์อันเป็นตราสารหนี้</value>
+    <comment>FieldID: F40_01_73</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_TYPE_TYPE_2" xml:space="preserve">
+    <value>2.ธนาคารพาณิชย์</value>
+    <comment>FieldID: F40_01_73</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_TYPE_TYPE_3" xml:space="preserve">
+    <value>3.สถาบันการเงินอื่นตามที่คณะกรรมการ ก.ล.ต. ประกาศกำหนด </value>
+    <comment>FieldID: F40_01_73</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_TYPE_TYPE_4" xml:space="preserve">
+    <value>4.บริษัทที่จัดตั้งขึ้นใหม่เพื่อขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ข และธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-2</value>
+    <comment>FieldID: F40_01_73</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุุ</value>
+    <comment>FieldID: F40_01_74</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_RETURN_LICENSE_2" xml:space="preserve">
+    <value>คุณมีใบอนุญาตที่ต้องคืนหรือไม่</value>
+    <comment>FieldID: F40_01_75</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_RETURN_LICENSE_2_YES_RETURN" xml:space="preserve">
+    <value>มีใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_75</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_RETURN_LICENSE_2_NO_NOT_RETURN" xml:space="preserve">
+    <value>ไม่มีใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_75</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_LICENSE_2_HEAD" xml:space="preserve">
+    <value>กรณีที่ต้องมีการคืนใบอนุญาต</value>
+    <comment>FieldID: F40_01_76</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_LICENSE_2_PRESENT" xml:space="preserve">
+    <value>ใบอนุญาตที่มีในปัจจุบัน</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="OWNED_TYPE2_1" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="OWNED_TYPE2_2" xml:space="preserve">
+    <value>การค้าหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="OWNED_TYPE2_3" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="OWNED_TYPE2_4" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาการลงทุน</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="OWNED_TYPE2_5" xml:space="preserve">
+    <value>กิจการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="OWNED_TYPE2_6" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="OWNED_TYPE2_7" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="OWNED_TYPE2_8" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_77</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_2_LICENSE_2_RETURN" xml:space="preserve">
+    <value>ใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="RETURN_TYPE2_1" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="RETURN_TYPE2_2" xml:space="preserve">
+    <value>การค้าหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="RETURN_TYPE2_3" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์อันเป็นตราสารแห่งหนี้</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="RETURN_TYPE2_4" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาการลงทุน</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="RETURN_TYPE2_5" xml:space="preserve">
+    <value>กิจการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="RETURN_TYPE2_6" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="RETURN_TYPE2_7" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="RETURN_TYPE2_8" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_78</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_2" xml:space="preserve">
+    <value>ข้อมูลการคืนใบอนุญาตและขอเริ่มประกอบธุรกิจ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_2</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_2_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า
+</value>
+    <comment>FieldID: F40_01_79</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_2_CONFIRM_INFO" xml:space="preserve">
+    <value>คำรับรองของผู้ขอรับใบอนุญาต&lt;br/&gt; 1. บริษัทมีคุณสมบัติครบถ้วนตามที่กำหนดในกฎกระทรวงว่าด้วยการอนุญาตการประกอบธุรกิจหลักทรัพย์ พ.ศ. 2551 ซึ่งออกตามความในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และ/หรือ มีคุณสมบัติครบถ้วนตามที่กำหนดในประกาศคณะกรรมการกำกับหลักทรัพย์และตลาดหลักทรัพย์ เรื่อง การอนุญาตการประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งออกตามความในพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546&lt;br/&gt; 2. ผู้ถือหุ้นรายหญ่ กรรมการ ผู้จัดการ และบุคคลผู้มีอำนาจในการจัดการของบริษัทมีคุณสมบัติครบถ้วน และไม่มีลักษณะต้องห้ามตามที่กำหนดในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และ/หรือพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546  และประกาศที่ออกโดยอาศัยอำนาจแห่งกฎหมายดังกล่าว&lt;br/&gt;3. ข้อความในแบบคำขอรับใบอนุญาตและเอกสารหลักฐานประกอบแบบคำขอที่แนบมาพร้อมนี้มีความครบถ้วน ถูกต้อง และเป็นจริงทุกประการ&lt;br/&gt; 4. บริษัทขอรับรองว่า แบบคำขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์ และ/หรือ ธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งลงนามโดย บริษัท (ระบุชื่อบริษัทที่ยื่นขอรับใบอนุญาต หรือ บริษัทที่ได้รับมอบอำนาจจากบริษัทในกลุ่มนิติบุคคลเดียวกันให้เป็นผู้ยื่นคำขอ) เป็นการกระทำแทนและเพื่อบริษัท และให้มีผลผูกพันเสมือนเป็นการกระทำของบริษัททุกประการ&lt;br/&gt;5. ข้าพเจ้ายินยอมและจะอำนวยความสะดวกให้พนักงานเจ้าหน้าที่เข้าไปในสถานที่ประกอบธุรกิจหรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน</value>
+    <comment>FieldID: F40_01_79</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3" xml:space="preserve">
+    <value>ข้อมูลสถานะผู้ขอรับใบอนุญาต แบบ ค</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE" xml:space="preserve">
+    <value>สถานะผู้ขอรับใบอนุญาต</value>
+    <comment>FieldID: F40_01_80</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE_TYPE_1" xml:space="preserve">
+    <value>1. บริษัทหลักทรัพย์ที่ได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการจัดการกองทุนรวม</value>
+    <comment>FieldID: F40_01_80</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE_TYPE_2" xml:space="preserve">
+    <value>2. บริษัทหลักทรัพย์นอกเหนือจากบริษัทหลักทรัพย์ตาม 1 แต่ไม่รวมถึงสถาบันการเงินที่จัดตั้งขึ้นตามกฎหมายอื่นซึ่งได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ภายหลังจากมีสถานะเป็นสถาบันการเงินแล้ว</value>
+    <comment>FieldID: F40_01_80</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE_TYPE_3" xml:space="preserve">
+    <value>3. ธนาคารพาณิชย์</value>
+    <comment>FieldID: F40_01_80</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE_TYPE_4" xml:space="preserve">
+    <value>4. บริษัทประกันชีวิต</value>
+    <comment>FieldID: F40_01_80</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE_TYPE_5" xml:space="preserve">
+    <value>5. สถาบันการเงินอื่นตามที่คณะกรรมการ ก.ล.ต. ประกาศกำหนด </value>
+    <comment>FieldID: F40_01_80</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE_TYPE_6" xml:space="preserve">
+    <value>6. บริษัทที่จัดตั้งขึ้นใหม่เพื่อขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ค โดยมีผู้ถือหุ้นรายใดรายหนึ่งหรือหลายรายดังต่อไปนี้ซึ่งถือหุ้นไม่น้อยกว่าร้อยละห้าสิบของจำนวนหุ้นที่จำหน่ายได้แล้วทั้งหมด ก. นิติบุคคลตาม 2 3 4 หรือ 5 ข.บริษัทที่ถือหุ้นในนิติบุคคลตาม 2 3 4 หรือ 5 รายใดรายหนึ่ง ไม่น้อยกว่าร้อยละห้าสิบเอ็ดของหุ้นที่จำหน่ายได้แล้วทั้งหมดของนิติบุคคลนั้น หรือ</value>
+    <comment>FieldID: F40_01_80</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE_TYPE_7" xml:space="preserve">
+    <value>7.บริษัทนอกเหนือจากบริษัทตาม 6 ที่จัดตั้งขึ้นใหม่เพื่อขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ค การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_80</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุุ</value>
+    <comment>FieldID: F40_01_81</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_RETURN_LICENSE_3" xml:space="preserve">
+    <value>คุณมีใบอนุญาตที่ต้องคืนหรือไม่</value>
+    <comment>FieldID: F40_01_82</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_RETURN_LICENSE_3_YES_RETURN" xml:space="preserve">
+    <value>มีใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_82</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_RETURN_LICENSE_3_NO_NOT_RETURN" xml:space="preserve">
+    <value>ไม่มีใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_82</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_LICENSE_3_HEAD" xml:space="preserve">
+    <value>กรณีที่ต้องมีการคืนใบอนุญาต</value>
+    <comment>FieldID: F40_01_83</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_LICENSE_3_PRESENT" xml:space="preserve">
+    <value>ใบอนุญาตที่มีในปัจจุบัน</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_1" xml:space="preserve">
+    <value>การจัดการกองทุนรวม</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_2" xml:space="preserve">
+    <value>การจัดการกองทุนส่วนบุคคล</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_3" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาการลงทุน</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_4" xml:space="preserve">
+    <value>การจัดการเงินร่วมลงทุน</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_5" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_6" xml:space="preserve">
+    <value>การค้าหลักทรัพย์เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_7" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_8" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="OWNED_TYPE3_9" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_84</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_3_LICENSE_3_RETURN" xml:space="preserve">
+    <value>ใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_1" xml:space="preserve">
+    <value>การจัดการกองทุนรวม</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_2" xml:space="preserve">
+    <value>การจัดการกองทุนส่วนบุคคล</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_3" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาการลงทุน</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_4" xml:space="preserve">
+    <value>การจัดการเงินร่วมลงทุน</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_5" xml:space="preserve">
+    <value>การเป็นนายหน้าซื้อขายหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_6" xml:space="preserve">
+    <value>การค้าหลักทรัพย์เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_7" xml:space="preserve">
+    <value>การจัดจำหน่ายหลักทรัพย์เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_8" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="RETURN_TYPE3_9" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_85</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_3" xml:space="preserve">
+    <value>ข้อมูลการคืนใบอนุญาตและขอเริ่มประกอบธุรกิจ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_3</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_3_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า
+</value>
+    <comment>FieldID: F40_01_86</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_3_CONFIRM_INFO" xml:space="preserve">
+    <value>คำรับรองของผู้ขอรับใบอนุญาต &lt;br/&gt;1. บริษัทมีคุณสมบัติครบถ้วนตามที่กำหนดในกฎกระทรวงว่าด้วยการอนุญาตการประกอบธุรกิจหลักทรัพย์ พ.ศ. 2551 ซึ่งออกตามความในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และ/หรือ มีคุณสมบัติครบถ้วนตามที่กำหนดในประกาศคณะกรรมการกำกับหลักทรัพย์และตลาดหลักทรัพย์ เรื่อง การอนุญาตการประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งออกตามความในพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546 &lt;br/&gt;2. ผู้ถือหุ้นรายหญ่ กรรมการ ผู้จัดการ และบุคคลผู้มีอำนาจในการจัดการของบริษัทมีคุณสมบัติครบถ้วน และไม่มีลักษณะต้องห้ามตามที่กำหนดในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และ/หรือพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546  และประกาศที่ออกโดยอาศัยอำนาจแห่งกฎหมายดังกล่าว&lt;br/&gt;3. ข้อความในแบบคำขอรับใบอนุญาตและเอกสารหลักฐานประกอบแบบคำขอที่แนบมาพร้อมนี้มีความครบถ้วน ถูกต้อง และเป็นจริงทุกประการ &lt;br/&gt;4. บริษัทขอรับรองว่า แบบคำขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์ และ/หรือ ธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งลงนามโดย บริษัท (ระบุชื่อบริษัทที่ยื่นขอรับใบอนุญาต หรือ บริษัทที่ได้รับมอบอำนาจจากบริษัทในกลุ่มนิติบุคคลเดียวกันให้เป็นผู้ยื่นคำขอ) เป็นการกระทำแทนและเพื่อบริษัท และให้มีผลผูกพันเสมือนเป็นการกระทำของบริษัททุกประการ&lt;br/&gt;5. ข้าพเจ้ายินยอมและจะอำนวยความสะดวกให้พนักงานเจ้าหน้าที่เข้าไปในสถานที่ประกอบธุรกิจหรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน</value>
+    <comment>FieldID: F40_01_86</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4" xml:space="preserve">
+    <value>ข้อมูลสถานะผู้ขอรับใบอนุญาต แบบ ง</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4_TYPE" xml:space="preserve">
+    <value>สถานะผู้ขอรับใบอนุญาต</value>
+    <comment>FieldID: F40_01_87</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4_TYPE_TYPE_1" xml:space="preserve">
+    <value>1. บริษัทหลักทรัพย์</value>
+    <comment>FieldID: F40_01_87</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4_TYPE_TYPE_2" xml:space="preserve">
+    <value>2. ธนาคารพาณิชย์</value>
+    <comment>FieldID: F40_01_87</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4_TYPE_TYPE_3" xml:space="preserve">
+    <value>3. บริษัทประกันชีวิต</value>
+    <comment>FieldID: F40_01_87</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4_TYPE_TYPE_4" xml:space="preserve">
+    <value>4. สถาบันการเงินอื่นตามที่คณะกรรมการ ก.ล.ต. ประกาศกำหนด </value>
+    <comment>FieldID: F40_01_87</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4_TYPE_TYPE_5" xml:space="preserve">
+    <value>5. บริษัทที่จัดตั้งขึ้นตามกฎหมายไทย ซึ่งประสงค์จะขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ง เพื่อให้บริการด้านหลักทรัพย์ภายใต้การจัดการโดยบริษัทหลักทรัพย์ประเภทการจัดการกองทุนรวมหลายบริษัทแก่ผู้ลงทุน</value>
+    <comment>FieldID: F40_01_87</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_4_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุุ</value>
+    <comment>FieldID: F40_01_88</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_4" xml:space="preserve">
+    <value>ข้อมูลการคืนใบอนุญาตและขอเริ่มประกอบธุรกิจ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_4</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_4_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า
+</value>
+    <comment>FieldID: F40_01_89</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_4_CONFIRM_INFO" xml:space="preserve">
+    <value>คำรับรองของผู้ขอรับใบอนุญาต &lt;br/&gt;1. บริษัทมีคุณสมบัติครบถ้วนตามที่กำหนดในกฎกระทรวงว่าด้วยการอนุญาตการประกอบธุรกิจหลักทรัพย์ พ.ศ. 2551  ซึ่งออกตามความในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535  &lt;br/&gt;2. ผู้ถือหุ้นรายใหญ่ กรรมการ ผู้จัดการ และบุคคลผู้มีอำนาจในการจัดการของบริษัทมีคุณสมบัติครบถ้วน และไม่มีลักษณะต้องห้ามตามที่กำหนดในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และประกาศที่ออกโดยอาศัยอำนาจแห่งกฎหมายดังกล่าว&lt;br/&gt; 3. ข้อความในแบบคำขอรับใบอนุญาตและเอกสารหลักฐานประกอบแบบคำขอที่แนบมาพร้อมนี้มีความครบถ้วน ถูกต้อง และเป็นจริงทุกประการ&lt;br/&gt; 4. บริษัทขอรับรองว่า แบบคำขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์ ซึ่งลงนามโดย บริษัท (ระบุชื่อบริษัทที่ยื่นขอรับใบอนุญาต หรือ บริษัทที่ได้รับมอบอำนาจจากบริษัทในกลุ่มนิติบุคคลเดียวกันให้เป็นผู้ยื่นคำขอ) เป็นการกระทำแทนและเพื่อบริษัท และให้มีผลผูกพันเสมือนเป็นการกระทำของบริษัททุกประการ &lt;br/&gt;5. ข้าพเจ้ายินยอมและจะอำนวยความสะดวกให้พนักงานเจ้าหน้าที่เข้าไปในสถานที่ประกอบธุรกิจหรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน</value>
+    <comment>FieldID: F40_01_89</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5" xml:space="preserve">
+    <value>ข้อมูลสถานะผู้ขอรับใบอนุญาต คำขอรับใบอนุญาตประเภทการเป็นที่ปรึกษาการลงทุนและการเป็นทีปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5_TYPE" xml:space="preserve">
+    <value>สถานะผู้ขอรับใบอนุญาต</value>
+    <comment>FieldID: F40_01_90</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5_TYPE_TYPE_1" xml:space="preserve">
+    <value>1. บริษัทหลักทรัพย์</value>
+    <comment>FieldID: F40_01_90</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5_TYPE_TYPE_2" xml:space="preserve">
+    <value>2. ธนาคารพาณิชย์</value>
+    <comment>FieldID: F40_01_90</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5_TYPE_TYPE_3" xml:space="preserve">
+    <value>3. บริษัทประกันชีวิต</value>
+    <comment>FieldID: F40_01_90</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5_TYPE_TYPE_4" xml:space="preserve">
+    <value>4. สถาบันการเงินอื่นตามที่คณะกรรมการ ก.ล.ต. ประกาศกำหนด </value>
+    <comment>FieldID: F40_01_90</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5_TYPE_TYPE_5" xml:space="preserve">
+    <value>5. บริษัทที่จัดตั้งขึ้นตามกฎหมายไทย</value>
+    <comment>FieldID: F40_01_90</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_5_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุุ</value>
+    <comment>FieldID: F40_01_91</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_5" xml:space="preserve">
+    <value>ข้อมูลการคืนใบอนุญาตและขอเริ่มประกอบธุรกิจ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_5</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_5_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า
+</value>
+    <comment>FieldID: F40_01_92</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_5_CONFIRM_INFO" xml:space="preserve">
+    <value>คำรับรองของผู้ขอรับใบอนุญาต &lt;br/&gt;1. บริษัทมีคุณสมบัติครบถ้วนตามที่กำหนดในกฎกระทรวงว่าด้วยการอนุญาตการประกอบธุรกิจหลักทรัพย์ พ.ศ. 2551 ซึ่งออกตามความในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และ/หรือ มีคุณสมบัติครบถ้วนตามที่กำหนดในประกาศคณะกรรมการกำกับหลักทรัพย์และตลาดหลักทรัพย์ เรื่อง การอนุญาตการประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งออกตามความในพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546 &lt;br/&gt;2. ผู้ถือหุ้นรายหญ่ กรรมการ ผู้จัดการ และบุคคลผู้มีอำนาจในการจัดการของบริษัทมีคุณสมบัติครบถ้วน และไม่มีลักษณะต้องห้ามตามที่กำหนดในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และ/หรือพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546  และประกาศที่ออกโดยอาศัยอำนาจแห่งกฎหมายดังกล่าว&lt;br/&gt;3. ข้อความในแบบคำขอรับใบอนุญาตและเอกสารหลักฐานประกอบแบบคำขอที่แนบมาพร้อมนี้มีความครบถ้วน ถูกต้อง และเป็นจริงทุกประการ &lt;br/&gt;4. บริษัทขอรับรองว่า แบบคำขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์ และ/หรือ ธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งลงนามโดย บริษัท (ระบุชื่อบริษัทที่ยื่นขอรับใบอนุญาต หรือ บริษัทที่ได้รับมอบอำนาจจากบริษัทในกลุ่มนิติบุคคลเดียวกันให้เป็นผู้ยื่นคำขอ) เป็นการกระทำแทนและเพื่อบริษัท และให้มีผลผูกพันเสมือนเป็นการกระทำของบริษัททุกประการ&lt;br/&gt;5. ข้าพเจ้ายินยอมและจะอำนวยความสะดวกให้พนักงานเจ้าหน้าที่เข้าไปในสถานที่ประกอบธุรกิจหรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน</value>
+    <comment>FieldID: F40_01_92</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_6" xml:space="preserve">
+    <value>ข้อมูลสถานะผู้ขอรับใบอนุญาต คำขอรับใบอนุญาตประเภทกิจการการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_6</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_6_TYPE" xml:space="preserve">
+    <value>สถานะผู้ขอรับใบอนุญาต</value>
+    <comment>FieldID: F40_01_93</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_6_TYPE_TYPE_1" xml:space="preserve">
+    <value>1. บริษัทหลักทรัพย์ที่ได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการเป็นนายหน้าซื้อขายหลักทรัพย์ แต่ไม่รวมถึงบริษัทหลักทรัพย์ที่ได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการเป็นนายหน้าซื้อขายหลักทรัพย์อันเป็นตราสารแห่งหนี้ หรือการเป็นนายหน้าซื้อขายหลักทรัพย์ที่เป็นหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_93</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_6_TYPE_TYPE_2" xml:space="preserve">
+    <value>2. ธนาคารพาณิชย์</value>
+    <comment>FieldID: F40_01_93</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_6_TYPE_TYPE_3" xml:space="preserve">
+    <value>3. สถาบันการเงินอื่นตามที่คณะกรรมการ ก.ล.ต. ประกาศกำหนด </value>
+    <comment>FieldID: F40_01_93</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_6_TYPE_TYPE_4" xml:space="preserve">
+    <value>4. บริษัทที่จัดตั้งขึ้นใหม่เพื่อขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทกิจการการยืมและให้ยืมหลักทรัพย์</value>
+    <comment>FieldID: F40_01_93</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_6_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุุ</value>
+    <comment>FieldID: F40_01_94</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_6" xml:space="preserve">
+    <value>ข้อมูลการคืนใบอนุญาตและขอเริ่มประกอบธุรกิจ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_6</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_6_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ
+</value>
+    <comment>FieldID: F40_01_95</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_6_CONFIRM_INFO" xml:space="preserve">
+    <value>คำรับรองของผู้ขอรับใบอนุญาต &lt;br/&gt;1. บริษัทมีคุณสมบัติครบถ้วนตามที่กำหนดในกฎกระทรวงว่าด้วยการอนุญาตการประกอบธุรกิจหลักทรัพย์ พ.ศ. 2551  ซึ่งออกตามความในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535  &lt;br/&gt;2. ผู้ถือหุ้นรายใหญ่ กรรมการ ผู้จัดการ และบุคคลผู้มีอำนาจในการจัดการของบริษัทมีคุณสมบัติครบถ้วน และไม่มีลักษณะต้องห้ามตามที่กำหนดในพระราชบัญญัติหลักทรัพย์และตลาดหลักทรัพย์ พ.ศ. 2535 และประกาศที่ออกโดยอาศัยอำนาจแห่งกฎหมายดังกล่าว&lt;br/&gt; 3. ข้อความในแบบคำขอรับใบอนุญาตและเอกสารหลักฐานประกอบแบบคำขอที่แนบมาพร้อมนี้มีความครบถ้วน ถูกต้อง และเป็นจริงทุกประการ &lt;br/&gt;4. บริษัทขอรับรองว่า แบบคำขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์ ซึ่งลงนามโดย บริษัท (ระบุชื่อบริษัทที่ยื่นขอรับใบอนุญาต หรือ บริษัทที่ได้รับมอบอำนาจจากบริษัทในกลุ่มนิติบุคคลเดียวกันให้เป็นผู้ยื่นคำขอ) เป็นการกระทำแทนและเพื่อบริษัท และให้มีผลผูกพันเสมือนเป็นการกระทำของบริษัททุกประการ &lt;br/&gt;5. ข้าพเจ้ายินยอมและจะอำนวยความสะดวกให้พนักงานเจ้าหน้าที่เข้าไปในสถานที่ประกอบธุรกิจหรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน</value>
+    <comment>FieldID: F40_01_95</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7" xml:space="preserve">
+    <value>ข้อมูลสถานะผู้ขอรับใบอนุญาต แบบ ส-1</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE" xml:space="preserve">
+    <value>สถานะผู้ขอรับใบอนุญาต</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_1" xml:space="preserve">
+    <value>1. บริษัทหลักทรัพย์ที่ได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ก หรือผู้อยู่ระหว่างการขอรับใบอนุญาตดังกล่าว</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_2" xml:space="preserve">
+    <value>2. บริษัทหลักทรัพย์นอกเหนือจากบริษัทหลักทรัพย์ตาม 1 ที่ได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการเป็นนายหน้าซื้อขายหลักทรัพย์ ซึ่งมิได้จำกัดเฉพาะหลักทรัพย์อันเป็นตราสารแห่งหนี้หรือหน่วยลงทุน</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_3" xml:space="preserve">
+    <value>3. ผู้ได้รับใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าประเภทการเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้า ซึ่งมีธนาคารพาณิชย์หรือบริษัทหลักทรัพย์ตาม 1 หรือ 2 รายใดรายหนึ่งเป็นผู้ถือหุ้นเกินกว่าร้อยละห้าสิบของจำนวนหุ้นที่มีสิทธิออกเสียงทั้งหมดของบริษัท</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_4" xml:space="preserve">
+    <value>4. บริษัทที่จัดตั้งขึ้นใหม่เพื่อขอรับใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1 ซึ่งมีธนาคารพาณิชย์หรือบริษัทหลักทรัพย์ตาม 1 หรือ 2 รายใดรายหนึ่งเป็นผู้ถือหุ้นเกินกว่าร้อยละห้าสิบของจำนวนฅหุ้นที่มีสิทธิออกเสียงทั้งหมดของบริษัท</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_5" xml:space="preserve">
+    <value>5. บริษัทหลักทรัพย์นอกเหนือจากบริษัทหลักทรัพย์ตาม 1 และ 2 แต่ไม่รวมถึงสถาบันการเงินที่จัดตั้งขึ้นตามกฎหมายอื่นซึ่งได้รับใบอนุญาตประกอบธุรกิจหลักทรัพย์ภายหลังจากมีสถานะเป็นสถาบันการเงินแล้ว</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_6" xml:space="preserve">
+    <value>6. ผู้ได้รับใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าประเภทการเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับโลหะมีค่า</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_7" xml:space="preserve">
+    <value>7. ธนาคารพาณิชย์</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_8" xml:space="preserve">
+    <value>8. สถาบันการเงินอื่นตามที่คณะกรรมการ ก.ล.ต. ประกาศกำหนด </value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_TYPE_9" xml:space="preserve">
+    <value>9. บริษัทนอกเหนือจากบริษัทตาม 4 ที่จัดตั้งขึ้นใหม่เพื่อขอรับใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1</value>
+    <comment>FieldID: F40_01_96</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุุ</value>
+    <comment>FieldID: F40_01_97</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_RETURN_LICENSE_7" xml:space="preserve">
+    <value>คุณมีใบอนุญาตที่ต้องคืนหรือไม่</value>
+    <comment>FieldID: F40_01_98</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_RETURN_LICENSE_7_YES_RETURN" xml:space="preserve">
+    <value>มีใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_98</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_RETURN_LICENSE_7_NO_NOT_RETURN" xml:space="preserve">
+    <value>ไม่มีใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_98</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_LICENSE_7_HEAD" xml:space="preserve">
+    <value>กรณีที่ต้องมีการคืนใบอนุญาต</value>
+    <comment>FieldID: F40_01_99</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_LICENSE_7_PRESENT" xml:space="preserve">
+    <value>ใบอนุญาตที่มีในปัจจุบัน</value>
+    <comment>FieldID: F40_01_100</comment>
+  </data>
+  <data name="OWNED_TYPE7_1" xml:space="preserve">
+    <value>การเป็นตัวแทนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_100</comment>
+  </data>
+  <data name="OWNED_TYPE7_2" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_100</comment>
+  </data>
+  <data name="OWNED_TYPE7_3" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_100</comment>
+  </data>
+  <data name="OWNED_TYPE7_4" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_100</comment>
+  </data>
+  <data name="OWNED_TYPE7_5" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_100</comment>
+  </data>
+  <data name="OWNED_TYPE7_6" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_100</comment>
+  </data>
+  <data name="OWNED_TYPE7_7" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับโลหะมีค่า</value>
+    <comment>FieldID: F40_01_100</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_STATUS_TYPE_7_LICENSE_7_RETURN" xml:space="preserve">
+    <value>ใบอนุญาตที่ต้องคืน</value>
+    <comment>FieldID: F40_01_101</comment>
+  </data>
+  <data name="RETURN_TYPE7_1" xml:space="preserve">
+    <value>การเป็นตัวแทนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_101</comment>
+  </data>
+  <data name="RETURN_TYPE7_2" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_101</comment>
+  </data>
+  <data name="RETURN_TYPE7_3" xml:space="preserve">
+    <value>การเป็นที่ปรึกษาสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_101</comment>
+  </data>
+  <data name="RETURN_TYPE7_4" xml:space="preserve">
+    <value>การเป็นผู้จัดการเงินทุนสัญญาซื้อขายล่วงหน้า</value>
+    <comment>FieldID: F40_01_101</comment>
+  </data>
+  <data name="RETURN_TYPE7_5" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_101</comment>
+  </data>
+  <data name="RETURN_TYPE7_6" xml:space="preserve">
+    <value>การเป็นผู้ค้าสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับตราสารหนี้</value>
+    <comment>FieldID: F40_01_101</comment>
+  </data>
+  <data name="RETURN_TYPE7_7" xml:space="preserve">
+    <value>การเป็นตัวแทนซื้อขายสัญญาซื้อขายล่วงหน้าที่จำกัดเฉพาะสัญญาซื้อขายล่วงหน้าที่เกี่ยวกับโลหะมีค่า</value>
+    <comment>FieldID: F40_01_101</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_7" xml:space="preserve">
+    <value>ข้อมูลการคืนใบอนุญาตและขอเริ่มประกอบธุรกิจ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_7</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_7_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า
+</value>
+    <comment>FieldID: F40_01_102</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_TYPE_CONFIRM_7_CONFIRM_INFO" xml:space="preserve">
+    <value>คำรับรองของผู้ขอรับใบอนุญาต &lt;br/&gt;1. บริษัทมีคุณสมบัติครบถ้วนตามที่กำหนดในประกาศคณะกรรมการกำกับหลักทรัพย์และตลาดหลักทรัพย์ เรื่อง การอนุญาตการประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ซึ่งออกตามความในพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546 &lt;br/&gt;2. ผู้ถือหุ้นรายใหญ่ กรรมการ ผู้จัดการ และบุคคลผู้มีอำนาจในการจัดการของบริษัทมีคุณสมบัติครบถ้วน และไม่มีลักษณะต้องห้ามตามที่กำหนดในพระราชบัญญัติสัญญาซื้อขายล่วงหน้า พ.ศ. 2546 และประกาศที่ออกโดยอาศัยอำนาจแห่งกฎหมายดังกล่าว &lt;br/&gt;3. ข้อความในแบบคำขอรับใบอนุญาตและเอกสารหลักฐานประกอบแบบคำขอที่แนบมาพร้อมนี้มีความครบถ้วน ถูกต้อง และเป็นจริงทุกประการ &lt;br/&gt;4. บริษัทขอรับรองว่า แบบคำขอรับใบอนุญาตประกอบธุรกิจหลักทรัพย์ ซึ่งลงนามโดย บริษัท (ระบุชื่อบริษัทที่ยื่นขอรับใบอนุญาต หรือ บริษัทที่ได้รับมอบอำนาจจากบริษัทในกลุ่มนิติบุคคลเดียวกันให้เป็นผู้ยื่นคำขอ ) เป็นการกระทำแทนและเพื่อบริษัท และให้มีผลผูกพันเสมือนเป็นการกระทำของบริษัททุกประการ&lt;br/&gt; 5. ข้าพเจ้ายินยอมและจะอำนวยความสะดวกให้พนักงานเจ้าหน้าที่เข้าไปในสถานที่ประกอบธุรกิจหรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน"
+หรือสถานที่ตั้งของผู้ขอรับใบอนุญาตหรือสถานที่อื่นที่เกี่ยวข้อง เพื่อตรวจสอบข้อเท็จจริงเกี่ยวกับฐานะทางการเงิน การดำเนินงานสินทรัพย์หรือข้อมูลต่างๆที่เกี่ยวข้องกับข้าพเจ้าที่ได้ยื่นไว้ต่อสำนักงาน</value>
+    <comment>FieldID: F40_01_102</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_SIGNATURE" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_SECURITIES_BUSINESS_LICENSE_SIGNATURE</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_LICENSE_SIGNATURE_SIGNATURE" xml:space="preserve">
+    <value>&lt;div class=""col-xs-12 col-md-6 col-md-offset-3 center""&gt;
+    ประทับตรา (ถ้ามี)
+&lt;/div&gt;
+&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+    (ลายมือชื่อ) ............................................. กรรมการผู้มีอำนาจลงลายมือชื่อผูกพันนิติบุคคลผู้ขอรับใบอนุญาต
+&lt;/div&gt;
+&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+            (................................................)
+&lt;/div&gt;
+&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+            ตำแหน่ง..........................................
+&lt;/div&gt;</value>
+    <comment>FieldID: F40_01_103</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER" xml:space="preserve">
+    <value>ข้อมูลผู้ถือหุ้นรายใหญ่ซึ่งเป็นบุคคลธรรมดา</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ถือหุ้นรายใหญ่ซึ่งเป็นบุคคลธรรมดา</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูลผู้ถือหุ้นรายใหญ่ซึ่งเป็นบุคคลธรรมดาในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้ถือหุ้นรายใหญ่ซึ่งเป็นบุคคลธรรมดา&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม “เพิ่มข้อมูลผู้ถือหุ้นรายใหญ่ซึ่งเป็นบุคคลธรรมดา”&lt;/div&gt;</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ถือหุ้นรายใหญ่ซึ่งเป็นบุคคลธรรมดา</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_MAJOR_SHAREHOLDER" xml:space="preserve">
+    <value>ข้อมูลผู้ถือหุ้นรายใหญ่</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_MAJOR_SHAREHOLDER_MAJOR_SHAREHOLDER_TYPE" xml:space="preserve">
+    <value>ผู้ถือหุ้นรายใหญ่ของคุณเป็นบุคคลธรรมดา หรือนิติบุคคล</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_MAJOR_SHAREHOLDER_MAJOR_SHAREHOLDER_TYPE_INFO" xml:space="preserve">
+    <value>ผู้ถือหุ้นรายใหญ่ หมายถึง&lt;/br&gt;
+- กรณีใบอนุญาตประกอบธุรกิจหลักทรัพย์ บุคคลที่ถือหุ้นบริษัทหลักทรัพย์ไม่ว่าโดยทางตรงหรือทางอ้อมเกินกว่าร้อยละสิบของจำนวนสิทธิออกเสียงทั้งหมดของบริษัทหลักทรัพย์&lt;/br&gt;
+- กรณีใบอนุญาตสัญญาซื้อขายล่วงหน้า บุคคลที่ถือหุ้นหรือรับประโยชน์จากหุ้นเกินกว่าร้อยละสิบของจำนวนหุ้นที่มีสิทธิออกเสียงทั้งหมดของผู้ประกอบธุรกิจสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_MAJOR_SHAREHOLDER_ONE_SHARE_PER_ONE_AUTHOURITY" xml:space="preserve">
+    <value>บริษัทของคุณมี 1 หุ้น/1 สิทธิออกเสียง ใช่หรือไม่</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_AUTHORITY_VOTE_PERCENTAGE" xml:space="preserve">
+    <value>ร้อยละของสิทธิออกเสียงทั้งหมด (%)</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_IDENTITY_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_NAME_EN" xml:space="preserve">
+    <value>ชื่อ ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_NAME_TH" xml:space="preserve">
+    <value>ชื่อ ภาษาไทย</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_SHARE_TOTAL" xml:space="preserve">
+    <value>จำนวนหุ้นที่ถือ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_TYPE" xml:space="preserve">
+    <value>ประเภทผู้ถือหุ้น (ผู้ถือหุ้นทางตรง, ผู้ถือหุ้นทางอ้อม)</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER" xml:space="preserve">
+    <value>ข้อมูลกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลซึ่งเป็นผู้ถือหุ้นรายใหญ่</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลซึ่งเป็นผู้ถือหุ้นรายใหญ่</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_AUTHORITY_VOTE_PERCENTAGE" xml:space="preserve">
+    <value>ร้อยละของสิทธิออกเสียงทั้งหมด (%)</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_AUTHORIZEE" xml:space="preserve">
+    <value>อำนาจกระทำแทนบริษัท</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_FIRSTNAME_EN" xml:space="preserve">
+    <value>ชื่อ ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_FIRSTNAME_TH" xml:space="preserve">
+    <value>ชื่อ ภาษาไทย</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_IDENTITY_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_INFO_HEADING" xml:space="preserve">
+    <value>ชื่อกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลซึ่งเป็นผู้ถือหุ้นรายใหญ่</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_LASTNAME_EN" xml:space="preserve">
+    <value>นามสกุล ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_LASTNAME_TH" xml:space="preserve">
+    <value>นามสกุล ภาษาไทย</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_POSITION" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_TITLE_EN" xml:space="preserve">
+    <value>คำนำหน้าชื่อ ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_TITLE_TH" xml:space="preserve">
+    <value>คำนำหน้าชื่อ ภาษาไทย</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMPANY_NUMBER" xml:space="preserve">
+    <value>เลขทะเบียนบริษัท</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูลกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลซึ่งเป็นผู้ถือหุ้นรายใหญ่ ในขณะนี้ &lt;/div&gt;
+&lt;div&gt;คุณสามารถเพิ่มข้อมูล กรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลซึ่งเป็นผู้ถือหุ้นรายใหญ่&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม “เพิ่มข้อมูลกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลซึ่งเป็นผู้ถือหุ้นรายใหญ่”&lt;/div&gt;</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_INFO" xml:space="preserve">
+    <value>กรณีผู้ถือหุ้นรายใหญ่เป็นนิติบุคคล ให้ระบุชื่อกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลนั้นด้วย พร้อมทั้งแนบหนังสือรับรองนิติบุคคลดังกล่าว</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_NAME_EN" xml:space="preserve">
+    <value>ชื่อนิติบุคคล ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_NAME_TH" xml:space="preserve">
+    <value>ชื่อนิติบุคคล ภาษาไทย</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_SHARE_TOTAL" xml:space="preserve">
+    <value>จำนวนหุ้นที่ถือ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลกรรมการ ผู้จัดการ หรือหุ้นส่วนของนิติบุคคลซึ่งเป็นผู้ถือหุ้นรายใหญ่</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_TYPE" xml:space="preserve">
+    <value>ประเภทผู้ถือหุ้น (ผู้ถือหุ้นทางตรง, ผู้ถือหุ้นทางอ้อม)</value>
+  </data>
+  <data name="INFO_ERROR_1" xml:space="preserve">
+    <value>จำนวนหุ้นสามัญซึ่งชำระแล้ว จะต้องน้อยกว่าหรือเท่ากับจำนวนหุ้นสามัญทั้งหมด</value>
+  </data>
+  <data name="INFO_ERROR_2" xml:space="preserve">
+    <value>จำนวนรวมมูลค่าหุ้นสามัญซึ่งชำระแล้ว จะต้องน้อยกว่าหรือเท่ากับจำนวนรวมมูลค่าหุ้นสามัญ</value>
+  </data>
+  <data name="INFO_ERROR_3" xml:space="preserve">
+    <value>จำนวนหุ้นบุริมสิทธิซึ่งชำระแล้ว จะต้องน้อยกว่าหรือเท่ากับจำนวนหุ้นบุริมสิทธิทั้งหมด</value>
+  </data>
+  <data name="INFO_ERROR_4" xml:space="preserve">
+    <value>จำนวนรวมมูลค่าหุ้นบุริมสิทธิซึ่งชำระแล้ว จะต้องน้อยกว่าหรือเท่ากับจำนวนรวมมูลค่าหุ้นบุริมสิทธิ</value>
+  </data>
+  <data name="TITLE_EN_INVALID" xml:space="preserve">
+    <value>กรุณาเลือก คำนำหน้าชื่อให้สอดคล้องกัน</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_LASTNAME" xml:space="preserve">
+    <value>นามสกุล ภาษาไทย</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_LASTNAME_EN" xml:space="preserve">
+    <value>นามสกุล ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_NAME" xml:space="preserve">
+    <value>ชื่อ ภาษาไทย</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ ภาษาไทย</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_TITLE_EN" xml:space="preserve">
+    <value>คำนำหน้าชื่อ ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY_COMMITTEE_AUTHORITY_PASSPORT" xml:space="preserve">
+    <value>เลขที่หนังสือเดินทาง</value>
+    <comment>FieldID: F40_01_45</comment>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_IDENTITY_PASSPORT" xml:space="preserve">
+    <value>เลขที่หนังสือเดินทาง</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER_COMMITTEE_IDENTITY_PASSPORT" xml:space="preserve">
+    <value>เลขที่หนังสือเดินทาง</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_SHAREHOLDER_REASONS" xml:space="preserve">
+    <value>โปรดระบุเงื่อนไขอื่นๆที่แตกต่างจากหุ้นสามัญ</value>
+  </data>
+</root>

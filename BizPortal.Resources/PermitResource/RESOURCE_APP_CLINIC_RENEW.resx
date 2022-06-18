@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_CLINIC_RENEW" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ส.พ.11) หรือใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยค้างคืน (ส.พ.20)</value>
+    <comment>SectionGroup: APP_CLINIC_RENEW</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลการขอต่ออายุใบอนุญาต</value>
+    <comment>Section: APP_CLINIC_RENEW_INFO_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_INFO_SECTION_PURPOSE" xml:space="preserve">
+    <value>มีความประสงค์ต่ออายุใบอนุญาตใด</value>
+    <comment>FieldID: 42_02_01</comment>
+  </data>
+  <data name="OPARETION" xml:space="preserve">
+    <value>ใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ประเภทที่ไม่รับผู้ป่วยค้างคืน)</value>
+    <comment>FieldID: 42_02_01</comment>
+  </data>
+  <data name="EMPLOYEE" xml:space="preserve">
+    <value>ใบอนุญาตให้ดำเนินการสถานพยาบาล (ประเภทที่ไม่รับผู้ป่วยค้างคืน)</value>
+    <comment>FieldID: 42_02_01</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_SECTION" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ประเภทที่ไม่รับผู้ป่วยค้างคืน)</value>
+    <comment>Section: APP_CLINIC_RENEW_RENEW_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_SECTION_INFO" xml:space="preserve">
+    <value>กรุณาแนบใบอนุญาตให้ประกอบกิจการสถานพยาบาล (สพ.7) และสมุดทะเบียนสถานพยาบาล ตัวจริงมาในวันที่พบหน่วยงาน</value>
+    <comment>Section: APP_CLINIC_RENEW_RENEW_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_SECTION_TYPE" xml:space="preserve">
+    <value>เป็นผู้รับอนุญาตให้ประกอบกิจการสถานพยาบาลประเภทที่</value>
+    <comment>FieldID: 42_02_02</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_SECTION_TYPE_TEXT" xml:space="preserve">
+    <value>ไม่รับผู้ป่วยไว้ค้างคืน</value>
+    <comment>FieldID: 42_02_02</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_SECTION_DATE" xml:space="preserve">
+    <value>วันที่ออกใบอนุญาต</value>
+    <comment>FieldID: 42_02_03</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_SECTION_RENEW_TIME" xml:space="preserve">
+    <value>ขอต่ออายุใบอนุญาตครั้งที่ (เป็นการขอต่ออายุตาม พรบ. สถานพยาบาล พ.ศ. 2541)</value>
+    <comment>FieldID: 42_02_04</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_SECTION_OPARETION_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: 42_02_05</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_SECTION_OPARETION_CONFIRM_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+&lt;div class="col-xs-12"&gt;พร้อมกับคำขอนี้ข้าพเจ้าได้แนบเอกสารหลักฐานต่างๆมาด้วย คือ&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;1.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาบัตรประจำตัว&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;2.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาทะเบียนบ้านผู้ขออนุญาต&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;3.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบรับรองแพทย์&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;4.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาทะเบียนบ้านของสถานที่ตั้งสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;5.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบอนุญาตให้ประกอบกิจการสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;6.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สมุดทะเบียนสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;7.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;แบบประเมินมาตรฐานการปฏิบัติตามกฎหมายว่าด้วยสถานพยาบาลในสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน(คลินิก)หรือหนังสือรับรองการตรวจสอบสถานพยาบาล จากพนักงานเจ้าหน้าที่ ตามมาตรา 45 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541&lt;/div&gt;
+&lt;/div&gt;</value>
+    <comment>FieldID: 42_02_05</comment>
+  </data>
+  <data name="OPARETION_CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ</value>
+    <comment>FieldID: 42_02_05</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION" xml:space="preserve">
+    <value>ข้อมูลสถานะการทำงาน</value>
+    <comment>Section: APP_CLINIC_RENEW_WOKING_STATUS_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_INFO" xml:space="preserve">
+    <value>กรุณาแนบใบอนุญาตดำเนินการสถานพยาบาล (สพ.19) และสมุดทะเบียนสถานพยาบาล ตัวจริงมาในวันที่พบหน่วยงาน</value>
+    <comment>Section: APP_CLINIC_RENEW_WOKING_STATUS_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_RENEW_TYPE" xml:space="preserve">
+    <value>ขอต่ออายุใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่</value>
+    <comment>FieldID: 42_02_06</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_RENEW_TYPE_TEXT" xml:space="preserve">
+    <value>ไม่รับผู้ป่วยไว้ค้างคืน</value>
+    <comment>FieldID: 42_02_06</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_DATE" xml:space="preserve">
+    <value>วันที่ออกใบอนุญาต</value>
+    <comment>FieldID: 42_02_07</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_RENEW_STATUS" xml:space="preserve">
+    <value>สถานะการดำเนินการในปัจจุบันของผู้ดำเนินการเป็นอย่างไร</value>
+    <comment>FieldID: 42_02_08</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_RENEW_STATUS_OPARETION_RENEW" xml:space="preserve">
+    <value>เป็นผู้ดำเนินการสถานพยาบาลประเภทที่</value>
+    <comment>FieldID: 42_02_08</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_RENEW_STATUS_EMPLOYEE_RENEW" xml:space="preserve">
+    <value>เป็นผู้ประกอบวิชาชีพหรือปฏิบัติงานหน้าที่อื่นในสถานพยาบาล หรือในส่วนราชการ หรือหน่วยงานอื่น ดังนี้</value>
+    <comment>FieldID: 42_02_08</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_OPARETER_TYPE" xml:space="preserve">
+    <value>เป็นผู้ดำเนินการสถานพยาบาลประเภทที่</value>
+    <comment>FieldID: 42_02_09</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_OPARETER_TYPE_CLINIC_RENEW" xml:space="preserve">
+    <value>ประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+    <comment>FieldID: 42_02_09</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_OPARETER_TYPE_HOSPITAL_RENEW" xml:space="preserve">
+    <value>ประเภทที่รับผู้ป่วยไว้ค้างคืน</value>
+    <comment>FieldID: 42_02_09</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL" xml:space="preserve">
+    <value>สถานพยาบาลมีลักษณะเป็น</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_MEDICAL_CLINIC" xml:space="preserve">
+    <value>คลินิกเวชกรรม</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_DENTAL_CLINIC" xml:space="preserve">
+    <value>คลินิกทันตกรรม</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_MIDWIFERY_CLINIC" xml:space="preserve">
+    <value>คลินิกการพยาบาลและการผดุงครรภ์</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_MEDICAL_TECHNOLOGY_CLINIC" xml:space="preserve">
+    <value>คลินิกเทคนิคการแพทย์</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_THAI_TRADITIONAL_MEDICINE_CLINIC" xml:space="preserve">
+    <value>คลินิกการแพทย์แผนไทย</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_APPLIED_THAI_TRADITIONAL_MEDICINE_CLINIC" xml:space="preserve">
+    <value>คลินิกการแพทย์แผนไทยประยุกต์</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_MEDICINE_CLINIC" xml:space="preserve">
+    <value>คลินิกการประกอบโรคศิลปะ</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_SPECIALIZED_MEDICAL_CLINIC" xml:space="preserve">
+    <value>คลินิกเฉพาะทางเวชกรรม</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_SPECIALIZED_DENTAL_CLINIC" xml:space="preserve">
+    <value>คลินิกเฉพาะทางทันตกรรม</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_SPECIALTY_CLINICS_MIDWIFERY" xml:space="preserve">
+    <value>คลินิกเฉพาะทางด้านการพยาบาลและผดุงครรภ์</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_DETAIL_UNITED_CLINIC" xml:space="preserve">
+    <value>สหคลินิก</value>
+    <comment>FieldID: 42_02_10</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE_THERAPY" xml:space="preserve">
+    <value>สาขากิจกรรมบำบัด</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE_INTERPRETATION_DISORDERS" xml:space="preserve">
+    <value>สาขาการแก้ไขความผิดปกติของการสื่อความหมาย</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE_HEART_AND_CHEST_TECHNOLOGY" xml:space="preserve">
+    <value>สาขาเทคโนโลยีหัวใจและทรวงอก</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE_TECHNICAL_RADIATION" xml:space="preserve">
+    <value>สาขารังสีเทคนิค</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE_CLINICAL_PSYCHOLOGY" xml:space="preserve">
+    <value>สาขาจิตวิทยาคลินิก</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE_ORTHOTICS" xml:space="preserve">
+    <value>สาขากายอุปกรณ์</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE_TRADITIONAL_CHINESE" xml:space="preserve">
+    <value>สาขาการแพทย์แผนจีน</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_CHOICE_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: 42_02_11</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_CLINIC_OTHER_TEXT" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: 42_02_12</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL" xml:space="preserve">
+    <value>สถานพยาบาลมีลักษณะเป็น</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_GENERAL_HOSPITAL" xml:space="preserve">
+    <value>โรงพยาบาลทั่วไป</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_DENTAL_HOSPITAL" xml:space="preserve">
+    <value>โรงพยาบาลทันตกรรม</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_MIDWIFERY_HOSPITAL" xml:space="preserve">
+    <value>โรงพยาบาลการพยาบาลและการผดุงครรภ์</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_PHYSICAL_THERAPY" xml:space="preserve">
+    <value>โรงพยาบาลกายภาพบำบัด</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_THAI_TRADITIONAL" xml:space="preserve">
+    <value>โรงพยาบาลการแพทย์แผนไทย</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_THAI_TRADITIONAL_APPLIED" xml:space="preserve">
+    <value>โรงพยาบาลการแพทย์แผนไทยประยุกต์</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_SPECIALIZED_EAR" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะทาง หู คอ จมูก</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_SPECIALIZED_HEART_DISEASE" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะทาง โรคหัวใจ</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_SPECIALIZED_CANCER" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะทางโรคมะเร็ง</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_SPECIFIC_PATIENT" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะประเภทผู้ป่วย</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_DETAIL_SPECIALIZED_OTHER" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะทางอื่นๆ</value>
+    <comment>FieldID: 42_02_13</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_CHOICE" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: 42_02_14</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_CHOICE_CHRONIC_PATIENTS" xml:space="preserve">
+    <value>โรงพยาบาลผู้ป่วยเรื้อรัง</value>
+    <comment>FieldID: 42_02_14</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_CHOICE_PSYCHIATRIC" xml:space="preserve">
+    <value>โรงพยาบาลผู้ป่วยจิตเวช</value>
+    <comment>FieldID: 42_02_14</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_CHOICE_ELDERLY" xml:space="preserve">
+    <value>โรงพยาบาลผู้สูงอายุ</value>
+    <comment>FieldID: 42_02_14</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_CHOICE_MOTHER_CHILD" xml:space="preserve">
+    <value>โรงพยาบาลแม่และเด็ก</value>
+    <comment>FieldID: 42_02_14</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_CHOICE_DRUG_TREATMENT" xml:space="preserve">
+    <value>โรงพยาบาลบำบัดยาเสพติด</value>
+    <comment>FieldID: 42_02_14</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_CHOICE_SPECIFIC_PATIENT" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะประเภทผู้ป่วย</value>
+    <comment>FieldID: 42_02_14</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_CHOICE_OTHER_PATIENTS" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะประเภทผู้ป่วยอื่นๆ</value>
+    <comment>FieldID: 42_02_14</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_OTHER_TEXT" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: 42_02_15</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_EMPLOYEE_LICENSE_NUMBER" xml:space="preserve">
+    <value>เลขที่ใบอนุญาตให้ดำเนินการสถานพยาบาล</value>
+    <comment>FieldID: 42_02_16</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_HOSPITAL_NAME" xml:space="preserve">
+    <value>ชื่อสถานพยาบาล/ส่วนราชการ/หน่วยงาน</value>
+    <comment>FieldID: 42_02_17</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_ADDRESS" xml:space="preserve">
+    <value>เลขที่</value>
+    <comment>FieldID: 42_02_18</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION" xml:space="preserve">
+    <value>วันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+    <comment>Section: APP_CLINIC_RENEW_DAY_TIME_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล วันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน ในขณะนี้ คุณสามารถเพิ่มข้อมูลวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน"&lt;/div&gt;</value>
+    <comment>Section: APP_CLINIC_RENEW_DAY_TIME_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+    <comment>Section: APP_CLINIC_RENEW_DAY_TIME_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+    <comment>Section: APP_CLINIC_RENEW_DAY_TIME_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_DAY" xml:space="preserve">
+    <value>วัน</value>
+    <comment>FieldID: 42_02_19</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_DAY_MONDAY" xml:space="preserve">
+    <value>จันทร์</value>
+    <comment>FieldID: 42_02_19</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_DAY_TUESDAY" xml:space="preserve">
+    <value>อังคาร</value>
+    <comment>FieldID: 42_02_19</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_DAY_WEDNESDAY" xml:space="preserve">
+    <value>พุธ</value>
+    <comment>FieldID: 42_02_19</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_DAY_THURSDAY" xml:space="preserve">
+    <value>พฤหัส</value>
+    <comment>FieldID: 42_02_19</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_DAY_FRIDAY" xml:space="preserve">
+    <value>ศุกร์</value>
+    <comment>FieldID: 42_02_19</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_OPENING_TIME" xml:space="preserve">
+    <value>เวลาเริ่มงาน</value>
+    <comment>FieldID: 42_02_20</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_DAY_TIME_SECTION_CLOSING_TIME" xml:space="preserve">
+    <value>เวลาเลิกงาน</value>
+    <comment>FieldID: 42_02_21</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_SECTION" xml:space="preserve">
+    <value>ข้อมูลการขอต่ออายุใบอนุญาต</value>
+    <comment>Section: APP_CLINIC_RENEW_CONFIRM_SECTION</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_SECTION_RENEW_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: 42_02_22</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_SECTION_RENEW_CONFIRM_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+&lt;div class="col-xs-12"&gt;พร้อมกับคำขอนี้ข้าพเจ้าได้แนบเอกสารหลักฐานต่างๆมาด้วย คือ&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;1.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบอนุญาตให้ดำเนินการสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;2.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;รูปถ่ายขนาด 8x13 ซม. ถ่ายไว้ไม่เกินหนึ่งปี&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;3.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สมุดทะเบียนสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;4.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบรับรองแพทย์ ซึ่งแสดงว่ามีสุขภาพแข็งแรง สามารถควบคุมดูแลกิจการสถานพยาบาลได้โดยใกล้ชิด&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;5.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;เอกสารอื่นๆ (ถ้ามี) .............................&lt;/div&gt;
+&lt;/div&gt;</value>
+    <comment>FieldID: 42_02_22</comment>
+  </data>
+  <data name="EMPLOYEE_CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ และไม่ได้เปิดกิจการทับซ้อนกับเวลาราชการหรือไม่ได้อยู่ระหว่างศึกษาต่อหรือฝึกอบรม รวมทั้งได้รับความยินยอมจากผู้ประกอบกิจการสถานพยาบาลให้เป็นผู้ดำเนินการสถานพยาบาลแห่งนี้จริง</value>
+    <comment>FieldID: 42_02_22</comment>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_SECTION_EMPLOYEE_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: 42_02_23</comment>
+  </data>
+  <data name="EMPLOYEE_OWNED_CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้ายินยอมให้บุคคลดังกล่าวข้างต้น เป็นผู้ดำเนินการสถานพยาบาลแห่งนี้</value>
+    <comment>FieldID: 42_02_23</comment>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_SECTION_GROUP" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ส.พ.11)</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_SECTION_GROUP" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยค้างคืน (ส.พ.20)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_SECTION_RENEW_OUT_OF_TIME_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="OF_TIME_CONFIRM" xml:space="preserve">
+    <value>ขอรับรองว่าไม่ได้เปิดกิจการทับซ้อนกับเวลาราชการหรือไม่ได้อยู่ระหว่างศึกษาต่อ/ฝึกอบรม</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_RENEW_ID" xml:space="preserve">
+    <value>เลขที่ใบอนุญาต</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_A" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_B" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_C" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_CONFIRM_A_INFO" xml:space="preserve">
+    <value>พร้อมกับคำขอนี้ข้าพเจ้าได้แนบเอกสารหลักฐานต่างๆมาด้วย คือ&lt;br&gt;
+&lt;span style="margin-left: 1em;"&gt; 1. สำเนาบัตรประจำตัวประชาชน&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt; 2. สำเนาทะเบียนบ้านผู้ขออนุญาต&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt; 3. ใบรับรองแพทย์ผู้ประกอบกิจการ ออกไว้ไม่เกิน 6 เดือน&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt; 4. รูปถ่าย ขนาด 2.5 x 3 ซม. ถ่ายไว้ไม่เกิน 1 ปี&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt; 5. ใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt; 6. ใบประกอบวิชาชีพ/ใบประกอบโรคศิลปะ หรือวุฒิบัตร หรือหนังสืออนุมัติ&lt;/span&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_WOKING_STATUS_SECTION_ID" xml:space="preserve">
+    <value>เลขที่ใบอนุญาต</value>
+  </data>
+</root>

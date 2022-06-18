@@ -1,0 +1,172 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var autofillAttr = AutoFillConditionHelper.GetAttributes(Model);
+    var properties = Model.DatePickerPropertiesConfig;
+}
+
+
+<div class="input-group date">
+    <span class="input-group-addon">
+        <span style="font-size:large">ตั้งแต่</span>
+    </span>
+    <input type="text" id="@string.Format("date_from_{0}", Model.ClientID)" name="@string.Format("DATE_FROM_{0}", Model.DataKey)" value=""
+           class="form-control @autofillAttr.Class"
+           data-control-name="@Model.DataKey"
+           @autofillAttr.Data
+           @autofillAttr.DataSourceFromDraft
+           @autofillAttr.DataSourceIsAddressControl
+           @autofillAttr.DataSourceSection
+           @autofillAttr.DataSourceControl
+           style="background-color: white;" readonly tabindex="-1" />
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+    <span class="input-group-addon">
+        <span style="font-size:large">ถึง</span>
+    </span>
+    <input type="text" id="@string.Format("date_to_{0}", Model.ClientID)" name="@string.Format("DATE_TO_{0}", Model.DataKey)" value=""
+           class="form-control @autofillAttr.Class"
+           data-control-name="@Model.DataKey"
+           @autofillAttr.Data
+           @autofillAttr.DataSourceFromDraft
+           @autofillAttr.DataSourceIsAddressControl
+           @autofillAttr.DataSourceSection
+           @autofillAttr.DataSourceControl
+           style="background-color: white;" readonly tabindex="-1" />
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+</div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#@string.Format("date_from_{0}", Model.ClientID)').datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm/yyyy',
+            startView: 'decade',
+            forceParse: false,
+            @if(properties != null)
+            {
+                if (properties.WeekDayStart >= 0 && properties.WeekDayStart <= 6)
+                {
+                    <text>
+                    weekStart: @properties.WeekDayStart,
+                    </text>
+                }
+                if(properties.ShowCalendarWeeksNumbers)
+                {
+                    <text>
+                    calendarWeeks: true,
+                    </text>
+                }
+                else
+                {
+                    <text>
+                    calendarWeeks: false,
+                    </text>
+                }
+                if (!string.IsNullOrEmpty(properties.DaysOfWeekDisabled))
+                {
+                    <text>
+                    daysOfWeekDisabled: '@properties.DaysOfWeekDisabled',
+                    </text>
+                }
+            }
+        }).on('changeDate', function () {
+            var dateFrom = $('#@string.Format("date_from_{0}", Model.ClientID)').datepicker('getDate');
+            var dateMin = new Date(dateFrom);
+            var dateTo = $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker('getDate');
+            var dateMax = null;
+            $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker('setStartDate', dateFrom);
+            @if(Model.DateRangePickerPropertiesConfig != null)
+            {
+                if(Model.DateRangePickerPropertiesConfig.MinDateTo.HasValue)
+                {
+                <text> 
+            dateMin.setDate(dateMin.getDate() + @Model.DateRangePickerPropertiesConfig.MinDateTo.Value);
+                </text>
+                }
+                if(Model.DateRangePickerPropertiesConfig.MaxDateTo.HasValue)
+                {
+                <text>
+            dateMax = new Date(dateFrom);
+            dateMax.setDate(dateFrom.getDate() + @Model.DateRangePickerPropertiesConfig.MaxDateTo.Value);
+            $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker('setEndDate', dateMax);
+                </text>
+                }
+            }
+
+            $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker('setStartDate', dateMin);
+
+            if ($('#@string.Format("date_to_{0}", Model.ClientID)').val()) {
+                if (dateMax == null) {
+                    if (dateTo < dateMin) {
+                        $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker('setDate', dateMin);
+                    }
+                }
+                else {
+                    if (dateTo >= dateMax) {
+                        dateMax.setDate(dateMax.getDate() - 1);
+                        $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker('setDate', dateMax);
+                    }
+                    if (dateTo < dateMin) {
+                        $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker('setDate', dateMin);
+                    }
+                }
+            }
+        });
+
+        $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm/yyyy',
+            startView: 'decade',
+            forceParse: false,
+            @if(properties != null)
+            {
+                if (properties.WeekDayStart >= 0 && properties.WeekDayStart <= 6)
+                {
+                    <text>
+            weekStart: @properties.WeekDayStart,
+                    </text>
+                }
+                if(properties.ShowCalendarWeeksNumbers)
+                {
+                    <text>
+            calendarWeeks: true,
+                    </text>
+                }
+                else
+                {
+                    <text>
+            calendarWeeks: false,
+                    </text>
+                }
+                if (!string.IsNullOrEmpty(properties.DaysOfWeekDisabled))
+                {
+                    <text>
+            daysOfWeekDisabled: '@properties.DaysOfWeekDisabled',
+                    </text>
+                }
+            }
+        });
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            // TODO: xxx
+            if ($('#@string.Format("date_from_{0}", Model.ClientID)').val()) {
+                $('#@string.Format("date_to_{0}", Model.ClientID)').datepicker('update');
+                $('#@string.Format("date_from_{0}", Model.ClientID)').datepicker('update');
+                $('#@string.Format("date_from_{0}", Model.ClientID)').datepicker().trigger('changeDate');
+            }
+        });
+    });
+</script>
+
+

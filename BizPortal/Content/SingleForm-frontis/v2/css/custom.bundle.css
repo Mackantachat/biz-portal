@@ -1,0 +1,86 @@
+
+
+/*TH Sarabun PSK*/
+@font-face {
+    font-family: 'TH SarabunPSK';
+    src: url("/Content/SingleForm-frontis/v2/css/../fonts/THSarabunNew.eot");
+    src: url("/Content/SingleForm-frontis/v2/css/../fonts/THSarabunNew.eot?#iefix") format("embedded-opentype"),url("/Content/SingleForm-frontis/v2/css/../fonts/THSarabunNew.woff") format("woff"),url("/Content/SingleForm-frontis/v2/css/../fonts/THSarabunNew.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal
+}
+
+pre {
+    font-family: "TH Sarabun New","TH", serif !important;
+    background: #eee !important;
+    padding: 10px;
+}
+
+section.navbar .nav .login-info .dropdown-content {
+    z-index: 999;
+    min-width: 220px;
+}
+
+/* Breadcrump */
+/*.breadcrumb > li {
+    display: inline-block;
+}*/
+
+.breadcrumb .active {
+    font-weight: bold;
+}
+
+/*.breadcrumb a, .breadcrumb a:hover, .breadcrumb a:active, .breadcrumb a:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.breadcrumb > li + li:before {
+    color: #5ca1bf;
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f054";
+    padding-right: 3px;
+}*/
+/* End Breadcrump */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+.form-control {
+    display: block;
+    padding: 5px 10px 0px;
+}
+
+.sweet-body {
+    overflow-y: auto;
+    max-height: 300px;
+    text-align: left !important;
+}
+
+a.form-control-info-close {
+    color: #A0A0A0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+div.form-control-info {
+    position: relative;
+    text-align: left;
+    padding: 30px;
+    border: 1px solid #DEDEDE;
+    margin-bottom: 20px;
+    background: #FFFFFF;
+}
+
+a.form-info {
+    color: #5CA1BF;
+    display: inline-block;
+}

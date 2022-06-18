@@ -1,0 +1,504 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@model FormSection
+@{
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+    string regisCapital = string.Empty;
+
+    if (defaults.ContainsKey("REGISTER_CAPITAL"))
+    {
+        regisCapital = defaults["REGISTER_CAPITAL"].DefaultString();
+    }
+
+    var rd = string.Empty;
+    var rd2 = string.Empty;
+    if (Model.PartialReadonly)
+    {
+        rd = "disabled";
+        rd2 = "readonly";
+    }
+}
+<div class="col-md-12">
+    <div class="row mt20">
+        <div class="col-md-12">
+            <h5>การจดทะเบียนภาษีมูลค่าเพิ่ม</h5>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>โปรดเลือกกรณีการจดทะเบียนภาษีมูลค่าเพิ่มที่ตรงกับเงื่อนไขของท่าน</label>
+                    <div class="radio">
+                        <label for="VAT_VAT_CONDITION_TRUE">@Html.RadioButton("VAT_VAT_CONDITION", "TRUE", !Model.PartialReadonly ? (object)new { id = "VAT_VAT_CONDITION_TRUE" } : (object)new { id = "VAT_VAT_CONDITION_TRUE", @disabled = "disabled" }) ท่านมีรายได้ถึงเกณฑ์ต้องจดทะเบียน 1,800,000 บาทต่อปี หรือผู้ส่งออก</label>
+                    </div>
+                    <div class="radio">
+                        <label for="VAT_VAT_CONDITION_FALSE">@Html.RadioButton("VAT_VAT_CONDITION", "FALSE", !Model.PartialReadonly ? (object)new { id = "VAT_VAT_CONDITION_FALSE" } : (object)new { id = "VAT_VAT_CONDITION_FALSE", @disabled = "disabled" }) ท่านเป็นกิจการที่ได้รับการยกเว้น หรือ มีรายได้ไม่ถึงเกณฑ์ต้องจดทะเบียน (รายได้ไม่ถึง 1,800,000 บาทต่อปี) แต่ประสงค์จะจดทะเบียนภาษีมูลค่าเพิ่ม</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt20" id="div1true">
+        <div class="col-md-12">
+            <h5>การจดทะเบียนภาษีมูลค่าเพิ่ม กิจการที่ต้องเสียภาษีมูลค่าเพิ่ม</h5>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>ท่านเป็นผู้ประกอบการ ที่มีหน้าที่เสียภาษีมูลค่าเพิ่มตามข้อใด</label>
+                    <div class="radio">
+                        <label for="VAT_MUST_VAT_TRUE">@Html.RadioButton("VAT_MUST_VAT", "TRUE", !Model.PartialReadonly ? (object)new { id = "VAT_MUST_VAT_TRUE" } : (object)new { id = "VAT_MUST_VAT_TRUE", @disabled = "disabled" }) 1. ผู้ประกอบการซึ่งประกอบกิจการขายสินค้าหรือให้บริการที่มีรายรับเกิน 1,800,000 บาทต่อปี</label>
+                    </div>
+                    <div class="radio">
+                        <label for="VAT_MUST_VAT_FALSE">@Html.RadioButton("VAT_MUST_VAT", "FALSE", !Model.PartialReadonly ? (object)new { id = "VAT_MUST_VAT_FALSE" } : (object)new { id = "VAT_MUST_VAT_FALSE", @disabled = "disabled" }) 2. ผู้ประกอบการซึ่งมีแผนงานที่สามารถพิสูจน์ได้ว่าได้เตรียมการเพื่อประกอบกิจการขายสินค้าหรือให้บริการ ที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม อันเป็นเหตุให้ต้องมีการซื้อสินค้าหรือรับบริการที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม เช่น ก่อสร้างโรงงาน ติดตั้งเครื่องจักร (ประกาศฉบับ 159)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt20" id="div1false" hidden>
+        <div class="col-md-12">
+            <h5>การจดทะเบียนภาษีมูลค่าเพิ่ม กิจการที่ได้รับการยกเว้น</h5>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>ท่านเป็นผู้ประกอบการ ที่มีหน้าที่เสียภาษีมูลค่าเพิ่มตามข้อใด</label>
+                    <div class="radio">
+                        <label for="VAT_EXCEPT_VAT_TRUE" style="white-space: pre-line;">@Html.RadioButton("VAT_EXCEPT_VAT", "TRUE", new { id = "VAT_EXCEPT_VAT_TRUE", @disabled = "disabled" })1. ผู้ประกอบการฯ ที่ได้รับยกเว้นตามมาตรา 81(1) (ก)ถึง(ฉ) ได้แก่
+                        1.1 การขายสินค้าที่มิใช่การส่งออกหรือให้บริการ ดังนี้
+                        - ขายพืชผลทางการเกษตร ตามมาตรา 81(1)(ก) แห่งประมวลรัษฎากร
+                        - ขายสัตว์ ตามมาตรา 81(1) (ข) แห่งประมวลรัษฎากร
+                        - ขายปุ๋ย ตามมาตรา 81(1) (ค) แห่งประมวลรัษฎากร
+                        - ขายปลาป่น อาหารสัตว์ ตามมาตรา 81(1) (ง) แห่งประมวลรัษฎากร
+                        - ขายยาหรือเคมีภัณฑ์ที่ใช้สำหรับพืชหรือสัตว์ฯ ตามมาตรา 81(1) (จ) แห่งประมวลรัษฎากร
+                        - ขายหนังสือพิมพ์ นิตยสาร หรือตำราเรียน ตามมาตรา 81(1) (ฉ) แห่งประมวลรัษฎากร
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="VAT_EXCEPT_VAT_FALSE">@Html.RadioButton("VAT_EXCEPT_VAT", "FALSE", new { id = "VAT_EXCEPT_VAT_FALSE", @disabled = "disabled" }) 2. ประกอบกิจการโดยมีมูลค่าของฐานภาษีไม่เกินมูลค่าของฐานภาษีของกิจการขนาดย่อม ตามที่กำหนดโดยพระราชกฤษฎีกา (รายรับไม่เกิน 1,800,000 บาท)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt20" id="div001vat" hidden>
+        <div class="col-md-12">
+            <h5>แจ้งขอใช้สิทธิ์เพื่อขอจดทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.01.1)</h5>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>2. ประกอบกิจการที่ได้รับการยกเว้นภาษีมูลค่าเพิ่มและมีความประสงค์ที่จะขอจดทะเบียนภาษีมูลค่าเพิ่ม ดังนี้</label>
+                    <span id="VAT_VAT001_CHECK_CHECKBOXES-error" class="error text-danger" style="display: none;"></span>
+                    <span id="VAT_VAT001_25_CHECK-error" class="error text-danger" style="display: none;"></span>
+                    <p style="margin: 10px 0 0 0;">2.1 การขายสินค้าที่มิใช่การส่งออกหรือให้บริการ ดังนี้</p>
+                    <div class="checkbox ml20">
+                        <label for="VAT_VAT001_21A_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_21A_CHECK" value="21A" @rd />ขายพืชผลทางการเกษตร ตามมาตรา 81 (1) (ก) แห่งประมวลรัษฎากร</label>
+                    </div>
+                    <div class="checkbox ml20">
+                        <label for="VAT_VAT001_21B_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_21B_CHECK" value="21B" @rd />ขายสัตว์ตามมาตรา 81 (1) (ข) แห่งประมวลรัษฎากร</label>
+                    </div>
+                    <div class="checkbox ml20">
+                        <label for="VAT_VAT001_21C_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_21C_CHECK" value="21C" @rd />ขายปุ๋ย ตามมาตรา 81 (1) (ค) แห่งประมวลรัษฎากร</label>
+                    </div>
+                    <div class="checkbox ml20">
+                        <label for="VAT_VAT001_21D_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_21D_CHECK" value="21D" @rd />ขายปลาป่น อาหารสัตว์ ตามมาตรา 81 (1) (ง) แห่งประมวลรัษฎากร</label>
+                    </div>
+                    <div class="checkbox ml20">
+                        <label for="VAT_VAT001_21E_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_21E_CHECK" value="21E" @rd />ขายยาหรือเคมีภัณฑ์ที่ใช้สำหรับพืชและสัตว์ฯ ตามมาตรา 81 (1) (จ) แห่งประมวลรัษฎากร</label>
+                    </div>
+                    <div class="checkbox ml20">
+                        <label for="VAT_VAT001_21F_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_21F_CHECK" value="21F" @rd />ขายหนังสือพิมพ์ นิตยสาร หรือตำราเรียน ตามมาตรา 81 (1) (ฉ) แห่งประมวลรัษฎากร</label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="VAT_VAT001_22_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_22_CHECK" value="22" @rd />2.2 ให้บริการขนส่งในราชอาณาจักรโดยอากาศยาน</label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="VAT_VAT001_23_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_23_CHECK" value="23" @rd />2.3 ส่งออกโดยเป็นผู้ประกอบการในเขตอุตสาหกรรมส่งออก ตามกฎหมายว่าด้วยการนิคมอุตสาหกรรมแห่งประเทศไทย</label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="VAT_VAT001_24_CHECK"><input type="checkbox" name="VAT_VAT001_CHECK_CHECKBOXES" id="VAT_VAT001_24_CHECK" value="24" @rd />2.4 ให้บริการขนส่งน้ำมันเชื้อเพลิงทางท่อในราชอาณาจักร</label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="VAT_VAT001_25_CHECK"><input type="checkbox" name="VAT_VAT001_25_CHECK" id="VAT_VAT001_25_CHECK" value="25" @rd />2.5 ประกอบกิจการโดยมีมูลค่าของฐานภาษีไม่เกินมูลค่าของฐานภาษีกิจการขนาดย่อม ตามที่กำหนดโดยพระราชกฤษฎีกา</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt20">
+        <div class="col-md-12">
+            <h5>ภ.พ.01</h5>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>โปรดระบุข้อมูลที่ตรงกับเงื่อนไขการจดทะเบียนภาษีมูลค่าเพิ่มของคุณ</label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="radio">
+                                <label for="VAT_REGIS_VAT_TRUE">@Html.RadioButton("VAT_REGIS_VAT", "TRUE", !Model.PartialReadonly ? (object)new { id = "VAT_REGIS_VAT_TRUE" } : (object)new { id = "VAT_REGIS_VAT_TRUE", @disabled = "disabled" }) กรณีขอจดทะเบียนก่อนวันเริ่มประกอบกิจการตามข้อ 2 ของประกาศอธิบดีกรมสรรพากร เกี่ยวกับภาษีมูลค่าเพิ่ม (ฉบับที่ 159)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="radio">
+                                <label for="VAT_REGIS_VAT_FALSE">@Html.RadioButton("VAT_REGIS_VAT", "FALSE", !Model.PartialReadonly ? (object)new { id = "VAT_REGIS_VAT_FALSE" } : (object)new { id = "VAT_REGIS_VAT_FALSE", @disabled = "disabled" }) วันเดือนปีที่รายรับถึงเกณฑ์</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group date">
+                                <input type="text" class="form-control" name="VAT_REGIS_VAT_FALSE_DATE" id="VAT_REGIS_VAT_FALSE_DATE" readonly disabled />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="checkbox">
+                                <label for="VAT_REGIS_VAT_CHECK"><input type="checkbox" name="VAT_REGIS_VAT_CHECK" id="VAT_REGIS_VAT_CHECK" value="true" disabled />วันที่แจ้งต่ออธิบดีเพื่อขอจดทะเบียนภาษีมูลค่าเพิ่ม (กรณีได้รับการยกเว้น)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group date">
+                                <input type="text" class="form-control" name="VAT_REGIS_VAT_CHECK_DATE" id="VAT_REGIS_VAT_CHECK_DATE" style="cursor: not-allowed;" readonly />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt20">
+                <div class="col-md-12 form-group">
+                    <label>รอบระยะเวลาบัญชี</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" name="VAT_ACCOUNTING_DATE" id="VAT_ACCOUNTING_DATE" readonly />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt20">
+                <div class="col-md-12 form-group">
+                    <label>ในวันยื่นคำขอจดทะเบียนภาษีมูลค่าเพิ่มมี</label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>เงินทุนจดทะเบียน (บาท) :</label>
+                            <span class="form-control form-control-static">
+                                @regisCapital
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>รายรับประมาณเดือนละ (บาท) :</label>
+                            <input type="text" class="form-control" name="VAT_MONTHLY_INCOME" id="VAT_MONTHLY_INCOME" @rd2 />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt20">
+                <div class="col-md-12 form-group">
+                    <label>ประเภทของการประกอบกิจการ</label>
+                    <span id="VAT_BUSTYPCOD_1-error" class="error text-danger" style="display: none;"></span>
+                    <span id="VAT_GOOTYPDES_1-error" class="error text-danger" style="display: none;"></span>
+                    @for (var i = 1; i <= 6; i++)
+                    {
+                        <div class="row">
+                            <div class="col-md-2 form-group text-center">
+                                <label>@Resources.Apps_VAT.VAT_ORDER @i</label>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <select class="form-control" id="VAT_BUSTYPCOD_@i" name="VAT_BUSTYPCOD_@i" style="width: 100%;" @rd>
+                                    <option value="">@Resources.Apps_VAT.BUSINESS_TYPE_CHOOSE</option>
+                                    <option value="1">@Resources.Apps_VAT.BUSINESS_TYPE_PRODUCE</option>
+                                    <option value="2">@Resources.Apps_VAT.BUSINESS_TYPE_EXPORT</option>
+                                    <option value="3">@Resources.Apps_VAT.BUSINESS_TYPE_WHOLESELL</option>
+                                    <option value="4">@Resources.Apps_VAT.BUSINESS_TYPE_RETAIL</option>
+                                    <option value="5">@Resources.Apps_VAT.BUSINESS_TYPE_SERVICE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1 form-group text-center">
+                                <label>@Resources.Apps_VAT.VAT_GOODS_SPECIFY</label>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <input type="text" id="VAT_GOOTYPDES_@i" name="VAT_GOOTYPDES_@i" value="" class="form-control" maxlength="250" disabled @rd2 />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var triggerCnt = 0;
+
+    $(function () {
+        input001(true, true);
+
+        @if (!Model.PartialReadonly)
+        {
+            <text>
+        $('#VAT_REGIS_VAT_FALSE_DATE').datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm/yyyy',
+            startDate: '-30d',
+            endDate: new Date()
+        });
+
+        $('#VAT_ACCOUNTING_DATE').datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm'
+        });
+
+        </text>
+        }
+
+        @for(var i = 1; i <= 6; i++){
+            <text>
+        $('#VAT_BUSTYPCOD_@i').change(function () {
+            if ($('#VAT_BUSTYPCOD_@i').val() != "")
+                $('#VAT_GOOTYPDES_@i').prop('disabled', false);
+            else
+                $('#VAT_GOOTYPDES_@i').prop('disabled', true);
+        });
+        </text>
+        }
+
+        @if (!Model.PartialReadonly)
+        {
+            <text>
+        singleForm.customRules['VAT_VAT_CONDITION'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณาเลือกเงื่อนไขของท่าน' }
+        };
+
+        singleForm.customRules['VAT_MUST_VAT'] = {
+            customrequiredif: { dependentproperty: 'VAT_VAT_CONDITION', targetvalue: 'TRUE' }, messages: { customrequiredif: 'กรุณาเลือกกิจการที่ต้องเสียภาษีมูลค่าเพิ่ม' }
+        };
+
+        singleForm.customRules['VAT_EXCEPT_VAT'] = {
+            customrequiredif: { dependentproperty: 'VAT_VAT_CONDITION', targetvalue: 'FALSE' }, messages: { customrequiredif: 'กรุณาเลือกกิจการที่ได้รับการยกเว้น' }
+        };
+
+        singleForm.customRules['VAT_REGIS_VAT'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณาเลือกเงื่อนไขการจดทะเบียนภาษีมูลค่าเพิ่มของคุณ' }
+        };
+
+        singleForm.customRules['VAT_REGIS_VAT_CHECK'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณาเลือกเงื่อนไขการจดทะเบียนภาษีมูลค่าเพิ่มของคุณ' }
+        };
+
+        singleForm.customRules['VAT_ACCOUNTING_DATE'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณาเลือกรอบระยะเวลาบัญชี' }
+        };
+
+        singleForm.customRules['VAT_MONTHLY_INCOME'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณากรอกรายรับโดยประมาณ' }
+        };
+
+        singleForm.customRules['VAT_VAT001_CHECK_CHECKBOXES'] = {
+            customrequiredif: { dependentproperty: 'VAT_EXCEPT_VAT', targetvalue: 'TRUE' }, messages: { customrequiredif: 'กรุณาเลือกกิจการที่ได้รับการยกเว้นภาษีมูลค่าเพิ่มและมีความประสงค์ที่จะขอจดทะเบียนภาษีมูลค่าเพิ่ม' }
+        };
+
+        singleForm.customRules['VAT_VAT001_25_CHECK'] = {
+            customrequiredif: { dependentproperty: 'VAT_EXCEPT_VAT', targetvalue: 'FALSE' }, messages: { customrequiredif: 'กรุณาเลือกกิจการที่ได้รับการยกเว้นภาษีมูลค่าเพิ่มและมีความประสงค์ที่จะขอจดทะเบียนภาษีมูลค่าเพิ่ม' }
+        };
+
+        singleForm.customRules['VAT_BUSTYPCOD_1'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณาเลือกประเภทของการประกอบกิจการ' }
+        };
+
+        //singleForm.customRules['VAT_GOOTYPDES_1'] = {
+        //    customrequiredif: { dependentproperty: 'VAT_BUSTYPCOD_1', targetvalue: ['1', '2', '3', '4', '5'] }, messages: { customrequiredif: 'กรุณาเระบุประเภทของการประกอบกิจการ' }
+        //};
+
+        singleForm.customRules['VAT_GOOTYPDES_1'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณาระบุประเภทของการประกอบกิจการ' }
+        };
+
+        </text>
+    }
+
+        $('input[name=VAT_VAT_CONDITION]').change(function () {
+            var value = $("input[name=VAT_VAT_CONDITION]:checked").val();
+            if (value == "TRUE") {
+                $("#div1true").show();
+                $("input[name=VAT_MUST_VAT]").prop('disabled', @(!Model.PartialReadonly ? "false" : "true"));
+
+                $("#div1false").hide();
+                $("input[name=VAT_EXCEPT_VAT]:checked").prop('checked', false).trigger('change');
+                $("input[name=VAT_EXCEPT_VAT]").css('cursor', 'not-allowed');
+                //$("input[name=VAT_EXCEPT_VAT]").prop('disabled', true);
+
+                $("input[name=VAT_MUST_VAT]").css('cursor', '');
+
+                $("#div001vat").hide();
+                input001(true, true);
+
+                $("input[name=VAT_REGIS_VAT]").prop('disabled', @(!Model.PartialReadonly ? "false" : "true"));
+
+                $('#VAT_REGIS_VAT_CHECK').prop('checked', false).prop('disabled', true).trigger('change');
+                $("#VAT_REGIS_VAT_CHECK_DATE").val("");
+                triggerCnt++;
+            } else if (value == "FALSE"){
+                @if (!Model.PartialReadonly)
+                {
+                    <text>
+                if (specialTrigger == 0 || triggerCnt > 0) {
+                    swal({
+                        title: '',
+                        text: 'ท่านไม่เป็นผู้ส่งออกซึ่งส่งสินค้าออกนอกราชอาณาจักรเพื่อส่งไปต่างประเทศ',
+                        type: 'warning',
+                        showConfirmButton: true,
+                        confirmButtonText: 'ไม่เป็นผู้ส่งออก',
+                        showCancelButton: true,
+                        cancelButtonText: 'เป็นผู้ส่งออก',
+                        allowEscapeKey: false,
+                        allowClickOutside: false
+                    }, function (isConfirm) {
+                        if (!isConfirm) {
+                            $('input[name=VAT_VAT_CONDITION]:checked').prop('checked', false).trigger('change');
+                        } else {
+                            conditionFalse();
+                        }
+                    });
+                }
+                else {
+                    conditionFalse();
+                }
+                triggerCnt++;
+                </text>
+                }
+                else
+                {
+                    <text>
+                $("#div1true").hide();
+                $("input[name=VAT_MUST_VAT]:checked").prop('checked', false).trigger('change');
+                $("input[name=VAT_MUST_VAT]").css('cursor', 'not-allowed');
+
+                $("#div1false").show();
+                $("input[name=VAT_EXCEPT_VAT]").prop('disabled', @(!Model.PartialReadonly ? "false" : "true"));
+
+                $("#div001vat").show();
+                input001(false, true);
+
+                $("input[name=VAT_REGIS_VAT]").prop('checked', false).prop('disabled', true).trigger('change');
+                $("#VAT_REGIS_VAT_FALSE_DATE").val("");
+                $("#VAT_REGIS_VAT_FALSE_DATE").css('background-color', '').css('cursor', 'not-allowed');
+
+                $('#VAT_REGIS_VAT_CHECK').prop('checked', true).prop('disabled', @(!Model.PartialReadonly ? "false" : "true")).prop('readOnly', true);
+                $("#VAT_REGIS_VAT_CHECK_DATE").val(dateToString(new Date(), "DD/MM/YYYY", "th"));
+                </text>
+                }
+            } else {
+                $("input[name=VAT_MUST_VAT]:checked").prop('checked', false).trigger('change');
+                $("input[name=VAT_REGIS_VAT]").prop('checked', false).trigger('change');
+                $("#VAT_REGIS_VAT_FALSE_DATE").val("");
+                triggerCnt++;
+            }
+        });
+
+        $("input[name=VAT_EXCEPT_VAT]").change(function () {
+            if ($("input[name=VAT_VAT_CONDITION]:checked").val() == "FALSE") {
+                var value = $("input[name=VAT_EXCEPT_VAT]:checked").val();
+                if (value == "TRUE") {
+                    input001(false, true);
+                } else {
+                    input001(true, false);
+                }
+            }
+        });
+
+        $('input[name=VAT_REGIS_VAT]').change(function () {
+            if ($("input[name=VAT_VAT_CONDITION]:checked").val() == "TRUE") {
+                var value = $("input[name=VAT_REGIS_VAT]:checked").val();
+                if (value == "FALSE") {
+                    $("#VAT_REGIS_VAT_FALSE_DATE").val("");
+                    $("#VAT_REGIS_VAT_FALSE_DATE").prop('disabled', @(!Model.PartialReadonly ? "false" : "true")).css('background-color', 'white');
+                } else {
+                    $("#VAT_REGIS_VAT_FALSE_DATE").val("");
+                    //$("#VAT_REGIS_VAT_FALSE_DATE").prop('disabled', true).css('background-color', '');
+                    $("#VAT_REGIS_VAT_FALSE_DATE").css('cursor', 'not-allowed').css('background-color', '');
+                }
+            } else {
+                $("input[name=VAT_REGIS_VAT]:checked").prop('checked', false).trigger('change');
+            }
+        });
+
+        @if (!Model.PartialReadonly)
+        {
+            <text>
+        singleForm.callbacks.customDatas.push(function (data) {
+            for (var i = 0; i < data.SectionData.length; i++) {
+                var section = data.SectionData[i];
+                if (section.SectionName === 'VAT_INFORMATION') {
+                    //console.log('VAT_INFORMATION', section);
+                    // TODO sth.
+                    section.FormData.VAT_VAT001_CHECK_CHECKBOXES = Array();
+
+                    $('[name=VAT_VAT001_CHECK_CHECKBOXES]:checked').each(function () {
+                        section.FormData.VAT_VAT001_CHECK_CHECKBOXES.push($(this).val());
+                    });
+                    // break loop
+                    break;
+                }
+            }
+        });
+        </text>
+        }
+
+    });
+
+    function conditionFalse() {
+        $("#div1true").hide();
+        $("input[name=VAT_MUST_VAT]:checked").prop('checked', false).trigger('change');
+        $("input[name=VAT_MUST_VAT]").css('cursor', 'not-allowed');
+
+        $("input[name=VAT_EXCEPT_VAT]").css('cursor', '');
+
+        $("#div1false").show();
+        $("input[name=VAT_EXCEPT_VAT]").prop('disabled', @(!Model.PartialReadonly ? "false" : "true"));
+
+        $("#div001vat").show();
+        input001(false, true);
+
+        $("input[name=VAT_REGIS_VAT]").prop('checked', false).prop('disabled', true).trigger('change');
+        $("#VAT_REGIS_VAT_FALSE_DATE").val("");
+        $("#VAT_REGIS_VAT_FALSE_DATE").css('background-color', '').css('cursor', 'not-allowed');
+
+        $('#VAT_REGIS_VAT_CHECK').prop('checked', true).prop('disabled', @(!Model.PartialReadonly ? "false" : "true"));
+        $('#VAT_REGIS_VAT_CHECK').prop('disabled', true);
+        //$("#VAT_REGIS_VAT_CHECK_DATE").val(moment(new Date()).format("DD/MM/YYYY"));
+        $("#VAT_REGIS_VAT_CHECK_DATE").val(dateToString(new Date(), "DD/MM/YYYY", "th")); 
+    }
+
+    function input001(x, y) {
+        $("input[type=checkbox][name^=VAT_VAT001]").prop('checked', false).trigger('change');
+
+        @if (!Model.PartialReadonly)
+        {
+            <text>
+        $("input[name=VAT_VAT001_CHECK_CHECKBOXES]").prop('disabled', x);
+        $("input[name=VAT_VAT001_25_CHECK]").prop('disabled', y);
+        </text>
+        }
+        else
+        {
+            <text>
+        $("input[name=VAT_VAT001_CHECK_CHECKBOXES]").prop('disabled', true);
+        $("input[name=VAT_VAT001_25_CHECK]").prop('disabled', true);
+        </text>
+        }
+
+        if (!y) {
+            $("input[name=VAT_VAT001_25_CHECK]").prop('checked', true).trigger('change');
+        }
+    }
+
+</script>
+

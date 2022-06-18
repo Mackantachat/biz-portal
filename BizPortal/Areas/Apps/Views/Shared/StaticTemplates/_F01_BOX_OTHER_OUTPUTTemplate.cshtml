@@ -1,0 +1,39 @@
+﻿@using BizPortal.Utils.Helpers
+@model BizPortal.DAL.MongoDB.FormSection
+<script id="@(Model.Section)Template" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    <div class="row">
+        <div class="col-md-5">
+            <label>@BizPortal.Resources.Apps_SingleForm.TYPE_OF_ADDITIONAL_MATERIAL :</label>
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.Apps_SingleForm.ADDITIONAL_MATERIAL_USING_AMOUNT_PER_YEAR :</label>
+        </div>
+        <div class="col-md-3">
+            <label>@BizPortal.Resources.Apps_SingleForm.CAN_SELL_PRODUCT :</label>
+        </div>
+    </div>
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-5">
+            <p class="bold form-control-static">{{this.TYPE_OF_ADDITIONAL_MATERIAL}}</p>
+        </div>
+        <div class="col-md-4">
+            <p class="bold form-control-static">{{this.ADDITIONAL_MATERIAL_USING_AMOUNT_PER_YEAR}} {{this.ADDITIONAL_MATERIAL_USING_AMOUNT_PER_YEAR_UNIT}}</p>
+        </div>
+        <div class="col-md-3">
+            <p class="bold form-control-static">{{this.DROPDOWN_CAN_SELL_PRODUCT_TEXT}}</p>
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+        ไม่มีข้อมูลวัตถุพลอยได้
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

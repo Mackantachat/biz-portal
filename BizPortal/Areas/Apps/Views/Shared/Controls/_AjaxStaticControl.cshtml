@@ -1,0 +1,284 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@if (Model.Data != null)
+{
+    Dictionary<string, string> data = (Dictionary<string, string>)Model.Data;
+    var pCode = data["pCode"];
+    var aCode = data["aCode"];
+    var tCode = data["tCode"];
+    var lat = data["lat"];
+    var lng = data["lng"];
+
+    if (Model.Control == "MEA_BRANCH")
+    {
+        <span class="form-control form-control-static" id="MEA_BRANCH_DISPLAY">ระบบกำลังค้นหาไฟฟ้าสาขาที่ดำเนินการ โดยจะใช้เวลาประมาณ 30 วินาที...</span>
+        <input type="hidden" id="MEA_BRANCH_TH" name="MEA_BRANCH_TH" />
+        <input type="hidden" id="MEA_BRANCH_EN" name="MEA_BRANCH_EN" />
+        <input type="hidden" id="MEA_BRANCH_CODE" name="MEA_BRANCH_CODE" />
+
+        <script type="text/javascript">
+            $(function () {
+                var lat = @lat;
+                var lng = @lng;
+                require(["esri/geometry/webMercatorUtils"], function ( WebMercatorUtils ) {
+                    var mkUtils = WebMercatorUtils;
+                    var coordinateXY = mkUtils.lngLatToXY(lng, lat);
+                    var geom = {
+                        x: coordinateXY[0],
+                        y: coordinateXY[1],
+                        spatialReference: {
+                            wkid: 102100
+                        }
+                    };
+                    geom = JSON.stringify(geom);
+
+                    $.ajax({
+                        url: 'https://gisadaptor.mea.or.th/mapstd/rest/services/general/MEAWMS_Cache/MapServer/12/query',
+                        data: {
+                            f: 'json',
+                            where: '',
+                            returnGeometry: 'false',
+                            spatialRel: 'esriSpatialRelIntersects',
+                            geometry: geom,
+                            geometryType: 'esriGeometryPoint',
+                            inSR: 102100,
+                            outFields: 'NAME_E,NAME_T,ID_CODE',
+                            outSR: 102100
+                        },
+                        timeout: 30000,
+                        success: function (data) {
+                            var featureAttributes = JSON.parse(data);
+                            if (featureAttributes.features != null && featureAttributes.features.length > 0) {
+                                $('#MEA_BRANCH_DISPLAY').empty();
+                                $('#MEA_BRANCH_DISPLAY').append(featureAttributes.features[0].attributes.NAME_T);
+                                $('#MEA_BRANCH_TH').val(featureAttributes.features[0].attributes.NAME_T);
+                                $('#MEA_BRANCH_EN').val(featureAttributes.features[0].attributes.NAME_E);
+                                $('#MEA_BRANCH_CODE').val(featureAttributes.features[0].attributes.ID_CODE);
+                            } else {
+                                $('#MEA_BRANCH_DISPLAY').empty();
+                                $('#MEA_BRANCH_DISPLAY').css('color', '#C10000 !important').css('font-weight', 'bold');
+                                $('#MEA_BRANCH_DISPLAY').append('การค้นหาล้มเหลวกรุณารีเฟรชหน้าใหม่อีกครั้ง');
+                                $('#MEA_BRANCH_TH').val("");
+                                $('#MEA_BRANCH_EN').val("");
+                                $('#MEA_BRANCH_CODE').val("");
+                            }
+                        },
+                        error: function () {
+                            $('#MEA_BRANCH_DISPLAY').empty();
+                            $('#MEA_BRANCH_DISPLAY').css('color', '#C10000 !important').css('font-weight', 'bold');
+                            $('#MEA_BRANCH_DISPLAY').append('การค้นหาล้มเหลวกรุณารีเฟรชหน้าใหม่อีกครั้ง');
+                            $('#MEA_BRANCH_TH').val("");
+                            $('#MEA_BRANCH_EN').val("");
+                            $('#MEA_BRANCH_CODE').val("");
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+    else if (Model.Control == "MWA_BRANCH")
+    {
+        @*<select class="form-control" id="MWA_BRANCH" name="MWA_BRANCH">
+                <option value="15">ประชาชื่น</option>
+            </select>*@
+
+        <span class="form-control form-control-static" id="MWA_BRANCH_DISPLAY">ระบบกำลังค้นหาประปาสาขาที่ดำเนินการ โดยจะใช้เวลาประมาณ 30 วินาที...</span>
+        <input type="hidden" id="MWA_BRANCH_ID" name="MWA_BRANCH_ID" />
+        <input type="hidden" id="MWA_BRANCH_TEXT" name="MWA_BRANCH_TEXT" />
+
+        <script type="text/javascript">
+            $(function () {
+                //$('#MWA_BRANCH').val("").trigger("change");
+                //$('#MWA_BRANCH_ID').val("");
+                //$('#MWA_BRANCH_TEXT').val("");
+
+                //$('#MWA_BRANCH').change(function () {
+                //    $('#MWA_BRANCH_ID').val($('#MWA_BRANCH').val());
+                //    $('#MWA_BRANCH_TEXT').val($('#MWA_BRANCH option:selected').text());
+                //});
+
+                var lat = @lat;
+                var lng = @lng;
+                var pCode = @pCode;
+                var aCode = @aCode;
+                var tCode = @tCode;
+
+                $.ajax({
+                    url: '@Url.Content("~/Api/v2/MWA/GetBranch")',
+                    data: {
+                        lat: lat,
+                        lng: lng,
+                        pcode: pCode,
+                        acode: aCode,
+                        tcode: tCode
+                    },
+                    timeout: 30000,
+                    success: function (data) {
+                        if (data) {
+                            $('#MWA_BRANCH_DISPLAY').empty();
+                            $('#MWA_BRANCH_DISPLAY').append('สาขา ' + data.text);
+                            $('#MWA_BRANCH_ID').val(data.id);
+                            $('#MWA_BRANCH_TEXT').val(data.text);
+                        } else {
+                            $('#MWA_BRANCH_DISPLAY').empty();
+                            $('#MWA_BRANCH_DISPLAY').css('color', '#C10000 !important').css('font-weight', 'bold');
+                            $('#MWA_BRANCH_DISPLAY').append('การค้นหาล้มเหลวกรุณารีเฟรชหน้าใหม่อีกครั้ง');
+                            $('#MWA_BRANCH_ID').val("");
+                            $('#MWA_BRANCH_TEXT').val("");
+                        }
+                    },
+                    error: function () {
+                        $('#MWA_BRANCH_DISPLAY').empty();
+                        $('#MWA_BRANCH_DISPLAY').css('color', '#C10000 !important').css('font-weight', 'bold');
+                        $('#MWA_BRANCH_DISPLAY').append('การค้นหาล้มเหลวกรุณารีเฟรชหน้าใหม่อีกครั้ง');
+                        $('#MWA_BRANCH_ID').val("");
+                        $('#MWA_BRANCH_TEXT').val("");
+                    }
+                });
+
+            });
+
+        </script>
+    }
+    else if (Model.Control == "TOT_BRANCH")
+    {
+        <div class="row">
+            <div class="col-md-12 mb5">
+                <label>สาขาเขตรับผิดชอบหลัก :</label>
+                <span class="form-control form-control-static" id="TOT_1ST_BRANCH_DISPLAY">ระบบกำลังค้นหาสาขาหลักที่ดำเนินการ โดยจะใช้เวลาประมาณ 30 วินาที...</span>
+                <input type="hidden" id="TOT_1ST_BRANCH_ID" name="TOT_1ST_BRANCH_ID" />
+                <input type="hidden" id="TOT_1ST_BRANCH_TEXT" name="TOT_1ST_BRANCH_TEXT" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>สาขาเขตรับผิดชอบรอง :</label>
+                <span class="form-control form-control-static" id="TOT_2ND_BRANCH_DISPLAY">ระบบกำลังค้นหาสาขารองที่ดำเนินการ โดยจะใช้เวลาประมาณ 30 วินาที...</span>
+                <input type="hidden" id="TOT_2ND_BRANCH_ID" name="TOT_2ND_BRANCH_ID" />
+                <input type="hidden" id="TOT_2ND_BRANCH_TEXT" name="TOT_2ND_BRANCH_TEXT" />
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                var lat = @lat;
+                var lng = @lng;
+
+                $.ajax({
+                    url: '@Url.Content("~/Api/v2/TOT/Branches")',
+                    data:{
+                        latitude: lat,
+                        longitude: lng
+                    },
+                    timeout: 30000,
+                    success: function (data) {
+                        if (data && data[0]) {
+                            // primary branch
+                            $('#TOT_1ST_BRANCH_DISPLAY').empty();
+                            $('#TOT_1ST_BRANCH_DISPLAY').append(data[0].service_center);
+                            $('#TOT_1ST_BRANCH_ID').val(data[0].location_code);
+                            $('#TOT_1ST_BRANCH_TEXT').val(data[0].service_center);
+                        } else {
+                            $('#TOT_1ST_BRANCH_DISPLAY').empty();
+                            $('#TOT_1ST_BRANCH_DISPLAY').css('color', '#C10000 !important').css('font-weight', 'bold');
+                            $('#TOT_1ST_BRANCH_DISPLAY').append('การค้นหาล้มเหลวกรุณารีเฟรชหน้าใหม่อีกครั้ง');
+                            $('#TOT_1ST_BRANCH_ID').val("");
+                            $('#TOT_1ST_BRANCH_TEXT').val("");
+                        }
+                        if (data && data[1]) {
+                            // secondary branch
+                            $('#TOT_2ND_BRANCH_DISPLAY').empty();
+                            $('#TOT_2ND_BRANCH_DISPLAY').append(data[1].service_center);
+                            $('#TOT_2ND_BRANCH_ID').val(data[1].location_code);
+                            $('#TOT_2ND_BRANCH_TEXT').val(data[1].service_center);
+                        } else {
+                            $('#TOT_2ND_BRANCH_DISPLAY').empty();
+                            $('#TOT_2ND_BRANCH_DISPLAY').css('color', '#C10000 !important').css('font-weight', 'bold');
+                            $('#TOT_2ND_BRANCH_DISPLAY').append('การค้นหาล้มเหลวกรุณารีเฟรชหน้าใหม่อีกครั้ง');
+                            $('#TOT_2ND_BRANCH_ID').val("");
+                            $('#TOT_2ND_BRANCH_TEXT').val("");
+                        }
+                    },
+                    error: function () {
+                        $('#TOT_1ST_BRANCH_DISPLAY').empty();
+                        $('#TOT_1ST_BRANCH_DISPLAY').css('color', '#C10000 !important').css('font-weight', 'bold');
+                        $('#TOT_1ST_BRANCH_DISPLAY').append('การค้นหาล้มเหลวกรุณารีเฟรชหน้าใหม่อีกครั้ง');
+                        $('#TOT_1ST_BRANCH_ID').val("");
+                        $('#TOT_1ST_BRANCH_TEXT').val("");
+
+                        $('#TOT_2ND_BRANCH_DISPLAY').empty();
+                        $('#TOT_2ND_BRANCH_DISPLAY').css('color', '#C10000 !important').css('font-weight', 'bold');
+                        $('#TOT_2ND_BRANCH_DISPLAY').append('การค้นหาล้มเหลวกรุณารีเฟรชหน้าใหม่อีกครั้ง');
+                        $('#TOT_2ND_BRANCH_ID').val("");
+                        $('#TOT_2ND_BRANCH_TEXT').val("");
+                    }
+                });
+            });
+        </script>
+    }
+    else if (Model.Control == "PWA_BRANCH")
+    {
+        <select class="form-control" id="PWA_BRANCH" name="PWA_BRANCH">
+            <option></option>
+        </select>
+
+        <input type="hidden" id="PWA_BRANCH_ID" name="PWA_BRANCH_ID" />
+        <input type="hidden" id="PWA_BRANCH_TEXT" name="PWA_BRANCH_TEXT" />
+
+        <script type="text/javascript">
+            $(function () {
+                $('#PWA_BRANCH').select2({
+                    ajax: {
+                        url: '@Url.Content("~/Api/v2/PWA/Branches")',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                pid: '@pCode'
+                            }
+                        },
+                        processResults: function (data, params) {
+                            return data;
+                        },
+                        cache: true
+                    },
+                    allowClear: true,
+                    placeholder: 'กรุณาเลือกสาขาการประปา',
+                    width: '100%'
+                });
+
+                $.get('@Url.Content("~/Api/v2/PWA/Branches")?pid=@pCode', function (data) {
+                    $('#PWA_BRANCH').html('');
+                    if (data && data.results) {
+                        if (data.results.length == 1) {
+                            var branch = data.results[0];
+                            $('#PWA_BRANCH').append('<option value="' + branch.id + '">' + branch.text + '</option>').val(branch.id).trigger('change');
+                        }
+                    } else {
+                        //$('#PWA_BRANCH').append('<option value="0000">ไม่แน่ใจ</option>').val('0000').trigger('change');
+                    }
+                });
+
+                $('#PWA_BRANCH').change(function () {
+                    if ($("#PWA_BRANCH").select2('data').length > 0) {
+                        $('#PWA_BRANCH_ID').val($("#PWA_BRANCH").select2('data')[0].id);
+                        $('#PWA_BRANCH_TEXT').val($("#PWA_BRANCH").select2('data')[0].text);
+                    }
+                });
+            });
+        </script>
+    }
+}
+else
+{
+    var returnUrl = Url.Action("Group", "Quiz", new { area = "", id = "utilities" });
+
+    <script type="text/javascript">
+        $(function () {
+            notify('error', 'ไม่มีข้อมูลที่อยู่ที่ติดตั้ง กรุณาทำรายการใหม่อีกครั้ง', true, '@returnUrl');
+        });
+    </script>
+}

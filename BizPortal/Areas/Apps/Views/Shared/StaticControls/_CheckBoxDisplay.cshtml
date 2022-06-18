@@ -1,0 +1,88 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@if (Model.DisplayCheckboxInline)
+{
+    if (Model.CheckboxName.Count() > 3)
+    {
+        <div class="row">
+            @foreach (var item in Model.CheckboxName)
+            {
+                Dictionary<string, object> defaults = ViewBag.Defaults;
+                var dataKey = string.Format("{0}::{1}_{2}", Model.SectionName, Model.DataKey, item);
+                var on = defaults.ContainsKey(dataKey) ? (defaults[dataKey].ToString() == "true") : false;
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="@string.Format("{0}_{1}", Model.ClientID, item)">
+                            <input type="checkbox" 
+                                   name="@string.Format("{0}_{1}", Model.DataKey, item)" 
+                                   id="@string.Format("{0}_{1}", Model.ClientID, item)"
+                                   class="trigger-checkbox"
+                                   data-control-name="@Model.Control"
+                                   data-control-value="@item"
+                                   value="true"
+                                   @(on ? "checked" : "")
+                                   disabled />
+                            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(item, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), item))
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        var cols = Model.CheckboxName.Count();
+        double maxCols = 12;
+        int colLen = (int)Math.Ceiling(maxCols / cols);
+
+        <div class="row">
+            @foreach (var item in Model.CheckboxName)
+            {
+                Dictionary<string, object> defaults = ViewBag.Defaults;
+                var dataKey = string.Format("{0}::{1}_{2}", Model.SectionName, Model.DataKey, item);
+                var on = defaults.ContainsKey(dataKey) ? (defaults[dataKey].ToString() == "true") : false;
+                <div class="col-md-@colLen">
+                    <div class="checkbox">
+                        <label for="@string.Format("{0}_{1}", Model.ClientID, item)">
+                            <input type="checkbox" 
+                                   name="@string.Format("{0}_{1}", Model.DataKey, item)" 
+                                   id="@string.Format("{0}_{1}", Model.ClientID, item)"
+                                   class="trigger-checkbox"
+                                   data-control-name="@Model.Control"
+                                   data-control-value="@item"
+                                   value="true"
+                                   @(on ? "checked" : "")
+                                   disabled />
+                            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(item, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), item))
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+else
+{
+    foreach (var item in Model.CheckboxName)
+    {
+        Dictionary<string, object> defaults = ViewBag.Defaults;
+        var dataKey = string.Format("{0}::{1}_{2}", Model.SectionName, Model.DataKey, item);
+        var on = defaults.ContainsKey(dataKey) ? (defaults[dataKey].ToString() == "true") : false;
+        <div class="checkbox">
+            <label for="@string.Format("{0}_{1}", Model.ClientID, item)">
+                <input type="checkbox"
+                       name="@string.Format("{0}_{1}", Model.DataKey, item)"
+                       class="trigger-checkbox"
+                       data-control-name="@Model.Control"
+                       data-control-value="@item"
+                       id="@string.Format("{0}_{1}", Model.ClientID, item)"
+                       value="true"
+                       @(on ? "checked" : "")
+                       disabled />
+                @Html.Raw(ResourceHelper.GetResourceWordWithDefault(item, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), item))
+            </label>
+        </div>
+    }
+}

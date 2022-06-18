@@ -1,0 +1,74 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-4">
+            <label>คำนำหน้าชื่อ :</label>
+            {{this.DROPDOWN_APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_TITLE_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>ชื่อ :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_FIRSTNAME}}
+        </div>
+        <div class="col-md-4">
+            <label>นามสกุล :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_LASTNAME}}
+        </div>
+        <div class="col-md-6">
+            <label>เลขบัตรประจำตัวประชาชน 13 หลัก :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_ID}}
+        </div>
+        <div class="col-md-6">
+            <label>เลขทะเบียนผู้สอบบัญชีรับอนุญาต :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_AUDITOR_ID}}
+        </div>
+        <div class="col-md-6">
+            <label>ประเภท :</label>
+            {{this.DROPDOWN_APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_TYPE_TEXT}}
+        </div>
+        <div class="col-md-6">
+            <label>ชำระค่าบำรุงสมาชิกถึงวันที่ :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_VAT_DATE}}
+        </div>
+        <br />
+        <div class="col-md-12">
+            <label>รูปแบบปฏิบัติงาน :</label>
+            {{#xif " typeof this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_WORKING_TYPE_OPTION !== 'undefined' " }}
+            {{#xif " this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_WORKING_TYPE_OPTION == 'FULLTIME' " }}
+             เต็มเวลา <br />
+            {{else}}
+             บางเวลา <br />
+            {{/xif}}
+            {{/xif}}
+        </div>
+        <div class="col-md-12">
+            <label>ขอเปลี่ยนแปลงโดย :</label>
+            {{#xif " typeof this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHANGEBY_OPTION !== 'undefined' " }}
+            {{#xif " this.APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHANGEBY_OPTION == 'ADD' " }}
+             เพิ่ม จากรายนามเดิม <br />
+            {{else}}
+             คัดออก จากรายนามเดิม <br />
+            {{/xif}}
+            {{/xif}}
+        </div>
+        <div class="col-md-2 pr5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        <div class="col-md-2 pl5">
+            <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+        </div>
+    </div>
+
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

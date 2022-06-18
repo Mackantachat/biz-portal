@@ -1,0 +1,222 @@
+﻿@using BizPortal;
+@using BizPortal.Utils.Extensions;
+@using BizPortal.Utils;
+@using EGA.Owin.Security.Utils.Extensions;
+@{
+    bool testMode = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["TestMode"].ToString());
+    var name = User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name);
+    if (name.Length >= 2)
+    {
+        name = name.Substring(0, 1);
+    }
+}
+
+    <!DOCTYPE html>
+
+    <html lang="en" class="">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="keywords" content="Biz Portal" />
+        <meta name="description" content="Biz Portal">
+        <meta name="author" content="electronic government agency (public organization) (ega)">
+        <title>@ViewBag.Title</title>
+
+        <script type="text/javascript">
+        @*var CKEDITOR_BASEPATH = '@Url.Content("~/scripts/ckeditor/")';
+
+        var ckeditorConfig = {
+            height: '400px',
+            basePath: '@Url.Content("~/Scripts/ckeditor/")'
+        };*@
+
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            //ga('create', 'UA-19394801-52', {
+            //    'cookieDomain': 'none'
+            //});//'auto');
+
+            //ga('send', 'pageview');
+
+            @if(User.Identity.IsAuthenticated)
+        {
+            @Html.Raw(" ga('send', 'event', 'Online Users', '" + @User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name) + "');");
+        }
+        </script>
+
+        @Styles.Render("~/Bundles/Backend/Theme/Css")
+        @Styles.Render("~/Bundles/Backend/Styles")
+        @Styles.Render("~/Content/SingleForm-frontis/style_print.css")
+        @Scripts.Render("~/Bundles/Backend/Theme/Script/Core")
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <!--[if lt IE 9]>
+        @Scripts.Render("~/Bundles/Backend/Scripts/ltie9")
+        <![endif]-->
+        <style>
+            .select2-container--default .select2-selection--single {
+                border: none;
+            }
+        </style>
+        @RenderSection("PageStyles", required: false)
+    </head>
+    <body>
+        
+
+        @RenderBody()
+                                                
+
+        <!-- loader -->
+        <div id="loading-panel" class="mikepad-panel" style="display:none">
+            <div class="mikepad-loading">
+                <div class="binding"></div>
+                <div class="pad">
+                    <div class="line line1"></div>
+                    <div class="line line2"></div>
+                    <div class="line line3"></div>
+                    <div class="line line4"></div>
+                </div>
+                <div class="text">
+                    กำลังประมวลผล...
+                </div>
+            </div>
+        </div>
+
+        <!-- message Modal -->
+        <div class="modal fade" id="messageModal" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="messageModalTitle"></h4>
+                    </div>
+                    <div id="messageModalBody" class="modal-body">
+                    </div>
+                    <div id="messageModalFooter" class="modal-footer ">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @* fake fields are a workaround for chrome autofill getting the wrong fields. Remark: http://stackoverflow.com/questions/15738259/disabling-chrome-autofill *@
+        <input style="display:none" type="text" name="fakeusernameremembered" />
+        <input style="display:none" type="password" name="fakepasswordremembered" />
+
+        @* workaround for ajax request antiForgery  http://stackoverflow.com/questions/4074199/jquery-ajax-calls-and-the-html-antiforgerytoken *@
+        <form id="__AjaxAntiForgeryForm" action="#" method="post"> @Html.AntiForgeryToken()</form>
+
+
+        @Scripts.Render("~/Bundles/Backend/Scripts/Base")
+
+
+        <script type="text/javascript">
+            var fieldExist = function (data) {
+                
+                if (typeof data === 'string') {
+                    if (data.trim().length > 0) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+            var addAntiForgeryToken = function (data) {
+                data.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
+                return data;
+            };
+
+            $(function () {
+                calert('@BizPortalSetting.ALERT_COOKIE');
+                cmodal('@BizPortalSetting.MODAL_COOKIE');
+                activeMenu("@ViewBag.ActiveMenu");
+            });
+
+            function showLoadingPanel(isShow) {
+                if (isShow) {
+                    $("#loading-panel").show();
+                }
+                else {
+                    $("#loading-panel").hide();
+                }
+            }
+
+            function isNullOrEmpty(item) {
+                if (item == null || item == "" || item == undefined) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function initSelect2Validator() {
+                // select2 jqury validation
+                if (typeof $.validator === "undefined") {
+                    console.error("jquery validator not define");
+                }
+                else {
+                    /* custom jquery validator */
+                    $.validator.setDefaults({
+                        ignore: [],
+                        highlight: function (element, errorClass, validClass) {
+                            if ($(element).attr('select2-input') != undefined) {
+                                delay(function () {
+                                    $('#s2id_' + element.id + " ul.select2-choices").addClass(errorClass).removeClass(validClass); // for multiple select
+                                    $('#s2id_' + element.id).addClass(errorClass).removeClass(validClass); // for normal dropdownlist
+                                    $('#s2id_' + $(element).attr('select2-link')).addClass(errorClass).removeClass(validClass); // for link
+                                }, 100);
+                            }
+                            else {
+                                $(element).addClass(errorClass).removeClass(validClass);
+                            }
+                        },
+                        unhighlight: function (element, errorClass, validClass) {
+                            if ($(element).attr('select2-input') != undefined) {
+                                delay(function () {
+                                    $('#s2id_' + element.id + " ul.select2-choices").removeClass(errorClass).addClass(validClass); // for multiple select
+                                    $('#s2id_' + element.id).removeClass(errorClass).addClass(validClass); // for normal dropdownlist
+                                    $('#s2id_' + $(element).attr('select2-link')).removeClass(errorClass).addClass(validClass);  // for link
+
+                                }, 100);
+                            }
+                            else {
+                                $(element).removeClass(errorClass).addClass(validClass);
+                            }
+                        }
+                    });
+
+                    /* create onchange validation */
+                    $('select[select2-input="true"], input[select2-input="true"], input[date-input="true"]').change(function (e) {
+                        $(this).valid();
+                    });
+                }
+            }
+
+            function resetValidateMessage() {
+                $('.field-validation-error span, .field-validation-valid span').remove();
+            }
+
+        </script>
+        @RenderSection("PageScripts", required: false)
+
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#Status').change(function () {
+                    var val = ($("#Status option:selected").val());
+                    if (val == "APPROVED_WAITING_PAY_FEE") {
+                        $("#Remark").val("กำหนดจ่ายภายในวันที่ 6 ตุลาคม 2560\nผู้ประกอบการชำระค่าธรรมเนียมได้ 2 ช่องทาง\n" +
+                            " 1. ชำระเงินสดที่สำนักงานเขตดุสิต กทม.\n" +
+                            " 2. ชำระเงินผ่าน Bill Payment ธนาคารกรุงไทย\n" +
+                            "ราคาค่าธรรมเนียม " + @ViewBag.Fee +" บาท");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,596 @@
+﻿@using BizPortal.DAL.MongoDB
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@using BizPortal.Utils.Extensions;
+@model BizPortal.ViewModels.SingleForm.SingleFormAppsViewModel[]
+
+@{
+    ViewBag.Title = Resources.PermitSummary.TITLE_CONFIRMATION;
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+    FormSectionGroup[] sectionGroups = ViewBag.SectionGroups;
+    FormSection[] sections = ViewBag.Sections;
+    FormSectionRow[] sectionRows = ViewBag.SectionRows;
+    var appNumber = 1;
+    bool attach = ViewBag.Attach;
+    var trid = ViewBag.trid;
+    var apptotal = ViewBag.AppStepTotal;
+    List<string> allApps = sectionGroups.Select(o => o.SectionGroup).ToList();
+
+    var trackingUrl = Url.ServiceAction("Index", "Track", new { area = "", language = ViewBag.CurrentLang });
+    var finishUrl = Url.ServiceAction("Finish", "SingleForm", new { area = "Apps", language = ViewBag.CurrentLang });
+
+    ViewBag.IsDetailView = false;
+}
+@section PageStyles {
+    <style>
+        .sweet-alert {
+            box-sizing: border-box;
+            max-height: 100% !important;
+            overflow-y: auto !important;
+            padding: 0 17px 17px !important;
+            width: 512px;
+        }
+
+            .sweet-alert:before {
+                content: "";
+                display: block;
+                height: 17px;
+                width: 0;
+            }
+    </style>
+}
+<div class="sw-main sw-theme-circles">
+    <ul class="nav nav-tabs step-anchor">
+        <li class="done"><a>1</a><label>กรอกแบบฟอร์ม</label></li>
+        @if (attach)
+        {
+            <li class="done"><a>2</a><label>อัปโหลดเอกสาร</label></li>
+        }
+        else
+        {
+            <li class="done"><a>2</a><label>อัปโหลดเอกสาร (ข้าม)</label></li>
+        }
+        <li class="active"><a>3</a><label>ยืนยันความถูกต้อง</label></li>
+    </ul>
+</div>
+
+@if (Model.Length > 0)
+{
+    <section class="accept-form" style="background: #FFFFFF">
+        <p class="title">@Resources.PermitSummary.TITLE_CONFIRM_PERMIT_SUMMARY</p>
+        <div class="row">
+            <div class="col-sm-12">
+                @{
+
+                    int totalCostType = 0; // 0=>Fixed, 1=>Range, 2=>StartFrom
+                    decimal totalCost = 0;
+                    decimal totalCost2 = 0;
+                    int totalDays = 0;
+                }
+                @foreach (var app in Model)
+                {
+                    switch (app.OperatingCostType)
+                    {
+                        case "Fixed":
+                            totalCost += app.OperatingCost.Value;
+                            totalCost2 += app.OperatingCost.Value;
+                            break;
+                        case "Range":
+                            totalCost += app.OperatingCost.Value;
+                            totalCost2 += app.OperatingCost2.Value;
+                            if (totalCostType < 1)
+                            {
+                                totalCostType = 1;
+                            }
+                            break;
+                        case "StartAt":
+                            totalCost += app.OperatingCost.Value;
+                            totalCost2 += app.OperatingCost.Value;
+                            if (totalCostType < 2)
+                            {
+                                totalCostType = 2;
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }
+                    totalDays = Math.Max(totalDays, (app.OperatingDays.HasValue ? app.OperatingDays.Value : 0));
+                    <div class="item-list" style="padding-left: 60px; min-height: 80px;">
+                        <!--<div class="logo">
+                            <img class="img-responsive" src="@Url.Action("Get", "File", new { area = "", id = app.LogoFileID })">
+                        </div>-->
+                        <div class="wrap">
+                            <div class="head">
+                                <p class="head">@app.AppName</p>
+                                <!--<p>@app.OrganizationName</p>-->
+                            </div>
+                            <div class="price">
+                                <p class="day">@(app.OperatingDays.GetValueOrDefault(0).ToString("#,##0") != "0" ? app.OperatingDays.GetValueOrDefault(0).ToString("#,##0") : "-") @Resources.PermitSummary.TEXT_DAYS</p>
+                                @*@if (app.OperatingDaysType == "Fixed")
+                                    {
+                                        <span>@(app.OperatingDays.GetValueOrDefault(0).ToString("#,##0") != "0" ? app.OperatingDays.GetValueOrDefault(0).ToString("#,##0") : "-")</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@app.OperatingDays.GetValueOrDefault(0).ToString("#,##0") - @app.OperatingDays2.GetValueOrDefault(0).ToString("#,##0")</span>
+                                    }*@
+                                <p class="num">
+                                    @if (app.OperatingCostType == "Fixed")
+                                    {
+                                        <span>@(app.OperatingCost.GetValueOrDefault(0).ToMoneyFormat() != "0" ? app.OperatingCost.GetValueOrDefault(0).ToMoneyFormat() : "0")</span>
+                                    }
+                                    else if (app.OperatingCostType == "Range")
+                                    {
+                                        <span>@app.OperatingCost.GetValueOrDefault(0).ToMoneyFormat() - @app.OperatingCost2.GetValueOrDefault(0).ToMoneyFormat()</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@Resources.PermitSummary.TEXT_STARTING_AT @app.OperatingCost.GetValueOrDefault(0).ToMoneyFormat()</span>
+                                    }
+                                    @Resources.PermitSummary.TEXT_BAHT
+                                </p>
+                            </div>
+                        </div>
+                        <div class="wrap">
+                            @if (app.ShowRemark && !string.IsNullOrEmpty(app.Remark))
+                            {
+                                <div class="reasons text-warning fs20 reason-app-id-@app.ApplicationID" style="margin-top: 20px">
+                                    @Html.Raw(app.Remark.Replace(Environment.NewLine, "<br />"))
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                <div class="summary">
+                    <div class="price">
+                        <p class="">@Resources.PermitSummary.TITLE_FEE_DESCRIPTION</p>
+                    </div>
+                    <div class="price">
+                        <p class="subject">@Resources.PermitSummary.TEXT_SUMMARY_TOTAL_COST</p>
+                        <p class="num" style="width: 6em; text-align: right;">
+                            @if (totalCostType == 0)
+                            {
+                                <span class="summaryCost">@(totalCost.ToMoneyFormat() != "0" ? totalCost.ToMoneyFormat() : "0")</span>
+                            }
+                            else if (totalCostType == 1)
+                            {
+                                <span class="summaryCost">@totalCost.ToMoneyFormat() - @totalCost2.ToMoneyFormat()</span>
+                            }
+                            else
+                            {
+                                <span class="summaryCost">@Resources.PermitSummary.TEXT_STARTING_AT @totalCost.ToMoneyFormat()</span>
+                            }
+                            @Resources.PermitSummary.TEXT_BAHT
+                        </p>
+                    </div>
+                    <div class="price">
+                        <p class="subject">@Resources.PermitSummary.TEXT_SUMMARY_TOTAL_DAYS</p>
+                        <p class="num" style="width: 6em; text-align: right;"><span class="summaryDays">@(totalDays.ToString() != "0" ? totalDays.ToString() : "-")</span> @Resources.PermitSummary.TEXT_DAYS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/form-helper.js")">
+</script>
+<script type="text/javascript">
+    window.singleForm = {
+        allApps: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(allApps)),
+    }
+</script>
+
+<form id="frmConfirmation" method="post" action="@Url.Content("~/Api/V2/SingleForm/Requests")?language=@ViewBag.CurrentLang">
+    @Html.Partial("~/Areas/Apps/Views/Shared/_StaticFormView.cshtml", Model)
+
+    <div class="row">
+        <div class="col-md-12 form-group text-center mb20">
+            <div class="checkbox">
+                <label class="block text-center">
+                    <input type="checkbox" id="chkSubmit" />
+                    @Resources.Apps_Utility.STRING_BEFOR_SUBMIT_1<a data-toggle="modal" data-target="#termsModal">@Resources.Apps_Utility.STRING_BEFOR_SUBMIT_2</a>@Resources.Apps_Utility.STRING_BEFOR_SUBMIT_3
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12 form-group text-center single-form-footer-btn">
+            @if (!attach)
+            {
+                if (ViewBag.FromDB)
+                {
+                    <a href="@Url.EncodedAction("Index", "SingleForm", new { area = "Apps", trid = trid.ToString(), app = apptotal, fromDB = true })"
+                       class="btn btn-default">@Html.Raw(Resources.Apps_SingleForm.BTN_BACK)</a>
+                }
+                else
+                {
+                    <a href="@Url.EncodedAction("Index", "SingleForm", new { area = "Apps", trid = trid.ToString(), app = apptotal })" class="btn btn-default">@Html.Raw(Resources.Apps_SingleForm.BTN_BACK)</a>
+                }
+            }
+            else
+            {
+                if (ViewBag.FromDB)
+                {
+                    <a href="@Url.EncodedAction("Attachment", "SingleForm", new { area = "Apps", trid = trid.ToString(), fromDB = true })"
+                       class="btn btn-default">@Html.Raw(Resources.Apps_SingleForm.BTN_BACK)</a>
+                }
+                else
+                {
+                    <a href="@Url.EncodedAction("Attachment", "SingleForm", new { area = "Apps", trid = trid.ToString() })" class="btn btn-default">@Html.Raw(Resources.Apps_SingleForm.BTN_BACK)</a>
+                }
+            }
+            <button type="submit" id="btnSubmitConfirmation" class="btn btn-success">@Html.Raw(Resources.Apps_SingleForm.BTN_CONFIRM)</button>
+        </div>
+    </div>
+</form>
+
+<div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="termsModalLabel">@Resources.Apps_SingleForm.APPS_TERM_OF_USE1</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>@Html.Raw(Resources.Apps_SingleForm.APPS_TERMS_AND_CONDITIONS)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnTermsModalAccept">@Resources.Apps_SingleForm.BTN_ACCEPT</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnTermsModalDecline">@Resources.Apps_SingleForm.BTN_DECLINE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageScripts {
+    <script type="text/javascript">
+
+        $("#btnTermsModalAccept").click(function (e) {
+            document.getElementById("chkSubmit").checked = true;
+        });
+
+        $("#btnTermsModalDecline").click(function (e) {
+            document.getElementById("chkSubmit").checked = false;
+        });
+
+
+        var batchID = null;
+        var confirmation = {
+            variables: {
+                confirmed: false,
+                @foreach (var sec in sections.Where(o => o.Type == SectionType.ArrayOfForms))
+                    {
+                        <text>
+                @string.Format("arrObj{0}", sec.Section): { data: [], section: "@sec.Section" },
+                </text>
+                    }
+            },
+            controls: {
+                form: '#frmConfirmation'
+            },
+            functions: {
+                init: function () {
+                    $(confirmation.controls.form + ' button[type=submit]').ladda('bind');
+                    $(confirmation.controls.form).ajaxForm({
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        clearForm: false,
+                        beforeSubmit: function (data, jqform, options) {
+                            // check terms & conditions
+                            var accepted = false;
+                            $.ladda('stopAll');
+
+                            if (!document.getElementById('chkSubmit').checked) {
+                                $("#termsModal").modal('show');
+                                $.ladda('stopAll');
+                                accepted = false;
+                            } else {
+                                accepted = true;
+                            }
+
+                            if (accepted && !confirmation.variables.confirmed) {
+
+                                @if (System.Configuration.ConfigurationManager.AppSettings["EnableComfirmOTP"] == "true" && User.Identity.GetUserType() == UserTypeEnum.Citizen.ToString())
+                                {
+                                    <text>
+                                    showLoader(true);
+                                    $.post('@Url.Content("~/Api/V2/Applications/SendConfirmSMS")', function (res) {
+
+                                        var otp = res.split(",");
+
+                                        swal({
+                                            title: "ยืนยันการส่งคำร้อง",
+                                            text :"ระบบได้ทำการส่งรหัส OTP ทาง SMS ไปที่หมายเลข "+ otp[0] + " กรุณากรอกรหัส OTP ของท่านเพื่อยืนยันการส่งคำร้อง รหัสอ้างอิง (" + otp[2] +" )",
+                                            type: "input",
+                                            confirmButtonColor: "#47a447",
+                                            confirmButtonText: "ยืนยัน",
+                                            cancelButtonText: "ยกเลิก",
+                                            inputPlaceholder: "กรุณากรอกรหัส OTP",
+                                            showCancelButton: true,
+                                            closeOnConfirm: false,
+                                        },
+                                        function(inputValue){
+                                            if (inputValue === false) {
+                                                showLoader(false);
+                                                return false
+                                            };
+  
+                                            if (inputValue === otp[1]) {
+                                                setTimeout(function () {
+                                                    confirmation.variables.confirmed = true;
+                                                    $('.sweet-alert button').prop('disabled', true);
+                                                    $(confirmation.controls.form).submit();
+                                                }, 200);
+                                            }
+                                            else {
+                                                swal.showInputError("กรุณาตรวจสอบรหัส OTP สำหรับยืนยันการทำรายการ");
+                                                return false
+                                            }
+                                        });
+                                    })
+                                     .error(function (res) {
+                                        showLoader(false);
+                                        swal({
+                                            type: 'error',
+                                            title : '',
+                                            text: res.responseJSON.Message
+                                        });
+                                    });
+
+                                    </text>
+                                }
+                                else 
+                                {
+                                    <text>
+                                    swal({
+                                        title: "@Resources.Apps_SingleForm.ALERT_CONFIRM_TITLE",
+                                        text: "@Resources.Apps_SingleForm.ALERT_CONFIRM_DESC",
+                                        type: "info",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#47a447",
+                                        confirmButtonText: "@Resources.Apps_SingleForm.ALERT_CONFIRM_BTN",
+                                        cancelButtonText: "@Resources.Apps_SingleForm.ALERT_CANCEL_BTN",
+                                        closeOnConfirm: false
+                                    },
+                                    function() {
+                                        setTimeout(function () {
+                                            confirmation.variables.confirmed = true;
+                                            $('.sweet-alert button').prop('disabled', true);
+                                            $(confirmation.controls.form).submit();
+                                        }, 200);
+                                    });
+                                    </text>
+                                }
+
+
+                                $.ladda('stopAll');
+                                accepted = false;
+                            }
+
+                            return accepted;
+                        },
+                        customData: function (data, jqform, options) {
+                            var l = $(confirmation.controls.form + ' button[type=submit]').ladda();
+                            l.ladda('start');
+
+                            var data = {
+                                Status: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            };
+                            options.data = JSON.stringify(data);
+                        },
+                        error: function (xhr, status, error, $form) {
+                            var data = xhr.responseJSON;
+                            $.ladda('stopAll');
+                            notify('error', data.Message);
+                        },
+                        success: function (responseText, statusText, xhr, $form) {
+                            var data = xhr.responseJSON;
+                            $.ladda('stopAll');
+                            if (data.Type == 1) {
+                                var $htmlText = $('<div></div>');
+                                var okBtn = true;
+                                var btnCount = 0;
+                                var errCount = 0;
+                                batchID = data.Data.BatchID;
+
+                                // Force Redirect
+                                window.location = '@finishUrl' + '?batchID=' + batchID;
+
+                                @*for (var key in data.ApplicationRequestData) {
+                                    var value = data.ApplicationRequestData[key];
+                                    var $row = $('<div class="row"></div>');
+                                    var $col1 = $('<div class="col-md-6 form-group text-left pl35"></div>');
+                                    var $col2 = $('<div class="col-md-6 form-group"></div>');
+
+                                    $col1.append('<label>• ' + key + '</label>');
+
+                                    if (value.length == 3 && value[0] == "@ResultDataType.Success.ToString()") {
+                                        $col2.append('<label class="text-success">ส่งคำร้องสำเร็จ</label><br/><a href="' + value[2] + '" class="btn btn-info" target="_blank">พิมพ์แบบ</a>');
+                                    } else if (value.length == 2 && value[0] == "@ResultDataType.Success.ToString()") {
+                                        $col2.append('<a href="' + value[1] + '" class="btn btn-warning" target="_blank">กรุณายืนยันคำขอ</a>');
+                                        btnCount++;
+                                    } else if (value.length == 1 && value[0] == "@ResultDataType.Success.ToString()") {
+                                        $col2.append('<label class="text-success">ส่งคำร้องสำเร็จ</label>');
+                                    } else {
+                                        $col2.append('<label class="text-danger">ส่งคำร้องไม่สำเร็จ</label>');
+                                        errCount++;
+                                    }
+
+                                    $row.append($col1);
+                                    $row.append($col2);
+
+                                    $htmlText.append($row);
+                                }
+
+                                swal({
+                                    html: true,
+                                    title: '',
+                                    text: $($htmlText).clone().html(),
+                                    type: errCount > 0 ? 'warning' : 'success'
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location = '@finishUrl' + '?batchID=' + batchID;
+                                    }
+                                });
+
+                                if (btnCount > 0) {
+                                    swal.disableButtons();
+                                    $('.sweet-alert a.btn').click(function () {
+                                        //console.log('click!');
+                                        swal.enableButtons();
+                                    });
+                                }*@
+
+                            } else {
+                                notify('error', data.Message);
+                            }
+                        }
+                    });
+
+                    confirmation.functions.getData();
+                },
+                renderHandlebars: function (obj) {
+                    var source = $("#" + obj.section + "Template").html();
+                    var template = Handlebars.compile(source);
+                    $("#insert_" + obj.section).html(template(obj));
+
+                    // Frontis: Trigger databound event on this arrayOfForm
+                    setTimeout(function () {
+                        // Frontis: Propagate <section>-databound event to let listeners perform their actions once data is loaded.
+                        $(document).trigger(obj.section + '-databound', [obj.section, obj.data]);
+                    }, 500);
+                },
+                getData: function () {
+                    $.get('@Url.Content("~/Api/V2/SingleForm/Draft")', function (data) {
+                        if (data) {
+                            //console.log('Frontis: ', JSON.stringify(data));
+                            for (var i = 0; i < data.SectionData.length; i++) {
+                                var sec = data.SectionData[i];
+                                if (sec.Type == "Form") {
+                                    var sectionForm = $('section[data-section-group-name=' + sec.SectionName + ']')
+                                    if (sectionForm.length > 0) {
+                                        for (var key in sec.FormData) {
+                                            var datavalue = sec.FormData[key];
+                                            //console.log(key)
+                                            if (key.includes("ADDRESS_PROVINCE") || key.includes("ADDRESS_AMPHUR") || key.includes("ADDRESS_TUMBOL") || key.includes("AJAX_DROPDOWN") || key.includes("ADDRESS_EN_PROVINCE") || key.includes("ADDRESS_EN_AMPHUR") || key.includes("ADDRESS_EN_TUMBOL")) {
+                                                if (key.includes("_TEXT")) {
+                                                    sectionForm.find("input[name=" + key + "]").val(datavalue);
+                                                } else {
+                                                    sectionForm.find("select[name=" + key + "]")
+                                                        .prepend("<option value='" + datavalue + "'>" + sec.FormData[key + "_TEXT"] + "</option>")
+                                                        .val(datavalue);
+                                                }
+                                            }
+                                            else if (key.includes("CHECKBOXES")) {
+                                                if (datavalue.constructor == String) {
+                                                    datavalue = JSON.parse(datavalue);
+                                                }
+                                                $.each(datavalue, function (i, e) {
+                                                    sectionForm.find("input[type=checkbox][name=" + key + "][value=" + e + "]").prop('checked', true).trigger('change');
+                                                });
+                                            }
+                                            else if (key.includes("_REPEATER")) {
+                                                if (datavalue.constructor == String) {
+                                                    datavalue = JSON.parse(datavalue);
+                                                }
+
+                                                if (eval('typeof $rpt' + key) !== "undefined") {
+                                                    eval('$rpt' + key).setList(datavalue);
+                                                }
+                                            }
+                                            else {
+                                                if (sectionForm.find("input[type=text][name=" + key + "]").length == 1) { // Text Box
+                                                    sectionForm.find("input[name=" + key + "]").val(datavalue);
+                                                } else if (sectionForm.find("input[type=hidden][name=" + key + "]").length == 1) { // Hidden
+                                                    sectionForm.find("input[name=" + key + "]").val(datavalue).trigger('change');
+                                                } else if (sectionForm.find("input[type=radio][name=" + key + "]").length > 0) { // Radio Button
+                                                    sectionForm.find("input[name=" + key + "][value=" + datavalue + "]").prop('checked', true).trigger('change');
+                                                } else if (sectionForm.find("input[type=checkbox][name=" + key + "]").length == 1 && datavalue == "true") { // Check Box
+                                                    sectionForm.find("input[name=" + key + "]").prop('checked', true).trigger('change');
+                                                } else if ($("select[name=" + key + "]").length == 1) { // Select2
+                                                    sectionForm.find("select[name=" + key + "]").val(datavalue).trigger('change');
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else if (sec.Type == "ArrayOfForms" && sec.ArrayData != null) {
+                                    if (confirmation.variables["arrObj" + sec.SectionName] != null || confirmation.variables["arrObj" + sec.SectionName] != undefined) {
+                                        confirmation.variables["arrObj" + sec.SectionName].data = sec.ArrayData;
+                                        confirmation.functions.renderHandlebars(confirmation.variables["arrObj" + sec.SectionName]);
+                                    }
+                                }
+                            }
+
+                            setTimeout(function () {
+                                // Frontis: Propagate singleform-databound event to let listeners perform their actions once data is loaded.
+                                $(document).trigger('singleform-databound', [data]);
+                            }, 500);
+                        }
+                    });
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            showLoader(true);
+
+            // Register handlebars functions *** IMPORTANT !!! Always call it first ***
+            Handlebars.registerHelper("x", function(expression, options) {
+                var result;
+
+                // you can change the context, or merge it with options.data, options.hash
+                var context = this;
+
+                // yup, i use 'with' here to expose the context's properties as block variables
+                // you don't need to do {{x 'this.age + 2'}}
+                // but you can also do {{x 'age + 2'}}
+                // HOWEVER including an UNINITIALIZED var in a expression will return undefined as the result.
+                with(context) {
+                    result = (function() {
+                        try {
+                            return eval(expression);
+                        } catch (e) {
+                            console.warn('•Expression: {{x \'' + expression + '\'}}\n•JS-Error: ', e, '\n•Context: ', context);
+                        }
+                    }).call(context); // to make eval's lexical this=context
+                }
+                return result;
+            });
+
+            Handlebars.registerHelper("xif", function(expression, options) {
+                return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+            });
+
+            Handlebars.registerHelper("jsonparse", function (str) {
+                return JSON.parse(str);
+            });
+
+            Handlebars.registerHelper("idxinc", function (idx) {
+                return idx + 1;
+            });
+            // End Registering Handlebars functions
+
+            // Normal Javascripts Begin
+            confirmation.functions.init();
+
+            $(window).load(function(){
+                showLoader(false);
+            });
+            $(window).resize(function(){
+                $(".sweet-alert").css("margin-top",-$(".sweet-alert").outerHeight()/2);
+            });
+        });
+
+    </script>
+}

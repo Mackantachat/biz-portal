@@ -1,0 +1,143 @@
+﻿@model Guid
+@using BizPortal.Utils.Helpers
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+
+@{
+    ViewBag.Title = Resources.PermitSummary.TITLE_PERMIT_SUMMARY;
+    UserTypeEnum identityType = ViewBag.IdentityType;
+
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+
+}
+
+@section PageStyles {
+
+    <style>
+        a.finish-button:active, a.finish-button:hover, a.finish-button:focus {
+            color: #FFFFFF;
+        }
+    </style>
+
+
+}
+
+@section breadcrumb{
+    <section class="breadcrumb">
+        <div class="container">
+            <h2>@Resources.PermitSummary.TITLE_PERMIT_SUMMARY</h2>
+            <ul>
+                <li><a href="javascript:void(0)">@Resources.GlobalV2.ONLINE_SERVICES</a></li>
+                <li class="active">@Resources.PermitSummary.TITLE_PERMIT_SUMMARY</li>
+            </ul>
+        </div>
+    </section>
+}
+<section class="banner-form"></section>
+
+<section class="success">
+    <div class="container">
+        @*<h4>ดำเนินการเสร็จสิ้น</h4>*@
+        <div class="biz-table" style="overflow:auto;">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>ลำดับ</th>
+                        <th style="min-width: 170px">สถานะ</th>
+                        <th>รายการ</th>
+                        <th>หมายเหตุ</th>
+                    </tr>
+                    @{ var appIndex = 0; }
+                    @foreach (var req in (ViewBag.AppBatchList as List<ApplicationRequestEntity>))
+                    {
+                        var failedMsg = "การส่งคำขอเกิดข้อผิดพลาด กรุณาส่งคำขออีกครั้งที่ \"ติดตามสถานะ\"";
+                        if (req.Status == ApplicationStatusV2Enum.FAILED && req.AppHookInfo != null)
+                        {
+                            failedMsg = req.AppHookInfo.Message;
+                        }
+
+                        appIndex++;
+                        <tr>
+                            <td class="text-center">@appIndex</td>
+                            @switch (req.Status)
+                            {
+                                case ApplicationStatusV2Enum.INCOMPLETE:
+                                    <td class="">
+                                        <div class="logo-with-text">
+                                            <div class="logo warning">
+                                                <i class="demo-icon-1 icon-hourglass"></i>
+                                            </div>
+                                            <text>ดำเนินการต่อ</text>
+                                        </div>
+                                    </td>
+                                    <td>@req.ApplicationName</td>
+                                    <td>
+                                        @if (req.ApplicationID == 7 && req.IdentityType == UserTypeEnum.Citizen)
+                                        {
+                                            <a href="@req.Data["TOT_RESPONSE_DATA"].Data["RESULT_URL"]" target="_blank" class="button primary">@Resources.Tracking.BTN_CONFIRM_REQUEST</a>
+                                        }
+                                        else
+                                        {
+                                            <text>กรุณากดดำเนินการต่อในหน้าติดตามสถานะ</text>
+                                        }
+                                    </td>
+                                    break;
+                                case ApplicationStatusV2Enum.FAILED:
+                                    <td>
+                                        <div class="logo-with-text">
+                                            <div class="logo error">
+                                                <i class="demo-icon icon-wrong"></i>
+                                            </div>
+                                            ส่งคำร้องไม่สำเร็จ
+                                        </div>
+                                    </td>
+                                    <td>@req.ApplicationName</td>
+                                    <td>@failedMsg</td>
+                                    break;
+                                default:
+                                    <td class="">
+                                        <div class="logo-with-text">
+                                            <div class="logo success">
+                                                <i class="demo-icon icon-right"></i>
+                                            </div>
+                                            <text>ส่งคำร้องสำเร็จ</text>
+                                        </div>
+                                    </td>
+                                    <td>@req.ApplicationName</td>
+                                    <td>
+                                        @if (req.ApplicationID == 9)
+                                        {
+                                            <a href="@string.Format(" {0}{1}", System.Configuration.ConfigurationManager.AppSettings["VAT_PRINT_PP01"], IdentityID)" target="_blank" class="button primary">พิมพ์แบบ</a>
+                                        }
+                                    </td>
+                                    break;
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <p class="head">ขอบคุณที่ใช้บริการผ่าน Biz Portal</p>
+        @if (ViewBag.Email != null)
+        {
+            <p>ระบบได้ส่งหลักฐานการยื่นคำขอสำหรับคำขอที่ดำเนินการเสร็จสิ้นผ่านระบบไปยังอีเมล:</p>
+            <p><span class="link">@ViewBag.Email</span> ของคุณแล้ว</p>
+        }
+        else
+        {
+            <p>กรุณาพิมพ์ใบรับคำขอเพื่อเก็บไว้เป็นหลักฐานในการยื่นคำขอของคุณ</p>
+        }
+        <br />
+        <div class="group-button">
+            <a href="@Url.BizAction("Index", "Home", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})" class="button-outline primary"
+               style="height: 38px;">กลับไปหน้าแรก</a>
+            <a href="@Url.ServiceAction("Dashboard", "Track", new { area = "", language = ViewBag.CurrentLang })"
+               class="button primary finish-button"
+               style="height: 38px;">ติดตามสถานะ</a>
+            <a href="@Url.ServiceAction("FinishNote", "SingleForm", new { area = "Apps", language = ViewBag.CurrentLang, @batchID=Model })"
+               target="_blank" class="button primary finish-button"
+               style="height: 38px;"><i class="fa fa-print"></i>พิมพ์ใบรับคำขอ</a>
+
+        </div>
+    </div>
+</section>

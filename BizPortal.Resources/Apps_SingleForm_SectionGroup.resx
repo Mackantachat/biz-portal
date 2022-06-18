@@ -1,0 +1,825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_BUSINESS_BAD_HEALTH_DRINK_AND_FOOD" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: อาหาร/เครื่องดื่ม</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_GENERAL" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: ทั่วไป</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: บริการ</value>
+  </data>
+  <data name="APP_Danger_Alcohol" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: สุรา เบียร์ ไวน์ น้ำส้มสายชู หรือเครื่องดื่มแอลกอฮอล์อื่นๆ</value>
+  </data>
+  <data name="APP_Danger_Bread" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: ขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ ขนมอบอื่น ๆ</value>
+  </data>
+  <data name="APP_Danger_Butter" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: ผลิตภัณฑ์จากเนย เนยเทียม</value>
+  </data>
+  <data name="APP_Danger_CarbonateDrink" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: น้ำอัดลม น้ำหวานบรรจุกระป๋องฯ</value>
+  </data>
+  <data name="APP_Danger_Coffee" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กาแฟ</value>
+  </data>
+  <data name="APP_Danger_CookedFood" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: อาหารจากพืชหรือสัตว์ที่ปรุงโดยวิธีต่างๆ</value>
+  </data>
+  <data name="APP_Danger_CornSyrup" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: แบะแซ (น้ำเชื่อมข้าวโพด)</value>
+  </data>
+  <data name="APP_Danger_FermentedFruit" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: อาหารหมักดองจากผัก ผลไม้</value>
+  </data>
+  <data name="APP_Danger_FermentedMeat" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: อาหารหมักดองจากสัตว์</value>
+  </data>
+  <data name="APP_Danger_Ice" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: น้ำแข็ง</value>
+  </data>
+  <data name="APP_Danger_IceCream" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: ไอศกรีม</value>
+  </data>
+  <data name="APP_Danger_MeatBall" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: ลูกชิ้น</value>
+  </data>
+  <data name="APP_Danger_Milk" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: น้ำนม หรือผลิตภัณฑ์จากน้ำนมสัตว์</value>
+  </data>
+  <data name="APP_Danger_Noodle" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: เส้นหมี่ วุ้นเส้น เต้าฮวย เต้าหู้ เกี้ยมอี๋ เนื้อสัตว์เทียม ฯลฯ</value>
+  </data>
+  <data name="APP_Danger_PASTE" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: น้ำพริก น้ำจิ้มชนิดต่างๆ</value>
+  </data>
+  <data name="APP_Danger_SeasoningPowder" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: ผงชูรส หรือสารปรุงแต่งอาหาร</value>
+  </data>
+  <data name="APP_Danger_Spagetthi" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: บะหมี่ มักกะโรนี สปาเก๊ตตี้ พาสตา</value>
+  </data>
+  <data name="APP_Danger_Sugar" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: น้ำตาล น้ำเชื่อม</value>
+  </data>
+  <data name="APP_Danger_Tea" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: ใบชาแห้ง ชาผง หรือเครื่องดื่มชนิดผงอื่น ๆ</value>
+  </data>
+  <data name="APP_Danger_Water" xml:space="preserve">
+    <value>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: น้ำกลั่น น้ำบริโภค น้ำดื่มจากเครื่องจําหน่ายอัตโนมัติ </value>
+  </data>
+  <data name="APP_DIRECT_SELL" xml:space="preserve">
+    <value>ข้อมูลลักษณะการขายตรง</value>
+  </data>
+  <data name="APP_SELL_ALCOHOL" xml:space="preserve">
+    <value>ข้อมูลการจำหน่ายสุรา</value>
+  </data>
+  <data name="APP_SELL_FOOD" xml:space="preserve">
+    <value>ข้อมูลการจำหน่ายหรือสะสมอาหาร</value>
+  </data>
+  <data name="APP_SELL_PRODUCT_IN_PUBLIC" xml:space="preserve">
+    <value>ขอใบอนุญาตจำหน่ายสินค้าในที่หรือทางสาธารณะ</value>
+  </data>
+  <data name="APP_SELL_TOBACCO" xml:space="preserve">
+    <value>ข้อมูลสินค้ายาเส้น ยาสูบ</value>
+  </data>
+  <data name="INFORMATION" xml:space="preserve">
+    <value>ข้อมูลทั่วไป</value>
+  </data>
+  <data name="APP_DIRECT_MARKETING" xml:space="preserve">
+    <value>ข้อมูลลักษณะการตลาดแบบตรง</value>
+  </data>
+  <data name="APP_SELL_ANIMAL" xml:space="preserve">
+    <value>ข้อมูลสินค้าสัตว์</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_FOOD" xml:space="preserve">
+    <value>ข้อมูลสินค้าอาหารสัตว์ควบคุมเฉพาะ</value>
+  </data>
+  <data name="APP_SELL_CARCASS" xml:space="preserve">
+    <value>ข้อมูลสินค้าซากสัตว์</value>
+  </data>
+  <data name="APP_SSO" xml:space="preserve">
+    <value>ข้อมูลนายจ้าง-ลูกจ้าง</value>
+  </data>
+  <data name="APP_VAT" xml:space="preserve">
+    <value>ภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="APP_MEA" xml:space="preserve">
+    <value>แบบฟอร์มขอใช้ไฟฟ้า</value>
+  </data>
+  <data name="APP_MWA" xml:space="preserve">
+    <value>แบบฟอร์มขอใช้น้ำประปา</value>
+  </data>
+  <data name="APP_PEA" xml:space="preserve">
+    <value>แบบฟอร์มขอใช้ไฟฟ้า (ภูมิภาค)</value>
+  </data>
+  <data name="APP_PWA" xml:space="preserve">
+    <value>แบบฟอร์มขอใช้น้ำประปา (ภูมิภาค)</value>
+  </data>
+  <data name="APP_TOT" xml:space="preserve">
+    <value>ขอใช้บริการโทรศัพท์พื้นฐาน และอินเทอร์เน็ต</value>
+  </data>
+  <data name="APP_DANGER_FOOD1" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเนย เนยกระเทียม</value>
+  </data>
+  <data name="APP_DANGER_FOOD10" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ</value>
+  </data>
+  <data name="APP_DANGER_FOOD11" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD12" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD13" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุน้ำตาล</value>
+  </data>
+  <data name="APP_DANGER_FOOD14" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผลิตภัณฑ์จากน้ำนมวัว</value>
+  </data>
+  <data name="APP_DANGER_FOOD15" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู</value>
+  </data>
+  <data name="APP_DANGER_FOOD16" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การคั่วกาแฟ</value>
+  </data>
+  <data name="APP_DANGER_FOOD17" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตลูกชิ้นด้วยเครื่องจักร</value>
+  </data>
+  <data name="APP_DANGER_FOOD18" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผงชูรส</value>
+  </data>
+  <data name="APP_DANGER_FOOD19" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำกลั่น น้ำบริโภค</value>
+  </data>
+  <data name="APP_DANGER_FOOD2" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD20" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD21" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ</value>
+  </data>
+  <data name="APP_DANGER_FOOD22" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD23" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="APP_DANGER_FOOD24" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการห้องเย็น แช่แข็งอาหาร</value>
+  </data>
+  <data name="APP_DANGER_FOOD25" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD26" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป</value>
+  </data>
+  <data name="APP_DANGER_FOOD3" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD4" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD5" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD6" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD7" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋</value>
+  </data>
+  <data name="APP_DANGER_FOOD8" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตแบะแซ</value>
+  </data>
+  <data name="APP_DANGER_FOOD9" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_1" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเนย เนยกระเทียม</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_10" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_11" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_12" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_13" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุน้ำตาล</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_14" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผลิตภัณฑ์จากน้ำนมวัว</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_15" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_16" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การคั่วกาแฟ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_17" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตลูกชิ้นด้วยเครื่องจักร</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_18" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผงชูรส</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_19" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำกลั่น น้ำบริโภค</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_2" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_20" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_21" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_22" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_23" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_24" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการห้องเย็น แช่แข็งอาหาร</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_25" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_26" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_3" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_4" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_5" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_6" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_7" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_8" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตแบะแซ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_RENEW_9" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_1" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเนย เนยกระเทียม</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_10" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_11" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_12" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_13" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุน้ำตาล</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_14" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผลิตภัณฑ์จากน้ำนมวัว</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_15" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_16" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การคั่วกาแฟ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_17" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตลูกชิ้นด้วยเครื่องจักร</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_18" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผงชูรส</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_19" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำกลั่น น้ำบริโภค</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_2" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_20" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_21" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_22" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_23" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_24" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการห้องเย็น แช่แข็งอาหาร</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_25" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_26" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_3" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_4" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_5" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_6" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_7" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_8" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตแบะแซ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_EDIT_9" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_1" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเนย เนยกระเทียม</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_10" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_11" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_12" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_13" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุน้ำตาล</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_14" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผลิตภัณฑ์จากน้ำนมวัว</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_15" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_16" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การคั่วกาแฟ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_17" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตลูกชิ้นด้วยเครื่องจักร</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_18" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผงชูรส</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_19" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำกลั่น น้ำบริโภค</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_2" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_20" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_21" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_22" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_23" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_24" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการห้องเย็น แช่แข็งอาหาร</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_25" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_26" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_3" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_4" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_5" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_6" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_7" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_8" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตแบะแซ</value>
+  </data>
+  <data name="APP_DANGER_FOOD_CANCEL_9" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_CONSTRUCTION1" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_CONSTRUCTION_RENEW_1" xml:space="preserve">
+    <value>ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_CONSTRUCTION_EDIT_1" xml:space="preserve">
+    <value>แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_CONSTRUCTION_CANCEL_1" xml:space="preserve">
+    <value>ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_OTHER1" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_OTHER_RENEW_1" xml:space="preserve">
+    <value>ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_OTHER_EDIT_1" xml:space="preserve">
+    <value>แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_OTHER_CANCEL_1" xml:space="preserve">
+    <value>ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_AUTOMOTIVE1" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_AUTOMOTIVE_RENEW_1" xml:space="preserve">
+    <value>ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_AUTOMOTIVE_EDIT_1" xml:space="preserve">
+    <value>แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_AUTOMOTIVE_CANCEL_1" xml:space="preserve">
+    <value>ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_PETROLEUM1" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_PETROLEUM_RENEW_1" xml:space="preserve">
+    <value>ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_PETROLEUM_EDIT_1" xml:space="preserve">
+    <value>แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_PETROLEUM_CANCEL_1" xml:space="preserve">
+    <value>ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_RESTAURANT1" xml:space="preserve">
+    <value>ข้อมูลประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_RESTAURANT_RENEW_1" xml:space="preserve">
+    <value>ต่ออายุข้อมูลประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_RESTAURANT_EDIT_1" xml:space="preserve">
+    <value>แก้ไขข้อมูลประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_RESTAURANT_CANCEL_1" xml:space="preserve">
+    <value>ยกเลิกข้อมูลประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_HOTEL1" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_HOTEL_RENEW_1" xml:space="preserve">
+    <value>ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_HOTEL_EDIT_1" xml:space="preserve">
+    <value>แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_HOTEL_CANCEL_1" xml:space="preserve">
+    <value>ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_FITNESS1" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการสถานที่ออกกำลังกาย</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_FITNESS_RENEW_1" xml:space="preserve">
+    <value>ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการสถานที่ออกกำลังกาย</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_FITNESS_EDIT_1" xml:space="preserve">
+    <value>แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการสถานที่ออกกำลังกาย</value>
+  </data>
+  <data name="APP_BUSINESS_BAD_HEALTH_SERVICE_FITNESS_CANCEL_1" xml:space="preserve">
+    <value>ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการสถานที่ออกกำลังกาย</value>
+  </data>
+  <data name="APP_VAT_AGREEMENT" xml:space="preserve">
+    <value>เงื่อนไขก่อนยื่นคำขอ</value>
+  </data>
+  <data name="APP_VAT_CONFIRMATION" xml:space="preserve">
+    <value>ข้อตกลงการยื่นจดทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="APP_DIRECT_MARKETING_EDIT" xml:space="preserve">
+    <value>ข้อมูลลักษณะการตลาดแบบตรง (แก้ไข)</value>
+  </data>
+  <data name="APP_DIRECT_SELL_EDIT" xml:space="preserve">
+    <value>ข้อมูลลักษณะการขายตรง (แก้ไข)</value>
+  </data>
+  <data name="APP_SELL_CARD" xml:space="preserve">
+    <value>ขออนุญาตขายไพ่</value>
+  </data>
+  <data name="APP_COMMERCIAL" xml:space="preserve">
+    <value>จดทะเบียนพาณิชย์</value>
+  </data>
+  <data name="APP_BUILDING" xml:space="preserve">
+    <value>ขออนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร</value>
+  </data>
+  <data name="APP_TAX" xml:space="preserve">
+    <value>ภาษีป้าย</value>
+  </data>
+  <data name="APP_HOTEL" xml:space="preserve">
+    <value>ขออนุญาตประกอบธุรกิจโรงแรม</value>
+  </data>
+  <data name="APP_RADIO" xml:space="preserve">
+    <value>ข้อมูลกิจการเกี่ยวกับเครื่องวิทยุคมนาคม</value>
+  </data>
+  <data name="APP_ANIMAL_MED" xml:space="preserve">
+    <value>การขอใบอนุญาตให้ตั้งสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE" xml:space="preserve">
+    <value>การขอใบอนุญาตให้เป็นผู้ดำเนินการสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="APP_ANIMAL_BUILD" xml:space="preserve">
+    <value>การขอหนังสืออนุมัติแผนการจัดตั้งสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="APP_HEALTH" xml:space="preserve">
+    <value>ข้อมูลการขอใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ</value>
+  </data>
+  <data name="APP_SELL_FOOD_EDIT" xml:space="preserve">
+    <value>ข้อมูลการจำหน่ายหรือสะสมอาหาร</value>
+  </data>
+  <data name="APP_KARAOKE" xml:space="preserve">
+    <value>การขอใบอนุญาตประกอบกิจการร้านวีดิทัศน์ (คาราโอเกะ)</value>
+  </data>
+  <data name="APP_MOVIE" xml:space="preserve">
+    <value>การขอใบอนุญาตประกอบกิจการให้เช่า แลกเปลี่ยน หรือจำหน่ายภาพยนตร์ และวีดิทัศน์</value>
+  </data>
+  <data name="APP_HOTEL_RENEW" xml:space="preserve">
+    <value>ข้อมูลต่ออายุใบอนุญาตประกอบธุรกิจโรงแรม</value>
+  </data>
+  <data name="APP_SELL_FOOD_RENEW_LT" xml:space="preserve">
+    <value>ข้อมูลการขอรับชำระค่าธรรมเนียมหนังสือรับรองการแจ้งจัดตั้งสถานที่จำหน่ายหรือสะสมอาหาร</value>
+  </data>
+  <data name="APP_SELL_FOOD_RENEW" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุการจำหน่ายหรือสะสมอาหาร</value>
+  </data>
+  <data name="APP_SELL_FOOD_CANCEL" xml:space="preserve">
+    <value>ข้อมูลการบอกเลิกการจำหน่ายหรือสะสมอาหาร</value>
+  </data>
+  <data name="APP_RADIO_RENEW" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุกิจการเกี่ยวกับเครื่องวิทยุคมนาคม</value>
+  </data>
+  <data name="APP_ANIMAL_BUILD_RENEW" xml:space="preserve">
+    <value>ขอต่ออายุหนังสืออนุมัติแผนการจัดตั้งสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_RENEW" xml:space="preserve">
+    <value>การขอต่ออายุใบผู้ดำเนินการสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="APP_ANIMAL_MED_RENEW" xml:space="preserve">
+    <value>การขอต่ออายุใบจัดตั้งสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="APP_DIRECT_MARKETING_CANCEL" xml:space="preserve">
+    <value>ข้อมูลลักษณะการตลาดแบบตรง(ยกเลิก)</value>
+  </data>
+  <data name="APP_DIRECT_SELL_CANCEL" xml:space="preserve">
+    <value>ข้อมูลลักษณะการขายตรง(ยกเลิก)</value>
+  </data>
+  <data name="APP_SELL_PRODUCT_IN_PUBLIC_CANCEL" xml:space="preserve">
+    <value>ขอยกเลิกใบอนุญาตจำหน่ายสินค้าในที่หรือทางสาธารณะ</value>
+  </data>
+  <data name="APP_SELL_PRODUCT_IN_PUBLIC_EDIT" xml:space="preserve">
+    <value>ขอแก้ไขใบอนุญาตจำหน่ายสินค้าในที่หรือทางสาธารณะ</value>
+  </data>
+  <data name="APP_SELL_PRODUCT_IN_PUBLIC_RENEW" xml:space="preserve">
+    <value>ขอต่ออายุใบอนุญาตจำหน่ายสินค้าในที่หรือทางสาธารณะ</value>
+  </data>
+  <data name="APP_BUILDING_G1" xml:space="preserve">
+    <value>ขออนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร</value>
+  </data>
+  <data name="APP_FRT_NEW_001" xml:space="preserve">
+    <value>ข้อมูลการประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย</value>
+  </data>
+  <data name="APP_FRT_RENEW_001" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย</value>
+  </data>
+  <data name="APP_FRT_EDIT_001" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย</value>
+  </data>
+  <data name="APP_FRT_CANCEL_001" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตให้ประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย</value>
+  </data>
+  <data name="Test99" xml:space="preserve">
+    <value>99</value>
+  </data>
+  <data name="APP_CHECK_COMMITEE" xml:space="preserve">
+    <value>ตรวจสอบข้อมูลการจดทะเบียนภาษีมูลค่าเพิ่มของผู้ประกอบการ</value>
+  </data>
+  <data name="APP_SOFTWARE_HOUSE" xml:space="preserve">
+    <value>ข้อมูลการยื่นคำขอมีเลขประจำตัวซอฟต์แวร์เฮ้าส์​</value>
+  </data>
+  <data name="APP_SOFTWARE_HOUSE_RENEW" xml:space="preserve">
+    <value>ข้อมูลการแจ้งข้อมูลการจำหน่ายซอฟต์แวร์ตามมาตราฐานซอฟต์แวร์ของกรมสรรพากร</value>
+  </data>
+  <data name="APP_SOFTWARE_HOUSE_EDIT" xml:space="preserve">
+    <value>ข้อมูลแก้ไขคำขอมีเลขประจำตัวซอฟต์แวร์เฮ้าส์</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL" xml:space="preserve">
+    <value>ข้อมูลการแจ้งเลิกประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT" xml:space="preserve">
+    <value>ข้อมูลแก้ไขการแจ้งประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW" xml:space="preserve">
+    <value>ข้อมูลการแจ้งประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_SEARCH" xml:space="preserve">
+    <value>ค้นหาข้อมูล</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_EDIT" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขการประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า​</value>
+  </data>
+  <data name="APP_SECURITIES_BUSINESS_CANCEL" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกการประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_NEW" xml:space="preserve">
+    <value>ข้อมูลการแจ้งการประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_NEW_13" xml:space="preserve">
+    <value>ข้อมูลหนังสือผลการรับฟังความคิดเห็นของประชาชนเกี่ยวกับโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_REQUEST" xml:space="preserve">
+    <value>มีความประสงค์จะ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_NOTIFY_JURISTICT_SECTION" xml:space="preserve">
+    <value>การแก้ไขใบแจ้งเริ่มประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_AUTHORIZE_SECTION" xml:space="preserve">
+    <value>มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_REQUEST_SECTION" xml:space="preserve">
+    <value>บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PLANT_LOCATION_SECTION" xml:space="preserve">
+    <value>สถานที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_HEALTH_CANCEL_SPECIFICALLY" xml:space="preserve">
+    <value>ข้อมูลการยกเลิกใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ : ประเภทกิจการ สปา</value>
+  </data>
+  <data name="APP_HEALTH_RENEW_SPECIFICALLY" xml:space="preserve">
+    <value>ข้อมูลการต่ออายุใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ : ประเภทกิจการ สปา</value>
+  </data>
+  <data name="APP_HEALTH_RENEW" xml:space="preserve">
+    <value>ค้นหาข้อมูล</value>
+  </data>
+  <data name="APP_HEALTH_EDIT_SPECIFICALLY" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ : ประเภทกิจการ สปา</value>
+  </data>
+  <data name="COMMITTEE_VAT_CHECK" xml:space="preserve">
+    <value>ตรวจสอบข้อมูลการจดทะเบียนภาษีมูลค่าเพิ่มของผู้ประกอบการ</value>
+  </data>
+  <data name="CONSENT" xml:space="preserve">
+    <value>ยืนยันการยินยอมให้เปิดเผยข้อมูล</value>
+  </data>
+  <data name="APP_BUILDING_R6" xml:space="preserve">
+    <value>ขอใบรับรองการก่อสร้าง ดัดแปลง หรือเคลื่อนย้ายอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_R6_SEARCH" xml:space="preserve">
+    <value>ค้นหาใบอนุญาต (อ.1) ที่ต้องการขอใบรับรอง (ข.6)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตการประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตดำเนินการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>
+</root>

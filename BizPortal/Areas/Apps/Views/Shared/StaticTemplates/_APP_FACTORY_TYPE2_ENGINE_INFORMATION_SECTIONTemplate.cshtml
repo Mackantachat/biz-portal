@@ -1,0 +1,108 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_FACTORY_TYPE2_ENGINE_INFORMATION_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        <div class="row">
+
+            <div class="col-md-2">
+                <label>ลำดับ :</label>
+                {{ this.ARR_IDX }}
+            </div>
+
+            <div class="col-md-5">
+                <label>ชื่อเครื่องจักร :</label>
+                {{ this.APP_FACTORY_TYPE2_ENGINE_NAME_MODAL }}
+            </div>
+
+            <div class="col-md-5">
+                <label>ประเทศ :</label>
+                {{ this.DROPDOWN_APP_FACTORY_TYPE2_ENGINE_COUNTY_LIST_MODAL_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-2">
+                <label>ปี :</label>
+                {{ this.APP_FACTORY_TYPE2_ENGINE_YEAR_MODAL }}
+            </div>
+
+            <div class="col-md-5">
+                <label>ต้นกำลัง :</label>
+                {{ this.APP_FACTORY_TYPE2_ENGINE_POWER_MODAL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label>แรงม้า :</label>
+                {{ this.APP_FACTORY_TYPE2_HP_MODAL }}
+            </div>
+
+            <div class="col-md-4">
+                <label>แรงม้าเปรียบเทียบ</label>
+                {{ this.APP_FACTORY_TYPE2_HP_COMPARE_MODAL }}
+            </div>
+
+            <div class="col-md-4">
+                <label>จำนวนเครื่องจักร :</label>
+                {{ this.APP_FACTORY_TYPE2_NUMBER_OF_ENGINE_MODAL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-5">
+                <label>แรงม้ารวม :</label>
+                {{ this.APP_FACTORY_TYPE2_TOTAL_HP_COMPARE_MODAL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-5">
+                <label>เชื้อเพลิง :</label>
+                {{ this.APP_FACTORY_TYPE2_FUEL_MODAL }}
+            </div>
+
+            <div class="col-md-5">
+                <label>จำนวนเชื้อเพลิง</label>
+                {{ this.APP_FACTORY_TYPE2_NUMBER_OF_FUEL_MODAL }}
+            </div>
+
+            <div class="col-md-2">
+                <label>หน่วย :</label>
+                {{ this.APP_FACTORY_TYPE2_FUEL_UNIT_MODAL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <label>หมายเหตุ :</label>
+                {{ this.APP_FACTORY_TYPE2_ENGINE_REMARK_MODAL }}
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+           ไม่พบข้อมูล
+        </div>
+    </div>
+    {{/xif}}
+</script>

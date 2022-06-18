@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</value>
+    <comment>SectionGroup: APP_ELECTRONIC_COMMERCIAL_EDIT</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลชนิดแห่งพาณิชย์กิจ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INFO_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INFO_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลชนิดแห่งพาณิชย์กิจ</value>
+    <comment>FieldID: F37_03_01</comment>
+  </data>
+  <data name="EDIT_INFO_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลชนิดแห่งพาณิชย์กิจ</value>
+    <comment>FieldID: F37_03_01</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลชนิดแห่งพาณิชย์กิจ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_TYPE" xml:space="preserve">
+    <value>ชนิดแห่งพาณิชยกิจ</value>
+    <comment>FieldID: F37_03_02</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE" xml:space="preserve">
+    <value>คุณต้องการดำเนินการเกี่ยวกับการจด/แก้ไข/เลิกพาณิชย์ประเภทใด</value>
+    <comment>FieldID: F37_03_03</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_NORMAL" xml:space="preserve">
+    <value>พาณิชย์</value>
+    <comment>FieldID: F37_03_03</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_ELECTRONIC" xml:space="preserve">
+    <value>พาณิชย์อิเล็กทรอนิกส์</value>
+    <comment>FieldID: F37_03_03</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INVESTMENT_SECTION" xml:space="preserve">
+    <value>ข้อมูลจำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INVESTMENT_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INVESTMENT_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลจำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ</value>
+    <comment>FieldID: F37_03_04</comment>
+  </data>
+  <data name="EDIT_INVESTMENT_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลจำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ</value>
+    <comment>FieldID: F37_03_04</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INVESTMENT_SECTION" xml:space="preserve">
+    <value>ข้อมูลจำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_INVESTMENT_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INVESTMENT_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ (บาท)</value>
+    <comment>FieldID: F37_03_05</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INVESTMENT_SECTION_AMOUNT_TEXT" xml:space="preserve">
+    <value>จำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ (ตัวเขียน) (บาท)</value>
+    <comment>FieldID: F37_03_06</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_MANAGER_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้จัดการ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_MANAGER_SECTION_INFO" xml:space="preserve">
+    <value>กรณีบุคคลธรรมดา กรอกข้อมูลตนเอง
+กรณีห้างหุ้นส่วน คณะบุคคล และกิจการร่วมค้า กรอกข้อมูลของผู้จัดการหุ้นส่วน
+กรณีนิติบุคคล กรอกข้อมูลของกรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล
+หรือทั้งสามกรณีสามารถกรอกข้อมูลของผู้ที่ได้รับการแต่งตั้งให้เป็นผู้จัดการ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_MANAGER_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลผู้จัดการ</value>
+    <comment>FieldID: F37_03_07</comment>
+  </data>
+  <data name="EDIT_MANAGER_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลผู้จัดการ</value>
+    <comment>FieldID: F37_03_07</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้จัดการ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลผู้จัดการ ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลผู้จัดการ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลผู้จัดการ"&lt;/div&gt;</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้จัดการ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้จัดการ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้า</value>
+    <comment>FieldID: F37_03_08</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F37_03_09</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F37_03_10</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_ID_CARD" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F37_03_11</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_BIRTH_DATE" xml:space="preserve">
+    <value>วัน เดือน ปี เกิด</value>
+    <comment>FieldID: F37_03_12</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+    <comment>FieldID: F37_03_13</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F37_03_14</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_START_IN_THAILAND_SECTION" xml:space="preserve">
+    <value>ข้อมูลวันที่เริ่มต้นประกอบพาณิชยกิจในประเทศไทย</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_START_IN_THAILAND_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_START_IN_THAILAND_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลวันที่เริ่มต้นประกอบพาณิชยกิจในประเทศไทย</value>
+    <comment>FieldID: F37_03_15</comment>
+  </data>
+  <data name="EDIT_START_IN_THAILAND_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลวันที่เริ่มต้นประกอบพาณิชยกิจในประเทศไทย</value>
+    <comment>FieldID: F37_03_15</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_START_IN_THAILAND_SECTION" xml:space="preserve">
+    <value>ข้อมูลวันที่เริ่มต้นประกอบพาณิชยกิจในประเทศไทย</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_START_IN_THAILAND_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_START_IN_THAILAND_SECTION_DATE" xml:space="preserve">
+    <value>วันที่เริ่มต้นประกอบพาณิชยกิจในประเทศไทย</value>
+    <comment>FieldID: F37_03_16</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_START_IN_THAILAND_SECTION_DATE_INFO" xml:space="preserve">
+    <value>ต้องแจ้งจดใบทะเบียนพาณิชย์ หรือใบทะเบียนพาณิชย์อิเล็กทรอนิกส์ ไม่เกิน 30 วันหลังจากเปิดกิจการ</value>
+    <comment>FieldID: F37_03_16</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_REQUEST_SECTION" xml:space="preserve">
+    <value>ข้อมูลวันที่ขอจดทะเบียนพาณิชย์</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_REQUEST_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_REQUEST_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลวันที่จดทะเบียนพาณิชย์</value>
+    <comment>FieldID: F37_03_17</comment>
+  </data>
+  <data name="EDIT_REQUEST_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลวันที่จดทะเบียนพาณิชย์</value>
+    <comment>FieldID: F37_03_17</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_REQUEST_SECTION" xml:space="preserve">
+    <value>ข้อมูลวันที่ขอจดทะเบียนพาณิชย์</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_REQUEST_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_REQUEST_SECTION_DATE" xml:space="preserve">
+    <value>วันที่ขอจดทะเบียนพาณิชย์</value>
+    <comment>FieldID: F37_03_18</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_TRANSFER_SECTION" xml:space="preserve">
+    <value>ข้อมูลการรับโอนพาณิชยกิจทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_TRANSFER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_TRANSFER_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลการรับโอนพาณิชยกิจทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</value>
+    <comment>FieldID: F37_03_19</comment>
+  </data>
+  <data name="EDIT_TRANSFER_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลการรับโอนพาณิชยกิจทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</value>
+    <comment>FieldID: F37_03_19</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้โอน</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_COMMERCIAL_NUMBER" xml:space="preserve">
+    <value>เลขทะเบียนพาณิชย์ที่โอนมา</value>
+    <comment>FieldID: F37_03_20</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_REQUEST_NUMBER" xml:space="preserve">
+    <value>เลขที่คำขอจัดตั้งที่โอนมา</value>
+    <comment>FieldID: F37_03_21</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_SEARCH" xml:space="preserve">
+    <value>ค้นหาข้อมูล</value>
+    <comment>FieldID: F37_03_22</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้าผู้โอน</value>
+    <comment>FieldID: F37_03_23</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อผู้โอน</value>
+    <comment>FieldID: F37_03_24</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุลผู้โอน</value>
+    <comment>FieldID: F37_03_25</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_ID_CARD" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก/เลขทะเบียนนิติบุคคล 13 หลัก ผู้โอน</value>
+    <comment>FieldID: F37_03_26</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติผู้โอน</value>
+    <comment>FieldID: F37_03_27</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_COMMERCIAL_NAME" xml:space="preserve">
+    <value>ชื่อที่ใช้ในการประกอบพาณิชยกิจ</value>
+    <comment>FieldID: F37_03_28</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_DATE" xml:space="preserve">
+    <value>วัน/เดือน/ปีที่โอน</value>
+    <comment>FieldID: F37_03_29</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F37_03_30</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_CAUSE" xml:space="preserve">
+    <value>สาเหตุที่โอนพาณิชยกิจ</value>
+    <comment>FieldID: F37_03_31</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_BRANCH_SECTION" xml:space="preserve">
+    <value>ข้อมูลที่ตั้งสำนักงานสาขา</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_BRANCH_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_BRANCH_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลที่ตั้งสำนักงานสาขา</value>
+    <comment>FieldID: F37_03_32</comment>
+  </data>
+  <data name="EDIT_BRANCH_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลที่ตั้งสำนักงานสาขา</value>
+    <comment>FieldID: F37_03_32</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION" xml:space="preserve">
+    <value>ข้อมูลที่ตั้งสำนักงานสาขา</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลที่ตั้งสำนักงานสาขา ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลที่ตั้งสำนักงานสาขา&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลที่ตั้งสำนักงานสาขา"&lt;/div&gt;</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่ตั้งสำนักงานสาขา</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่ตั้งสำนักงานสาขา</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F37_03_33</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WAREHOUSE_SECTION" xml:space="preserve">
+    <value>ข้อมูลที่ตั้งโรงเก็บสินค้า</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WAREHOUSE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WAREHOUSE_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลที่ตั้งโรงเก็บสินค้า</value>
+    <comment>FieldID: F37_03_34</comment>
+  </data>
+  <data name="EDIT_WAREHOUSE_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลที่ตั้งโรงเก็บสินค้า</value>
+    <comment>FieldID: F37_03_34</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION" xml:space="preserve">
+    <value>ข้อมูลที่ตั้งโรงเก็บสินค้า</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลที่ตั้งโรงเก็บสินค้า ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลที่ตั้งโรงเก็บสินค้า&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลที่ตั้งโรงเก็บสินค้า"&lt;/div&gt;</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่ตั้งโรงเก็บสินค้า</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่ตั้งโรงเก็บสินค้า</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F37_03_35</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_AGENT_SECTION" xml:space="preserve">
+    <value>ข้อมูลตัวแทนค้าต่าง</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_AGENT_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_AGENT_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลตัวแทนค้าต่าง</value>
+    <comment>FieldID: F37_03_36</comment>
+  </data>
+  <data name="EDIT_AGENT_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลตัวแทนค้าต่าง</value>
+    <comment>FieldID: F37_03_36</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION" xml:space="preserve">
+    <value>ข้อมูลตัวแทนค้าต่าง</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลตัวแทนค้าต่าง ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลตัวแทนค้าต่าง&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลตัวแทนค้าต่าง"&lt;/div&gt;</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลตัวแทนค้าต่าง</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลตัวแทนค้าต่าง</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION_NAME" xml:space="preserve">
+    <value>ชื่อตัวแทนค้าต่าง</value>
+    <comment>FieldID: F37_03_37</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F37_03_38</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้เป็นหุ้นส่วนของทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลผู้เป็นหุ้นส่วนของห้างหุ้นส่วนสามัญ/ผู้เป็นหุ้นส่วนเข้าใหม่</value>
+    <comment>FieldID: F37_03_39</comment>
+  </data>
+  <data name="EDIT_PARTNER_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลผู้เป็นหุ้นส่วนของห้างหุ้นส่วนสามัญ/ผู้เป็นหุ้นส่วนเข้าใหม่</value>
+    <comment>FieldID: F37_03_39</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้เป็นหุ้นส่วนของห้างหุ้นส่วนสามัญ/ผู้เป็นหุ้นส่วนเข้าใหม่</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลผู้เป็นหุ้นส่วนของห้างหุ้นส่วนสามัญ/ผู้เป็นหุ้นส่วนเข้าใหม่ ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลผู้เป็นหุ้นส่วนของห้างหุ้นส่วนสามัญ/ผู้เป็นหุ้นส่วนเข้าใหม่&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลผู้เป็นหุ้นส่วนของห้างหุ้นส่วนสามัญ/ผู้เป็นหุ้นส่วนเข้าใหม่"&lt;/div&gt;</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้เป็นหุ้นส่วนของห้างหุ้นส่วนสามัญ/ผู้เป็นหุ้นส่วนเข้าใหม่</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้เป็นหุ้นส่วนของห้างหุ้นส่วนสามัญ/ผู้เป็นหุ้นส่วนเข้าใหม่</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+    <comment>FieldID: F37_03_40</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F37_03_41</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F37_03_42</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_ID_CARD" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F37_03_43</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_BIRTH_DATE" xml:space="preserve">
+    <value>วัน/เดือน/ปี เกิด</value>
+    <comment>FieldID: F37_03_44</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+    <comment>FieldID: F37_03_45</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_RACE" xml:space="preserve">
+    <value>เชื้อชาติ</value>
+    <comment>FieldID: F37_03_46</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F37_03_47</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_INVEST_TYPE" xml:space="preserve">
+    <value>ลงหุ้นด้วย</value>
+    <comment>FieldID: F37_03_48</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_INVEST_TYPE_CASH" xml:space="preserve">
+    <value>เงินสด</value>
+    <comment>FieldID: F37_03_48</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_INVEST_TYPE_CHATTEL" xml:space="preserve">
+    <value>สังหาริมทรัพย์</value>
+    <comment>FieldID: F37_03_48</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนเงิน (บาท)</value>
+    <comment>FieldID: F37_03_49</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_SIGNATURE" xml:space="preserve">
+    <value>ลงลายมือชื่อ</value>
+    <comment>FieldID: F37_03_50</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_LEAVE_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_LEAVE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_LEAVE_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย</value>
+    <comment>FieldID: F37_03_51</comment>
+  </data>
+  <data name="EDIT_PARTNER_LEAVE_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย</value>
+    <comment>FieldID: F37_03_51</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย"&lt;/div&gt;</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้เป็นหุ้นส่วนออกหรือตาย</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+    <comment>FieldID: F37_03_52</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F37_03_53</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F37_03_54</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_ID_CARD" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F37_03_55</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_BIRTH_DATE" xml:space="preserve">
+    <value>วัน/เดือน/ปี เกิด</value>
+    <comment>FieldID: F37_03_56</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+    <comment>FieldID: F37_03_57</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_RACE" xml:space="preserve">
+    <value>เชื้อชาติ</value>
+    <comment>FieldID: F37_03_58</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F37_03_59</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_STOCK_SECTION" xml:space="preserve">
+    <value>ข้อมูลมูลค่าหุ้น</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_STOCK_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_STOCK_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลมูลค่าหุ้น</value>
+    <comment>FieldID: F37_03_60</comment>
+  </data>
+  <data name="EDIT_STOCK_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลมูลค่าหุ้น</value>
+    <comment>FieldID: F37_03_60</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION" xml:space="preserve">
+    <value>ข้อมูลมูลค่าหุ้น</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_REGISTERED_CAPITAL" xml:space="preserve">
+    <value>ทุนจดทะเบียน (บาท)</value>
+    <comment>FieldID: F37_03_61</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_SEPERATED_TO" xml:space="preserve">
+    <value>แบ่งออกเป็น (หุ้น)</value>
+    <comment>FieldID: F37_03_62</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2" xml:space="preserve">
+    <value>ข้อมูลมูลค่าหุ้น</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลมูลค่าหุ้น ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลมูลค่าหุ้น&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลมูลค่าหุ้น"&lt;/div&gt;</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลมูลค่าหุ้น</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลมูลค่าหุ้น</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+    <comment>FieldID: F37_03_63</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2_SHARE" xml:space="preserve">
+    <value>จำนวนหุ้น (หุ้น)</value>
+    <comment>FieldID: F37_03_64</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_SHARE_BATH" xml:space="preserve">
+    <value>มูลค่าหุ้นละ (บาท)</value>
+    <comment>FieldID: F37_03_65</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_OTHER_SECTION" xml:space="preserve">
+    <value>ข้อมูลอื่นๆ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_OTHER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_OTHER_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลอื่น ๆ</value>
+    <comment>FieldID: F37_03_66</comment>
+  </data>
+  <data name="EDIT_OTHER_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลอื่น ๆ</value>
+    <comment>FieldID: F37_03_66</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION" xml:space="preserve">
+    <value>ข้อมูลอื่นๆ</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F37_03_67</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA" xml:space="preserve">
+    <value>สื่ออิเล็กทรอนิกส์ที่คุณต้องการจด/แก้ไข/เลิกทะเบียนพาณิชย์อิเล็กทรอนิกส์ เป็นสื่อรูปแบบใด</value>
+    <comment>FieldID: F37_03_68</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA_INFO" xml:space="preserve">
+    <value>1 คำขอ สามารถขอจด/แก้ไข/เลิกทะเบียนพาณิชย์อิเล็กทรอนิกส์ได้ 1 เว็บไซต์</value>
+    <comment>FieldID: F37_03_68</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA_WEBSITE" xml:space="preserve">
+    <value>เว็บไซต์ (Website)</value>
+    <comment>FieldID: F37_03_68</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA_LINE" xml:space="preserve">
+    <value>ไลน์ (Line)</value>
+    <comment>FieldID: F37_03_68</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA_INSTRAGRAM" xml:space="preserve">
+    <value>อินสตาแกรม (Instragram)</value>
+    <comment>FieldID: F37_03_68</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA_FACEBOOK" xml:space="preserve">
+    <value>เฟซบุ๊ก (Facebook)</value>
+    <comment>FieldID: F37_03_68</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA_APPLICATION" xml:space="preserve">
+    <value>แอปพลิเคชันไอดี (Application ID)</value>
+    <comment>FieldID: F37_03_68</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_WEBSITE" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F37_03_69</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_LINE" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F37_03_70</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_INSTRAGRAM" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F37_03_71</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_FACEBOOK" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F37_03_72</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_APPLICATION" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F37_03_73</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WEBSITE_SECTION" xml:space="preserve">
+    <value>ข้อมูลรายละเอียดเว็บไซต์</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WEBSITE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WEBSITE_SECTION_CHECKBOX_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูลรายละเอียดเว็บไซต์</value>
+    <comment>FieldID: F37_03_74</comment>
+  </data>
+  <data name="EDIT_WEBSITE_SECTION_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลรายละเอียดเว็บไซต์</value>
+    <comment>FieldID: F37_03_74</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION" xml:space="preserve">
+    <value>ข้อมูลรายละเอียดเว็บไซต์</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ADDRESS_EN" xml:space="preserve">
+    <value>ที่อยู่ภาษาอังกฤษ</value>
+    <comment>FieldID: F37_03_75</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME" xml:space="preserve">
+    <value>ชื่อเว็บไซต์ (Website)</value>
+    <comment>FieldID: F37_03_76</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_TYPE" xml:space="preserve">
+    <value>โปรดเลือกหมวดหมู่ของเว็บไซต์ (Type of Business)</value>
+    <comment>FieldID: F37_03_77</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ORDER_SYSTEM" xml:space="preserve">
+    <value>ระบบสั่งจอง/สั่งซื้อที่ใช้</value>
+    <comment>FieldID: F37_03_78</comment>
+  </data>
+  <data name="BASKET" xml:space="preserve">
+    <value>ระบบตะกร้า</value>
+    <comment>FieldID: F37_03_78</comment>
+  </data>
+  <data name="FORM" xml:space="preserve">
+    <value>ระบบกรอกฟอร์ม</value>
+    <comment>FieldID: F37_03_78</comment>
+  </data>
+  <data name="EMAIL" xml:space="preserve">
+    <value>อีเมล (e-Mail)</value>
+    <comment>FieldID: F37_03_82</comment>
+  </data>
+  <data name="PHONE" xml:space="preserve">
+    <value>โทรศัพท์</value>
+    <comment>FieldID: F37_03_78</comment>
+  </data>
+  <data name="FAX" xml:space="preserve">
+    <value>โทรสาร</value>
+    <comment>FieldID: F37_03_78</comment>
+  </data>
+  <data name="OTHER" xml:space="preserve">
+    <value>อื่น ๆ</value>
+    <comment>FieldID: F37_03_82</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ORDER_SYSTEM_OTHER_TEXT" xml:space="preserve">
+    <value>ระบุอื่นๆ</value>
+    <comment>FieldID: F37_03_79</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_METHOD_PAYMENT" xml:space="preserve">
+    <value>วิธีการชำระเงิน</value>
+    <comment>FieldID: F37_03_80</comment>
+  </data>
+  <data name="OFFLINE" xml:space="preserve">
+    <value>ชำระเงินแบบออฟไลน์ (โอนเงินผ่านธนาคาร ชำระเงินทางไปรษณีย์ ชำระเงินกับพนักงาน)</value>
+    <comment>FieldID: F37_03_80</comment>
+  </data>
+  <data name="ONLINE_CREDIT_CARD" xml:space="preserve">
+    <value>ชำระเงินออนไลน์ ผ่านบัตรเครดิต</value>
+    <comment>FieldID: F37_03_80</comment>
+  </data>
+  <data name="ONLINE_E_BANKING" xml:space="preserve">
+    <value>ชำระเงินออนไลน์ ผ่านระบบ e-Banking</value>
+    <comment>FieldID: F37_03_80</comment>
+  </data>
+  <data name="ONLINE_AGENT" xml:space="preserve">
+    <value>ชำระเงินออนไลน์ผ่านตัวกลางชำระเงิน เช่น Paypal, PaySbuy เป็นต้น)</value>
+    <comment>FieldID: F37_03_80</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_METHOD_PAYMENT_OTHER_TEXT" xml:space="preserve">
+    <value>ระบุอื่นๆ</value>
+    <comment>FieldID: F37_03_81</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_METHOD_DELIVER" xml:space="preserve">
+    <value>วิธีการส่งสินค้า</value>
+    <comment>FieldID: F37_03_82</comment>
+  </data>
+  <data name="TRANSPORT_COMPANY" xml:space="preserve">
+    <value>บริษัทขนส่ง</value>
+    <comment>FieldID: F37_03_82</comment>
+  </data>
+  <data name="POST_OFFICE" xml:space="preserve">
+    <value>ไปรษณีย์</value>
+    <comment>FieldID: F37_03_82</comment>
+  </data>
+  <data name="DELEVERY_STAFF" xml:space="preserve">
+    <value>พนักงานส่งสินค้า</value>
+    <comment>FieldID: F37_03_82</comment>
+  </data>
+  <data name="DOWNLOAD" xml:space="preserve">
+    <value>ดาวน์โหลด (Download)</value>
+    <comment>FieldID: F37_03_82</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_METHOD_DELIVER_OTHER_TEXT" xml:space="preserve">
+    <value>ระบุอื่นๆ</value>
+    <comment>FieldID: F37_03_83</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_BUDGET" xml:space="preserve">
+    <value>จำนวนเงินทุน (ที่ใช้ในการทำพาณิชย์อิเล็กทรอนิกส์) (บาท)</value>
+    <comment>FieldID: F37_03_84</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_BUDGET_INFO" xml:space="preserve">
+    <value>หมายถึง จำนวนเงินทุนที่นำมาใช้ในการทำธุรกิจพาณิชย์อิเล็กทรอนิกส์ (ไม่ใช่เงินทุนทั้งหมดของบริษัทหรือกิจการ)</value>
+    <comment>FieldID: F37_03_84</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_EMAIL" xml:space="preserve">
+    <value>อีเมล ที่ใช้ในการขอรับรหัสเครื่องหมายรับรอง (Source Code)</value>
+    <comment>FieldID: F37_03_85</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_CONFIRM_SECTION" xml:space="preserve">
+    <value>ข้าพเจ้ารับรองว่า</value>
+    <comment>Section: APP_ELECTRONIC_COMMERCIAL_EDIT_CONFIRM_SECTION</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_CONFIRM_SECTION_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F37_03_86</comment>
+  </data>
+  <data name="CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่ารายการข้างต้นถูกต้องและเป็นความจริงทุกประการ</value>
+    <comment>FieldID: F37_03_86</comment>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_BUDGET_ERROR_OVER" xml:space="preserve">
+    <value>จำนวนเงินทุนต้องไม่เกินจำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_APPLICATION" xml:space="preserve">
+    <value>ชื่อแอปพลิเคชัน</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_FACEBOOK" xml:space="preserve">
+    <value>ชื่อเฟซบุ๊ก (Facebook)</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_FACEBOOK_INVALID" xml:space="preserve">
+    <value>รูปแบบของชื่อ Facebook ไม่ถูกต้อง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_INSTRAGRAM" xml:space="preserve">
+    <value>ชื่ออินสตาแกรม (Instagram)</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_INSTRAGRAM_INVALID" xml:space="preserve">
+    <value>รูปแบบของชื่อ Instagram ไม่ถูกต้อง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_LINE" xml:space="preserve">
+    <value>ชื่อไลน์ (Line)</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_LINE_INVALID" xml:space="preserve">
+    <value>รูปแบบของชื่อ Line ไม่ถูกต้อง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_MARKETPLACE" xml:space="preserve">
+    <value>ชื่อเว็บไซต์ตลาดกลาง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_MARKETPLACE_INVALID" xml:space="preserve">
+    <value>รูปแบบของชื่อเว็บไซต์ตลาดกลางไม่ถูกต้อง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_WEBSITE" xml:space="preserve">
+    <value>ชื่อเว็บไซต์ของผู้ประกอบการ</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_WEBSITE_INVALID" xml:space="preserve">
+    <value>รูปแบบของชื่อ Website ไม่ถูกต้อง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_STATUS" xml:space="preserve">
+    <value>สถานะการเป็นหุ้นส่วนของคุณ</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_REGISTERED_CAPITAL_INVALID" xml:space="preserve">
+    <value>ทุนจดทะเบียนต้องเท่ากับ จำนวนหุ้น x มูลค่าหุ้นละ</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_SEPERATED_TO_INVALID" xml:space="preserve">
+    <value>จำนวนหุ้นต้องเท่ากับจำนวนรวมของหุ้นในรายการด้านล่าง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_FORBIDDEN_CHANGE" xml:space="preserve">
+    <value>ไม่สามารถเปลี่ยนประเภทจากพาณิชย์อิเล็กทรอนิกส์ ไปเป็นพาณิชย์ธรรมดาได้</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION_PASSPORT_NUMBER" xml:space="preserve">
+    <value>เลขที่หนังสือเดินทาง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_PASSPORT_NUMBER" xml:space="preserve">
+    <value>เลขที่หนังสือเดินทาง</value>
+  </data>
+  <data name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_TYPE_ERROR_DUPLICATE" xml:space="preserve">
+    <value>ไม่สามารถระบุชนิดแห่งพาณิชยกิจซ้ำกันได้</value>
+  </data>
+</root>

@@ -1,0 +1,42 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_BANK_NAME :</label>
+            {{this.DROPDOWN_APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_BANK_NAME_TEXT}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_BRANCH :</label>
+            {{this.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_BRANCH}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_ACCOUNT_NAME :</label>
+            {{this.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_ACCOUNT_NAME}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_ACCOUNT_ID :</label>
+            {{this.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_ACCOUNT_ID}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_DUE_DATE :</label>
+            {{this.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_DUE_DATE}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_AMOUNT :</label>
+            {{this.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_AMOUNT}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

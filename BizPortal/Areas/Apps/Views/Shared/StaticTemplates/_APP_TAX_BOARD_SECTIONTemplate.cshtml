@@ -1,0 +1,62 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_TAX_BOARD_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_TYPE :</label>
+            {{{ this.APP_TAX_TYPE_OPTION__RADIO_TEXT }}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_WIDTH :</label>
+            {{this.APP_TAX_WIDTH}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_LONG :</label>
+            {{this.APP_TAX_LONG}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_CENTIMETER :</label>
+            {{this.APP_TAX_CENTIMETER}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_AMOUNT :</label>
+            {{this.APP_TAX_AMOUNT}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_BUILD_DATE :</label>
+            {{this.APP_TAX_BUILD_DATE}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_HOUSEHOLD_ID :</label>
+            {{#xif " this.APP_TAX_BOARD_LOCATION_TYPE_OPTION == 'APP_TAX_BOARD_LOCATION_TYPE_OPTION_HOUSE' " }}
+            {{this.APP_TAX_HOUSEHOLD_ID}}
+            {{else}}
+            -
+            {{/xif}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_LAND_ID :</label>
+            {{#xif " this.APP_TAX_BOARD_LOCATION_TYPE_OPTION == 'APP_TAX_BOARD_LOCATION_TYPE_OPTION_LAND' " }}
+            {{this.APP_TAX_LAND_ID}}
+            {{else}}
+            -
+            {{/xif}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_TEXT :</label>
+            {{this.APP_TAX_TEXT}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_LOCATION :</label>
+            {{this.APP_TAX_LOCATION}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_TAX_OTHER :</label>
+            {{this.APP_TAX_OTHER}}
+            <br />
+
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลป้าย
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

@@ -1,0 +1,795 @@
+﻿@using BizPortal.Utils;
+@using EGA.Owin.Security.Utils.Extensions;
+@using Resource = BizPortal.Resources;
+@using Microsoft.Owin.Security
+@using BizPortal.Utils.Extensions;
+@{
+    string returnUrl;
+    if (ViewBag.ReturnUrl != null && !string.IsNullOrEmpty(ViewBag.ReturnUrl))
+    {
+        returnUrl = ViewBag.ReturnUrl;
+    }
+    else
+    {
+        bool applyDomainRoute = ViewBag.ApplyDomainRoute;
+        if (applyDomainRoute)
+        {
+            returnUrl = ViewBag.BizDomain + Request.Url.AbsolutePath;
+        }
+        else
+        {
+            returnUrl = Request.Url.AbsolutePath;
+        }
+    }
+
+    var testuser = User.Identity.GetUserProfile();
+    var juristicID = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.JuristicID);
+    var identityProvider = User.Identity.IsAuthenticated ? User.Identity.GetClaimValueOrDefault(BizPortal.Utils.Helpers.OpenIdAttributeExchangeType.LoginProvider) : "";
+    var layoutSearch = true;
+
+    if (ViewBag.LayoutSearch != null && ViewBag.LayoutSearch == false)
+    {
+        layoutSearch = false;
+    }
+}
+<!DOCTYPE html>
+<html lang="@((string)ViewBag.CurrentLang)">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Biz Portal" />
+    <meta name="description" content="Biz Portal">
+    <meta name="author" content="electronic government agency (public organization) (ega)">
+    <!-- Favicon -->
+    @*<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png">*@
+
+    <!-- Safari mobile -->
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Web Fonts  -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+
+    <title>@ViewBag.Title</title>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-19394801-61', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+    @Styles.Render("~/Bundles/NewBizUI/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("PageStyles", required: false)
+</head>
+<body>
+    <div class="body" id="wrapper">
+        <div class="overlay"></div>
+        <nav class="navbar navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            @if (User.Identity.IsAuthenticated)
+            {
+                var userType = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.UserType);
+                <div class="sidebar-authen-user navbar-fixed-top">
+                    <div class="row">
+                        <img class="img-responsive img-center" src="@Url.Content("~/Content/Images/biz-v2/logos/test-user2.png")" style="max-height: 80px;" />
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-center" style="padding-bottom: 10px;">
+                            @juristicID
+
+                        </div>
+                        <div class="col-xs-12 text-center" style="padding-bottom: 10px;">
+                            @testuser.FullName
+                        </div>
+                    </div>
+                </div>
+            }
+            <ul class="nav sidebar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var userType = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.UserType);
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp;@Resource.GlobalV2.USER_MENU <span class="fa fa-chevron-right span-right"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            @if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                            {
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ViewJuristicProfile?site=biz">@Resource.Global.PROFILE</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditUser?site=biz">@Resource.Global.EDIT_PROFILE</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                            }
+                            else if (userType == UserTypeEnum.Juristic.GetEnumStringValue())
+                            {
+                                @*<li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ViewJuristicProfile?site=biz">@Resource.Global.PROFILE</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditJuristicProfile?site=biz">@Resource.Global.EDIT_JURISTIC_PROFILE</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditJuristicContact?site=biz&callbackUrl=@HttpUtility.UrlEncode(BizPortal.Utils.Extensions.UrlHelperExtensions.AbsoluteAction(Url, "InitUserData", "Account", new { area = "", returnUrl = returnUrl, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.Global.EDIT_CONTACT_NO</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>*@
+                            }
+                            else if (userType == UserTypeEnum.Citizen.GetEnumStringValue())
+                            {
+                                if (identityProvider == UserProviderEnum.EGAOpenID.GetEnumStringValue())
+                                {
+                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Details?site=biz">@Resource.Global.PROFILE</a></li>
+                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Edit?site=biz">@Resource.Global.EDIT_PROFILE</a></li>
+                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Verification/Mobile?site=biz">@Resource.Global.EDIT_CONTACT_NO</a></li>
+                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                                }
+                            }
+                            @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                            {
+                                <li><a href="@Url.ServiceAction("Index","Article",new { Area="Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.Global.BACKEND_MANAGEMENT</a></li>
+                            }
+                            @if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                            {
+                                <li><a href="@Url.ServiceAction("Index","ApplicationStatus",new { Area="Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">@Resource.Global.APPLICATION_MANAGEMENT</a></li>
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                            }
+                            else if (userType == UserTypeEnum.Juristic.GetEnumStringValue())
+                            {
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                            }
+                            else if (userType == UserTypeEnum.Citizen.GetEnumStringValue())
+                            {
+                                <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                            }
+                        </ul>
+                    </li>
+
+                    if (userType != UserTypeEnum.GovernmentAgent.GetEnumStringValue() && !User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                    {
+                        <li class="dropdown">
+                            <a href="@Url.BizAction("Index", "Track", new { @area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                &nbsp;@Resource.Global.TRACKING_STASUS
+                            </a>
+                        </li>
+                    }
+                }
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp;@Resource.GlobalV2.INFORMATION <span class="fa fa-chevron-right span-right"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_THAILAND_INFORMATION</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 2197, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_HEADER_THAILAND_INFORMATION</a></li>
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_BUSINESS_PLANNING</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 10, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_BUSINESS_STATISTIC</a></li>
+                        <li><a href="http://www.boi.go.th/index.php?page=incentive&language=th">@Resource.GlobalV2.MENU_PRIVILEGE</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 11, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_SME</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 1, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_KNOWLEDGEBASE</a></li>
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_INVESTMENT</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 19, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_INVESTMENT_PROTECTION</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 30, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_EDIT_SUPPORTED_PROJECT</a></li>
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_STARTING_BUSINESS</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 2, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_STARTING_BUSINESS_OVERVIEW</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 3, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_JURISTIC_REGISTRATION</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 7, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_SSO_REGISTRATION</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 6, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_VAT_REGISTRATION</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 29, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_REGISTRATION_EDIT</a></li>
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_LABOUR</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 21, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_FOREIGN_WORKER_SUPPLYING</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 22, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_SSO_SUPPORTING_MONEY</a></li>
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_CONSTRUCTION_AND_UTILITIES</li>
+                        <li><a href="#" class="inactive">@Resource.GlobalV2.MENU_CONSTRUCTION_AND_UTILITIES_OVERVIEW</a></li>
+                        <li><a href="#" class="inactive">@Resource.GlobalV2.MENU_ENVIRONMENT_IMPACT_ANALYSIS</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 9, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_CONSTRUCTION_REQUEST</a></li>
+                        <li><a href="#" class="inactive">@Resource.GlobalV2.MENU_FACTORY_REQUEST</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 46, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_PUBLIC_UTILITIES_REQUEST</a></li>
+
+                        <li class="dropdown-header">@Resource.GlobalV2.PERMIT_BY_BUSINESS</li>
+                        <li>
+                            <a href="@Url.BizAction("Restaurant", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                @Resource.GlobalV2.PERMIT_BY_BUSINESS_RESTAURANT
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.BizAction("Retail", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                @Resource.GlobalV2.PERMIT_BY_BUSINESS_RETAIL
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.BizAction("CoffeeShop", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                @Resource.GlobalV2.PERMIT_BY_BUSINESS_COFFEE_SHOP
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.BizAction("Hotel", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                @Resource.GlobalV2.PERMIT_BY_BUSINESS_HOTEL
+                            </a>
+                        </li>
+
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_IMPORT_AND_EXPORT</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 24, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_IMPORT</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 25, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_EXPORT</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 26, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_INTERNATIONAL_AGREEMENT</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 31, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_EXPORT_PROMOTING</a></li>
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_BUSINESS_TAX</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 16, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_TAX_PAYMENT_AND_REFUND</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 27, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_ANNUAL_BUDGET</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 6, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_SPECIFIC_TAX</a></li>
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_INTELLECTUAL_PROPERTY</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 20, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_TRADEMARK</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 20, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_PATENT</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 20, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_COPYRIGHT</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 32, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_THAILAND_TRUST_MARK</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 33, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_OTOP</a></li>
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_BUSINESS_CLOSED</li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 34, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_COMPULSARY_ENFORCEMENT</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 36, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_BANKRUPT_SOLVING</a></li>
+                        <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 35, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_OUT_OF_BUSINESS</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp;@Resource.GlobalV2.ONLINE_SERVICES <span class="fa fa-chevron-right span-right"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">@Resource.GlobalV2.MENU_HEADER_STARTING_BUSINESS</li>
+                        <li>
+                            @*<a href="@(Url.BizAction("PermitList", "Business", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#starting-business">เริ่มต้นธุรกิจ</a>*@
+                            <a href="@(Url.BizAction("PermitList", "Business", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.GlobalV2.MENU_PERMITLIST</a>
+                        </li>
+                        <li>
+                            @*<a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#utilities">ขอใช้สาธารณูปโภค</a>*@
+                            <a href="@(Url.BizAction("PermitListRenew", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.GlobalV2.MENU_PERMITLIST_RENEW</a>
+                        </li>
+                        <li>
+                            @*<a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#restaurant">ขอใบอนุญาตเฉพาะร้านอาหาร</a>*@
+                            <a href="@(Url.BizAction("PermitListEdit", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.GlobalV2.MENU_PERMITLIST_EDIT</a>
+                        </li>
+                        <li>
+                            @*<a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#retail">ขอใบอนุญาตเฉพาะร้านค้าปลีก</a>*@
+                            <a href="@(Url.BizAction("PermitListCancel", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.GlobalV2.MENU_PERMITLIST_CANCEL</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="sidebar-user text-center">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.BizAction("LogOff","Account",new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName, returnUrl = returnUrl})" class="sidebar-user-btn">@Resource.GlobalV2.LOGOUT</a>
+                }
+                else
+                {
+                    using (Html.BeginForm("ExternalLogin", "Account", new { area = "", ReturnUrl = returnUrl, language = ViewBag.CurrentLang }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="sidebar-user-btn" id="@EGA.Owin.Security.EGAOpenID.Constants.DefaultAuthenticationType" name="provider" value="@EGA.Owin.Security.EGAOpenID.Constants.DefaultAuthenticationType">@Resource.GlobalV2.LOGIN</button>
+                    }
+                }
+            </div>
+        </nav>
+        <header class="colored flat-menu">
+            <div class="header-top">
+                <div class="container">
+                    <div class="row" style="color: #fff;">
+                          <div class="pull-right">@Resource.GlobalV2.SUPERVISION</div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-body">
+                <div class="container">
+                    <div class="row hidden-xs">
+                        <div class="col-sm-1 col-md-1">
+                            <h1 class="logo">
+                                <a href="@Url.BizAction("Index", "Home", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">
+                                    <img src="~/Content/Images/biz-v2/logos/bizportal-logo.png" alt="bizportal" />
+                                </a>
+                            </h1>
+                        </div>
+                        <div class="col-sm-5 col-md-5 navbar-container">
+                            <div class="navbar-collapse nav-main-collapse">
+                                <nav class="nav-main mega-menu">
+                                    <ul class="nav nav-pills nav-main">
+                                        <li class="dropdown mega-menu-item mega-menu-fullwidth">
+                                            <a href="javascript:void(0)" class="dropdown-toggle">@Resource.GlobalV2.INFORMATION</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <div class="mega-menu-content">
+                                                        <div class="row">
+                                                            <div class="col-sm-3 col-md-3 custom-col-20">
+                                                                <ul class="sub-menu pb10">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_THAILAND_INFORMATION</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 2197, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_HEADER_THAILAND_INFORMATION</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="sub-menu">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_BUSINESS_PLANNING</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 10, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_BUSINESS_STATISTIC</a></li>
+                                                                            <li><a href="http://www.boi.go.th/index.php?page=incentive&language=th">@Resource.GlobalV2.MENU_PRIVILEGE</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 11, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_SME</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 1, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_KNOWLEDGEBASE</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="sub-menu">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_INVESTMENT</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 19, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_INVESTMENT_PROTECTION</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 30, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_EDIT_SUPPORTED_PROJECT</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-3 col-md-3 custom-col-20">
+                                                                <ul class="sub-menu">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_STARTING_BUSINESS</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Index", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_STARTING_BUSINESS_OVERVIEW</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 3, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_JURISTIC_REGISTRATION</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 7, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_SSO_REGISTRATION</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 6, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_VAT_REGISTRATION</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 29, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_REGISTRATION_EDIT</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="sub-menu">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_LABOUR</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 21, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_FOREIGN_WORKER_SUPPLYING</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 22, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_SSO_SUPPORTING_MONEY</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-3 col-md-3 custom-col-20">
+                                                                <ul class="sub-menu pb10">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_CONSTRUCTION_AND_UTILITIES</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="#" class="inactive">@Resource.GlobalV2.MENU_CONSTRUCTION_AND_UTILITIES_OVERVIEW</a></li>
+                                                                            <li><a href="#" class="inactive">@Resource.GlobalV2.MENU_ENVIRONMENT_IMPACT_ANALYSIS</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 9, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_CONSTRUCTION_REQUEST</a></li>
+                                                                            <li><a href="#" class="inactive">@Resource.GlobalV2.MENU_FACTORY_REQUEST</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 46, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_PUBLIC_UTILITIES_REQUEST</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="sub-menu">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.PERMIT_BY_BUSINESS</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li>
+                                                                                <a href="@Url.BizAction("Restaurant", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                                                                    @Resource.GlobalV2.PERMIT_BY_BUSINESS_RESTAURANT
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="@Url.BizAction("Retail", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                                                                    @Resource.GlobalV2.PERMIT_BY_BUSINESS_RETAIL
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="@Url.BizAction("CoffeeShop", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                                                                    @Resource.GlobalV2.PERMIT_BY_BUSINESS_COFFEE_SHOP
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="@Url.BizAction("Hotel", "Business", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                                                                    @Resource.GlobalV2.PERMIT_BY_BUSINESS_HOTEL
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-3 col-md-3 custom-col-20">
+                                                                <ul class="sub-menu pb10">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_IMPORT_AND_EXPORT</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 24, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_IMPORT</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 25, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_EXPORT</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 26, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_INTERNATIONAL_AGREEMENT</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 31, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_EXPORT_PROMOTING</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="sub-menu">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_BUSINESS_TAX</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 16, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_TAX_PAYMENT_AND_REFUND</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 27, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_ANNUAL_BUDGET</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 6, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_SPECIFIC_TAX</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-3 col-md-3 custom-col-20">
+                                                                <ul class="sub-menu pb10">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_INTELLECTUAL_PROPERTY</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 20, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_TRADEMARK</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 20, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_PATENT</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 20, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_COPYRIGHT</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 32, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_THAILAND_TRUST_MARK</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 33, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_OTOP</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="sub-menu">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.MENU_HEADER_BUSINESS_CLOSED</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 34, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_COMPULSARY_ENFORCEMENT</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 36, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_BANKRUPT_SOLVING</a></li>
+                                                                            <li><a href="@Url.BizAction("Article", "Home", new { Area = "", id = 35, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.GlobalV2.MENU_OUT_OF_BUSINESS</a></li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown mega-menu-item mega-menu-fullwidth">
+                                            <a href="javascript:void(0)" class="dropdown-toggle">@Resource.GlobalV2.ONLINE_SERVICES</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <div class="mega-menu-content">
+                                                        <div class="row">
+                                                            <div class="col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2">
+                                                                <ul class="sub-menu">
+                                                                    <li>
+                                                                        <span class="mega-menu-sub-title">@Resource.GlobalV2.ONLINE_SERVICES</span>
+                                                                        <ul class="sub-menu">
+                                                                            <li>
+                                                                                @*<a href="@(Url.BizAction("PermitList", "Business", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#starting-business">เริ่มต้นธุรกิจ</a>*@
+                                                                                <a href="@(Url.BizAction("PermitList", "Business", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.GlobalV2.MENU_PERMITLIST</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                @*<a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#utilities">ขอใช้สาธารณูปโภค</a>*@
+                                                                                <a href="@(Url.BizAction("PermitListRenew", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.GlobalV2.MENU_PERMITLIST_RENEW</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                @*<a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#restaurant">ขอใบอนุญาตเฉพาะร้านอาหาร</a>*@
+                                                                                <a href="@(Url.BizAction("PermitListEdit", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.GlobalV2.MENU_PERMITLIST_EDIT</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                @*<a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#retail">ขอใบอนุญาตเฉพาะร้านค้าปลีก</a>*@
+                                                                                <a href="@(Url.BizAction("PermitListCancel", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.GlobalV2.MENU_PERMITLIST_CANCEL</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="biz-user">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    var userType = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.UserType);
+
+                                    <ul class="nav nav-pills">
+                                        <li class="dropdown">
+                                            <a href="javascript:void(0)" class="dropdown-toggle dropdown-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-user"></i>  @User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name)
+                                                <i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                @if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                                                {
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ViewJuristicProfile?site=biz">@Resource.Global.PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditUser?site=biz">@Resource.Global.EDIT_PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                                                }
+                                                else if (userType == UserTypeEnum.Juristic.GetEnumStringValue())
+                                                {
+                                                    @*<li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ViewJuristicProfile?site=biz">@Resource.Global.PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditJuristicProfile?site=biz">@Resource.Global.EDIT_JURISTIC_PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/EditJuristicContact?site=biz&callbackUrl=@HttpUtility.UrlEncode( BizPortal.Utils.Extensions.UrlHelperExtensions.AbsoluteAction(Url, "InitUserData", "Account", new { area = "", returnUrl = returnUrl, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))">@Resource.Global.EDIT_CONTACT_NO</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>*@
+                                                }
+                                                else if (userType == UserTypeEnum.Citizen.GetEnumStringValue())
+                                                {
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Details?site=biz">@Resource.Global.PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Edit?site=biz">@Resource.Global.EDIT_PROFILE</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Verification/Mobile?site=biz">@Resource.Global.EDIT_CONTACT_NO</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/ChangePasswd?site=biz">@Resource.Global.CHANGE_PASSWORD</a></li>
+                                                }
+                                                @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                                                {
+                                                    <li><a href="@Url.ServiceAction("Index","Article",new { Area="Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.Global.BACKEND_MANAGEMENT</a></li>
+                                                }
+                                                @if (userType != UserTypeEnum.GovernmentAgent.GetEnumStringValue() && !User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                                                {
+                                                    <li>
+                                                        <a href="@Url.BizAction("Index", "Track", new { @area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.Global.TRACKING_STASUS</a>
+                                                    </li>
+                                                }
+                                                @if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                                                {
+                                                    <li><a href="@Url.ServiceAction("Index","ApplicationStatus",new { Area="Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">@Resource.Global.APPLICATION_MANAGEMENT</a></li>
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                                                }
+                                                else if (userType == UserTypeEnum.Juristic.GetEnumStringValue())
+                                                {
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                                                }
+                                                else if (userType == UserTypeEnum.Citizen.GetEnumStringValue())
+                                                {
+                                                    <li><a target="_blank" href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Home/Helper?site=biz">@Resource.Global.HOW_TO_REGISTER_MEMBER</a></li>
+                                                }
+                                                <li>
+                                                    <a href="@Url.BizAction("LogOff","Account",new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName, returnUrl = returnUrl})">@Resource.GlobalV2.LOGOUT</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                    @*<a href="@Url.BizAction("LogOff","Account",new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName, returnUrl = returnUrl})" class="btn btn-biz-blue">@Resource.Global.LOGOUT</a>*@
+                                }
+                                else
+                                {
+
+                                    using (Html.BeginForm("ExternalLogin", "Account", new { area = "", ReturnUrl = returnUrl, language = ViewBag.CurrentLang }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="button" class="btn btn-biz-white" data-toggle="collapse" data-target="#bizRegister" aria-expanded="false" aria-controls="bizRegister">@Resource.GlobalV2.REGISTER</button>
+                                        @*<ul class="nav navbar-nav reg-dropdown">
+                                                <li class="dropdown">
+                                                    <a class="btn btn-biz-white dropdown-toggle" data-toggle="dropdown" role="button" href="javascript:void(0)">@Resource.GlobalV2.REGISTER</a>
+                                                    <div class="dropdown-menu">
+                                                        <div class="cs-text-container">
+                                                            <div class="cs-text-md">
+                                                                คุณจำเป็นต้องลงทะเบียนกับ <span class="bold">กรมพัฒนาธุรกิจการค้า</span> เพื่อรับ Username และ Password สำหรับการดำเนินงานใน Biz Portal
+                                                            </div>
+                                                        </div>
+                                                        <a href="https://bizid.egov.go.th/Home/About" class="btn btn-biz-blue w100p">ข้อมูลเพิ่มเติม</a>
+                                                    </div>
+                                                </li>
+                                            </ul>*@
+
+                                        <button type="submit" class="btn btn-biz-blue" id="@EGA.Owin.Security.EGAOpenID.Constants.DefaultAuthenticationType" name="provider" value="@EGA.Owin.Security.EGAOpenID.Constants.DefaultAuthenticationType">@Resource.GlobalV2.LOGIN</button>
+                                    }
+                                }
+                            </div>
+                            @if (layoutSearch)
+                            {
+                                using (Html.BeginForm("Category", "Home", new { Area = "", language = ViewBag.CurrentLang }, FormMethod.Post))
+                                {
+                                    <div class="header-search">
+                                        <input type="text" class="form-control" name="keyword" placeholder="@Resource.GlobalV2.PLACEHOLDER_SEARCH" />
+                                    </div>
+                                    <button type="submit" class="invisibility"></button>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="row visible-xs">
+                        <div class="col-xs-4">
+                            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                                <span class="hamb-top"></span>
+                                <span class="hamb-middle"></span>
+                                <span class="hamb-bottom"></span>
+                            </button>
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="@Url.BizAction("Index","Home", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">
+                                <img class="img-responsive img-center" src="~/Content/Images/biz-v2/logos/bizportal-logo.png" alt="bizportal" style="margin-top: 7px; margin-bottom: 7px; max-height: 50px;" />
+                            </a>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="biz-search-mobile">
+                                <a href="#mobileSearch" data-toggle="collapse" aria-expanded="false" aria-controls="mobileSearch"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse hidden-sm hidden-md hidden-lg" id="mobileSearch">
+                @using (Html.BeginForm("Category", "Home", new { Area = "", language = ViewBag.CurrentLang }, FormMethod.Post))
+                {
+                    <input type="text" name="keyword" placeholder="@Resource.GlobalV2.PLACEHOLDER_SEARCH" />
+                    <button type="submit" class="invisibility"></button>
+                }
+            </div>
+            <div class="collapse text-center hidden-xs" id="bizRegister">
+                <div class="cs-text-container">
+                    <div class="cs-text-md">
+                        คุณจำเป็นต้องลงทะเบียนกับ <span class="bold">กรมพัฒนาธุรกิจการค้า</span> เพื่อรับ Username และ Password สำหรับการดำเนินงานใน Biz Portal
+                    </div>
+                </div>
+                <a href="https://bizid.egov.go.th/Home/About" class="btn btn-biz-blue w100p">ข้อมูลเพิ่มเติม</a>
+            </div>
+        </header>
+
+        <div role="main" class="main">
+            <div class="breadcrump-colored mb15">
+                @RenderSection("breadcrumb", required: false)
+            </div>
+
+            @*<div class="row mb15">
+                    <div class="col-md-12">
+                        <div class="alert alert-warning" style="margin-bottom: 0px;" role="alert">
+                            เนื่องจากมีการปิดปรับปรุงระบบในส่วนของการขออนุญาตออนไลน์ ในช่วงระหว่าง<strong>วันศุกร์ที่ 23 มิถุนายน 2560 เวลา 18.00 น. ถึงวันจันทร์ที่ 26 มิถุนายน 2560 เวลา 8.00 น.</strong> ส่งผลให้ไม่สามารถให้บริการในส่วนนี้ได้
+                            <br />
+                            ทั้งนี้ สามารถใช้บริการการหาข้อมูลทั้วไปได้ตามปกติ ขอภัยในความไม่สะดวกค่ะ
+                        </div>
+                    </div>
+                </div>*@
+            @RenderBody()
+        </div>
+
+        <footer>
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-12">
+                            <br/>
+                            <span style="display: inline-block; padding: 24px 0;">
+                                @Html.Raw(string.Format(Resource.Global.COPYRIGHTS, DateTime.Today, ViewBag.CurrentLang == "th" ? 2537 : 2537 - 543))
+                            </span>
+                            <a class="pull-right clearfix" href="http://www.info.go.th" target="_blank">
+                                <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/infofoot.png")" alt="">
+                                <p>
+                                    ศูนย์กลางข้อมูลภาครัฐ
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Bundles/NewBizUI/scripts")
+
+    @RenderSection("PageScripts", required: false)
+
+
+    @*<script type="text/javascript">
+            $(function () {
+                calert('@BizPortalSetting.ALERT_COOKIE');
+                cmodal('@BizPortalSetting.MODAL_COOKIE')
+            });
+        </script>*@
+    <!-- Start of StatCounter Code for Default Guide -->
+
+    <script>
+        (function (w, i, d, g, e, t, s) {
+            w[d] = w[d] || []; t = i.createElement(g);
+            t.async = 1; t.src = e; s = i.getElementsByTagName(g)[0]; s.parentNode.insertBefore(t, s);
+        })(window, document, '_gscq', 'script', '//widgets.getsitecontrol.com/75575/script.js');
+    </script>
+
+    <script type="text/javascript">
+        var sc_project = 10891367;
+        var sc_invisible = 1;
+        var sc_security = "9d850f87";
+        var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+        document.write("<script type='text/javascript' src='" + scJsHost + "statcounter.com/counter/counter.js'></" + "script>");
+
+        var fieldExist = function (data) {
+
+            if (typeof data === 'string') {
+                if (data.trim().length > 0) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        $(document).ready(function () {
+            var trigger = $('.hamburger'),
+                overlay = $('.overlay'),
+                main = $('body'),
+               isClosed = false;
+
+            trigger.click(function () {
+                hamburger_cross();
+            });
+
+            function hamburger_cross() {
+
+                if (isClosed == true) {
+                    overlay.hide();
+                    trigger.removeClass('is-open');
+                    trigger.addClass('is-closed');
+                    isClosed = false;
+                } else {
+                    overlay.show();
+                    trigger.removeClass('is-closed');
+                    trigger.addClass('is-open');
+                    isClosed = true;
+                }
+            }
+
+            $('[data-toggle="offcanvas"]').click(function () {
+                $('#wrapper').toggleClass('toggled');
+                $('html').toggleClass('mobile-scroll');
+            });
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                var userType = User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.UserType);
+
+                <text>
+                $('#sidebar-wrapper .sidebar-nav').addClass('authen');
+                </text>
+                if (userType == UserTypeEnum.GovernmentAgent.GetEnumStringValue())
+                {
+                    <text>
+                    $('#sidebar-wrapper .sidebar-nav').addClass('authen-govagent');
+                    </text>
+                }
+            }
+            else{
+                <text>
+                $('#sidebar-wrapper .sidebar-nav').removeClass('authen authen-govagent');
+                </text>
+            }
+
+        });
+
+        $(document).on('tap', function (e) {
+            var container = $("#bizRegister");
+            var btn = $(".biz-user button.btn-biz-white");
+
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0 // ... nor a descendant of the container
+                && !btn.is(e.target)) {
+                container.removeClass("in");
+            }
+        });
+
+    </script>
+
+    <!--Start of Zendesk Chat Script-->
+    <script type="text/javascript">
+        window.$zopim || (function (d, s) {
+            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+                d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                    z.set.
+                        _.push(o)
+                }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+            $.src = "https://v2.zopim.com/?51QWbJHtlTd1CZbVRcYvrExRiI1ShrJo"; z.t = +new Date; $.
+                type = "text/javascript"; e.parentNode.insertBefore($, e)
+        })(document, "script");
+
+        $zopim(function() {
+            $zopim.livechat.badge.hide();
+        });
+    </script>
+    <!--End of Zendesk Chat Script-->
+
+    @*<noscript>
+        <div class="statcounter">
+            <a title="shopify visitor statistics" href="http://statcounter.com/shopify/" target="_blank">
+                <img class="statcounter" src="http://c.statcounter.com/10891367/0/9d850f87/1/" alt="shopify visitor statistics" />
+            </a>
+        </div>
+    </noscript>*@
+    <!-- End of StatCounter Code for Default Guide -->
+</body>
+</html>

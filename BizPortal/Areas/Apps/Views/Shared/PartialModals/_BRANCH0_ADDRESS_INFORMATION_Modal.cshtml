@@ -1,0 +1,328 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@model FormSection
+
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label>@ResourceHelper.GetResourceWordWithDefault("JURISTIC_BRANCH0_TITLE", "Apps_SingleForm", "JURISTIC_BRANCH0_TITLE") * :</label>
+        <select class="form-control" id="ajax_dropdown_JURISTIC_BRANCH0_TITLE" name="AJAX_DROPDOWN_JURISTIC_BRANCH0_TITLE">
+            <option></option>
+        </select>
+        <input type="hidden" id="ajax_dropdown_JURISTIC_BRANCH0_TITLE_TEXT" name="AJAX_DROPDOWN_JURISTIC_BRANCH0_TITLE_TEXT" />
+    </div>
+    <div class="col-md-8 form-group">
+        <label>@ResourceHelper.GetResourceWordWithDefault("JURISTIC_BRANCH0_NAME", "Apps_SingleForm", "JURISTIC_BRANCH0_NAME") * :</label>
+        <input type="text" class="form-control" id="JURISTIC_BRANCH0_NAME" name="JURISTIC_BRANCH0_NAME" maxlength="160" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label>เลขที่ * :</label>
+        @Html.TextBox("ADDRESS_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_JURISTIC_BRANCH0_ADDRESS", maxlength = "30" })
+    </div>
+    <div class="col-md-2 form-group">
+        <label>หมู่ * :</label>
+        @Html.TextBox("ADDRESS_MOO_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_MOO_JURISTIC_BRANCH0_ADDRESS", maxlength = "10" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 form-group">
+        <label>หมู่บ้าน :</label>
+        @Html.TextBox("ADDRESS_VILLAGE_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_VILLAGE_JURISTIC_BRANCH0_ADDRESS", maxlength = "40" })
+    </div>
+    <div class="col-md-3 form-group">
+        <label>ตรอก/ซอย :</label>
+        @Html.TextBox("ADDRESS_SOI_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_SOI_JURISTIC_BRANCH0_ADDRESS", maxlength = "60" })
+    </div>
+    <div class="col-md-3 form-group">
+        <label>แยก :</label>
+        @Html.TextBox("ADDRESS_YAK_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_YAK_JURISTIC_BRANCH0_ADDRESS", maxlength = "60", @readonly = "true" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label>อาคาร :</label>
+        @Html.TextBox("ADDRESS_BUILDING_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_BUILDING_JURISTIC_BRANCH0_ADDRESS", maxlength = "40" })
+    </div>
+    <div class="col-md-2 form-group">
+        <label>ห้องเลขที่ :</label>
+        @Html.TextBox("ADDRESS_ROOMNO_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_ROOMNO_JURISTIC_BRANCH0_ADDRESS", maxlength = "30" })
+    </div>
+    <div class="col-md-2 form-group">
+        <label>ชั้น :</label>
+        @Html.TextBox("ADDRESS_FLOOR_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_FLOOR_JURISTIC_BRANCH0_ADDRESS", maxlength = "30" })
+    </div>
+    <div class="col-md-4 form-group">
+        <label>ถนน :</label>
+        @Html.TextBox("ADDRESS_ROAD_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_ROAD_JURISTIC_BRANCH0_ADDRESS", maxlength = "40" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 form-group">
+        <label>จังหวัด * :</label>
+        <select class="form-control" name="ADDRESS_PROVINCE_JURISTIC_BRANCH0_ADDRESS" id="ADDRESS_PROVINCE_JURISTIC_BRANCH0_ADDRESS">
+            <option></option>
+        </select>
+    </div>
+    <div class="col-md-6 form-group">
+        <label>อำเภอ/เขต * :</label>
+        <select class="form-control" name="ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS" id="ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS">
+            <option></option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 form-group">
+        <label>ตำบล/แขวง * :</label>
+        <select class="form-control" name="ADDRESS_TUMBOL_JURISTIC_BRANCH0_ADDRESS" id="ADDRESS_TUMBOL_JURISTIC_BRANCH0_ADDRESS">
+            <option></option>
+        </select>
+    </div>
+    <div class="col-md-6 form-group">
+        <label>รหัสไปรษณีย์ * :</label>
+        @Html.TextBox("ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT", @maxlength = "5" })
+        <select class="form-control" name="ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS" id="ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT" disabled style="display:none;">
+            <option></option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label>โทรศัพท์ * :</label>
+        @Html.TextBox("ADDRESS_TELEPHONE_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_TELEPHONE_JURISTIC_BRANCH0_ADDRESS", maxlength = "25" })
+    </div>
+    <div class="col-md-2 form-group">
+        <label>ต่อ :</label>
+        @Html.TextBox("ADDRESS_TELEPHONE_EXT_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_TELEPHONE_EXT_JURISTIC_BRANCH0_ADDRESS" })
+    </div>
+    <div class="col-md-6 form-group">
+        <label>โทรสาร :</label>
+        @Html.TextBox("ADDRESS_FAX_JURISTIC_BRANCH0_ADDRESS", null, new { @class = "form-control", id = "ADDRESS_FAX_JURISTIC_BRANCH0_ADDRESS" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 form-group">
+        <label>อีเมล :</label>
+        @Html.TextBox("JURISTIC_BRANCH0_EMAIL", null, new { @class = "form-control", id = "JURISTIC_BRANCH0_EMAIL" })
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#ajax_dropdown_JURISTIC_BRANCH0_TITLE").select2({
+            ajax: {
+                url: '@Url.Content("~/Api/v2/VAT/BranchTitle")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            allowClear: true,
+            placeholder: 'เลือกคำนำหน้า',
+            width: '100%',
+            dropdownParent: $('#MODAL_BRANCH0_ADDRESS_INFORMATION')
+        });
+
+        $('#ajax_dropdown_JURISTIC_BRANCH0_TITLE').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_JURISTIC_BRANCH0_TITLE_TEXT').val(data.text);
+        });
+
+        $("#ADDRESS_PROVINCE_JURISTIC_BRANCH0_ADDRESS").select2({
+            allowClear: true,
+            placeholder: 'จังหวัด',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    var isMetro = '';
+                    return {
+                        isMetro: isMetro,
+                        query: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        $("#ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS").select2({
+            allowClear: true,
+            placeholder: 'อำเภอ/เขต',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        pCode: $("#ADDRESS_PROVINCE_JURISTIC_BRANCH0_ADDRESS").val()
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        $("#ADDRESS_TUMBOL_JURISTIC_BRANCH0_ADDRESS").select2({
+            allowClear: true,
+            placeholder: 'ตำบล/แขวง',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        pCode: $("#ADDRESS_PROVINCE_JURISTIC_BRANCH0_ADDRESS").val(),
+                        aCode: $("#ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS").val()
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        $("#ADDRESS_PROVINCE_JURISTIC_BRANCH0_ADDRESS").change(function () {
+            $("#ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS").val("").trigger("change");
+            $("#ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS option[value]").remove();
+            $("#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT").val("");
+        });
+
+        $("#ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS").change(function () {
+            $("#ADDRESS_TUMBOL_JURISTIC_BRANCH0_ADDRESS").val("").trigger("change");
+            $("#ADDRESS_TUMBOL_JURISTIC_BRANCH0_ADDRESS option[value]").remove();
+            $("#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT").val("");
+        });
+
+        $("#ADDRESS_TUMBOL_JURISTIC_BRANCH0_ADDRESS").change(function () {
+
+            var geoCode = $("#ADDRESS_PROVINCE_JURISTIC_BRANCH0_ADDRESS").val() +
+                $("#ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS").val() +
+                $("#ADDRESS_TUMBOL_JURISTIC_BRANCH0_ADDRESS").val();
+
+            $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + geoCode, function (data) {
+                if (data.length < 1) {
+                    $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').hide();
+                    $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').prop('disabled', true);
+                    $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT').show();
+                    $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT').prop('disabled', false);
+                } else {
+                    if (data.length == 1) {
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').show();
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').prop('disabled', false);
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT').hide();
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT').prop('disabled', true);
+
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').find('option').remove();
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').append($('<option>', { value: data[0], text: data[0], selected: data[0] == $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').data('init') }));
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').val(data[0]).trigger("change");
+                    } else if (data.length > 1) {
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').show();
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').prop('disabled', false);
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT').hide();
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_INPUT').prop('disabled', true);
+
+                        $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').find('option').remove();
+                        $.each(data, function (key, value) {
+                            $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').append($('<option>', { value: value, text: value, selected: value == $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').data('init') }));
+                        });
+                    }
+
+                    $('#ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS_SELECT').removeData('init');
+                }
+            });
+        });
+
+        singleForm.customRules['AJAX_DROPDOWN_JURISTIC_BRANCH_TITLE'] = {
+            required: true, messages: { required: 'กรุณาเลือกคำนำหน้า' }
+        };
+
+        singleForm.customRules['JURISTIC_BRANCH_NAME'] = {
+            required: true, messages: { required: 'กรุณากรอกชื่อ' }
+        };
+
+        singleForm.customRules['ADDRESS_JURISTIC_BRANCH0_ADDRESS'] = {
+            required: true, messages: { required: 'กรุณากรอกเลขที่' }
+        };
+
+        singleForm.customRules['ADDRESS_PROVINCE_JURISTIC_BRANCH0_ADDRESS'] = {
+            required: true, messages: { required: 'กรุณาเลือกจังหวัด' }
+        };
+
+        singleForm.customRules['ADDRESS_AMPHUR_JURISTIC_BRANCH0_ADDRESS'] = {
+            required: true, messages: { required: 'กรุณาเลือกอำเภอ/เขต' }
+        };
+
+        singleForm.customRules['ADDRESS_TUMBOL_JURISTIC_BRANCH0_ADDRESS'] = {
+            required: true, messages: { required: 'กรุณาเลือกตำบล/แขวง' }
+        };
+
+        singleForm.customRules['ADDRESS_POSTCODE_JURISTIC_BRANCH0_ADDRESS'] = {
+            required: true, messages: { required: 'กรุณากรอกรหัสไปรษณีย์' }
+        };
+
+        singleForm.customRules['ADDRESS_TELEPHONE_JURISTIC_BRANCH0_ADDRESS'] = {
+            required: true, messages: { required: 'กรุณากรอกโทรศัพท์' }
+        };
+
+        function clearYak0() {
+            let text = $('#ADDRESS_SOI_JURISTIC_BRANCH0_ADDRESS').val();
+            if (text.trim() != "") {
+                $('#ADDRESS_YAK_JURISTIC_BRANCH0_ADDRESS').prop('readonly', false);
+            } else {
+                $('#ADDRESS_YAK_JURISTIC_BRANCH0_ADDRESS').val("");
+                $('#ADDRESS_YAK_JURISTIC_BRANCH0_ADDRESS').prop('readonly', true);
+            }
+        }
+
+        $('#ADDRESS_SOI_JURISTIC_BRANCH0_ADDRESS').keyup(function () {
+            clearYak0();
+        });
+
+        $('#ADDRESS_SOI_JURISTIC_BRANCH0_ADDRESS').change(function () {
+            clearYak0();
+        });
+
+        $('#MODAL_BRANCH0_ADDRESS_INFORMATION button[type=submit]').click(function (e) {
+            var mooroad = $('#ADDRESS_MOO_JURISTIC_BRANCH0_ADDRESS').val().trim() != "" || $('#ADDRESS_ROAD_JURISTIC_BRANCH0_ADDRESS').val().trim() != "";
+            var errors = 0;
+
+            $('#MODAL_BRANCH0_ADDRESS_INFORMATION').find('span.custom-req-danger').remove();
+
+            if (!mooroad) {
+                $("#ADDRESS_MOO_JURISTIC_BRANCH0_ADDRESS").after("<span class='text-danger custom-req-danger'>กรุณากรอกหมู่</span>");
+                $("#ADDRESS_ROAD_JURISTIC_BRANCH0_ADDRESS").after("<span class='text-danger custom-req-danger'>กรุณากรอกถนน</span>");
+                errors++;
+            }
+
+            if (!$('#frmBRANCH0_ADDRESS_INFORMATION').valid()) {
+                $('#frmBRANCH0_ADDRESS_INFORMATION').validate().form();
+                errors++;
+            }
+
+            if (errors > 0) {
+                return false;
+            }
+            return true;
+        });
+
+    });
+</script>

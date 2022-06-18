@@ -1,0 +1,113 @@
+﻿@{
+    var urlBuilder =
+    new System.UriBuilder(Request.Url.AbsoluteUri)
+    {
+        Path = Url.Content("~/th/Track/Dashboard"),
+        Query = null,
+    };
+
+    Uri uri = urlBuilder.Uri;
+    string url = urlBuilder.ToString();
+    string f_color = "";
+}
+
+<div class="col-md-12 form-group">
+    <div class="row">
+        <div class="col-md-12">
+            <text style="font-weight:bold">เลขที่คำร้อง/คำขอ (Biz Portal) *:</text>
+        </div>
+        <br />
+        @*<div class="alert alert-default" role="alert">
+                <a href="@url">ดูคำขอได้ที่ @url  @ViewBag.Factory_List</a>
+            </div>*@
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @*<input type="text" name="txt_search1" id="txt_search1" class="form-control" />*@
+            <select name="txt_search1" id="txt_search1" class="form-control">
+                <option value="0">-- เลือกเลขที่คำขอ --</option>
+                @foreach (var a in ViewBag.Factory_List)
+                {
+                    <option value="@a">@a</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input type="button" class="btn btn-primary" name="ค้นหา" value="ค้นหา" id="btn_search" onclick="" />
+            <p id="demo"></p>
+        </div>
+    </div>
+    <div class="row" id="show_data_true">
+        <div class="col-md-12">
+            <input type="text" id="search_value_1" readonly="readonly" style="border:none;background:none;color:#129725" class="form-control form-control-static">
+        </div>
+    </div>
+    <div class="row" id="show_data_false">
+        <div class="col-md-2">
+            <input type="text" id="search_value_2" readonly="readonly" style="border:none;background:none;color:#dc2020" class="form-control form-control-static">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        document.getElementById("btnNextAppSingleForm").disabled = true;
+        document.getElementById("show_data_true").style.visibility = "hidden";
+        document.getElementById("show_data_false").style.visibility = "hidden";
+    });
+
+   $("#btn_search").click(function ()
+   {
+             var txt_search = $("#txt_search1").val();
+       $.ajax(
+           {
+                 cache: false,
+                 type: "GET",
+                 url: "@(Url.Action("FactoryClass_2Search", "SingleForm"))",
+                data: { "txt_search": txt_search },
+                success: function (data)
+                {
+                    if (data != "Data not found")
+                    {
+                        //alert(data.Data.APP_FACTORY_TYPE2_INFO.Data.FACTORY_TYPE2_NAME);
+                        document.getElementById("show_data_true").style.visibility = "visible";
+                        document.getElementById("show_data_false").style.visibility = "hidden";
+                        document.getElementById("btnNextAppSingleForm").disabled = false;
+                        var textbox = document.getElementById("search_value_1");
+                        //textbox.value = data.Data.APP_FACTORY_TYPE2_INFO.Data.FACTORY_TYPE2_NAME;//"ดำเนินการแจ้งประกอบกิจการใบอนุญาตนี้";
+                        var fac_name = data.Data.APP_FACTORY_TYPE2_INFO.Data.FACTORY_TYPE2_NAME;
+                        var fac_p = data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_PROVINCE_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT == "" ? "" : " จ." + data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_PROVINCE_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT;
+                        var fac_a = data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_AMPHUR_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT == "" ? "" : " อ." + data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_AMPHUR_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT;
+                        var fac_t = data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_TUMBOL_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT == "" ? "" : " ต." + data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_TUMBOL_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT;
+                        textbox.value = "ดำเนินการแจ้งประกอบกิจการโรงงาน : " + fac_name + fac_t + fac_a + fac_p;
+                        document.getElementById("txt_search1").readOnly = true;
+                        var para = document.createElement("P");                       // Create a <p> node
+                        var t = document.createTextNode("This is a paragraph.");      // Create a text node
+                        para.appendChild(t);                                          // Append the text to <p>
+                        document.getElementById("myDIV").appendChild(para);           // Append <p> to <div> with id="myDIV"
+                    }
+                    else
+                    {
+                        document.getElementById("btnNextAppSingleForm").disabled = true;
+                        document.getElementById("show_data_false").style.visibility = "visible";
+                       // document.getElementById("show_data_true").style.visibility = "hidden";
+                        document.getElementById("search_value_2").value = "ไมพบข้อมูล";
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError)
+                {
+                    //alert("กรุณาเลือกเลขที่คำขอ");
+                     document.getElementById("btnNextAppSingleForm").disabled = true;
+                     document.getElementById("show_data_false").style.visibility = "visible";
+                     document.getElementById("show_data_true").style.visibility = "hidden";
+                     document.getElementById("search_value_2").value = "ไมพบข้อมูล";
+                     document.getElementById("btnNextAppSingleForm").disabled = true;
+                }
+           }
+       );
+   }
+   );
+
+
+
+</script>

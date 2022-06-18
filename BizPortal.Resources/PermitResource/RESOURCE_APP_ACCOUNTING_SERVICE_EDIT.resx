@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขทะเบียนนิติบุคคลเพื่อประกอบกิจการให้บริการด้านวิชาชีพบัญชี</value>
+    <comment>SectionGroup: APP_ACCOUNTING_SERVICE_EDIT</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION_REGISTERED_CHECKED" xml:space="preserve">
+    <value>แก้ไขจำนวนเงินทุนจดทะเบียน</value>
+    <comment>FieldID: F43_03_02</comment>
+  </data>
+  <data name="EDIT_AMOUNT_REGISTERED" xml:space="preserve">
+    <value>แก้ไขจำนวนเงินทุนจดทะเบียน</value>
+    <comment>FieldID: F43_03_02</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION_AMOUNT_BATH" xml:space="preserve">
+    <value>จำนวนเงินทุนจดทะเบียน (บาท)</value>
+    <comment>FieldID: F43_03_03</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION_SERVICE_TYPE_CHECKED" xml:space="preserve">
+    <value>แก้ไขประเภทของการให้บริการ</value>
+    <comment>FieldID: F43_03_04</comment>
+  </data>
+  <data name="SERVICE_TYPE_EDIT" xml:space="preserve">
+    <value>แก้ไขประเภทของการให้บริการ</value>
+    <comment>FieldID: F43_03_04</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION_SERVICE_TYPE" xml:space="preserve">
+    <value>ประเภทของการให้บริการ</value>
+    <comment>FieldID: F43_03_05</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION_SERVICE_TYPE_ACCOUNTING" xml:space="preserve">
+    <value>ทำบัญชี</value>
+    <comment>FieldID: F43_03_05</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION_SERVICE_TYPE_AUDITORING" xml:space="preserve">
+    <value>สอบบัญชี</value>
+    <comment>FieldID: F43_03_05</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION_SERVICE_TYPE_BOTH" xml:space="preserve">
+    <value>ทำบัญชีและสอบบัญชี</value>
+    <comment>FieldID: F43_03_05</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_CHECKED" xml:space="preserve">
+    <value>ข้อมูลหัวหน้าสำนักงาน</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_CHECKED</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_CHECKED_MANAGER_EDIT_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลหัวหน้าสำนักงาน</value>
+    <comment>FieldID: F43_03_06</comment>
+  </data>
+  <data name="EDIT_MANAGER_SECTION" xml:space="preserve">
+    <value>แก้ไขข้อมูลหัวหน้าสำนักงาน</value>
+    <comment>FieldID: F43_03_06</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION" xml:space="preserve">
+    <value>ข้อมูลหัวหน้าสำนักงาน</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลหัวหน้าสำนักงาน ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลหัวหน้าสำนักงาน&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลหัวหน้าสำนักงาน"&lt;/div&gt;</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลหัวหน้าสำนักงาน</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลหัวหน้าสำนักงาน</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+    <comment>FieldID: F43_03_07</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F43_03_08</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F43_03_09</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F43_03_10</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_PASSPORT" xml:space="preserve">
+    <value>เลขที่หนังสือเดินทาง</value>
+    <comment>FieldID: F43_03_10</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_AUDITOR_ID" xml:space="preserve">
+    <value>เลขทะเบียนผู้สอบบัญชีรับอนุญาต</value>
+    <comment>FieldID: F43_03_11</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_TYPE" xml:space="preserve">
+    <value>ประเภทสมาชิก</value>
+    <comment>FieldID: F43_03_12</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_TYPE_ORDIANRY" xml:space="preserve">
+    <value>สมาชิกสามัญ</value>
+    <comment>FieldID: F43_03_12</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_TYPE_EXTRA_ORDIANY" xml:space="preserve">
+    <value>สมาชิกวิสามัญ</value>
+    <comment>FieldID: F43_03_12</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_TYPE_ASSOCIATE" xml:space="preserve">
+    <value>สมาชิกสมทบ</value>
+    <comment>FieldID: F43_03_12</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_VAT_DATE" xml:space="preserve">
+    <value>ชำระค่าบำรุงสมาชิกถึงวันที่</value>
+    <comment>FieldID: F43_03_13</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_WORKING_TYPE" xml:space="preserve">
+    <value>รูปแบบปฏิบัติงาน</value>
+    <comment>FieldID: F43_03_14</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_WORKING_TYPE_FULLTIME" xml:space="preserve">
+    <value>เต็มเวลา</value>
+    <comment>FieldID: F43_03_14</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_WORKING_TYPE_PARTTIME" xml:space="preserve">
+    <value>บางเวลา</value>
+    <comment>FieldID: F43_03_14</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_CHANGEBY" xml:space="preserve">
+    <value>ขอเปลี่ยนแปลงโดย</value>
+    <comment>FieldID: F43_03_15</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_CHANGEBY_ADD" xml:space="preserve">
+    <value>เพิ่ม จากรายนามเดิม</value>
+    <comment>FieldID: F43_03_15</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_CHANGEBY_COPY" xml:space="preserve">
+    <value>คัดออก จากรายนามเดิม</value>
+    <comment>FieldID: F43_03_15</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHECKED" xml:space="preserve">
+    <value>ข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHECKED</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHECKED_ACCOUNTANT_EDIT_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล</value>
+    <comment>FieldID: F43_03_16</comment>
+  </data>
+  <data name="EDIT_ACCOUNTANT_SECTION" xml:space="preserve">
+    <value>แก้ไขข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล</value>
+    <comment>FieldID: F43_03_16</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION" xml:space="preserve">
+    <value>ข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล
+ ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล
+&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล
+"&lt;/div&gt;</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+    <comment>FieldID: F43_03_17</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F43_03_18</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F43_03_19</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F43_03_20</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_AUDITOR_ID" xml:space="preserve">
+    <value>เลขทะเบียนผู้สอบบัญชีรับอนุญาต</value>
+    <comment>FieldID: F43_03_21</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_TYPE" xml:space="preserve">
+    <value>ประเภทสมาชิก</value>
+    <comment>FieldID: F43_03_22</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_TYPE_ORDIANRY" xml:space="preserve">
+    <value>สมาชิกสามัญ</value>
+    <comment>FieldID: F43_03_22</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_TYPE_EXTRA_ORDIANY" xml:space="preserve">
+    <value>สมาชิกวิสามัญ</value>
+    <comment>FieldID: F43_03_22</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_TYPE_ASSOCIATE" xml:space="preserve">
+    <value>สมาชิกสมทบ</value>
+    <comment>FieldID: F43_03_22</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_VAT_DATE" xml:space="preserve">
+    <value>ชำระค่าบำรุงสมาชิกถึงวันที่</value>
+    <comment>FieldID: F43_03_23</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_WORKING_TYPE" xml:space="preserve">
+    <value>รูปแบบปฏิบัติงาน</value>
+    <comment>FieldID: F43_03_24</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_WORKING_TYPE_FULLTIME" xml:space="preserve">
+    <value>เต็มเวลา</value>
+    <comment>FieldID: F43_03_24</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_WORKING_TYPE_PARTTIME" xml:space="preserve">
+    <value>บางเวลา</value>
+    <comment>FieldID: F43_03_24</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHANGEBY" xml:space="preserve">
+    <value>ขอเปลี่ยนแปลงโดย</value>
+    <comment>FieldID: F43_03_25</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHANGEBY_ADD" xml:space="preserve">
+    <value>เพิ่ม จากรายนามเดิม</value>
+    <comment>FieldID: F43_03_25</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHANGEBY_COPY" xml:space="preserve">
+    <value>คัดออก จากรายนามเดิม</value>
+    <comment>FieldID: F43_03_25</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_CHECKED" xml:space="preserve">
+    <value>ข้อมูลรายนามผู้สอบบัญชีรับอนุญาตที่ลงลายมือชื่อในฐานะผู้สอบบัญชีของนิติบุคคล</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_CHECKED</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_CHECKED_AUDITOR_EDIT_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลรายนามผู้ทำบัญชีที่รับผิดชอบในฐานะผู้ทำบัญชีของนิติบุคคล</value>
+    <comment>FieldID: F43_03_26</comment>
+  </data>
+  <data name="EDIT_AUDITOR_SECTION" xml:space="preserve">
+    <value>แก้ไขข้อมูลรายนามผู้สอบบัญชีรับอนุญาตที่ลงลายมือชื่อในฐานะผู้สอบบัญชีของนิติบุคคล</value>
+    <comment>FieldID: F43_03_26</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION" xml:space="preserve">
+    <value>ข้อมูลรายนามผู้สอบบัญชีรับอนุญาตที่ลงลายมือชื่อในฐานะผู้สอบบัญชีของนิติบุคคล</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลรายนามผู้สอบบัญชีรับอนุญาตที่ลงลายมือชื่อในฐานะผู้สอบบัญชีของนิติบุคคล
+ ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลรายนามผู้สอบบัญชีรับอนุญาตที่ลงลายมือชื่อในฐานะผู้สอบบัญชีของนิติบุคคล
+&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลรายนามผู้สอบบัญชีรับอนุญาตที่ลงลายมือชื่อในฐานะผู้สอบบัญชีของนิติบุคคล
+"&lt;/div&gt;</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลรายนามผู้สอบบัญชีรับอนุญาตที่ลงลายมือชื่อในฐานะผู้สอบบัญชีของนิติบุคคล</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลรายนามผู้สอบบัญชีรับอนุญาตที่ลงลายมือชื่อในฐานะผู้สอบบัญชีของนิติบุคคล</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+    <comment>FieldID: F43_03_27</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F43_03_28</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F43_03_29</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F43_03_30</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_AUDITOR_ID" xml:space="preserve">
+    <value>เลขทะเบียนผู้สอบบัญชีรับอนุญาต</value>
+    <comment>FieldID: F43_03_31</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_TYPE" xml:space="preserve">
+    <value>ประเภทสมาชิก</value>
+    <comment>FieldID: F43_03_32</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_TYPE_ORDIANRY" xml:space="preserve">
+    <value>สมาชิกสามัญ</value>
+    <comment>FieldID: F43_03_32</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_TYPE_EXTRA_ORDIANY" xml:space="preserve">
+    <value>สมาชิกวิสามัญ</value>
+    <comment>FieldID: F43_03_32</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_TYPE_ASSOCIATE" xml:space="preserve">
+    <value>สมาชิกสมทบ</value>
+    <comment>FieldID: F43_03_32</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_VAT_DATE" xml:space="preserve">
+    <value>ชำระค่าบำรุงสมาชิกถึงวันที่</value>
+    <comment>FieldID: F43_03_33</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_WORKING_TYPE" xml:space="preserve">
+    <value>รูปแบบปฏิบัติงาน</value>
+    <comment>FieldID: F43_03_34</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_WORKING_TYPE_FULLTIME" xml:space="preserve">
+    <value>เต็มเวลา</value>
+    <comment>FieldID: F43_03_34</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_WORKING_TYPE_PARTTIME" xml:space="preserve">
+    <value>บางเวลา</value>
+    <comment>FieldID: F43_03_34</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_CHANGEBY" xml:space="preserve">
+    <value>ขอเปลี่ยนแปลงโดย</value>
+    <comment>FieldID: F43_03_35</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_CHANGEBY_ADD" xml:space="preserve">
+    <value>เพิ่ม จากรายนามเดิม</value>
+    <comment>FieldID: F43_03_35</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_CHANGEBY_COPY" xml:space="preserve">
+    <value>คัดออก จากรายนามเดิม</value>
+    <comment>FieldID: F43_03_35</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION_CHECKED" xml:space="preserve">
+    <value>ข้อมูลการออกหนังสือรับรองฉบับใหม่</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION_CHECKED</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION_CHECKED_NEW_CERTIFICATE_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลการออกหนังสือรับรองฉบับใหม่</value>
+    <comment>FieldID: F43_03_36</comment>
+  </data>
+  <data name="EDIT_CERTIFICATE" xml:space="preserve">
+    <value>แก้ไขข้อมูลการออกหนังสือรับรองฉบับใหม่</value>
+    <comment>FieldID: F43_03_36</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION" xml:space="preserve">
+    <value>ข้อมูลการออกหนังสือรับรองฉบับใหม่</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION_REASON_FOR_ISSUING" xml:space="preserve">
+    <value>สาเหตุการออกหนังสือรับรองฉบับใหม่</value>
+    <comment>FieldID: F43_03_37</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION_REASON_FOR_ISSUING_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+&lt;div class="col-xs-12"&gt;-กรณีเปลี่ยนชื่อนิติบุคคล (แนบหลักฐานหนังสือรับรองการจดทะเบียนตามประมวลกฎหมายแพ่งและพาณิชย์เป็นนิติบุคคล (ชื่อใหม่))&lt;/div&gt;
+&lt;div class="col-xs-12"&gt;-กรณีชำรุด/สูญหาย (แนบหลักฐานการชำรุด/สูญหาย (หนังสือแจ้งความ))&lt;/div&gt;
+&lt;/div&gt;</value>
+    <comment>FieldID: F43_03_37</comment>
+  </data>
+  <data name="CHANGE_NAME" xml:space="preserve">
+    <value>เปลี่ยนชื่อนิติบุคคล</value>
+    <comment>FieldID: F43_03_37</comment>
+  </data>
+  <data name="BROKEN_OR_LOST" xml:space="preserve">
+    <value>ชำรุด/สูญหาย</value>
+    <comment>FieldID: F43_03_37</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION_CHECKED" xml:space="preserve">
+    <value>ข้อมูลอื่น ๆ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION_CHECKED</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION_CHECKED_OTHER_CHECKED" xml:space="preserve">
+    <value>แก้ไขข้อมูลอื่น ๆ</value>
+    <comment>FieldID: F43_03_38</comment>
+  </data>
+  <data name="EDIT_OTHER" xml:space="preserve">
+    <value>แก้ไขข้อมูลอื่น ๆ</value>
+    <comment>FieldID: F43_03_38</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION" xml:space="preserve">
+    <value>ข้อมูลอื่น ๆ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION_OTHER_REASON" xml:space="preserve">
+    <value>ความประสงค์ในการแก้ไขอย่างอื่น (กรุณาระบุ)</value>
+    <comment>FieldID: F43_03_39</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_EDIT_SECTION_CONFIRM" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_EDIT_EDIT_SECTION_CONFIRM</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_EDIT_SECTION_CONFIRM_EDIT_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F43_03_40</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_EDIT_SECTION_CONFIRM_EDIT_CONFIRM_INFO" xml:space="preserve">
+    <value>1. หลักฐานการแก่ไขทะเบียนนิติบุคคล (พร้อมรับรองสำเนาถูกต้อง)&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt;☐ หนังสือรับรองการจดทะเบียนนิติบุคคล ไม่เกิน 3 เดือน&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt;☐ สำเนาบัตรประจำตัวประชาชนของกรรมการ/หุ้นส่วนผู้จัดการผู้มีอำนาจลงนาม&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt;☐ หลักฐานการชำระค่าแก้ไขข้อมูลนิติบุคคล/ยกเลิกการจดทะเบียนนิติบุคคล&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt;☐ หนังสือมอบอำนาจให้กระทำการแทนนิติบุคคล (ถ้ามี)&lt;/span&gt;&lt;br/&gt;
+&lt;span style="margin-left: 1em;"&gt;&lt;u&gt;คำเตือน&lt;/u&gt; ตามพระราชบัญญัติวิชาชีพบัญชี พ.ศ. 2547 มาตรา 66 นิติบุคคลใดฝ่าฝืนหรือไม่ปฏิบัติตามมาตร 11 ต้องระวางโทษปรับไม่เกินสามแสนบาทและปรับอีกไม่เกินวันละหนึ่งหมื่นบาทจนกว่าจะได้ปฏิบัติให้ถูกต้อง&lt;/span&gt;&lt;br/&gt;</value>
+    <comment>FieldID: F43_03_40</comment>
+  </data>
+  <data name="EDIT_CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าข้อมูลต่างๆที่ได้ยื่นต่อสภาวิชาชีพบัญชี ในพระบรมราชูปถัมภ์เป็นข้อมูลที่ถูกต้องครบถ้วน และข้าพเจ้ายินดีแสดงหลักฐานและข้อมูลอื่นใดที่เกี่ยวข้องกับการปฎิบัติงานของผู้สอบบัญชีในสังกัดรวมทั้งระบบควบคุมคุณภาพสำนักงาน และยินยอมให้ผู้ที่ได้รับมอบหมายจากสภาวิชาชีพบัญชี ในพระบรมราชูปถัมภ์เข้าเยี่ยมและตรวจสอบระบบควบคุมคุณภาพสำนักงาน ตลอดจนเรียกข้าพเจ้ามาให้ถ้อยคำ หรือชี้แจง หรือทำคำชี้แจงเป็นหนังสือ หรือส่งมอบเอกสารหลักฐานอื่นใดที่เกี่ยวข้องกับการปฏิบัติงานสอบบัญชีของผู้สอบบัญชีในสังกัด และระบบควบคุณคุณภาพสำนักงาน เพื่อประโยชน์ในการกำกับดูแลการปฏิบัติงานให้เป็นไปตามมาตรฐานการสอบบัญชีและมาตรฐานการควบคุมคุณภาพฉบับที่ 1</value>
+    <comment>FieldID: F43_03_40</comment>
+  </data>
+</root>

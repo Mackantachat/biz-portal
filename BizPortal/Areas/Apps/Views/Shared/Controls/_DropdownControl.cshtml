@@ -1,0 +1,175 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{ 
+    var autofillAttr = AutoFillConditionHelper.GetAttributes(Model);
+}
+
+@if (Model.IsAjaxDropdown)
+{
+    var query = Model.AjaxQueryString != null ? Model.AjaxQueryString : string.Empty;
+    var placeholder = Model.PlaceholderText != null ? Model.PlaceholderText : string.Empty;
+
+    <select class="form-control @(Model.WillTriggerDisplayOfOtherUI ? "trigger-dd" : "") " 
+            data-control-name="@Model.DataKey"
+            id="@string.Format("ajax_dropdown_{0}", Model.ClientID)" 
+            name="@string.Format("AJAX_DROPDOWN_{0}", Model.DataKey)">
+        <option></option>
+    </select>
+
+    // Frontis: Allow Ajax dropdownlist to change datasource url based on variable.    
+    bool hasVariable = Model.ControlVariables != null && Model.ControlVariables.Length > 0;
+
+    if (hasVariable)
+    {
+        <script>
+
+            function @(Model.DataKey)_getUrl() {
+                var url = '@Url.Content(Model.AjaxUrl)@Html.Raw(query)';
+
+                @foreach(var v in Model.ControlVariables)
+                {
+                    if (v.Source == ControlVariable.VariableSource.FormControl && !string.IsNullOrEmpty(v.ControlSelector))
+                    {
+            <text>
+                if ($("@Html.Raw(v.ControlSelector)")) {
+                    var value = $("@Html.Raw(v.ControlSelector)").val();
+                    url = url.replace('{@v.Name}', (value || '@v.DefaultIfEmpty'));
+                }
+            </text>
+                    }
+                }
+
+                return url;
+            }
+
+            function @(Model.DataKey)_initSelect2() {
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID)").select2({
+                    ajax: {
+                        url: function () {
+                          return @(Model.DataKey)_getUrl();
+                        },
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                query: params.term
+                            }
+                        },
+                        processResults: function (data, params) {
+                            return data;
+                        },
+                        cache: true
+                    },
+                    allowClear: true,
+                    placeholder: '@placeholder',
+                    width: '100%',
+                    @if (Model.IsInModal)
+                    {
+                        <text>
+                        dropdownParent: $('#MODAL_@Model.ModalSectionName')
+                        </text>
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                @{
+                    // Frontis: Allow dropdownlist to change datasource url based on variable.       
+                    string selectors = "";
+                    foreach(var variable in Model.ControlVariables)
+                    {
+                        if (variable.Source == ControlVariable.VariableSource.FormControl && variable.ListenOnChange && !string.IsNullOrEmpty(variable.ControlSelector))
+                        {
+                            if (!string.IsNullOrEmpty(selectors))
+                            {
+                                selectors += ", ";
+                            }
+
+                            selectors += variable.ControlSelector;
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(selectors))
+                    {
+                        <text>
+                $("@Html.Raw(selectors)").change(function (e) {
+                        @(Model.DataKey)_initSelect2();
+                            $("#@string.Format("ajax_dropdown_{0}", Model.ClientID)").val('').trigger('change');
+                            $("#@string.Format("ajax_dropdown_{0}", Model.ClientID) option[value]").remove();
+                        });
+                        </text>
+                    }                
+                }
+
+                @(Model.DataKey)_initSelect2();
+            
+            });
+        </script>
+
+    }
+    else
+    {
+        <script type="text/javascript">
+            $(function () {
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID)").select2({
+                    ajax: {
+                        url: '@Url.Content(Model.AjaxUrl)@Html.Raw(query)',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                query: params.term
+                            }
+                        },
+                        processResults: function (data, params) {
+                            return data;
+                        },
+                        cache: true
+                    },
+                    allowClear: true,
+                    placeholder: '@placeholder',
+                    width: '100%',
+                    @if (Model.IsInModal)
+                    {
+                        <text>
+                    dropdownParent: $('#MODAL_@Model.ModalSectionName')
+                    </text>
+                    }
+                });
+            });
+        </script>
+    }
+    
+}
+else
+{
+    var placeholder = Model.PlaceholderText != null ? Model.PlaceholderText : string.Empty;
+
+    <select class="form-control @(Model.WillTriggerDisplayOfOtherUI ? "trigger-dd" : "") @autofillAttr.Class" 
+            id="@string.Format("{0}_{1}", "dropdown", Model.ClientID)" 
+            name="@string.Format("{0}_{1}", "DROPDOWN", Model.DataKey)"
+            data-control-name="@Model.DataKey"
+            @autofillAttr.Data
+            @autofillAttr.DataSourceFromDraft
+            @autofillAttr.DataSourceIsAddressControl
+            @autofillAttr.DataSourceSection
+            @autofillAttr.DataSourceControl
+            >
+        <option></option>
+    </select>
+
+    <script type="text/javascript">
+    $(function () {
+        $("#@string.Format("{0}_{1}", "dropdown", Model.ClientID)").select2({
+            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select2Opts)),
+            allowClear: true,
+            placeholder: '@placeholder',
+            width: '100%'
+        });
+        
+    });
+    </script>
+}

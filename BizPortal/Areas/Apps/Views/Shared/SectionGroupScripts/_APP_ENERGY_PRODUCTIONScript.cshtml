@@ -1,0 +1,82 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    window.APP_ENERGY_PRODUCTION_MACHINE_SECTION_HORSEPOWER_CHECK_REQUIRE = function () {
+        const value = $("select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE']").val();
+        const hpower = $("input[name='APP_ENERGY_PRODUCTION_MACHINE_SECTION_HORSEPOWER']").val();
+        if (value != 7 && hpower == '') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    window.APP_ENERGY_PRODUCTION_CHECK_ERA_YEAR_ACTIVE = function () {
+        const era = $("input[name='APP_ENERGY_PRODUCTION_MACHINE_SECTION_YEAR_ACTIVE']").val();
+        if (/^[0-9]{4}$/.test(era) || era == "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    window.APP_ENERGY_PRODUCTION_CHECK_ERA_YEAR = function () {
+        const era = $("input[name='APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_YEAR']").val();
+        if (/^[0-9]{4}$/.test(era) || era == "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $(document).ready(function (e) {
+
+        $("input[name='APP_ENERGY_PRODUCTION_MACHINE_SECTION_YEAR_ACTIVE'").prev().text("ปีที่ติดตั้งใช้งาน (พ.ศ.) * :");
+
+        $("select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE']").change(function (e) {
+            var isPhotoVol = $(this).val() == '7';
+            if (isPhotoVol) {
+                var fuelDDL = "select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_MACHINE_SECTION_FUEL']";
+                // default to โซลาร์เซลส์
+                window.singleFormHelpers.form.setSelect2WithDefault($(fuelDDL), '10', 'โซลาร์เซลส์');
+                window.singleFormHelpers.form.setSelect2Readonly($(fuelDDL), true);
+
+                // clear พิกัดกำลัง (แรงม้า).
+                const HorsePower = $("select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE']").val();
+                //let textShow = "พิกัดกำลัง (แรงม้า)";
+                //if (HorsePower != 7) {
+                //    textShow += " *";
+                //}
+
+                $("input[name='APP_ENERGY_PRODUCTION_MACHINE_SECTION_HORSEPOWER']").val('');
+                //$("input[name='APP_ENERGY_PRODUCTION_MACHINE_SECTION_HORSEPOWER']").prev().text(textShow += " :")
+
+            } else {
+                var fuelDDL = "select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_MACHINE_SECTION_FUEL']";
+                window.singleFormHelpers.form.setSelect2Readonly($(fuelDDL), false);
+            }
+
+            $("input[name='APP_ENERGY_PRODUCTION_MACHINE_SECTION_HORSEPOWER']").prop('readonly', isPhotoVol); // พิกัดกำลัง(แรงม้า)
+        });
+
+        $(document).on('APP_ENERGY_PRODUCTION_MACHINE_SECTION-modal-databound', function (e, section, data) {
+            $("select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE']").trigger('change');
+        });
+    });
+
+    $('[name=APP_ENERGY_PRODUCTION_MACHINE_SECTION_YEAR_ACTIVE]').keyup(function () {
+        if ($(this).val() === '') {
+            $('#jsex-msg-err_APP_ENERGY_PRODUCTION_MACHINE_SECTION_YEAR_ACTIVE').hide();
+        }
+    });
+
+    $('[name=APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_YEAR]').keyup(function () {
+        if ($(this).val() === '') {
+            $('#jsex-msg-err_APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_YEAR').hide();
+        }
+    });
+</script>
+

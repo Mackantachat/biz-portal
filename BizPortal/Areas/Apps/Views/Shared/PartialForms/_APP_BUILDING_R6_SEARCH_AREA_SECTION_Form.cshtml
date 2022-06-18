@@ -1,0 +1,196 @@
+﻿@using BizPortal.Utils.Helpers
+@model FormSection
+@{
+    var rd = string.Empty;
+    var rd2 = string.Empty;
+    if (Model.PartialReadonly)
+    {
+        rd = "disabled";
+        rd2 = "readonly";
+    }
+}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>จังหวัด * :</label>
+                <select class="form-control" name="ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH" id="ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH">
+                    <option></option>
+                </select>
+                <input type="hidden" name="ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH_TEXT" id="ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH_TEXT" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>อำเภอ/เขต * :</label>
+                <select class="form-control" name="ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH" id="ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH">
+                    <option></option>
+                </select>
+                <input type="hidden" name="ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH_TEXT" id="ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH_TEXT" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>ตำบล/แขวง * :</label>
+                <select class="form-control" name="ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH" id="ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH">
+                    <option></option>
+                </select>
+                <input type="hidden" name="ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH_TEXT" id="ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH_TEXT" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>หมู่ :</label>
+                <input class="form-control" type="text" name="ADDRESS_MOO_APP_BUILDING_R6_AREA_SEARCH" id="ADDRESS_MOO_APP_BUILDING_R6_AREA_SEARCH" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>หน่วยงานที่รับผิดชอบ * :</label>
+                <select class="form-control" name="AJAX_DROPDOWN_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA" id="ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA">
+                    <option></option>
+                </select>
+                <input type="hidden" name="AJAX_DROPDOWN_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA_TEXT" id="ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA_TEXT" />
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH").select2({
+                allowClear: true,
+                placeholder: 'จังหวัด',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            isMetro: '@ProvinceType.NotBKK.ToString()',
+                            query: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+            $('#ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH').on('select2:select', function (e) {
+                var data = e.params.data;
+                $('#ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH_TEXT').val(data.text);
+            });
+
+            $("#ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH").select2({
+                allowClear: true,
+                placeholder: 'อำเภอ/เขต',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $("#ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+            $('#ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH').on('select2:select', function (e) {
+                var data = e.params.data;
+                $('#ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH_TEXT').val(data.text);
+            });
+
+            $("#ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH").select2({
+                allowClear: true,
+                placeholder: 'ตำบล/แขวง',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $("#ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH").val(),
+                            aCode: $("#ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+            $('#ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH').on('select2:select', function (e) {
+                var data = e.params.data;
+                $('#ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH_TEXT').val(data.text);
+            });
+
+            $("#ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA").select2({
+                allowClear: true,
+                placeholder: 'หน่วยงานพื้นที่ที่รับผิดชอบ',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/DPT/ResponsibleArea")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $("#ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH").val(),
+                            aCode: $("#ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH").val(),
+                            tCode: $("#ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH").val(),
+                            moo: $("#ADDRESS_MOO_APP_BUILDING_R6_AREA_SEARCH").val(),
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+            $('#ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA').on('select2:select', function (e) {
+                var data = e.params.data;
+                $('#ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA_TEXT').val(data.text);
+            });
+
+            $("#ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH").change(function () {
+                $("#ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH").val("").trigger("change");
+                $("#ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH option[value]").remove();
+                respClear();
+            });
+
+            $("#ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH").change(function () {
+                $("#ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH").val("").trigger("change");
+                $("#ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH option[value]").remove();
+                respClear();
+            });
+
+            $("#ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH").change(function () {
+                respClear();
+            });
+
+            function respClear() {
+                $("#ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA").val("").trigger("change");
+                $("#ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA option[value]").remove();
+                $("#ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA_TEXT").val("");
+            }
+
+            singleForm.customRules['ADDRESS_PROVINCE_APP_BUILDING_R6_AREA_SEARCH'] = {
+                required: true, messages: { required: 'กรุณาเลือกจังหวัด' }
+            };
+            singleForm.customRules['ADDRESS_AMPHUR_APP_BUILDING_R6_AREA_SEARCH'] = {
+                required: true, messages: { required: 'กรุณาเลือกอำเภอ/เขต' }
+            };
+            singleForm.customRules['ADDRESS_TUMBOL_APP_BUILDING_R6_AREA_SEARCH'] = {
+                required: true, messages: { required: 'กรุณาเลือกตำบล/แขวง' }
+            };
+            singleForm.customRules['AJAX_DROPDOWN_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA'] = {
+                required: true, messages: { required: 'กรุณาเลือกหน่วยงานที่รับผิดชอบ' }
+            };
+        });
+    </script>

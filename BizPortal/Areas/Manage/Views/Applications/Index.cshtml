@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = BizPortal.Resources.Application.APPLICATION;
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+@section ContentHeader
+{
+    <i class="fa fa-file-text-o fa fa-2x "></i>
+    <h4 class="m-t-xs inline padder">@BizPortal.Resources.Application.APPLICATION</h4>
+}
+
+<header class="header bg-white clearfix">
+    <div class="row m-t-sm">
+        <form id="frmSearchApplication" class="form-horizontal col-sm-12 m-b-xs">
+            <div class="form-group">
+                @Html.Label(BizPortal.Resources.Global.SEARCH_KEYWORD + " : ", new { @class = "col-sm-2 control-label font-bold" })
+                <div class="col-sm-10">
+                    @Html.TextBox("SearchApplicationKeyword", "", new { @id = "SearchApplicationKeyword", @class = "form-control", @placeholder = BizPortal.Resources.Global.SEARCH_KEYWORD, @autocomplete = "off" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <button type="button" id="btnSearch" class="btn btn-s-md btn-primary"><i class="fa fa-search"></i> @BizPortal.Resources.Global.SEARCH</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</header>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="btn-group pull-right pr10">
+            <a href="@Url.Action("Add", "Applications", new { language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="btn btn-primary">@Html.Raw(BizPortal.Resources.Global.BTN_ADD)</a>
+            <button class="btn btn-danger" id="btnDelete">@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive clearfix">
+    <table id="appDataTables" class="table table-striped table-bordered" data-ride="datatables">
+        <thead>
+            <tr>
+                <th style="">#</th>
+                <th style=""><input id="appCheckAll" type="checkbox" /></th>
+                <th style="">@BizPortal.Resources.Application.APPLICATION_SYS_NAME</th>
+                <th style="">@BizPortal.Resources.Application.ORG_CODE</th>
+                <th style="">@BizPortal.Resources.Global.TABLE_ACTION_HEADING</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        var appDataTables;
+
+        $(document).ready(function () {
+            $('#appCheckAll').checkAll({ container: $('#appDataTables'), showIndeterminate: true });
+            appDataTables = $('#appDataTables').DataTable({
+                serverSide: true,
+                searching: false,
+                indexColoumn: true,
+                ajax: {
+                    url: '@Url.Content("~/Api/Application/List")',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: function (params) {
+                        // Provided as a function to manipulate the data DataTables sends to the server.
+                        if ($('#SearchApplicationKeyword').val())
+                            params.SearchKeyword = $('#SearchApplicationKeyword').val();
+
+                        return JSON.stringify(params);
+                    }
+                },
+                columns: [
+                    { data: 'ApplicationID', sortable: false, 'class': 'text-center' },
+                    {
+                        data: 'ApplicationID',
+                        render: function (data, type, row) {
+                            return '<input type="checkbox" data-app-id="' + data + '" />';
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    },
+                    { data: 'ApplicationSysName' },
+                    { data: 'OrgSysName' },
+                    {
+                        data: 'ApplicationID',
+                        render: function (data, type, row) {
+                            var template = '<a href="@Url.Action("Edit", "Applications", new { Area="Manage", Language= ViewBag.CurrentLang })/' + data + '" class="btn btn-xs btn-warning">@Html.Raw(BizPortal.Resources.Global.BTN_EDIT)</a> <button type="button" class="btn btn-xs btn-danger" onclick="return deleteApplication(' + data + ');">@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>';
+                            return template;
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    }
+                ],
+                order: [[1,'asc']],
+            });
+
+            $('#btnSearch').on('click',function (e) {
+                appDataTables.ajax.reload();
+            });
+
+            $('#btnSetListStatus, #btnSetUnlistStatus').click(function () {
+                var apps = getSelectedApplicationIDs();
+                if (apps.length > 0) {
+                    setUnlistStatus(apps.toString(), $(this).data('unlist-status'));
+                }
+                else {
+                    alert('@BizPortal.Resources.Application.MSG_REQUIRED_ATLEAST');
+                }
+            });
+
+            $('#btnDelete').click(function () {
+                var apps = getSelectedApplicationIDs();
+                if (apps.length > 0) {
+                    deleteApplication(apps.toString());
+                }
+                else {
+                    alert('@BizPortal.Resources.Application.MSG_REQUIRED_ATLEAST');
+                }
+            });
+        });
+
+        function getSelectedApplicationIDs() {
+            var $appCheck = $('#appDataTables input[id!=appCheckAll]:checked');
+            var apps = Array();
+            for (var i = 0; i < $appCheck.length; i++) {
+                var $check = $($appCheck[i]);
+                apps.push($check.data('app-id'));
+            }
+            return apps;
+        }
+
+        function deleteApplication(id) {
+            if (confirm('@BizPortal.Resources.Application.MSG_DELETED_CONFIRM')) {
+                $.ajax('@Url.Content("~/Api/Application")/' + id, {
+                    method: 'DELETE',
+                    dataType: 'json',
+                    success: function (data, status) {
+                        appDataTables.ajax.reload();
+                        alert(data.Message);
+                    },
+                    error: function (xhr, status, error) {
+                        var data = xhr.responseJSON;
+                        alert(data.Message);
+                    }
+                });
+            }
+        }
+
+        function setUnlistStatus(id, unlist) {
+            $.ajax('@Url.Content("~/Api/Application")/' + id + '/unlist/' + unlist.toString(), {
+                method: 'PUT',
+                dataType: 'json',
+                success: function (data, status) {
+                    appDataTables.ajax.reload();
+                    alert(data.Message);
+                },
+                error: function (xhr, status, error) {
+                    var data = xhr.responseJSON;
+                    alert(data.Message);
+                }
+            });
+
+            return false;
+        }
+
+
+
+        function updateOrdering() {
+            var order = [];
+            var ordering = $('#appDataTables input[name="Order"]');
+            var oTable = appDataTables;
+            if (ordering != null || ordering != undefined) {
+                for (var i = 0; i < ordering.length; i++) {
+                    order.push({
+                        id: $(ordering[i]).data('id'),
+                        order: (isNumber($(ordering[i]).val()) ? $(ordering[i]).val() : 0)
+                    });
+                }
+            }
+
+            $.post('@Url.Content("~/Api/Application/Order")/', {
+                Orders: JSON.stringify(order)
+            }
+                ).done(function (data, status) {
+                    appDataTables.ajax.reload();
+                    alert(data.Message);
+                })
+  .fail(function (xhr, status, error) {
+      var data = xhr.responseJSON;
+      alert(data.Message);
+  });
+        }
+
+    </script>
+}

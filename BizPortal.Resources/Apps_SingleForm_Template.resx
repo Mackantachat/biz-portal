@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BRANCH_ADDRESS_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มสาขา</value>
+  </data>
+  <data name="BRANCH_ADDRESS_INFORMATION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มสาขา</value>
+  </data>
+  <data name="BRANCH_ADDRESS_INFORMATION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลสาขาย่อยในขณะนี้ คุณสามารถเพิ่มข้อมูลสาขา&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มสาขา" หรือเว้นไว้หากไม่มีข้อมูล</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="COMMITTEE_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้มีอำนาจลงนาม</value>
+  </data>
+  <data name="COMMITTEE_INFORMATION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มกรรมการผู้มีอำนาจลงนาม</value>
+  </data>
+  <data name="COMMITTEE_INFORMATION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้มีอำนาจลงนามในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้มีอำนาจลงนาม&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มข้อมูลผู้มีอำนาจลงนาม"</value>
+  </data>
+  <data name="CONTRACTOR_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้รับเหมาช่วง</value>
+  </data>
+  <data name="CONTRACTOR_INFORMATION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มผู้รับเหมาช่วง</value>
+  </data>
+  <data name="CONTRACTOR_INFORMATION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้รับเหมาช่วงในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้รับเหมาช่วง&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มข้อมูลผู้รับเหมาช่วง" หรือเว้นไว้หากไม่มีข้อมูล</value>
+  </data>
+  <data name="EMPLOYEE_INFORMATION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มลูกจ้าง</value>
+  </data>
+  <data name="INFORMATION_JURISTIC_BOARD_ADD" xml:space="preserve">
+    <value>เพิ่มรายชื่อกรรมการที่มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="INFORMATION_JURISTIC_BOARD_EMPTY" xml:space="preserve">
+    <value>ไม่มีกรรมการที่มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="INFORMATION_JURISTIC_BOARD_SUBMIT" xml:space="preserve">
+    <value>เพิ่มรายชื่อกรรมการที่มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="NON_REGISTERED_EMPLOYEE_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลลูกจ้างที่ "ไม่มี" ประกันสังคม</value>
+  </data>
+  <data name="NON_REGISTERED_EMPLOYEE_INFORMATION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลลูกจ้างที่ "ไม่มี" ประกันสังคมในขณะนี้ คุณสามารถเพิ่มข้อมูลลูกจ้าง&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มข้อมูลลูกจ้างที่ "ไม่มี" ประกันสังคม" หรือเว้นไว้หากไม่มีข้อมูล</value>
+  </data>
+  <data name="REGISTERED_EMPLOYEE_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลลูกจ้างที่ "มี" ประกันสังคม</value>
+  </data>
+  <data name="SSO_EMPLOYEE_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลลูกจ้าง</value>
+  </data>
+  <data name="SSO_EMPLOYEE_INFORMATION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลลูกจ้างในขณะนี้ คุณสามารถเพิ่มข้อมูลลูกจ้าง&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มข้อมูลลูกจ้าง" หรือเว้นไว้หากไม่มีข้อมูล</value>
+  </data>
+  <data name="REQUESTOR_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มผู้ขออนุญาต</value>
+  </data>
+  <data name="REQUESTOR_INFORMATION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มผู้ขออนุญาต</value>
+  </data>
+  <data name="REQUESTOR_INFORMATION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล ผู้ขออนุญาต ในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้ขออนุญาต &lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มผู้ขออนุญาต"</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_WORKER_INFO_ADD" xml:space="preserve">
+    <value>เพิ่มรายชื่อผู้ที่ต้องสัมผัสอาหาร</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_WORKER_INFO_EMPTY" xml:space="preserve">
+    <value>ไม่มีผู้ที่ต้องสัมผัสอาหารในขณะนี้ คุณสามารถเพิ่มรายชื่อ&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มรายชื่อผู้ที่ต้องสัมผัสอาหาร"</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_WORKER_INFO_SUBMIT" xml:space="preserve">
+    <value>เพิ่มรายชื่อผู้ที่ต้องสัมผัสอาหาร</value>
+  </data>
+  <data name="SELL_PRODUCT_ASSISTANT_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ช่วยจำหน่ายสินค้า</value>
+  </data>
+  <data name="SELL_PRODUCT_ASSISTANT_INFORMATION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ช่วยจำหน่ายสินค้า</value>
+  </data>
+  <data name="SELL_PRODUCT_ASSISTANT_INFORMATION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ช่วยจำหน่ายสินค้าในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้ช่วยจำหน่ายสินค้า&lt;br /&gt;โดยคลิกที่ปุ่ม "ข้อมูลผู้ช่วยจำหน่ายสินค้า"</value>
+  </data>
+  <data name="MACHINE_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มอุปกรณ์ เครื่องมือ เครื่องจักร</value>
+  </data>
+  <data name="MACHINE_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มอุปกรณ์ เครื่องมือ เครื่องจักร</value>
+  </data>
+  <data name="MACHINE_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล อุปกรณ์ เครื่องมือ เครื่องจักร ในขณะนี้ คุณสามารถเพิ่มข้อมูลอุปกรณ์ เครื่องมือ เครื่องจักร &lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มอุปกรณ์ เครื่องมือ เครื่องจักร"</value>
+  </data>
+  <data name="MATERIAL_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มวัตถุดิบ</value>
+  </data>
+  <data name="MATERIAL_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มวัตถุดิบ</value>
+  </data>
+  <data name="MATERIAL_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล วัตถุดิบ ในขณะนี้ คุณสามารถเพิ่มข้อมูลวัตถุดิบ &lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มวัตถุดิบ"</value>
+  </data>
+  <data name="OTHER_OUTPUT_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มวัตถุพลอยได้</value>
+  </data>
+  <data name="OTHER_OUTPUT_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มวัตถุพลอยได้</value>
+  </data>
+  <data name="OTHER_OUTPUT_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล วัตถุพลอยได้ ในขณะนี้ คุณสามารถเพิ่มข้อมูลวัตถุพลอยได้  &lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มวัตถุพลอยได้"</value>
+  </data>
+  <data name="PRODUCT_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มผลิตภัณฑ์</value>
+  </data>
+  <data name="PRODUCT_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มผลิตภัณฑ์</value>
+  </data>
+  <data name="PRODUCT_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล ผลิตภัณฑ์ ในขณะนี้ คุณสามารถเพิ่มข้อมูลผลิตภัณฑ์ &lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มผลิตภัณฑ์"</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_INFO_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลชนิดสัตว์ที่จำหน่าย</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_INFO_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลชนิดสัตว์ที่จำหน่าย</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_INFO_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลชนิดสัตว์ที่จำหน่ายในขณะนี้ คุณสามารถเพิ่มข้อมูลชนิดสัตว์ที่จำหน่าย&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มข้อมูลชนิดสัตว์ที่จำหน่าย"</value>
+  </data>
+  <data name="APP_SELL_CARCASS_INFO_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลชนิดซากสัตว์ที่จำหน่าย</value>
+  </data>
+  <data name="APP_SELL_CARCASS_INFO_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลชนิดซากสัตว์ที่จำหน่าย</value>
+  </data>
+  <data name="APP_SELL_CARCASS_INFO_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลชนิดซากสัตว์ที่จำหน่ายในขณะนี้ คุณสามารถเพิ่มข้อมูลชนิดซากสัตว์ที่จำหน่าย&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มข้อมูลชนิดซากสัตว์ที่จำหน่าย"</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_FOOD_INFO" xml:space="preserve">
+    <value>ข้อมูลอาหารสัตว์ควบคุมเฉพาะที่จำหน่าย</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_FOOD_INFO_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลอาหารสัตว์ควบคุมเฉพาะที่จำหน่าย</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_FOOD_INFO_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลอาหารสัตว์ควบคุมเฉพาะที่จำหน่าย</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_FOOD_INFO_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลอาหารสัตว์ควบคุมเฉพาะที่จำหน่ายในขณะนี้ คุณสามารถเพิ่มข้อมูลอาหารสัตว์ที่จำหน่าย&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มข้อมูลอาหารสัตว์ที่จำหน่าย"</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_FOOD_OPERATOR_INFO_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ดำเนินกิจการ</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_FOOD_OPERATOR_INFO_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ดำเนินกิจการ</value>
+  </data>
+  <data name="APP_SELL_ANIMAL_FOOD_OPERATOR_INFO_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ดำเนินกิจการในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้ดำเนินกิจการ&lt;br /&gt;โดยคลิกที่ปุ่ม "เพิ่มข้อมูลผู้ดำเนินกิจการ"</value>
+  </data>
+  <data name="COMMITTEE_INFORMATION_NOTICE" xml:space="preserve">
+    <value>กรุณาคลิก “แก้ไขข้อมูล” ของกรรมการฯทุกคนเพื่อตรวจสอบความถูกต้อง และกรอกข้อมูลสำคัญเพิ่มเติม</value>
+  </data>
+  <data name="BRANCH0_ADDRESS_INFORMATION_NOTICE" xml:space="preserve">
+    <value>กรุณาคลิก “แก้ไขข้อมูล” ของที่อยู่สำนักงานใหญ่เพื่อตรวจสอบความถูกต้อง และกรอกข้อมูลสำคัญเพิ่มเติม</value>
+  </data>
+  <data name="SELL_CARD_SECTION" xml:space="preserve">
+    <value>ขออนุญาตขายไพ่</value>
+  </data>
+  <data name="APP_COMMERCIAL_REGISTRATION_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลการจดทะเบียนพาณิชย์</value>
+  </data>
+  <data name="APP_COMMERCIAL_REGISTRATION_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลการจดทะเบียนพาณิชย์</value>
+  </data>
+  <data name="APP_COMMERCIAL_REGISTRATION_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลการจดทะเบียนพาณิชย์</value>
+  </data>
+  <data name="APP_TAX_BOARD_INFO_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลป้าย</value>
+  </data>
+  <data name="APP_TAX_BOARD_INFO_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลป้าย</value>
+  </data>
+  <data name="APP_TAX_BOARD_INFO_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลป้าย</value>
+  </data>
+  <data name="APP_COMMERCIAL_COMPANY_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ถือหุ้น</value>
+  </data>
+  <data name="APP_COMMERCIAL_COMPANY_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ถือหุ้น</value>
+  </data>
+  <data name="APP_COMMERCIAL_COMPANY_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ถือหุ้น</value>
+  </data>
+  <data name="APP_COMMERCIAL_PARTNER_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลหุ้นส่วน</value>
+  </data>
+  <data name="APP_COMMERCIAL_PARTNER_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลหุ้นส่วน</value>
+  </data>
+  <data name="APP_COMMERCIAL_PARTNER_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลหุ้นส่วน</value>
+  </data>
+  <data name="APP_COMMERCIAL_DIRECTOR_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้จัดการ</value>
+  </data>
+  <data name="APP_COMMERCIAL_DIRECTOR_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้จัดการ</value>
+  </data>
+  <data name="APP_COMMERCIAL_DIRECTOR_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้จัดการ</value>
+  </data>
+  <data name="APP_BUILDING_BUILDING_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_BUILDING_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_BUILDING_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_DESIGN_ENGINEER_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ออกแบบและคำนวณ</value>
+  </data>
+  <data name="APP_BUILDING_DESIGN_ENGINEER_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ออกแบบและคำนวณ</value>
+  </data>
+  <data name="APP_BUILDING_DESIGN_ENGINEER_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ออกแบบและคำนวณ</value>
+  </data>
+  <data name="APP_BUILDING_OWNED_AREA_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลเจ้าของที่ดิน</value>
+  </data>
+  <data name="APP_BUILDING_OWNED_AREA_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลเจ้าของที่ดิน</value>
+  </data>
+  <data name="APP_BUILDING_OWNED_AREA_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลเจ้าของที่ดิน</value>
+  </data>
+  <data name="APP_BUILDING_OWNED_BUILDING_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลเจ้าของอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_OWNED_BUILDING_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลเจ้าของอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_OWNED_BUILDING_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลเจ้าของอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_SUPERVISOR_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ควบคุมงาน</value>
+  </data>
+  <data name="APP_BUILDING_SUPERVISOR_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ควบคุมงาน</value>
+  </data>
+  <data name="APP_BUILDING_SUPERVISOR_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ควบคุมงาน</value>
+  </data>
+  <data name="APP_HEALTH_CARE_MANAGER_PART_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ดำเนินการ</value>
+  </data>
+  <data name="APP_HEALTH_CARE_MANAGER_PART_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ดำเนินการ</value>
+  </data>
+  <data name="APP_HEALTH_CARE_MANAGER_PART_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ดำเนินการ</value>
+  </data>
+  <data name="APP_HEALTH_CARE_SERVICE_SECTION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ให้บริการ</value>
+  </data>
+  <data name="APP_HEALTH_CARE_SERVICE_SECTION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ให้บริการ</value>
+  </data>
+  <data name="APP_HEALTH_CARE_SERVICE_SECTION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ให้บริการ</value>
+  </data>
+  <data name="APP_ANIMAL_MED_DR_INFO_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ประกอบวิชาชีพสัตวแพทย์</value>
+  </data>
+  <data name="APP_ANIMAL_MED_DR_INFO_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ประกอบวิชาชีพสัตวแพทย์</value>
+  </data>
+  <data name="APP_ANIMAL_MED_DR_INFO_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ประกอบวิชาชีพสัตวแพทย์</value>
+  </data>
+  <data name="APP_BUILDING_G1_ARCHITECT_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลสถาปนิก</value>
+  </data>
+  <data name="APP_BUILDING_G1_ARCHITECT_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลสถาปนิก</value>
+  </data>
+  <data name="APP_BUILDING_G1_TITLE_DEED_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่ดิน</value>
+  </data>
+  <data name="APP_BUILDING_G1_TITLE_DEED_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่ดิน</value>
+  </data>
+  <data name="APP_BUILDING_G1_TITLE_DEED_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลที่ดิน &lt;br /&gt;กรุณาเพิ่มข้อมูลที่ดินอย่างน้อย 1 ที่ดิน</value>
+  </data>
+  <data name="APP_BUILDING_G1_BUILDING_INFORMATION_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลลักษณะของอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_G1_BUILDING_INFORMATION_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลลักษณะของอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_G1_BUILDING_INFORMATION_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลลักษณะของอาคาร &lt;br /&gt;กรุณาเพิ่มข้อมูลลักษณะของอาคารอย่างน้อย 1 อาคาร</value>
+  </data>
+  <data name="APP_BUILDING_G1_DESIGN_ARCHITECT_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลสถาปนิกผู้ออกแบบ</value>
+  </data>
+  <data name="APP_BUILDING_G1_DESIGN_ENGINEER_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลวิศวกรผู้ออกแบบและคำนวณ</value>
+  </data>
+  <data name="APP_BUILDING_G1_ENGINEER_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลวิศวกร</value>
+  </data>
+  <data name="APP_BUILDING_G1_ENGINEER_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลวิศวกร</value>
+  </data>
+  <data name="APP_BUILDING_G1_SUPERVISE_ARCHITECT_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลสถาปนิกผู้ควบคุมงาน</value>
+  </data>
+  <data name="APP_BUILDING_G1_SUPERVISE_ENGINEER_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลวิศวกรผู้ควบคุมงาน</value>
+  </data>
+  <data name="MANAGER_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มผู้จัดการ</value>
+  </data>
+  <data name="MANAGER_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มผู้จัดการ</value>
+  </data>
+  <data name="MANAGER_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล ผู้จัดการ ในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้จัดการ &lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มผู้จัดการ"</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_TYPE_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มประเภทของการประกอบกิจการ</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_TYPE_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล ประเภทของการประกอบกิจการ ในขณะนี้ คุณสามารถเพิ่มข้อมูลประเภทของการประกอบกิจการ&lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มประเภทของการประกอบกิจการ"</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_TYPE_SUBMIT" xml:space="preserve">
+    <value>เพิ่มประเภทของการประกอบกิจการ</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSSINESS_INFO_RENEW_ARR_ADD" xml:space="preserve">
+    <value>เพิ่มรายละเอียดการจำหน่ายซอฟต์แวร์</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSSINESS_INFO_RENEW_ARR_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล รายละเอียดการจำหน่ายซอฟต์แวร์ ในขณะนี้ คุณสามารถเพิ่มข้อมูลรายละเอียดการจำหน่ายซอฟต์แวร์&lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มรายละเอียดการจำหน่ายซอฟต์แวร์"</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSSINESS_INFO_RENEW_ARR_SUBMIT" xml:space="preserve">
+    <value>เพิ่มรายละเอียดการจำหน่ายซอฟต์แวร์</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_LOCATION_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_LOCATION_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูล ที่ดิน ในขณะนี้ คุณสามารถเพิ่มข้อมูลที่ดิน&lt;br&gt; โดยคลิกปุ่ม "เพิ่มที่ดิน"</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_LOCATION_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_MATERIAL_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มวัตถุดิบ</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_MATERIAL_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูล วัตถุดิบ ในขณะนี้ คุณสามารถเพิ่มข้อมูลวัตถุดิบ&lt;br&gt; โดยคลิกปุ่ม "เพิ่มวัตถุดิบ"</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_MATERIAL_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลวัตถุดิบ</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_BY_PRODUCT_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มวัตถุพลอยได้</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_BY_PRODUCT_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูล วัตถุพลอยได้ ในขณะนี้ คุณสามารถเพิ่มข้อมูลวัตถุพลอยได้&lt;br&gt; โดยคลิกที่ปุ่ม "เพิ่มวัตถุพลอยได้"</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_BY_PRODUCT_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลวัตถุพลอยได้</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_ENGINE_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มบัญชีเครื่องจักร</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_ENGINE_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูล บัญชีเครื่องจักร ในขณะนี้ คุณสามารถเพิ่มข้อมูลบัญชีเครื่องจักรได้&lt;br&gt; โดยคลิกที่ปุ่ม "เพิ่มบัญชีเครื่องจักร"</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_ENGINE_INFORMATION_SECTION" xml:space="preserve">
+    <value>บัญชีเครื่องจักรที่ใช้ตามลำดับขั้นตอนการผลิต</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_ENGINE_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลบัญชีเครื่องจักร</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_PRODUCT_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มผลิตภัณฑ์</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_PRODUCT_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูล ผลิตภัณฑ์ ในขณะนี้ คุณสามารถเพิ่มข้อมูลผลิตภัณฑ์&lt;br&gt; โดยคลิกที่ปุ่ม "เพิ่มผลิตภัณฑ์"</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_PRODUCT_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลผลิตภัณฑ์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_INFORMATION_SECTION_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลแผนการผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_INFORMATION_SECTION_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูลแผนการผลิตพืชอินทรีย์ในขณะนี้ คุณสามารถเพิ่มข้อมูลแผนการผลิตพืชอินทรีย์ โดยการคลิกที่ปุ่ม "เพิ่มข้อมูลแผนการผลิตพืชอินทรีย์"</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_INFORMATION_SECTION_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลแผนแผนการผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_SECTION_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละราย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_SECTION_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูลชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละราย ในขณะนี้คุณสามารถเพิ่มข้อมูลชื่อ พื้นที่ และชนิดของผู้แต่ละราย โดยคลิกปุ่ม "เพิ่มข้อมูลชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละราย"</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_SECTION_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละลาย</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_SOFTWARE_DETAIL_MODULE_ADDMSG" xml:space="preserve">
+    <value>เพิ่มชื่อโมดูล</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_SOFTWARE_DETAIL_MODULE_EMPTYMSG" xml:space="preserve">
+    <value>ไม่มีข้อมูล ชื่อโมดูล ในขณะนี้ คุณสามารถเพิ่มข้อมูลชื่อโมดูล &lt;br/&gt;โดยคลิกที่ปุ่ม "เพิ่มชื่อโมดูล"</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_BUSINESS_SOFTWARE_DETAIL_MODULE_SUMITMSG" xml:space="preserve">
+    <value>เพิ่มชื่อโมดูล</value>
+  </data>
+  <data name="APP_BUILDING_R6_BUILDING_OWNER_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลเจ้าของอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_R6_BUILDING_OWNER_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลเจ้าของอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_R6_BUILDING_POSSESSORS_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลผู้ครอบครองอาคาร</value>
+  </data>
+  <data name="APP_BUILDING_R6_BUILDING_POSSESSORS_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูลผู้ครอบครองอาคาร</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_OPERATION_DATE_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูล</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_OPERATION_DATE_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูล</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_OPERATION_DATE_EMPTY" xml:space="preserve">
+    <value>ไม่พบข้อมูลวันและเวลาปฏิบัติงาน</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_WORK_TIME_BTN_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูล วัน/เวลาที่ขออนุญาตประกอบกิจการ</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_WORK_TIME_BTN_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูล วัน/เวลาที่ขออนุญาตประกอบกิจการ</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_WORK_TIME_EMPTY" xml:space="preserve">
+    <value>ไม่มีข้อมูล วัน/เวลาที่ขออนุญาตประกอบกิจการ</value>
+  </data>
+</root>

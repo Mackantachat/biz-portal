@@ -1,0 +1,54 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+
+        window.singleFormHelpers.form.onArrayOfFormModalDataBound('APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION', function (sectionName, data, datalist, action) {
+
+            if (action == "ADD") {
+                $("input[name='APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_WORKING_TYPE_OPTION']").each(function () {
+                    $(this).prop('checked', false);
+                })
+                $("input[name='APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_CHANGEBY_OPTION']").each(function () {
+                    $(this).prop('checked', false);
+                })
+            }
+
+        });
+
+        window.singleFormHelpers.form.onArrayOfFormModalDataBound('APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION', function (sectionName, data, datalist, action) {
+
+            if (action == "ADD") {
+                $("input[name='APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_WORKING_TYPE_OPTION']").each(function () {
+                    $(this).prop('checked', false);
+                })
+                $("input[name='APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHANGEBY_OPTION']").each(function () {
+                    $(this).prop('checked', false);
+                })
+            }
+
+        });
+
+        window.singleFormHelpers.form.onArrayOfFormModalDataBound('APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION', function (sectionName, data, datalist, action) {
+
+            if (action == "ADD") {
+                $("input[name='APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_WORKING_TYPE_OPTION']").each(function () {
+                    $(this).prop('checked', false);
+                })
+                $("input[name='APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_CHANGEBY_OPTION']").each(function () {
+                    $(this).prop('checked', false);
+                })
+            }
+
+        });
+
+    });
+
+</script>
+
+
+

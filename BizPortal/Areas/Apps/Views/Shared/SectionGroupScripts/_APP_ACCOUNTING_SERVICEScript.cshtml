@@ -1,0 +1,104 @@
+﻿
+
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+
+        @* Listening on datatable-binded event to determine request type automatically. *@
+        $('#APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE').on('datatable-binded', function (e, datalist, selectOptions) {
+            // hide all button
+            $("section[data-section-name='APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE']").find('button').hide();
+        });
+
+        window.APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_VALIDATE = function () {
+            var result = true;
+            var rows = $('#APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_DATATABLE').find('.datatable-row');
+            $(rows).each(function (index, row) {
+                var value = $(this).find('input.form-control.APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_LICENSE').val();
+                if (value.length > 5) {
+                    result = false;
+                }
+            });
+
+            return result;
+        }
+
+        window.APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_VALIDATE = function () {
+            var array = [];
+            var rows = $('#APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_DATATABLE').find('.datatable-row');
+            $(rows).each(function (index, row) {
+                if ($(this).find('input.form-control.APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_LICENSE').val()) {
+                    array.push(true);
+                } else {
+                    array.push(false);
+                }
+            });
+
+            var result = false;
+
+            for (var i = 0; i < array.length; i++) {
+                result = result || array[i]
+            }
+
+            return result;
+        }
+
+        window.APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_FULL_VALIDATE = function () {
+            var array = [];
+            var rows = $('#APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_DATATABLE').find('.datatable-row');
+            $(rows).each(function (index, row) {
+                var license = $(this).find('input.form-control.APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_LICENSE').val();
+                var type = $(this).find('select.form-control.APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_TYPE').val();
+                var date = $(this).find('input.form-control.APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE_DUE_DATE').val();
+
+                if (license != "" && type != "" && date != "") {
+                    array.push(true);
+                } else if (license == "" && type == "" && date == "") {
+                    array.push(true);
+                } else {
+                    array.push(false);
+                }
+            });
+
+            var result = true;
+
+            for (var i = 0; i < array.length; i++) {
+                result = result && array[i]
+            }
+            
+            return result;
+        }
+
+        window.singleForm.sectionGroupValidators.push({
+            sectionGroup: '@Model.SectionGroup',
+            validate: function () {
+                var serviceType = $("input[name='APP_ACCOUNTING_SERVICE_INFO_SECTION_TYPE_OPTION']:checked").val();
+                if (serviceType == 'AUDITORING' || serviceType == 'BOTH') {
+
+                    var strData = $('#APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE_LICENSE').val();
+                    var committeeList = JSON.parse(strData || '[]');
+
+                    var error = 'กรณีให้บริการประเภทสอบบัญชีหรือทำและสอบบัญชี กรรมการผู้มีอำนาจลงนามอย่างน้อย 1 คน ต้องมีเลขทะเบียนผู้สอบบัญชีรับอนุญาต';
+                    $(committeeList).each(function (i, data) {
+                        if ($.trim(data.LICENSE) !== '') {
+                            // Found at least one license
+                            error = '';
+                        }
+                    });
+
+                    return error;
+                }
+
+                return '';
+            }
+        });
+    });
+
+</script>
+
+
+

@@ -1,0 +1,103 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+
+@{
+    ViewBag.Title = "ธุรกิจการท่องเที่ยว";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@section breadcrumb {
+
+    <section class="breadcrumb">
+        <div class="container">
+            <h2>ธุรกิจการท่องเที่ยว</h2>
+            <ul>
+                <li class="">
+                    <a href="@Url.BizAction("Index", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                        @Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO
+                    </a>
+                </li>
+                <li class="">
+                    <a>ธุรกิจการท่องเที่ยว</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+}
+
+<section class="banner-subpage" style="background: transparent url('@Url.Content("~/Content/SingleForm-frontis/v2/images/coffee.png")') no-repeat center center;
+        background-size: cover;">
+    <!--         <div class="container" style="">
+                <h1>ข้อมูลสำหรับธุรกิจ</h1>
+                <p>คุณสามารถค้นหาข้อมูลจากหลายหน่วยงานได้ในที่เดียว</p>
+            </div> -->
+</section>
+<section class="business-info">
+    <div class="container">
+
+        <h2>ธุรกิจการท่องเที่ยว คืออะไร</h2>
+        <hr>
+        <p class="subtitle">ธุรกิจที่เกี่ยวกับการนำนักท่องเที่ยวเดินทางไปท่องเที่ยวทั้งในและต่างประเทศ หรือเดินทางไปเพื่อวัตถุประสงค์อื่น ๆ เช่น สัมมนา เข้าค่าย ทัศนศึกษา เป็นต้น โดยจัดให้มีการบริการและการอำนวยความสะดวกในเรื่องต่าง ๆ เช่น ที่พัก อาหาร มัคคุเทศก์ เป็นต้น</p>
+        <br>
+
+        <div class="row">
+            <div class="D-9 T-12">
+                @* TODO : XXX *@
+            </div>
+            <div class="D-3 T-12">
+                <div class="btn-group-sticky">
+                    <h3>
+                        ช่องทางการให้บริการข้อมูล และขออนุญาตออนไลน์
+                    </h3>
+                    <div class="row">
+                        <div class="D-12 T-6 SM-12">
+                            <a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#choice-tourism"
+                               class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/folder.svg")" type=""></object><p>ขอใบอนุญาตได้ทันทีที่ Biz Portal</p></a>
+                        </div>
+                        <div class="D-12 T-6 SM-12">
+                            <a href="" class="button-icon primary" id="chat-up"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/customer.svg")" type=""></object><p>สอบถามเจ้าหน้าที่ผ่าน Chat</p></a>
+                        </div>
+                        <div class="D-12 T-6 SM-12">
+                            <a href="@Url.BizAction("Business", "Quiz", new { area="", id="TOURISM", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                               class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")" type=""></object><p>ร้านของฉันต้องขออนุญาตอะไรบ้าง?</p></a>
+                        </div>
+                        <div class="D-12 T-6 SM-12">
+                            <a href="@(Url.BizAction("BDBBusinessList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName,parmBType = "Tourism" }))"
+                               class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/statistics.svg")" type=""></object><p>ดูข้อมูลสถิติของธุรกิจที่เกี่ยวข้องที่ DBD DataWarehouse+</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--         <section class="information-way">
+                <div class="container">
+                    <hr>
+                    <h2>ช่องทางการให้บริการข้อมูล และขออนุญาตออนไลน์</h2>
+                    <div class="btn-group">
+                        <div class="row">
+                            <div class="D-4 T-6 SM-12"><a href="landing.html" class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/folder.svg")" type=""></object><p>ขอใบอนุญาตได้ทันทีที่ Biz Portal</p></a></div>
+                            <div class="D-4 T-6 SM-12"><a href="" class="button-icon primary" id="chat-up"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/customer.svg")" type=""></object><p>สอบถามเจ้าหน้าที่ผ่าน Chat</p></a></div>
+                            <div class="D-4 T-6 SM-12"><a href="http://slatest.info.go.th/BizPortal/th/Quiz/Business/Restaurant" class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")" type=""></object><p>ร้านของฉันต้องขออนุญาตอะไรบ้าง?</p></a></div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+</section>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+        $.src="https://v2.zopim.com/?51QWbJHtlTd1CZbVRcYvrExRiI1ShrJo";z.t=+new Date;$.
+        type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+
+        var userImage = document.getElementById('chat-up');
+        userImage.onclick = function(e) {
+          e.preventDefault();
+          $zopim.livechat.window.show();
+        };
+    </script>
+}

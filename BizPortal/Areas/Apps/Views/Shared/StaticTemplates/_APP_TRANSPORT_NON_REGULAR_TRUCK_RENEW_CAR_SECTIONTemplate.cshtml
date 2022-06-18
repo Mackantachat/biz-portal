@@ -1,0 +1,59 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_REQUEST_TYPE  :</label>
+            {{this.DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_REQUEST_TYPE_TEXT}}
+        </div>
+        {{#xif " this.DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_REQUEST_TYPE == 'HAVE_CAR' " }}
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_LICENSE  :</label>
+            {{this.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_LICENSE}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_CASSIS  :</label>
+            {{this.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_CASSIS}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_ENGINE  :</label>
+            {{this.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_ENGINE}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_BRAND  :</label>
+            {{this.DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_BRAND_TEXT}}
+        </div>
+        {{#xif " this.DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_BRAND == 'OTHER' " }}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_OTHER  :</label>
+            {{this.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_OTHER}}
+        </div>
+        {{/xif}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE  :</label>
+            {{this.DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_TEXT}}
+        </div>
+        {{else}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE  :</label>
+            {{this.DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_TEXT}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_AMOUNT  :</label>
+            {{this.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_AMOUNT}}
+        </div>
+        {{/xif}}
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

@@ -1,0 +1,49 @@
+﻿@using Resource = BizPortal.Resources
+@{
+    ViewBag.Title = Resource.Apps_EmployeeRegis.DOWNLOAD_SSO_102;
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/sso_full_logo.jpg");
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+}
+
+
+<div class="row mt30">
+    <div class="col-md-12 text-center">
+        @Html.Raw(Resource.Global.WAIT_FOR_DOWNLOAD)
+    </div>
+</div>
+<div class="row mb30">
+    <div class="col-md-12 text-center">
+        <a href="@Url.Action("EmployerRegis")">@Resource.Apps_EmployeeRegis.BACK_TO_EMPLOYEE_APP</a>
+    </div>
+</div>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        var countdownSeconds = 5;
+        var downloaded = false;
+
+        $(document).ready(function () {
+            $('#countDownSeconds').text(countdownSeconds);
+            setTimeout(countdown, 1000);
+        });
+
+        function countdown() {
+            //console.log('countdown');
+            countdownSeconds--;
+            $('#seconds').text(countdownSeconds);
+            if (countdownSeconds > 0) {
+                setTimeout(countdown, 1000);
+            }
+            else {
+                if (!downloaded) {
+                    $('#dlButton')[0].click();
+                }
+            }
+        }
+
+        $('#dlButton').click(function (e) {
+            downloaded = true;
+        });
+    </script>
+}

@@ -1,0 +1,189 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{ 
+    var autofillAttr = AutoFillConditionHelper.GetAttributes(Model);
+    var datetimeTriggerAttr = SingleFormDateTimeHelper.GetAttributes(Model);
+    var properties = Model.DatePickerPropertiesConfig;
+}
+
+@if (Model.DisplayRepeater)
+{
+    <div class="@string.Format("{0}_REPEATER-repeater", Model.DataKey)">
+        <div data-repeater-list="@string.Format("{0}_REPEATER", Model.DataKey)">
+            <div data-repeater-item style="margin-bottom: 1px;">
+                <div class="row">
+                    <div class="col-md-10" style="padding-right: 0px;">
+                        <div class="input-group date">
+                            <input type="text" name="@string.Format("{0}_REPEATER", Model.DataKey)" value="" class="form-control repeater-datepicker" style="background-color: white;" readonly />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2" style="padding-left: 0px;">
+                        <button type="button" data-repeater-delete class="btn btn-danger repeater-delbtn"><i class="fa fa-minus-circle"> ลบ</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" data-repeater-create class="btn btn-primary repeater-addbtn"><i class="fa fa-plus-circle"> เพิ่ม</i></button>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".@string.Format("{0}_REPEATER-repeater", Model.DataKey)").repeater({
+                isFirstItemUndeletable: true,
+                show: function () {
+                    $(this).slideDown();
+                    $(".repeater-datepicker").datepicker({
+                        autoclose: true,
+                        language: "th-th",
+                        format: 'dd/mm/yyyy',
+                        startView: 'decade'
+                    });
+                },
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                }
+            });
+
+            $(".repeater-datepicker").datepicker({
+                autoclose: true,
+                language: "th-th",
+                format: 'dd/mm/yyyy',
+                startView: 'decade'
+            });
+        });
+    </script>
+}
+else
+{
+    <div class="input-group date">
+        <input type="text" id="@Model.ClientID" name="@Model.DataKey" value="" 
+               class="form-control @autofillAttr.Class" 
+               @autofillAttr.Data
+               @autofillAttr.DataSourceFromDraft
+               @autofillAttr.DataSourceIsAddressControl
+               @autofillAttr.DataSourceSection
+               @autofillAttr.DataSourceControl
+               @datetimeTriggerAttr.IsTrigger
+               @datetimeTriggerAttr.DataMethod
+               @datetimeTriggerAttr.DataSourceFormat
+               @datetimeTriggerAttr.DataSourceCulture
+               @datetimeTriggerAttr.DataDestinationControl
+               style="background-color: white;" readonly tabindex="-1" />
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+
+        @if (Model.IsShowAge)
+        {
+            <div class="form-control" style="background-color: white; text-align: center; min-width: 100px;">
+                <input id="@(Model.ClientID)_AGE" name="@(Model.DataKey)_AGE" type="hidden" />
+                <label>@ResourceHelper.GetResourceWordWithDefault("BIRTH_DATE_AGE", "Apps_SingleForm", "อายุ"):</label> <span id="age_@Model.ClientID">-</span>
+            </div>
+        }
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#@Model.ClientID').datepicker({
+                autoclose: true,
+                language: "th-th",
+                format: 'dd/mm/yyyy',
+                startView: 'decade',
+                forceParse: false,
+                @if(properties != null)
+                {
+                    if (!string.IsNullOrEmpty(properties.StartDate))
+                    {
+                        <text>
+                        startDate: '@properties.StartDate',
+                        </text>
+                    }
+                    if (!string.IsNullOrEmpty(properties.EndDate))
+                    {
+                        <text>
+                        endDate: '@properties.EndDate',
+                        </text>
+                    }
+                    if (properties.WeekDayStart >= 0 && properties.WeekDayStart <= 6)
+                    {
+                        <text>
+                        weekStart: @properties.WeekDayStart,
+                        </text>
+                    }
+                    if(properties.ShowCalendarWeeksNumbers)
+                    {
+                        <text>
+                        calendarWeeks: true,
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                        calendarWeeks: false,
+                        </text>
+                    }
+                    if (!string.IsNullOrEmpty(properties.DaysOfWeekDisabled))
+                    {
+                        <text>
+                        daysOfWeekDisabled: '@properties.DaysOfWeekDisabled',
+                        </text>
+                    }
+                }
+            })
+            @if(Model.IsShowAge)
+            {
+                <text>
+                .on('changeDate', function (ev) {
+                    var age = calculateYearDiff_@Model.DataKey (ev.date.getTime(), new Date().getTime());
+
+                    $('#age_@Model.ClientID').text(age);
+                    $('#@(Model.ClientID)_AGE').val(age);
+                })
+                </Text>
+            }
+            ;
+        });
+
+        @if(Model.IsShowAge)
+        {
+           <text>
+
+            function calculateYearDiff_@Model.DataKey (date1, date2) {
+                var diff = date2 - date1;    // get diff in timestamp
+                return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));  // convert to years
+            }
+
+            $(document).ready(function () {
+                $('#@Model.ClientID').change(function (e) {
+                    var dateStr = $('#@Model.ClientID').val();
+                    if (dateStr) {
+                        // Calculate age based on string formatted as dd/MM/yyyy
+                        var parts = dateStr.split('/');
+                        var year = parseInt(parts[2]);
+                        if (year > 2300) year -= 543;
+                        var mydate = new Date(year, parseInt(parts[1]) - 1, parseInt(parts[0]));
+                        var age = calculateYearDiff_@Model.DataKey (mydate.getTime(), new Date().getTime());
+                        $('#age_@Model.ClientID').text(age);
+                        $('#@(Model.ClientID)_AGE').val(age);
+                    }
+                });
+
+                window.singleFormHelpers.form.onDraftDataBound(function (data) {
+                    var dateStr = $('#@Model.ClientID').val();
+                    $('#@Model.ClientID').datepicker('update');
+                });
+            });
+            </Text>
+        }
+
+        
+
+    </script>
+}
+

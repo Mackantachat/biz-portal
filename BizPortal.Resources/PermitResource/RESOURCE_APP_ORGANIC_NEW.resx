@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_ORGANIC_OFFICE_LOCATION_INFORMATION_ENG" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="APP_ORGANIC_OFFICE_LOCATION_INFORMATION_ENG_HEADING" xml:space="preserve">
+    <value>ที่อยู่สำนักงาน ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_ORGANIC_OFFICE_LOCATION_INFORMATION_ENG_HEADING1" xml:space="preserve">
+    <value>ที่อยู่สำนักงาน ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_INFORMATION_BUILDING_TYPE" xml:space="preserve">
+    <value>สถานที่ตั้งแหล่งผลิต/ที่ตั้งแปลงของคุณมีลักษณะกรรมสิทธิตามข้อใด</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_LOCATION_FORM" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_LOCATION_HEADING" xml:space="preserve">
+    <value>ที่ตั้งแหล่งผลิต/ที่ตั้งแปลง ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_DOC_TYPE" xml:space="preserve">
+    <value>ข้อมูลใบรับรอง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_DOC_TYPE_1" xml:space="preserve">
+    <value>ใช้ข้อมูลเกษตรกร</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_DOC_TYPE_2" xml:space="preserve">
+    <value>ชื่ออื่นภาษาไทย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_DOC_TYPE_3" xml:space="preserve">
+    <value>ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_DOC_TYPE_4" xml:space="preserve">
+    <value>ชื่ออื่นภาษาไทย-ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_DOC_TYPE_FULL_NAME_THAI" xml:space="preserve">
+    <value>ชื่อ-นามสกุลอื่น ภาษาไทย/ชื่อนิติบุคคลอื่น ภาษาไทย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_DOC_TYPE_FULL_NAME_THAI_HEADER" xml:space="preserve">
+    <value>ข้อมูลชื่ออื่นภาษาไทย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_DOC_TYPE_SECTION" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_ENG_FULL_NAME" xml:space="preserve">
+    <value>ชื่อ - นามสกุล ภาษาอังกฤษ/ชื่อนิติบุคคล ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_ENG_FULL_NAME1" xml:space="preserve">
+    <value>ชื่อ - นามสกุล ภาษาอังกฤษ/ชื่อนิติบุคคล ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_ENG_FULL_NAME_HEADER" xml:space="preserve">
+    <value>ข้อมูลชื่ออื่นภาษาไทย-ภาษาอังกฤษ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_LOCATION_TYPE" xml:space="preserve">
+    <value>ที่อยู่ที่จะปรากฏในใบรับรอง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_AREA_SIZE" xml:space="preserve">
+    <value>ขนาดพื้นที่ (ไร่)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_CONFIRM_SECTION" xml:space="preserve">
+    <value>ข้อมูลการขอใบรับรอง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_EMAIL" xml:space="preserve">
+    <value>อีเมล์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ESTIMATE_HARVEST" xml:space="preserve">
+    <value>เดือนที่คาดว่าจะเก็บเกี่ยว</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ESTIMATE_VOLUME_OF_HARVEST" xml:space="preserve">
+    <value>ปริมาณผลผลิตที่คาดว่าจะได้รับ (กิโลกรัม)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_FAX" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_FIRST_NAME" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONFIRM_ALONE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONFIRM_ALONE_INFO" xml:space="preserve">
+    <value>&lt;B&gt;ข้าพเจ้าให้คำรับรอง/สัญญาว่า&lt;/B&gt;&lt;br/&gt;
+    &lt;span style="margin-left: 1em;"&gt; 1.	แหล่งผลิตอยู่ในพื้นที่ที่ได้รับสิทธิครอบครองตามกฏหมาย หรือได้รับสิทธิใช้ประโยชน์จากเจ้าของที่ดิน&lt;span/&gt;&lt;br/&gt;
+    &lt;span style="margin-left: 1em;"&gt; 2.	จะปฏิบัติตามหลักเกณฑ์และเงื่อนไขต่างๆ ที่หน่วยรับรองกรมวิชาการเกษตรกำหนด และที่จะมีการกำหนด และ/หรือแก้ไขเพิ่มเติมในภายหน้า&lt;span&gt;&lt;/br&gt;
+    &lt;span style="margin-left: 1em;"&gt; 3.	ยินยอมให้ข้อมูลเกี่ยวกับระบบการผลิต ตามที่ได้รับการร้องขอจากหน่วยรับรอง&lt;/span&gt;&lt;br/&gt;
+    &lt;span style="margin-left: 1em;"&gt; 4.	ยินยอมให้หน่วยรับรองระบบงานหรือหน่วยรับรองระบบงานระดับสากลที่เกี่ยวข้องกับการรับรองดำเนินการสังเกตการณ์ การตรวจประเมินของกลุ่มผู้ตรวจประเมินของกรมวิชาการเกษตร ณ แหล่งผลิตของข้าพเจ้าตามที่ได้รับการร้องขอ&lt;/span&gt;&lt;br/&gt;
+	&lt;span style="margin-left: 1em;"&gt; 5.	ยิมยอมให้หน่วยรับรองเปิดเผย ชื่อ ที่อยู่ ที่ตั้งแหล่งผลิต และหมายเลขโทรศัพท์ที่สามารถติดต่อได้&lt;/span&gt;&lt;br/&gt;
+	&lt;br&gt;
+	&lt;B&gt;พร้อมคำขอนี้ได้แนบ/แสดงเอกสารประกอบการขอใบรับรอง ดังนี้&lt;/B&gt;&lt;br&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	แสดงบัตรประชาชน และทะเบียนบ้านของเกษตรกร&lt;span/&gt;&lt;br/&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	แนบหลักฐานการจดทะเบียนนิติบุคคล (กรณีนิติบุคคล)&lt;span/&gt;&lt;br/&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	กรณีมอบอำนาจ แนบหนังสือมอบอำนาจ พร้อมสำเนาบัตรประชาชนของผู้มอบอำนาจ หนังสือมอบอำนาจ&lt;span/&gt;&lt;br/&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	แนบสำเนาเอกสารสิทธิ์การใช้ประโยชน์ที่ดิน&lt;span/&gt;
+	&lt;ul style="margin-left: 1em;"&gt;
+		&lt;li&gt;โฉนดที่ดิน&lt;/li&gt;
+		&lt;li&gt;น.ส.2&lt;/li&gt;
+		&lt;li&gt;น.ส.3&lt;/li&gt;
+		&lt;li&gt;น.ส.3.ก&lt;/li&gt;
+		&lt;li&gt;ปส.23&lt;/li&gt;
+		&lt;li&gt;ส.ป.ก&lt;/li&gt;
+		&lt;li&gt;ก.ส.น.5&lt;/li&gt;
+		&lt;li&gt;น.ค.3&lt;/li&gt;
+		&lt;li&gt;ส.ค.1&lt;/li&gt;
+		&lt;li&gt;เอกสารรับรองจากหน่วยที่เกี่ยวข้อง&lt;/li&gt;
+		&lt;li&gt;เลขที่เอกสารสิทธิ์การใช้ประโยชน์ที่ดิน.............................&lt;/li&gt;
+		&lt;li&gt;เจ้าของกรมสิทธิ์&lt;/li&gt;
+		&lt;ul style="margin-left: 1em;list-style-type:circle;"&gt;
+			&lt;li&gt;เจ้าของ&lt;/li&gt;
+			&lt;li&gt;เช่า&lt;/li&gt;
+			&lt;li&gt;ได้รับอนุญาต&lt;/li&gt;
+			&lt;li&gt;อื่นๆ&lt;/li&gt;			
+		&lt;/ul&gt;
+		&lt;li&gt;บันทึกเอกสารเพิ่มเติม.........................................................&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	สำเนาใบรับรองฉบับเดิม (กรณีต่ออายุ)&lt;span/&gt;&lt;/br&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	ตัวอย่างเครื่องหมายรับรอง ฉลากและการกล่าวอ้างผลิตผลพืชอินทรีย์ทุกชนิด (กรณีที่ขอใช้เครื่องหมายรับรองต้องแสดงฉลากและการกล่าวอ้างด้วย)&lt;span/&gt;</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONFIRM_ALONE__TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าหลักฐานและเอกสารที่จัดส่งให้หน่วยรับรองกรมวิชาการเกษตร เป็นความจริงและเป็นปัจจุบัน รวมทั้งได้รับเอกสารหลักเกณฑ์และเงื่อนไขที่เกี่ยวข้องกับการรับรองและการตรวจประเมินการผลิตพืชอินทรีย์เรียบร้อยแล้ว</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONFIRM_ALONE__TRUE1" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าหลักฐานและเอกสารที่จัดส่งให้หน่วยรับรองกรมวิชาการเกษตร เป็นความจริงและเป็นปัจจุบัน รวมทั้งได้รับเอกสารหลักเกณฑ์และเงื่อนไขที่เกี่ยวข้องกับการรับรองและการตรวจประเมินการผลิตพืชอินทรีย์เรียบร้อยแล้ว</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONFIRM_GROUP" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONFIRM_GROUP_INFO" xml:space="preserve">
+    <value>&lt;B&gt;ข้าพเจ้าให้คำรับรอง/สัญญาว่า&lt;/B&gt;&lt;br/&gt;
+    &lt;span style="margin-left: 1em;"&gt; 1.	แหล่งผลิตอยู่ในพื้นที่ที่ได้รับสิทธิครอบครองตามกฏหมาย หรือได้รับสิทธิใช้ประโยชน์จากเจ้าของที่ดิน&lt;span/&gt;&lt;br/&gt;
+    &lt;span style="margin-left: 1em;"&gt; 2.	จะปฏิบัติตามหลักเกณฑ์และเงื่อนไขต่างๆ ที่หน่วยรับรองกรมวิชาการเกษตรกำหนด และที่จะมีการกำหนด และ/หรือแก้ไขเพิ่มเติมในภายหน้า&lt;span&gt;&lt;/br&gt;
+    &lt;span style="margin-left: 1em;"&gt; 3.	ยินยอมให้ข้อมูลเกี่ยวกับระบบการผลิต ตามที่ได้รับการร้องขอจากหน่วยรับรอง&lt;/span&gt;&lt;br/&gt;
+    &lt;span style="margin-left: 1em;"&gt; 4.	ยินยอมให้หน่วยรับรองระบบงานหรือหน่วยรับรองระบบงานระดับสากลที่เกี่ยวข้องกับการรับรองดำเนินการสังเกตการณ์ การตรวจประเมินของกลุ่มผู้ตรวจประเมินของกรมวิชาการเกษตร ณ แหล่งผลิตของข้าพเจ้าตามที่ได้รับการร้องขอ&lt;/span&gt;&lt;br/&gt;
+	&lt;span style="margin-left: 1em;"&gt; 5.	ยิมยอมให้หน่วยรับรองเปิดเผย ชื่อ ที่อยู่ ที่ตั้งแหล่งผลิต และหมายเลขโทรศัพท์ที่สามารถติดต่อได้&lt;/span&gt;&lt;br/&gt;
+	&lt;br&gt;
+	&lt;B&gt;พร้อมคำขอนี้ได้แนบ/แสดงเอกสารประกอบการขอใบรับรอง ดังนี้&lt;/B&gt;&lt;br&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	แสดงบัตรประชาชน หรือทะเบียนบ้านของประธานกลุ่ม หรือผู้มีอำนาจลงนามของกลุ่ม&lt;span/&gt;&lt;br/&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	แนบหลักฐานการจดทะเบียนนิติบุคคล (กรณีนิติบุคคล)&lt;span/&gt;&lt;br/&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	แนบหนังสือมอบอำนาจ พร้อมสำเนาบัตรประชาชนของผู้มอบอำนาจ&lt;span/&gt;&lt;br/&gt;
+	&lt;span style="margin-left: 1em;"&gt; &amp;#9723;	แนบสำเนาเอกสารสิทธิ์การใช้ประโยชน์ที่ดิน&lt;span/&gt;
+	&lt;ul style="margin-left: 1em;"&gt;
+		&lt;li&gt;โฉนดที่ดิน&lt;/li&gt;
+		&lt;li&gt;น.ส.2&lt;/li&gt;
+		&lt;li&gt;น.ส.3&lt;/li&gt;
+		&lt;li&gt;น.ส.3.ก&lt;/li&gt;
+		&lt;li&gt;ปส.23&lt;/li&gt;
+		&lt;li&gt;ส.ป.ก&lt;/li&gt;
+		&lt;li&gt;ก.ส.น.5&lt;/li&gt;
+		&lt;li&gt;น.ค.3&lt;/li&gt;
+		&lt;li&gt;ส.ค.1&lt;/li&gt;
+		&lt;li&gt;เอกสารรับรองจากหน่วยที่เกี่ยวข้อง&lt;/li&gt;
+		&lt;li&gt;เลขที่เอกสารสิทธิ์การใช้ประโยชน์ที่ดิน.............................&lt;/li&gt;
+		&lt;li&gt;เจ้าของกรมสิทธิ์&lt;/li&gt;
+		&lt;ul style="margin-left: 1em;list-style-type:circle;"&gt;
+			&lt;li&gt;เจ้าของ&lt;/li&gt;
+			&lt;li&gt;เช่า&lt;/li&gt;
+			&lt;li&gt;ได้รับอนุญาต&lt;/li&gt;
+			&lt;li&gt;อื่นๆ&lt;/li&gt;			
+		&lt;/ul&gt;
+		&lt;li&gt;บันทึกเอกสารเพิ่มเติม.........................................................&lt;/li&gt;
+	&lt;/ul&gt;</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONFIRM_GROUP__TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าข้อมูลต่าง ๆ ที่ให้ไว้นี้เป็นความจริงทุกประการ และได้รับเอกสารหลักเกณฑ์และเงื่อนไขที่เกี่ยวข้องกับการรับรองไว้เรียบร้อยแล้ว</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_EMAIL_1" xml:space="preserve">
+    <value>อีเมล์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_EMAIL_2" xml:space="preserve">
+    <value>อีเมล์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_FAX_1" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_FAX_2" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_FIRST_NAME_1" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_FIRST_NAME_2" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_INFO_1" xml:space="preserve">
+    <value>ลำดับที่ 1</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_INFO_2" xml:space="preserve">
+    <value>ลำดับที่ 2</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_LAST_NAME_1" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_LAST_NAME_2" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_MOBILE_PHONE_1" xml:space="preserve">
+    <value>มือถือ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_MOBILE_PHONE_2" xml:space="preserve">
+    <value>มือถือ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_POSITION_1" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_POSITION_2" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_SECTION" xml:space="preserve">
+    <value>ข้อมูลบุคคลที่สามารถติดต่อได้สะดวก(ควรเป็นบุคคลที่เข้าใจระบบของกลุ่ม)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_TELL_1" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_TELL_2" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_TELL_EXT_1" xml:space="preserve">
+    <value>ต่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_TELL_EXT_2" xml:space="preserve">
+    <value>ต่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_TITLE_1" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_CONTACT_TITLE_2" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_COMPLAIN" xml:space="preserve">
+    <value>การจัดการข้อร้องเรียน</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_CRITERIA" xml:space="preserve">
+    <value>สัญญา/ใบสมัคร/คำรับรอง และหลักเกณฑ์ และเงื่อนไขของกลุ่ม</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_DOC" xml:space="preserve">
+    <value>การควบคุมเอกสาร และบันทึก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_INSPECTION" xml:space="preserve">
+    <value>การตรวจติดตามคุณภาพภายใน และการปฏิบัติการแก้ไข</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_OTHER_CHECKBOX" xml:space="preserve">
+    <value>อื่นๆ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_OTHER_TEXT" xml:space="preserve">
+    <value>ระบุอื่นๆ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_SECTION" xml:space="preserve">
+    <value>ข้อมูลระบบการควบคุมภายในที่มี</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_TRACING" xml:space="preserve">
+    <value>ระบบการตามสอบผลิตผล (Traceability of Produce)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_PRODUCTION_INSIDE_CONTROL_TRAINING" xml:space="preserve">
+    <value>การฝึกอบรม</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_GROUP_SECTION" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_FIRST_LAST_NAME" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_FIRST_NAME" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_ID_CRADE" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_LOCATION_INFORMATION" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_ADDRESS_LOCATION" xml:space="preserve">
+    <value>ที่อยู่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_ESTIMATE_HARVEST_MONTH" xml:space="preserve">
+    <value>เดือนที่คาดว่าจะเก็บเกี่ยว</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_ESTIMATE_HARVEST_VOLUME" xml:space="preserve">
+    <value>ผลผลิตรวมที่คาดว่าจะได้รับต่อปี</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_FULL_NAME" xml:space="preserve">
+    <value>ชื่อ - นามสกุล</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_ID_CARD_NUMBER" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_INDIVIDUAL_AREA" xml:space="preserve">
+    <value>ข้อมูลรายชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละราย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_KIND_OF_PLANT" xml:space="preserve">
+    <value>ชนิดพืช</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_PLANT_LOCATION" xml:space="preserve">
+    <value>ที่ตั้งแปลง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_SECTION" xml:space="preserve">
+    <value>ข้อมูลรายละเอียดการผลิตของกลุ่ม</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_START" xml:space="preserve">
+    <value>ช่วงการผลิต (เดือนเริ่มต้น)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_START_INFO" xml:space="preserve">
+    <value>เฉพาะพืชผัก สมุนไพร พืชไร่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_START_INFO1" xml:space="preserve">
+    <value>เฉพาะพืชผัก สมุนไพร พืชไร่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_STOP" xml:space="preserve">
+    <value>ช่วงการผลิต (เดือนสิ้นสุด)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_SUMMARY" xml:space="preserve">
+    <value>สรุปรายละเอียดของพื้นที่การผลิตและวิธีการผลิตโดยทั่วไปในพื้นที่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_SUMMARY_INFORMATION" xml:space="preserve">
+    <value>เช่น วิธีการปลูกพืช การปรับปรุงบำรุงดิน การป้องกันกำจัดศัตรูพืชและแหล่งน้ำ ระบบนิเวศน์ เป็นต้น</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_PRODUCTION_SUMMARY_SECTION" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_SECTION" xml:space="preserve">
+    <value>ข้อมูลประธานกลุ่ม</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_SECTION_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละราย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_SECTION_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูลชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละราย ในขณะนี้คุณสามารถเพิ่มข้อมูลชื่อ พื้นที่ และชนิดของผู้แต่ละราย โดยคลิกปุ่ม "เพิ่มข้อมูลชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละราย"</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_SECTION_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลชื่อ พื้นที่ และชนิดของผู้ผลิตแต่ละลาย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_HEAD_OF_GROUP_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_INFORMATION_BUILDING_RENT" xml:space="preserve">
+    <value>โปรดระบุประเภทของผู้ให้เช่า/ให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_INFORMATION_SECTION" xml:space="preserve">
+    <value>ข้อมูลแผนการผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_INFORMATION_SECTION_ADD_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลแผนการผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_INFORMATION_SECTION_EMPTY_MSG" xml:space="preserve">
+    <value>ไม่มีข้อมูลแผนการผลิตพืชอินทรีย์ในขณะนี้ คุณสามารถเพิ่มข้อมูลแผนการผลิตพืชอินทรีย์ โดยการคลิกที่ปุ่ม "เพิ่มข้อมูลแผนการผลิตพืชอินทรีย์"</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_INFORMATION_SECTION_SUBMIT_MSG" xml:space="preserve">
+    <value>เพิ่มข้อมูลแผนแผนการผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_KIND_OF_PLANT" xml:space="preserve">
+    <value>ชนิดพืช</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_LAST_NAME" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_LOCATION" xml:space="preserve">
+    <value>ข้อมูลที่ตั้งแหล่งผลิต/ที่ตั้งแปลง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_LOCATION_FORM" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_LOCATION_FORM_EMAL" xml:space="preserve">
+    <value>อีเมล์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_LOCATION_FORM_MOBILE" xml:space="preserve">
+    <value>มือถือ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_MOBILE_PHONE" xml:space="preserve">
+    <value>มือถือ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_NUMBER_OF_TREE" xml:space="preserve">
+    <value>จำนวนต้น (เฉพาะไม้ผล)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_NUMBER_OF_YEAR" xml:space="preserve">
+    <value>จำนวนรอบการผลิต/ปี</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_PERSONAL_CONTACT_SECTION" xml:space="preserve">
+    <value>ข้อมูลบุคคลที่สามารถติดต่อได้สะดวก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_RANK_START" xml:space="preserve">
+    <value>ช่วงการผลิต (เดือนเริ่มต้น)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_RANK_STOP" xml:space="preserve">
+    <value>ช่วงการผลิต (เดือนสิ้นสุด)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC" xml:space="preserve">
+    <value>ข้อมูลการขอใบรับรองแหล่งผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_ALONE_CONDITION" xml:space="preserve">
+    <value>NULL</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_DOC_ATTACT" xml:space="preserve">
+    <value>คุณได้แนบเอกสารสิทธิการใช้ประโยชน์ที่ดินอะไรบ้างสำหรับการยื่นขอใบรับรองแหล่งผลิตพืชอินทรีย์ในครั้งนี้</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_DOC_TEXT" xml:space="preserve">
+    <value>เลขที่เอกสารสิทธิการใช้ประโยชน์ที่ดิน</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_NEW_HEAD_OF_GROUP" xml:space="preserve">
+    <value>ประธานกลุ่ม หรือผู้มีอำนาจของกลุ่ม เป็นบุคคลเดียวกันกับบุคคลผู้ขออนุญาต ใช่หรือไม่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_NEW_KIND_OF_PLANT" xml:space="preserve">
+    <value>คุณต้องการขอใบรับรองแหล่งผลิตพืชอินทรีย์ในรูปแบบใด</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_NEW_ORG_AG" xml:space="preserve">
+    <value>คุณต้องการขอใช้เครื่องหมายรับรองผลิตพืชอินทรีย์ จากกรมวิชาการเกษตร ใช่หรือไม่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_NEW_ORG_AG_DOC_LANGUAGE" xml:space="preserve">
+    <value>คุณต้องการขอให้หน่วยงานออกใบรับรองในรูปแบบภาษาใด</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_NEW_REGISTER" xml:space="preserve">
+    <value>คุณต้องการขอใบรับรองในกรณีใด</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_TELL" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_TELL_NEXT" xml:space="preserve">
+    <value>ต่อ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อ</value>
+  </data>
+  <data name="APP_ORGRANIC_KIND_OF_PRODUCTION" xml:space="preserve">
+    <value>คุณต้องการผลิตพืชประเภทใด</value>
+  </data>
+  <data name="CHK1" xml:space="preserve">
+    <value>โฉนดที่ดิน</value>
+  </data>
+  <data name="CHK10" xml:space="preserve">
+    <value>เอกสารรับรองจากหน่วยงานที่เกี่ยวข้อง</value>
+  </data>
+  <data name="CHK2" xml:space="preserve">
+    <value>น.ส.2</value>
+  </data>
+  <data name="CHK3" xml:space="preserve">
+    <value>น.ส.3</value>
+  </data>
+  <data name="CHK4" xml:space="preserve">
+    <value>น.ส.3.ก</value>
+  </data>
+  <data name="CHK5" xml:space="preserve">
+    <value>ปส.23</value>
+  </data>
+  <data name="CHK6" xml:space="preserve">
+    <value>ส.ป.ก</value>
+  </data>
+  <data name="CHK7" xml:space="preserve">
+    <value>ก.ส.น.5</value>
+  </data>
+  <data name="CHK8" xml:space="preserve">
+    <value>น.ค.3</value>
+  </data>
+  <data name="CHK9" xml:space="preserve">
+    <value>ส.ค.1</value>
+  </data>
+  <data name="INVALID_MONTH" xml:space="preserve">
+    <value>ช่วงเดือนไม่ถูกต้อง</value>
+  </data>
+</root>

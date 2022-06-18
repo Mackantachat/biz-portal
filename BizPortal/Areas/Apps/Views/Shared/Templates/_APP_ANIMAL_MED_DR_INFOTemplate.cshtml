@@ -1,0 +1,74 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_ANIMAL_MED_DR_INFOTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_TITLE :</label>
+            {{this.APP_ANIMAL_MED_DR_TITLE}}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_FIRSTNAME :</label>
+            {{this.APP_ANIMAL_MED_DR_FIRSTNAME}}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_LASTNAME :</label>
+            {{this.APP_ANIMAL_MED_DR_LASTNAME}}
+            <br />
+            {{#xif " typeof this.APP_ANIMAL_MED_DR_LEVEL_OPTION !== 'undefined' " }}
+            {{#xif " this.APP_ANIMAL_MED_DR_LEVEL_OPTION == '1' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_LEVEL: </label> ชั้น 1 สำหรับผู้ประกอบวิชาชีพสัตวแพทย์ชั้น 1 <br />
+            {{else}}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_LEVEL: </label> ชั้น 2 สำหรับผู้ประกอบวิชาชีพสัตวแพทย์ชั้น 2 <br />
+            {{/xif}}
+            {{/xif}}
+
+            {{#xif " fieldExist(this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_ONE) && this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_ONE != 'null' " }}
+            {{#xif " this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_ONE == 'true' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_BRANCH: </label> อายุรศาสตร์ (Medicine) <br />
+            {{/xif}}
+            {{/xif}}
+
+            {{#xif " fieldExist(this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_TWO) && this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_TWO != 'null' " }}
+            {{#xif " this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_TWO == 'true' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_BRANCH: </label> ศัลยศาสตร์ (Surgery) <br />
+            {{/xif}}
+            {{/xif}}
+
+            {{#xif " fieldExist(this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_THREE) && this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_THREE != 'null' " }}
+            {{#xif " this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_THREE == 'true' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_BRANCH: </label> สัตวแพทยสาธารณสุข (Veterinary Public Health) <br />
+            {{/xif}}
+            {{/xif}}
+            {{#xif " fieldExist(this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_FOUR) && this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_FOUR != 'null' " }}
+            {{#xif " this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_FOUR == 'true' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_BRANCH: </label> พยาธิวิทยา (Pathology) <br />
+            {{/xif}}
+            {{/xif}}
+            {{#xif " fieldExist(this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_FIVE) && this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_FIVE != 'null' " }}
+            {{#xif " this.APP_ANIMAL_MED_DR_BRANCH_APP_ANIMAL_MED_DR_BRANCH_TYPE_FIVE == 'true' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_BRANCH: </label> เวชศาสตร์ระบบสืบพันธุ์ (Theriogenology) <br />
+            {{/xif}}
+            {{/xif}}
+
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_LICENSE :</label>
+            {{this.APP_ANIMAL_MED_DR_LICENSE}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_MED_DR_LICENSE_END :</label>
+            {{this.APP_ANIMAL_MED_DR_LICENSE_END}}
+        </div>
+        <div class="col-md-2 pr5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        <div class="col-md-2 pl5">
+            <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

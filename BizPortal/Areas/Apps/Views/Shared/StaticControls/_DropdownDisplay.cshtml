@@ -1,0 +1,62 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var autofillAttr = AutoFillConditionHelper.GetAttributes(Model);
+}
+
+@if (Model.IsAjaxDropdown)
+{
+    <select class="form-control" id="@string.Format("ajax_dropdown_{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN_{0}", Model.DataKey)" disabled>
+        <option></option>
+    </select>
+}
+else
+{
+    @*<select class="form-control @(Model.WillTriggerDisplayOfOtherUI ? "trigger-dd" : "")"
+                id="@string.Format("{0}_{1}", "dropdown", Model.ClientID)"
+                name="@string.Format("{0}_{1}_TEXT", "DROPDOWN", Model.DataKey)"
+                data-control-name="@Model.DataKey">
+            <option></option>
+        </select>
+
+            <script type="text/javascript">
+            $(function () {
+                $("#@string.Format("{0}_{1}", "dropdown", Model.ClientID)").select2({
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Data)),
+                    width: '100%',
+                    disabled: true
+                });
+            });
+            </script>*@
+
+    <select class="form-control @(Model.WillTriggerDisplayOfOtherUI ? "trigger-dd" : "") @autofillAttr.Class"
+            id="@string.Format("{0}_{1}", "dropdown", Model.ClientID)"
+            name="@string.Format("{0}_{1}", "DROPDOWN", Model.DataKey)"
+            data-control-name="@Model.DataKey"
+            @autofillAttr.Data
+            @autofillAttr.DataSourceFromDraft
+            @autofillAttr.DataSourceSection
+            @autofillAttr.DataSourceControl>
+        <option></option>
+    </select>
+
+    <script type="text/javascript">
+    $(function () {
+        $("#@string.Format("{0}_{1}", "dropdown", Model.ClientID)").select2({
+            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select2Opts)),
+            allowClear: true,
+            width: '100%',
+            disabled: true
+        });
+
+    });
+    </script>
+
+    @*@Html.TextBox(string.Format("DROPDOWN_{0}_TEXT", Model.DataKey),
+        Model.Data != null ? Model.Select2Opts.Where(x => x.ID == (Model.Data as BizPortal.ViewModels.Select2.Select2Opt[])[0].ID).Single().Text : string.Empty,
+        new { @class = "form-control", id = string.Format("DROPDOWN_{0}_TEXT", Model.ClientID), @readonly = "readonly" })*@
+
+}

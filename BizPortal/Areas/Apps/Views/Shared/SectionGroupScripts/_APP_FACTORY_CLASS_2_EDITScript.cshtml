@@ -1,0 +1,58 @@
+﻿@*@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")">
+</script>
+
+<script type="text/javascript">
+
+    // On load.
+    window.singleFormHelpers.form.onDraftDataBound(function () {
+       // do something.
+        getDraftRad();
+        chkIschecked();
+    });
+
+    // global variable
+    var getRad;
+    var getSubRad;
+
+    // function
+    function getDraftRad(){
+        
+        if ($('[name=APP_FACTORY_CLASS_2_EDIT_STORE_BUILDING_TYPE_OPTION]').is(':checked')) {
+            getRad = $('[name=APP_FACTORY_CLASS_2_EDIT_STORE_BUILDING_TYPE_OPTION]:checked').val();
+
+            if (getRad == 'INFORMATION_STORE_BUILDING_TYPE_OPTION__RENT' || getRad == 'INFORMATION_STORE_BUILDING_TYPE_OPTION__RENT_FREE') {
+
+                if ($('[name=APP_FACTORY_CLASS_2_EDIT_BUILDING_RENTING_OWNER_TYPE_OPTION]').is(':checked')) {
+                     getSubRad = $('[name=APP_FACTORY_CLASS_2_EDIT_BUILDING_RENTING_OWNER_TYPE_OPTION]:checked').val();
+                }
+
+            }
+            
+        }
+    }
+
+    function chkIschecked() {
+       
+        if ($('[name=APP_FACTORY_CLASS_2_EDIT_CHANGING_APP_FACTORY_CLASS_2_EDIT_CHANGING_ADDRESS_CHECKBOX]').prop('checked') == true) {
+
+
+
+        }
+
+        if ($('[name=APP_FACTORY_CLASS_2_EDIT_CHANGING_APP_FACTORY_CLASS_2_EDIT_CHANGING_ADDRESS_CHECKBOX]').prop('checked') == false) {
+
+            $("[name=APP_FACTORY_CLASS_2_EDIT_STORE_BUILDING_TYPE_OPTION]").prop("checked", false);
+            //$("[name=APP_FACTORY_CLASS_2_EDIT_BUILDING_RENTING_OWNER_TYPE_OPTION]").prop("checked", false);
+            $("[name=APP_FACTORY_CLASS_2_EDIT_BUILDING_RENTING_OWNER_TYPE_OPTION]").attr("data-display-condition", "&quot;APP_FACTORY_CLASS_2_EDIT_STORE_BUILDING_TYPE::INFORMATION_STORE_BUILDING_TYPE_OPTION__RENT&quot;,&quot;APP_FACTORY_CLASS_2_EDIT_STORE_BUILDING_TYPE::&quot;]");
+        }
+        
+    }
+
+</script>*@
+
+
+

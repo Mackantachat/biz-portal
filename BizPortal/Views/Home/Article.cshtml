@@ -1,0 +1,214 @@
+﻿@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Extensions;
+@model ArticleViewModel
+
+@{
+    ViewBag.Title = ViewBag.Title == null ? Resource.Global.PAGE_TITLE_ATICLE : ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@section breadcrumb{
+    <section class="breadcrumb" style="margin-bottom: 15px;">
+        <div class="container">
+            <h2></h2>
+            <ul>
+                <li><a href="@Url.Action("Index", "Home", new { language = ViewBag.CurrentLang })">@Resource.Breadcrumb.HOME</a></li>
+                <li><a href="@Url.Action("Category", "Home", new { id = ViewBag.CategoryId, language = ViewBag.CurrentLang })">@Resource.Breadcrumb.CATEGORY (@ViewBag.CategoryName)</a></li>
+                <li class="active">@Resource.Breadcrumb.ARTICLE</li>
+            </ul>
+        </div>
+    </section>
+}
+
+<div class="container article-container">
+    <div class="row">
+        <div class="appear-animation-visible appear-animation fadeInLeft">
+            <div class="SM-12 D-2 text-center">
+                <img class="img-responsive img-thumbnail img-category-thumbnail img-center mb20" src="@Url.Action("GetThumbnail", "File", new { id = Model.ThumbnailID, area = "", cid = Model.CategoryID })" />
+            </div>
+            <div class="SM-12 D-10">
+                <div class="group-container">
+                    <h2 class="detail-header">@Model.ArticleName.ToString()</h2>
+                    <hr class="dashed" style="margin:0; margin-bottom: 20px;" />
+                    <div class="body">
+                        @Html.Raw(Model.ArticleBody)
+                    </div>
+                    @if (!string.IsNullOrEmpty(ViewBag.Tags))
+                    {
+                        <div class="footer p-none">
+
+                            <ul class="tag-labels">
+                                @foreach (string tag in ViewBag.Tags.Split(','))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Category", "Home", new { area = "", tag = tag })" class="tag-label">@tag</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="D-10 D-offset-2">
+            <nav class="pager">
+                @{ var displayLabel = (Model.PreviousArticleID.HasValue && Model.PreviousArticleName.Length > 50) || (Model.NextArticleID.HasValue && Model.NextArticleName.Length > 50);}
+                <div class="M-6 text-center">
+                    @if (Model.PreviousArticleID.HasValue)
+                    {
+                        if (displayLabel)
+                        {
+                            <div><a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Model.PreviousArticleName.ShortDetailText(50)</a></div>
+                        }
+                        else if (Model.PreviousArticleName.Length > 40)
+                        {
+                            <div><a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Resource.Global.PREVIOUS_ARTICLE : @Model.PreviousArticleName.ShortDetailText()</a></div>
+                        }
+                        else
+                        {
+                            <div> <a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Resource.Global.PREVIOUS_ARTICLE : @Model.PreviousArticleName.ToString()</a></div>
+                        }
+                    }
+                </div>
+                <div class="M-6 text-center">
+                    @if (Model.NextArticleID.HasValue)
+                    {
+                        if (displayLabel)
+                        {
+                            <div><a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })">  @Model.NextArticleName.ShortDetailText(50) <span aria-hidden="true">&rarr;</span></a> </div>
+                        }
+                        else if (Model.NextArticleName.Length > 40)
+                        {
+                            <div><a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })">  @Resource.Global.NEXT_ARTICLE : @Model.NextArticleName.ShortDetailText() <span aria-hidden="true">&rarr;</span></a></div>
+                        }
+                        else
+                        {
+                            <div> <a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })">  @Resource.Global.NEXT_ARTICLE : @Model.NextArticleName.ToString() <span aria-hidden="true">&rarr;</span></a></div>
+                        }
+                    }
+                </div>
+
+            </nav>
+            @*<nav class="">
+                    <ul class="pager">
+
+                        @if (Model.PreviousArticleID.HasValue)
+                        {
+                            if (displayLabel)
+                            {
+                                <li class="previous"><a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Model.PreviousArticleName.ShortDetailText(50)</a></li>
+                            }
+                            else if (Model.PreviousArticleName.Length > 40)
+                            {
+                                <li class="previous"><a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Resource.Global.PREVIOUS_ARTICLE : @Model.PreviousArticleName.ShortDetailText()</a></li>
+                            }
+                            else {
+                                <li class="previous"> <a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Resource.Global.PREVIOUS_ARTICLE : @Model.PreviousArticleName.ToString()</a></li>
+                            }
+                        }
+
+                        @if (Model.NextArticleID.HasValue)
+                        {
+                            if (displayLabel)
+                            {
+                                <li class="next"><a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })"><span aria-hidden="true">&rarr;</span>  @Model.NextArticleName.ShortDetailText(50)</a></li>
+                            }
+                            else if (Model.NextArticleName.Length > 40)
+                            {
+                                <li class="next"><a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })"><span aria-hidden="true">&rarr;</span>  @Resource.Global.NEXT_ARTICLE : @Model.NextArticleName.ShortDetailText()</a></li>
+                            }
+                            else {
+                                <li class="next"> <a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })"><span aria-hidden="true">&rarr;</span>  @Resource.Global.NEXT_ARTICLE : @Model.NextArticleName.ToString()</a></li>
+                            }
+                        }
+                    </ul>
+                </nav>*@
+        </div>
+    </div>
+</div>
+
+<!-- Start PhotoSwipe  -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End PhotoSwipe  -->
+
+@section PageScripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.article-container img').click(function () {
+                openPhotoSwipe($(this).prop('src'));
+            });
+        });
+
+        function iconChanges(x) {
+            var collapseId = x;
+            $(x).find('span.fa').toggleClass('fa-chevron-right fa-chevron-down');
+        }
+
+        var openPhotoSwipe = function (x) {
+            var pswpElement = document.querySelectorAll('.pswp')[0];
+            var url = x;
+            var items = [
+                {
+                    src: url,
+                    w: 0,
+                    h: 0
+                }
+            ];
+
+            var options = {
+                history: false,
+                focus: false,
+
+                showAnimationDuration: 0,
+                hideAnimationDuration: 0
+            };
+
+            var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+            gallery.listen('imageLoadComplete', function (index, item) {
+                if (item.w < 1 || item.h < 1) {
+                    var img = new Image();
+                    img.onload = function () {
+                        item.w = this.width;
+                        item.h = this.height;
+                        gallery.invalidateCurrItems();
+                        gallery.updateSize(true);
+                    };
+                    img.src = item.src;
+                }
+            });
+
+            gallery.init();
+        };
+
+    </script>
+}

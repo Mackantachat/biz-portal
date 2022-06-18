@@ -1,0 +1,47 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_FACTORY_TYPE2_MATERIAL_INFORMATION_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label>ชื่อของวัตถุดิบ :</label>
+                {{ this.APP_FACTORY_MATERIAL_NAME_MODAL }}
+            </div>
+
+            <div class="col-md-4">
+                <label>ปริมาณที่ใช้ต่อปี :</label>
+                {{ this.APP_FACTORY_MATERIAL_DOSE_PER_YEAR_MODAL }}
+            </div>
+
+            <div class="col-md-4">
+                <label>หน่วย :</label>
+                {{ this.DROPDOWN_APP_FACTORY_MATERIAL_UNIT_MODAL_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label>แหล่งที่มา :</label>
+                {{ this.DROPDOWN_APP_FACTORY_MATERIAL_COUNTY_LIST_MODAL_TEXT }}
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่พบข้อมูล
+        </div>
+    </div>
+    {{/xif}}
+</script>

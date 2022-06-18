@@ -1,0 +1,22 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    
+    var datetimeTriggerAttr = SingleFormDateTimeHelper.GetAttributes(Model);
+    
+}
+
+@*<input type="hidden" data-control-name="@Model.DataKey" id="@Model.ClientID" name="@Model.DataKey" value="@Model.Data" />*@
+
+<input class="trigger-display" type="hidden" id="@Model.DataKey"
+       name="@Model.DataKey"
+       value="@Model.Data"
+       data-control-name="@Model.DataKey"  
+       @datetimeTriggerAttr.IsTrigger 
+       @datetimeTriggerAttr.DataMethod 
+       @datetimeTriggerAttr.DataSourceFormat 
+       @datetimeTriggerAttr.DataSourceCulture 
+       @datetimeTriggerAttr.DataDestinationControl />

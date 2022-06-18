@@ -1,0 +1,435 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="COMMITTEE_INFORMATIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-4">
+            <p class="bold form-control-static">
+                ลำดับของกรรมการ {{this.JURISTIC_COMMITTEE_NUMBER}} <br />
+                {{this.JURISTIC_COMMITTEE_TITLE}} {{this.JURISTIC_COMMITTEE_NAME}} {{this.JURISTIC_COMMITTEE_LASTNAME}}<br />
+
+                <div class="JURISTIC_COMMITTEE_ENG_NAME" style="display: none;">
+                    {{#xif " fieldExist(this.DROPDOWN_JURISTIC_COMMITTEE_TITLE_EN) " }}
+                    {{this.DROPDOWN_JURISTIC_COMMITTEE_TITLE_EN_TEXT}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.JURISTIC_COMMITTEE_FIRSTNAME_EN) " }}
+                    {{this.JURISTIC_COMMITTEE_FIRSTNAME_EN}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.JURISTIC_COMMITTEE_LASTNAME_EN) " }}
+                    {{this.JURISTIC_COMMITTEE_LASTNAME_EN}}
+                    {{/xif}}
+                </div>
+            </p>
+        </div>
+        <div class="col-md-6">
+            {{#xif " typeof this.JURISTIC_COMMITTEE_IS_AUTHORIZED_OPTION !== 'undefined' " }}
+            {{#xif " this.JURISTIC_COMMITTEE_IS_AUTHORIZED_OPTION == 'yes' " }}
+            <label style="color: #5ca1bf">ลงนามการขออนุญาตครั้งนี้</label><br />
+            {{else}}
+            <label>ไม่ได้ลงนามการขออนุญาตครั้งนี้</label><br />
+            {{/xif}}
+            {{/xif}}
+
+            <div class="JURISTIC_COMMITTEE_LAWYER" style="display: none;">
+                {{#xif " typeof this.JURISTIC_COMMITTEE_IS_LAWYER_OPTION !== 'undefined' " }}
+                {{#xif " this.JURISTIC_COMMITTEE_IS_LAWYER_OPTION == 'yes' " }}
+                <label>เป็นทนายความ</label><br />
+                {{#xif " fieldExist(this.JURISTIC_COMMITTEE_IS_LAWYER_LICENSE_NUMBER) " }}
+                <label>เลขที่ใบอนุญาตทนายความ :</label>
+                {{this.JURISTIC_COMMITTEE_IS_LAWYER_LICENSE_NUMBER}}<br />
+                {{/xif}}
+                {{#xif " fieldExist(this.DROPDOWN_JURISTIC_COMMITTEE_IS_LAWYER_LICENSE_TYPE) " }}
+                <label>ประเภทบัตรของทนายความ :</label>
+                {{this.DROPDOWN_JURISTIC_COMMITTEE_IS_LAWYER_LICENSE_TYPE_TEXT}}<br />
+                {{/xif}}
+                {{#xif " this.DROPDOWN_JURISTIC_COMMITTEE_IS_LAWYER_LICENSE_TYPE === '2YEAR' " }}
+                {{#xif " fieldExist(this.JURISTIC_COMMITTEE_IS_LAWYER_LICENSE_DUEDATE) " }}
+                <label>วันหมดอายุ :</label>
+                {{this.JURISTIC_COMMITTEE_IS_LAWYER_LICENSE_DUEDATE}}<br />
+                {{/xif}}
+                {{/xif}}
+                {{else}}
+                <label>ไม่เป็นทนายความ</label><br />
+                {{/xif}}
+                {{/xif}}
+            </div>
+
+            @*<div class="JURISTIC_COMMITTEE_ACCOUNTING" style="display: none;">
+            {{#xif " fieldExist(this.JURISTIC_COMMITTEE_ACCOUNTING_LICENSE_ID) " }}
+            <label>เลขทะเบียนผู้สอบบัญชีอนุญาต :</label>
+            {{this.JURISTIC_COMMITTEE_ACCOUNTING_LICENSE_ID}}<br />
+            {{/xif}}
+            {{#xif " fieldExist(this.DROPDOWN_JURISTIC_COMMITTEE_ACCOUNTING_TYPE) " }}
+            <label>ประเภทสมาชิก :</label>
+            {{this.DROPDOWN_JURISTIC_COMMITTEE_ACCOUNTING_TYPE_TEXT}}<br />
+            {{/xif}}
+        </div>
+        <div class="JURISTIC_COMMITTEE_ACCOUNTING_EDIT" style="display: none;">
+            {{#xif " typeof this.ACCOUNTING_SERVICE_COMMITTEE_CHANGE_OR_REMOVE_OPTION !== 'undefined' " }}
+            {{#xif " this.ACCOUNTING_SERVICE_COMMITTEE_CHANGE_OR_REMOVE_OPTION == 'ADD' " }}
+            <label>ขอเปลี่ยนแปลงจากรายนามเดิม :</label> เพิ่ม <br />
+            {{else}}
+            <label>ขอเปลี่ยนแปลงจากรายนามเดิม :</label> คัดออก <br />
+            {{/xif}}
+            {{/xif}}
+        </div>
+
+        <div class="JURISTIC_COMMITTEE_ACCOUNTING_DUE_DATE" style="display: none;">
+            {{#xif " fieldExist(this.JURISTIC_COMMITTEE_ACCOUNTING_DUE_DATE) " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.JURISTIC_COMMITTEE_ACCOUNTING_DUE_DATE :</label>
+            {{this.JURISTIC_COMMITTEE_ACCOUNTING_DUE_DATE}}
+            {{/xif}}
+        </div>*@
+
+            {{#xif " typeof this.JURISTIC_COMMITTEE_NATIONALITY_OPTION !== 'undefined' " }}
+            {{#xif " this.JURISTIC_COMMITTEE_NATIONALITY_OPTION == 'thai' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.JURISTIC_COMMITTEE_NATIONALITY: </label> ไทย <br />
+            {{#xif " typeof this.COMMITTEE_INFORMATION_CITIZEN_ID !== 'undefined' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.COMMITTEE_INFORMATION_CITIZEN_ID: </label> {{this.COMMITTEE_INFORMATION_CITIZEN_ID}}<br />
+            {{/xif}}
+
+            <div class="JURISTIC_COMMITTEE_ENERGY" style="display: none;">
+                {{#xif " typeof this.AJAX_DROPDOWN_COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_PROVINCE_DDL_TEXT !== 'undefined' " }}
+                <label>@BizPortal.Resources.Apps_SingleForm.COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_PROVINCE: </label> {{this.AJAX_DROPDOWN_COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_PROVINCE_DDL_TEXT}}<br />
+                {{/xif}}
+
+                {{#xif " typeof this.AJAX_DROPDOWN_COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_AMPHUR_DDL_TEXT !== 'undefined' " }}
+                <label>@BizPortal.Resources.Apps_SingleForm.COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_AMPHUR: </label> {{this.AJAX_DROPDOWN_COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_AMPHUR_DDL_TEXT}}<br />
+                {{/xif}}
+            </div>
+
+            <div class="JURISTIC_COMMITTEE_ISSUE_PROVINCE_AMPHUR" style="display: none;">
+                {{#xif " typeof this.COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_PROVINCE !== 'undefined' " }}
+                <label>@BizPortal.Resources.Apps_SingleForm.COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_PROVINCE: </label> {{this.COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_PROVINCE}}<br />
+                {{/xif}}
+
+                {{#xif " typeof this.COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_AMPHUR !== 'undefined' " }}
+                <label>@BizPortal.Resources.Apps_SingleForm.COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_AMPHUR: </label> {{this.COMMITTEE_INFORMATION_CITIZEN_IDCARD_ISSUE_AMPHUR}}<br />
+                {{/xif}}
+            </div>
+
+            {{else}}
+            {{#xif " typeof this.DROPDOWN_COMMITTEE_INFORMATION_NATION_TEXT !== 'undefined' " }}
+            <div class="JURISTIC_COMMITTEE_NATIONALITY_FIXED">
+                <label>@BizPortal.Resources.Apps_SingleForm.JURISTIC_COMMITTEE_NATIONALITY : </label> ต่างด้าว<br />
+            </div>
+            <div class="JURISTIC_COMMITTEE_NATIONALITY" style="display: none;">
+                <label>@BizPortal.Resources.Apps_SingleForm.JURISTIC_COMMITTEE_NATIONALITY : </label> {{this.DROPDOWN_COMMITTEE_INFORMATION_NATION_TEXT}}<br />
+            </div>
+            {{else}}
+            <label>@BizPortal.Resources.Apps_SingleForm.JURISTIC_COMMITTEE_NATIONALITY: </label> ต่างด้าว<br />
+            {{/xif}}
+            {{#xif " typeof this.COMMITTEE_INFORMATION_PASSPORT_NUMBER !== 'undefined' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.COMMITTEE_INFORMATION_PASSPORT_NUMBER: </label> {{this.COMMITTEE_INFORMATION_PASSPORT_NUMBER}}<br />
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+
+            <div class="JURISTIC_COMMITTEE_ADDRESS" style="display: none;">
+                {{#xif " typeof this.ADDRESS_JURISTIC_COMMITTEE_ADDRESS !== 'undefined' " }}
+                <p class="form-control-static">
+                    {{#xif " fieldExist(this.ADDRESS_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>เลขที่: </label> {{this.ADDRESS_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_MOO_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>หมู่ที่: </label> {{this.ADDRESS_MOO_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_VILLAGE_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>หมู่บ้าน: </label> {{this.ADDRESS_VILLAGE_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_SOI_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>ซอย: </label> {{this.ADDRESS_SOI_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_BUILDING_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>อาคาร: </label> {{this.ADDRESS_BUILDING_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_ROOMNO_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>ห้องเลขที่: </label> {{this.ADDRESS_ROOMNO_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_FLOOR_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>ชั้น: </label> {{this.ADDRESS_FLOOR_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_ROAD_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>ถนน: </label> {{this.ADDRESS_ROAD_JURISTIC_COMMITTEE_ADDRESS}}</>
+                    {{/xif}}
+                    <label>ตำบล/แขวง: </label> {{this.ADDRESS_TUMBOL_JURISTIC_COMMITTEE_ADDRESS_TEXT}}
+                    <label>อำเภอ/เขต: </label> {{this.ADDRESS_AMPHUR_JURISTIC_COMMITTEE_ADDRESS_TEXT}}
+                    <label>จังหวัด: </label> {{this.ADDRESS_PROVINCE_JURISTIC_COMMITTEE_ADDRESS_TEXT}}
+                    {{#xif " fieldExist(this.ADDRESS_POSTCODE_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>รหัสไปรษณีย์: </label> {{this.ADDRESS_POSTCODE_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    <nobr>
+                        {{#xif " fieldExist(this.ADDRESS_TELEPHONE_JURISTIC_COMMITTEE_ADDRESS) " }}
+                        <label>โทรศัพท์: </label> {{this.ADDRESS_TELEPHONE_JURISTIC_COMMITTEE_ADDRESS}}
+                    </nobr>
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_TELEPHONE_EXT_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <label>ต่อ:</label> {{this.ADDRESS_TELEPHONE_EXT_JURISTIC_COMMITTEE_ADDRESS}}
+                    {{/xif}}
+                    </nobr>
+                    {{#xif " fieldExist(this.ADDRESS_FAX_JURISTIC_COMMITTEE_ADDRESS) " }}
+                    <nobr><label>โทรสาร:</label> {{this.ADDRESS_FAX_JURISTIC_COMMITTEE_ADDRESS}}</nobr>
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ID_CARD_EXPIRE_COMMITTEE) " }}
+                    <br><label>วันที่บัตรหมดอายุ:</label> {{this.ID_CARD_EXPIRE_COMMITTEE}}
+                    {{/xif}}
+                </p>
+                {{/xif}}
+            </div>
+        </div>
+        <div class="col-md-2 pl5 btnArr">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        @*<div class="col-md-2 pl5">
+                <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+            </div>*@<div class="col-md-2 pl5">
+            @*<button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})"></button>*@
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        window.singleFormHelpers.form.onArrayOfFormDataBound('COMMITTEE_INFORMATION', function (section, datalist) {
+
+            // Show lawyers information only for these applications.
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_LAW_OFFICE')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_LAW_OFFICE_CANCEL')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_LAW_OFFICE_EDIT')) {
+                $('.JURISTIC_COMMITTEE_LAWYER').show();
+            }
+
+            // Show lawyers information only for these applications.
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_SELL_ANIMAL_FOOD')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL')) {
+                $('.JURISTIC_COMMITTEE_NATIONALITY_FIXED').show();
+                $('.JURISTIC_COMMITTEE_NATIONALITY').hide();
+            }
+
+            @*// Show accountant information only for these applications.
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_CANCEL')) {
+                $('.JURISTIC_COMMITTEE_ACCOUNTING').show();
+            }
+
+            // Show accountant information only for these applications.
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_CANCEL')) {
+                $('.JURISTIC_COMMITTEE_ACCOUNTING_DUE_DATE').show();
+            }
+
+            // Show accountant information only for these applications.
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2')) {
+                $('.JURISTIC_COMMITTEE_ACCOUNTING_EDIT').show();
+            }*@
+
+            // Show energy information only for these applications.
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ENERGY_PRODUCTION')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ENERGY_PRODUCTION_RENEW')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ENERGY_PRODUCTION_EDIT')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ENERGY_PRODUCTION_CANCEL')) {
+                $('.JURISTIC_COMMITTEE_ENERGY').show();
+            }
+
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_SELL_ANIMAL_FOOD')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ANIMAL_MED')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ANIMAL_MED_RENEW')) {
+                $('.JURISTIC_COMMITTEE_ISSUE_PROVINCE_AMPHUR').show();
+            }
+
+            // Show juristic committee English name only for these applications.
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_LAW_OFFICE')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_LAW_OFFICE_EDIT')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_LAW_OFFICE_CANCEL')
+                || window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_TOURISM_BUSINESS')) {
+                $('.JURISTIC_COMMITTEE_ENG_NAME').show();
+            }
+
+            if (window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเนย เนยกระเทียม")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตแบะแซ")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุน้ำตาล")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผลิตภัณฑ์จากน้ำนมวัว")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การคั่วกาแฟ")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตลูกชิ้นด้วยเครื่องจักร")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผงชูรส")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำกลั่น น้ำบริโภค")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการห้องเย็น แช่แข็งอาหาร")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเนย เนยกระเทียม")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตแบะแซ")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุน้ำตาล")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผลิตภัณฑ์จากน้ำนมวัว")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การคั่วกาแฟ")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตลูกชิ้นด้วยเครื่องจักร")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผงชูรส")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำกลั่น น้ำบริโภค")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการห้องเย็น แช่แข็งอาหาร")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเนย เนยกระเทียม")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตแบะแซ")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุน้ำตาล")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผลิตภัณฑ์จากน้ำนมวัว")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การคั่วกาแฟ")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตลูกชิ้นด้วยเครื่องจักร")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผงชูรส")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำกลั่น น้ำบริโภค")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการห้องเย็น แช่แข็งอาหาร")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเนย เนยกระเทียม")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตกะปิ น้ำพริกแดง น้ำพริกเผา น้ำปลา น้ำเคย น้ำบูดู ไตปลา เต้าเจี้ยว ซีอิ๊ว หอยดอง หรือซอสปรุงรสอื่นๆ ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การหมัก การสะสมปลาร้า ปลาเจ่า กุ้งเจ่า ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตากเนื้อสัตว์ การผลิตเนื้อสัตว์เค็ม การเคี่ยวมันกุ้ง ยกเว้น การผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การนึ่ง การต้ม การเคี่ยว การตาก หรือวิธีอื่นใดในการผลิตอาหารจากสัตว์ พืช ยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเคี่ยวน้ำมันหมู การผลิตกุนเชียง หมูยอ ไส้กรอกหมูตั้งยกเว้นในสถานที่จําหน่ายอาหาร การเร่ขาย การขายในตลาด และการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตเส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตแบะแซ")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตอาหารบรรจุกระป๋อง ขวด หรือภาชนะอื่นใด")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการการทําขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การแกะ การล้างสัตว์น้ำ ที่ไม่ใช่ส่วนหนึ่งของกิจการห้องเย็น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำอัดลม น้ำหวาน น้ำโซดา น้ำถั่วเหลือง เครื่องดื่มชนิดต่างๆ บรรจุกระป๋อง ขวด หรือภาชนะอื่นใด ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุน้ำตาล")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผลิตภัณฑ์จากน้ำนมวัว")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การแบ่งบรรจุ เอทิลแอลกอฮอล์ สุรา เบียร์ น้ำส้มสายชู")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การคั่วกาแฟ")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตลูกชิ้นด้วยเครื่องจักร")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตผงชูรส")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำกลั่น น้ำบริโภค")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การตาก การหมัก การดองผัก ผลไม้ หรือพืชอย่างอื่น ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต การบรรจุใบชาแห้ง ชาผงหรือเครื่องดื่มชนิดผงอื่นๆ")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตไอศกรีม ยกเว้นการผลิตเพื่อบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตบะหมี่ มักกะโรนี หรือผลิตภัณฑ์อื่นๆ ที่คล้ายคลึงกัน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการห้องเย็น แช่แข็งอาหาร")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิตน้ำแข็ง ยกเว้นการผลิตเพื่อใช้ในสถานที่จําหน่ายอาหารและเพื่อการบริโภคในครัวเรือน")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การเก็บ การถนอมอาหารด้วยเครื่องจักรที่มีกําลังตั้งแต่ 5 แรงม้าขึ้นไป")
+               || window.singleForm.allApps.includes("ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน")
+               || window.singleForm.allApps.includes("แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน")
+               || window.singleForm.allApps.includes("ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การจัดให้มีมหรสพ การแสดงดนตรี เต้นรำ รำวง รองเง็ง ดิสโกเทก คาราโอเกะ หรือตู้เพลง หรือการแสดงอื่นๆในทำนองเดียวกัน")
+               || window.singleForm.allApps.includes("ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน")
+               || window.singleForm.allApps.includes("แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน")
+               || window.singleForm.allApps.includes("ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการโรงแรม สถานที่พักที่มิใช่โรงแรมที่จัดไว้เพื่อให้บริการพักชั่วคราวสำหรับคนเดินทางหรือบุคคลอื่นใดโดยมีค่าตอบแทน หรือกิจการอื่นในทำนองเดียวกัน")
+               || window.singleForm.allApps.includes("ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการสถานที่ออกกำลังกาย")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการสถานที่ออกกำลังกาย")
+               || window.singleForm.allApps.includes("แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการสถานที่ออกกำลังกาย")
+               || window.singleForm.allApps.includes("ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การประกอบกิจการสถานที่ออกกำลังกาย")
+               || window.singleForm.allApps.includes("ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร")
+               || window.singleForm.allApps.includes("แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร")
+               || window.singleForm.allApps.includes("ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การสะสม ผสมซีเมนต์ หิน ดิน ทราย วัสดุก่อสร้าง รวมทั้งการขุด ตัก ดูด โม่ บด ย่อย ด้วยเครื่องจักร")
+               || window.singleForm.allApps.includes("ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า")
+               || window.singleForm.allApps.includes("แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า")
+               || window.singleForm.allApps.includes("ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต ซ่อมเครื่องอิเล็กทรอนิกส์ เครื่องไฟฟ้า อุปกรณ์อิเล็กทรอนิกส์ หรืออุปกรณ์ไฟฟ้า")
+               || window.singleForm.allApps.includes("ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์")
+               || window.singleForm.allApps.includes("แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์")
+               || window.singleForm.allApps.includes("ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การล้าง ขัดสี เคลือบสี หรืออัดฉีดยานยนต์")
+               || window.singleForm.allApps.includes("ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค")
+               || window.singleForm.allApps.includes("แก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค")
+               || window.singleForm.allApps.includes("ยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต สะสม บรรจุ ขนส่งสารกำจัดศัตรูพืชหรือพาหะนำโรค")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)")
+               || window.singleForm.allApps.includes("ขอแก้ไขใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)")
+               || window.singleForm.allApps.includes("ขอยกเลิกใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)")
+               || window.singleForm.allApps.includes("ขอหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)")
+               || window.singleForm.allApps.includes("ขอต่ออายุหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)")
+               || window.singleForm.allApps.includes("ขอแก้ไขหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)")
+               || window.singleForm.allApps.includes("ขอยกเลิกหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตขายอาหารสัตว์ควบคุมเฉพาะ")
+               || window.singleForm.allApps.includes("ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต")
+               || window.singleForm.allApps.includes("ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ")
+               || window.singleForm.allApps.includes("ต่ออายุใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ")
+               || window.singleForm.allApps.includes("ขอใบอนุญาตให้ตั้งสถานพยาบาลสัตว์")
+               || window.singleForm.allApps.includes("ขอต่ออายุใบอนุญาตให้ตั้งสถานพยาบาลสัตว์")
+               || window.singleForm.allApps.includes("APP_ENERGY_PRODUCTION_RENEW")
+               || window.singleForm.allApps.includes("APP_ENERGY_PRODUCTION_EDIT")
+               || window.singleForm.allApps.includes("APP_ENERGY_PRODUCTION_CANCEL")
+               || window.singleForm.allApps.includes("การขอขึ้นทะเบียนนายจ้างและผู้ประกันตน")
+               || window.singleForm.allApps.includes("APP_FRT_NEW_001")
+               || window.singleForm.allApps.includes("APP_FRT_RENEW_001")
+               || window.singleForm.allApps.includes("APP_FRT_EDIT_001")
+               || window.singleForm.allApps.includes("APP_FRT_CANCEL_001")
+               || window.singleForm.allApps.includes("APP_FACTORY_CLASS_2_EDIT")
+               || window.singleForm.allApps.includes("APP_FACTORY_CLASS_2_CANCEL")) {
+                $('.JURISTIC_COMMITTEE_ADDRESS').show();
+            }
+            // Hide btnEdit committee.
+            if (window.singleForm.allApps.includes('@AppSystemNameTextConst.APP_ORGANIC_PLANT_PRODUCTION_RENEW'))
+            {
+                $('.btnArr').hide();
+            }
+        });
+    });
+</script>

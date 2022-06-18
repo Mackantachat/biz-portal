@@ -1,0 +1,449 @@
+﻿<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biz Portal</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    @Styles.Render("~/Content/SmartQuizCss")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <section class="header">
+        <div class="container">
+            <div class="top">เว็บไซต์นี้อยู่ภายใต้การกำกับดูแลของสำนักนายกรัฐมนตรี</div>
+            <div class="language">
+                <ul>
+                    <li><a href="" class="active">ไทย</a></li>
+                    <li><a href="" class="">EN</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="navbar">
+        <div class="container">
+            <div class="nav">
+                <div class="burger">
+                    <a href=""><i class="fa fa-reorder"></i></a>
+                </div>
+                <div class="logo">
+                    <img src="/img/logo.png" alt="">
+                </div>
+                <ul class="navbar">
+                    <li><a href="#" data-id="1">ค้นหาข้อมูล</a></li>
+                    <li><a href="#" data-id="2">ขออนุญาตออนไลน์</a></li>
+                </ul>
+                <div class="wrap-search">
+                    <a href=""><i class="fa fa-search"></i></a>
+                    <input type="text" class="search" placeholder=" ใส่คำค้นหาที่ต้องการ">
+                </div>
+                <div class="wrap-search-mobile">
+                    <a href="" class="search-mobile-button"><i class="fa fa-search"></i></a>
+                </div>
+                <div class="group-button">
+                    <!-- <a href="" class="button-outline primary">ลงทะเบียน</a> -->
+                    <a href="" class="button primary">เข้าสู่ระบบ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="search-mobile">
+        <div class="wrap-search">
+            <a href=""><i class="fa fa-search"></i></a>
+            <input type="text" class="search" placeholder=" ใส่คำค้นหาที่ต้องการ">
+        </div>
+    </section>
+
+    <section class="menu-mobile">
+        <div class="content">
+            <div class="main">
+                <div class="profile-menu">
+                    <img src="/img/display.png" alt="">
+                    <div class="id"><h5>1001U00 0220 20</h5></div>
+                    <div class="name">พลเอกประยุทธ์ จันทรโอชา</div>
+                </div>
+                <ul class="main">
+                    <li><a href="" data-id="1">ค้นหาข้อมูล <i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="" data-id="">ขออนุญาตออนไลน์</a></li>
+                </ul>
+            </div>
+            <div class="menu" data-id="1">
+                <div class="back"><a href=""><i class="fa fa-angle-left"></i> ค้นหาข้อมูล</a></div>
+                <h3>ข้อควรรู้</h3>
+                <ul class="menu">
+                    <li><a href="">การปรับขั้นตอนและกฏระเบียบ</a></li>
+                </ul>
+                <h3>วางแผนธุรกิจ</h3>
+                <ul class="menu">
+                    <li><a href="">สถิติเพื่อวางแผนธุรกิจ</a></li>
+                    <li><a href="">ข้อมูลสิทธิประโยชน์</a></li>
+                    <li><a href="">ข้อมูลเพื่อ SMEs</a></li>
+                    <li><a href="">คลังความรู้ที่น่าสนใจ</a></li>
+                </ul>
+                <h3>เริ่มต้นธุรกิจ</h3>
+                <ul class="menu">
+                    <li><a href="">ภาพรวมการเริ่มต้นธุรกิจ </a></li>
+                    <li><a href="">จดทะเบียนนิติบุคคล</a></li>
+                    <li><a href="">จดทะเบียนพาณิชย์</a></li>
+                    <li><a href="">จดทะเบียนภาษีมูลค่าเพิ่ม</a></li>
+                    <li><a href="">ขึ้นทะเบียนนายจ้าง-ลูกจ้าง</a></li>
+                    <li><a href="">ยื่นข้อบังคับการทำงาน</a></li>
+                    <li><a href="">การจดทะเบียนภาษีมูลค่าเพิ่ม</a></li>
+                    <li><a href="">ขอแก้ไขเปลี่ยนแปลงการจดทะเบียน</a></li>
+                </ul>
+                <h3>ก่อสร้างและสาธารณูปโภค</h3>
+                <ul class="menu">
+                    <li><a href="">ภาพรวมการก่อสร้าง</a></li>
+                    <li><a href="">การวิเคราะห์ผลกระทบต่อสิ่งแวลล้อม</a></li>
+                    <li><a href="">ขออนุญาตก่อสร้าง</a></li>
+                    <li><a href="">รับรอง-ตรวจสอบอาคาร</a></li>
+                    <li><a href="">แจ้งประกอบกิจการโรงงาน</a></li>
+                    <li><a href="">ขอเลขที่บ้าน</a></li>
+                    <li><a href="">ขอติดตั้งไฟฟ้า</a></li>
+                    <li><a href="">ขอติดตั้งน้ำประปา</a></li>
+                    <li><a href="">ขอติดตั้งน้ำประปา</a></li>
+                    <li><a href="">ขอติดตั้งโทรศัพท์และอินเตอร์เน็ต</a></li>
+                </ul>
+                <h3>การนำเข้า-ส่งออก</h3>
+                <ul class="menu">
+                    <li><a href="">นำเข้า</a></li>
+                    <li><a href="">ส่งออก</a></li>
+                    <li><a href="">ข้อตกลงระหว่างประเทศ</a></li>
+                    <li><a href="">การขอเข้าร่วมกิจกรรมส่งเสริม</a></li>
+                    <li><a href="">การส่งออก</a></li>
+                </ul>
+                <h3>ทรัพย์สินทางปัญญา</h3>
+                <ul class="menu">
+                    <li><a href="">การจดเครื่องหมายการค้า</a></li>
+                    <li><a href="">สิทธิบัตร / อนุสิทธิบัตร</a></li>
+                    <li><a href="">ลิขสิทธิ์</a></li>
+                    <li><a href="">Thailand Trust Mark</a></li>
+                    <li><a href="">OTOP</a></li>
+                </ul>
+                <h3>การสนับสนุนการลงทุน</h3>
+                <ul class="menu">
+                    <li><a href="">การคุ้มครองนักลงทุน</a></li>
+                    <li><a href="">การแก้ไขเปลี่ยนแปลงโครงการ</a></li>
+                    <li><a href="">ที่ได้รับการส่งเสริมการลงทุนแล้ว</a></li>
+                </ul>
+                <h3>แรงงาน</h3>
+                <ul class="menu">
+                    <li><a href="">การจัดหาแรงงานต่างด้าว</a></li>
+                    <li><a href="">การนำเงินสมทบประกันสังคม</a></li>
+                </ul>
+                <h3>ภาษีธุรกิจ</h3>
+                <ul class="menu">
+                    <li><a href="">การชำระและขอคืนภาษี</a></li>
+                    <li><a href="">การส่งงบการเงินประจำปี</a></li>
+                    <li><a href="">การจดทะเบียนภาษีธุรกิจเฉพาะ</a></li>
+                </ul>
+                <h3>ปิดกิจการ</h3>
+                <ul class="menu">
+                    <li><a href="">การบังคับให้เป็นไปตามข้อตกลง</a></li>
+                    <li><a href="">การแก้ไขปัญหาล้มละลาย</a></li>
+                    <li><a href="">การเลิกกิจการ</a></li>
+                </ul>
+            </div>
+            <div class="menu" data-id="2">
+                <div class="back"><a href=""><i class="fa fa-angle-left"></i> ขออนุญาติออนไลน์</a></div>
+                <h3>ก่อตั้งธุรกิจ</h3>
+                <ul class="menu">
+                    <li><a href="">เริ่มต้นก่อตั้งธุรกิจ</a></li>
+                    <li><a href="">จดทะเบียนธุรกิจ​</a></li>
+                    <li><a href="">ขึ้นทะเบียนพาณิชย์​</a></li>
+                    <li><a href="">ขึ้นทะเบียนนายจ้าง-ลูกจ้าง</a></li>
+                    <li><a href="">ยื่นข้อบังคับการทำงาน</a></li>
+                    <li><a href="">ขึ้นทะเบียนภาษีมูลค่าเพิ่ม</a></li>
+                </ul>
+                <h3>ก่อสร้างและสาธารณูปโภค​</h3>
+                <ul class="menu">
+                    <li><a href="">เริ่มต้นงานก่อสร้างและสาธารณูปโภค</a></li>
+                    <li><a href="">ขออนุญาตก่อสร้าง​</a></li>
+                    <li><a href="">ขอใช้ไฟฟ้า​</a></li>
+                    <li><a href="">ขอใช้น้ำประปา</a></li>
+                </ul>
+                <h3>ส่วนส่งเสริมการลงทุน​</h3>
+                <ul class="menu">
+                    <li><a href="">ส่งเสริมการลงทุน</a></li>
+                </ul>
+                <h3>ใบอนุญาตเฉพาะ</h3>
+                <ul class="menu">
+                    <li><a href="">การขอใบอนุญาตเฉพาะ</a></li>
+                </ul>
+            </div>
+            <div class="group-button">
+                <a href="" class="button-outline primary">ลงทะเบียน</a>
+                <a href="" class="button primary">เข้าสู่ระบบ</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="mask">
+        <div class="close"><i class="fa fa-close"></i></div>
+    </section>
+
+    <section class="menu" data-id="1">
+        <div class="container container-menu">
+            <div class="wrap">
+                <div class="row-main">
+                    <div class="row-menu">
+                        <h3>ข้อควรรู้</h3>
+                        <ul class="menu">
+                            <li><a href="">การปรับขั้นตอนและกฏระเบียบ</a></li>
+                        </ul>
+                    </div>
+                    <div class="row-menu">
+                        <h3>วางแผนธุรกิจ</h3>
+                        <ul class="menu">
+                            <li><a href="">สถิติเพื่อวางแผนธุรกิจ</a></li>
+                            <li><a href="">ข้อมูลสิทธิประโยชน์</a></li>
+                            <li><a href="">ข้อมูลเพื่อ SMEs</a></li>
+                            <li><a href="">คลังความรู้ที่น่าสนใจ</a></li>
+                        </ul>
+                    </div>
+                    <div class="row-menu">
+                        <h3>การสนับสนุนการลงทุน</h3>
+                        <ul class="menu">
+                            <li><a href="">การคุ้มครองนักลงทุน</a></li>
+                            <li><a href="">การแก้ไขเปลี่ยนแปลงโครงการ</a></li>
+                            <li><a href="">ที่ได้รับการส่งเสริมการลงทุนแล้ว</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row-main">
+                    <div class="row-menu">
+                        <h3>เริ่มต้นธุรกิจ</h3>
+                        <ul class="menu">
+                            <li><a href="">ภาพรวมการเริ่มต้นธุรกิจ </a></li>
+                            <li><a href="">จดทะเบียนนิติบุคคล</a></li>
+                            <li><a href="">จดทะเบียนพาณิชย์</a></li>
+                            <li><a href="">จดทะเบียนภาษีมูลค่าเพิ่ม</a></li>
+                            <li><a href="">ขึ้นทะเบียนนายจ้าง-ลูกจ้าง</a></li>
+                            <li><a href="">ยื่นข้อบังคับการทำงาน</a></li>
+                            <li><a href="">การจดทะเบียนภาษีมูลค่าเพิ่ม</a></li>
+                            <li><a href="">ขอแก้ไขเปลี่ยนแปลงการจดทะเบียน</a></li>
+                        </ul>
+                    </div>
+                    <div class="row-menu">
+                        <h3>แรงงาน</h3>
+                        <ul class="menu">
+                            <li><a href="">การจัดหาแรงงานต่างด้าว</a></li>
+                            <li><a href="">การนำเงินสมทบประกันสังคม</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row-main">
+                    <div class="row-menu">
+                        <h3>ก่อสร้างและสาธารณูปโภค</h3>
+                        <ul class="menu">
+                            <li><a href="">ภาพรวมการก่อสร้าง</a></li>
+                            <li><a href="">การวิเคราะห์ผลกระทบต่อสิ่งแวลล้อม</a></li>
+                            <li><a href="">ขออนุญาตก่อสร้าง</a></li>
+                            <li><a href="">รับรอง-ตรวจสอบอาคาร</a></li>
+                            <li><a href="">แจ้งประกอบกิจการโรงงาน</a></li>
+                            <li><a href="">ขอเลขที่บ้าน</a></li>
+                            <li><a href="">ขอติดตั้งไฟฟ้า</a></li>
+                            <li><a href="">ขอติดตั้งน้ำประปา</a></li>
+                            <li><a href="">ขอติดตั้งน้ำประปา</a></li>
+                            <li><a href="">ขอติดตั้งโทรศัพท์และอินเตอร์เน็ต</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row-main">
+                    <div class="row-menu">
+                        <h3>การนำเข้า-ส่งออก</h3>
+                        <ul class="menu">
+                            <li><a href="">นำเข้า</a></li>
+                            <li><a href="">ส่งออก</a></li>
+                            <li><a href="">ข้อตกลงระหว่างประเทศ</a></li>
+                            <li><a href="">การขอเข้าร่วมกิจกรรมส่งเสริม</a></li>
+                            <li><a href="">การส่งออก</a></li>
+                        </ul>
+                    </div>
+                    <div class="row-menu">
+                        <h3>ภาษีธุรกิจ</h3>
+                        <ul class="menu">
+                            <li><a href="">การชำระและขอคืนภาษี</a></li>
+                            <li><a href="">การส่งงบการเงินประจำปี</a></li>
+                            <li><a href="">การจดทะเบียนภาษีธุรกิจเฉพาะ</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row-main">
+                    <div class="row-menu">
+                        <h3>ทรัพย์สินทางปัญญา</h3>
+                        <ul class="menu">
+                            <li><a href="">การจดเครื่องหมายการค้า</a></li>
+                            <li><a href="">สิทธิบัตร / อนุสิทธิบัตร</a></li>
+                            <li><a href="">ลิขสิทธิ์</a></li>
+                            <li><a href="">Thailand Trust Mark</a></li>
+                            <li><a href="">OTOP</a></li>
+                        </ul>
+                    </div>
+                    <div class="row-menu">
+                        <h3>ปิดกิจการ</h3>
+                        <ul class="menu">
+                            <li><a href="">การบังคับให้เป็นไปตามข้อตกลง</a></li>
+                            <li><a href="">การแก้ไขปัญหาล้มละลาย</a></li>
+                            <li><a href="">การเลิกกิจการ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-list" data-id="2">
+        <div class="container">
+            <div class="container-list">
+                <div class="menu active" menu-id="0" level="0">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="11">ข้อควรรู้ <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="1">วางแผนธุรกิจ <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="2">เริ่มต้นธุรกิจ <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="3">ก่อสร้างและสาธารณูปโภค <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="4">แรงงาน <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="5">การสนับสนุนการลงทุน <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="6">ภาษีธุรกิจ <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="7">การนำเข้า-ส่งออก <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="8">ทรัพย์สินทางปัญญา <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="0" menu-id="9">ปิดกิจการ <i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="11" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การปรับขั้นตอนและกฏระเบียบ</a></li>
+                    </ul>
+                </div>
+                <div class="menu" menu-id="1" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="10">สถิติเพื่อวางแผนธุรกิจ <i class="fa fa-angle-right"></i></a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ข้อมูลสิทธิประโยชน์</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ข้อมูลเพื่อ SMEs</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">คลังความรู้ที่น่าสนใจ</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="2" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ภาพรวมการเริ่มต้นธุรกิจ</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">จดทะเบียนนิติบุคคล</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">จดทะเบียนพาณิชย์</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">จดทะเบียนภาษีมูลค่าเพิ่ม</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ขึ้นทะเบียนนายจ้าง-ลูกจ้าง</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ยื่นข้อบังคับการทำงาน</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การจดทะเบียนภาษีมูลค่าเพิ่ม</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ขอแก้ไขเปลี่ยนแปลงการจดทะเบียน</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="3" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ภาพรวมการก่อสร้าง</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การวิเคราะห์ผลกระทบต่อสิ่งแวลล้อม</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ขออนุญาตก่อสร้าง</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">รับรอง-ตรวจสอบอาคาร</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">แจ้งประกอบกิจการโรงงาน-ลูกจ้าง</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ขอเลขที่บ้าน</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ขอติดตั้งไฟฟ้า</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ขอติดตั้งน้ำประปา</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ขอเชื่อมท่อระบายน้ำ</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ขอติดตั้งโทรศัพท์และอินเตอร์เน็ต</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="4" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">นำเข้า</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ส่งออก</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ข้อตกลงระหว่างประเทศ</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การขอเข้าร่วมกิจกรรมส่งเสริม</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การส่งออก</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="5" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การจดเครื่องหมายการค้า</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">สิทธิบัตร / อนุสิทธิบัตร</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ลิขสิทธิ์</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">Thailand Trust Mark</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">OTOP</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="6" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การคุ้มครองนักลงทุน</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การแก้ไขเปลี่ยนแปลงโครงการ</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">ที่ได้รับการส่งเสริมการลงทุนแล้ว</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="7" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การจัดหาแรงงานต่างด้าว</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การนำเงินสมทบประกันสังคม</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="8" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การชำระและขอคืนภาษี</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การส่งงบการเงินประจำปี</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การจดทะเบียนภาษีธุรกิจเฉพาะ</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="9" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การบังคับให้เป็นไปตามข้อตกลง</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การแก้ไขปัญหาล้มละลาย</a></li>
+                        <li><a class="menu-list-item" href="" level="1" menu-id="">การเลิกกิจการ</a></li>
+                    </ul>
+                </div>
+                <div class="menu last" menu-id="10" level="1">
+                    <ul>
+                        <li><a class="menu-list-item" href="" level="2" menu-id="">การบังคับให้เป็นไปตามข้อตกลง</a></li>
+                        <li><a class="menu-list-item" href="" level="2" menu-id="">การแก้ไขปัญหาล้มละลาย</a></li>
+                        <li><a class="menu-list-item" href="" level="2" menu-id="">การเลิกกิจการ</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <h2>ขออนุญาตออนไลน์</h2>
+            <ul>
+                <li><a href="">ขออนุญาตออนไลน์</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="form">
+        @RenderBody()
+
+        <a href="" class="button primary">ดำเนินการต่อ</a>
+    </section>
+
+    <section class="end">
+        <p>สงวนลิขสิทธิ์พ.ศ. 2560ตามพระราชบัญญัติลิขสิทธิ์2537สำนักงานรัฐบาลอิเล็กทรอนิกส์(องค์การมหาชน) (สรอ.)</p>
+        <div class="link">
+            <a href="">ช่วยเหลือ</a>
+            <a href="">คำถามที่พบบ่อย</a>
+            <a href="">เกี่ยวกับเรา</a>
+            <a href="">นโยบายความเป็นส่วนตัว</a>
+            <a href="">เงื่อนไข</a>
+            <a href="">แผนผังเว็บไซด์</a>
+        </div>
+    </section>
+
+    @Scripts.Render("~/bundles/SmartQuiz")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

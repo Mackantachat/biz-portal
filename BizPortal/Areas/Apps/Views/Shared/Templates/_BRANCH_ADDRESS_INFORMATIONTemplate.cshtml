@@ -1,0 +1,73 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="BRANCH_ADDRESS_INFORMATIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-8">
+            <div>
+                <label>เลขที่สาขา {{this.ARR_IDX}}</label> <label>ชื่อ</label> {{#xif " fieldExist(this.ADDRESS_JURISTIC_BRANCH_ADDRESS) " }}{{this.AJAX_DROPDOWN_JURISTIC_BRANCH_TITLE_TEXT}}{{/xif}} {{this.JURISTIC_BRANCH_NAME}}
+            </div>
+            {{#xif " fieldExist(this.ADDRESS_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>เลขที่: </label> {{this.ADDRESS_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_MOO_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>หมู่ที่: </label> {{this.ADDRESS_MOO_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_VILLAGE_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>หมู่บ้าน: </label> {{this.ADDRESS_VILLAGE_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_SOI_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>ซอย: </label> {{this.ADDRESS_SOI_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_YAK_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>แยก: </label> {{this.ADDRESS_YAK_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_BUILDING_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>อาคาร: </label> {{this.ADDRESS_BUILDING_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROOMNO_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>ห้องเลขที่: </label> {{this.ADDRESS_ROOMNO_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_FLOOR_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>ชั้น: </label> {{this.ADDRESS_FLOOR_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROAD_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>ถนน: </label> {{this.ADDRESS_ROAD_JURISTIC_BRANCH_ADDRESS}}</>
+            {{/xif}}
+            <label>ตำบล/แขวง: </label> {{this.ADDRESS_TUMBOL_JURISTIC_BRANCH_ADDRESS_TEXT}}
+            <label>อำเภอ/เขต: </label> {{this.ADDRESS_AMPHUR_JURISTIC_BRANCH_ADDRESS_TEXT}}
+            <label>จังหวัด: </label> {{this.ADDRESS_PROVINCE_JURISTIC_BRANCH_ADDRESS_TEXT}}
+            {{#xif " fieldExist(this.ADDRESS_POSTCODE_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>รหัสไปรษณีย์: </label> {{this.ADDRESS_POSTCODE_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>โทรศัพท์: </label> {{this.ADDRESS_TELEPHONE_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_EXT_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>ต่อ:</label> {{this.ADDRESS_TELEPHONE_EXT_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_FAX_JURISTIC_BRANCH_ADDRESS) " }}
+            <label>โทรสาร:</label> {{this.ADDRESS_FAX_JURISTIC_BRANCH_ADDRESS}}
+            {{/xif}}
+        </div>
+        <div class="col-md-2 pr5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        <div class="col-md-2 pl5">
+            <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+        </div>
+    </div>
+
+    {{/each}}
+
+    {{else}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+
+    {{/xif}}
+</script>

@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{10D91892-CBA6-4856-9D78-97175F7E73B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BizPortal.DAL.MongoDB</RootNamespace>
+    <AssemblyName>BizPortal.DAL.MongoDB</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PreRelease|AnyCPU'">
+    <OutputPath>bin\PreRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Training|AnyCPU'">
+    <OutputPath>bin\Training\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Training165|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Training165\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.2\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="EGA.EGA_Development.Util, Version=1.3.6.0, Culture=neutral, PublicKeyToken=348cf1e7fb9e7c45, processorArchitecture=MSIL">
+      <HintPath>..\packages\EGA.EGA_Development.Util.1.3.6\lib\EGA.EGA_Development.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.0.3\lib\net45\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapster, Version=3.1.8.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mapster.3.1.8\lib\net45\Mapster.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.0.3\lib\net45\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.6.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.6.0\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.6.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionApplicationRequestModel.cs" />
+    <Compile Include="EDocumentEntity.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Main\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_INFO_SECTION_COMMITTEE.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Extension\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CORPARATE_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Extension\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_DEPOSIT_CARD_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Extension\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_DEPOSIT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Extension\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_POLICY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Extension\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_THAI_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CHANGE_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CORPARATE_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_POLICY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_THAI_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_DEPOSIT_CARD_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_DEPOSIT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_PROVIDING_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH\Extension\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH\Main\APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2\Main\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2\Main\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_FISCAL_YEAR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH\Main\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH\Main\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_HOSPITAL_OPERATION_EDIT_B_GROUP.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_NOT_ONE_NIGHT_STAND\APP_CLINIC_NOT_ONE_NIGHT_STAND.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_OVER_NIGHT\APP_CLINIC_OVER_NIGHT.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_OWNED\Main\APP_CLINIC_OPERATION_SECA.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Extension\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Main\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_CLINIC_OPERATION_EDIT_B_GROUP.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_OWNER\Main\APP_HOSPITAL_OPERATION_SECA.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION_ARR_GOV.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_TIME.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION_GOV.cs" />
+    <Compile Include="SeedPermit\APP_SPA_FEE_PER_YEAR\APP_SPA_FEE_PER_YEAR.cs" />
+    <Compile Include="SingleFormPreFillData.cs" />
+    <Compile Include="ActivityLog.cs" />
+    <Compile Include="ApplicationRequestBasedEntity.cs" />
+    <Compile Include="ApplicationRequestChatEntity.cs" />
+    <Compile Include="ApplicationRequestDataGroupEntity.cs" />
+    <Compile Include="ApplicationRequestEntity.cs" />
+    <Compile Include="ApplicationRequestTransactionEntity.cs" />
+    <Compile Include="ApplicationStatusOther.cs" />
+    <Compile Include="FormCheckboxWithText.cs" />
+    <Compile Include="EmailMessageEntity.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Enum.cs" />
+    <Compile Include="FileGroupEntity.cs" />
+    <Compile Include="FileItemExtraEntity.cs" />
+    <Compile Include="FormChainedDropdown.cs" />
+    <Compile Include="FormCheckboxWithDropdown.cs" />
+    <Compile Include="FormConfigRevision.cs" />
+    <Compile Include="FormDropdown.cs" />
+    <Compile Include="FormRadioGroupWithDropdown.cs" />
+    <Compile Include="FormRadioGroupWithText.cs" />
+    <Compile Include="FormRadioGroup.cs" />
+    <Compile Include="FormSection.cs" />
+    <Compile Include="FormControl.cs" />
+    <Compile Include="FormSectionGroup.cs" />
+    <Compile Include="FormSectionRow.cs" />
+    <Compile Include="FormValidationRule.cs" />
+    <Compile Include="InitLog.cs" />
+    <Compile Include="PaymentTransaction.cs" />
+    <Compile Include="NDIDLoginTransaction.cs" />
+    <Compile Include="MongoFactory.cs" />
+    <Compile Include="Permit\FormPermit_6.cs" />
+    <Compile Include="Permit\FormPermit_5.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuizAppMapping.cs" />
+    <Compile Include="QuizGroup.cs" />
+    <Compile Include="QuizSectionRow.cs" />
+    <Compile Include="Constant.cs" />
+    <Compile Include="ReceiptRunningTransaction.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Extension\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_CORPARATE_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Extension\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_THAI_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Extension\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_POLICY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Extension\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_DEPOSIT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Extension\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_DEPOSIT_CARD_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_CALCULATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_CORPARATE_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_DEPOSIT_CARD_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_DEPOSIT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_DETAIL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_DETAIL_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_POLICY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_PROVIDING_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_DETAIL\Main\APP_ACCOUNTING_DETAIL_APP_ACCOUNTING_DETAIL_THAI_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Extension\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_ACCOUTANT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Extension\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Extension\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_AUDITOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Extension\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Main\APP_ACCOUNTING_SERVICE.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Main\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_ACCOUTANT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Main\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_AUDITOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Main\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Main\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_INFO_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE\Main\APP_ACCOUNTING_SERVICE_APP_ACCOUNTING_SERVICE_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_CANCEL\Main\APP_ACCOUNTING_SERVICE_CANCEL.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_CANCEL\Main\APP_ACCOUNTING_SERVICE_CANCEL_APP_ACCOUNTING_SERVICE_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_CANCEL_SEARCH\Extension\APP_ACCOUNTING_SERVICE_CANCEL_SEARCH_APP_ACCOUNTING_SERVICE_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_CANCEL_SEARCH\Main\APP_ACCOUNTING_SERVICE_CANCEL_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_CANCEL_SEARCH\Main\APP_ACCOUNTING_SERVICE_CANCEL_SEARCH_APP_ACCOUNTING_SERVICE_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Extension\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Extension\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Extension\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Extension\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Extension\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Extension\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_ACCOUTANT_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_AUDITOR_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_EDIT_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_MANAGER_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_NEW_CERTIFICATE_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT\Main\APP_ACCOUNTING_SERVICE_EDIT_APP_ACCOUNTING_SERVICE_EDIT_OTHER_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_SEARCH\Extension\APP_ACCOUNTING_SERVICE_EDIT_SEARCH_APP_ACCOUNTING_SERVICE_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_SEARCH\Main\APP_ACCOUNTING_SERVICE_EDIT_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_EDIT_SEARCH\Main\APP_ACCOUNTING_SERVICE_EDIT_SEARCH_APP_ACCOUNTING_SERVICE_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Extension\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Extension\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Extension\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Extension\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Extension\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_PROVIDING_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW\Main\APP_ACCOUNTING_SERVICE_RENEW_APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_SEARCH\Main\APP_ACCOUNTING_SERVICE_RENEW_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_SEARCH\Main\APP_ACCOUNTING_SERVICE_RENEW_SEARCH_APP_ACCOUNTING_SERVICE_RENEW_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC\Extension\APP_CLINIC_APP_CLINIC_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC\Main\APP_CLINIC.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC\Main\APP_CLINIC_APP_CLINIC_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_CANCEL\Main\APP_CLINIC_CANCEL.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_CANCEL\Main\APP_CLINIC_CANCEL_APP_CLINIC_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_CANCEL_SEARCH\Extension\APP_CLINIC_CANCEL_SEARCH_APP_CLINIC_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_CANCEL_SEARCH\Main\APP_CLINIC_CANCEL_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_CANCEL_SEARCH\Main\APP_CLINIC_CANCEL_SEARCH_APP_CLINIC_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_ADDRESS_CURRENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_ADDRESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_CERTIFICATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_INFO_SECTION_3.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_INFO_SECTION_4.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_LICENSEE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_OPERATING_DATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_OPERATOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_OPERATOR_WORKING_DAY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_WORKING_DAY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Extension\APP_CLINIC_EDIT_APP_CLINIC_EDIT_WORKING_STATUS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_ADDRESS_CURRENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_ADDRESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_CERTIFICATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_INFO_SECTION_3.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_INFO_SECTION_4.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_LICENSEE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_OPERATING_DATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_OPERATOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_OPERATOR_WORKING_DAY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_WORKING_DAY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT\Main\APP_CLINIC_EDIT_APP_CLINIC_EDIT_WORKING_STATUS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT_SEARCH\Main\APP_CLINIC_EDIT_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_EDIT_SEARCH\Main\APP_CLINIC_EDIT_SEARCH_APP_CLINIC_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_LICENSE\Extension\APP_CLINIC_LICENSE_APP_CLINIC_LICENSE_DETAIL_SECTION_EN.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_LICENSE\Extension\APP_CLINIC_LICENSE_APP_CLINIC_LICENSE_DETAIL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_LICENSE\Main\APP_CLINIC_LICENSE.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_LICENSE\Main\APP_CLINIC_LICENSE_APP_CLINIC_LICENSE_DETAIL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_LICENSE\Main\APP_CLINIC_LICENSE_APP_CLINIC_LICENSE_DETAIL_SECTION_EN.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_LICENSE\Main\APP_CLINIC_LICENSE_APP_CLINIC_LICENSE_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_LICENSE\Main\APP_CLINIC_LICENSE_APP_CLINIC_LICENSE_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_OWNED\Extension\APP_CLINIC_OWNED_APP_CLINIC_OWNED_OPARETOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_OWNED\Main\APP_CLINIC_OWNED.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_OWNED\Main\APP_CLINIC_OWNED_APP_CLINIC_OWNED_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_OWNED\Main\APP_CLINIC_OWNED_APP_CLINIC_OWNED_OPARETOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_PLAN\Extension\APP_CLINIC_PLAN_APP_CLINIC_PLAN_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_PLAN\Main\APP_CLINIC_PLAN.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_PLAN\Main\APP_CLINIC_PLAN_APP_CLINIC_PLAN_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Extension\APP_CLINIC_RENEW_APP_CLINIC_RENEW_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Extension\APP_CLINIC_RENEW_APP_CLINIC_RENEW_DAY_TIME_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Extension\APP_CLINIC_RENEW_APP_CLINIC_RENEW_RENEW_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Extension\APP_CLINIC_RENEW_APP_CLINIC_RENEW_WOKING_STATUS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Main\APP_CLINIC_RENEW.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Main\APP_CLINIC_RENEW_APP_CLINIC_RENEW_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Main\APP_CLINIC_RENEW_APP_CLINIC_RENEW_DAY_TIME_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Main\APP_CLINIC_RENEW_APP_CLINIC_RENEW_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Main\APP_CLINIC_RENEW_APP_CLINIC_RENEW_RENEW_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW\Main\APP_CLINIC_RENEW_APP_CLINIC_RENEW_WOKING_STATUS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW_SEARCH\Extension\APP_CLINIC_RENEW_SEARCH_APP_CLINIC_RENEW_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW_SEARCH\Main\APP_CLINIC_RENEW_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_CLINIC_RENEW_SEARCH\Main\APP_CLINIC_RENEW_SEARCH_APP_CLINIC_RENEW_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Extension\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Extension\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Extension\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_OTHER_ELECTRONIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Extension\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_OTHER_NON_ELECTRONIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Extension\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_PARTNER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Extension\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Extension\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Extension\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_AGENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_BRANCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_INFORMATION_STORE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_INVESTMENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_OTHER_ELECTRONIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_OTHER_NON_ELECTRONIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_PARTNER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_START_IN_THAILAND_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_TRANSFER_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_WAREHOUSE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL\Main\APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Extension\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Extension\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Extension\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_PARTNER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Extension\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_STOCK_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Extension\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_TRANSFER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Extension\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Extension\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_WEBSITE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_AGENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_BRANCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_INVESTMENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_PARTNER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_REQUEST_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_START_IN_THAILAND_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_STOCK_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_STOCK_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_TRANSFER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_TRANSFER_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_WAREHOUSE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_WEBSITE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH\Extension\APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH_APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH\Main\APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH_APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WEBSITE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_OTHER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_OTHER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_LEAVE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_PARTNER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_STOCK_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WEBSITE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_LEAVE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Extension\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_ELECTRIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Extension\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Extension\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_MACHINE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Main\APP_ENERGY_PRODUCTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Main\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_ELECTRIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Main\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Main\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_INFO_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Main\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_MACHINE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION\Main\APP_ENERGY_PRODUCTION_APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_REQUEST_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_START_IN_THAILAND_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_INVESTMENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_AGENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_BRANCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_AGENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_BRANCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INVESTMENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_REQUEST_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_START_IN_THAILAND_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_TRANSFER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WAREHOUSE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_INVESTMENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_MANAGER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_REQUEST_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_START_IN_THAILAND_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_APP_ELECTRONIC_COMMERCIAL_EDIT_WAREHOUSE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH\Extension\APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH\Main\APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Extension\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Extension\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_BUSINESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Extension\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Extension\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_INFO_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Extension\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Extension\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_PHOTOVOLTAIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Main\APP_ENERGY_PRODUCTION_CANCEL.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Main\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Main\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Main\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_INFO_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Main\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Main\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_PHOTOVOLTAIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL\Main\APP_ENERGY_PRODUCTION_CANCEL_APP_ENERGY_PRODUCTION_CANCEL_BUSINESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL_SEARCH\Extension\APP_ENERGY_PRODUCTION_CANCEL_SEARCH_APP_ENERGY_PRODUCTION_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL_SEARCH\Main\APP_ENERGY_PRODUCTION_CANCEL_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_CANCEL_SEARCH\Main\APP_ENERGY_PRODUCTION_CANCEL_SEARCH_APP_ENERGY_PRODUCTION_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Extension\APP_ENERGY_PRODUCTION_EDIT_APP_ENERGY_PRODUCTION_EDIT_ELECTRIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Extension\APP_ENERGY_PRODUCTION_EDIT_APP_ENERGY_PRODUCTION_EDIT_INFO_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Extension\APP_ENERGY_PRODUCTION_EDIT_APP_ENERGY_PRODUCTION_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Extension\APP_ENERGY_PRODUCTION_EDIT_APP_ENERGY_PRODUCTION_EDIT_MACHINE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Main\APP_ENERGY_PRODUCTION_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Main\APP_ENERGY_PRODUCTION_EDIT_APP_ENERGY_PRODUCTION_EDIT_ELECTRIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Main\APP_ENERGY_PRODUCTION_EDIT_APP_ENERGY_PRODUCTION_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Main\APP_ENERGY_PRODUCTION_EDIT_APP_ENERGY_PRODUCTION_EDIT_INFO_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT\Main\APP_ENERGY_PRODUCTION_EDIT_APP_ENERGY_PRODUCTION_EDIT_MACHINE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT_SEARCH\Main\APP_ENERGY_PRODUCTION_EDIT_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT_SEARCH\Main\APP_ENERGY_PRODUCTION_EDIT_SEARCH_APP_ENERGY_PRODUCTION_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Extension\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Extension\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Extension\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_INFO_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Extension\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Extension\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_PHOTOVOLTAIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Main\APP_ENERGY_PRODUCTION_RENEW.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Main\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Main\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Main\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_INFO_SECTION_CONFIRM.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Main\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW\Main\APP_ENERGY_PRODUCTION_RENEW_APP_ENERGY_PRODUCTION_RENEW_PHOTOVOLTAIC_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW_SEARCH\Main\APP_ENERGY_PRODUCTION_RENEW_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW_SEARCH\Main\APP_ENERGY_PRODUCTION_RENEW_SEARCH_APP_ENERGY_PRODUCTION_RENEW_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HEALTH_CANCEL\Main\APP_HEALTH_CANCEL_SEARCH_GROUP.cs" />
+    <Compile Include="SeedPermit\APP_HEALTH_CANCEL\Main\APP_HEALTH_CANCEL_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HEALTH_EDIT\Main\APP_HEALTH_EDIT_SEARCH_GROUP.cs" />
+    <Compile Include="SeedPermit\APP_HEALTH_EDIT\Main\APP_HEALTH_EDIT_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HEALTH_RENEW\Main\APP_HEALTH_RENEW_SEARCH_GROUP.cs" />
+    <Compile Include="SeedPermit\APP_HEALTH_RENEW\Main\APP_HEALTH_RENEW_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_LICENSE\Extension\APP_HOSPITAL_LICENSE_APP_HOSPITAL_LICENSE_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_LICENSE\Main\APP_HOSPITAL_LICENSE.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_LICENSE\Main\APP_HOSPITAL_LICENSE_APP_HOSPITAL_LICENSE_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION\Extension\APP_HOSPITAL_PERMISSION_APP_HOSPITAL_PERMISSION_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION\Main\APP_HOSPITAL_PERMISSION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION\Main\APP_HOSPITAL_PERMISSION_APP_HOSPITAL_PERMISSION_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_CANCEL\Main\APP_HOSPITAL_PERMISSION_CANCEL.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_CANCEL\Main\APP_HOSPITAL_PERMISSION_CANCEL_APP_HOSPITAL_PERMISSION_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_CANCEL_SEARCH\Extension\APP_HOSPITAL_PERMISSION_CANCEL_SEARCH_APP_HOSPITAL_PERMISSION_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_CANCEL_SEARCH\Main\APP_HOSPITAL_PERMISSION_CANCEL_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_CANCEL_SEARCH\Main\APP_HOSPITAL_PERMISSION_CANCEL_SEARCH_APP_HOSPITAL_PERMISSION_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_CURRENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_3.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Extension\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_CURRENT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_3.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT\Main\APP_HOSPITAL_PERMISSION_EDIT_APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT_SEARCH\Main\APP_HOSPITAL_PERMISSION_EDIT_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT_SEARCH\Main\APP_HOSPITAL_PERMISSION_EDIT_SEARCH_APP_HOSPITAL_PERMISSION_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_OWNER\Extension\APP_HOSPITAL_PERMISSION_OWNER_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_OWNER\Main\APP_HOSPITAL_PERMISSION_OWNER.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_OWNER\Main\APP_HOSPITAL_PERMISSION_OWNER_APP_HOSPITAL_PERMISSION_OWNER_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_OWNER\Main\APP_HOSPITAL_PERMISSION_OWNER_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Extension\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_DAY_TIME_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Extension\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Extension\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_RENEW_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Extension\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_WOKING_STATUS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Main\APP_HOSPITAL_PERMISSION_RENEW.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Main\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Main\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_DAY_TIME_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Main\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Main\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_RENEW_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW\Main\APP_HOSPITAL_PERMISSION_RENEW_APP_HOSPITAL_PERMISSION_RENEW_WOKING_STATUS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW_SEARCH\Extension\APP_HOSPITAL_PERMISSION_RENEW_SEARCH_APP_HOSPITAL_PERMISSION_RENEW_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW_SEARCH\Main\APP_HOSPITAL_PERMISSION_RENEW_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PERMISSION_RENEW_SEARCH\Main\APP_HOSPITAL_PERMISSION_RENEW_SEARCH_APP_HOSPITAL_PERMISSION_RENEW_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Extension\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_PROBLEM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Extension\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Extension\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Extension\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_HEADER.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_PROBLEM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_CONFIRM_SIGNATURE.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_HOSPITAL_PLAN\Main\APP_HOSPITAL_PLAN_APP_HOSPITAL_PLAN_PERSONNEL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE\Extension\APP_LAW_OFFICE_APP_LAW_OFFICE_LAWYER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE\Main\APP_LAW_OFFICE.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE\Main\APP_LAW_OFFICE_APP_LAW_OFFICE_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE\Main\APP_LAW_OFFICE_APP_LAW_OFFICE_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE\Main\APP_LAW_OFFICE_APP_LAW_OFFICE_LAWYER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_CANCEL\Main\APP_LAW_OFFICE_CANCEL.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_CANCEL\Main\APP_LAW_OFFICE_CANCEL_APP_LAW_OFFICE_CANCEL_REQUEST_CANCEL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Extension\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Extension\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_LAWYER_LEAVE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Extension\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_LAWYER_JOIN_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Main\APP_LAW_OFFICE_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Main\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Main\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Main\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_LAWYER_JOIN_HEADER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Main\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_LAWYER_JOIN_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Main\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_LAWYER_LEAVE_HEADER_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_LAW_OFFICE_EDIT\Main\APP_LAW_OFFICE_EDIT_APP_LAW_OFFICE_EDIT_LAWYER_LEAVE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_NEW\Main\APP_ORGANIC_NEW.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_CANCEL\Extension\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_CANCEL\Main\APP_ORGANIC_PLANT_PRODUCTION_CANCEL.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_CANCEL\Main\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_CANCEL\Main\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_INFO_SECTION_1.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_CANCEL\Main\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH_APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH\Main\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH\Main\APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_PRODUCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_SYSTEM_CONTROL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_SYSTEM_CONTROL_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_PRESIDENT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_PRODUCE_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_CONTACT_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ORGANIC_TYPE_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_CONTACT_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ORGANIC_TYPE_SECTION_1.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ORGANIC_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_NAME_THAI_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_NAME_THAIENG_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_PRODUCE_SECTION_1.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_CONTACT_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_PRESIDENT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_PRODUCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_PRODUCE_SECTION_1.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_PRODUCE_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_SYSTEM_CONTROL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_GROUP_SYSTEM_CONTROL_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_CONTACT_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ORGANIC_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ORGANIC_TYPE_SECTION_1.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ORGANIC_TYPE_SECTION_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE_CHECKED.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_NAME_THAIENG_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_NAME_THAI_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH\Extension\APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH_APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH\Main\APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH_APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRESIDENT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRESIDENT_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_SYSTEM_CONTROL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_NAME_THAIENG_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_NAME_THAI_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_INFO_ORGANIC_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_INFO_ADDRESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRESIDENT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRESIDENT_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_SYSTEM_CONTROL_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_CONFIRM_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_CONTACT_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_INFO_ADDRESS_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_INFO_ORGANIC_TYPE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_NAME_THAIENG_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_APP_ORGANIC_PLANT_PRODUCTION_RENEW_STANDALONE_NAME_THAI_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH\Extension\APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH_APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH.cs" />
+    <Compile Include="SeedPermit\APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH\Main\APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH_APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH_SEARCH_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Extension\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Extension\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Extension\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Extension\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Main\APP_SECURITIES_BUSINESS.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Main\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_COMMITTEE_AUTHORITY.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Main\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Main\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_JURISTIC_MAJOR_SHAREHOLDER.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Main\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_MAJOR_SHAREHOLDER.cs" />
+    <Compile Include="SeedPermit\APP_SECURITIES_BUSINESS\Main\APP_SECURITIES_BUSINESS_APP_SECURITIES_BUSINESS_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_SEC_CANCEL_A\APP_SEC_CANCEL_A.cs" />
+    <Compile Include="SeedPermit\APP_SEC_CANCEL_B\APP_SEC_CANCEL_B.cs" />
+    <Compile Include="SeedPermit\APP_SEC_CANCEL_C\APP_SEC_CANCEL_C.cs" />
+    <Compile Include="SeedPermit\APP_SEC_CANCEL_D\APP_SEC_CANCEL_D.cs" />
+    <Compile Include="SeedPermit\APP_SEC_CANCEL_E\APP_SEC_CANCEL_E.cs" />
+    <Compile Include="SeedPermit\APP_SEC_CANCEL_F\APP_SEC_CANCEL_F.cs" />
+    <Compile Include="SeedPermit\APP_SEC_CANCEL_G\APP_SEC_CANCEL_G.cs" />
+    <Compile Include="SeedPermit\APP_SEC_EDIT\APP_SEC_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_SEC_NEW_A\APP_SEC_NEW_A.cs" />
+    <Compile Include="SeedPermit\APP_SEC_NEW_B\APP_SEC_NEW_B.cs" />
+    <Compile Include="SeedPermit\APP_SEC_NEW_C\APP_SEC_NEW_C.cs" />
+    <Compile Include="SeedPermit\APP_SEC_NEW_D\APP_SEC_NEW_D.cs" />
+    <Compile Include="SeedPermit\APP_SEC_NEW_E\APP_SEC_NEW_E.cs" />
+    <Compile Include="SeedPermit\APP_SEC_NEW_F\APP_SEC_NEW_F.cs" />
+    <Compile Include="SeedPermit\APP_SEC_NEW_G\APP_SEC_NEW_G.cs" />
+    <Compile Include="SeedPermit\APP_SOFTWARE_HOUSE_EDIT\APP_SOFTWARE_HOUSE_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_SOFTWARE_HOUSE_NEW\APP_SOFTWARE_HOUSE_NEW.cs" />
+    <Compile Include="SeedPermit\APP_TOURISM_BUSINESS\Extension\APP_TOURISM_BUSINESS_APP_TOURISM_BUSINESS_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TOURISM_BUSINESS\Main\APP_TOURISM_BUSINESS.cs" />
+    <Compile Include="SeedPermit\APP_TOURISM_BUSINESS\Main\APP_TOURISM_BUSINESS_APP_TOURISM_BUSINESS_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_TRANFER_PLACE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_CAR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_PLACE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_TRANSPORT_PROVINCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_CAR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_PLACE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_TRANFER_PLACE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_APP_TRANSPORT_NON_REGULAR_TRUCK_TRANSPORT_PROVINCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL_APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT_APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANFER_PLACE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Extension\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANFER_PLACE_SECTION.cs" />
+    <Compile Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW\Main\APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION.cs" />
+    <Compile Include="SingleFormAppFile.cs" />
+    <Compile Include="SingleFormDataItem.cs" />
+    <Compile Include="SingleFormFileConfig.cs" />
+    <Compile Include="SingleFormFileList.cs" />
+    <Compile Include="SingleFormRequestBasedEntity.cs" />
+    <Compile Include="SingleFormRequestEntity.cs" />
+    <Compile Include="SingleFormSectionDataEntity.cs" />
+    <Compile Include="SingleFormTransaction.cs" />
+    <Compile Include="AppPrefillAnswer.cs" />
+    <Compile Include="AnonymousQuizAnswer.cs" />
+    <Compile Include="Holiday.cs" />
+    <Compile Include="SmartQuiz.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Documentation\" />
+    <Folder Include="SeedPermit\APP_ACCOUNTING_SERVICE_CANCEL\Extension\" />
+    <Folder Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_SEARCH\Extension\" />
+    <Folder Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2\Extension\" />
+    <Folder Include="SeedPermit\APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH\Extension\" />
+    <Folder Include="SeedPermit\APP_CLINIC_CANCEL\Extension\" />
+    <Folder Include="SeedPermit\APP_CLINIC_EDIT_SEARCH\Extension\" />
+    <Folder Include="SeedPermit\APP_ENERGY_PRODUCTION_EDIT_SEARCH\Extension\" />
+    <Folder Include="SeedPermit\APP_ENERGY_PRODUCTION_RENEW_SEARCH\Extension\" />
+    <Folder Include="SeedPermit\APP_HOSPITAL_PERMISSION_CANCEL\Extension\" />
+    <Folder Include="SeedPermit\APP_HOSPITAL_PERMISSION_EDIT_SEARCH\Extension\" />
+    <Folder Include="SeedPermit\APP_LAW_OFFICE_CANCEL\Extension\" />
+    <Folder Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL\Extension\" />
+    <Folder Include="SeedPermit\APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT\Extension\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BizPortal.Models\BizPortal.Models.csproj">
+      <Project>{68a18c29-03d7-417c-9398-67e1fd7e771e}</Project>
+      <Name>BizPortal.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizPortal.Resources\BizPortal.Resources.csproj">
+      <Project>{2fb5419d-3ddf-459c-a747-3edfcb3b6dcb}</Project>
+      <Name>BizPortal.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizPortal.Utils\BizPortal.Utils.csproj">
+      <Project>{a365956c-6ef1-42eb-aef9-38cb882de63b}</Project>
+      <Name>BizPortal.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BizPortal.ViewModels\BizPortal.ViewModels.csproj">
+      <Project>{03404c37-af53-461a-a8d6-3ffb5b390395}</Project>
+      <Name>BizPortal.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

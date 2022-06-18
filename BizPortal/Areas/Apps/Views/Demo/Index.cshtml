@@ -1,0 +1,21 @@
+﻿@using Resources = BizPortal.Resources;
+@{
+    ViewBag.Title = "Demo";
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/mea_full_logo.png");
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayout.cshtml";
+}
+
+<input type="text" id="uploader1" data-uploader="true" />
+<input type="text" id="uploader2" data-uploader="true" />
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        $(function () {
+            uploader['uploader1'].on('fileselected', function (e, data) {
+                //console.log(data);
+            });
+        });
+    </script>
+
+}

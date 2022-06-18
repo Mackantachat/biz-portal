@@ -1,0 +1,795 @@
+﻿@model BizPortal.DAL.MongoDB.ApplicationRequestEntity
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using BizPortal.AppsHook
+@using BizPortal.DAL.MongoDB;
+@using BizPortal.ViewModels.Constant;
+@using BizPortal.Service;
+@{
+    var app = Model.ApplicationID;
+    string OSSAddress = System.Configuration.ConfigurationManager.AppSettings["OSSAddress"];
+    decimal ems = Model.EMSFee.HasValue ? Model.EMSFee.Value : 0;
+    decimal fee = Model.Fee.HasValue ? (decimal)Model.Fee : 0;
+    decimal total = (fee + ems);
+    string thisPageDateFormat = "dd/MM/yyyy";
+    bool isHaveFees = Model.Fee > 0 ? true : false;
+
+    if (!string.IsNullOrEmpty(Model.OrgAddress))
+    {
+        Model.OrgAddress = Model.OrgAddress.Replace("\n", " ");
+    }
+
+
+}
+<style>
+    .section-box {
+        padding: 8px;
+    }
+</style>
+
+<link href="@Url.Content("~/Content/Theme/biz-v2/css/custom-formpay.css?")@(Guid.NewGuid())" rel="stylesheet" type="text/css" />
+
+<form id="frmPayFee" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")">
+    @Html.HiddenFor(o => o.ApplicationID)
+    @Html.HiddenFor(o => o.ApplicationRequestID)
+
+    <div class="row agent-remark-box">
+        <div class="col-md-8">
+            <strong>@Resource.ApplicationStatusRequests.PAY_FEE_FORM_HEADER</strong>
+        </div>
+        <div class="col-md-4  text-right">
+            @{
+
+                if (!string.IsNullOrEmpty((string)ViewData[ViewDataDictConst.AGENT_REMARK]))
+                {
+                    <strong>@Resource.ApplicationStatusRequests.AGENT_COMMENT_REMARK : </strong>
+                    string remark = (string)ViewData[ViewDataDictConst.AGENT_REMARK];
+                    @remark
+                }
+
+            }
+        </div>
+    </div>
+
+    <div class="row">
+
+        @{
+            bool isFoundPDT_OSS = ApplicationStatusService.IsFoundPermitDeliveryType(Model.PermitDeliveryTypeEnabledChoice, PermitDeliveryTypeValueConst.AT_OSS);
+            string disabledClassOSS = isFoundPDT_OSS == true ? "" : "disabled";
+            bool isFoundPDT_OwnerOrg = ApplicationStatusService.IsFoundPermitDeliveryType(Model.PermitDeliveryTypeEnabledChoice, PermitDeliveryTypeValueConst.AT_OWNER_ORG);
+            string disabledClassOwnerOrg = isFoundPDT_OwnerOrg == true ? "" : "disabled";
+            bool isFoundPDT_Mail = ApplicationStatusService.IsFoundPermitDeliveryType(Model.PermitDeliveryTypeEnabledChoice, PermitDeliveryTypeValueConst.BY_MAIL);
+            string disabledClassMail = isFoundPDT_Mail == true ? "" : "disabled";
+
+            bool checkedOss = false;
+            bool checkedOwnerOrg = false;
+            bool checkedByMail = false;
+
+            if (Model.NoDocument)
+            {
+                isFoundPDT_OSS = false;
+                isFoundPDT_OwnerOrg = false;
+                isFoundPDT_Mail = false;
+                disabledClassOSS = "disabled";
+                disabledClassOwnerOrg = "disabled";
+                disabledClassMail = "disabled";
+            }
+            else
+            {
+                if (isFoundPDT_OwnerOrg)
+                {
+                    checkedOwnerOrg = true;
+                    checkedOss = false;
+                    checkedByMail = false;
+                }
+                else if (isFoundPDT_OSS)
+                {
+                    checkedOss = true;
+                    checkedOwnerOrg = false;
+                    checkedByMail = false;
+                }
+                else if (isFoundPDT_Mail)
+                {
+                    checkedOss = false;
+                    checkedOwnerOrg = false;
+                    checkedByMail = true;
+                }
+
+                if (Model.PermitDeliveryTypeEnabledChoice == null
+                    || Model.PermitDeliveryTypeEnabledChoice.Count <= 0
+                    || total <= 0)
+                {
+                    checkedOss = false;
+                    checkedOwnerOrg = true;
+                    checkedByMail = false;
+                    isFoundPDT_OwnerOrg = true;
+
+                    disabledClassOSS = "disabled";
+                    disabledClassOwnerOrg = "";
+                    disabledClassMail = disabledClassOSS;
+                }
+            }
+
+            bool isFoundBillPayment = ApplicationStatusService.IsFoundPaymentMethod(Model.PaymentMethodEnabledChoice, PaymentMethodValueConst.BILL_PAYMENT);
+            bool isFoundAtOwnerOrg = ApplicationStatusService.IsFoundPaymentMethod(Model.PaymentMethodEnabledChoice, PaymentMethodValueConst.AT_OWNER_ORG);
+            string uiClassAtOwnerOrg = ApplicationStatusService.GetUIClassPaymentMethod(isFoundAtOwnerOrg);
+
+        }
+
+        <div class="col-md-4 section-box">
+            <div class="form-group rdb-permit-delivery-type-box">
+                <div class="col-md-12">
+                    <p>@Resource.ApplicationStatusRequests.PAY_FEE_STEP1_HEADER</p>
+                </div>
+                <div class="col-md-12 rdb-item-col @disabledClassOSS">
+                    <div class="rdb-item">
+                        @if (!isFoundPDT_OSS)
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.AT_OSS, false, new { disabled = "disabled" }) @Resource.ApplicationStatusRequests.PDT_AT_OSS</label>
+                        }
+                        else
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.AT_OSS, checkedOss) @Resource.ApplicationStatusRequests.PDT_AT_OSS</label>
+                        }
+                    </div>
+                    <div class="desc-item pmdt-at-oss-desc-box">@OSSAddress</div>
+                </div>
+                <div class="col-md-12 rdb-item-col @disabledClassOwnerOrg">
+                    <div class="rdb-item">
+                        @if (!isFoundPDT_OwnerOrg)
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.AT_OWNER_ORG, false, new { disabled = "disabled" })  @(!string.IsNullOrEmpty(Model.PermitDeliveryOrgDetail) ? Model.PermitDeliveryOrgDetail : Model.OrgNameTH.Trim())</label>
+                        }
+                        else
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.AT_OWNER_ORG, checkedOwnerOrg) @(!string.IsNullOrEmpty(Model.PermitDeliveryOrgDetail) ? Model.PermitDeliveryOrgDetail : Model.OrgNameTH.Trim())</label>
+                        }
+
+                    </div>
+                    <div class="desc-item pmdt-at-owner-org-desc-box">@(!string.IsNullOrEmpty(Model.PermitDeliveryOrgAddress) ? Model.PermitDeliveryOrgAddress : Model.OrgAddress)</div>
+                </div>
+                <div class="col-md-12 rdb-item-col @disabledClassMail">
+                    <div class="rdb-item">
+                        @if (!isFoundPDT_Mail)
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.BY_MAIL, false, new { disabled = "disabled" }) @Resource.ApplicationStatusRequests.PDT_BY_MAIL</label>
+                        }
+                        else
+                        {
+                            <label>@Html.RadioButton("PermitDeliveryType", PermitDeliveryTypeValueConst.BY_MAIL, checkedByMail) @Resource.ApplicationStatusRequests.PDT_BY_MAIL</label>
+                        }
+
+                    </div>
+                    <div class="desc-item pmdt-address-box">
+                        <label for="PermitDeliveryAddress">@Resource.ApplicationStatusRequests.PMD_ADDRESS_BY_MAIL</label>: <span style="color:red;">*</span>
+                        <div class="form-group">
+
+                            @if (!isFoundPDT_Mail)
+                            {
+                                Model.PermitDeliveryAddress = "";
+                                @Html.TextAreaFor(model => model.PermitDeliveryAddress, new { @class = "form-control ", @rows = 3, @disabled = "disabled" })
+                            }
+                            else
+                            {
+                                @Html.TextAreaFor(model => model.PermitDeliveryAddress, new { @class = "form-control ", @rows = 3 })
+                            }
+                        </div>
+                        <span id="error-PermitDeliveryAddress" style="color: red; display: none">@Resource.ApplicationStatusRequests.BY_MAIL_SUGGEST_TEXT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 section-box">
+            <div class="form-group rdb-payment-medthod-box">
+                <div class="col-md-12">
+                    <p>@Resource.ApplicationStatusRequests.PAY_FEE_STEP2_HEADER</p>
+                </div>
+                <div class="col-md-12 rdb-item-col disabled">
+                    <div class="rdb-item">
+                        <label>
+                            @Html.RadioButton("PaymentMethod", PaymentMethodValueConst.QR_CODE, false, new { disabled = "disabled" }) @Resource.ApplicationStatusRequests.PAYMENT_QR_CODE
+                        </label>
+                    </div>
+                    <div class="desc-item pmm-qr-code-desc-box">@Resource.ApplicationStatusRequests.SCAN_VIA_KTB_BANK</div>
+                </div>
+
+
+                <div class="col-md-12 rdb-item-col @ApplicationStatusService.GetUIClassPaymentMethod(isFoundBillPayment)">
+                    <div class="rdb-item">
+
+                        @if (!isFoundBillPayment)
+                        {
+                            <label>
+                                @Html.RadioButton("PaymentMethod", PaymentMethodValueConst.BILL_PAYMENT, false, new { disabled = "disabled" }) @Resource.ApplicationStatusRequests.PAYMENT_BILL_PAYMENT
+                            </label>
+                        }
+                        else
+                        {
+                            <label>
+                                @Html.RadioButton("PaymentMethod", PaymentMethodValueConst.BILL_PAYMENT, isFoundBillPayment) @Resource.ApplicationStatusRequests.PAYMENT_BILL_PAYMENT
+                            </label>
+                        }
+
+                    </div>
+                    <div class="desc-item pmm-bill-payment-desc-box">
+                        @Resource.ApplicationStatusRequests.AT_COUNTER_KTB
+                    </div>
+                </div>
+                <div class="disabled col-md-12 rdb-item-col">
+                    <div class="rdb-item">
+                        <label>
+                            @Html.RadioButton("PaymentMethod", PaymentMethodValueConst.AT_OSS, false, new { disabled = "disabled" }) @Resource.ApplicationStatusRequests.PAYMENT_AT_OSS
+                        </label>
+                    </div>
+                    <div class="desc-item pmm-at-oss-desc-box">
+                        @OSSAddress
+                    </div>
+                </div>
+
+                @if (total > 0)
+                {
+                    <div class="col-md-12 rdb-item-col @uiClassAtOwnerOrg">
+                        <div class="rdb-item">
+                            @if (fee > 0)
+                            {
+                                if (isFoundAtOwnerOrg)
+                                {
+                                    <label>
+                                        @Html.RadioButton("PaymentMethod", PaymentMethodValueConst.AT_OWNER_ORG, (isFoundAtOwnerOrg && (isFoundBillPayment == false))) @(!string.IsNullOrEmpty(Model.PaymentMethodOrgDetail) ? Model.PaymentMethodOrgDetail : Model.OrgNameTH.Trim())
+                                    </label>
+                                }
+                                else
+                                {
+                                    <label>
+                                        @Html.RadioButton("PaymentMethod", PaymentMethodValueConst.AT_OWNER_ORG, false, new { disabled = "disabled" }) @(!string.IsNullOrEmpty(Model.PaymentMethodOrgDetail) ? Model.PaymentMethodOrgDetail : Model.OrgNameTH.Trim())
+                                    </label>
+                                }
+                            }
+                            else
+                            {
+                                <label>
+                                    @Html.RadioButton("PaymentMethod", PaymentMethodValueConst.AT_OWNER_ORG, true) @(!string.IsNullOrEmpty(Model.PaymentMethodOrgDetail) ? Model.PaymentMethodOrgDetail : Model.OrgNameTH.Trim())
+                                </label>
+                            }
+
+                        </div>
+                        <div class="desc-item pmm-at-owner-org-desc-box">
+                            @(!string.IsNullOrEmpty(Model.PaymentMethodOrgAddress) ? Model.PaymentMethodOrgAddress : Model.OrgAddress)
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-12 rdb-item-col allowed">
+                        <div class="rdb-item">
+                            <label>
+                                @Html.RadioButton("DUMMY_FOR_DISPLAY", "DUMMY_FOR_DISPLAY", false) @(!string.IsNullOrEmpty(Model.PaymentMethodOrgDetail) ? Model.PaymentMethodOrgDetail : Model.OrgNameTH.Trim())
+                            </label>
+                        </div>
+                        <div class="desc-item pmm-at-owner-org-desc-box">
+                            @(!string.IsNullOrEmpty(Model.PaymentMethodOrgAddress) ? Model.PaymentMethodOrgAddress : Model.OrgAddress)
+                        </div>
+                    </div>
+                    <div class="col-md-12 rdb-item-col allowed" style="display:none">
+                        <div class="rdb-item">
+                            <label>
+                                @Html.RadioButton("PaymentMethod", PaymentMethodValueConst.AT_OWNER_ORG, true) @(!string.IsNullOrEmpty(Model.PaymentMethodOrgDetail) ? Model.PaymentMethodOrgDetail : Model.OrgNameTH.Trim())
+                            </label>
+                        </div>
+                        <div class="desc-item pmm-at-owner-org-desc-box">
+                            @(!string.IsNullOrEmpty(Model.PaymentMethodOrgAddress) ? Model.PaymentMethodOrgAddress : Model.OrgAddress)
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="col-md-4 section-box confirm-display-box">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>@Resource.ApplicationStatusRequests.PLEASE_CONFIRM_HEADER</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label>@Resource.ApplicationStatusRequests.PERMIT_DELIVERY_METHOD: </label></div>
+                <div class="col-md-6"><label class="display-permit-delivery-type font-weight-normal"></label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label>@Resource.ApplicationStatusRequests.PAY_FEE_CHANNEL: </label></div>
+                <div class="col-md-6"><label class="display-payment-medthod font-weight-normal"></label></div>
+            </div>
+            @{
+                string gotAppWhenValue = "-";
+                if (BizPortal.Service.TrackService.IsCanGotApplicationNow(Model.PermitCanBeDeliveredOnPayment, Model.PaymentMethod, Model.PermitDeliveryType))
+                {
+                    gotAppWhenValue = Resource.ApplicationStatusRequests.PERMIT_CAN_BE_DERIVERED_ON_PAYMENT;
+                    <div class="row">
+                        <div class="col-md-6"><label>@Resource.ApplicationStatusRequests.GOT_APP_WHEN:</label></div>
+                        <div class="col-md-6"><label class="font-weight-normal lbl-got-app-when">@gotAppWhenValue</label></div>
+                    </div>
+                }
+            }
+            <div class="row">
+                <div class="col-md-6"><label>@Resource.ApplicationStatusRequests.FEE_OF_APPLICATION: </label></div>
+                <div class="col-md-6"><label class="font-weight-normal">@fee.ToString("#,##0.00")</label></div>
+            </div>
+            <div class="row ems-box hide">
+
+                <div class="col-md-6"><label>@Resource.ApplicationStatusRequests.CONFIRM_PAY_FEE_EMS: </label></div>
+                <div class="col-md-6"><label class="font-weight-normal ems-text">@ems.ToString("#,##0.00")</label></div>
+            </div>
+            <div class="row total-box">
+                <div class="col-md-6"><label>@Resource.ApplicationStatusRequests.TOTAL_PAY_FEE: </label></div>
+                <div class="col-md-6"><label class="font-weight-normal total-text">@total.ToString("#,##0.00")</label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group text-center">
+                        <button id="btnModalAtOwnerOrg" data-backdrop="static" type="button" class="btn btn-primary hide btnConfirm" data-toggle1="modal" data-target="#modalAtOwnerOrg" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                        <button id="btnModalAtOss" data-backdrop="static" type="button" class="btn btn-primary hide btnConfirm" data-toggle1="modal" @*data-target="#modalAtOSS"*@ data-target="#modalAtOwnerOrg" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                        <button id="btnModalBillPayment" data-backdrop="static" type="button" class="btn btn-primary hide btnConfirm" data-toggle1="modal" @*data-target="#modalBillPayment"*@ data-target="#modalAtOwnerOrg" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                        <button id="btnModalQRCode" data-backdrop="static" type="button" class="btn btn-primary hide btnConfirm" data-toggle1="modal" @*data-target="#modalQRCode"*@ data-target="#modalAtOwnerOrg" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        string dueDateText = "-";
+        if (Model.DueDateForPayFee.HasValue)
+        {
+            dueDateText = Convert.ToDateTime(Model.DueDateForPayFee).ToLocalTime().ToString("dd MMM yyyy");
+        }
+    }
+    <!-- Modal -->
+    <div class="modal fade" id="modalAtOwnerOrg" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">@Resource.ApplicationStatusRequests.NEW_MODAL_CONFIRM_HEADER</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><b>@Resource.ApplicationStatusRequests.NAME_IN_MODAL:</b> @BizPortal.Service.TrackService.GetDisPlayIdentityName(Model.IdentityType, BizPortal.Service.TrackService.GetStoreName(Model.Data), Model.IdentityName)</p>
+                        </div>
+                    </div>
+                    <p><b><u>@Resource.ApplicationStatusRequests.SUMMARY_PAY_CHANNEL_HEADER</u></b></p>
+                    <div class="row btn-inactive-download-box">
+                        <div class="col-md-8">
+                            <p><b>@Resource.ApplicationStatusRequests.PAY_FEE_CHANNEL:</b> <span class="display-payment-medthod"></span></p>
+                        </div>
+                        <div class="col-md-4 text-right cf-bill-payment-box hide">
+                            @{
+                                bool isFoundBillPaymentFileUploadFromStaff = Model.BillPaymentFiles != null && Model.BillPaymentFiles.Count > 0;
+                            }
+                            @*@if (isFoundBillPaymentFileUploadFromStaff)
+                            {
+                                var file = Model.BillPaymentFiles.OrderByDescending(o => o.CreatedDate).FirstOrDefault();
+                                string billPaymentDownloadId = "bt_download_bill_payment_" + file.FileID;
+                                <a style="margin-top:2px;" class="btn btn-primary" id="@billPaymentDownloadId" target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })">@Resource.Global.BTN_DOWNLOAD_BILL_PAYMENT <span class="fa fa-download"></span></a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-default" id="bt_download_bill_payment" disabled="disabled" href="javascript:void(0);" target="_blank">
+                                    @Resource.Global.BTN_DOWNLOAD_BILL_PAYMENT <span class="fa fa-download"></span>
+                                </a>
+                            }*@
+                        </div>
+                        <div class="col-md-4 text-right cf-qr-code-box hide">
+                            <a class="btn btn-default" id="bt_download_qr_code" disabled="disabled" href="javascript:void(0);" target="_blank">
+                                @Resource.Global.BTN_DOWNLOAD_QR_CODE <span class="fa fa-download"></span>
+                            </a>
+                        </div>
+                        <div class="col-md-4 text-right cf-oos-or-ownerorg-box hide">
+                            <button class="btn btn-default" id="bt_download_bill_oos_or_ownerorg" disabled="disabled"> @Resource.Global.BTN_DOWNLOAD_BILL_OSS_OWNERORG <span class="fa fa-download"></span></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><b>@Resource.ApplicationStatusRequests.PAY_FEE_DETAIL</b></p>
+                        </div>
+                        <div id="download-warning-text" class="col-md-6 text-right hide">
+                            <p class="lbl-inactive-btn-download">ดาวน์โหลดได้ต่อเมื่อกด "ยืนยัน" แล้ว</p>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 40px;">@Resource.ApplicationStatusRequests.RECORD_NO</th>
+                                <th class="text-center">@Resource.ApplicationStatusRequests.TABLE_ITEM_HEADER</th>
+                                <th class="text-center">@Resource.ApplicationStatusRequests.TABLE_ITEM_HEADER_RECORD</th>
+                                <th class="text-center">@Resource.ApplicationStatusRequests.TABLE_TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">1</td>
+                                @{string appName = (string)ViewData[ViewDataDictConst.APPLICATION_NAME];}
+                                <td class="text-left">@appName</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">@fee.ToString("#,##0.00")</td>
+                            </tr>
+                            <tr class="tr-ems hide">
+                                <td class="text-center">2</td>
+                                <td class="text-left">@Resource.ApplicationStatusRequests.TABLE_EMS_TEXT</td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">@ems.ToString("#,##0.00")</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"></td>
+                                <td class="text-left">@Resource.ApplicationStatusRequests.TOTAL_TEXT_TABLE</td>
+                                <td class="text-center total-qty-td"></td>
+                                <td class="text-center"><u class="total-price-td"></u></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><b>@Resource.ApplicationStatusRequests.LOCATION_FOR_PAID_FEE:</b> <span class="location-pay-fee-text">@Model.OrgAddress</span></p>
+                    @{
+                        string dueDatePayFeeInModalCF = Model.DueDateForPayFee.HasValue ? Model.DueDateForPayFee.Value.ToString(thisPageDateFormat) : "-";
+                    }
+                    <p><b>@Resource.ApplicationStatusRequests.DUE_DATE_PAY_FEE:</b> @dueDatePayFeeInModalCF</p>
+                    <p><b><u>@Resource.ApplicationStatusRequests.SUMMARY_LOCATION_GOT_APP_HEADER</u></b></p>
+                    <p><b>@Resource.ApplicationStatusRequests.RECEIVE_APP_CHANNEL:</b> <span class="display-permit-delivery-type"></span></p>
+                    <p><b>@Resource.ApplicationStatusRequests.PERMIT_GET_ADDRESS:</b> <span class="display-location-got-app"></span></p>
+
+                    @if (BizPortal.Service.TrackService.IsCanGotApplicationNow(Model.PermitCanBeDeliveredOnPayment, Model.PaymentMethod, Model.PermitDeliveryType))
+                    {
+                        <p><b>@Resource.ApplicationStatusRequests.GOT_APP_WHEN:</b> <span class="lbl-got-app-when">@Resource.ApplicationStatusRequests.PERMIT_CAN_BE_DERIVERED_ON_PAYMENT</span></p>
+                    }
+                    else
+                    {
+                        if (Model.UserCanGetAppDate.HasValue)
+                        {
+                            <p><b>@Resource.ApplicationStatusRequests.GOT_APP_WHEN:</b> <span class="lbl-got-app-when"> @Model.UserCanGetAppDate.Value.ToString(thisPageDateFormat) @Resource.Global.TO @Model.UserCanGetAppDateEnd.Value.ToString(thisPageDateFormat)</span></p>
+                        }
+                    }
+
+                    <p id="contactAgent"></p>
+                    <p>@Resource.ApplicationStatusRequests.ASK_AGENT_TEL</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p><b>@Resource.ApplicationStatusRequests.WARNING_HEADER</b></p>
+                            <p>@Resource.ApplicationStatusRequests.WARNING_DESCRIPTION</p>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button style="width:100px;" type="button" class="btn btn-default" data-dismiss="modal">@Resource.Global.BTN_CLOSE</button>
+                            <button style="width:100px;" type="submit" class="btn btn-primary" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    var requestManage = {
+        controls: {
+            form: '#frmPayFee',
+            formApplicationID: '#frmPayFee #ApplicationID',
+            formApplicationRequestID: '#frmPayFee #ApplicationRequestID',
+            //formRemark: '#frmPayFee #Remark',
+            formPermitDeliveryType: '#frmPayFee input[name="PermitDeliveryType"]',
+            formPermitDeliveryTypeSelected: '#frmPayFee input[name="PermitDeliveryType"]:checked',
+            formPaymentMethod: '#frmPayFee input[name="PaymentMethod"]',
+            formPaymentMethodSelected: '#frmPayFee input[name="PaymentMethod"]:checked',
+            formPermitDeliveryAddress: '#frmPayFee #PermitDeliveryAddress',
+            boxDisplayConfirm: '#frmPayFee .confirm-display-box',
+            boxPDTAtOSS: '.pmdt-at-oss-desc-box',
+            boxPDTAtOwnerOrg: '.pmdt-at-owner-org-desc-box',
+            boxPDTByMailAddress: '.pmdt-address-box',
+            lblPDT: '.display-permit-delivery-type',
+            lblPaymentMethod: '.display-payment-medthod',
+            boxPMQMRCodeDesc: '.pmm-qr-code-desc-box',
+            boxPMMBillPaymentDesc: '.pmm-bill-payment-desc-box',
+            boxPMMAtOSSDesc: '.pmm-at-oss-desc-box',
+            boxPMMAtOwnerOrgDesc: '.pmm-at-owner-org-desc-box',
+            boxEMS : '.ems-box',
+            boxTotal : '.total-box',
+            tableConfirmInModal: '.modal-body table',
+            tableQRcodeInModal: '.modal-body .tb-qrcode'
+        },
+        variables: {
+            modalConfirm: "",
+            totalFee: 0,
+            appFee: @fee,
+            emsFee: @ems,
+            isNoPermit: ('@Model.NoDocument' == 'True')
+        },
+        functions: {
+            checkingStatePaymentMethod: function (paymentMethodValue) {
+                @{
+                    <text>
+                    var payQrCode = "@PaymentMethodValueConst.QR_CODE";
+                    var payBillPayment = "@PaymentMethodValueConst.BILL_PAYMENT";
+                    var payAtOwnerOrg = "@PaymentMethodValueConst.AT_OWNER_ORG";
+                    var payAtOss = "@PaymentMethodValueConst.AT_OSS";
+                    </text>
+                }
+
+                var gotAppWhenValue = "-";
+                $(requestManage.controls.boxDisplayConfirm).find('#btnModalAtOwnerOrg').addClass('hide');
+                $(requestManage.controls.boxDisplayConfirm).find('#btnModalAtOss').addClass('hide');
+                $(requestManage.controls.boxDisplayConfirm).find('#btnModalBillPayment').addClass('hide');
+                $(requestManage.controls.boxDisplayConfirm).find('#btnModalQRCode').addClass('hide');
+                $('.cf-bill-payment-box').addClass('hide');
+                $('.cf-qr-code-box').addClass('hide');
+                $('.cf-oos-or-ownerorg-box').addClass('hide');
+                $('#download-warning-text').removeClass('hide');
+                var locationPayFeeText = "@(!string.IsNullOrEmpty(Model.PaymentMethodOrgDetail) ? Model.PaymentMethodOrgDetail : Model.OrgNameTH.Trim())";
+
+                if (paymentMethodValue == payAtOwnerOrg) {
+                    requestManage.variables.modalConfirm = "#modalAtOwnerOrg";
+                    $('.cf-oos-or-ownerorg-box').removeClass('hide');
+                    $(requestManage.controls.boxDisplayConfirm).find('#btnModalAtOwnerOrg').removeClass('hide');
+                    $(requestManage.controls.boxPMMAtOwnerOrgDesc).removeClass('hide')
+                    $(requestManage.controls.lblPaymentMethod).html('@(total > 0 ? (!string.IsNullOrEmpty(Model.PaymentMethodOrgDetail) ? Model.PaymentMethodOrgDetail : Model.OrgNameTH.Trim()) : "-")');
+
+                    var isGotAppNow = "@Model.PermitCanBeDeliveredOnPayment.ToString().ToLower()" == "true" &&
+                        $(requestManage.controls.formPermitDeliveryType + ':checked').val() == "@PermitDeliveryTypeValueConst.AT_OWNER_ORG";
+                    if (isGotAppNow == true) {
+                        gotAppWhenValue = "@Resource.ApplicationStatusRequests.PERMIT_CAN_BE_DERIVERED_ON_PAYMENT";
+                    }
+                }
+                else if (paymentMethodValue == payAtOss) {
+                    //requestManage.variables.modalConfirm = "#modalAtOss";
+                    requestManage.variables.modalConfirm = "#modalAtOwnerOrg";
+                    $('.cf-oos-or-ownerorg-box').removeClass('hide');
+                    $(requestManage.controls.boxDisplayConfirm).find('#btnModalAtOss').removeClass('hide');
+                    //$(requestManage.controls.boxPMMAtOSSDesc).removeClass('hide')
+                    $(requestManage.controls.lblPaymentMethod).html("@Resource.ApplicationStatusRequests.PAYMENT_AT_OSS");
+                    locationPayFeeText = "@OSSAddress";
+                }
+                else if (paymentMethodValue == payBillPayment) {
+                    requestManage.variables.modalConfirm = "#modalAtOwnerOrg";
+                    $('.cf-bill-payment-box').removeClass('hide');
+                    $(requestManage.controls.boxDisplayConfirm).find('#btnModalBillPayment').removeClass('hide');
+                    $(requestManage.controls.lblPaymentMethod).html("@Resource.ApplicationStatusRequests.PAYMENT_BILL_PAYMENT");
+                    locationPayFeeText = "@Resource.ApplicationStatusRequests.BILL_PAYMENT_LOCATION_PAY_FEE";
+
+                    var isFoundBillPaymentFileUpload = @Convert.ToInt16(isFoundBillPaymentFileUploadFromStaff);
+                    if (isFoundBillPaymentFileUpload == 1) {
+                        $('#download-warning-text').addClass('hide');
+                    } else {
+                        $('#download-warning-text').removeClass('hide');
+                    }
+                }
+                else if (paymentMethodValue == payQrCode) {
+                    //requestManage.variables.modalConfirm = "#modalQRCode";
+                    requestManage.variables.modalConfirm = "#modalAtOwnerOrg";
+                    $('.cf-qr-code-box').removeClass('hide');
+                    $(requestManage.controls.boxDisplayConfirm).find('#btnModalQRCode').removeClass('hide');
+                    //$(requestManage.controls.boxPMQMRCodeDesc).removeClass('hide')
+                    $(requestManage.controls.lblPaymentMethod).html("@Resource.ApplicationStatusRequests.PAYMENT_QR_CODE");
+                    locationPayFeeText = "@Resource.ApplicationStatusRequests.QR_CODE_LOCATION_PAY_FEE";
+                }
+                else if (paymentMethodValue == ""){
+
+                }
+
+                $('.location-pay-fee-text').html(@Html.Raw(total > 0 ? "locationPayFeeText" : "'-'"));
+                $('.lbl-got-app-when').html(gotAppWhenValue);
+            },
+            onChangePaymentMethod: function () {
+                $(requestManage.controls.formPaymentMethod).on('change', function () {
+                    requestManage.functions.checkingStatePaymentMethod($(this).val());
+                });
+            },
+            onChangePermitDeliveryType: function () {
+                $(requestManage.controls.formPermitDeliveryType).on('change', function () {
+                    requestManage.functions.showLabelByCheckingPDTAndPaymentMethod($(this).val());
+                });
+            },
+            setTextTotalQtyAndPrice:function(totalQty, totalPrice){
+                $(".total-qty-td").html(totalQty);
+                $(".total-price-td").html(totalPrice);
+            },
+            showLabelByCheckingPDTAndPaymentMethod: function (permitDeliveryTypeValue) {
+                @{
+                     <text>
+                var byMail = "@PermitDeliveryTypeValueConst.BY_MAIL";
+                var atOwnerOrg = "@PermitDeliveryTypeValueConst.AT_OWNER_ORG";
+                var atOss = "@PermitDeliveryTypeValueConst.AT_OSS";
+                </text>
+                }
+
+                var gotAppWhenValue = "-";
+                $(requestManage.controls.boxEMS).addClass('hide');
+                $(requestManage.controls.boxTotal + ' .total-text').html("@fee.ToString("#,##0.00")");
+                $(requestManage.controls.tableConfirmInModal + ' .tr-ems').addClass('hide');
+                $(requestManage.controls.tableQRcodeInModal + ' .qrcode-total').html("@fee.ToString("#,##0.00")");
+                var totalQty = 1;
+
+                if (permitDeliveryTypeValue == byMail) {
+                    totalQty = totalQty + 1;
+                    var mailAddr = $(requestManage.controls.formPermitDeliveryAddress).val();
+                    requestManage.variables.totalFee = requestManage.variables.appFee + requestManage.variables.emsFee;
+                    $(requestManage.controls.boxPDTByMailAddress).removeClass('hide');
+                    $(requestManage.controls.boxPDTByMailAddress + ' textarea').focus();
+                    $(requestManage.controls.lblPDT).html("@Resource.ApplicationStatusRequests.PDT_BY_MAIL");
+
+                    $(requestManage.controls.boxEMS).removeClass('hide');
+                    @{
+                        decimal totalWithEms = @fee + @ems;
+                    }
+                    $(requestManage.controls.boxTotal + ' .total-text').html("@totalWithEms.ToString("#,##0.00")");
+                    $(requestManage.controls.tableConfirmInModal + ' .tr-ems').removeClass('hide');
+                    $(requestManage.controls.tableQRcodeInModal + ' .qrcode-total').html("@totalWithEms.ToString("#,##0.00")");
+                    $(requestManage.controls.formPermitDeliveryAddress).val('');
+                    $(requestManage.controls.formPermitDeliveryAddress).removeAttr('disabled');
+                    requestManage.functions.setTextTotalQtyAndPrice(totalQty, "@totalWithEms.ToString("#,##0.00")")
+                }
+                else if (permitDeliveryTypeValue == atOss) {
+                    requestManage.variables.totalFee = requestManage.variables.appFee;
+                    $(requestManage.controls.boxPDTAtOSS).removeClass('hide');
+                    $(requestManage.controls.lblPDT).html("@Resource.ApplicationStatusRequests.PDT_AT_OSS");
+                    //$(requestManage.controls.formPermitDeliveryAddress).val('@OSSAddress'); //Biz-265 fixed
+                    $(requestManage.controls.formPermitDeliveryAddress).val('');
+                    $(requestManage.controls.formPermitDeliveryAddress).attr('disabled', 'disabled');
+                    requestManage.functions.setTextTotalQtyAndPrice(totalQty, requestManage.functions.addComma(requestManage.variables.totalFee));
+                }
+                else if (permitDeliveryTypeValue == atOwnerOrg) {
+                    requestManage.variables.totalFee = requestManage.variables.appFee
+                    $(requestManage.controls.boxPDTAtOwnerOrg).removeClass('hide');
+                    $(requestManage.controls.lblPDT).html("@(!string.IsNullOrEmpty(Model.PermitDeliveryOrgDetail) ? Model.PermitDeliveryOrgDetail : Model.OrgNameTH.Trim())");
+                    //$(requestManage.controls.formPermitDeliveryAddress).val('@Model.OrgAddress'); //Biz-265 fixed
+                    $(requestManage.controls.formPermitDeliveryAddress).val('');
+                    $(requestManage.controls.formPermitDeliveryAddress).attr('disabled', 'disabled');
+                    requestManage.functions.setTextTotalQtyAndPrice(totalQty, requestManage.functions.addComma(requestManage.variables.totalFee));
+                    var isGotAppNow = "@Model.PermitCanBeDeliveredOnPayment.ToString().ToLower()" == "true" &&
+                        $(requestManage.controls.formPaymentMethodSelected + ':checked').val() == "@PaymentMethodValueConst.AT_OWNER_ORG";
+                    if (isGotAppNow == true) {
+                        gotAppWhenValue = "@Resource.ApplicationStatusRequests.PERMIT_CAN_BE_DERIVERED_ON_PAYMENT";
+                    }
+                }
+                else {
+                    requestManage.variables.totalFee = requestManage.variables.appFee;
+                }
+
+                $('.lbl-got-app-when').html(gotAppWhenValue);
+                if (requestManage.variables.totalFee == 0) {
+
+                    $(".rdb-payment-medthod-box .allowed").each(function(){
+                        $(this).attr('disabled', 'disabled');
+                        $(this).addClass('disabled');
+                    });
+                }
+                else {
+                    $(".rdb-payment-medthod-box .allowed").each(function(){
+                        $(this).removeAttr('disabled');
+                        $(this).removeClass('disabled');
+                    });
+                }
+            },
+            addComma: function(nStr){
+                if(nStr == null) {
+                    if(nStr == undefined) {
+                        return "value is null or undefined";
+                    }
+                }
+                var n = eval(nStr);
+                var parts = n.toFixed(2).split(".");
+                var num = parts[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") +
+                    (parts[1] ? "." + parts[1] : "");
+                return num;
+            },
+            displayConfirmBox: function () {
+                var permitDT = $(requestManage.controls.formPermitDeliveryTypeSelected+':checked').val();
+                var paymentMethod = $(requestManage.controls.formPaymentMethodSelected).val();
+
+                requestManage.functions.showLabelByCheckingPDTAndPaymentMethod(permitDT);
+                requestManage.functions.checkingStatePaymentMethod(paymentMethod);
+
+                $('#modalAtOwnerOrg #contactAgent').text('@(!string.IsNullOrEmpty(Model.PaymentMethodOrgTel)? "ติดต่อหน่วยงานโทร: " + Model.PaymentMethodOrgTel :"")');
+            },
+            preventRadioButtonSubmitByKeyboard:function(){
+                $('input[type="radio"]').keydown(function(event){
+                    if(event.keyCode == 13) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+            },
+            init: function () {
+                requestManage.functions.preventRadioButtonSubmitByKeyboard();
+                requestManage.functions.onChangePermitDeliveryType();
+                requestManage.functions.onChangePaymentMethod();
+                requestManage.functions.displayConfirmBox();
+                $(requestManage.controls.form).data('validator', null).validate();
+                $(requestManage.controls.formStatus).select2();
+                $(requestManage.controls.form + ' button[type=submit]').ladda('bind');
+                $(requestManage.controls.form).ajaxForm({
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    clearForm: true,
+                    customData: function (data, jqForm, options) {
+                        var l = $(requestManage.controls.form + ' button[type=submit]').ladda();
+                        l.ladda('start');
+
+                        var paymentMethod = $(requestManage.controls.formPaymentMethodSelected+':checked').val();
+                        if(requestManage.variables.totalFee <= 0){
+                            paymentMethod = "";
+                        }
+
+                        options.data = JSON.stringify({
+                            ApplicationID: $(requestManage.controls.formApplicationID).val(),
+                            ApplicationRequestID: $(requestManage.controls.formApplicationRequestID).val(),
+                            Status: '@ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE',
+                            StatusOther: '@ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING',
+                            //Remark: $(requestManage.controls.formRemark).val(),
+                            PermitDeliveryType: $(requestManage.controls.formPermitDeliveryTypeSelected+':checked').val(),
+                            PaymentMethod: paymentMethod,
+                            PermitDeliveryAddress: $(requestManage.controls.formPermitDeliveryAddress).val(),
+                            TotalFee: requestManage.variables.totalFee,
+                            NoDocument : requestManage.variables.isNoPermit
+                        });
+                    },
+                    error: function (xhr, status, error, $form) {
+                        var data = xhr.responseJSON;
+                        $(requestManage.variables.modalConfirm).modal('hide');
+                        $.ladda('stopAll');
+                        notify('error', data.Message);
+                    },
+                    success: function (responseText, statusText, xhr, $form) {
+                        var data = xhr.responseJSON;
+                        $(requestManage.variables.modalConfirm).modal('hide');
+                        $.ladda('stopAll');
+                        swal({
+                            title: decodeURIComponent(data.Message),
+                            text: '',
+                            type: 'success',
+                        }, function (isConfirm) {
+                            location.reload();
+                        });
+                        $("div.sa-confirm-button-container button.confirm").text("ตกลง");
+                    }
+                });
+
+                $('.btnConfirm').click(function() {
+                    var selectedPDT = $(requestManage.controls.formPermitDeliveryType+':checked').val();
+                    var locationGotApp = "@(!string.IsNullOrEmpty(Model.PermitDeliveryOrgAddress)? Model.PermitDeliveryOrgAddress : Model.OrgAddress.Trim())";
+
+                    console.log(selectedPDT);
+                    console.log(locationGotApp);
+
+                    if (selectedPDT == "@PermitDeliveryTypeValueConst.BY_MAIL") {
+                        locationGotApp = $(requestManage.controls.formPermitDeliveryAddress).val();
+                        if($('#PermitDeliveryAddress').val().trim() == '') {
+                            $('#error-PermitDeliveryAddress').show();
+                        }
+                        else {
+                            $($(this).data('target')).modal('show');
+                            $('#error-PermitDeliveryAddress').hide();
+                        }
+                    }
+                    else {
+                        if (selectedPDT == "@PermitDeliveryTypeValueConst.AT_OSS") {
+                            locationGotApp = "@OSSAddress";
+                        }
+                        $($(this).data('target')).modal('show');
+                    }
+
+                    $('.display-location-got-app').html(locationGotApp);
+                });
+
+                $('#PermitDeliveryAddress').focusout(function() {
+                    if($(this).val().trim()) {
+                        $('#error-PermitDeliveryAddress').hide();
+                    }
+                });
+            }
+        }
+    };
+
+    $(document).ready(function () {
+        requestManage.functions.init();
+    });
+</script>

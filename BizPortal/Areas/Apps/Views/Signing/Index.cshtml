@@ -1,0 +1,577 @@
+﻿@using BizPortal.ViewModels.Apps.EDocument
+@{
+    ViewBag.Title = "รายการเอกสารลงนาม";
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+}
+
+<link type=text/css href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css" rel="stylesheet">
+<script type=text/javascript src=//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js></script>
+<script type=text/javascript src=//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js></script>
+
+@section PageStyles
+{
+    <style>
+        .line_height {
+            line-height: 1.5em;
+        }
+
+        .btn-sign {
+            background: #ff9c00;
+            color: #fff;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .btn-danger {
+            background: #ff0000;
+            color: #fff;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .btn-biz-blue {
+            font-size: 20px !important;
+        }
+
+        .glyphicon {
+            margin-top: 10px !important;
+        }
+
+        .end {
+            height: 125px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .containerbody {
+            margin-bottom: 130px;
+        }
+
+        .SigningText {
+            line-height: 1.5em;
+        }
+
+        .accordion {
+            text-decoration: none !important;
+        }
+
+            .accordion::after {
+                content: "\f107";
+                font-family: "FontAwesome";
+            }
+
+            .accordion[aria-expanded="false"]::after {
+                content: "\f106";
+            }
+
+
+        table th {
+            font-size: 22px;
+        }
+
+        table td {
+            font-size: 22px;
+        }
+
+        #dataTables_length, #dataTables_org_length {
+            margin-bottom: 0px;
+        }
+
+            #dataTables_length label, #dataTables_org_length label {
+                font-weight: normal;
+                font-size: 22px;
+            }
+
+            #dataTables_length select, #dataTables_org_length select {
+                padding: 0px;
+                width: 44px;
+                font-size: 18px;
+                margin-left: -20px;
+                height: 31px;
+            }
+
+        .dataTables_processing {
+            top: 25px !important;
+            color: red !important;
+        }
+
+        .dataTables_info {
+            padding-top: 0px !important;
+            font-size: 20px;
+        }
+
+        .dataTables_paginate {
+            padding-top: 10px;
+            font-size: 18px;
+        }
+
+            .dataTables_paginate .paginate_button {
+                line-height: 10px;
+                padding: 5px !important;
+            }
+    </style>
+}
+
+@Styles.Render("~/Bundles/Style/sweetmodal")
+
+<div class="container containerbody">
+    <div class="panel panel-default SigningText">
+        <div class="panel-heading text-left">
+            <strong>
+                <a href="#collapse1" class="accordion" role="button" data-toggle="collapse" aria-controls="collapse1">
+                    ลงนามเอกสารแบบบุคล
+                </a>
+            </strong>
+        </div>
+
+        <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel line_height">
+                <div class="panel-body">
+                    <form id="dataTablesForm" action="@Url.Content("~/Api/v2/eDocument")" method="get">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-1 col-md-offset-1">
+                                    <label class="control-label">ค้นหา : </label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="searchKeyword" placeholder="ค้นหา" aria-label="Search">
+                                    <input type="hidden" id="previousKeyword">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center m-t-md m-b-md">
+                                        <button type="button" id="btnSearch" class="btn btn-biz-blue"><i class="fa fa-search fa-fw"></i> ค้นหา</button>
+                                        <button type="reset" id="btnReset" class="btn btn-light">ล้างค่า</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <table id="dataTables" class="table table-striped table-bordered table-responsive" data-ride="datatables" style="overflow-x:auto;">
+                        <thead>
+                            <tr>
+                                <th style="">#</th>
+                                <th style="max-width:100px; word-wrap:break-word;">ชื่อเอกสาร</th>
+                                <th style="">ยื่นคำร้อง/คำขอโดย</th>
+                                <th style="">สถานะ</th>
+                                <th style="">วันที่เสนอลงนาม</th>
+                                <th style="">วันที่ลงนาม</th>
+                                <th style="max-width: 50px;">คำสั่ง</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default SigningText">
+        <div class="panel-heading text-left">
+            <strong>
+                <a href="#collapse2" class="accordion " role="button" data-toggle="collapse" aria-controls="collapse2">
+                    ลงนามเอกสารแบบองค์กร
+                </a>
+            </strong>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse in">
+            <div class="panel line_height">
+                <div class="panel-heading">
+                    <form id="dataTablesForm_org" action="@Url.Content("~/Api/v2/eDocument")" method="get">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-1 col-md-offset-1">
+                                    <label class="control-label">ค้นหา : </label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="searchKeyword_org" placeholder="ค้นหา" aria-label="Search">
+                                    <input type="hidden" id="previousKeyword_org">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12 text-center m-t-md m-b-md">
+                                    <button type="button" id="btnSearch_org" class="btn btn-biz-blue"><i class="fa fa-search fa-fw"></i> ค้นหา</button>
+                                    <button type="reset" id="btnReset_org" class="btn btn-light">ล้างค่า</button>
+                                    <button type="button" class="btn btn-sign" onclick="multipleOrgSigning('APPROVE')">ลงนาม</button>
+                                    <button type="button" class="btn btn-danger" onclick="multipleOrgSigning('REJECT')">ไม่เห็นชอบ/ตีกลับ</button>
+                                    <input type="hidden" id="hddSignStatus" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <table id="dataTables_org" class="table table-striped table-bordered table-responsive" style="overflow-x:auto;">
+                        <thead>
+                            <tr>
+                                <th style=""></th>
+                                <th style="max-width: 100px; word-wrap: break-word;">ชื่อเอกสาร</th>
+                                <th style="">ยื่นคำร้อง/คำขอโดย</th>
+                                <th style="">สถานะ</th>
+                                <th style="">วันที่เสนอลงนาม</th>
+                                <th style="">วันที่ลงนาม</th>
+                                <th style="max-width:50px;">คำสั่ง</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form id="hidform" action="https://portal.apps.go.th/edoc/signature/signed" method="post">
+        <input type="hidden" name="Token" value="" />
+        <input type="hidden" name="Callback" value="" />
+        <input type="hidden" name="Nonce" value="" />
+    </form>
+
+</div>
+
+@Scripts.Render("~/Bundles/Scripts/sweetmodal")
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        var dataTables;
+        var dataTables_org;
+
+        $(function () {
+
+        });
+
+        dataTables_org = $('#dataTables_org').DataTable({
+                serverSide: true,
+                processing: true,
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/eDocument/OrgByPerson/List")',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: function (params) {
+                        if ($('#dataTablesForm_org #searchKeyword_org').val()) {
+                            params.SearchKeyword = $('#dataTablesForm_org #searchKeyword_org').val();
+                            $("#dataTablesForm_org #previousKeyword_org").val(params.searchKeyword);
+                        }
+                        return JSON.stringify(params);
+                    }
+                },
+                columns: [
+                    { data: 'DocumentID' , sortable: false, 'class': 'text-center' },
+                    { data: 'ApplicationName', 'class': 'text-center' },
+                    { data: 'IdentityName', 'class': 'text-center' },
+                    { data: 'StatusText', 'class': 'text-center' },
+                    { data: 'CreatedDate', 'class': 'text-center' },
+                    { data: 'SignedDate', 'class': 'text-center' },
+                    {
+                        data: 'Status',
+                        render: function (data, type, row) {
+                            if (data === 'NEW') {
+                                return '<input type="hidden" name="docid" value="' + row.DocumentID + '" /><button type="button" class="btn btn-sign" data-reqid="' + row.ApplicationRequestID + '" data-docid="' + row.DocumentID + '" data-docStatus="APPROVE" onclick="previewOrgSigning(this)">ลงนาม</button>   <button type="button" class="btn btn-danger" style="margin-top:5px;" data-docid="' + row.DocumentID + '" onclick="singleOrgSigning(\'REJECT\' ,this)">ไม่เห็นชอบ/ตีกลับ</button>';
+                            } else if (data == 'SIGNED') {
+                                return '<input type="hidden" name="docid" value="' + row.DocumentID + '" /><a class="btn btn-biz-blue" href="@Url.Action("DownloadEdocument", "File", new { area = ""})?applicationRequestId='+ row.ApplicationRequestID +'&documentId=' + row.DocumentID + '" target="_blank">ดูเอกสารลงนาม</a>';
+                            } else {
+                                return 'หมายเหตุ ' + row.Remark;
+                            }
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    }
+                ],
+                columnDefs: [
+                    {
+                        'targets': 0,
+                        'checkboxes': {
+                            'selectRow': true
+                        },
+                        "createdCell": function (td, cellData, rowData, row, col) {
+                            if (rowData['Status'] === 'NEW') {
+                                $(td).children('input[type=checkbox]').prop('disabled', false);
+                            } else {
+                                $(td).children('input[type=checkbox]').prop('disabled', true);
+                            }
+                        }
+                    }
+                ],
+                select: {
+                    'style': 'multi'
+                },
+                order: [[4, 'desc']],
+            drawCallback: function (settings) {
+                console.log('Settings', settings);
+                }
+            });
+
+        $('#dataTablesForm_org #searchKeyword_org').keydown(function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                dataTables_org.ajax.reload(null, true);
+            }
+        });
+
+        $('#dataTablesForm_org #btnSearch_org').on('click', function (e) {
+            dataTables_org.ajax.reload();
+        });
+
+        $('#dataTablesForm_org #btnReset_org').click(function (e) {
+            e.preventDefault();
+            $('#dataTablesForm_org #searchKeyword_org').val('');
+            dataTables_org.ajax.reload(null, true);
+        });
+
+        function signOrgDocument(idList, status, remark) {
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json",
+                dataType: 'json',
+                url: '@Url.Content("~/Api/v2/eDocument/OrgByPerson/Approve")',
+                data: JSON.stringify({
+                    DocumentIDs: idList,
+                    Status: status,
+                    Remark: remark
+                }),
+                success: function (data, status) {
+                    if (data.Type == 1) {
+                        showLoader(false);
+                        if (data.Message === 'APPROVE') {
+                            swal({
+                                title: "ยืนยันลงนามสำเร็จ",
+                                text: "",
+                                type: "success",
+                                confirmButtonText: 'ตกลง'
+                            });
+                        } else {
+                            swal({
+                                title: "ตีกลับเอกสารสำเร็จ",
+                                text: "",
+                                type: "success",
+                                confirmButtonText: 'ตกลง'
+                            });
+                        }
+                        
+                        dataTables_org.ajax.reload();
+                    }
+                    else {
+                        showLoader(false);
+                        swal({
+                            title: "เกิดข้อผิดพลาด",
+                            text: data.message,
+                            type: "error",
+                            confirmButtonText: 'ตกลง'
+                        });
+                        dataTables_org.ajax.reload();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    var data = xhr.responseJSON;
+                    showLoader(false);
+                    swal({
+                        title: "เกิดข้อผิดพลาด",
+                        text: data.message,
+                        type: "error",
+                        confirmButtonText: 'ตกลง'
+                    });
+                    dataTables_org.ajax.reload();
+                }
+            });
+        }
+
+        function ClearChk() {
+            $("#dataTables_org tr").each(function () {
+                if ($(this).find("td:eq(3)").text().trim() == 'ลงนามสำเร็จ' || $(this).find("td:eq(3)").text().trim() == 'ปฏิเสธการลงนาม') {
+                    $(this).find("input[type=checkbox]").attr("checked", false);
+                    $(this).find("input[type=checkbox]").attr("disabled", true);
+                }
+            });
+        }
+
+        function singleOrgSigning(status, elem) {
+            if (elem === undefined || elem === null) {
+                swal({
+                    title: 'เอกสารการลงนามไม่ถูกต้อง',
+                    type: 'warning',
+                    confirmButtonText: 'ตกลง',
+                });
+                return false;
+            }
+
+            let idList = [$(elem).attr('data-docid')];
+            confirmOrgSigning(status, idList);
+        }
+
+        function multipleOrgSigning(status) {
+            let idList = [];
+            $.each($('td.dt-checkboxes-cell input[type=checkbox].dt-checkboxes:checked'), function (index, elem) {
+                let docId = $(elem).parents('tr').find('td input[type=hidden][name=docid]').val();
+                if (docId !== undefined && docId !== "") {
+                    idList.push(docId);
+                }
+            });
+
+            if (idList === undefined || idList === null || idList.length < 1) {
+                let swalTitle = 'กรุณาเลือกเอกสารที่ต้องการยืนยันลงนาม';
+                if (status === 'REJECT') {
+                    swalTitle = 'กรุณาเลือกเอกสารที่ไม่เห็นชอบ/ต้องการตีกลับ';
+                }
+                swal({
+                    title: swalTitle,
+                    type: 'warning',
+                    confirmButtonText: 'ตกลง',
+                });
+                return false;
+            }
+            confirmOrgSigning(status, idList);
+        }
+
+        function confirmOrgSigning(status, idList) {
+            if (status === 'APPROVE') {
+                swal({
+                    title: 'ท่านต้องการยืนยันลงนามใช่หรือไม่',
+                    text: '',
+                    showCancelButton: true,
+                    cancelButtonText: 'ยกเลิก',
+                    confirmButtonText: 'ยืนยันลงนาม',
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                },
+                    function () {
+                        signOrgDocument(idList, "APPROVE", null);
+                });
+            } else if (status === 'REJECT') {
+                swal({
+                    title: 'ไม่เห็นชอบ/ตีกลับ',
+                    text: 'หมายเหตุการไม่เห็นชอบ/ตีกลับ',
+                    type: 'input',
+                    showCancelButton: true,
+                    cancelButtonText: 'ยกเลิก',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'ไม่เห็นชอบ/ตีกลับ',
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                },
+                    function (inputValue) {
+                        if (inputValue === false) return false;
+                        if (inputValue === "") {
+                            swal.showInputError("กรุณากรอกหมายเหตุการไม่เห็นชอบ/ตีกลับเอกสารลงนาม");
+                            return false
+                        }
+                            signOrgDocument(idList, "REJECT", inputValue);
+                });
+            }
+        }
+
+        function previewOrgSigning(elem) {
+            let header = '<p class="text-center">ตัวอย่างเอกสารลงนาม</p>';
+            let body = '<div class="row text-left m-b-xs"><embed class="embed-loader" src="@Url.Action("DownloadEDocument", "File", new { area="" })?applicationRequestId=' + $(elem).attr('data-reqid') + '&documentId=' + $(elem).attr('data-docid') + '" frameborder="0" width="100%" height="500px"></div>';
+            //let body = '<div class="row text-left m-b-xs"><strong>ใบอนุญาต : </strong><br/><embed class="embed-loader" src="@Url.Action("DownloadEDocument", "File", new { area="" })?applicationRequestId=' + $(elem).attr('data-reqid') + '&documentId=' + $(elem).attr('data-docid') + '" frameborder="0" width="100%" height="400px"></div>';
+            $.sweetModal.defaultSettings.confirm.yes.label = "ตกลง";
+            $.sweetModal.defaultSettings.confirm.cancel.label = "ยกเลิก";
+            $.sweetModal.confirm(header, body, function () {
+                showLoader(true);
+                let idList = [$(elem).attr('data-docid')];
+                signOrgDocument(idList, "APPROVE", null);
+            },
+                function () {
+                    showLoader(false);
+                });
+        }
+
+        dataTables = $('#dataTables').DataTable({
+            serverSide: true,
+            indexColoumn: true,
+            processing: true,
+            ajax: {
+                url: '@Url.Content("~/Api/v2/eDocument/Personal/List")',
+                type: 'POST',
+                contentType: 'application/json',
+                data: function (params) {
+                    if ($('#dataTablesForm #searchKeyword').val()) {
+                        params.SearchKeyword = $('#dataTablesForm #searchKeyword').val();
+                        $("#dataTablesForm #previousKeyword").val(params.searchKeyword);
+                    }
+                    return JSON.stringify(params);
+                },
+            },
+            columns: [
+                { data: null , sortable: false, 'class': 'text-center' },
+                { data: 'ApplicationName', 'class': 'text-center' },
+                { data: 'IdentityName', 'class': 'text-center' },
+                { data: 'StatusText', 'class': 'text-center' },
+                { data: 'CreatedDate', 'class': 'text-center' },
+                { data: 'SignedDate', 'class': 'text-center' },
+                {
+                    data: 'Status',
+                    render: function (data, type, row) {
+                        if (data === 'NEW') {
+                            return '<button type="button" class="btn btn-sign" data-docid="' + row.DocumentID + '" onclick="signDocument(this)">ตรวจสอบและลงนาม</button>';
+                        } else if (data === 'SIGNED') {
+                            return '<a class="btn btn-biz-blue" href="@Url.Action("DownloadEdocument", "File", new { area = "" })?applicationRequestId='+ row.ApplicationRequestID + '&documentId=' + row.DocumentID + '" target="_blank">ดูเอกสารลงนาม</a>';
+                        } else {
+                            return 'หมายเหตุ ' + row.Remark;
+                        }
+                    },
+                    sortable: false,
+                    'class': 'text-center'
+                }
+            ],
+            order: [[4,'desc']],
+        });
+
+        $('#dataTablesForm #searchKeyword').keydown(function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                dataTables.ajax.reload(null, true);
+            }
+        });
+
+        $('#dataTablesForm #btnSearch').on('click', function (e) {
+            dataTables.ajax.reload();
+        });
+
+        $('#dataTablesForm #btnReset').click(function (e) {
+            e.preventDefault();
+            $('#dataTablesForm #searchKeyword').val('');
+            dataTables.ajax.reload(null, true);
+        });
+
+        function signDocument(elem) {
+            let documentId = $(elem).attr('data-docid');
+
+            //notifyConfirm('ต้องการ Sign หรือไม่', function () {
+            showLoader(true);
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json",
+                dataType: 'json',
+                url: '@Url.Content("~/Api/v2/eDocument/Personal/QRCode")',
+                data: JSON.stringify({ IdentityID: '@IdentityID', DocumentID: documentId }),
+                success: function (data, status) {
+                    showLoader(false);
+                    if (data.Status) {
+                        console.log(data);
+                        $('#hidform input[name=Token]').val(data.Token);
+                        $('#hidform input[name=Callback]').val(data.CallbackUrl);
+                        $('#hidform input[name=Nonce]').val(data.Nonce);
+                        $('#hidform').submit();
+                    }
+                    else {
+                        console.log(data);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    var data = xhr.responseJSON;
+                    showLoader(false);
+                }
+            });
+            //});
+        }
+    </script>
+}

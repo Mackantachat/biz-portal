@@ -1,0 +1,596 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+@using BizPortal.ViewModels.Select2;
+
+@{
+    ViewBag.Title = "ค้นหาข้อมูลหลักประกัน";
+    Layout = "~/Areas/Apps/Views/Shared/_AppsBussinessSecuredLayout.cshtml";
+    List<ProvinceSelect2Opt> provinces = ViewBag.ProvinceList;
+
+}
+@*@section breadcrumb {
+        <div class="container">
+            <h2>ค้นหาข้อมูลหลักประกัน</h2>
+        </div>
+    }*@
+<style type="text/css">
+    .progress-bar.animate {
+        width: 100%;
+    }
+
+    .modal {
+        vertical-align: middle;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    footer {
+        bottom: initial !important;
+    }
+
+    #containerbody {
+        margin-bottom: 130px;
+    }
+
+    .end {
+        height: 125px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+</style>
+<div id="containerbody" class="container">
+    <div class="modal js-loading-bar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="progress progress-popup">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <p style="text-align:center">กำลังค้นหาข้อมูล....</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- The Modal -->
+    <!-- Row start -->
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading ">
+                    <h3 class="panel-title">ค้นหาข้อมูลหลักประกัน</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-inline" role="form">
+                                @*<input type="radio" class="form-check-input" id="byowner" name="typeSearch" value="owner" checked>
+                                    <label class="" for="byowner">ค้นหาตามผู้ให้หลักประกัน</label>*@
+                                <input type="radio" class="form-check-input" id="byasset" name="typeSearch" value="asset" hidden checked>
+                                <label class="form-check-label" for="byasset">ค้นหาตามทรัพย์สิน</label>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-horizontal row-border" id="businessSecuredForm" action="#">
+                                @*<div id="div_byowner">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">ประเภทผู้ให้บริการ</label>
+                                            <div class="col-md-3">
+                                                <select id="ownerType"></select>
+                                            </div>
+                                            <div class="col-md-6"></div>
+                                        </div>
+                                        <div id="div_byowner_P">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">เลขประจำตัวประชาชน</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="ownerIdCard" placeholder="เลขประจำตัวประชาชน ของผู้ให้หลักประกัน">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">ชื่อ</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="ownerName" placeholder="ชื่อ ของผู้ให้หลักประกัน">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">นามสกุล</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control" id="ownerSurname" placeholder="นามสกุล ของผู้ให้หลักประกัน">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="col-md-3 control-label"></label>
+                                                <div class="col-md-9"><p class="text-danger">* การค้นหาด้วยชื่อ ต้องใส่ชื่อและนามสกุล</p></div>
+                                            </div>
+                                        </div>
+                                        <div id="div_byowner_C">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">เลขประจำตัวนิติบุคคล</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="ownerJuristicId" placeholder="เลขประจำตัวนิติบุคคล ของผู้ให้หลักประกัน">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">ชื่อนิติบุคคล</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control" id="ownerJuristicName" placeholder="ชื่อนิติบุคคล ของผู้ให้หลักประกัน">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                <div id="div_byasset">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">ประเภททรัพย์</label>
+                                        <div class="col-md-3">
+                                            <select id="assetType" name="assetType"></select>
+                                        </div>
+                                        <div class="col-md-6"></div>
+                                    </div>
+                                    <div id="div_byasset_car">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">หมายเลขทะเบียนรถยนต์ <span class="text-danger"> *</span></label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" id="carPlateNo" name="carPlateNo" placeholder="ระบุหมายเลขทะเบียนรถยนต์">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">เลขเครื่องยนต์<span class="text-danger"> *</span></label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" id="engineNo" name="engineNo" placeholder="ระบุเลขเครื่องยนต์">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">เลขตัวถังรถ<span class="text-danger"> *</span></label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" id="frameNo" name="frameNo" placeholder="ระบุเลขตัวถังรถ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">จังหวัด<span class="text-danger"> *</span></label>
+                                            <div class="col-md-9">                                              
+                                                <select id="province" name="province">
+                                                    @foreach (var province in provinces)
+                                                    {
+                                                        <option value="@province.ID">@province.Text</option>
+                                                    }
+                                                </select>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="div_byasset_machine">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">หมายเลขทะเบียนเครื่องจักร</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" id="machineNo" name="machineNo" placeholder="หมายเลขทะเบียนเครื่องจักร">
+                                            </div>
+                                        </div>                                
+                                    </div>
+                                    <div id="div_byasset_ship">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">เลขที่จดทะเบียนเรือ</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" id="shipPlateNo" name="shipPlateNo" placeholder="เลขที่จดทะเบียนเรือ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="div_byasset_animal">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">ประเภทสัตว์พาหนะ</label>
+                                            <div class="col-md-9">
+                                                <div class="form-inline" role="form">
+                                                    <input type="radio" class="form-check-input" id="identityT0" name="beastOfBurdenTypeId" value="0" checked>
+                                                    <label class="form-check-label" for="identityT0" style="width:50px">ทั้งหมด</label>
+                                                    <input type="radio" class="form-check-input" id="identityT1" name="beastOfBurdenTypeId" value="1">
+                                                    <label class="form-check-label" for="identityT1" style="width:50px">ช้าง</label>
+                                                    <input type="radio" class="form-check-input" id="identityT2" name="beastOfBurdenTypeId" value="2">
+                                                    <label class="form-check-label" for="identityT2" style="width:50px">ม้า</label>
+                                                    <input type="radio" class="form-check-input" id="identityT3" name="beastOfBurdenTypeId" value="3">
+                                                    <label class="form-check-label" for="identityT3" style="width:50px">โค</label>
+                                                    <input type="radio" class="form-check-input" id="identityT4" name="beastOfBurdenTypeId" value="4">
+                                                    <label class="form-check-label" for="identityT4" style="width:60px">กระบือ</label>
+                                                    <input type="radio" class="form-check-input" id="identityT5" name="beastOfBurdenTypeId" value="5">
+                                                    <label class="form-check-label" for="identityT5" style="width:50px">ล่อ</label>
+                                                    <input type="radio" class="form-check-input" id="identityT6" name="beastOfBurdenTypeId" value="6">
+                                                    <label class="form-check-label" for="identityT6" style="width:50px">ลา</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">เลขทะเบียนสัตว์พาหนะ</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" id="identityTicket" name="identityTicket" placeholder="เลขทะเบียนสัตว์พาหนะ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 center">
+                                        <button type="button" class="btn btn-biz-blue" id="btn_search" name="btn_search" value="search">ค้นหาข้อมูล</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="totallist" class="text-right mb-md mt-md">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divtbllist"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row end -->
+</div>
+
+@section PageScripts
+{
+    <script>
+        $(document).ready(function () {
+            /*$('.js-loading-bar').modal({
+                backdrop: 'static',
+                show: false
+            });*/
+            //$("#div_byasset").hide();
+            //$("#div_byowner_C").hide();
+            $("#div_byasset_car").hide();
+            $("#div_byasset_machine").hide();
+            $("#div_byasset_ship").hide();
+            $("#div_byasset_animal").hide();
+
+            //set default radio checked
+            //$("#byowner").prop("checked", true);
+            //add data to select option ประเภทผู้ให้บริการ
+            $("#ownerType").html('').select2({
+                data: [
+                    {id: 'P', text: 'บุคคลธรรมดา'},
+                    { id: 'C', text: 'นิติบุคคล' }
+                ]
+            });
+
+            //add data to select option ประเภททรัพย์
+            $("#assetType").select2({
+                data: [
+                    { id: '0', text: 'เลือกประเภททรัพย์' },
+                    { id: 'car', text: 'รถยนต์' },
+                    { id: 'machine', text: 'เครื่องจักร' },
+                    { id: 'ship', text: 'เรือ' },
+                    { id: 'animal', text: 'สัตว์พาหนะ' }
+                ]
+            });
+           
+            $("#province").select2();
+
+
+            $('input[type=radio][name=typeSearch]').change(function () {
+                if (this.value == 'owner') {
+                    $("#div_byasset").hide();
+                    $("#div_byowner").show();
+                    // clear data when change to search by owner
+                    $("#carPlateNo").val("");
+                    $("#engineNo").val("");
+                    $("#frameNo").val("");
+                    $("#machineNo").val("");
+                    $("#shipPlateNo").val("");
+                    $("#identityTicket").val("");
+
+                    $('#divtbllist').empty();
+                    $('#totallist').empty();
+                    $('#ownerType').val("P").trigger('change');
+                }
+                else if (this.value == 'asset') {
+                    $("#div_byasset").show();
+                    $("#div_byowner").hide();
+                    // clear data when change to search by asset
+                    $("#ownerIdCard").val("");
+                    $("#ownerName").val("");
+                    $("#ownerSurname").val("");
+                    $("#ownerJuristicId").val("");
+                    $("#ownerJuristicName").val("");
+
+                    $('#divtbllist').empty();
+                    $('#totallist').empty();
+                    $('#assetType').val("0").trigger('change');
+                }
+            });
+            $("#ownerType").change(function () {
+                if ($("#ownerType").val() == 'P') {
+                    $("#div_byowner_C").hide();
+                    $("#div_byowner_P").show();
+
+                }
+                else if ($("#ownerType").val() == 'C') {
+                    $("#div_byowner_C").show();
+                    $("#div_byowner_P").hide();
+                }
+                // clear data when change owner type
+                $("#ownerIdCard").val("");
+                $("#ownerName").val("");
+                $("#ownerSurname").val("");
+                $("#ownerJuristicId").val("");
+                $("#ownerJuristicName").val("");
+                $('#divtbllist').empty();
+                $('#totallist').empty();
+            });
+            $("#assetType").change(function () {
+                if ($("#assetType").val() == 'car') {
+                    $("#div_byasset_car").show();
+                    $("#div_byasset_machine").hide();
+                    $("#div_byasset_ship").hide();
+                    $("#div_byasset_animal").hide();
+                }
+                else if ($("#assetType").val() == 'machine') {
+                    $("#div_byasset_car").hide();
+                    $("#div_byasset_machine").show();
+                    $("#div_byasset_ship").hide();
+                    $("#div_byasset_animal").hide();
+                }
+                else if ($("#assetType").val() == 'ship') {
+                    $("#div_byasset_car").hide();
+                    $("#div_byasset_machine").hide();
+                    $("#div_byasset_ship").show();
+                    $("#div_byasset_animal").hide();
+                }
+                else if ($("#assetType").val() == 'animal') {
+                    $("#div_byasset_car").hide();
+                    $("#div_byasset_machine").hide();
+                    $("#div_byasset_ship").hide();
+                    $("#div_byasset_animal").show();                   
+                }
+                else
+                {
+                    $("#div_byasset_car").hide();
+                    $("#div_byasset_machine").hide();
+                    $("#div_byasset_ship").hide();
+                    $("#div_byasset_animal").hide();
+                }
+                // clear data when change asset type
+                $("#carPlateNo").val("");
+                $("#engineNo").val("");
+                $("#frameNo").val("");
+                $("#machineNo").val("");
+                $("#shipPlateNo").val("");
+                $("#identityTicket").val("");
+                $('#divtbllist').empty();
+                $('#totallist').empty();
+            });
+
+            formValidate();
+        });
+        $('#btn_search').on('click', function () {
+
+
+
+            
+
+
+            if ($.trim($("#engineNo").val()) == "") $("#engineNo").val('');
+            if ($.trim($("#frameNo").val()) == "") $("#frameNo").val('');
+            //alert($('#assetType').val());
+            if (!$("#businessSecuredForm").valid()) {
+                return false;
+            }
+            var postData;
+            var typeSearchval = $("input[name=typeSearch]:checked").val();
+            // ค้นหาตามผู้ให้หลักประกัน
+            if (typeSearchval == 'owner') {
+                if ($("#ownerType").val() == 'P') {
+                    postData = JSON.stringify({
+                        typeSearch: typeSearchval,
+                        ownerType: $("#ownerType").val(),
+                        ownerIdCard: $("#ownerIdCard").val(),
+                        ownerName: $("#ownerName").val(),
+                        ownerSurname: $("#ownerSurname").val()
+                    });
+                }
+                else if ($("#ownerType").val() == "C") {
+                    postData = JSON.stringify({
+                        typeSearch: typeSearchval,
+                        ownerType: $("#ownerType").val(),
+                        ownerJuristicId: $("#ownerJuristicId").val(),
+                        ownerJuristicName: $("#ownerJuristicName").val()
+                    });
+                }
+            }
+            // ค้นหาตามทรัพย์สิน
+            else {
+                if ($("#assetType").val() == "car") {
+                    //alert($("#province").val());
+                    postData = JSON.stringify({
+                        typeSearch: typeSearchval,
+                        assetType: $("#assetType").val(),
+                        carPlateNo: $("#carPlateNo").val(),
+                        provinceID: $("#province").val(),
+                        engineNo: $("#engineNo").val(),
+                        frameNo: $("#frameNo").val()
+                    });
+                }
+                else if ($("#assetType").val() == "machine") {
+                    postData = JSON.stringify({
+                        typeSearch: typeSearchval,
+                        assetType: $("#assetType").val(),
+                        machineNo: $("#machineNo").val(),
+                    });
+                } else if ($("#assetType").val() == "ship") {
+                    postData = JSON.stringify({
+                        typeSearch: typeSearchval,
+                        assetType: $("#assetType").val(),
+                        shipPlateNo: $("#shipPlateNo").val(),
+                    });
+                } else if ($("#assetType").val() == "animal") {
+                    postData = JSON.stringify({
+                        typeSearch: typeSearchval,
+                        assetType: $("#assetType").val(),
+                        identityTicket: $("#identityTicket").val(),
+                        beastOfBurdenTypeId: $("input[name=beastOfBurdenTypeId]:checked").val()
+                    });
+                } else
+                {
+                    return false;
+                }
+            }
+
+            $('#divtbllist').empty();
+            $('#totallist').empty();
+            /*var $modal = $('.js-loading-bar'),
+                $bar = $modal.find('.progress-bar');
+            $modal.modal('show');
+            $bar.addClass('animate');*/
+            showLoader(true);
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("GetBussinessData", "BusinessSecured")', // don't hardcode your url's!
+                traditional: true,
+                contentType: "application/json; charset=utf-8",
+                context: document.body,
+                data: postData,
+                success: function (result) {
+                    //$bar.removeClass('animate');
+                    //$modal.modal('hide');
+                    showLoader(false);
+                    $('#totallist').append('พบทั้งหมด ' + result.businessSecviewlist.length + ' รายการ');
+                    //alert(result.RESULT);
+                    //alert(JSON.stringify(result.businessSecviewlist));
+                    var html = "", html2 = "", html3 = '',html4 = '';
+                    var tbllist = '<table id="tbllist" ><thead><tr><th></th></tr></thead>';
+                    if (result.businessSecviewlist.length < 1)
+                    {
+                        //$("#machineWarning").hide();
+                        html = '<div class="alert alert-warning" role="alert">ไม่พบข้อมูล</div >';
+                        $('#divtbllist').append(html);
+                        //tbllist += '<tr><td>ไม่พบข้อมูล</td></tr>';
+                    }
+                    else {
+                        jQuery.each(result.businessSecviewlist, function (i, val) {
+
+                            // ชื่อผู้รับหลักประกัน
+                            jQuery.each(val.CreditorsList, function (i2, val2) {
+                                html2 = '<div class="col-md-4">' + val2.Name + '</div>';
+                            });
+                            // ชื่อเจ้าของหลักประกัน
+                            jQuery.each(val.OwnerList, function (i2, val2) {
+                                html3 = '<div class="col-md-4">' + val2.Name + '</div>';
+                            });
+                            html4 = '<div class="col-md-3">' + val.AssetsStatus+'</div>';
+                            html= '<div class="panel panel-info" >' +
+                                    '<div class="panel-heading"><span class="badge badge-light" style="font-size:medium"> ' + (i + 1) + ' </span> ' + val.AssetsType + '</div>' +
+                                    '<div class="panel-body">' +
+                                        '<div class="offset-sm-1 col-sm-11">' +
+                                            '<div class="row">' +
+                                                '<div class="col-md-3 bold">' + val.RegistrationName + '</div>' +
+                                                '<div class="col-md-4">' + val.PromiseNO + '</div>' +
+                                                '<div class="col-md-2 bold">แหล่งข้อมูล</div>' +
+                                                '<div class="col-md-3">' + val.Organization + '</div>' +
+                                            '</div>' +
+                                            '<div class="row">' +
+                                                '<div class="col-md-3 bold">'+ val.SearchName + '</div>' +
+                                                '<div class="col-md-4">' + val.SearchNo + '</div>' +
+                                                '<div class="col-md-2 bold">ประเภทหลักประกัน</div>' +
+                                                '<div class="col-md-3">' + val.AssetsType + '</div>' +
+                                            '</div>' +
+                                            '<div class="row">' +
+                                                '<div class="col-md-3 bold">ชื่อผู้รับหลักประกัน</div>' +
+                                                html2 +
+                                                '<div class="col-md-2 bold">สถานะ</div>' +
+                                                html4 +
+                                            '</div>' +
+                                            '<div class="row">' +
+                                                '<div class="col-md-3 bold">ชื่อเจ้าของหลักประกัน</div>' +
+                                                html3 +
+                                                '<div class="col-md-2 bold">วันที่จดทะเบียน</div>' +
+                                                '<div class="col-md-3">' + val.RegisterDate + '</div>' +
+                                            '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                '</div > ';
+                            tbllist += '<tr><td>' + html + '</td></tr>';
+                        });
+                        tbllist+='</table>'
+                        $('#divtbllist').append(tbllist);
+                        $('#tbllist').dataTable({
+                            "pageLength": 5,
+                            "lengthChange": false,
+                            "ordering": false
+                        });
+                    }
+                }
+            });
+		});
+
+        function formValidate() {
+            $("#businessSecuredForm").validate({
+                rules: {
+                    machineNo: {
+                        regex: '[- ]*([0-9][- ]*){12,}',
+                        customrequiredif: {
+                            dependentproperty: 'assetType',
+                            targetvalue: 'machine'
+                        }
+                    },
+                    shipPlateNo: {
+                        customrequiredif: {
+                            dependentproperty: 'assetType',
+                            targetvalue: 'ship'
+                        }
+                    },
+                    identityTicket: {
+                        customrequiredif: {
+                            dependentproperty: 'assetType',
+                            targetvalue: 'animal'
+                        }
+                    },
+                    carPlateNo: {
+                        customrequiredif: {
+                            dependentproperty: 'assetType',
+                            targetvalue: 'car'
+                        }
+                    },
+                    engineNo: {
+                        customrequiredif: {
+                            dependentproperty: 'assetType',
+                            targetvalue: 'car'
+                        }
+                    },
+                    frameNo: {
+                        customrequiredif: {
+                            dependentproperty: 'assetType',
+                            targetvalue: 'car'
+                        }
+                    }
+                    
+                },
+                messages: {
+                    machineNo: {
+                        regex: 'กรุณาระบุหมายเลขทะเบียนเครื่องจักร',
+                        customrequiredif: 'กรุณาระบุหมายเลขทะเบียนเครื่องจักร'
+                    },
+                    shipPlateNo: {
+                        customrequiredif: 'กรุณากรอกเลขที่จดทะเบียนเรือ'
+                    },
+                    identityTicket: {
+                        customrequiredif: 'กรุณากรอกเลขทะเบียนสัตว์พาหนะ'
+                    },
+                    carPlateNo: {
+                        customrequiredif: 'กรุณากรอกทะเบียนรถยนต์'
+                    },
+                    engineNo: {
+                        customrequiredif: 'กรุณากรอกหมายเลขเครื่องยนต์'
+                    },
+                    frameNo: {
+                        customrequiredif: 'กรุณากรอกเลขตัวถังรถ'
+                    }
+                }
+            });
+        }
+    </script>
+
+}

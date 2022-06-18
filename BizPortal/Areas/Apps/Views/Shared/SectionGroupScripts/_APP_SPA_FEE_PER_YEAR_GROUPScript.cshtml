@@ -1,0 +1,148 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")" >
+</script>
+
+<script type="text/javascript">
+
+    // On load.
+    window.singleFormHelpers.form.onDraftDataBound(function () { 
+        CheckPermissionID();
+    });
+
+    //$(document).ready(function () {
+    //    $(':radio').click(function () {
+    //        return false;
+    //    });
+    //});
+
+
+    function CheckPermissionID()
+    {
+        let permisID = $('[name=APP_SPA_FEE_PER_YEAR_SECTION_A_CONTROL_A]').val();
+        if (!permisID.includes('สส'))
+        {
+            $('[name=APP_SPA_FEE_PER_YEAR_SECTION_A_CONTROL_A]').val('');
+        }
+    }
+
+    function validFormat(parmStr) {
+        try {
+            var str = parmStr;
+            var count = 0;
+            var newStr;
+            var foundDot = str.includes(".");
+
+            for (var i = 0; i < str.length; i++) {
+                if (str.charAt(i) == "0") {
+                    count = count + 1;
+                }
+                else { break; }
+            }
+
+            if (count == 0 && !foundDot) {
+                newStr = str;
+            }
+
+            if (count == 0 && foundDot) {
+                newStr = str;
+                var res = newStr.split(".");
+                var n = res[0].length;
+                if (n == 0) {
+                    newStr = "0." + res[1];
+                }
+            }
+
+            if (count > 0 && !foundDot) {
+                newStr = str.substr(count, str.length);
+            }
+
+            if (count == 1 && foundDot) {
+                var res = str.split(".");
+                var n = res[0];
+                if (n == "0") {
+                    newStr = str;
+                }
+            }
+
+            if (count == 1 && foundDot) {
+                var res = str.split(".");
+                var n = res[0].length;
+                if (n > 1) {
+                    newStr = str.substr(1, str.length);;
+                }
+            }
+
+            if (count > 0 && foundDot) {
+                var res = str.split(".");
+                var n = res[0].length;
+                if (n > 1) {
+                    newStr = str.substr(count, str.length);;
+                }
+                var x = newStr.split(".");
+                var y = x[0].length;
+                if (y == 0) {
+                    newStr = "0." + x[1];
+                }
+            }
+
+            if (foundDot) {
+                var m = newStr.split(".");
+                var mm = m[1].length;
+                if (mm == 0) {
+                    newStr = newStr + "0";
+                }
+            }
+        }
+        catch (er) {
+            alert(er.message);
+        }
+        return newStr;
+    }
+
+    function isDec(obj) {
+        $(obj).val($(obj).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(obj).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    }
+
+    $('input[name=APP_SPA_FEE_PER_YEAR_SECTION_A_CONTROL_B]').keypress(function () {
+        isDec(this);
+    });
+
+    $('input[name=APP_SPA_FEE_PER_YEAR_SECTION_A_CONTROL_B]').change(function () {
+
+        //let $radios = $('input:radio[name=APP_SPA_FEE_PER_YEAR_SECTION_B_CONTROL_B_OPTION]');
+
+        //if ($(this).val() == '' || $(this).val() == null) {
+        //    $radios.prop('checked', false);
+        //    return;
+        //}
+
+        $(this).val(validFormat($(this).val()));
+        //let area = parseFloat($(this).val());
+
+        //if (area <= 100) {
+        //    $radios.filter('[value=1000]').prop('checked', true);
+        //}
+        //else if (area <= 200) {
+        //    $radios.filter('[value=3000]').prop('checked', true);
+        //}
+        //else if (area <= 400) {
+        //    $radios.filter('[value=6000]').prop('checked', true);
+        //}
+        //else {
+        //    $radios.filter('[value=10000]').prop('checked', true);
+        //}
+
+        //$('#APP_SPA_FEE_PER_YEAR_SECTION_B_CONTROL_B_OPTION-error').remove();
+
+    });
+
+</script>
+
+
+

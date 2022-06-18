@@ -1,0 +1,126 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+    
+    $(document).ready(function (e) {
+        var Car_1 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_1]');
+        var Car_2 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_2]');
+        var Car_3 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_3]');
+        var Car_4 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_4]');
+        var Car_5 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_5]');
+        var Car_6 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_6]');
+        var Car_7 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_7]');
+        var Car_8 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_8]');
+        var Car_9 = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_9]');
+        var sumCarTotalAmount = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_CAR_TOTAL_AMOUNT]');
+
+        window.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_Trigger = function (data, section) {
+            if (section === "APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION") {
+                let Amount_Car_1 = 0;
+                let Amount_Car_2 = 0;
+                let Amount_Car_3 = 0;
+                let Amount_Car_4 = 0;
+                let Amount_Car_5 = 0;
+                let Amount_Car_6 = 0;
+                let Amount_Car_7 = 0;
+                let Amount_Car_8 = 0;
+                let Amount_Car_9 = 0;
+
+                for (let index in data) {
+                    let Car_Amount = 1;
+                    if (data[index]["DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_REQUEST_TYPE"] === "NOT_HAVE_CAR") {
+                        Car_Amount = parseInt(data[index]["APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_AMOUNT"]);
+                    }
+
+                    switch (data[index]["DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE"]) {
+                        case "PICKUP":
+                            Amount_Car_1 += Car_Amount;
+                            break;
+                        case "VAN":
+                            Amount_Car_2 += Car_Amount;
+                            break;
+                        case "LIQUID":
+                            Amount_Car_3 += Car_Amount;
+                            break;
+                        case "DANGER":
+                            Amount_Car_4 += Car_Amount;
+                            break;
+                        case "SPECIAL":
+                            Amount_Car_5 += Car_Amount;
+                            break;
+                        case "TRAILER":
+                            Amount_Car_6 += Car_Amount;
+                            break;
+                        case "SEMI_TRAILER":
+                            Amount_Car_7 += Car_Amount;
+                            break;
+                        case "SEMI_TRAILER_LONG":
+                            Amount_Car_8 += Car_Amount;
+                            break;
+                        case "TOWING_TRUCK":
+                            Amount_Car_9 += Car_Amount;
+                            break;
+                    }
+                }
+                Car_1.val(Amount_Car_1);
+                Car_2.val(Amount_Car_2);
+                Car_3.val(Amount_Car_3);
+                Car_4.val(Amount_Car_4);
+                Car_5.val(Amount_Car_5);
+                Car_6.val(Amount_Car_6);
+                Car_7.val(Amount_Car_7);
+                Car_8.val(Amount_Car_8);
+                Car_9.val(Amount_Car_9);
+
+                sumCarTotal();
+            }
+        };
+
+        function sumCarTotal() {
+            var Car_1_Amount = parseInt(Car_1.val() || 0);
+            var Car_2_Amount = parseInt(Car_2.val() || 0);
+            var Car_3_Amount = parseInt(Car_3.val() || 0);
+            var Car_4_Amount = parseInt(Car_4.val() || 0);
+            var Car_5_Amount = parseInt(Car_5.val() || 0);
+            var Car_6_Amount = parseInt(Car_6.val() || 0);
+            var Car_7_Amount = parseInt(Car_7.val() || 0);
+            var Car_8_Amount = parseInt(Car_8.val() || 0);
+            var Car_9_Amount = parseInt(Car_9.val() || 0);
+
+            sumCarTotalAmount.val(Car_1_Amount + Car_2_Amount + Car_3_Amount + Car_4_Amount + Car_5_Amount + Car_6_Amount + Car_7_Amount + Car_8_Amount + Car_9_Amount);
+        }
+
+        var AreaMeter = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_AREA_METER]');
+        var CanStore = $(document).find('input[name=APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_CAR_AMOUNT]');
+
+        $(AreaMeter).change(function () {
+            $(CanStore).val(Math.floor(parseInt(this.value) / 50));
+        });
+
+        window.singleFormHelpers.form.onArrayOfFormDataBound('APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION', function (sectionName, datalist) {
+            $('input[name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_CHECK_CAR_SECTION"]').val('false').trigger('change');
+            $(datalist || []).each(function (index, data) {
+                if ("" + data.DROPDOWN_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_REQUEST_TYPE == 'NOT_HAVE_CAR') {
+                    $('input[name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_CHECK_CAR_SECTION"]').val('true').trigger('change');
+                }
+            });
+        });
+
+        $('input[name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_CHECK_CAR_SECTION"]').change(function (e) {
+            if ($(this).val() == 'true') {
+                $("input[name='APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_WITHIN_TIME']").prop('disabled', false);
+            } else {
+                $("input[name='APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_WITHIN_TIME']").val(0);
+                $("input[name='APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_WITHIN_TIME']").prop('disabled', true);
+            }
+        });
+
+	});
+	
+</script>
+
+
+

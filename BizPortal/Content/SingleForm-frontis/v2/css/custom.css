@@ -1,0 +1,115 @@
+﻿
+
+/*TH Sarabun PSK*/
+@font-face {
+    font-family: 'TH SarabunPSK';
+    src: url("../fonts/THSarabunNew.eot");
+    src: url("../fonts/THSarabunNew.eot?#iefix") format("embedded-opentype"),url("../fonts/THSarabunNew.woff") format("woff"),url("../fonts/THSarabunNew.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal
+}
+
+pre {
+    font-family: "TH Sarabun New","TH", serif !important;
+    background: #eee !important;
+    padding: 10px;
+}
+
+section.navbar .nav .login-info .dropdown-content {
+    z-index: 999;
+    min-width: 220px;
+}
+
+/* Breadcrump */
+/*.breadcrumb > li {
+    display: inline-block;
+}*/
+
+.breadcrumb .active {
+    font-weight: bold;
+}
+
+/*.breadcrumb a, .breadcrumb a:hover, .breadcrumb a:active, .breadcrumb a:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.breadcrumb > li + li:before {
+    color: #5ca1bf;
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f054";
+    padding-right: 3px;
+}*/
+/* End Breadcrump */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+.form-control {
+    display: block;
+    padding: 5px 10px 0px;
+}
+
+.sweet-body {
+    overflow-y: auto;
+    max-height: 300px;
+    text-align: left !important;
+}
+
+a.form-control-info-close {
+    color: #A0A0A0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+div.form-control-info {
+    position: relative;
+    text-align: left;
+    padding: 30px;
+    border: 1px solid #DEDEDE;
+    margin-bottom: 20px;
+    background: #FFFFFF;
+}
+
+a.form-info {
+    color: #5CA1BF;
+    display: inline-block;
+}
+
+.fit-content-center {
+    width: fit-content !important;
+    margin: 0 auto !important;
+}
+
+.font-30 {
+    font-size : 30px;
+}
+
+@media (max-width: 767px) {
+    .sweet-alert {
+        overflow-y: auto !important;
+        margin-top: -48vh !important;
+        max-height: 96vh !important;
+        z-index: 10000000000 !important;
+    }
+}
+
+
+@media (min-width: 767px) {
+    .swal-wide {
+        width: 700px !important;
+        left: 0 !important;
+        margin-left: calc(((100% - 700px)/2)) !important;
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+    }
+}

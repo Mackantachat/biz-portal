@@ -1,0 +1,21 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@using System.Threading;
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2 style="padding-top:20px;">@Resources.ApplicationStatusRequests.CONGRAT_FINISH</h2>
+
+        @if (Model.ELicenses != null && Model.ELicenses.Count > 0)
+        {
+            <div class="text-center">
+                @foreach (var el in Model.ELicenses) 
+                {
+                    <a class="btn btn-biz-blue" href="@Url.Action("DownloadEdocument", "File", new { applicationRequestId = el.ApplicationRequestID, documentId = el.DocumentID })" target="_blank">ดาวน์โหลดใบอนุญาต @el.Name</a>
+                }
+            </div>
+        }
+
+    </div>
+</div>

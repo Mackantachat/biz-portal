@@ -1,0 +1,573 @@
+﻿@using BizPortal;
+@using BizPortal.Utils.Extensions;
+@using BizPortal.Utils;
+@using EGA.Owin.Security.Utils.Extensions;
+@{
+    bool testMode = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["TestMode"].ToString());
+    var name = User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name);
+    if (name.Length >= 2)
+    {
+        name = name.Substring(0, 1);
+    }
+}
+
+<!DOCTYPE html>
+
+<html lang="@(ViewBag.CurrentLang != null ? (string)ViewBag.CurrentLang : "th" )" class="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="Biz Portal" />
+    <meta name="description" content="Biz Portal">
+    <meta name="author" content="electronic government agency (public organization) (ega)">
+    <title>@ViewBag.Title</title>
+
+    <script type="text/javascript">
+        @*var CKEDITOR_BASEPATH = '@Url.Content("~/scripts/ckeditor/")';
+
+        var ckeditorConfig = {
+            height: '400px',
+            basePath: '@Url.Content("~/Scripts/ckeditor/")'
+        };*@
+
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            //ga('create', 'UA-19394801-52', {
+            //    'cookieDomain': 'none'
+            //});//'auto');
+
+            //ga('send', 'pageview');
+
+            @if(User.Identity.IsAuthenticated)
+        {
+            @Html.Raw(" ga('send', 'event', 'Online Users', '" + @User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name) + "');");
+        }
+    </script>
+
+    @Styles.Render("~/Bundles/Backend/Theme/Css")
+    @Styles.Render("~/Bundles/Backend/Styles")
+    @Styles.Render("~/Content/SingleForm-frontis/style_print.css")
+    @Scripts.Render("~/Bundles/Backend/Theme/Script/Core")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <!--[if lt IE 9]>
+    @Scripts.Render("~/Bundles/Backend/Scripts/ltie9")
+    <![endif]-->
+    <style>
+        .select2-container--default .select2-selection--single {
+            border: none;
+        }
+    </style>
+    @RenderSection("PageStyles", required: false)
+</head>
+<body>
+    <section class="vbox">
+        <header class="bg-light dk header navbar navbar-fixed-top-xs">
+            <div class="navbar-header">
+                <a class="btn btn-link visible-xs " data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="#" class="navbar-brand " data-toggle="fullscreen">
+                    <i class="img img-logo"></i>
+                    @if (!testMode)
+                    {
+                        <div class="web-title-opdc">@BizPortal.Resources.Global.SYS_NAME</div>
+                    }
+                    else
+                    {
+                        <div class="web-title-opdc text-danger">@BizPortal.Resources.Global.SYS_NAME (TEST MODE)</div>
+                    }
+                </a>
+
+                <div class="btn btn-link visible-xs pull-right">
+                    <a data-toggle="dropdown" data-target=".nav-lang">
+                        <img src="@Url.Content("~/Content/Images/blank.png")" class="flag flag-@ViewBag.CurrentLang" />
+                    </a>
+
+                    <a data-toggle="dropdown" data-target=".nav-user" style="padding-right:5px; padding-left:15px;">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background-color:inherit">
+                        @{
+                            <span class="">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <span class="btn btn-rounded btn-twitter btn-icon btn-xs avatar">@User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name)</span>
+                                    @*<span class="btn btn-rounded btn-twitter btn-icon btn-xs avatar">@User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name).Substring(0, 1)</span>*@
+                                }
+                                else
+                                {
+                                    <span class="btn btn-rounded btn-twitter btn-icon btn-xs avatar">R</span>
+                                }
+                            </span>
+                        }
+                        @User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name) <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu animated fadeInRight">
+                        <span class="arrow top"></span>
+                        <li>
+                            <a href="@Url.BizAction("Logoff","Account", new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName})">@BizPortal.Resources.Global.LOGOUT</a>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-lang">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown" style="background-color:inherit">
+                        <img src="@Url.Content("~/Content/Images/blank.png")" class="flag flag-@ViewBag.CurrentLang" />
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight">
+                        <li>
+                            <a class="@(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName=="en"?"active":"")" role="menuitem" tabindex="-1" href="@Url.UpdateLanguage("en")">@BizPortal.Resources.Language.ENGLISH</a>
+                        </li>
+                        <li>
+                            <a class="@(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName=="th"?"active":"")" role="menuitem" tabindex="-1" href="@Url.UpdateLanguage("th")">@BizPortal.Resources.Language.THAI</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
+        <section>
+
+            <section class="hbox stretch">
+                <!-- .aside -->
+
+                <aside class="bg-light lter b-r aside-md hidden-print hidden-xs nav-xs" id="nav">
+
+                    <section class="vbox">
+
+                        <section class="w-f scrollable">
+                            <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
+                                <!-- nav -->
+                                <nav class="nav-primary hidden-xs">
+                                    <ul class="nav">
+                                        @*<li id="@PageNameBackendEnum.DASHBOARD.GetEnumStringValue()" class="layout">
+            <a href="#" title="@BizPortal.Resources.Global.DASHBOARD">
+                <i class="fa fa-dashboard icon">
+                    <b class="bg-danger"></b>
+                </i>
+                <span>@BizPortal.Resources.Global.DASHBOARD</span>
+            </a>
+        </li>*@
+
+                                        @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_OPDC_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_ORG_ADMIN_NAME))
+                                        {
+                                            <li id="@PageNameBackendEnum.MEMBER_MANAGE.GetEnumStringValue()" class="layout">
+                                                <a href="@Url.Action("Index", "Members", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.MEMBER_MANAGE">
+                                                    <i class="fa fa-file-text-o icon">
+                                                        <b class="bg-info"></b>
+                                                    </i>
+                                                    <span>@BizPortal.Resources.Global.MEMBER_MANAGE</span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_OPDC_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_MODULATOR_NAME))
+                                        {
+                                            <li id="@PageNameBackendEnum.ARTICLE.GetEnumStringValue()" class="layout">
+                                                <a href="@Url.Action("Index", "Article", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.ARTICLE">
+                                                    <i class="fa fa-file-text-o icon">
+                                                        <b class="bg-info"></b>
+                                                    </i>
+                                                    <span>@BizPortal.Resources.Global.ARTICLE</span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_OPDC_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_ORG_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_ORG_AGENT_NAME) || User.IsInRole(ConfigurationValues.ROLES_OPDC_AGENT_NAME))
+                                        {
+                                            <li id="@PageNameBackendEnum.APPS.GetEnumStringValue()" class="has-child">
+                                                <a href="#" title="@BizPortal.Resources.Global.APPS">
+                                                    <i class="fa fa-tasks icon">
+                                                        <b class="bg-success"></b>
+                                                    </i>
+                                                    <span class="pull-right">
+                                                        <i class="fa fa-angle-down text"></i>
+                                                    </span>
+                                                    <span>@BizPortal.Resources.Global.APPS</span>
+                                                </a>
+                                                <ul class="nav lt">
+                                                    @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                                                    {
+                                                        <li id="@PageNameBackendEnum.APP_MANAGE.GetEnumStringValue()" class="">
+                                                            <a href="@Url.Action("Index", "Applications", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.APPS_MANAGE">
+                                                                <i class="fa fa-angle-right"></i>
+                                                                <span>
+                                                                    @BizPortal.Resources.Global.APPS_MANAGE
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    <li id="@PageNameBackendEnum.APP_STATUS.GetEnumStringValue()" class="">
+                                                        <a href="@Url.Action("Index", "ApplicationStatus", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.APPLICATION_REQUEST">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                @BizPortal.Resources.Global.APPLICATION_REQUEST
+                                                            </span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        }
+
+                                        @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME))
+                                        {
+                                            <li id="@PageNameBackendEnum.REPORT.GetEnumStringValue()" class="has-child">
+                                                <a href="#" title="@BizPortal.Resources.Global.REPORT">
+                                                    <i class="fa fa-file-text-o icon">
+                                                        <b class="bg-info"></b>
+                                                    </i>
+                                                    <span class="pull-right">
+                                                        <i class="fa fa-angle-down text"></i>
+                                                    </span>
+                                                    <span>@BizPortal.Resources.Global.REPORT</span>
+                                                </a>
+                                                <ul class="nav lt">
+                                                    <li id="@PageNameBackendEnum.REPORT_OVERALL.GetEnumStringValue()" class="">
+                                                        <a href="@Url.Action("ReportOverall", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.REPORT_OVERALL">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                @BizPortal.Resources.Global.REPORT_OVERALL
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="@PageNameBackendEnum.REPORT_STATISTICS.GetEnumStringValue()" class="">
+                                                        <a href="@Url.Action("ReportStatistics", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.REPORT_STATISTICS">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                @BizPortal.Resources.Global.REPORT_STATISTICS
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="@PageNameBackendEnum.REPORT_ON_PROCESS_REQUEST.GetEnumStringValue()" class="">
+                                                        <a href="@Url.Action("ReportOnProcessRequest", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.REPORT_ON_PROCESS_REQUEST">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                @BizPortal.Resources.Global.REPORT_ON_PROCESS_REQUEST
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="@PageNameBackendEnum.EXPORT_REPORT.GetEnumStringValue()" class="">
+                                                        <!--Export_to_CSV-->
+                                                        <a href="@Url.Action("DownloadExcel", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="Export to CSV">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                Export to Excel
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="@PageNameBackendEnum.REPORT_ROLE.GetEnumStringValue()" class="">
+                                                        <!--Export_to_CSV-->
+                                                        <a href="@Url.Action("ReportRole", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="รายงานสิทธิ์ Admin">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                รายงานสิทธิ์ Admin
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+                                        else if (User.IsInRole(ConfigurationValues.ROLES_OPDC_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_ORG_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_ORG_AGENT_NAME) || User.IsInRole(ConfigurationValues.ROLES_OPDC_AGENT_NAME))
+                                        {
+                                            <li id="@PageNameBackendEnum.REPORT.GetEnumStringValue()" class="has-child">
+                                                <a href="#" title="@BizPortal.Resources.Global.REPORT">
+                                                    <i class="fa fa-file-text-o icon">
+                                                        <b class="bg-info"></b>
+                                                    </i>
+                                                    <span class="pull-right">
+                                                        <i class="fa fa-angle-down text"></i>
+                                                    </span>
+                                                    <span>@BizPortal.Resources.Global.REPORT</span>
+                                                </a>
+                                                <ul class="nav lt">
+                                                    <li id="@PageNameBackendEnum.REPORT_OVERALL.GetEnumStringValue()" class="">
+                                                        <a href="@Url.Action("ReportOverall", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.REPORT_OVERALL">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                @BizPortal.Resources.Global.REPORT_OVERALL
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="@PageNameBackendEnum.REPORT_STATISTICS.GetEnumStringValue()" class="">
+                                                        <a href="@Url.Action("ReportStatistics", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.REPORT_STATISTICS">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                @BizPortal.Resources.Global.REPORT_STATISTICS
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="@PageNameBackendEnum.REPORT_ON_PROCESS_REQUEST.GetEnumStringValue()" class="">
+                                                        <a href="@Url.Action("ReportOnProcessRequest", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="@BizPortal.Resources.Global.REPORT_ON_PROCESS_REQUEST">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                @BizPortal.Resources.Global.REPORT_ON_PROCESS_REQUEST
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li id="@PageNameBackendEnum.EXPORT_REPORT.GetEnumStringValue()" class="">
+                                                        <!--Export_to_CSV-->
+                                                        <a href="@Url.Action("DownloadExcel", "Report", new { area = "Manage", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" title="Export to CSV">
+                                                            <i class="fa fa-angle-right"></i>
+                                                            <span>
+                                                                Export to Excel
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                                <!-- / nav -->
+                            </div>
+                        </section>
+                        <footer class="footer lt hidden-xs b-t b-light">
+                            <a href="#nav" data-toggle="class:nav-xs" onclick="menuToggle()" class="pull-right btn btn-sm btn-default btn-icon active">
+                                <i class="fa fa-angle-left text"></i>
+                                <i class="fa fa-angle-right text-active"></i>
+                            </a>
+                        </footer>
+                    </section>
+                </aside>
+                <!-- /.aside -->
+
+                <section id="content">
+
+                    @*<nav class="nav-primary hidden-xs breadcrumb no-border no-radius b-b b-light">
+                            Bread Crum
+                        </nav>*@
+                    <section class="vbox">
+                        <header class="header bg-white b-b b-light">
+                            @*<p>@RenderSection("ContentHeader", required: false)</p>*@
+                            @RenderSection("ContentHeader", required: false)
+                        </header>
+                        <section class="scrollable">
+                            <section id="notify" style="position:relative; z-index:999;"></section>
+                            <section class="hbox stretch">
+                                <aside>
+                                    <section class="vbox">
+                                        <section class="scrollable " style="border-top:1px solid #cfcfcf;">
+                                            <section class="panel panel-default wrapper">
+                                                @if (!string.IsNullOrEmpty(ViewBag.MaintenanceNotification))
+                                                {
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="alert alert-danger" style="font-size: 1.1em;">
+                                                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                                                <i class="fa fa-ban-circle"></i>
+                                                                @*<strong>ประกาศ</strong> ระบบสารสนเทศศูนย์กลางข้อมูลคู่มือสำหรับประชาชน จะปิดระบบเพื่อดำเนินการปรับปรุงประสิทธิภาพ <br />
+                                                                    ระหว่าง <strong>@Html.Raw(ViewBag.MaintenanceNotification)</strong><br />
+                                                                    ขอให้ผู้ใช้งานบันทึกข้อมูลและออกจากระบบก่อนช่วงเวลาดังกล่าว เพื่อป้องกันการสูญหายของข้อมูล*@
+                                                                <strong>ประกาศ</strong> ระบบสารสนเทศจะปิดการนำเข้าข้อมูล เพื่อสรุปผลและรายงานต่อคณะรัฐมนตรี ในวันที่ 16 ก.ย. 59 เวลา 00:01- 23:59 น.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @RenderBody()
+                                            </section>
+                                        </section>
+                                    </section>
+                                </aside>
+                            </section>
+                        </section>
+                    </section>
+                    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen, open" data-target="#nav,html"></a>
+                </section>
+                <aside class="bg-light lter b-l aside-md hide" id="notes">
+                    <div class="wrapper">Notification</div>
+                </aside>
+            </section>
+        </section>
+    </section>
+
+    <!-- loader -->
+    <div id="loading-panel" class="mikepad-panel" style="display:none">
+        <div class="mikepad-loading">
+            <div class="binding"></div>
+            <div class="pad">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+                <div class="line line4"></div>
+            </div>
+            <div class="text">
+                กำลังประมวลผล...
+            </div>
+        </div>
+    </div>
+
+    <!-- message Modal -->
+    <div class="modal fade" id="messageModal" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="messageModalTitle"></h4>
+                </div>
+                <div id="messageModalBody" class="modal-body">
+                </div>
+                <div id="messageModalFooter" class="modal-footer ">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @* fake fields are a workaround for chrome autofill getting the wrong fields. Remark: http://stackoverflow.com/questions/15738259/disabling-chrome-autofill *@
+    <input style="display:none" type="text" name="fakeusernameremembered" />
+    <input style="display:none" type="password" name="fakepasswordremembered" />
+
+    @* workaround for ajax request antiForgery  http://stackoverflow.com/questions/4074199/jquery-ajax-calls-and-the-html-antiforgerytoken *@
+    <form id="__AjaxAntiForgeryForm" action="#" method="post"> @Html.AntiForgeryToken()</form>
+
+
+    @Scripts.Render("~/Bundles/Backend/Scripts/Base")
+
+
+    <script type="text/javascript">
+            var fieldExist = function (data) {
+
+                if (typeof data === 'string') {
+                    if (data.trim().length > 0) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+            var addAntiForgeryToken = function (data) {
+                data.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
+                return data;
+            };
+
+            $(function () {
+                calert('@BizPortalSetting.ALERT_COOKIE');
+                cmodal('@BizPortalSetting.MODAL_COOKIE');
+                activeMenu("@ViewBag.ActiveMenu");
+            });
+
+            function showLoadingPanel(isShow) {
+                if (isShow) {
+                    $("#loading-panel").show();
+                }
+                else {
+                    $("#loading-panel").hide();
+                }
+            }
+
+            function isNullOrEmpty(item) {
+                if (item == null || item == "" || item == undefined) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            function initSelect2Validator() {
+                // select2 jqury validation
+                if (typeof $.validator === "undefined") {
+                    console.error("jquery validator not define");
+                }
+                else {
+                    /* custom jquery validator */
+                    $.validator.setDefaults({
+                        ignore: [],
+                        highlight: function (element, errorClass, validClass) {
+                            if ($(element).attr('select2-input') != undefined) {
+                                delay(function () {
+                                    $('#s2id_' + element.id + " ul.select2-choices").addClass(errorClass).removeClass(validClass); // for multiple select
+                                    $('#s2id_' + element.id).addClass(errorClass).removeClass(validClass); // for normal dropdownlist
+                                    $('#s2id_' + $(element).attr('select2-link')).addClass(errorClass).removeClass(validClass); // for link
+                                }, 100);
+                            }
+                            else {
+                                $(element).addClass(errorClass).removeClass(validClass);
+                            }
+                        },
+                        unhighlight: function (element, errorClass, validClass) {
+                            if ($(element).attr('select2-input') != undefined) {
+                                delay(function () {
+                                    $('#s2id_' + element.id + " ul.select2-choices").removeClass(errorClass).addClass(validClass); // for multiple select
+                                    $('#s2id_' + element.id).removeClass(errorClass).addClass(validClass); // for normal dropdownlist
+                                    $('#s2id_' + $(element).attr('select2-link')).removeClass(errorClass).addClass(validClass);  // for link
+
+                                }, 100);
+                            }
+                            else {
+                                $(element).removeClass(errorClass).addClass(validClass);
+                            }
+                        }
+                    });
+
+                    /* create onchange validation */
+                    $('select[select2-input="true"], input[select2-input="true"], input[date-input="true"]').change(function (e) {
+                        $(this).valid();
+                    });
+                }
+            }
+
+            function resetValidateMessage() {
+                $('.field-validation-error span, .field-validation-valid span').remove();
+            }
+
+    </script>
+    @RenderSection("PageScripts", required: false)
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <!-- Modal -->
+    <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="loader"></div>
+                    <div class="loader-txt">
+                        <p id="loader-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var isReportLoaderShow = false;
+        $("#loaderModal").modal({
+            backdrop: "static", //remove ability to close modal with click
+            keyboard: false, //remove option to close with keyboard
+            show: false //Display loader!
+        });
+
+        function showReportLoading(isReportLoaderShow, text = "") {
+            var loaderIsShown = ($("#loaderModal").data('bs.modal') || {}).isShown;
+            if (loaderIsShown && isReportLoaderShow) {
+                $("#loader-text").text(text);
+                return;
+            }
+
+            if (isReportLoaderShow) {
+                $("#loader-text").text(text);
+                $("#loaderModal").modal("show");
+            }
+            else {
+                setTimeout(function () {
+                    $("#loader-text").text("");
+                    $("#loaderModal").modal("hide");
+                }, 1000);
+            }
+        }
+    </script>
+
+</body>
+</html>

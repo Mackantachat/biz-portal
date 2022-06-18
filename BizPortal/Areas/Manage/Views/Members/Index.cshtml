@@ -1,0 +1,263 @@
+﻿
+@{
+    ViewBag.Title = BizPortal.Resources.Member.HEADING_MEMBER;
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+@section ContentHeader
+{
+    <i class="fa fa-users fa fa-2x "></i>
+    <h4 class="m-t-xs inline padder">@BizPortal.Resources.Member.HEADING_MEMBER</h4>
+}
+
+<div class="header bg-white clearfix">
+    <div class="row m-t-sm">
+        <form id="frmSearchMember">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.Label(BizPortal.Resources.Global.SEARCH_KEYWORD + " : ")
+                        @Html.TextBox("SearchMemberKeyword", "", new { @id = "SearchMemberKeyword", @class = "form-control", @placeholder = BizPortal.Resources.Member.PLH_SEARCH_KEYWORD, @autocomplete = "off" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                @if (ViewBag.IsAdmin || ViewBag.IsOPDCAdmin)
+                {
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label(BizPortal.Resources.Global.ORGANIZATION + " : ")
+                            @Html.DropDownList("OrgCode", (SelectList)ViewBag.OrganizationList, new { @style = "width: 100%;", placeholder = BizPortal.Resources.Member.PLH_ORG_SEARCH })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @Html.Label(BizPortal.Resources.Member.LABEL_ROLE + " : ")
+                            @Html.DropDownList("Role", (SelectList)ViewBag.RolesList, new { @style = "width: 100%;", placeholder = BizPortal.Resources.Member.PLH_ROLE_SEARCH })
+                        </div>
+                    </div>
+                }
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label(BizPortal.Resources.Member.USERTYPE + " : ")
+                        @Html.DropDownList("UserType", (SelectList)ViewBag.UserTypeList, new { @style = "width: 100%;", placeholder = BizPortal.Resources.Member.PLH_USERTYPE_SEARCH })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button type="submit" id="btnSearch" class="btn btn-s-md btn-primary"><i class="fa fa-search"></i> @BizPortal.Resources.Global.SEARCH</button>
+                        <button type="button" id="btnReset" class="btn btn-s-md"><i class="fa fa-refresh"></i> @BizPortal.Resources.Global.RESET</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="table-responsive clearfix">
+    <table id="memberDataTables" class="table table-striped table-bordered" data-ride="datatables">
+        <thead>
+            <tr>
+            <tr role="row" class="heading">
+                <th width="2%">
+                    #
+                </th>
+                <th width="15%"> @BizPortal.Resources.Member.USERNAME </th>
+                <th width="15%"> @BizPortal.Resources.Member.FULLNAME </th>
+                <th> @BizPortal.Resources.Member.USERTYPE </th>
+                <th> @BizPortal.Resources.Member.ROLES </th>
+                <th> @BizPortal.Resources.Global.ORGANIZATION </th>
+                <th width="10%"> @BizPortal.Resources.Global.TABLE_ACTION_HEADING </th>
+            </tr>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+
+        var member = function () {
+            var isAdmin = @Html.Raw(Json.Encode(ViewBag.IsAdmin));
+            var isOPDCAdmin = @Html.Raw(Json.Encode(ViewBag.IsOPDCAdmin));
+            var isOrgAdmin = @Html.Raw(Json.Encode(ViewBag.IsOrgAdmin));
+            var adminRoleId = @Html.Raw(Json.Encode(ViewBag.AdminRoleId));
+            var opdcAdminRoleId = @Html.Raw(Json.Encode(ViewBag.OPDCAdminRoleId));
+            var orgAdminRoleId = @Html.Raw(Json.Encode(ViewBag.OrgAdminRoleId));
+
+            var $form = $('#frmSearchMember');
+            var handleSearchForm = function () {
+                if ($form.length == 0) {
+                    return;
+                }
+
+                $('select', $form).each(function () {
+                    var $this = $(this);
+                    $this.select2({
+                        allowClear: true,
+                        placeholder: $this.attr('placeholder')
+                    });
+                });
+
+                var $memberDataTables = $('#memberDataTables').DataTable({
+                    serverSide: true,
+                    searching: false,
+                    indexColoumn: true,
+                    language: { "url": "@Url.Content("~/Scripts/datatables/languages/i18n.Thai.json")" },
+                    ajax: {
+                        url: '@Url.Content("~/Api/Members/Search")',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: function (params) {
+                            // Provided as a function to manipulate the data DataTables sends to the server.
+                            if ($('#SearchMemberKeyword', $form).val()) {
+                                params.SearchKeyword = $('#SearchMemberKeyword', $form).val();
+                            }
+
+                            if ($('#OrgCode', $form).val()) {
+                                params.OrgCode = $('#OrgCode', $form).val();
+                            }
+
+                            if ($('#Role', $form).val()) {
+                                params.Role = $('#Role', $form).val();
+                            }
+
+                            if ($('#UserType', $form).val()) {
+                                params.UserType = $('#UserType', $form).val();
+                            }
+
+                            return JSON.stringify(params);
+                        }
+                    },
+                    columns: [
+                        { data: 'Id', sortable: false },
+                        {
+                            data: 'Username',
+                            render: function (data, type, row) {
+
+                                var str = '';
+                                if (!row.LockedOutStatus) {
+                                    str = '<i class="fa fa-circle text-success"></i> ';
+                                }
+                                else {
+                                    str = '<i class="fa fa-circle text-danger"></i> ';
+                                }
+
+                                return str + data;
+                            }
+                        },
+                        { data: 'FullName' },
+                        {
+                            data: 'UserType',
+                            render: function (data, type, row) {
+                                if (data == 'JuristicPerson') {
+                                    return 'นิติบุคคล';
+                                }
+                                else if (data == 'Citizen') {
+                                    return 'ประชาชน';
+                                }
+                                else if (data == 'Foreigner') {
+                                    return 'ชาวต่างชาติ';
+                                }
+                                else if (data == 'GovernmentAgent') {
+                                    return 'เจ้าหน้าที่รัฐ';
+                                }
+                                else {
+                                    return 'N/A';
+                                }
+                            }
+                        },
+                        {
+                            data: 'RoleDescriptions', sortable: false,
+                            render: function (data, type, row) {
+                                var roles = [];
+                                if (data) {
+                                    for (var i = 0; i < data.length; i++) {
+                                        var role = data[i];
+                                        roles.push(role);
+                                    }
+                                    return roles.join(', ');
+                                }
+                                return '';
+                            }
+                        },
+                        {
+                            data: 'OrgName',
+                            render: function (data, type, row) {
+                                if (data) {
+                                    return data;
+                                }
+                                else {
+                                    return 'N/A';
+                                }
+                            }
+                        },
+                        {
+                            data: 'Id',
+                            render: function (data, type, row) {
+                                var isCanEdit = false;
+
+                                if (isAdmin) {
+                                    isCanEdit = true;
+                                }
+                                else if (isOPDCAdmin) {
+                                    var isPrivilegeRoles = $(row.RoleIds).filter(function (i, e) {
+                                        return e == adminRoleId || e == opdcAdminRoleId;
+                                    });
+
+                                    isCanEdit = isPrivilegeRoles.length == 0;
+                                }
+                                else if (isOrgAdmin) {
+                                    var isPrivilegeRoles = $(row.RoleIds).filter(function (i, e) {
+                                        return e == adminRoleId || e == opdcAdminRoleId || e == orgAdminRoleId;
+                                    });
+
+                                    isCanEdit = isPrivilegeRoles.length == 0;
+                                }
+
+                                if (isCanEdit) {
+                                    return '<a href="@Url.Action("Edit", "Members", new { Area="Manage", Language= ViewBag.CurrentLang })/' + data + '" class="btn btn-xs btn-warning">@Html.Raw(BizPortal.Resources.Global.BTN_EDIT)</a>';
+                                }
+                                else {
+                                    return '<a href="#" class="btn btn-xs btn-warning" alt="ไม่สามารถแก้ไขได้" disabled>@Html.Raw(BizPortal.Resources.Global.BTN_EDIT)</a>';
+                                }
+                            },
+                            sortable: false,
+                            'class': 'text-center'
+                        }
+                    ],
+                    order: [[1, 'asc']],
+                });
+
+                $form.submit(function (e) {
+                    e.preventDefault();
+                    $memberDataTables.ajax.reload();
+                });
+
+                $('#btnReset', $form).click(function () {
+                    $('#OrgCode,#Role,#UserType').val(null).trigger('change');
+                    $('#SearchMemberKeyword').val('');
+                    $memberDataTables.ajax.reload();
+                });
+            };
+
+            return {
+                init: function () {
+                    handleSearchForm();
+                }
+            }
+        }();
+
+        $(document).ready(function () {
+            member.init();
+        });
+    </script>
+}

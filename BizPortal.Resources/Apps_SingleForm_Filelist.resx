@@ -1,0 +1,3271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AUTHORIZATION_AUTHORIZEE_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZEE_HOUSEHOLD_REGISTRATION_COPY_NO_CON" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZEE_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZEE_HOUSEHOLD_REGISTRATION_COPY_NO_CON" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="AUTHORIZATION_AUTHORIZEE_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="AUTHORIZATION_AUTHORIZEE_ID_CARD_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="AUTHORIZATION_AUTHORIZEE_ID_CARD_TAX_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="CERTIFICATION_OF_COMPANY_REGISTRATION_COPY" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="COMMITTEE_IDENTITY" xml:space="preserve">
+    <value>หลักฐานแสดงตัวของกรรมการผู้มีอำนาจลงนาม</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZOR_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZOR_HOUSEHOLD_REGISTRATION_COPY_NO_CON" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZOR_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZOR_HOUSEHOLD_REGISTRATION_COPY_NO_CON" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZE_DOC" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZE_DOC_NO_CON" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZOR_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZOR_ID_CARD_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="CANCEL_CITIZEN_AUTHORIZATION_AUTHORIZOR_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_BKK_FOOD_HEALTH_CERT" xml:space="preserve">
+    <value>หนังสือรับรองผ่านการอบรมหลักสูตรสุขาภิบาลอาหารของกรุงเทพมหานคร: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="CITIZEN_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="CITIZEN_HOUSEHOLD_REGISTRATION_COPY_RADIO_CANCEL" xml:space="preserve">
+    <value>ทะเบียนบ้าน: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="DIRECT_MARKETING_CITIZEN_HOUSEHOLD" xml:space="preserve">
+    <value>ทะเบียนบ้าน: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="CITIZEN_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์การตรวจโรคติดต่อ 9 โรค: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="CITIZEN_PHOTO" xml:space="preserve">
+    <value>รูปถ่ายหน้าตรงครึ่งตัวไม่สวมหมวก ไม่สวมแว่นตาดำ ขนาด 1*1.5 นิ้ว: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="COMMERCE_REGISTRATION_DOC" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="COMMERCE_REGISTRATION_DOC_CITIZEN" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="COMMERCIAL_REGISTRATION" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="RADIO_COMMERCE_REGISTRATION_NO_CON" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="RADIO_STORE_COMMERCE_REGISTRATION_NO_CON" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="COMPANY_PHOTOS" xml:space="preserve">
+    <value>ภาพถ่ายของสถานประกอบการ</value>
+  </data>
+  <data name="CONTRACT_AGREEMENT" xml:space="preserve">
+    <value>สัญญาจะซื้อ จะขาย</value>
+  </data>
+  <data name="DANGER_FOOD_ACTIVITY_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาต หนังสือรับรองการแจ้ง หรือเอกสารหลักฐานจากหน่วยงานที่เกี่ยวข้องให้ประกอบกิจการนั้นได้ เช่น ใบอนุญาตของกรมธุรกิจพลังงาน ใบอนุญาตให้จัดตั้งสถานบริการ ใบรับรองมาตรฐาน เป็นต้น</value>
+  </data>
+  <data name="DANGER_FOOD_MACHINE_LOCATION" xml:space="preserve">
+    <value>แผนที่แสดงพื้นที่ประกอบการ และที่ตั้งของเครื่องจักร (หากมีหลายชั้นให้แสดงทุกชั้น) รวมทั้งที่พักของผู้ปฏิบ้ติงานในร้าน</value>
+  </data>
+  <data name="DANGER_FOOD_LICENSE_BAD_HEALTH" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ (แบบ อภ.2)</value>
+  </data>
+  <data name="DANGER_FOOD_INSTEAD_LICENSE_BAD_HEALTH" xml:space="preserve">
+    <value>ใบแทนใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ</value>
+  </data>
+  <data name="DANGER_FOOD_OTHER_DOC" xml:space="preserve">
+    <value>รายการวิเคราะห์ผลกระทบสิ่งแวดล้อม (EIA) หรือ รายงานการประเมินผลกระทบต่อสุขภาพ (HIA)</value>
+  </data>
+  <data name="DANGER_FOOD_PRODUCTION_FLOWCHART" xml:space="preserve">
+    <value>ผังภาพรวมกระบวนการผลิต</value>
+  </data>
+  <data name="DIRECT_MARKETING_PERMIT" xml:space="preserve">
+    <value>เอกสารการรับรองรายการเอกสารและหลักฐานการประกอบกิจการตลาดแบบตรง</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_PERMIT" xml:space="preserve">
+    <value>เอกสารการรับรองรายการสินค้าหรือบริการสำหรับการขออนุญาตประกอบกิจการตลาดแบบตรง</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_PRODUCER_PERMIT" xml:space="preserve">
+    <value>เอกสารหลักฐานแสดงที่มาของ สินค้าหรือบริการ เช่น ใบอนุญาตนำ/สั่งเข้ามาในราชอาณาจักร ใบแจ้งเครื่องสำอางควบคุม/ควบคุมพิเศษ ใบอนุญาตผลิตสินค้า</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_TABLE" xml:space="preserve">
+    <value>ตารางรายการสินค้าที่แสดงรายละเอียดสินค้า ราคาสินค้า</value>
+  </data>
+  <data name="DIRECT_MARKETING_SELL_METHOD_DETAIL" xml:space="preserve">
+    <value>คําอธิบายวิธีการขายสินค้าหรือบริการ</value>
+  </data>
+  <data name="DIRECT_MARKETING_SELL_METHOD_DETAIL_NOTE" xml:space="preserve">
+    <value>ควรมีข้อมูลสำคัญดังไปต่อนี้ วิธีสั่งจองหรือสั่งสินค้า วิธีการชำระเงิน วิธีการส่งสินค้า</value>
+  </data>
+  <data name="DIRECT_MARKETING_PERMIT_BEHAVIOR" xml:space="preserve">
+    <value>เอกสารการรับรองพฤติกรรมการประกอบธุรกิจเอกสารการรับรองพฤติกรรมการประกอบธุรกิจสำหรับขออนุญาตประกอบกิจการตลาดแบบตรง</value>
+  </data>
+  <data name="DIRECT_SELL_BENEFIT_PLAN" xml:space="preserve">
+    <value>แผนการจ่ายผลตอบแทนพร้อมคำอธิบาย</value>
+  </data>
+  <data name="DIRECT_SELL_BENEFIT_PLAN_NOTE" xml:space="preserve">
+    <value>โดยเอกสารควรมีข้อมูลสำคัญดังต่อไปนี้ ค่าสมัครสมาชิก รอบการคิดคำนวณ รอบการจ่าย อัตราส่วนคะแนนต่อราคาสินค้า รายการโบนัสและเปอเซ็นต์การจ่ายผลตอบแทน</value>
+  </data>
+  <data name="DIRECT_SELL_BUSINESS_PLAN" xml:space="preserve">
+    <value>คู่มือการดําเนินธุรกิจ</value>
+  </data>
+  <data name="DIRECT_SELL_EXAMPLE_AGENT_DOC" xml:space="preserve">
+    <value>ตัวอย่างเอกสารการซื้อขาย (ออกให้ผู้จำหน่ายอิสระ)</value>
+  </data>
+  <data name="DIRECT_SELL_EXAMPLE_AGENT_DOC_NOTE" xml:space="preserve">
+    <value>โดยเอกสารควรมีข้อมูลสำคัญดังไปต่อนี้ ชื่อ ที่อยู่ เบอร์โทรศัพท์ ผู้ซื้อและผู้ขาย ชื่อบริษัท รหัสและรายการสินค้า ราคาขายปลีก ราคาสมาชิก ส่วนลด คะแนน ผู้ส่งและผู้รับสินค้า พร้อมวันที่ส่งมอบ</value>
+  </data>
+  <data name="DIRECT_SELL_EXAMPLE_BUYER_DOC" xml:space="preserve">
+    <value>ตัวอย่างเอกสารการซื้อขาย (ออกให้ผู้บริโภค)</value>
+  </data>
+  <data name="DIRECT_SELL_EXAMPLE_BUYER_DOC_NOTE" xml:space="preserve">
+    <value>เอกสารควรมีข้อมูลสำคัญดังต่อไปนี้ ชื่อ ที่อยู่ เบอร์โทรศัพท์ ผู้ซื้อและผู้ขาย ชื่อบริษัท รายการสินค้า ราคา ผู้ส่งและผู้รับสินค้า พร้อมวันที่ส่งมอบ เอกสารการซื้อขาย เงื่อนไขการเลิกสัญญาหรือคืนสินค้า เป็นต้น</value>
+  </data>
+  <data name="DIRECT_SELL_FREE_AGENT_CARD_EXAMPLE" xml:space="preserve">
+    <value>ตัวอย่างบัตรประจําตัวผู้จําหน่ายอิสระ หรือตัวแทนขายตรง</value>
+  </data>
+  <data name="DIRECT_SELL_FREE_AGENT_CONTRACT_EXAMPLE" xml:space="preserve">
+    <value>ตัวอย่างสัญญาระหว่างผู้จำหน่ายอิสระกับผู้ประกอบธุรกิจขายตรง</value>
+  </data>
+  <data name="DIRECT_SELL_FREE_AGENT_CONTRACT_EXAMPLE_NOTE" xml:space="preserve">
+    <value>โดยในสัญญาจะต้องประกอบไปด้วยข้อความตามเอกสารตัวอย่างทั้ง 4 ข้อ ทั้งนี้ผู้ประกอบการสามารเพิ่มเติมข้อความอื่นใดได้ตามความเหมาะสม</value>
+  </data>
+  <data name="DIRECT_SELL_HQ_PHOTO" xml:space="preserve">
+    <value>ภาพถ่ายสถานที่ตั้งสำนักงานแห่งใหญ่ ทั้งภายในอาคารและภายนอกอาคารที่เห็นเลขที่ตั้งของอาคาร</value>
+  </data>
+  <data name="DIRECT_SELL_INVOICE_EXAMPLE" xml:space="preserve">
+    <value>ตัวอย่างเอกสารการซื้อขาย เช่น ใบเสร็จรับเงินแบบ Electronic  หรือ ใบกำกับภาษีอย่างย่อ</value>
+  </data>
+  <data name="DIRECT_SELL_MEMBER_CARD_EXAMPLE" xml:space="preserve">
+    <value>ตัวอย่างใบสมัครสมาชิก</value>
+  </data>
+  <data name="DIRECT_SELL_PERMIT" xml:space="preserve">
+    <value>เอกสารการรับรองรายการเอกสารและหลักฐานการประกอบธุรกิจขายตรง</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_LABEL" xml:space="preserve">
+    <value>รูปสินค้าและฉลากของสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_LABEL_NOTE" xml:space="preserve">
+    <value>โดยรูปถ่ายจะต้องประกอบไปด้วย รูปสินค้าและรูปฉลากที่แสดงให้เห็นข้อความบนฉลากทุกด้าน เช่นหากขายขวดน้ำ ต้องส่งรูปขวดน้ำ พร้อมรูปฉลากที่เห็นข้อความบนฉลากทุกด้าน</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_PERMIT" xml:space="preserve">
+    <value>เอกสารหลักฐานการได้รับอนุญาตผู้ผลิตสินค้าหรือเจ้าของบริการให้เป็นผู้แทนจำหน่าย</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_PERMIT_ADD_BTN" xml:space="preserve">
+    <value>เอกสารหลักฐานการได้รับอนุญาตผู้ผลิตสินค้าหรือเจ้าของบริการให้เป็นผู้แทนจำหน่าย</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_PERMIT_NOTE" xml:space="preserve">
+    <value>เช่น หนังสือแต่งตั้งตัวแทนจำหน่าย หนังสือสัญญาว่าจ้างผลิตสินค้า เป็นต้น</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_PRODUCER_PERMIT" xml:space="preserve">
+    <value>เอกสารหลักฐานแสดงที่มาของสินค้าหรือบริการ ที่ออกโดยหน่วยงานรัฐของผู้ผลิตหรือผู้นำเข้าสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_PRODUCER_PERMIT_NOTE" xml:space="preserve">
+    <value>เช่น กรณีเป็นผู้นำเข้าอาหาร ให้แนบใบอนุญาตนำ/สั่งอาหารเข้ามาในราชอาณาจักร (แบบ อ.7) กรณีเป็นผู้ผลิตอาหารให้แนบใบอนุญาตผลิตอาหาร (แบบ อ.2) เป็นต้น</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_PRODUCER_PERMIT__OPTIONAL" xml:space="preserve">
+    <value>เอกสารหลักฐานแสดงที่มาของสินค้าหรือบริการ ที่ออกโดยหน่วยงานรัฐของผู้ผลิตหรือผู้นำเข้าสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_TABLE" xml:space="preserve">
+    <value>ตารางรายการสินค้าที่แสดงรายละเอียดสินค้า ราคาสินค้า</value>
+  </data>
+  <data name="ECOMMERCE_REGISTRATION_DOC" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์อิเล็กทรอนิกส์</value>
+  </data>
+  <data name="FREE_DOC" xml:space="preserve">
+    <value>เอกสารเพิ่มเติม</value>
+  </data>
+  <data name="FREE_DOC__INPUT_FILE_TYPE" xml:space="preserve">
+    <value>คำอธิบาย</value>
+  </data>
+  <data name="HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้านที่ขอใช้บริการ</value>
+  </data>
+  <data name="DISABILITY_EMPLOYEE_IDENTITY" xml:space="preserve">
+    <value>สำเนาบัตรประจำตัวคนพิการ/เอกสารรับรองความพิการจากกระทรวงการพัฒนาสังคมและความมั่นคงของมนุษย์</value>
+  </data>
+  <data name="FOREIGNER_EMPLOYEE_IDENTITY" xml:space="preserve">
+    <value>สำเนาเอกสารแสดงตัวของคนต่างด้าว</value>
+  </data>
+  <data name="HOUSE_OWNER_DOCUMENT_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้านที่ขอใช้บริการ ซึ่งระบุชื่อผู้ขอใช้บริการเป็นเจ้าของบ้าน หรือหนังสือให้หมายเลขบ้าน หรือสัญญาซื้อขายที่ดินพร้อมสิ่งปลูกสร้าง</value>
+  </data>
+  <data name="HOUSE_OWNER_REG_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้านที่ขอใช้บริการ ซึ่งระบุชื่อผู้ขอใช้บริการเป็นเจ้าของบ้าน</value>
+  </data>
+  <data name="ID_CARD_COPY" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="ID_CARD_COPY_NON_PASSPORT" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน : บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="ID_CARD_COPY_RADIO_CANCEL" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="INDIVIDUAL_TAXPAYER_COPY" xml:space="preserve">
+    <value>หลักฐานการจ่ายภาษีบุคคลธรรมดา (ภ.ง.ด. ๙๐)</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_CONTROL_DOC" xml:space="preserve">
+    <value>หลักฐานเกี่ยวกับการใช้อาคารตามกฏหมายว่าด้วยการควบคุมอาคาร เช่น ใบอนุญาตก่อสร้าง (อ.1) หรือใบรับรองการเปิดใช้อาคาร</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_CONTROL_DOC_A6" xml:space="preserve">
+    <value>ใบรับรองการก่อสร้างอาคาร (อ.6)</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_OWNER_DOC" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้เป็นร้าน/สถานประกอบการ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_OWNER_DOC_OPTIONAL_NO_CON" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้เป็นร้าน/สถานประกอบการ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้อาคารสถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_OWNER_JURISTIC_REGISTRATION" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_OWNER_JURISTIC_REGISTRATION_OPTIONAL" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_RENTER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้เช่า</value>
+  </data>
+  <data name="DIRECT_SELL_REGISTER_REFERENCE" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: อาคารที่ใช้เป็นที่ตั้งร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="INFORMATION_STORE_HOUSEHOLD_REGISTRATION_COPY_OPTIONAL" xml:space="preserve">
+    <value>ทะเบียนบ้าน: อาคารที่ใช้เป็นที่ตั้งร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="INFORMATION_STORE_HOUSEHOLD_REGISTRATION_COPY_HOTEL" xml:space="preserve">
+    <value>ทะเบียนบ้าน: อาคารที่ใช้เป็นที่ตั้งโรงแรม</value>
+  </data>
+  <data name="INFORMATION_STORE_HQ_MAP" xml:space="preserve">
+    <value>แผนที่ตั้งสำนักงานแห่งใหญ่</value>
+  </data>
+  <data name="INFORMATION_STORE_LAW_AREA_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือแจ้งการใช้หรือเปลี่ยนแปลงการใช้ประโยชน์ที่ดินตามกฎหมายว่าด้วยการผังเมือง</value>
+  </data>
+  <data name="INFORMATION_STORE_LAW_AREA_USAGE_AGREEMENT_OPTIONAL" xml:space="preserve">
+    <value>หนังสือแจ้งการใช้หรือเปลี่ยนแปลงการใช้ประโยชน์ที่ดินตามกฎหมายว่าด้วยการผังเมือง</value>
+  </data>
+  <data name="INFORMATION_STORE_MAP" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="INFORMATION_STORE_RENTAL_CONTRACT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="INFORMATION_STORE_DETAIL_DATE_BUILDING" xml:space="preserve">
+    <value>เอกสารแสดงรายละเอียดปีที่ทำการก่อสร้างอาคาร</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZEE_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZEE_ID_CARD_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZEE_ID_CARD_NO_CON_HOTEL" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZEE_ID_CARD_TAX_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZEE_ID_CARD_SINGLE" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZEE_ID_CARD_MENDATORY" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZE_DOC" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZE_DOC_NO_CON" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZE_DOC_ANIMAL_FOOD" xml:space="preserve">
+    <value>หนังสือมอบอำนาจและแต่งตั้งผู้ดำเนินกิจการสำหรับการขออนุญาตขายอาหารสัตว์ควบคุมเฉพาะ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZOR_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZOR_ID_CARD_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_BKK_FOOD_HEALTH_CERT" xml:space="preserve">
+    <value>หนังสือรับรองผ่านการอบรมหลักสูตรสุขาภิบาลอาหารของกรุงเทพมหานคร: กรรมการผู้มีอำนาจลงนามฯ ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_BKK_FOOD_HEALTH_CERT_NO_CON" xml:space="preserve">
+    <value>หนังสือรับรองผ่านการอบรมหลักสูตรสุขาภิบาลอาหารของกรุงเทพมหานคร: กรรมการผู้มีอำนาจลงนามฯ</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_CHANGE_NAME_DOCUMENT" xml:space="preserve">
+    <value>ใบสำคัญการเปลี่ยนชื่อ</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_FOREIGNER_BUSINESS_CERT" xml:space="preserve">
+    <value>หนังสือรับรองการประกอบธุรกิจของคนต่างด้าว</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_FOREIGNER_BUSINESS_CERT_CON" xml:space="preserve">
+    <value>หนังสือรับรองการประกอบธุรกิจของคนต่างด้าว: กรรมการผู้มีอำนาจลงนามฯ ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_FOREIGNER_BUSINESS_CERT_HOTEL_EDIT" xml:space="preserve">
+    <value>หนังสือรับรองการประกอบธุรกิจของคนต่างด้าว</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_HOUSEHOLD_REGISTRATION_COPY_NO_CON" xml:space="preserve">
+    <value>ทะเบียนบ้าน: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_ID_CARD_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_ID_CARD_OPIONAL_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_MARRIAGE_DOCUMENT" xml:space="preserve">
+    <value>ทะเบียนสมรส</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์การตรวจโรคติดต่อ 9 โรค: กรรมการผู้มีอำนาจลงนามฯ ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_PHOTO" xml:space="preserve">
+    <value>รูปถ่ายหน้าตรงครึ่งตัวไม่สวมหมวก ไม่สวมแว่นตาดำ ขนาด 1*1.5 นิ้ว: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_WORKPERMIT" xml:space="preserve">
+    <value>หนังสือขออนุญาตทำงาน: กรรมการผู้มีอำนาจลงนาม (work permit): ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_MEMORANDUM" xml:space="preserve">
+    <value>หนังสือบริคณห์สนธิ</value>
+  </data>
+  <data name="JURISTIC_SHARE_HOLDER_LIST" xml:space="preserve">
+    <value>บัญชีรายชื่อผู้ถือหุ้น</value>
+  </data>
+  <data name="JURISTIC_REGISTRATION_TYPE_PARTNERSHIP" xml:space="preserve">
+    <value>รายการจดทะเบียนจัดตั้งห้างหุ้นส่วนสามัญจดทะเบียนหรือห้างหุ้นส่วนจำกัด (หส.2)</value>
+  </data>
+  <data name="LANDWITHBUILDING_CONTRACT_AGREEMENT" xml:space="preserve">
+    <value>สัญญาซื้อขายที่ดินพร้อมสิ่งปลูกสร้าง</value>
+  </data>
+  <data name="LANDWITHBUILDING_RENTAL_AGREEMENT" xml:space="preserve">
+    <value>สัญญาเช่าซื้อที่ดินพร้อมอาคารหรือที่มีสิ่งก่อสร้างถาวรตั้งอยู่</value>
+  </data>
+  <data name="RENTAL_AGREEMENT_COPY" xml:space="preserve">
+    <value>สัญญาเช่าหรือสัญญาเช่าซื้อที่ดินพร้อมอาคารหรือที่มีสิ่งก่อสร้างถาวรตั้งอยู่</value>
+  </data>
+  <data name="RENTAL_AGREEMENT_DOCUMENT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="SELL_ALCOHOL_STORE_LAYOUT" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในร้าน (สำหรับการขอใบอนุญาตจำหน่ายสุรา)</value>
+  </data>
+  <data name="SELL_ANIMAL_FOOD_OPERATOR_ID_CARD_COPY" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง : ผู้ได้รับการแต่งตั้งให้เป็นผู้ดำเนินกิจการขายอาหารสัตว์ควบคุมเฉพาะ</value>
+  </data>
+  <data name="SELL_ANIMAL_FOOD_OPERATOR_WORKPERMIT" xml:space="preserve">
+    <value>หนังสือขออนุญาตทำงาน: ผู้ได้รับการแต่งตั้งให้เป็นผู้ดำเนินกิจการขายอาหารสัตว์ควบคุมเฉพาะ (work permit)</value>
+  </data>
+  <data name="SELL_ANIMAL_FOOD_STORE_PHOTO" xml:space="preserve">
+    <value>รูปถ่ายสถานที่ขายอาหารสัตว์ควบคุมเฉพาะ</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_WORKER_CERTIFICATE" xml:space="preserve">
+    <value>หนังสือรับรองผ่านการอบรมหลักสูตรสุขาภิบาลอาหารของกรุงเทพมหานคร: ผู้สัมผัสอาหาร ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_HEALTH_CONTROL_CHART" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงสุขลักษณะภายในสถานประกอบการ</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_BKK_FOOD_HEALTH_CERT" xml:space="preserve">
+    <value>หนังสือรับรองผ่านการอบรมหลักสูตรสุขาภิบาลอาหารของกรุงเทพมหานคร: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_ID_CARD" xml:space="preserve">
+    <value>บัตรประชาชน: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์การตรวจโรคติดต่อ 9 โรค: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_PHOTO" xml:space="preserve">
+    <value>รูปถ่ายหน้าตรงครึ่งตัวไม่สวมหมวก ไม่สวมแว่นตาดำ ขนาด 1*1.5 นิ้ว: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_MEDICAL_CERTIFICATE" xml:space="preserve">
+    <value>ใบรับรองแพทย์การตรวจโรคติดต่อ 9 โรค: ผู้สัมผัสอาหาร ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_POLUTION_CONTROL_CHART" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงการป้องกันมลพิษ</value>
+  </data>
+  <data name="SELL_FOOD_PRODUCTION_FLOW_CHART" xml:space="preserve">
+    <value>แผนผังกระบวนการผลิต</value>
+  </data>
+  <data name="SELL_FOOD_PRODUCTION_PROCESS_CHART" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงกระบวนการผลิต</value>
+  </data>
+  <data name="SELL_FOOD_SEFTY_CONTROL_CHART" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงระบบความปลอดภัยในการทำงาน</value>
+  </data>
+  <data name="SELL_FOOD_STORE_LAYOUT" xml:space="preserve">
+    <value>แผนผังบริเวณภายในและภายนอกของร้าน </value>
+  </data>
+  <data name="SELL_FOOD_STORE_PHOTO" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงกระบวนการผลิต การป้องกันมลพิษ สุขลักษณะภายในสถานประกอบการ ระบบความปลอดภัยในการทำงาน เป็นต้น</value>
+  </data>
+  <data name="SELL_FOOD_WASTE_CONTROL_CHART" xml:space="preserve">
+    <value>แผนผังการป้องกันมลพิษ</value>
+  </data>
+  <data name="SELL_TOBACCO_STORE_LAYOUT" xml:space="preserve">
+    <value>องค์กรปกครองส่วนท้องถิ่น (อปท.)</value>
+  </data>
+  <data name="SELL_TOBACCO_STORE_MAP" xml:space="preserve">
+    <value>แผนที่สังเขป ซึ่งแสดงบริเวณและสถานที่ใกล้เคียง</value>
+  </data>
+  <data name="VAT_REGISTRATION" xml:space="preserve">
+    <value>ใบทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.20) หรือแบบคำขอจดทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.01) หรือแบบแจ้งการเปลี่ยนแปลงทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.09)</value>
+  </data>
+  <data name="VAT_REGISTRATION_CARD" xml:space="preserve">
+    <value>ใบทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.20)</value>
+  </data>
+  <data name="CITIZEN_RENAME_MARRIAGE_DOC" xml:space="preserve">
+    <value>ใบสำคัญการเปลี่ยนชื่อ/ทะเบียนสมรส</value>
+  </data>
+  <data name="CITIZEN_RENAME_MARRIAGE_DOC_NOTE" xml:space="preserve">
+    <value>กรณีมีการเปลี่ยนชื่อตัว/ชื่อสกุล/คำนำหน้านาม</value>
+  </data>
+  <data name="DANGER_FOOD_EIA_HIA" xml:space="preserve">
+    <value>รายการวิเคราะห์ผลกระทบสิ่งแวดล้อม (EIA) หรือ รายงานการประเมินผลกระทบต่อสุขภาพ (HIA)</value>
+  </data>
+  <data name="DANGER_FOOD_EIA_HIA_NOTE" xml:space="preserve">
+    <value>เฉพาะกิจการที่กฎหมายกำหนด</value>
+  </data>
+  <data name="DANGER_FOOD_ENV_QUALITY" xml:space="preserve">
+    <value>ผลการตรวจวัดทางสิ่งแวดล้อม ด้านคุณภาพอากาศ เสียง น้ำเสีย เชื้อโรค</value>
+  </data>
+  <data name="DANGER_FOOD_ENV_QUALITY_NOTE" xml:space="preserve">
+    <value>ตามความเสี่ยง/ผลกระทบด้านสิ่งแวดล้อมในแต่ละประเภทการประกอบการ</value>
+  </data>
+  <data name="DANGER_FOOD_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์</value>
+  </data>
+  <data name="DANGER_ALL_STORE_PHOTO" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงกระบวนการผลิต</value>
+  </data>
+  <data name="DANGER_ALL_STORE_PHOTO_OPTIONAL" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงกระบวนการผลิต</value>
+  </data>
+  <data name="DANGER_ALL_POLUTION_CONTROL_CHART" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงการป้องกันมลพิษ</value>
+  </data>
+  <data name="DANGER_ALL_HEALTH_CONTROL_CHART" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงสุขลักษณะภายในสถานประกอบการ</value>
+  </data>
+  <data name="DANGER_ALL_SEFTY_CONTROL_CHART" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงระบบความปลอดภัยในการทำงาน</value>
+  </data>
+  <data name="DANGER_FOOD_MEDICAL_CERT_NOTE" xml:space="preserve">
+    <value>กรณีประกอบกิจการกลุ่มอาหาร เครื่องดื่ม น้ำดื่มหรือกิจการกลุ่มบริการที่มีการสัมผัสหรือใกล้ชิดกับผู้รับบริการ</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_DOC_CHENGE" xml:space="preserve">
+    <value>ขต1/1 เปลี่ยนแปลงเอกสารหลักฐาน ขายตรง</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_RECEIVE_PERMIT" xml:space="preserve">
+    <value>เอกสารหลักฐานการได้รับอนุญาตจากเจ้าของหรือหน่วยงานที่เกี่ยวข้องหรือ ตามที่กฎหมายกําหนดในสินค้าหรือบริการเช่น หนังสือแต่งตั้งตัวแทนจำหน่าย หนังสือสัญญาว่าจ้างผลิตสินค้า </value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_TABLE_BENEFIT" xml:space="preserve">
+    <value>ตารางสรุปเปรียบเทียบแผนการจ่ายผลตอบแทนฉบับเดิม/ฉบับใหม่</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_TABLE_BENEFIT_BOOK" xml:space="preserve">
+    <value>แผนการจ่ายผลตอบแทน/คู่มือ (ฉบับเดิมและฉบับใหม่)</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_TYPE" xml:space="preserve">
+    <value>เอกสารเกี่ยวกับสินค้า จำแนกตามประเภทของสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT__DOC_CHENGE_BENEFIT" xml:space="preserve">
+    <value>ขต1/1 เปลี่ยนแปลงแผนการจ่ายผลตอบแทน</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT__DOC_CHENGE_TYPE" xml:space="preserve">
+    <value>ขต1/1 เปลี่ยนแปลงประเภท/ชนิดสินค้าบริการ ขายตรง</value>
+  </data>
+  <data name="DIRECT_SELL_PERMIT_BEHAVIOR" xml:space="preserve">
+    <value>เอกสารการรับรองพฤติกรรมการประกอบธุรกิจสำหรับขออนุญาตประกอบกิจการขายตรง</value>
+  </data>
+  <data name="DIRECT_SELL_BOOK_DOC" xml:space="preserve">
+    <value>เอกสารหลักฐานการได้รับอนุญาตจากเจ้าของหรือหน่วยงานที่เกี่ยวข้องหรือ ตามที่กฎหมายกําหนดในสินค้าหรือบริการ เช่น หนังสือแต่งตั้งตัวแทนจำหน่าย หนังสือสัญญาว่าจ้างผลิตสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_EXAMPLE_DOC" xml:space="preserve">
+    <value>ตัวอย่างเอกสารการซื้อขาย เช่น ใบเสร็จรับเงินแบบ Electronic หรือ ใบกำกับภาษีอย่างย่อ</value>
+  </data>
+  <data name="JURISTIC_OBJECTIVE" xml:space="preserve">
+    <value>วัตถุประสงค์นิติบุคคล</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT__DOC_CHENGE_TYPE" xml:space="preserve">
+    <value>ขต2/1 เปลี่ยนแปลงประเภท/ชนิดสินค้าบริการ ตลาดแบบตรง</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_DOC_CHENGE" xml:space="preserve">
+    <value>ขต2/1 เปลี่ยนแปลงเอกสารหลักฐาน ตลาดแบบตรง</value>
+  </data>
+  <data name="DIRECT_MARKETING_PRODUCT_DOC_CHENGE_SELL_TYPE" xml:space="preserve">
+    <value>ขต2/1 เปลี่ยนแปลงวิธีการขายสินค้าบริการ ตลาดแบบตรง</value>
+  </data>
+  <data name="BUILDING_AUTHORIZATION_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้คุมงาน</value>
+  </data>
+  <data name="BUILDING_CAL_PLAN" xml:space="preserve">
+    <value>รายการคำนวณโครงสร้าง</value>
+  </data>
+  <data name="BUILDING_CONTROL_DOC" xml:space="preserve">
+    <value>หนังสือแสดงความยินยอมของผู้ควบคุมงาน (แบบ น.4)</value>
+  </data>
+  <data name="BUILDING_CONTROL_PERMIT_DOC" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพฯ ของผู้คุมงาน</value>
+  </data>
+  <data name="BUILDING_DESIGNER_DOC" xml:space="preserve">
+    <value>หนังสือรับรองของผู้ออกแบบอาคาร หรือผู้ออกแบบและคำนวณอาคาร ซึ่งจะต้องเป็นผู้ได้รับใบอนุญาตให้เป็นผู้ประกอบวิชาชีพสถาปัตยกรรมควบคุมหรือวิชาชีพวิศวกรรมควบคุม</value>
+  </data>
+  <data name="BUILDING_USING_AREA" xml:space="preserve">
+    <value>หนังสือแจ้งการใช้ประโยชน์ที่ดินหรือเปลี่ยนแปลงการใช้ประโยชน์ที่ดินในเขตกรุงเทพมหานคร (แบบ ผมร.1)</value>
+  </data>
+  <data name="BUILDING_USING_AREA_CONFIRM_AGENT" xml:space="preserve">
+    <value>หนังสือแจ้งการใช้ประโยชน์ที่ดินหรือเปลี่ยนแปลงการใช้ประโยชน์ที่ดินในเขตกรุงเทพมหานครที่ได้รับการรับรองจากเจ้าหน้าที่แล้ว</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_DOC" xml:space="preserve">
+    <value>หนังสือรับรองให้ปลูกสร้างอาคารในที่ดิน</value>
+  </data>
+  <data name="INFORMATION_STORE_HOUSEHOLD_RENT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_OWENED_AREA_DOC" xml:space="preserve">
+    <value>เอกสารแสดงกรรมสิทธ์ หรือสิทธิครอบครองที่ดินที่ใช้ตั้งสถานประกอบการ</value>
+  </data>
+  <data name="INFORMATION_STORE_PLAN_DOC" xml:space="preserve">
+    <value>แผนผังบริเวณ แบบแปลน รายการประกอบแบบแปลน</value>
+  </data>
+  <data name="DOC_FINGERPRINT" xml:space="preserve">
+    <value>แบบพิมพ์ลายนิ้วมือ: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="DOC_HOTEL_AGREEMENT" xml:space="preserve">
+    <value>ใบอนุญาตตั้งสถานบริการตามกฎหมายว่าด้วยสถานบริการ (แบบสบ.2)</value>
+  </data>
+  <data name="DOC_HOTEL_EDIT_AGREEMENT" xml:space="preserve">
+    <value>ใบอนุญาตตั้งสถานบริการตามกฎหมายว่าด้วยสถานบริการ (แบบสบ.2)</value>
+  </data>
+  <data name="DOC_HOTEL_CHANGE_BUILDING" xml:space="preserve">
+    <value>ใบอนุญาตเปลี่ยนการใช้อาคาร (อ.5) หรือใบรับรองการก่อสร้างอาคาร ดัดแปลงอาคาร หรือเคลื่อนย้ายอาคาร (อ.6)</value>
+  </data>
+  <data name="DOC_HOTEL_ENVIRONMENT" xml:space="preserve">
+    <value>หนังสือรับรองการจัดทำรายงานการวิเคราะผลกระทบสิ่งแวดล้อมของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม</value>
+  </data>
+  <data name="DOC_HOTEL_JURISTIC" xml:space="preserve">
+    <value>หนังสือแต่งตั้งผู้แทนนิติบุคคล</value>
+  </data>
+  <data name="DOC_HOTEL_LAW" xml:space="preserve">
+    <value>เอกสารแสดงว่าอาคารที่ใช้ในการประกอบธุรกิจโรงแรมได้รับอนุญาตให้ใช้อาคารตามกฎหมายว่าด้วยการควบคุมอาหาร หรือใบรับรองการตรวจสภาพอาคารโดยผู้ซึ่งได้รับอนุญาตประกอบวิชาชีพวิศวกรรมควบคุม หรือสถาปัตยกรรมควบคุมตามกฎหมายว่าด้วยวิศวกร</value>
+  </data>
+  <data name="DOC_HOTEL_CERTIFICATE" xml:space="preserve">
+    <value>ใบรับรองการตรวจสอบอาคาร (แบบ ร.1)</value>
+  </data>
+  <data name="DOC_HOTEL_DIAGRAM" xml:space="preserve">
+    <value>แบบแปลน แผนผัง พร้อมรายการประกอบแบบแปลนแผนผังอาคารโรงแรมที่วิศวกร และสถาปนิกผู้ได้รับอนุญาตตามกฎหมายลงชื่อรับรอง</value>
+  </data>
+  <data name="DOC_HOTEL_CERTIFICATE_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตประกอบธุรกิจโรงแรม</value>
+  </data>
+  <data name="DOC_HOTEL_DOCUMENT_CHANGE" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="DOC_HOTEL_JURISTIC_RENEW" xml:space="preserve">
+    <value>หนังสือแต่งตั้งผู้แทนนิติบุคคล</value>
+  </data>
+  <data name="DOC_COMMERCIAL_ALLOW" xml:space="preserve">
+    <value>หนังสืออนุญาต หรือ หนังสือรับรองให้เป็นผู้จำหน่ายหรือให้เช่าสินค้าดังกล่าวจากเจ้าของลิขสิทธิ์ของสินค้าที่ขายหรือให้เช่า หรือ ใบเสร็จรับเงินตามประมวลรัษฎากร หรือหลักฐานการซื้อขายจากต่างประเทศ</value>
+  </data>
+  <data name="DOC_COMMERCIAL_BUDGET" xml:space="preserve">
+    <value>หนังสือชี้แจงข้อเท็จจริงของแหล่งที่มาของเงินทุน และหลักฐานแสดงจำนวนเงินทุน (บันทึกถ้อยคำ)</value>
+  </data>
+  <data name="DOC_COMMERCIAL_STATEMENT" xml:space="preserve">
+    <value>หลักฐานหรือหนังสือชี้แจงการประกอบอาชีพหุ้นส่วนจำพวกไม่จำกัดความรับผิด หรือกรรมการผู้มีอำนาจของห้างหุ้นส่วนหรือบริษัท แล้วแต่กรณี (Statement)</value>
+  </data>
+  <data name="DOC_COMMERCIAL_EDIT_STATEMENT" xml:space="preserve">
+    <value>หลักฐานหรือหนังสือชี้แจงการประกอบอาชีพหุ้นส่วนจำพวกไม่จำกัดความรับผิด หรือกรรมการผู้มีอำนาจของห้างหุ้นส่วนหรือบริษัท แล้วแต่กรณี (Statement)</value>
+  </data>
+  <data name="DOC_COMMERCIAL_AREA_PICTURE" xml:space="preserve">
+    <value>รูปภาพแสดงชัดเจนในการแบ่งสัดส่วนพื้นที่</value>
+  </data>
+  <data name="DOC_COMMERCIAL_CHILD" xml:space="preserve">
+    <value>หนังสือยินยอมผู้เยาว์จากผู้ปกครอง</value>
+  </data>
+  <data name="DOC_COMMITTEE_FINGERPRINT" xml:space="preserve">
+    <value>แบบพิมพ์ลายนิ้วมือ: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: ({0} {1} {2})</value>
+  </data>
+  <data name="DOC_COMMITTEE_FINGERPRINT_NO_CON" xml:space="preserve">
+    <value>แบบพิมพ์ลายนิ้วมือ: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="DOC_COMMERCIAL_WEBSITE" xml:space="preserve">
+    <value>เอกสารแนบ แบบ ทพ. (รายละเอียดเว็บไซต์)</value>
+  </data>
+  <data name="DOC_COMMERCIAL_DOC_TRADE" xml:space="preserve">
+    <value>หนังสือหรือสัญญาจัดตั้งห้างหุ้นส่วนสามัญหรือคณะบุคคลหรือกิจการร่วมค้า</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_DOCUMENT_TRADE" xml:space="preserve">
+    <value>หนังสือหรือสัญญาจัดตั้งห้างหุ้นส่วนสามัญหรือคณะบุคคลหรือกิจการร่วมค้า</value>
+  </data>
+  <data name="APP_TAX_ALLOW_DOC" xml:space="preserve">
+    <value>ใบอนุญาตติดตั้งป้าย หรือใบเสร็จรับเงินจากร้านทำป้าย (ถ้ามี)</value>
+  </data>
+  <data name="APP_TAX_DOC" xml:space="preserve">
+    <value>หลักฐานการประกอบกิจการ เช่น สำเนาใบทะเบียนการค้า สำเนาทะเบียนพาณิชย์ สำเนาทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="APP_TAX_PICTURE" xml:space="preserve">
+    <value>รูปถ่ายของป้ายใหม่ พร้อมแจ้งรายละเอียดขนาดเบื้องต้น</value>
+  </data>
+  <data name="APP_TAX_BILL" xml:space="preserve">
+    <value>ใบเสร็จภาษีป้ายครั้งสุดท้าย</value>
+  </data>
+  <data name="APP_TAX_DETAIL" xml:space="preserve">
+    <value>แบบแสดงรายการภาษีป้าย (ภ.ป.1)</value>
+  </data>
+  <data name="APP_TAX_CANCEL" xml:space="preserve">
+    <value>คำร้องแจ้งปลดป้าย-เปลี่ยนแปลงป้าย</value>
+  </data>
+  <data name="MED_ANIMAL_ALLOW_DOC" xml:space="preserve">
+    <value>หนังสือแสดงความจำนงเป็นผู้ประกอบวิชาชีพการสัตวแพทย์ในสถานพยาบาลสัตว์ทุกคน (แบบ 1/4)</value>
+  </data>
+  <data name="MED_ANIMAL_CITIZEN_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="MED_ANIMAL_COPY_ID" xml:space="preserve">
+    <value>สำเนาวุฒิบัตร หรืออนุมัติบัตร จากสัตวแพทยสภา</value>
+  </data>
+  <data name="MED_ANIMAL_DOC" xml:space="preserve">
+    <value>หนังสืออนุมัติแผนงานจัดตั้งสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="MED_ANIMAL_JURISTIC_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: ({0} {1} {2})</value>
+  </data>
+  <data name="MED_ANIMAL_LICENSE" xml:space="preserve">
+    <value>ใบประกอบวิชาชีพการสัตวแพทย์</value>
+  </data>
+  <data name="MED_ANIMAL_LICENSE_RENEW" xml:space="preserve">
+    <value>ใบประกอบวิชาชีพการสัตวแพทย์</value>
+  </data>
+  <data name="MED_ANIMAL_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาตให้เป็นผู้ดำเนินสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="MED_ANIMAL_PICTURE" xml:space="preserve">
+    <value>รูปถ่ายภาพสี ขนาด 4x5 เซนติเมตร: ผู้ยื่นขอจัดตั้ง</value>
+  </data>
+  <data name="MED_ANIMAL_TRASH" xml:space="preserve">
+    <value>เอกสารหรือหนังสือตอบรับจากหน่วยงานที่กำจัดขยะติดเชื้อ หรือจากหน่วยงานที่เกี่ยวข้อง</value>
+  </data>
+  <data name="MED_ANIMAL_WORK_TIME" xml:space="preserve">
+    <value>รายชื่อ เวลาทำการ ของผู้ประกอบวิชาชีพการสัตวแพทย์ทุกคน (แบบ 1/3)</value>
+  </data>
+  <data name="MED_ANIMAL_RENEW_DOC" xml:space="preserve">
+    <value>ใบอนุญาตให้ตั้งสถานพยาบาลสัตว์ สส.3 (ฉบับเดิม)</value>
+  </data>
+  <data name="MED_ANIMAL_EDIT_DOC" xml:space="preserve">
+    <value>ใบอนุญาตให้ตั้งสถานพยาบาลสัตว์ สส.3 (ฉบับเดิม)</value>
+  </data>
+  <data name="MED_ANIMAL_RENEW_LICENSE_DOC" xml:space="preserve">
+    <value>ใบอนุญาตให้ดำเนินการสถานพยาบาลสัตว์ สส.4 (ฉบับเดิม)</value>
+  </data>
+  <data name="MED_ANIMAL_EDIT_LICENSE_DOC" xml:space="preserve">
+    <value>ใบอนุญาตให้ดำเนินการสถานพยาบาลสัตว์ สส.4 (ฉบับเดิม)</value>
+  </data>
+  <data name="MED_ANIMAL_RENEW_BOOK_DOC" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาลสัตว์ (สส.7)</value>
+  </data>
+  <data name="MED_ANIMAL_EDIT_BOOK_DOC" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาลสัตว์ (สส.7)</value>
+  </data>
+  <data name="MED_ANIMAL_CANCEL_DOC" xml:space="preserve">
+    <value>แบบรายงานสถิติสัตว์ป่วยของสถานพยาบาล (แบบ สสป.)</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_USAGE_AGREEMENT_HOTEL" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_TAX_BOARD_PICTURE" xml:space="preserve">
+    <value>รูปถ่ายของป้าย พร้อมแจ้งรายละเอียดขนาดเบื้องต้น</value>
+  </data>
+  <data name="ANIMAL_COPY_DOC" xml:space="preserve">
+    <value>สำเนาวุฒิบัตร หรืออนุมัติบัตร จากสัตวแพทยสภา</value>
+  </data>
+  <data name="ANIMAL_DATE" xml:space="preserve">
+    <value>"วัน-เวลา ปฏิบัติงานในสถานพยาบาลสัตว์ของผู้ดำเนินการสถานพยาบาลสัตว์ (แบบ 2/1)"</value>
+  </data>
+  <data name="ANIMAL_LICENSE_DOC" xml:space="preserve">
+    <value>ใบประกอบวิชาชีพการสัตวแพทย์</value>
+  </data>
+  <data name="ANIMAL_PICTURE" xml:space="preserve">
+    <value>รูปถ่ายภาพสี ขนาด 4x5 เซนติเมตร: ผู้ขอดำเนินการ</value>
+  </data>
+  <data name="CITIZEN_RENAME_DOC" xml:space="preserve">
+    <value>ใบสำคัญการเปลี่ยนชื่อ</value>
+  </data>
+  <data name="INFORMATION_STORE_PERMIT_OPEN_BUILD" xml:space="preserve">
+    <value>หลักฐานเกี่ยวกับการใช้อาคารตามกฎหมายว่าด้วยการควบคุมอาคาร เช่น ใบอนุญาตก่อสร้าง (อ.1) หรือใบรับรองการเปิดใช้อาคาร </value>
+  </data>
+  <data name="INFORMATION_STORE_PERMIT_OPEN_BUILD_OPTIONAL" xml:space="preserve">
+    <value>หลักฐานเกี่ยวกับการใช้อาคารตามกฎหมายว่าด้วยการควบคุมอาคาร เช่น ใบอนุญาตก่อสร้าง (อ.1) หรือใบรับรองการเปิดใช้อาคาร </value>
+  </data>
+  <data name="ANIMAL_BUILD_STORE_MAP" xml:space="preserve">
+    <value>แผนที่แสดงที่ตั้งของสถานพยาบาลสัตว์และสิ่งปลูกสร้างในบริเวณใกล้เคียง (แบบ1/1)</value>
+  </data>
+  <data name="ANIMAL_BUILD_STORE_PLAN_AREA" xml:space="preserve">
+    <value>แผนผังแสดงการแบ่งพื้นที่ภายในบริเวณสถานพยาบาลสัตว์ (แบบ 1/2)</value>
+  </data>
+  <data name="ANIMAL_BUILD_STORE_BUILDING_PLAN" xml:space="preserve">
+    <value>แบบแปลน ประกอบด้วย แบบร่างทางสถาปัตยกรรม ผังหลัก และผังบริเวณของสถานพยาบาลสัตว์ที่จะก่อสร้าง/ปรับปรุงอาคาร</value>
+  </data>
+  <data name="ANIMAL_BUILD_STORE_NATURAL_DOC" xml:space="preserve">
+    <value>สําเนาหนังสือขอความเห็นชอบรายงานผลกระทบสิ่งแวดล้อม ตามกฎหมายว่าด้วยการส่งเสริมและรักษาคุณภาพสิ่งแวดล้อม</value>
+  </data>
+  <data name="APP_ANIMAL_BUILD_LICENSE" xml:space="preserve">
+    <value>หนังสืออนุมัติแผนงานการจัดตั้งสถานพยาบาลสัตว์ (ใบเก่า)</value>
+  </data>
+  <data name="APP_ANIMAL_BUILD_PHOTO_STORE" xml:space="preserve">
+    <value>รูปถ่ายสถานประกอบการที่กำลังก่อสร้าง</value>
+  </data>
+  <data name="HEALTH_CARE_MANAGER_BOOK" xml:space="preserve">
+    <value>แบบแสดงความจำนงเป็นผู้ดำเนินการในสถานประกอบการเพื่อสุขภาพ</value>
+  </data>
+  <data name="HEALTH_CARE_MANAGER_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตเป็นผู้ดำเนินการในสถานประกอบการเพื่อสุขภาพ (สพส.9)</value>
+  </data>
+  <data name="HEALTH_CARE_MANAGE_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้ดำเนินการ</value>
+  </data>
+  <data name="HEALTH_CARE_SERVICE_PROVIDER_CERTIFICATE" xml:space="preserve">
+    <value>ใบรับรองการขึ้นทะเบียนเป็นผู้ให้บริการในสถานประกอบการเพื่อสุขภาพ (สพส.14)</value>
+  </data>
+  <data name="HEALTH_CARE_SERVICE_PROVIDER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้ให้บริการ</value>
+  </data>
+  <data name="HEALTH_CARE_SERVICE_PROVIDER_LIST" xml:space="preserve">
+    <value>บัญชีรายชื่อผู้ให้บริการ</value>
+  </data>
+  <data name="HEALTH_CARE_SHOP_DIAGRAM" xml:space="preserve">
+    <value>แบบแปลน หรือแผนผังสถานประกอบการ</value>
+  </data>
+  <data name="KARAOKE_STORE_PLAN" xml:space="preserve">
+    <value>แบบแปลนแผนผังแสดงพื้นที่ให้บริการของสถานประกอบการ</value>
+  </data>
+  <data name="MOIVE_STORE_PICTURE" xml:space="preserve">
+    <value>รูปถ่ายร้าน: รูปถ่ายภายในสถานประกอบการ ให้เห็นลักษณะการประกอบกิจการหรือการให้บริการ</value>
+  </data>
+  <data name="MOIVE_STORE_PICTURE_LONG_RANGE" xml:space="preserve">
+    <value>รูปถ่ายร้าน: รูปถ่ายยระยะไกลภายนอกอาคาร ให้เห็นที่ตั้งสถานประกอบการ</value>
+  </data>
+  <data name="MOIVE_STORE_PICTURE_SHORT_RANGE" xml:space="preserve">
+    <value>รูปถ่ายร้าน: รูปถ่ายระยะใกล้ ให้เห็นด้านหน้าสถานประกอบการ</value>
+  </data>
+  <data name="CITIZEN_COMMITTEE_PICTURE" xml:space="preserve">
+    <value>รูปถ่ายครึ่งตัว หน้าตรง ไม่สวมหมวก ขนาด 4x6 ซม.: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="APP_RADIO_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตให้ค้าซึ่งเครื่องวิทยุคมนาคม</value>
+  </data>
+  <data name="APP_RADIO_OTHER" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="APP_RADIO_REPAIR_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตให้ค้าเพื่อการซ่อมแซมซึ่งเครื่องวิทยุคมนาคม</value>
+  </data>
+  <data name="APP_RADIO_LICENSE_EDIT" xml:space="preserve">
+    <value>ใบอนุญาตให้ค้าซึ่งเครื่องวิทยุคมนาคม หรือใบอนุญาตให้ค้าเพื่อการซ่อมแซมซึ่งเครื่องวิทยุคมนาคม</value>
+  </data>
+  <data name="APP_RADIO_LICENSE_EDIT_DOC" xml:space="preserve">
+    <value>คำขอใบอนุญาตค้า/ซ่อมแซม/ทำ/นำเข้า/นำออก ซึ่งเครื่องวิทยุคมนาคม หรือเครื่องหมายฯ (แบบ คท.1)</value>
+  </data>
+  <data name="APP_RADIO_LICENSE_CANCEL_DOC" xml:space="preserve">
+    <value>หนังสือยกเลิกใบอนุญาตให้ค้า และค้าเพื่อการซ่อมแซม ซึ่งเครื่องวิทยุคมนาคม (แบบ คท.29)</value>
+  </data>
+  <data name="INFORMATION_STORE_HOUSEHOLD_REGISTRATION_COPY_FOOD" xml:space="preserve">
+    <value>ทะเบียนบ้าน:อาคารที่ตั้งร้าน / สถานประกอบการ</value>
+  </data>
+  <data name="SELL_FOOD_LICENSE_LASTYEAR" xml:space="preserve">
+    <value>หนังสือรับรองการแจ้ง จัดตั้งสถานที่จําหน่ายอาหาร/สถานที่สะสมอาหาร (ปีที่ผ่านมา)</value>
+  </data>
+  <data name="DIRECT_MARKETING_CANCEL_LOCAL_NEWS" xml:space="preserve">
+    <value>ประกาศหนังสือพิมพ์ท้องถิ่น</value>
+  </data>
+  <data name="DIRECT_MARKETING_CANCEL_REASON" xml:space="preserve">
+    <value>หนังสือชี้แจงข้อเท็จจริงของผู้ประกอบธุรกิจที่แสดงเหตุผลในการยกเลิกการประกอบธุรกิจตลาดตรง</value>
+  </data>
+  <data name="DIRECT_MARKETING_CANCEL_RESPOND" xml:space="preserve">
+    <value>หนังสือแสดงเจตนาว่าผู้ประกอบธุรกิจมีความประสงค์ที่จะรับผิดชอบ ในกรณีที่ผู้บริโภคได้รับความเดือดร้อนหรือเสียหายจากการใช้สินค้าหรือบริการของผู้ประกอบธุรกิจหรือในกรณีที่ผู้บริโภคใช้สิทธิเลิกสัญญา/คืนสินค้าหรือบริการ ก่อนการยกเลิกการประกอบธุรกิจ</value>
+  </data>
+  <data name="SELL_FOOD_RENEW_DOC" xml:space="preserve">
+    <value>ใบอนุญาตจัดตั้งสถานที่จําหน่ายอาหารหรือสถานที่สะสมอาหาร</value>
+  </data>
+  <data name="DIRECT_SELL_CANCEL_LOCAL_NEWS" xml:space="preserve">
+    <value>ประกาศหนังสือพิมพ์ท้องถิ่น</value>
+  </data>
+  <data name="DIRECT_SELL_CANCEL_REASON" xml:space="preserve">
+    <value>หนังสือชี้แจงข้อเท็จจริงของผู้ประกอบธุรกิจที่แสดงเหตุผลในการยกเลิกการประกอบธุรกิจขายตรง</value>
+  </data>
+  <data name="DIRECT_SELL_CANCEL_RESPOND" xml:space="preserve">
+    <value>หนังสือแสดงเจตนาว่าผู้ประกอบธุรกิจมีความประสงค์ที่จะรับผิดชอบ ในกรณีที่ผู้บริโภคได้รับความเดือดร้อนหรือเสียหายจากการใช้สินค้าหรือบริการของผู้ประกอบธุรกิจหรือในกรณีที่ผู้บริโภคใช้สิทธิเลิกสัญญา/คืนสินค้าหรือบริการ ก่อนการยกเลิกการประกอบธุรกิจ</value>
+  </data>
+  <data name="FORM_CHANGE_PERMISSION" xml:space="preserve">
+    <value>คำขอเปลี่ยนแปลงรายการที่ได้รับอนุญาต (แบบ สส. 10/1)</value>
+  </data>
+  <data name="FORM_CANCEL_ANIMAL_MED" xml:space="preserve">
+    <value>คำขอยกเลิกสถานพยาบาลสัตว์ (แบบ สส. 1-4)</value>
+  </data>
+  <data name="ANIMAL_BUILD_BILL" xml:space="preserve">
+    <value>ใบเสร็จการกำจัดมูลฝอยติดเชื้อ หรือสัญญาจ้างของบริษัทกำจัดขยะ</value>
+  </data>
+  <data name="ANIMAL_BUILD_XRAY_MACHINE" xml:space="preserve">
+    <value>ใบอนุญาตครอบครองเครื่องกำเนิดรังสี หรือ ใบเสร็จการขออนุญาต (ป.ส.๑ค)</value>
+  </data>
+  <data name="ANIMAL_LICENSE_CHANGE_OWNER" xml:space="preserve">
+    <value>คำขอเปลี่ยนผู้ดำเนินการสถานพยาบาลสัตว์ (แบบ สส. 10)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_RENTAL" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_BUILDING_OWNED" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้ตั้งสถานประกอบการ เช่น ใบอนุญาตก่อสร้าง สัญญาซื้อขาย</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_OWNED_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้อาคารสถานที่ </value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_CERTIFICATE_OWNED" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_STORE_MAP" xml:space="preserve">
+    <value>แผนที่ตั้งสำนักงานแห่งใหญ่</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_LOCATION_MAP" xml:space="preserve">
+    <value>แผนที่ตั้งสำนักงานสาขา</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_LOCATION_COMPARE" xml:space="preserve">
+    <value>ตารางเปรียบเทียบที่ตั้งเก่าและใหม่ (ถ้ามี)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_STORE_LOCATION_PICTURE" xml:space="preserve">
+    <value>ภาพถ่ายสถานที่ตั้งสำนักงานใหญ่ ทั้งภายในและภายนอกอาคารที่เห็นเลขที่ตั้งอาคาร</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_PRODUCT_PICTURE" xml:space="preserve">
+    <value>รูปสินค้าและฉลากของสินค้า</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_PRODUCT_PRODUCER_PERMIT_OPTIONAL" xml:space="preserve">
+    <value>เอกสารหลักฐานแสดงที่มาของสินค้าหรือบริการ ที่ออกโดยหน่วยงานรัฐของผู้ผลิตหรือผู้นำเข้าสินค้า</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_REGIS_FOOD_LIST" xml:space="preserve">
+    <value>ใบสำคัญการขึ้นทะเบียนตำรับอาหาร (แบบ อ.18)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_PERMIT_LABEL" xml:space="preserve">
+    <value>คำขออนุญาตใช้ฉลากอาหาร (แบบ สบ.3)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_CERTIFICATE_FOOD" xml:space="preserve">
+    <value>ใบจดทะเบียนอาหาร/แจ้งรายละเอียดอาหาร (แบบ สบ. 5)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_PERMIT_PUBLISH" xml:space="preserve">
+    <value>ใบอนุญาตโฆษณาอาหาร (ใบฆอ.)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COSMETICS" xml:space="preserve">
+    <value>แบบแจ้งการผลิตเพื่อขายหรือนำเข้าเพื่อขายเครื่องสำอางควบคุม (แบบ จ.ค.)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_IMPORT_RECEIPT" xml:space="preserve">
+    <value>ใบรับแจ้งการนำเข้า</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_CER_BOOK_C1" xml:space="preserve">
+    <value>หนังสือรับรองมาตรฐานผลิตภัณฑ์อุตสาหกรรม</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_PRODUCT_RECEIVE_PERMIT" xml:space="preserve">
+    <value>เอกสารหลักฐานการได้รับอนุญาตจากเจ้าของหรือหน่วยงานที่เกี่ยวข้องหรือ ตามที่กฎหมายกําหนดในสินค้าหรือบริการ เช่น หนังสือแต่งตั้งตัวแทนจำหน่าย หนังสือสัญญาว่าจ้างผลิตสินค้า </value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_PRODUCT_TABLE" xml:space="preserve">
+    <value>ตารางรายการสินค้าที่แสดงรายละเอียดสินค้า ราคาสินค้า</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_ELECTRIC_COMMER" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชยอิเล็กทรอนิกส์ (แบบ พค. 0403)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_SELL_DETAIL" xml:space="preserve">
+    <value>คำอธิบายวิธีการขายสินค้าหรือบริการ (ฉบับใหม่)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COMPANY_NAME_COMPARE" xml:space="preserve">
+    <value>ตารางเปรียบเทียบชื่อบริษัทเก่าและใหม่(ถ้ามี)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_JURISTIC2" xml:space="preserve">
+    <value>หนังสือบริคณห์สนธิ</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COMMITTEE1" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล (คนใหม่)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COMMITTEE_OPTIONAL" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COMMITTEE2" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: ({0} {1} {2})</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COMMITTEE1_HOUSEHOLD1" xml:space="preserve">
+    <value>ทะเบียนบ้าน: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COMMITTEE1_HOUSEHOLD2" xml:space="preserve">
+    <value>ทะเบียนบ้าน: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_CERTIFICATION_OLD" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล (ฉบับเดิม)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COMMITTEE_LIST" xml:space="preserve">
+    <value>ตารางเปรียบเทียบรายชื่อกรรมการเก่า-ใหม่ (ถ้ามี)</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_CRIME" xml:space="preserve">
+    <value>หนังสือตรวจสอบประวัติอาชญากรรม ตามมาตรา 38/2</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_CER_BOOK" xml:space="preserve">
+    <value>หนังสือรับรองคุณสมบัติ ตามมาตรา 38/2</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT_COMMITTEE_FOREIGNER" xml:space="preserve">
+    <value>หนังสือรับรองการประกอบธุรกิจของคนต่างด้าว</value>
+  </data>
+  <data name="DIRECT_MARKETING_TEXT_PAYMENT" xml:space="preserve">
+    <value>คำอธิบายวิธีการชำระเงิน</value>
+  </data>
+  <data name="DIRECT_MARKETING_TEXT_TRANSPORT" xml:space="preserve">
+    <value>คำอธิบายวิธีการส่งสินค้า</value>
+  </data>
+  <data name="INFORMATION_STORE_HOUSEHOLD_NO_CON" xml:space="preserve">
+    <value>ทะเบียนบ้านที่แสดงให้เห็นว่าผู้ให้ความยินยอมเป็นเจ้าบ้าน หรือสัญญาเช่าโดยมีผู้ให้ความยินยอมเป็นผู้เช่า หรือเอกสารสิทธิ์อย่างอื่นที่ผู้เป็นเจ้าของกรรมสิทธิ์เป็นผู้ให้ความยินยอม</value>
+  </data>
+  <data name="COMMERCIAL_BOOK_NO_CON" xml:space="preserve">
+    <value>สัญญาหรือข้อตกลงแก้ไขของห้างหุ้นส่วนสามัญ หรือคณะบุคคล หรือกิจการร่วมค้า</value>
+  </data>
+  <data name="COMMERCE_REGISTRATION_DOC_NO_CON" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="COMMERCE_REGISTRATION_CANCEL_DOC_NO_CON" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="COMMERCE_REGISTRATION_DOC_JURISTIC_NO_CON" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="COMMERCE_REGISTRATION_DOC_JURISTIC_CANCEL_NO_CON" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="FORM_COMMERCIAL_REGISTRATION" xml:space="preserve">
+    <value>คำขอจดทะเบียนพาณิชย์ (แบบ ทพ.)</value>
+  </data>
+  <data name="FORM_COMMERCIAL" xml:space="preserve">
+    <value>แบบคำร้อง</value>
+  </data>
+  <data name="COMMERCIAL_OWNER_DEATH_DOC" xml:space="preserve">
+    <value>ใบมรณบัตรของผู้ประกอบพาณิชยกิจ </value>
+  </data>
+  <data name="COMMERCIAL_OWNER_DOC" xml:space="preserve">
+    <value>หลักฐานแสดงความเป็นทายาทของผู้ลงชื่อแทนผู้ประกอบพาณิชยกิจซึ่งถึงแก่กรรม</value>
+  </data>
+  <data name="COMMERCIAL_CANCEL_DOC" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนเลิกของห้างหุ้นส่วนหรือบริษัท</value>
+  </data>
+  <data name="COMMERCIAL_BOOK_CANCEL_DOC" xml:space="preserve">
+    <value>สัญญาหรือข้อตกลงของผู้เป็นหุ้นส่วนทุกคน ให้เลิกห้างหุ้นส่วน คณะบุคคล หรือกิจการร่วมค้า </value>
+  </data>
+  <data name="BUILDING_CONTROL_DOC_EDIT" xml:space="preserve">
+    <value>หนังสือแสดงความยินยอมของผู้ควบคุมงาน (แบบ น.4)</value>
+  </data>
+  <data name="BUILDING_CONTROL_PERMIT_DOC_EDIT" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพฯ ของผู้คุมงาน</value>
+  </data>
+  <data name="BUILDING_CONTROL_CHANGE_TYPE_EDIT" xml:space="preserve">
+    <value>แบบ อ.1 ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร</value>
+  </data>
+  <data name="BUILDING_CONTROL_CANCEL_EDIT" xml:space="preserve">
+    <value>หนังสือแจ้งการบอกเลิกผู้ควบคุมงานของผู้ได้รับใบอนุญาต (แบบ น.5)</value>
+  </data>
+  <data name="BUILDING_CONTROL_CANCEL_MANAGER_EDIT" xml:space="preserve">
+    <value>หนังสือแจ้งการบอกเลิกเป็นผู้ควบคุมงานของผู้ควบคุมงาน (แบบ น.6)</value>
+  </data>
+  <data name="BUILDING_CONTROL_CANCEL_NEW_MANGER_EDIT" xml:space="preserve">
+    <value>หนังสือแสดงความยินยอมของผู้ควบคุมงานคนใหม่ (แบบ น.8)</value>
+  </data>
+  <data name="BUILDING_CONTROL_CANCEL_DOC_EDIT" xml:space="preserve">
+    <value>หนังสือแจ้งการบอกเลิกผู้ควบคุมงานพร้อมกับการส่งมอบหนังสือแสดงความยินยอมของผู้ควบคุมงานคนใหม่ (แบบ น.7)</value>
+  </data>
+  <data name="DOC_APP_HOTEL_BUILDING_MODIFY_CERTIFICATE" xml:space="preserve">
+    <value>ใบรับรองการดัดแปลงอาคาร</value>
+  </data>
+  <data name="DOC_APP_HOTEL_FLOOR_PLAN_BEFORE_AND_AFTER_CHANGE_TYPE" xml:space="preserve">
+    <value>แผนผังรายชั้น (Floor Plan) ก่อนเปลี่ยนประเภทโรงแรม และหลังเปลี่ยนประเภทโรงแรม</value>
+  </data>
+  <data name="DOC_APP_HOTEL_PLAN" xml:space="preserve">
+    <value>แผนผังบริเวณ แบบแปลน รายการประกอบแบบแปลน</value>
+  </data>
+  <data name="DOC_APP_HOTEL_AGREEMENT_OTHER_OWNER_HOTEL_SAME_NAME" xml:space="preserve">
+    <value>หนังสือยินยอมจากผู้ประกอบธุรกิจโรงแรมที่มีชื่อซ้ำหรือพ้องกัน</value>
+  </data>
+  <data name="DOC_APP_HOTEL_OTHER_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: เจ้าของโรงแรมอื่น</value>
+  </data>
+  <data name="DOC_APP_HOTEL_NORMAL_REQUEST_1_3" xml:space="preserve">
+    <value>คำขอ/แจ้งความประสงค์ทั่วไป (แบบ ร.ร.1/3)</value>
+  </data>
+  <data name="DOC_APP_HOTEL_REASON_FOR_OUT_OF_BUSINESS" xml:space="preserve">
+    <value>หลักฐานเอกสารประกอบเหตุผลในการเลิกกิจการธุรกิจโรงแรม เช่น สำเนาสัญญาจะซื้อจะขาย สัญญาเช่า เป็นต้น</value>
+  </data>
+  <data name="DOC_APP_HOTEL_FLOOR_PLAN_BEFORE_AND_AFTER_CHANGE_AMOUNT_ROOM" xml:space="preserve">
+    <value>แผนผังรายชั้น (Floor Plan) ก่อนเพิ่มหรือลดจำนวนห้องพัก และหลังเพิ่มหรือลดจำนวนห้องพัก</value>
+  </data>
+  <data name="DOC_APP_DANGER_CURRENT_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="DOC_APP_DANGER_REQUEST_EDIT_LICENSE" xml:space="preserve">
+    <value>คำขอเปลี่ยนแปลง ขยาย หรือลดการประกอบกิจการ สถานที่ หรือเครื่องจักร ของกิจการที่เป็นอันตรายต่อสุขภาพ (แบบ อภ.4)</value>
+  </data>
+  <data name="DOC_APP_DANGER_REQUEST_CANCEL_LICENSE" xml:space="preserve">
+    <value>คำขอบอกเลิกการดำเนินกิจการ (แบบ อภ.9)</value>
+  </data>
+  <data name="ALCOHOL_STORE" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_STATISTICS" xml:space="preserve">
+    <value>แบบรายงานสถิติสัตว์ป่วยของสถานพยาบาล (แบบ สสป.)</value>
+  </data>
+  <data name="APP_ANIMAL_LICENSE_STATISTICS_2" xml:space="preserve">
+    <value>แบบรายงานสถิติสัตว์ป่วยของสถานพยาบาล (แบบ สสป.)</value>
+  </data>
+  <data name="APP_SELL_FOOD_EDIT_DOC" xml:space="preserve">
+    <value>หลักฐานอื่น ๆ ที่เกี่ยวข้องกับการขอแก้ไขรายการในใบอนุญาตหรือหนังสือรับรองการแจ้งจัดตั้งสถานที่จําหน่ายอาหารหรือสถานที่สะสมอาหาร</value>
+  </data>
+  <data name="COMMITTEE_WORK_PERMIT_NO_CON" xml:space="preserve">
+    <value>หนังสือขออนุญาตทำงาน: กรรมการผู้มีอำนาจลงนาม (work permit): (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COMMITTEE_WORK_PERMIT" xml:space="preserve">
+    <value>หนังสือขออนุญาตทำงาน: กรรมการผู้มีอำนาจลงนาม (work permit): ({0} {1} {2})</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COMMITTEE_FOREIGNER" xml:space="preserve">
+    <value>หนังสือรับรองการประกอบธุรกิจของคนต่างด้าว</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COMMITTEE_HOUSEHOLD" xml:space="preserve">
+    <value>ทะเบียนบ้าน: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COMMITTEE_ID" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: ({0} {1} {2})</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COMMITTEE_ID_OPTIONAL" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COMMITTEE_ID_NEW" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล (คนใหม่)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CERTIFICATION" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CERTIFICATION_OLD" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล (ฉบับเดิม)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_AUTHORIZATION_AUTHORIZEE" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_AUTHORIZATION_AUTHORIZOR" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COMMITTEE_LIST" xml:space="preserve">
+    <value>ตารางเปรียบเทียบรายชื่อกรรมการเก่า-ใหม่ (ถ้ามี)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CRIME" xml:space="preserve">
+    <value>หนังสือตรวจสอบประวัติอาชญากรรม ตามมาตรา 38/2</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CER_BOOK" xml:space="preserve">
+    <value>หนังสือรับรองคุณสมบัติ ตามมาตรา 38/2</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CERTIFICATION_OLD_OPTIONAL" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล (ฉบับเดิม)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CER_BOOK_C1" xml:space="preserve">
+    <value>หนังสือรับรองมาตรฐานผลิตภัณฑ์อุตสาหกรรม</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_BENEFIT_LIST" xml:space="preserve">
+    <value>ตารางสรุปเปรียบเทียบแผนการจ่ายผลตอบแทนฉบับเดิม/ฉบับใหม่</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_BENEFIT_BOOK" xml:space="preserve">
+    <value>แผนการจ่ายผลตอบแทน/คู่มือ (ฉบับเดิมและฉบับใหม่)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_PRODUCT_LIST" xml:space="preserve">
+    <value>ตารางรายการสินค้าที่แสดงรายละเอียดสินค้า ลำดับ ชื่อ/ประเภทสินค้า ราคาต้นทุน ราคาสมาชิก ราคาปลีก คะแนน (PV/BV)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CERTIFICATE_IMPORT_FOOD" xml:space="preserve">
+    <value>ใบอนุญาตนำ/สั่งอาหารเข้ามาในราชอาณาจักร (แบบ อ.7)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CERTIFICATE_FOOD" xml:space="preserve">
+    <value>ใบจดทะเบียนอาหาร/แจ้งรายละเอียดอาหาร (แบบ สบ. 5)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_PRODUCT_PICTURE" xml:space="preserve">
+    <value>รูปสินค้าและฉลากของสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_PRODUCT_EDIT_LABEL" xml:space="preserve">
+    <value>ภาพถ่ายฉลากสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_PRODUCT_SOURCE" xml:space="preserve">
+    <value>หนังสือสัญญาต่างๆที่แสดงแหล่งที่มาของสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COSMETICS" xml:space="preserve">
+    <value>แบบแจ้งการผลิตเพื่อขายหรือนำเข้าเพื่อขายเครื่องสำอางควบคุม (แบบ จ.ค.)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_IMPORT_RECEIPT" xml:space="preserve">
+    <value>ใบรับแจ้งการนำเข้า</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_COMPANY_NAME_COMPARE" xml:space="preserve">
+    <value>ตารางเปรียบเทียบชื่อบริษัทเก่าและใหม่(ถ้ามี)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_BENEFIT_COMPARE_LIST" xml:space="preserve">
+    <value>ตารางเปรียบเทียบแผนการจ่ายค่าตอบแทนเก่าและใหม่(ถ้ามี)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_PRODUCT_PRODUCER_PERMIT_OPTIONAL" xml:space="preserve">
+    <value>เอกสารหลักฐานแสดงที่มาของสินค้าหรือบริการ ที่ออกโดยหน่วยงานรัฐของผู้ผลิตหรือผู้นำเข้าสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_REGIS_FOOD_LIST" xml:space="preserve">
+    <value>ใบสำคัญการขึ้นทะเบียนตำรับอาหาร (แบบ อ.18)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_PERMIT_LABEL" xml:space="preserve">
+    <value>คำขออนุญาตใช้ฉลากอาหาร (แบบ สบ.3)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_PERMIT_PUBLISH" xml:space="preserve">
+    <value>ใบอนุญาตโฆษณาอาหาร (ใบฆอ.)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_PRODUCT_RECEIVE_PERMIT" xml:space="preserve">
+    <value>เอกสารหลักฐานการได้รับอนุญาตจากเจ้าของหรือหน่วยงานที่เกี่ยวข้องหรือ ตามที่กฎหมายกําหนดในสินค้าหรือบริการ เช่น หนังสือแต่งตั้งตัวแทนจำหน่าย หนังสือสัญญาว่าจ้างผลิตสินค้า </value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_PRODUCT_TABLE" xml:space="preserve">
+    <value>ตารางรายการสินค้าที่แสดงรายละเอียดสินค้า ราคาสินค้า</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_RENTAL_CONTACT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_BUILDING_OWNED" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้ตั้งสถานประกอบการ เช่น ใบอนุญาตก่อสร้าง สัญญาซื้อขาย</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_OWNED_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้อาคารสถานที่ </value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_CERTIFICATE_OWNED" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_MAP" xml:space="preserve">
+    <value>แผนที่ตั้งสำนักงานแห่งใหญ่</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_LOCATION_PICTURE" xml:space="preserve">
+    <value>ภาพถ่ายสถานที่ตั้งสำนักงานใหญ่ ทั้งภายในและภายนอกอาคารที่เห็นเลขที่ตั้งอาคาร</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_OFFICE_PICTURE" xml:space="preserve">
+    <value>ภาพถ่ายสถานที่ตั้งสำนักงาน ทั้งภายในและภายนอกอาคารที่เห็นเลขที่ตั้งอาคาร</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_STORE_LOCATION_COMPARE" xml:space="preserve">
+    <value>ตารางเปรียบเทียบที่ตั้งเก่าและใหม่ (ถ้ามี)</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_RENTAL_CONTACT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_BUILDING_OWNED" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้ตั้งสถานประกอบการ เช่น ใบอนุญาตก่อสร้าง สัญญาซื้อขาย</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_OWNED_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้อาคารสถานที่ </value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_CERTIFICATE_OWNED" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_MAP" xml:space="preserve">
+    <value>แผนที่ตั้งสำนักงานแห่งใหญ่</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_LOCATION_PICTURE" xml:space="preserve">
+    <value>ภาพถ่ายสถานที่ตั้งสำนักงานใหญ่ ทั้งภายในและภายนอกอาคารที่เห็นเลขที่ตั้งอาคาร</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_OFFICE_PICTURE" xml:space="preserve">
+    <value>ภาพถ่ายสถานที่ตั้งสำนักงาน ทั้งภายในและภายนอกอาคารที่เห็นเลขที่ตั้งอาคาร</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_LOCATION_MAP" xml:space="preserve">
+    <value>แผนที่ตั้งสำนักงานสาขา</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_CANCEL_OR_ADD_STORE_LOCATION_COMPARE" xml:space="preserve">
+    <value>ตารางเปรียบเทียบที่ตั้งเก่าและใหม่ (ถ้ามี)</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_BKK_FOOD_HEALTH_CERT_RENEW" xml:space="preserve">
+    <value>หนังสือรับรองผ่านการอบรมหลักสูตรสุขาภิบาลอาหารของกรุงเทพมหานคร: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_HOUSEHOLD_REGISTRATION_COPY_RENEW" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_ID_CARD_RENEW" xml:space="preserve">
+    <value>บัตรประชาชน: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_MEDICAL_CERT_RENEW" xml:space="preserve">
+    <value>ใบรับรองแพทย์การตรวจโรคติดต่อ 9 โรค: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_HELPER_PHOTO_RENEW" xml:space="preserve">
+    <value>รูปถ่ายหน้าตรงครึ่งตัวไม่สวมหมวก ไม่สวมแว่นตาดำ ขนาด 1*1.5 นิ้ว: ผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ ({0} {1} {2})</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_AREA_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตเป็นผู้จำหน่ายสินค้าในที่หรือทางสาธารณะ</value>
+  </data>
+  <data name="SELL_FOOD_IN_PUBLIC_OTHER_EVIDENCE_EDIT_PRODUCT_OR_SELL_METHOD_OR_LOCATION" xml:space="preserve">
+    <value>หลักฐานอื่นๆที่เกี่ยวข้องกับการขอเปลี่ยนแปลงชนิดหรือประเภทสินค้าหรือลักษณะวิธีการจำหน่ายหรือสถานที่จัดวางสินค้าหรือผู้ช่วยจำหน่ายสินค้าในที่หรือทางสาธารณะ</value>
+  </data>
+  <data name="DANGER_ALL_RENTAL_CONTACT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_USAGE_AGREEMENT_OPTIONAL" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="UPLOAD_DOC_REMARK" xml:space="preserve">
+    <value>รองรับเอกสารชนิด pdf, png, jpg และ zip ที่มีขนาดไม่เกิน 5 MB</value>
+  </data>
+  <data name="APPLICANT_ID_CARD_COPY" xml:space="preserve">
+    <value>สำเนาบัตรประชาชนของผู้ยื่นใบคำขออนุญาต</value>
+  </data>
+  <data name="BUILDING_OWNER_DOC" xml:space="preserve">
+    <value>หนังสือแสดงความเป็นตัวแทนของเจ้าของอาคาร</value>
+  </data>
+  <data name="CALCULATION_PLAN" xml:space="preserve">
+    <value>รายการคำนวณ</value>
+  </data>
+  <data name="CONSTRUCTION_BLUEPRINT" xml:space="preserve">
+    <value>แผนผังบริเวณ แบบแปลน รายการประกอบแบบแปลน</value>
+  </data>
+  <data name="DESIGN_ARCHITECT_CONSENT_DOC" xml:space="preserve">
+    <value>หนังสือแสดงความยินยอมและรับรองของสถาปนิกผู้ออกแบบ: {0} {1} {2} ({3})</value>
+  </data>
+  <data name="DESIGN_ARCHITECT_PROFESSIONAL_LICENSE" xml:space="preserve">
+    <value>สำเนาใบอนุญาตเป็นผู้ประกอบวิชาชีพสถาปัตยกรรมของผู้ออกแบบ: {0} {1} {2} ({3})</value>
+  </data>
+  <data name="DESIGN_ENGINEER_CONSENT_DOC" xml:space="preserve">
+    <value>หนังสือแสดงความยินยอมและรับรองของวิศวกรผู้ออกแบบและคำนวณ: {0} {1} {2} ({3})</value>
+  </data>
+  <data name="DESIGN_ENGINEER_PROFESSIONAL_LICENSE" xml:space="preserve">
+    <value>สำเนาใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมของวิศวกรผู้ออกแบบและคำนวณ: {0} {1} {2} ({3})</value>
+  </data>
+  <data name="JURISTIC_DELEGATOR_DOC" xml:space="preserve">
+    <value>หนังสือแสดงว่าเป็นผู้จัดการหรือผู้แทนซึ่งเป็นผู้ดำเนินกิจการของนิติบุคคล</value>
+  </data>
+  <data name="SUPERVISE_ARCHITECT_CONSENT_DOC" xml:space="preserve">
+    <value>หนังสือแสดงความยินยอมและรับรองของสถาปนิกผู้ควบคุมงาน: {0} {1} {2} ({3})</value>
+  </data>
+  <data name="SUPERVISE_ARCHITECT_PROFESSIONAL_LICENSE" xml:space="preserve">
+    <value>สำเนาใบอนุญาตเป็นผู้ประกอบวิชาชีพสถาปัตยกรรมของสถาปนิกผู้ควบคุมงาน: {0} {1} {2} ({3})</value>
+  </data>
+  <data name="SUPERVISE_ENGINEER_CONSENT_DOC" xml:space="preserve">
+    <value>หนังสือแสดงความยินยอมและรับรองของวิศวกรผู้ควบคุมงาน: {0} {1} {2} ({3})</value>
+  </data>
+  <data name="SUPERVISE_ENGINEER_PROFESSIONAL_LICENSE" xml:space="preserve">
+    <value>สำเนาใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมของวิศวกรผู้ควบคุมงาน: {0} {1} {2} ({3})</value>
+  </data>
+  <data name="TITLE_DEED_COPY" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่ายโฉนดที่ดิน/น.ส.3/ส.ค.1/หนังสือยินยอมหน่วยงานรัฐ ({0} เลขที่ {1})</value>
+  </data>
+  <data name="HOSPITAL_STORE" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในร้าน/สถานประกอบการ (ผังบริเวณ)</value>
+  </data>
+  <data name="HOSPITAL_PLAN" xml:space="preserve">
+    <value>แผนผังบริเวณ แบบแปลน รายการประกอบแบบแปลน</value>
+  </data>
+  <data name="HOSPITAL_EIA" xml:space="preserve">
+    <value>รายการวิเคราะห์ผลกระทบสิ่งแวดล้อม (EIA) หรือ รายงานการประเมินผลกระทบต่อสุขภาพ (HIA)</value>
+  </data>
+  <data name="HOSPITAL_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร (แบบ อ.1) </value>
+  </data>
+  <data name="LAW_OFFICE_NAME_PHOTO" xml:space="preserve">
+    <value>รูปถ่ายชื่อสำนักงานให้เห็นเลขที่บ้าน</value>
+  </data>
+  <data name="LAW_OFFICE_LOCATION_PHOTO" xml:space="preserve">
+    <value>ภาพถ่ายแสดงที่ตั้งสำนักงาน โดยให้เห็นป้ายชื่อสำนักงานอย่างชัดเจน</value>
+  </data>
+  <data name="LAW_OFFICE_LICENSE_PHOTO" xml:space="preserve">
+    <value>ภาพถ่ายบัตรประจำตัวทนายความ</value>
+  </data>
+  <data name="LAW_OFFICE_LAWYER_PHOTO" xml:space="preserve">
+    <value>รูปถ่ายหัวหน้าทนายความ</value>
+  </data>
+  <data name="LAW_OFFICE_IMPORTANT_BRAND_PHOTO" xml:space="preserve">
+    <value>ตัวอย่างตราสำคัญจดทะเบียน</value>
+  </data>
+  <data name="LAW_OFFICE_CANCEL_CERTIFICATE_LAWYER" xml:space="preserve">
+    <value>หนังสือรับรองสำนักทนายความตัวจริง</value>
+  </data>
+  <data name="LAW_OFFICE_CANCEL_MANAGER_ALLOWANCE" xml:space="preserve">
+    <value>ใบอนุญาตหัวหน้าสำนักงานทนายความ</value>
+  </data>
+  <data name="APP_LAW_OFFICE_APPOINT_CHIEF_LAWYER" xml:space="preserve">
+    <value>หนังสือแต่งตั้งหัวหน้าสำนักงานทนายความ</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_PICTURE_INDEX_WEBSITE" xml:space="preserve">
+    <value>รูปภาพหน้าแรกของร้านค้าออนไลน์</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_PICTURE_PRODUCT" xml:space="preserve">
+    <value>รูปภาพสินค้า/บริการที่ประกอบพาณิชยกิจ</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_EDIT_CURRENT_PERMIT" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์ (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_EDIT_DOCUMENT_CHANGE" xml:space="preserve">
+    <value>เอกสารที่การเปลี่ยนแปลง</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_CANCEL_CURRENT_PERMIT" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์ (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_CANCEL_OWNER_DEATH" xml:space="preserve">
+    <value>ใบมรณบัตรของผู้ประกอบพาณิชยกิจ</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_CANCEL_COUNT_ORDERED" xml:space="preserve">
+    <value>คำสั่งศาล</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_CANCEL_HEIR" xml:space="preserve">
+    <value>หลักฐานแสดงความเป็นทายาทของผู้ลงชื่อแทนผู้ประกอบพาณิชยกิจซึ่งถึงแก่กรรม/คำสั่งศาลตั้งผู้จัดการมรดก</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_CANCEL_STOP_BUSINESS" xml:space="preserve">
+    <value>สัญญาหรือข้อตกลงของผู้เป็นหุ้นส่วนทุกคน ให้เลิกห้างหุ้นส่วน คณะบุคคล หรือกิจการร่วมค้า</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_PICTURE_METHOD_ORDER_AND_PAYMENT" xml:space="preserve">
+    <value>รูปภาพวิธีการสั่งซื้อสินค้า/บริการ วิธีการชำระเงิน วิธีการส่งสินค้า</value>
+  </data>
+  <data name="APP_LAW_OFFICE_PICTURE_LAWYER" xml:space="preserve">
+    <value>รูปถ่ายทนายความ</value>
+  </data>
+  <data name="APP_LAW_OFFICE_CONFIRM_EDIT_PICTURE_LAWYER" xml:space="preserve">
+    <value>รูปถ่ายทนายความ</value>
+  </data>
+  <data name="APP_LAW_OFFICE_CONFIRM_EDIT_DOCUMENT_CHANGE" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="APP_LAW_OFFICE_CONFIRM_EDIT_PICTURE_OFFICE" xml:space="preserve">
+    <value>ภาพถ่ายแสดงที่ตั้งสำนักงาน ให้เห็นป้ายชื่อสำนักงานอย่างชัดเจน</value>
+  </data>
+  <data name="APP_LAW_OFFICE_CONFIRM_EDIT_PICTURE_ADDRESS_NO" xml:space="preserve">
+    <value>ถ่ายชื่อสำนักงานให้เห็นเลขที่บ้าน</value>
+  </data>
+  <data name="APP_LAW_OFFICE_CONFIRM_EDIT_AGREE" xml:space="preserve">
+    <value>หนังสือยินยอม</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_PROFILE" xml:space="preserve">
+    <value>แบบรับรองประวัติการปฏิบัติตามกฎหมายของกรรมการ และผู้จัดการ ของผู้ยื่นคำขอ</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_SHARE_HOLDER_DOC" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคลของผู้ถือหุ้นรายใหญ่ (ทั้งทางตรงและทางอ้อม)</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_SHARE_HOLDER_CAPITAL" xml:space="preserve">
+    <value>บัญชีรายชื่อผู้ถือหุ้นล่าสุดของผู้ถือหุ้นรายใหญ่ (ทั้งทางตรงและทางอ้อม)</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_ID" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคลของผู้ถือหุ้นรายใหญ่ (ทั้งทางตรงและทางอ้อม)</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_CRIME" xml:space="preserve">
+    <value>เอกสารการตรวจสอบประวัติอาชญากรรมกับสำนักงานตำรวจแห่งชาติ : กรรมการของนิติบุคคลที่เป็นผู้ถือหุ้นรายใหญ่ (ทั้งทางตรงและทางอ้อม)</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_DIRECT_OR_INDIRECT" xml:space="preserve">
+    <value>แบบรับรองประวัติการปฏิบัติตามกฎหมายของกรรมการ และผู้จัดการของผู้ถือหุ้นรายใหญ่ (ทั้งทางตรงและทางอ้อม)</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_CLUE_DOC" xml:space="preserve">
+    <value>เอกสารหรือหลักฐานซึ่งแสดงว่าสามารถดำรงเงินกองทุนและกันเงินสำรองได้ตามหลักเกณฑ์ของกฎหมายที่จัดตั้งนิติบุคคลนั้น หรือกฎหมายที่ควบคุมการประกอบธุรกิจหลักของนิติบุคคล</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_BENEFIT" xml:space="preserve">
+    <value>งบการเงินสามปีย้อนหลังของผู้ยื่นคำขอที่มีผู้สอบบัญชีรับอนุญาตตรวจสอบและแสดงความเห็นแล้ว</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_COMMITEE_DOC" xml:space="preserve">
+    <value>หนังสือยืนยันจากหน่วยงานว่า กรรมการของบริษัทไม่มีหน้าที่ในการกำกับดูแลธุรกิจหลักทรัพย์</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตประกอบธุรกิจ</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_EDIT_DOC" xml:space="preserve">
+    <value>ใบอนุญาตประกอบธุรกิจหลักทรัพย์ (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_EDIT_CHANGE" xml:space="preserve">
+    <value>เอกสารที่มีการเปลี่ยนแปลง</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_CANCEL_DOC" xml:space="preserve">
+    <value>ใบอนุญาตประกอบธุรกิจหลักทรัพย์ (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_MAP" xml:space="preserve">
+    <value>แผนที่แสดงเส้นทางไปสถานที่ผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_PLAN" xml:space="preserve">
+    <value>แผนผังแสดงวิธีการเดินสายและจ่ายไฟฟ้า (Single Line Diagram)</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_DOC" xml:space="preserve">
+    <value>หนังสือรับรองของผู้ประกอบวิชาชีพวิศวกรรมควบคุมสาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_ENGINEER_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมควบคุมของผู้ควบคุมการผลิตพลังงานควบคุม สาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_STATEMENT" xml:space="preserve">
+    <value>ข้อมูลในงบกำไรขาดทุน หรือสำเนางบการเงินย้อนหลัง 1 ปี (ถ้ามี)</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_PAYMENT_PROOF" xml:space="preserve">
+    <value>หลักฐานการชำระค่าจดทะเบียนของนิติบุคคล</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_COPY_COLLATERAL" xml:space="preserve">
+    <value>สำเนาหลักประกัน</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_COPY_STATEMENT_PREVIOUS" xml:space="preserve">
+    <value>สำเนางบการเงินปีก่อน</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_DETAIL_PROOF" xml:space="preserve">
+    <value>หลักฐานการชำระค่าแจ้งรายละเอียดเกี่ยวกับหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สาม</value>
+  </data>
+  <data name="FRT_001_DOC_01" xml:space="preserve">
+    <value>หนังสือแจ้งการใช้หรือเปลี่ยนแปลงการใช้ประโยชน์ที่ดินตามกฎหมายว่าด้วยผังเมือง</value>
+  </data>
+  <data name="FRT_001_DOC_02" xml:space="preserve">
+    <value>แผนที่แสดงพื้นที่ประกอบการ และที่ตั้งของเครื่องจักร (หากมีหลายชั้นให้แสดงทุกชั้น) รวมทั้งที่พักของผู้ปฏิบัติงานในสถานประกอบการ</value>
+  </data>
+  <data name="FRT_001_DOC_03" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงกระบวนการผลิต</value>
+  </data>
+  <data name="FRT_001_DOC_04" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงการป้องกันมลพิษ</value>
+  </data>
+  <data name="FRT_001_DOC_05" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงสุขลักษณะภายในสถานประกอบการ</value>
+  </data>
+  <data name="FRT_001_DOC_06" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในและภายนอกของสถานประกอบการ แสดงให้เห็นถึงระบบความปลอดภัยในการทำงาน</value>
+  </data>
+  <data name="FRT_001_DOC_07" xml:space="preserve">
+    <value>ใบอนุญาต หนังสือรับรองการแจ้ง หรือเอกสารหลักฐานจากหน่วยงานที่เกี่ยวข้องให้ประกอบกิจการนั้นได้ เช่น ใบรับจดแจ้งเครื่องสำอาง ใบอนุญาตประกอบกิจการโรงงาน เป็นต้น</value>
+  </data>
+  <data name="FRT_001_DOC_08" xml:space="preserve">
+    <value>ผังภาพรวมกระบวนการผลิต</value>
+  </data>
+  <data name="FRT_001_DOC_09" xml:space="preserve">
+    <value>หนังสือแจ้งการใช้ประโยชน์ที่ดินหรือเปลี่ยนแปลงการใช้ประโยชน์ที่ดินในเขตกรุงเทพ</value>
+    <comment>....</comment>
+  </data>
+  <data name="FRT_001_DOC_10" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป้นอันตรายต่อสุขภาพ</value>
+  </data>
+  <data name="FRT_001_DOC_11" xml:space="preserve">
+    <value>เอกสารที่มีการเปลี่ยนแปลง</value>
+  </data>
+  <data name="FRT_001_DOC_12" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ (แบบ อภ.2)</value>
+  </data>
+  <data name="FRT_001_DOC_13" xml:space="preserve">
+    <value>ใบอนุญาตให้เปลี่ยนแปลง ขยาย หรือลดการประกอบกิจการ สถานที่หรือเครื่องจักรของกิจการที่เป็นอันตรายต่อสุขภาพ (แบบ อภ.5)</value>
+  </data>
+  <data name="FRT_001_DOC_14" xml:space="preserve">
+    <value>ใบแทนใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ (แบบ อภ.7)</value>
+  </data>
+  <data name="FRT_001_DOC_15" xml:space="preserve">
+    <value>หลักฐานการแจ้งขอเลิกการประกอบกิจการของหน่วยงานที่เกี่ยวข้อง เช่น กระทรวงพาณิชย์ กรมสรรพากร กรมโรงงานอุตสาหกรรม กระทรวงอุตสาหกรรม</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_PICTURE_OFFICE_CITIZEN" xml:space="preserve">
+    <value>รูปถ่ายด้านหน้าสำนักงานเห็นตัวอาคาร โดยแสดงป้ายชื่อสำนักงานภาษาไทย และเลขที่ตั้งสำนักงาน</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_PICTURE_OFFICE_JURISTIC" xml:space="preserve">
+    <value>รูปถ่ายด้านหน้าสำนักงานเห็นตัวอาคาร โดยแสดงป้ายชื่อสำนักงานภาษาไทย และเลขที่ตั้งสำนักงาน</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_PICTURE_INSIDE_OFFICE" xml:space="preserve">
+    <value>รูปถ่ายด้านในสำนักงาน</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_LOCATION_OFFICE_CITIZEN" xml:space="preserve">
+    <value>แผนที่ตั้งสำนักงาน</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_LOCATION_OFFICE_JURISTIC" xml:space="preserve">
+    <value>แผนที่ตั้งสำนักงาน</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_DOCUMENT_OWNERD_AREA" xml:space="preserve">
+    <value>หลักฐานแสดงกรรมสิทธิหรือสิทธิครอบครองสถานที่ที่ใช้เป็นสำนักงาน</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_COPY_DOCUMENT_POLICY" xml:space="preserve">
+    <value>สำเนากรมธรรม์ประกันภัย ประกันอุบัติเหตุ ให้กับนักท่องเที่ยว มัคคุเทศก์ และผู้นำเที่ยวในความคุ้มครองตามที่กฎหมายกำหนด</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_DOCUMENT_GUARANTEE_BUSINESS" xml:space="preserve">
+    <value>เอกสารหลักประกันการประกอบธุรกิจนำเที่ยว</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_SEAL_COMPANY" xml:space="preserve">
+    <value>ตัวอย่างรอยตราประทับบริษัท</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_DOCUMENT_COLLATERAL_CITIZEN" xml:space="preserve">
+    <value>ใบนำส่งหลักประกัน</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_DOCUMENT_COLLATERAL_JURISTIC" xml:space="preserve">
+    <value>ใบนำส่งหลักประกัน</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_COMPANY_RULES" xml:space="preserve">
+    <value>ข้อบังคับของบริษัท</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_MEETING_REPORT" xml:space="preserve">
+    <value>รายงานการประชุม</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_REPORT_AMENDMENT" xml:space="preserve">
+    <value>รายงานการจดทะเบียนแก้ไขเพิ่มเติม</value>
+  </data>
+  <data name="DOC_APP_DANGER_REQUEST_CANCEL_LICENSE_OPTIONAL" xml:space="preserve">
+    <value>คำขอบอกเลิกการดำเนินกิจการ (แบบ อภ.9)</value>
+  </data>
+  <data name="MED_ANIMAL_ALLOW_DOC_CON" xml:space="preserve">
+    <value>หนังสือแสดงความจำนงเป็นผู้ประกอบวิชาชีพการสัตวแพทย์ (แบบ 1/4): {0} {1} {2}</value>
+  </data>
+  <data name="MED_ANIMAL_LICENSE_CON" xml:space="preserve">
+    <value>ใบประกอบวิชาชีพการสัตวแพทย์: {0} {1} {2}</value>
+  </data>
+  <data name="MED_ANIMAL_RENEW_BOOK_DOC_NOTE" xml:space="preserve">
+    <value>อย่างน้อยต้องอัปโหลดเอกสารหน้าใบอนุญาตให้ตั้งสถานพยาบาลสัตว์ (แบบ สส.3) กับหน้าใบอนุญาตให้ดำเนินการสถานพยาบาลสัตว์(แบบ สส.4)</value>
+  </data>
+  <data name="MED_ANIMAL_CANCEL_BOOK_DOC" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาลสัตว์ (สส.7)</value>
+  </data>
+  <data name="MED_ANIMAL_RENEW_EDITED_DOC" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="MED_ANIMAL_RENEW_EDITED_DOC_NOTE" xml:space="preserve">
+    <value>กรณีหลักฐาน หรือเอกสารของผู้ได้รับอนุญาตมีการแก้ไขเปลี่ยนแปลงจากตอนที่ยืนคำขอในครั้งล่าสุด</value>
+  </data>
+  <data name="HOTEL_CITIZEN_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์การตรวจโรคติดต่อ 9 โรค: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="HOTEL_DOC_COMMITTEE_FINGERPRINT" xml:space="preserve">
+    <value>แบบพิมพ์ลายนิ้วมือ: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: ({0} {1} {2})</value>
+  </data>
+  <data name="HOTEL_DOC_FINGERPRINT" xml:space="preserve">
+    <value>แบบพิมพ์ลายนิ้วมือ: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="HOTEL_JURISTIC_COMMITTEE_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์การตรวจโรคติดต่อ 9 โรค: กรรมการผู้มีอำนาจลงนามฯ ({0} {1} {2})</value>
+  </data>
+  <data name="VAT_REGISTRATION_CARD_OPTIONAL" xml:space="preserve">
+    <value>ใบทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.20)</value>
+  </data>
+  <data name="VAT_REGISTRATION_CARD_REQUIRED" xml:space="preserve">
+    <value>ใบทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.20)</value>
+  </data>
+  <data name="FRT_001_DOC_16" xml:space="preserve">
+    <value>รายละเอียดกระบวนการผลิต</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZE_DOC_ENERGY_NOT_PERMIT" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_CIVIL_ENGINEERING_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพวิศวกรรมควบคุม (โยธา)</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_CIVIL_ENGINEERING_PLAN" xml:space="preserve">
+    <value>แบบแปลนโครงสร้างการติดตั้งและรายการคำนวณทางโยธา</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_CODE_OF_PRACTICE" xml:space="preserve">
+    <value>รายการตรวจสอบมาตรการด้านการออกแบบติดตั้งตามประมวลหลักการปฏิบัติ (Code of Practice)</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_ELECTRIC_CONTRACT" xml:space="preserve">
+    <value>สัญญาซื้อขายไฟฟ้า</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_INFORMATION_OWNER_DOC" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของสถานที่เก็บ ซ่อมและบำรุงรักษารถ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_INFORMATION_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้สถานที่เก็บ ซ่อมและบำรุงรักษารถ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ) : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_INFORMATION_HOUSEHOLD_RENT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยืนยอมให้ใช้สถานที่ : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_INFORMATION_RENTAL_CONTRACT" xml:space="preserve">
+    <value>สัญญาเช่า : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_INFORMATION_OWNER_JURISTIC_REGISTRATION" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้สถานที่เก็บ ซ่อม และบำรุงรักษารถ : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_INFORMATION_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้สถานที่เก็บ ซ่อมและบำรุงรักษารถ : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_INFORMATION_OWNER_DOC" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของสถานที่เก็บ ซ่อมและบำรุงรักษารถ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_INFORMATION_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้สถานที่เก็บ ซ่อมและบำรุงรักษารถ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ) : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_INFORMATION_HOUSEHOLD_RENT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยืนยอมให้ใช้สถานที่ : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_INFORMATION_RENTAL_CONTRACT" xml:space="preserve">
+    <value>สัญญาเช่า : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_INFORMATION_OWNER_JURISTIC_REGISTRATION" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้สถานที่เก็บ ซ่อม และบำรุงรักษารถ : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_INFORMATION_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้สถานที่เก็บ ซ่อมและบำรุงรักษารถ : {0} {1} {2} {3} {4}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_PHOTO_LABEL" xml:space="preserve">
+    <value>ภาพถ่ายสถานประกอบที่เห็นป้ายสำนักงาน</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_PHOTO_WITHIN" xml:space="preserve">
+    <value>ภาพถ่ายสถานประกอบการที่เห็นห้องทำงาน</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_PHOTO_MAINTENANCE_ENTRANCE" xml:space="preserve">
+    <value>ภาพถ่ายสถานที่เก็บ ซ่อม และบำรุงรักษารถที่เห็นทางเข้า-ออก</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_PHOTO_MAINTENANCE_PARKING" xml:space="preserve">
+    <value>ภาพถ่ายสถานที่เก็บ ซ่อม และบำรุงรักษารถที่เห็นลานจอดรถ</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_DOC_TRANSPORTATION_VOLUME" xml:space="preserve">
+    <value>หนังสือชี้แจงการขอใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก เช่น สัญญาว่าจ้าง หรือปริมาณงานการขนส่ง</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_CERTIFICATION" xml:space="preserve">
+    <value>บันทึกคำรับรอง</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_SECURITIES" xml:space="preserve">
+    <value>คำขอวางหลักทรัพย์</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_PURCHASE_REQUEST" xml:space="preserve">
+    <value>ใบสั่งซื้อ/ ใบจองรถ</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_PURCHASE_REQUEST_RENEW" xml:space="preserve">
+    <value>ใบสั่งซื้อ/ ใบจองรถ</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_CAR_LICENSE" xml:space="preserve">
+    <value>ทะเบียนรถ : {0}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_REQUEST_INFORMATION_CAR_LICENSE" xml:space="preserve">
+    <value>ทะเบียนรถ : {0}</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_DOC_NO_1" xml:space="preserve">
+    <value>เอกสารแนบประกอบ เอกสารอักษร "ก"</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_DOC_NO_2" xml:space="preserve">
+    <value>เอกสารอักษร "ข" ตราเครื่องหมายกิจการ</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_DOC_NO_3" xml:space="preserve">
+    <value>เอกสารอักษร "ค" เครื่องหมายที่ต้องปรากฏประจำรถ</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_CURRENT_DOCUMENT" xml:space="preserve">
+    <value>ใบอนุญาตประกอบการขนส่งไม่ประจําทาง</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT_DOCUMENT_CHANGE" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT_CURRENT_DOCUMENT" xml:space="preserve">
+    <value>ใบอนุญาตประกอบการขนส่งทางบกไม่ประจำทางด้วยรถบรรทุก</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL_CURRENT_DOCUMENT" xml:space="preserve">
+    <value>ใบอนุญาตประกอบการขนส่งทางบกไม่ประจำทางด้วยรถบรรทุก</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_PRODUCTION_ENGINEERING_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมควบคุมของผู้ควบคุมการผลิตพลังงานควบคุม สาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_PRODUCTION_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตให้ผลิตพลังงานควบคุม (พ.ค.2)</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_PRODUCTION_PLAN" xml:space="preserve">
+    <value>แผนผังแสดงวิธีการเดินสายและจ่ายไฟฟ้า (Single Line Diagram)</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_REGISTATION_AND_RESEARCH_BUILDING" xml:space="preserve">
+    <value>หนังสือที่มีการลงทะเบียนรับเอกสารและแบบการสำรวจอาคาร</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_STORE_DETAIL" xml:space="preserve">
+    <value>รูปถ่ายสถานประกอบกิจการและการติดตั้งเครื่องจักรจักรอุปกรณ์สำคัญต่างๆ ที่ใช้ในการประกอบกิจการ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZE_DOC_ENERGY_NOT_PERMIT" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="SOFTWARE_MANUAL" xml:space="preserve">
+    <value>คู่มือการใช้ซอฟต์แวร์แต่ละชนิด หรือคำอธิบายรายละเอียดของโปรแกรม</value>
+  </data>
+  <data name="SYSTEM_STRUCTURE_DOC" xml:space="preserve">
+    <value>ผังการทำงานรวมของโปรแกรมทั้งระบบ</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_BOOK_CANCEL" xml:space="preserve">
+    <value>หนังสือบันทึกแจ้งยกเลิก</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_BOOK_CHANGED" xml:space="preserve">
+    <value>หนังสือแจ้งการเปลี่ยนแปลง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_DOC_CHANGED" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_ENGINEER_LICENSE_OPTIONAL" xml:space="preserve">
+    <value>ใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมควบคุมของผู้ควบคุมการผลิตพลังงานควบคุม สาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_MAP_OPTIONAL" xml:space="preserve">
+    <value>แผนที่แสดงเส้นทางไปสถานที่ผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_PLAN_OPTIONAL" xml:space="preserve">
+    <value>แผนผังแสดงวิธีการเดินสายและจ่ายไฟฟ้า (Single Line Diagram)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_IDENTIFIED_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: บุคคลผู้ขออนุญาต (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_AUTHORIZE_LIST" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_IDENTIFIED_AUTHORIZER_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_IDENTIFIED_AUTHORIZEE_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_JURISTICT_LIST" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_BOARD_JURISTICT_PERSON_IDENTIFIED_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล) ({0} {1} {2})</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_BOARD_JURISTICT_WORK_PERMIT_PERSON_IDENTIFIED_LIST" xml:space="preserve">
+    <value>หนังสือขออนุญาตทำงาน: กรรมการผู้มีอำนาจลงนาม (work permit): (ชื่อ-นามสกุล) ({0} {1} {2})</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_AUTHORIZE_LIST_JURISTICT" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_IDENTIFIED_AUTHORIZER_LIST_JURISTICT" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_IDENTIFIED_AUTHORIZEE_LIST_JURISTICT" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_IDENTIFIED_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: บุคคลผู้ขออนุญาต (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_AUTHORIZE_LIST" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_IDENTIFIED_AUTHORIZER_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_IDENTIFIED_AUTHORIZEE_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_MAP_PLANT_LIST" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DETIAL_LIST" xml:space="preserve">
+    <value>ใบรับแจ้งการประกอบกิจการโรงงาน (ร.ง.2) ฉบับจริง</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_JURISTICT_LIST" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_BOARD_JURISTICT_PERSON_IDENTIFIED_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล) ({0} {1} {2})</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_BOARD_JURISTICT_PERSON_HOME_REGISTER_LIST" xml:space="preserve">
+    <value>ทะเบียนบ้าน: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล) ({0} {1} {2})</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_BOARD_JURISTICT_WORK_PERMIT_PERSON_IDENTIFIED_LIST" xml:space="preserve">
+    <value>หนังสือขออนุญาตทำงาน: กรรมการผู้มีอำนาจลงนาม (work permit): (ชื่อ-นามสกุล)  ({0} {1} {2})</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_AUTHORIZE_LIST_JURISTICT" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_IDENTIFIED_AUTHORIZER_LIST_JURISTICT" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_IDENTIFIED_AUTHORIZEE_LIST_JURISTICT" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_MAP_PLANT_JURISTICT_LIST" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DETIAL_JURISTICT_LIST" xml:space="preserve">
+    <value>ใบรับแจ้งการประกอบกิจการโรงงาน (ร.ง.2) ฉบับจริง</value>
+  </data>
+  <data name="APP_FACTOTY_TYPE2_TITLE_DEED" xml:space="preserve">
+    <value>1.โฉนดที่ดินที่ต้องการขอนุญาต</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_CITIZEN_BUILDING_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้อาคารสถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_BLUE_PRINT" xml:space="preserve">
+    <value>แผนผังแสดงสิ่งปลูกสร้างภายในบริเวณโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_BLUE_PRINT_ONE_PER_HUNDRED" xml:space="preserve">
+    <value>แบบแปลนอาคารโรงงาน ขนาดถูกต้องตามมาตราส่วน เช่น 1:100</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_DOC_BUILDING_ALLOW" xml:space="preserve">
+    <value>หนังสือรับรองให้ปลูกสร้างอาคารในที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_DOC_CONSTRUCTION_ALLOW" xml:space="preserve">
+    <value>ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร (แบบ อ.1)</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_DOC_CONTRACTOR" xml:space="preserve">
+    <value>แบบรายการก่อสร้างอาคารโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_DOC_CONTRUCTION_INSPECTION" xml:space="preserve">
+    <value>เอกสารการตรวจสอบรับรองความมั่นคงแข็งแรงและความปลอดภัยของอาคารจากผู้ประกอบวิชาชีพวิศวกรรมควบคุม</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_DOC_USE_BUILDING_ALLOW" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_ENGINE_BLUE_PRINT" xml:space="preserve">
+    <value>แผนผังแสดงการติดตั้งเครื่องจักร ขนาดถูกต้องตามมาตราส่วนพร้อมรายละเอียดของเครื่องจักรแต่ละเครื่อง</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_INDUSTRIAL_WASTE" xml:space="preserve">
+    <value>รายละเอียดชนิด วิธีการกำจัด จัดเก็บและป้องกันเหตุเดือดร้อนรำคาญ ความเสียหายอันตราย และการควบคุมกากอุตสาหกรรม</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_JURISTIC_RENT_PROMISE_NOID" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้ที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_JURISTIC_RENT_PROMISE_JURISTICT" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ใช้เช่า หรือยินยอมให้ใช้ที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_LESSOR_REGISTER_HOME" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_LOCATION_MAP" xml:space="preserve">
+    <value>แผนที่แสดงบริเวณที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_RENT_PROMISE" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_AUTHORIZER_JURISTICT_DOC" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_AUTHORIZE_JURISTICT_DOC" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_AUTHORIZY_JURISTICT_DOC" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_CITIZEN_BUILDING_OWNER_ID_CARD_JURISTICT" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้อาคารสถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_DOC_BUILDING_ALLOW_JURISTICT" xml:space="preserve">
+    <value>หนังสือรับรองให้ปลูกสร้างอาคารในที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_DOC_USE_BUILDING_ALLOW_JURISTICT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_JURISTICT_ALLOW_WORK_PERMIT" xml:space="preserve">
+    <value>หนังสือขออนุญาตทำงาน: กรรมการผู้มีอำนาจลงนาม (work permit): (ชื่อ - สกุล) ({0} {1} {2})</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_JURISTICT_IDENTIFIED_DOC" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชือ - สกุล) ({0} {1} {2})</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_JURISTICT_REF_DOC" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_LESSOR_REGISTER_HOME_JURISTICT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_PLANT_REGISTER_HOME" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_PLANT_REGISTER_HOME_JURISTICT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_PLANT_TITLE_DEED_JURISTICT" xml:space="preserve">
+    <value>โฉนดที่ดินที่ต้องการขออนุญาต</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_RENT_PROMISE_JURISTICT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_JURISTIC_RENT_PROMISE_ID" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_JURISTIC_RENT_PROMISE_ID_JURISTICT" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_JURISTIC_RENT_PROMISE_NOID_JURISTICT" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้ที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_DOC_IDENTIFIED_PREMIT_CITIZEN" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้เป็นร้าน/สถานประกอบการ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_DOC_IDENTIFIED_PREMIT_JURISTICT" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้เป็นร้าน/สถานประกอบการ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_BLUE_PRINT_JURISTICT" xml:space="preserve">
+    <value>แผนผังแสดงสิ่งปลูกสร้างภายในบริเวณโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_BLUE_PRINT_ONE_PER_HUNDRED_JURISTICT" xml:space="preserve">
+    <value>แบบแปลนอาคารโรงงาน ขนาดถูกต้องตามมาตราส่วน เช่น 1:100</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_DOC_CONSTRUCTION_ALLOW_JURISTICT" xml:space="preserve">
+    <value>ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร (แบบ อ.1)</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_DOC_CONTRACTOR_JURISTICT" xml:space="preserve">
+    <value>แบบรายการก่อสร้างอาคารโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_DOC_CONTRUCTION_INSPECTION_JURISTICT" xml:space="preserve">
+    <value>เอกสารการตรวจสอบรับรองความมั่นคงแข็งแรงและความปลอดภัยของอาคารจากผู้ประกอบวิชาชีพวิศวกรรมควบคุม</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_ENGINE_BLUE_PRINT_JURISTICT" xml:space="preserve">
+    <value>แผนผังแสดงการติดตั้งเครื่องจักร ขนาดถูกต้องตามมาตราส่วนพร้อมรายละเอียดของเครื่องจักรแต่ละเครื่อง</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_INDUSTRIAL_WASTE_JURISTICT" xml:space="preserve">
+    <value>รายละเอียดชนิด วิธีการกำจัด จัดเก็บและป้องกันเหตุเดือดร้อนรำคาญ ความเสียหายอันตราย และการควบคุมกากอุตสาหกรรม</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_LOCATION_MAP_JURITICT" xml:space="preserve">
+    <value>แผนที่แสดงบริเวณที่ตั้งโรงงาน</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZEE_HOUSEHOLD_REGISTRATION_COPY_MULTIPLE" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZEE_ID_CARD_MULTIPLE" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZOR_HOUSEHOLD_REGISTRATION_COPY_MULTIPLE" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="CITIZEN_AUTHORIZATION_AUTHORIZOR_ID_CARD_MULTIPLE" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="CLINIC_EDIT_DOC" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="CLINIC_VERIFY_DOC" xml:space="preserve">
+    <value>หนังสือรับรองการตรวจสอบสถานพยาบาล จากพนักงานเจ้าหน้าที่ ตามมาตรา 45 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541</value>
+  </data>
+  <data name="CLINIC_OWNER_CERT" xml:space="preserve">
+    <value>วุฒิบัตร หรือหนังสืออนุมัติ</value>
+  </data>
+  <data name="CLINIC_OWNER_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน:  ผู้ดำเนินการ</value>
+  </data>
+  <data name="CLINIC_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ชื่อผู้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="CLINIC_OWNER_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ</value>
+  </data>
+  <data name="CLINIC_OWNER_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์</value>
+  </data>
+  <data name="CLINIC_OWNER_PROFILE_IMG" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร</value>
+  </data>
+  <data name="CLINIC_PROFILE_IMG" xml:space="preserve">
+    <value>รูปถ่ายขนาด 1 นิ้ว</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_DOC_NO_CON" xml:space="preserve">
+    <value>หนังสือรับรองให้ปลูกสร้างอาคารในที่ดิน</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_OWNER_DOC_NO_CON" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้เป็นร้าน/สถานประกอบการ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_OWNER_ID_CARD_NO_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้อาคารสถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_OWNER_JURISTIC_REGISTRATION_NO_CON" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_USAGE_AGREEMENT_NO_CON" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_HOUSEHOLD_RENT_NO_CON" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_RENTAL_CONTRACT_NO_CON" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZEE_HOUSEHOLD_REGISTRATION_COPY_MULTIPLE" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_AUTHORIZOR_HOUSEHOLD_REGISTRATION_COPY_MULTIPLE" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="CLINIC_PERSONAL_TABLE" xml:space="preserve">
+    <value>ตารางบุคลากร (ตามสพ.6)</value>
+  </data>
+  <data name="APP_CLINIC_CANCEL_BUSSINESS_REQ_DOC" xml:space="preserve">
+    <value>หนังสือแจ้งเลิกกิจการสถานพยาบาล</value>
+  </data>
+  <data name="APP_CLINIC_EDIT_BUSSINESS_REQ_DOC" xml:space="preserve">
+    <value>คําขอเปลี่ยนแปลงรายการใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ส.พ. 10)</value>
+  </data>
+  <data name="APP_CLINIC_EDIT_PROCESS_REQ_DOC" xml:space="preserve">
+    <value>คำขอเปลี่ยนตัวผู้ดำเนินการสถานพยาบาล (ส.พ. 18)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_BUSSINESS_REQ_DOC" xml:space="preserve">
+    <value>คำขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ส.พ.11)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_PROCESS_REQ_DOC" xml:space="preserve">
+    <value>คําขอต่ออายุใบอนุญาตให้ดําเนินการสถานพยาบาล (ส.พ.20)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_AMBULANCE_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาตให้ใช้รถ รับ-ส่งผู้ป่วยฉุกเฉิน จากสำนักงานตำรวจแห่งชาติ</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_ARCHITECTURAL_PLAN" xml:space="preserve">
+    <value>แบบแปลนทางสถาปัตยกรรม ในมาตราส่วนที่วัดได้</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_AREA_DETAIL" xml:space="preserve">
+    <value>แบบฟอร์มรายละเอียดการถอดพื้นที่ใช้สอย (การขออนุมัติแผนงานการจัดตั้งสถานพยาบาลประเภทที่รับผู้ป่วยค้างคืน)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_BUILDING_PERMIT_1" xml:space="preserve">
+    <value>ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร (อ.1)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_BUILDING_PERMIT_6" xml:space="preserve">
+    <value>ใบรับรองการก่อสร้าง ดัดแปลงอาคาร หรือ เคลื่อนย้ายอาคาร (อ.6)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_BUILDING_VERIFY_CERT" xml:space="preserve">
+    <value>ใบรับรองการตรวจสอบอาคาร</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_CALIBRATION_DOC" xml:space="preserve">
+    <value>เอกสารการดูแลเครื่องมือ (แผนการบำรุงรักษา Calibration)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_CANCEL_BUSSINESS_TO_MEDIA_REPORT" xml:space="preserve">
+    <value>รายงานการประกาศแจ้งเลิกกิจการสถานพยาบาลทางหนังสือพิมพ์และหรือสื่ออื่นๆ ที่แพร่หลาย เพื่อให้ผู้ป่วยมาขอรับเวชระเบียน ฟิล์มเอกซเรย์ และอื่นๆ</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_EDIT_DOC" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_EIA_HIA_REPORT" xml:space="preserve">
+    <value>รายการวิเคราะห์ผลกระทบสิ่งแวดล้อม (EIA) หรือ รายงานการประเมินผลกระทบต่อสุขภาพ (HIA)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_FORWARD_PATIENT_CONTRACT" xml:space="preserve">
+    <value>สัญญาการดำเนินการส่งต่อผู้ป่วยพร้อมประวัติ</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_MEDICAL_RECORDS_NON_RECEIVE_REPORT" xml:space="preserve">
+    <value>รายงานการจำหน่ายเวชระเบียน ฟิล์มเอกซเรย์ และอื่นๆ ที่ยังไม่มีผู้มาขอรับ</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_OWNER_CERT" xml:space="preserve">
+    <value>วุฒิบัตร หรือหนังสืออนุมัติ: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_OWNER_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_OWNER_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_OWNER_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_OWNER_PROFILE_IMG" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_PERSONAL_TABLE" xml:space="preserve">
+    <value>ตารางบุคลากร (ตามสพ.6)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_PROFILE_IMG" xml:space="preserve">
+    <value>รูปถ่ายขนาด 1 นิ้ว</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_REPORT_OF_POLLUTION" xml:space="preserve">
+    <value>รายงานสรุปผลการทำงานของระบบบำบัดน้ำเสีย (ทส.2)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_RESIDUAL_PATIENT_REPORT" xml:space="preserve">
+    <value>รายงานยอดผู้ป่วยที่คงค้างอยู่ในสถานพยาบาลและแผนการดำเนินการต่อผู้ป่วยที่ยังคงค้างอยู่หลังจากเลิกกิจการสถานพยาบาล</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_STATISTIC_OF_POLLUTION" xml:space="preserve">
+    <value>แบบบันทึกรายละเอียดของสถิติและข้อมูลซึ่งแสดงผลการทำงานของระบบบำบัดน้ำเสียของแหล่งกำเนิดมลพิษ (ทส.1)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_VERIFY_DOC" xml:space="preserve">
+    <value>หนังสือรับรองการตรวจสอบสถานพยาบาล จากพนักงานเจ้าหน้าที่ ตามมาตรา 45 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_XRAY_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาตให้มีไว้ครอบครองเครื่องกำเนิดรังสีฯ จากสำนักงานปรมาณูเพื่อสันติหรือกรมวิทยาศาสตร์การแพทย์ พร้อมเอกสารแนบท้ายรายการ</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_REQ_DOC" xml:space="preserve">
+    <value>คำขอรับใบอนุญาตผลิตพลังงานควบคุม (พค.1)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_STORE_MAP" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_WEATHER" xml:space="preserve">
+    <value>แบบแสดงภาพอาคารภายนอกสถานพยาบาลอย่างน้อยด้านหน้าละด้านข้าง (ผังบริเวณ)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_BUILDING_NEW" xml:space="preserve">
+    <value>ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร (แบบ อ.1)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_BUILDING_NEW_VERIFICATION" xml:space="preserve">
+    <value>ใบรับรองการก่อสร้าง ดัดแปลงอาคาร หรือ เคลื่อนย้ายอาคาร (อ.6) </value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_DRAINAGE" xml:space="preserve">
+    <value>ระบบการระบายน้ำและบำบัดน้ำเสีย</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_EMERGENCY" xml:space="preserve">
+    <value>เส้นทางหนีไฟและอุปกรณ์ดับเพลิงภายในอาคาร</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_WAY_PLAN" xml:space="preserve">
+    <value>ผังการสัญจรของผู้ใช้สอยแต่ละประเภทในอาคาร</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_TOOLS_PLAN" xml:space="preserve">
+    <value>ผังแสดงการติดตั้งอุปกรณ์เครื่องมือพิเศษที่สำคัญในแต่ละส่วนอาคาร</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_FORM_DOC" xml:space="preserve">
+    <value>แบบฟอร์มรายละเอียดการถอดพื้นที่ใช้สอย (การขออนุมัติแผนงานการจัดตั้งสถานพยาบาลประเภทที่รับผู้ป่วยค้างคืน)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_OWNER_ID" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_OWNER_HOUSEHOLD" xml:space="preserve">
+    <value>ทะเบียนบ้าน: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_MED_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_PHOTO" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_DIPLOMA" xml:space="preserve">
+    <value>วุฒิบัตร หรือหนังสืออนุมัติ: {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_CONFIDENT_DOC" xml:space="preserve">
+    <value>เอกสารหลักฐานของผู้ประกอบวิชาชีพ : {0} {1} {2}</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_PERSEONNEL_TABLE" xml:space="preserve">
+    <value>ตารางบุคลากร (ตามสพ.6)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_ALLOW_CONTRUCTION" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยืนยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_ALLOW_PLACE" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_APPLICATIONFORM" xml:space="preserve">
+    <value>ใบรับแจ้งการประกอบกิจกำรโรงงาน (ร.ง.2)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_CHANGE_NAME_AND_LASTNAME" xml:space="preserve">
+    <value>เอกสารการเปลี่ยนชื่อ - สกุล</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_INFORMATION_STORE_BUILDING_OWNER" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของสถานที่ที่ใช้เป็นสถานที่ตั้งโรงงาน เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_INFORMATION_STORE_BUILDING_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้สถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_ALLOW_PLACE" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_MAP_PLANT_LIST" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_AUTHORIZE_LIST" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_IDENTIFIED_AUTHORIZEE_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_IDENTIFIED_AUTHORIZER_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_RENT_PROMISE" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_RENT_REGISTER_HOME" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยืนยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EIDT_DOC_PERSON_IDENTIFIED_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: บุคคลผู้ขออนุญาต (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_ALLOW_PLACE_JURISTICT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_BOARD_JURISTICT_PERSON_HOME_REGISTER_LIST" xml:space="preserve">
+    <value>ทะเบียนบ้าน: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_BOARD_JURISTICT_PERSON_IDENTIFIED_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล: (ชื่อ-นามสกุล) ({0} {1} {2})</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_ALLOW_CONTRUCTION" xml:space="preserve">
+    <value>หนังสือรับรองให้ปลูกสร้างอาคารในที่ดิน ที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_ALLOW_PLACE_JURISTICT" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_APPLICATIONFORM" xml:space="preserve">
+    <value>ใบรับแจ้งการประกอบกิจกำรโรงงาน (ร.ง.2)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_CHANGE_NAME_AND_LASTNAME" xml:space="preserve">
+    <value>เอกสารการเปลี่ยนชื่อ - สกุล</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_INFORMATION_STORE_BUILDING_OWNER" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของสถานที่ที่ใช้เป็นสถานที่ตั้งโรงงาน เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_INFORMATION_STORE_BUILDING_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้สถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_LIST" xml:space="preserve">
+    <value>หนังสือรับรองการจดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_MAP_PLANT_LIST" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_PERSON_AUTHORIZE_LIST" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_PERSON_IDENTIFIED_AUTHORIZEE_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้รับมอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_PERSON_IDENTIFIED_AUTHORIZER_LIST" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_RENT_REGISTER_HOME" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยืนยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JUSTICT_RENT_PROMISE" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="CITIZEN_DOC_IDENTIFIED" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: บุคคลผู้ขออนุญาต (ชื่อ-สกุล)</value>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_PAY_RENEW_BILL" xml:space="preserve">
+    <value>หลักฐานการชำระค่าต่ออายุทะเบียนของนิติบุคคล</value>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_CANCEL_PAY_RENEW_BILL" xml:space="preserve">
+    <value>หลักฐานการชำระค่ายกเลิกการจดทะเบียนของนิติบุคคล</value>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_PAY_RENEW_BILL" xml:space="preserve">
+    <value>หลักฐานการชำระค่าแก้ไขข้อมูลนิติบุคคล</value>
+  </data>
+  <data name="ACCOUNTING_DOC_CANCEL_UPLOAD_1" xml:space="preserve">
+    <value>คำขอแก้ไขข้อมูลนิติบุคคล (สวบช.5.1)</value>
+  </data>
+  <data name="ACCOUNTING_DOC_EDIT_UPLOAD_1" xml:space="preserve">
+    <value>คำขอแก้ไขข้อมูลนิติบุคคล (สวบช.5.1)</value>
+  </data>
+  <data name="ACCOUNTING_DOC_EDIT_UPLOAD_2" xml:space="preserve">
+    <value>คำขอแจ้งเปลี่ยนแปลงประเภทของหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สาม ตามมาตรา 11 แห่งพระราชบัญญัติวิชาชีพบัญชี พ.ศ.2547 (สวบช.5.4)</value>
+  </data>
+  <data name="ACCOUNTING_DOC_RENEW_UPLOAD_1" xml:space="preserve">
+    <value>คำขอต่ออายุทะเบียนนิติบุคคล ตามมาตรา 11 แห่งพระราชบัญญัติวิชาชีพบัญชี พ.ศ.2547 (สวบช.5.2)</value>
+  </data>
+  <data name="ACCOUNTING_DOC_RENEW_UPLOAD_2" xml:space="preserve">
+    <value>คำขอแจ้งรายละเอียดเกี่ยวกับหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สาม ตามมาตรา 11 แห่งพระราชบัญญัติวิชาชีพบัญชี พ.ศ.2547 (สวบช.5.3)</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_COPY_COLLATERAL_ACC_RENEW" xml:space="preserve">
+    <value>สำเนาหลักประกัน</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_COPY_STATEMENT_PREVIOUS_ACC_RENEW" xml:space="preserve">
+    <value>สำเนางบการเงินปีก่อน</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_STATEMENT_NO_CON" xml:space="preserve">
+    <value>ข้อมูลในงบกำไรขาดทุน หรือสำเนางบการเงินย้อนหลัง 1 ปี</value>
+  </data>
+  <data name="APP_ACC_EDIT_LOST_DOC" xml:space="preserve">
+    <value>หนังสือแจ้งความหาย</value>
+  </data>
+  <data name="APP_ACC_EDIT_REQUITE_TO_EDIT_DOC" xml:space="preserve">
+    <value>เอกสารที่มีการเปลี่ยนแปลง</value>
+  </data>
+  <data name="ORGANIC_PLANT_PRODUCTION_CHANGED_DOC" xml:space="preserve">
+    <value>เอกสารที่มีการเปลี่ยนแปลง</value>
+  </data>
+  <data name="ORGANIC_PLANT_PRODUCTION_CURRENT_CERTIFICATE" xml:space="preserve">
+    <value>ใบรับรอง(ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="ORGANIC_PLANT_PRODUCTION_FORM_CANCEL" xml:space="preserve">
+    <value>แบบคำขอยกเลิกการรับรอง (F-6)</value>
+  </data>
+  <data name="ORGANIC_PLANT_PRODUCTION_REQUEST_CER_DOC" xml:space="preserve">
+    <value>แบบคำขอใบรับรองแหล่งผลิตพืชอินทรีย์ (สำหรับกลุ่ม) (F-53)</value>
+  </data>
+  <data name="ORGANIC_PLANT_PRODUCTION_REQUEST_FORM_DOC" xml:space="preserve">
+    <value>แบบคำขอใบรับรองแหล่งผลิตพืชอินทรีย์ (สำหรับแปลงเดียว/ รายเดียว) (F-51.1)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_JURISTICT_DOC" xml:space="preserve">
+    <value>ตัวอย่างเครื่องหมายรับรอง ฉลาก และการกล่าวอ้างผลิตผลพืชอินทรีย์ทุกชนิด</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_CITIZEN_DOC" xml:space="preserve">
+    <value>ตัวอย่างเครื่องหมายรับรอง ฉลาก และการกล่าวอ้างผลิตผลพืชอินทรีย์ทุกชนิด</value>
+  </data>
+  <data name="LIST_OF_SHAREHOLDERS_5_JURISTIC_OPTIONAL" xml:space="preserve">
+    <value>บัญชีรายชื่อผู้ถือหุ้น (บอจ.5)</value>
+  </data>
+  <data name="MEMORANDUM_2_JURISTIC_OPTIONAL" xml:space="preserve">
+    <value>หนังสือบริคณห์สนธิ (บอจ.2)</value>
+  </data>
+  <data name="REGISTRATION_LIST_3_JURISTIC_OPTIONAL" xml:space="preserve">
+    <value>รายการจดทะเบียนจัดตั้ง (บอจ.3)</value>
+  </data>
+  <data name="APP_HEALTH_RENEW_01" xml:space="preserve">
+    <value>ใบอนุญาตให้ประกอบกิจการสถานประกอบการเพื่อสุขภาพ (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="APP_HEALTH_RENEW_02" xml:space="preserve">
+    <value>ใบรับรองแพทย์</value>
+  </data>
+  <data name="APP_HEALTH_RENEW_03" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้ดำเนินการ</value>
+  </data>
+  <data name="APP_HEALTH_EDIT_CURRENT_DOC_ALLOW" xml:space="preserve">
+    <value>ใบอนุญาตให้ประกอบกิจการสถานประกอบการเพื่อสุขภาพ(ปัจจุบัน)</value>
+  </data>
+  <data name="APP_HEALTH_EDIT_DOC_DETAIL" xml:space="preserve">
+    <value>เอกสารหลักฐานการเปลี่ยนแปลงรายการ</value>
+  </data>
+  <data name="APP_HEALTH_EDIT_MUST_TO" xml:space="preserve">
+    <value>กรณีที่หลักฐานและเอกสารที่ยื่นไว้ในการขออนุญาตมีการแก้ไข หรือเปลี่ยนแปลง ต้องยื่นหลักฐานและเอกสารที่มีการเปลี่ยนแปลงแก้ไขด้วย</value>
+  </data>
+  <data name="APP_HEALTH_EDIT_OLD_DOC_ALLOW" xml:space="preserve">
+    <value>ใบอนุญาตให้ประกอบกิจการสถานประกอบการเพื่อสุขภาพ(เดิม)</value>
+  </data>
+  <data name="APP_HEALTH_RENEW_04" xml:space="preserve">
+    <value>ใบอนุญาตให้ประกอบกิจการสถานประกอบการเพื่อสุขภาพ (เดิม)</value>
+  </data>
+  <data name="HEALTH_CARE_MANAGE_ID_CARD_RENEW" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้ดำเนินการ</value>
+  </data>
+  <data name="HEALTH_CARE_SERVICE_PROVIDER_ID_CARD_RENEW" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้ให้บริการ</value>
+  </data>
+  <data name="JURISTIC_ALL_COMMITTEE_HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>ทะเบียนบ้าน: {3}: ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_ALL_COMMITTEE_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: {3}: ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_ALL_COMMITTEE_MEDICAL_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์: {3}: ({0} {1} {2})</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_IS_AUTHORIZED_OPTION_no" xml:space="preserve">
+    <value>กรรมการผู้ที่ไม่มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_IS_AUTHORIZED_OPTION_yes" xml:space="preserve">
+    <value>กรรมการผู้มีอำนาจลงนามผูกพันนิติบุคคล</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_CANCEL_BOOK" xml:space="preserve">
+    <value>หนังสือบันทึกแจ้งยกเลิก</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_CANCEL_ELECTRIC_CONTROL_ENGINEER_LICENSE" xml:space="preserve">
+    <value>ใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมควบคุมของผู้ควบคุมการผลิตพลังงานควบคุม สาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_CANCEL_ELECTRIC_ENGINEER_LICENSE" xml:space="preserve">
+    <value>หนังสือรับรองของผู้ประกอบวิชาชีพวิศวกรรมควบคุมสาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_CANCEL_MACHINE_UNINSTALLATION_IMG" xml:space="preserve">
+    <value>รูปถ่ายการปลดสายหรือรื้อถอนเครื่องกำเนิดไฟฟ้า</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_CANCEL_MAP_TO_PLACE" xml:space="preserve">
+    <value>แผนที่แสดงเส้นทางไปสถานที่ผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_CANCEL_SINGLE_LINE_DIAGRAM" xml:space="preserve">
+    <value>แผนผังแสดงวิธีการเดินสายและจ่ายไฟฟ้า (Single Line Diagram)</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_DOCUMENT_LOST" xml:space="preserve">
+    <value>หนังสือแจ้งความหาย</value>
+  </data>
+  <data name="ACCOUNTING_SERVICE_CHANGE_DOCUMENT" xml:space="preserve">
+    <value>เอกสารที่มีการเปลี่ยนแปลง</value>
+  </data>
+  <data name="INFORMATION_STORE_MAP_REQUIRED" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_DOC_USE_BUILDING_ALLOW_CITIZEN" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_TYP2_LAND_ALLOW" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้ที่ดิน</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_EDIT_DOC_CHANGED" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_EDIT_ENGINEER_LICENSE" xml:space="preserve">
+    <value>หนังสือรับรองของผู้ประกอบวิชาชีพวิศวกรรมควบคุมสาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_EDIT_ENGINEER_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมควบคุมของผู้ควบคุมการผลิตพลังงานควบคุม  สาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_EDIT_MAP" xml:space="preserve">
+    <value>แผนที่บริเวณที่ตั้งสถานที่ผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_EDIT_PLAN" xml:space="preserve">
+    <value>แผนผังแสดงวิธีการเดินสายและจ่ายไฟฟ้า (Single Line Diagram)</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_RENEW_ENGINEER_LICENSE" xml:space="preserve">
+    <value>หนังสือรับรองของผู้ประกอบวิชาชีพวิศวกรรมควบคุมสาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_RENEW_ENGINEER_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมควบคุมของผู้ควบคุมการผลิตพลังงานควบคุม  สาขาไฟฟ้า แขนงไฟฟ้ากำลัง</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_RENEW_MAP" xml:space="preserve">
+    <value>แผนที่บริเวณที่ตั้งสถานที่ผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_RENEW_PLAN" xml:space="preserve">
+    <value>แผนผังแสดงวิธีการเดินสายและจ่ายไฟฟ้า (Single Line Diagram)</value>
+  </data>
+  <data name="ORGANIC_RENEW_DOC" xml:space="preserve">
+    <value>ตัวอย่างเครื่องหมายรับรอง ฉลาก และการกล่าวอ้างผลิตผลพืชอินทรีย์ทุกชนิด</value>
+  </data>
+  <data name="ORGANIC_RENEW_LICENSE_PRESENT" xml:space="preserve">
+    <value>ใบรับรอง (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="ORGANIC_EDIT_DOC" xml:space="preserve">
+    <value>ตัวอย่างเครื่องหมายรับรอง ฉลาก และการกล่าวอ้างผลิตผลพืชอินทรีย์ทุกชนิด</value>
+  </data>
+  <data name="ORGANIC_EDIT_LICENSE_PRESENT" xml:space="preserve">
+    <value>ใบรับรอง (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="ORGANIC_CANCEL_LICENSE_PRESENT" xml:space="preserve">
+    <value>ใบรับรอง (ฉบับปัจจุบัน)</value>
+  </data>
+  <data name="APP_HEALTH_RENEW_05" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ผู้ให้บริการ</value>
+  </data>
+  <data name="APP_CLINIC_CANCEL_DETAIL_DOC" xml:space="preserve">
+    <value>รายงานยอดผู้ป่วยที่คงค้างอยู่ในสถานพยาบาลและแผนการดำเนินการต่อผู้ป่วยที่ยังคงค้างอยู่หลังจากเลิกกิจการสถานพยาบาล</value>
+  </data>
+  <data name="APP_CLINIC_CANCEL_CANCEL_DETAIL" xml:space="preserve">
+    <value>รายงานการประกาศแจ้งเลิกกิจการสถานพยาบาลทางหนังสือพิมพ์และหรือสื่ออื่นๆ ที่แพร่หลาย เพื่อให้ผู้ป่วยมาขอรับเวชระเบียน ฟิล์มเอกซเรย์ และอื่นๆ</value>
+  </data>
+  <data name="APP_CLINIC_CANCEL_FILM_OTHER" xml:space="preserve">
+    <value>รายงานการจำหน่ายเวชระเบียน ฟิล์มเอกซเรย์ และอื่นๆ ที่ยังไม่มีผู้มาขอรับ</value>
+  </data>
+  <data name="APP_CLINIC_VIDEO_FOR_CONSIDERATION" xml:space="preserve">
+    <value>วิดีโอประกอบการพิจารณาอนุญาตให้ประกอบกิจการสถานพยาบาล</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_HOUSEHOLD" xml:space="preserve">
+    <value>ทะเบียนบ้าน: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_MED_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_EDIT_MED_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_PHOTO3M" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_PHOTO13M" xml:space="preserve">
+    <value>รูปถ่ายขนาด 8 x 13 เซนติเมตร: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_TRADITIONAL_CERT" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_DIPLOMA" xml:space="preserve">
+    <value>วุฒิบัตร หรือหนังสืออนุมัติ: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_PERMISSION_ID_CARD" xml:space="preserve">
+    <value>เอกสารหลักฐานของผู้ประกอบวิชาชีพ : {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_EDIT_ID_CARD_CON" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_EDIT_HOUSEHOLD_CON" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ดำเนินการ: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_EDIT_PHOTO3M" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_EDIT_PHOTO13M" xml:space="preserve">
+    <value>รูปถ่ายขนาด 8 x 13 เซนติเมตร</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_EDIT_TRADITIONAL_CERT" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_EDIT_DIPLOMA" xml:space="preserve">
+    <value>วุฒิบัตร หรือหนังสืออนุมัติ: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_LICENSE_LOCATION_PHOTO" xml:space="preserve">
+    <value>แบบแสดงภาพอาคารภายนอกสถานพยาบาลอย่างน้อยด้านหน้าละด้านข้าง (ผังบริเวณ)</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_PLAN_INSIDE" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในร้าน/สถานประกอบการ (ผังบริเวณ)</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_LOCATION_MAP" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_HOUSEHOLD" xml:space="preserve">
+    <value>ทะเบียนบ้าน:  ผู้ดำเนินการ (ชื่อ-สกุล)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_MED_CERT" xml:space="preserve">
+    <value>ใบรับรองแพทย์</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_PHOTO3M" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_PHOTO13M" xml:space="preserve">
+    <value>รูปถ่ายขนาด 8 x 13 เซนติเมตร</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_TRADITIONAL_CERT" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_DIPLOMA" xml:space="preserve">
+    <value>วุฒิบัตร หรือหนังสืออนุมัติ</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_PERMISSION_ID_CARD" xml:space="preserve">
+    <value>เอกสารหลักฐานของผู้ประกอบวิชาชีพ : (ชื่อ-สกุล)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_LICENSE_LOCATION_PHOTO" xml:space="preserve">
+    <value>แบบแสดงภาพอาคารภายนอกสถานพยาบาลอย่างน้อยด้านหน้าละด้านข้าง (ผังบริเวณ)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_PLAN_INSIDE" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในร้าน/สถานประกอบการ (ผังบริเวณ)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_LOCATION_MAP" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_PERMISSION_CITIZEN_ID_CARD" xml:space="preserve">
+    <value>เอกสารหลักฐานของผู้ประกอบวิชาชีพ : (ชื่อ-สกุล)</value>
+  </data>
+  <data name="APP_CLINIC_EDIT_DOC" xml:space="preserve">
+    <value>เอกสารที่มีการแก้ไขเปลี่ยนแปลง</value>
+  </data>
+  <data name="SOFTWARE_MANUAL_EDIT" xml:space="preserve">
+    <value>คู่มือการใช้ซอฟต์แวร์แต่ละชนิด หรือคำอธิบายรายละเอียดของโปรแกรม</value>
+  </data>
+  <data name="SYSTEM_STRUCTURE_DOC_EDIT" xml:space="preserve">
+    <value>ผังการทำงานรวมของโปรแกรมทั้งระบบ</value>
+  </data>
+  <data name="LAW_OFFICE_LOCATION_INSIDE_PHOTO" xml:space="preserve">
+    <value>รูปถ่ายภายในสำนักงาน</value>
+  </data>
+  <data name="APP_LAW_OFFICE_NOT_A_LAWYER" xml:space="preserve">
+    <value>เอกสารหนังสือแต่งตั้งหัวหน้าสำนักงานทนายความ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_INFORMATION_STORE_BUILDING_OWNER_CONFIRM" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของสถานที่ที่ใช้เป็นสถานที่ตั้งโรงงาน เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_ALLOW_CONTRUCTION_2" xml:space="preserve">
+    <value>หนังสือรับรองให้ปลูกสร้างอาคารในที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_ALLOW_PLACE_2" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_INFORMATION_STORE_BUILDING_OWNER_ID_CARD_2" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้สถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_ALLOW_PLACE_2" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_RENT_PROMISE_2" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_EDIT_TITLE_DEED" xml:space="preserve">
+    <value>โฉนดที่ดิน</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH1" xml:space="preserve">
+    <value>โฉนดที่ดิน</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH10" xml:space="preserve">
+    <value>เอกสารรับรองจากหน่วยงานที่เกี่ยวข้อง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH2" xml:space="preserve">
+    <value>น.ส.2</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH3" xml:space="preserve">
+    <value>น.ส.3</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH4" xml:space="preserve">
+    <value>น.ส.3.ก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH5" xml:space="preserve">
+    <value>ปส.23</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH6" xml:space="preserve">
+    <value>ส.ป.ก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH7" xml:space="preserve">
+    <value>ก.ส.น.5</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH8" xml:space="preserve">
+    <value>น.ค.3</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH_CH9" xml:space="preserve">
+    <value>ส.ค.1</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_INFORMATION_STORE_BUILDING_OWNER_DOC" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้เป็นร้าน/สถานประกอบการ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_INFORMATION_STORE_BUILDING_OWNER_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้อาคารสถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_INFORMATION_STORE_BUILDING_OWNER_JURISTIC_REGISTRATION" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_INFORMATION_STORE_BUILDING_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_INFORMATION_STORE_HOUSEHOLD_RENT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_INFORMATION_STORE_RENTAL_CONTRACT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="JURISTIC_ALL_COMMITTEE_PROPERTY_17" xml:space="preserve">
+    <value>หนังสือรับรองคุณสมบัติตามมาตรา 17: {3}: ({0} {1} {2})</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_1" xml:space="preserve">
+    <value>โฉนดที่ดิน</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_2" xml:space="preserve">
+    <value>น.ส.2</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_3" xml:space="preserve">
+    <value>น.ส.3</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_4" xml:space="preserve">
+    <value>น.ส.3.ก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_5" xml:space="preserve">
+    <value>ปส.23</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_6" xml:space="preserve">
+    <value>ส.ป.ก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_7" xml:space="preserve">
+    <value>ก.ส.น.5</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_8" xml:space="preserve">
+    <value>น.ค.3</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_9" xml:space="preserve">
+    <value>ส.ค.1</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_FORM_INCLUDE_TYPE_10" xml:space="preserve">
+    <value>เอกสารรับรองจากหน่วยงานที่เกี่ยวข้อง</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_1" xml:space="preserve">
+    <value>โฉนดที่ดิน</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_2" xml:space="preserve">
+    <value>น.ส.2</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_3" xml:space="preserve">
+    <value>น.ส.3</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_4" xml:space="preserve">
+    <value>น.ส.3.ก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_5" xml:space="preserve">
+    <value>ปส.23</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_6" xml:space="preserve">
+    <value>ส.ป.ก</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_7" xml:space="preserve">
+    <value>ก.ส.น.5</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_8" xml:space="preserve">
+    <value>น.ค.3</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_9" xml:space="preserve">
+    <value>ส.ค.1</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_FORM_INCLUDE_TYPE_10" xml:space="preserve">
+    <value>เอกสารรับรองจากหน่วยงานที่เกี่ยวข้อง</value>
+  </data>
+  <data name="BUILDING_OWNER_CONSENT_DOC" xml:space="preserve">
+    <value>หนังสือแสดงความยินยอมจากเจ้าของอาคาร (กรณีผู้ครอบครองอาคารเป็นผู้ยื่นคำขอ)</value>
+  </data>
+  <data name="BUILDING_OWNERSHIP_DOC" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่ายเอกสารแสดงการเป็นเจ้าของอาคารหรือผู้ครอบครองอาคาร</value>
+  </data>
+  <data name="CONSTRUCT_APPROVED_DOC" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่ายใบอนุญาตก่อสร้าง ดัดแปลง หรือเคลื่อนย้ายอาคาร</value>
+  </data>
+  <data name="SUPERVISE_ENGINEER_CONFIRM_DOC" xml:space="preserve">
+    <value>หน้งสือรับรองของผู้ควบคุมงาน</value>
+  </data>
+  <data name="BUILDING_A1LICENSE_DOC" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่ายใบอนุญาตก่อสร้าง ดัดแปลง หรือเคลื่อนย้ายอาคาร (อ.1)</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_INFORMATION_STORE_BUILDING_OWNER_DOC" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้เป็นร้าน/สถานประกอบการ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_INFORMATION_STORE_RENTAL_CONTRACT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_INFORMATION_STORE_BUILDING_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_INFORMATION_STORE_BUILDING_OWNER_JURISTIC_REGISTRATION" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_INFORMATION_STORE_HOUSEHOLD_RENT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_RENEW_INFORMATION_STORE_HOUSEHOLD_STORE" xml:space="preserve">
+    <value>ทะเบียนบ้าน: อาคารที่ใช้เป็นที่ตั้งร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_INFORMATION_STORE_BUILDING_OWNER_DOC" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของอาคารสถานที่ที่ใช้เป็นร้าน/สถานประกอบการ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_INFORMATION_STORE_RENTAL_CONTRACT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_INFORMATION_STORE_BUILDING_USAGE_AGREEMENT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_INFORMATION_STORE_BUILDING_OWNER_JURISTIC_REGISTRATION" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_INFORMATION_STORE_HOUSEHOLD_RENT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_EDIT_INFORMATION_STORE_HOUSEHOLD_STORE" xml:space="preserve">
+    <value>ทะเบียนบ้าน: อาคารที่ใช้เป็นที่ตั้งร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_ALLOW_CONTRUCTION_PLANT" xml:space="preserve">
+    <value>หนังสือรับรองให้ปลูกสร้างอาคารในที่ดิน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_ALLOW_PLANT" xml:space="preserve">
+    <value>หนังสือยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_HOUSE_REGISTRATION" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยืนยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_JURISTICT_ALLOW_PLANT" xml:space="preserve">
+    <value>หนังสือรับรองนิติบุคคล: ผู้ให้เช่า หรือยินยอมให้ใช้อาคารสถานที่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_MAP_HEAD_OFFICE" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของสำนักงานใหญ่</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_MAP_PLATLOCATION" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_OWN_BUILDING_DOC" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของสถานที่ที่ใช้เป็นสถานที่ตั้งสำนักงานใหญ่ เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_OWN_PLANT_DOC" xml:space="preserve">
+    <value>เอกสารแสดงความเป็นเจ้าของสถานที่ที่ใช้เป็นสถานที่ตั้งโรงงาน เช่น ใบอนุญาตก่อสร้าง หรือสัญญาซื้อขาย</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_RENT_FREE_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้สถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_RENT_PLANT_FREE_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือ หนังสือเดินทาง: ผู้ให้เช่า หรือ ยินยอมให้ใช้สถานที่ (หากผู้ให้เช่า หรือยินยอมฯเป็นนิติบุคคล เอกสารนี้หมายถึงเอกสารยืนยันตัวตนของผู้มีอำนาจดำเนินการแทนนิติบุคคลผู้ให้เช่า หรือยินยอมฯ)</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_RENT_PLANT_PROMISE" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_HOUSE_REGISTRATION_PLANT" xml:space="preserve">
+    <value>ทะเบียนบ้าน: ผู้ให้เช่า หรือผู้ยืนยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="SPA_OLD_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ</value>
+  </data>
+  <data name="CLINIC_DOC_1" xml:space="preserve">
+    <value>รายงานประจำปี (ส.พ.23)</value>
+  </data>
+  <data name="CLINIC_DOC_2" xml:space="preserve">
+    <value>แบบประเมินมาตรฐานการปฏิบัติตามกฎหมายว่าด้วยสถานพยาบาลในสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืนโดยตนเอง ประจำปี</value>
+  </data>
+  <data name="CLINIC_OVER_NIGHT_DOC_1" xml:space="preserve">
+    <value>รายงานประจำปี (ส.พ.24)</value>
+  </data>
+  <data name="APP_CLINIC_VIDEO_FOR_CONSIDERATION_CUZ" xml:space="preserve">
+    <value>วิดีโอประกอบการพิจารณาอนุญาตให้ประกอบกิจการสถานพยาบาล</value>
+  </data>
+  <data name="APP_CLINIC_LICENSE_LOCATION_PHOTO_CUSTOM" xml:space="preserve">
+    <value>แบบแสดงภาพอาคารภายนอกสถานพยาบาลอย่างน้อยด้านหน้าละด้านข้าง (ผังบริเวณ)</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_LOCATION_MAP_CUSTOM" xml:space="preserve">
+    <value>แผนที่สังเขป แสดงสถานที่ตั้งของร้าน/สถานประกอบการ</value>
+  </data>
+  <data name="HOSPITAL_STORE_CUSTOM" xml:space="preserve">
+    <value>แผนผังหรือภาพถ่ายบริเวณภายในร้าน/สถานประกอบการ (ผังบริเวณ)</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_A" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_B" xml:space="preserve">
+    <value>ทะเบียนบ้าน</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_C" xml:space="preserve">
+    <value>ใบรับรองแพทย์</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_D" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_E" xml:space="preserve">
+    <value>ใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_F" xml:space="preserve">
+    <value>วุฒิบัตร หรือหนังสืออนุมัติ</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_CUSTOM" xml:space="preserve">
+    <value>ตารางบุคลากร (ตามสพ.6)</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_NEW_PHOTO_BIG" xml:space="preserve">
+    <value>รูปถ่ายขนาด 8 x 13 เซนติเมตร: {0} {1} {2}</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_A" xml:space="preserve">
+    <value>แบบประเมินมาตรฐานการปฏิบัติตามกฎหมายว่าด้วยสถานพยาบาลในสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน(คลินิก)หรือหนังสือรับรองการตรวจสอบสถานพยาบาล จากพนักงานเจ้าหน้าที่ ตามมาตรา 45 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_B" xml:space="preserve">
+    <value>ตารางบุคลากร (ตามสพ.6)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_C" xml:space="preserve">
+    <value>แบบแปลนทางสถาปัตยกรรม ในมาตราส่วนที่วัดได้</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_D" xml:space="preserve">
+    <value>แบบฟอร์มรายละเอียดการถอดพื้นที่ใช้สอย (การขออนุมัติแผนงานการจัดตั้งสถานพยาบาลประเภทที่รับผู้ป่วยค้างคืน)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_E" xml:space="preserve">
+    <value>ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร (อ.1)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_F" xml:space="preserve">
+    <value>ใบรับรองการก่อสร้าง ดัดแปลงอาคาร หรือ เคลื่อนย้ายอาคาร (อ.6)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_G" xml:space="preserve">
+    <value>ใบอนุญาตให้มีไว้ครอบครองเครื่องกำเนิดรังสีฯ จากสำนักงานปรมาณูเพื่อสันติหรือกรมวิทยาศาสตร์การแพทย์ พร้อมเอกสารแนบท้ายรายการ</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_H" xml:space="preserve">
+    <value>แบบบันทึกรายละเอียดของสถิติและข้อมูลซึ่งแสดงผลการทำงานของระบบบำบัดน้ำเสียของแหล่งกำเนิดมลพิษ (ทส.1)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_I" xml:space="preserve">
+    <value>รายงานสรุปผลการทำงานของระบบบำบัดน้ำเสีย (ทส.2)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_J" xml:space="preserve">
+    <value>เอกสารการดูแลเครื่องมือ (แผนการบำรุงรักษา Calibration)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_K" xml:space="preserve">
+    <value>ใบอนุญาตให้ใช้รถ รับ-ส่งผู้ป่วยฉุกเฉิน จากสำนักงานตำรวจแห่งชาติ</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_L" xml:space="preserve">
+    <value>ใบรับรองการตรวจสอบอาคาร</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_M" xml:space="preserve">
+    <value>รายการวิเคราะห์ผลกระทบสิ่งแวดล้อม (EIA) หรือ รายงานการประเมินผลกระทบต่อสุขภาพ (HIA)</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_A" xml:space="preserve">
+    <value>ใบอนุญาตให้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_B" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาล</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_C" xml:space="preserve">
+    <value>รูปถ่ายขนาด 8x13 ซม. ถ่ายไว้ไม่เกินหนึ่งปี</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_D" xml:space="preserve">
+    <value>ใบรับรองแพทย์ซึ่งแสดงว่ามีสุขภาพแข็งแรง สามารถควบคุมดูแลกิจการสถานพยาบาลได้โดยใกล้ชิด</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_A" xml:space="preserve">
+    <value>แบบประเมินมาตรฐานการปฏิบัติตามกฎหมายว่าด้วยสถานพยาบาลในสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน(คลินิก)หรือหนังสือรับรองการตรวจสอบสถานพยาบาล จากพนักงานเจ้าหน้าที่ ตามมาตรา 45 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_B" xml:space="preserve">
+    <value>ตารางบุคลากร (ตามสพ.6)</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_C" xml:space="preserve">
+    <value>แบบแปลนทางสถาปัตยกรรม ในมาตราส่วนที่วัดได้</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_D" xml:space="preserve">
+    <value>แบบฟอร์มรายละเอียดการถอดพื้นที่ใช้สอย (การขออนุมัติแผนงานการจัดตั้งสถานพยาบาลประเภทที่รับผู้ป่วยค้างคืน)</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_E" xml:space="preserve">
+    <value>ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร (อ.1)</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_F" xml:space="preserve">
+    <value>ใบรับรองการก่อสร้าง ดัดแปลงอาคาร หรือ เคลื่อนย้ายอาคาร (อ.6)</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_G" xml:space="preserve">
+    <value>ใบอนุญาตให้มีไว้ครอบครองเครื่องกำเนิดรังสีฯ จากสำนักงานปรมาณูเพื่อสันติหรือกรมวิทยาศาสตร์การแพทย์ พร้อมเอกสารแนบท้ายรายการ</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_H" xml:space="preserve">
+    <value>แบบบันทึกรายละเอียดของสถิติและข้อมูลซึ่งแสดงผลการทำงานของระบบบำบัดน้ำเสียของแหล่งกำเนิดมลพิษ (ทส.1)</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_I" xml:space="preserve">
+    <value>รายงานสรุปผลการทำงานของระบบบำบัดน้ำเสีย (ทส.2)</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_J" xml:space="preserve">
+    <value>เอกสารการดูแลเครื่องมือ (แผนการบำรุงรักษา Calibration)</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_K" xml:space="preserve">
+    <value>ใบอนุญาตให้ใช้รถ รับ-ส่งผู้ป่วยฉุกเฉิน จากสำนักงานตำรวจแห่งชาติ</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_L" xml:space="preserve">
+    <value>ใบรับรองการตรวจสอบอาคาร</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOC_M" xml:space="preserve">
+    <value>รายการวิเคราะห์ผลกระทบสิ่งแวดล้อม (EIA) หรือ รายงานการประเมินผลกระทบต่อสุขภาพ (HIA)</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOC_A" xml:space="preserve">
+    <value>ใบอนุญาตให้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOC_B" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOC_C" xml:space="preserve">
+    <value>รูปถ่ายขนาด 2.5x3 เซนติเมตร</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOC_D" xml:space="preserve">
+    <value>ใบรับรองแพทย์ซึ่งแสดงว่ามีสุขภาพแข็งแรง สามารถควบคุมดูแลกิจการสถานพยาบาลได้โดยใกล้ชิด</value>
+  </data>
+  <data name="INFORMATION_STORE_RENTAL_CONTRACT_SPA_ONLY" xml:space="preserve">
+    <value>สัญญาเช่าหรือหรือหนังสือยินยอมให้ใช้สถานที่</value>
+  </data>
+  <data name="MED_ANIMAL_CITIZEN_CERT_SPA_ONLY" xml:space="preserve">
+    <value>ใบรับรองแพทย์: บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="HOUSE_REGISTARTION" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้าน</value>
+  </data>
+  <data name="ID_CARD" xml:space="preserve">
+    <value>บัตรประจำตัวประชาชน</value>
+  </data>
+  <data name="TRAVEL_ID" xml:space="preserve">
+    <value>หนังสือเดินทาง</value>
+  </data> 
+  <data name="APP_CLINIC_BUSINESS_RENEW_N" xml:space="preserve">
+    <value>รูปใบอนุญาตให้ประกอบกิจการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_O" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาล (แบบ ส.พ.8)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_DOCA" xml:space="preserve">
+    <value>ใบอนุญาตให้ประกอบกิจการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_DOCB" xml:space="preserve">
+    <value>ทะเบียนบ้านที่ตั้งสถานพยาบาล</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_DOCC" xml:space="preserve">
+    <value>ใบรับรองแพทย์ผู้ประกอบกิจการ ออกไว้ไม่เกิน 6 เดือน</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_DOCD" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาล (แบบ สพ.8)</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW_DOCE" xml:space="preserve">
+    <value>แบบประเมินมาตรฐานการปฏิบัติตามกฎหมายว่าด้วยสถานพยาบาลในสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน(คลินิก)หรือหนังสือรับรองการตรวจสอบสถานพยาบาล จากพนักงานเจ้าหน้าที่ ตามมาตรา 45 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_DOCA" xml:space="preserve">
+    <value>ใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน (ส.พ.19)</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_DOCB" xml:space="preserve">
+    <value>ใบรับรองแพทย์ผู้ประกอบกิจการ ออกไว้ไม่เกิน 6 เดือน</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_DOCC" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 ซม. ถ่ายไว้ไม่เกิน 1 ปี</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_DOCD" xml:space="preserve">
+    <value>ใบประกอบวิชาชีพ/ใบประกอบโรคศิลปะ หรือวุฒิบัตร หรือหนังสืออนุมัติ</value>
+  </data>
+  <data name="MEDICINE_SMART_CARD_ID" xml:space="preserve">
+    <value>สำเนา SMART CARD ของแพทย์</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCA" xml:space="preserve">
+    <value>บัตรประจำตัวประชาชนผู้ปฏิบัติงาน</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCB" xml:space="preserve">
+    <value>บัตรประจำตัวประชาชนผู้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCC" xml:space="preserve">
+    <value>ทะเบียนบ้านผู้ปฏิบัติงาน</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCD" xml:space="preserve">
+    <value>ทะเบียนบ้านผู้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCE" xml:space="preserve">
+    <value>ใบรับรองแพทย์ ออกไว้ไม่เกิน 6 เดือน</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCF" xml:space="preserve">
+    <value>ทะเบียนบ้านของที่ตั้งสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCG" xml:space="preserve">
+    <value>ใบอนุญาตให้ประกอบกิจการสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCH" xml:space="preserve">
+    <value>แบบประเมินมาตรฐานการปฏิบัติตามกฎหมายว่าด้วยสถานพยาบาลในสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน(คลินิก)หรือหนังสือรับรองการตรวจสอบสถานพยาบาล จากพนักงานเจ้าหน้าที่ ตามมาตรา 45 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW_DOCI" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCA" xml:space="preserve">
+    <value>ใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่รับผู้ป่วยไว้ค้างคืน (ส.พ.19)</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCB" xml:space="preserve">
+    <value>ใบรับรองแพทย์ ออกไว้ไม่เกิน 6 เดือน</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCC" xml:space="preserve">
+    <value>สมุดทะเบียนสถานพยาบาล (ส.พ.9)</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCD" xml:space="preserve">
+    <value>รูปถ่ายของผู้ดำเนินการสถานพยาบาล ขนาด 2.5 x 3 ซม. ถ่ายไว้ไม่เกิน 1 ปี</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCE" xml:space="preserve">
+    <value>ใบประกอบวิชาชีพ/ใบประกอบโรคศิลปะ หรือวุฒิบัตร หรือหนังสืออนุมัติ</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_DOCE" xml:space="preserve">
+    <value>คำขอต่ออายุใบอนุญาตให้ดำเนินการสถานพยาบาล (ส.พ.20) ที่ลงนามโดยผู้ดำเนินการและผู้ประกอบการ</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_DOCF" xml:space="preserve">
+    <value>สำเนาใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน (ส.พ.19)</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_DOCG" xml:space="preserve">
+    <value>ใบรับรองแพทย์ซึ่งแสดงว่ามีสุขภาพแข็งแรง สามารถควบคุมดูแลกิจการสถานพยาบาลได้โดยใกล้ชิด</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW_DOCH" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 ซม.</value>
+  </data>
+  <data name="MEDICINE_CERTIFICATE" xml:space="preserve">
+    <value>สำเนาใบประกอบวิชาชีพ/ใบประกอบโรคศิลปะ</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCF" xml:space="preserve">
+    <value>คำขอต่ออายุใบอนุญาตให้ดำเนินการสถานพยาบาล (ส.พ.20) ที่ลงนามโดยผู้ดำเนินการและผู้ประกอบการ</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCG" xml:space="preserve">
+    <value>สำเนาใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน (ส.พ.19)</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCH" xml:space="preserve">
+    <value>ใบรับรองแพทย์ซึ่งแสดงว่ามีสุขภาพแข็งแรง สามารถควบคุมดูแลกิจการสถานพยาบาลได้โดยใกล้ชิด</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCI" xml:space="preserve">
+    <value>รูปถ่าย ขนาด 2.5 x 3 ซม.</value>
+  </data>
+  <data name="CITIZEN_RENAME_DOC_REAL" xml:space="preserve">
+    <value>เอกสารการเปลี่ยนชื่อนามสกุล</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_CLINIC_OPERATION_CERTIFICATION" xml:space="preserve">
+    <value>สำเนาใบอนุญาตให้ดำเนินการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน (ส.พ.19)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_DOCTOR_SMARTCARD_COPY" xml:space="preserve">
+    <value>สำเนา Smart Card ของแพทย์ (กรณีผู้ดำเนินการเป็นแพทย์)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_NAME_CHANGE_COPY" xml:space="preserve">
+    <value>สำเนาใบสำคัญการเปลี่ยนชื่อ (กรณีเปลี่ยนชื่อ/สกุล)</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OWNED_ID_CARD" xml:space="preserve">
+    <value>เอกสารยืนยันตัวตน เช่น บัตรประชาชน หรือหนังสือเดินทาง: ชื่อผู้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_DOCJ" xml:space="preserve">
+    <value>สำเนาสมุดทะเบียนสถานพยาบาล</value>
+  </data>
+<data name="APP_CLINIC_BUSINESS_EDIT_DOCA" xml:space="preserve">
+<value>ใบอนุญาตให้ประกอบกิจการสถานพยาบาล</value>
+</data>
+<data name="APP_CLINIC_BUSINESS_EDIT_DOCB" xml:space="preserve">
+<value>สมุดทะเบียนสถานพยาบาล (สพ.8)</value>
+</data>
+<data name="APP_CLINIC_BUSINESS_EDIT_DOCC" xml:space="preserve">
+<value>เอกสารการเปลี่ยนชื่อนามสกุล/ชื่อนิติบุคคล</value>
+</data>
+<data name="APP_CLINIC_BUSINESS_EDIT_DOCD" xml:space="preserve">
+<value>เอกสารการเปลียนเลขที่ตั้ง ชื่อถนน ตำบล หรือแขวง อำเภอหรือเขต จังหวัด</value>
+</data>
+<data name="APP_CLINIC_BUSINESS_EDIT_DOCE" xml:space="preserve">
+<value>เอกสารการเปลียนชื่อสถานพยาบาล</value>
+</data>
+<data name="APP_HOSPITAL_BUSINESS_EDIT_DOCA" xml:space="preserve">
+<value>ใบอนุญาตให้ประกอบกิจการสถานพยาบาล</value>
+</data>
+<data name="APP_HOSPITAL_BUSINESS_EDIT_DOCB" xml:space="preserve">
+<value>สมุดทะเบียนสถานพยาบาล</value>
+</data>
+<data name="APP_HOSPITAL_BUSINESS_EDIT_DOCC" xml:space="preserve">
+<value>เอกสารการเปลี่ยนชื่อนามสกุล/ชื่อนิติบุคคล</value>
+</data>
+<data name="APP_HOSPITAL_BUSINESS_EDIT_DOCD" xml:space="preserve">
+<value>เอกสารการเปลี่ยนชื่อเลขที่ตั้ง ชื่อถนน ตำบล หรือแขวง อำเภอหรือเขต จังหวัด</value>
+</data>
+<data name="APP_HOSPITAL_BUSINESS_EDIT_DOCE" xml:space="preserve">
+<value>ใบประกอบวิชาชีพ/ใบประกอบโรคศิลปะ หรือวุฒิบัตร หรือหนังสืออนุมัติ</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_DOCA" xml:space="preserve">
+    <value>ใบรับรองแพทย์</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_DOCB" xml:space="preserve">
+<value>ใบประกอบวิชาชีพ/ใบประกอบโรคศิลปะ</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_DOCC" xml:space="preserve">
+<value>รูปถ่าย ขนาด 8*13 ซม. ถ่ายไว้ไม่เกิน 1 ปี</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_DOCD" xml:space="preserve">
+<value>ใบอนุญาตให้ดำเนินการสถานพยาบาล</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_DOCE" xml:space="preserve">
+<value>สมุดทะเบียนสถานพยาบาล (สพ.8)</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_DOCF" xml:space="preserve">
+<value>สำเนาวุฒิบัตรหรือหนังสืออนุมัติหรือหนังสือรับรอง</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_DOCG" xml:space="preserve">
+<value>หนังสือเดินทาง</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_DOCA" xml:space="preserve">
+<value>ใบอนุญาตให้ดำเนินการสถานพยาบาล</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_DOCB" xml:space="preserve">
+<value>ใบรับรองแพทย์ ไม่เกิน 6 เดือน และประทับตราหน่วยงานที่ออกใบรับรองแพทย์</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_DOCC" xml:space="preserve">
+<value>รูปถ่ายขนาด2.5x3 ซม. ถ่ายไว้ไม่เกิน 1 ปี</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_DOCD" xml:space="preserve">
+<value>สมุดทะเบียนสถานพยาบาล (สพ.8)</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_DOCE" xml:space="preserve">
+<value>สำเนาใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_DOCF" xml:space="preserve">
+<value>สำเนาวุฒิบัตรหรือหนังสืออนุมัติหรือหนังสือรับรอง</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_B_DOCA" xml:space="preserve">
+<value>ใบอนุญาตให้ประกอบกิจการสถานพยาบาล</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_B_DOCB" xml:space="preserve">
+<value>เอกสารการเปลี่ยนชื่อสถานพยาบาล</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_B_DOCC" xml:space="preserve">
+<value>รูปถ่าย ขนาด 2.5 x 3 ซม. ถ่ายไว้ไม่เกิน 1 ปี</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_B_DOCD" xml:space="preserve">
+<value>เอกสารการเปลี่ยนชื่อเลขที่ตั้ง ชื่อถนน ตำบล หรือแขวง อำเภอหรือเขต จังหวัด</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_B_DOCE" xml:space="preserve">
+<value>เอกสารการเปลี่ยนชื่อนามสกุล</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_B_DOCF" xml:space="preserve">
+<value>สมุดทะเบียนสถานพยาบาล (ส.พ.8)</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_B_DOCA" xml:space="preserve">
+<value>ใบอนุญาตให้ดำเนินการสถานพยาบาล (สพ.19)</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_B_DOCB" xml:space="preserve">
+<value>สมุดทะเบียนสถานพยาบาล</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_B_DOCC" xml:space="preserve">
+<value>เอกสารการเปลี่ยนชื่อนามสกุล/ชื่อนิติบุคคล</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_B_DOCD" xml:space="preserve">
+<value>เอกสารการเปลี่ยนชื่อเลขที่ตั้ง ชื่อถนน ตำบล หรือแขวง อำเภอหรือเขต จังหวัด</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_B_DOCE" xml:space="preserve">
+<value>ใบประกอบวิชาชีพ/ใบประกอบโรคศิลปะ หรือวุฒิบัตร หรือหนังสืออนุมัติ</value>
+</data>
+</root>

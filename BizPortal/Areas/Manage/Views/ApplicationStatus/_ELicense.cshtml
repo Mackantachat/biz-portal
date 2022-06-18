@@ -1,0 +1,310 @@
+﻿@model List<BizPortal.ViewModels.ELicenseViewModel>
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using Newtonsoft.Json
+
+@{
+    var elicenseConfig = Model.FirstOrDefault();
+}
+
+<style type="text/css">
+    .document-signing .form-group {
+        margin-bottom: 25px;
+    }
+</style>
+
+<div class="col-md-12 document-signing">
+
+
+    @if (elicenseConfig.SigningDocumentType == EDocumentPermitType.Organization.ToString())
+    {
+        <div class="form-group pnlUploadELicense hide">
+            <button type="button" id="btnELicenseDocument" class="btn btn-default" data-style="expand-left" data-spinner-color="#717171"><span class="ladda-label"><i class="fa fa-folder-open-o"></i> @BizPortal.Resources.Global.BROWSE</span></button>
+            <span id="lblELicenseDocument" class="m-l-sm"></span>
+        </div>
+    }
+
+    @if (elicenseConfig.SigningType == EDocumentType.Personal.ToString() || elicenseConfig.SigningType == EDocumentType.OrgByPerson.ToString())
+    {
+
+        if (elicenseConfig.SigningPersons != null && elicenseConfig.SigningPersons.Count > 0)
+        {
+            <div class="pnlExtendedData hide m-t-md">
+                <div class="row">
+                    @foreach (var data in elicenseConfig.SigningExtendedDatas)
+                    {
+                        if (data.Type == SigningExtendedDataType.Text)
+                        {
+                            <div class="col-md-12 m-b-md">
+                                <label class="control-label">@data.Label</label>
+                                <input type="text" class="form-control extended-data" label="@data.Label" id="@data.Name" name="@data.Name" value="@data.Value" required />
+                                @Html.ValidationMessage(data.Name, "กรุณากรอก" + data.Label)
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+
+            <div class="pnlSigningPersonal hide m-t-md">
+                <p class="font-bold">การลงนามใบอนุญาต</p>
+                <div class="form-group document-signing-personal">
+                    <table id="signingTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center; width:25px;">ลำดับ</th>
+                                <th style="text-align:center;">รายชื่อ</th>
+                                @if (elicenseConfig.SigningStatus != null)
+                                {
+                                    <th style="text-align:center;">ตำแหน่ง</th>
+                                }
+                                @Html.Raw(elicenseConfig.SigningStatus == null ? "" : "<th style='text-align:center;'>สถานะ</th>")
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (elicenseConfig.SigningStatus == null)
+                            {
+                                var signers = elicenseConfig.SigningPersons.Select(m => new SelectListItem { Text = m.FirstName + " " + m.LastName + " - " + m.Position, Value = JsonConvert.SerializeObject(m) }).ToList();
+                                signers.Insert(0, new SelectListItem { Text = "[------ กรุณาเลือก ------]", Value = "" });
+
+
+                                for (var i = 0; i < elicenseConfig.SigningPositions.Count; i++)
+                                {
+                                    <tr class="text-left" data-position="@JsonConvert.SerializeObject(elicenseConfig.SigningPositions[i])">
+                                        <td>@(i + 1)</td>
+                                        <td>@Html.DropDownList("SingingPerson" + (i + 1), signers, new { @class = "form-control signingPersion", required = "required" }) <br /> @Html.ValidationMessage("SingingPerson" + (i + 1), "กรุณาเลือกผู้ลงนาม")</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                for (var i = 0; i < elicenseConfig.SigningPersons.Count; i++)
+                                {
+                                    <tr class="text-left" data-citizenId="@elicenseConfig.SigningPersons[i].CitizenID">
+                                        <td>@(i + 1)</td>
+                                        <td>@elicenseConfig.SigningPersons[i].FirstName @elicenseConfig.SigningPersons[i].LastName</td>
+                                        <td>@elicenseConfig.SigningPersons[i].Position</td>
+                                        <td>@Html.Raw(elicenseConfig.SigningPersons[i].Status == PersonalSigningStatus.SIGNED ? "<span class='text-success'>ลงนามเรียบร้อยแล้ว<span>" : (elicenseConfig.SigningPersons[i].Status == PersonalSigningStatus.REJECTED ? "<span class='text-danger'>ปฏิเสธการลงนาม <br/> เนื่องจาก : " + (!string.IsNullOrEmpty(elicenseConfig.SigningPersons[i].Remark) ? elicenseConfig.SigningPersons[i].Remark : "-") + "</span>" : "<span class='text-warning'>รอการลงนาม</span>")) </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                    @if (elicenseConfig.SigningStatus != @EDocumentStatus.COMPLETED.ToString())
+                    {
+                        <span class="text-danger">* การดำเนินการออกใบอนุญาตยังไม่เสร็จสิ้นจนกว่าจะมีผู้ลงนามใบอนุญาตครบถ้วน</span>
+                    }
+
+                    @if (elicenseConfig.SigningStatus != null)
+                    {
+                        <br />
+                        <a class="btn btn-default m-t-sm" href="@Url.Action("DownloadEdocument", "File", new { area = "",applicationRequestId = Model.Select(e=>e.ApplicationRequestID).FirstOrDefault(), documentId = Model.Select(e=>e.DocumentID).FirstOrDefault() })" target="_blank">ดูเอกสารลงนาม</a>
+                    }
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="pnlSigningPersonalNotFound hide m-t-md">
+                <p class="font-bold text-danger">ไม่พบบุคคลที่สามารถลงนามใบอนุญาตได้</p>
+                <input type="text" class="invisibility" id="hidSigningPersonalNotFound" name="hidSigningPersonalNotFound" required>
+            </div>
+        }
+    }
+
+</div>
+
+<script type="text/javascript">
+
+    var eLicenseFile = null;
+    var eLicenseDocuments = [];
+
+    function initELicense() {
+
+        // ถ้ามีการยื่น sign ไปแล้วให้รอจนกว่าจะมีการ sign เสร็จ หรือเจ้าหน้าที่กดแก้ไขเพื่อทำการยื่น sign ใหม่
+        if ('@elicenseConfig.SigningStatus' != '') {
+            $('#Status').val('COMPLETED').trigger('change');
+            $('#Status').attr('disabled', true);
+            $('.pnlSigningPersonal').removeClass('hide');
+
+            if ('@elicenseConfig.SigningStatus' != '@EDocumentStatus.COMPLETED.ToString()') {
+
+                $('#btnFormSummary').addClass('hide');
+                $('#btnFormEditEdoc').removeClass('hide');
+                $('#btnFormEditEdoc').on('click', function (e) {
+                    $('#Status').val('PAID_FEE_CREATING_LICENSE').trigger('change');
+
+                    ELicense = {
+                        TemplateID : '@elicenseConfig.TemplateID',
+                        SigningDocumentType: '@elicenseConfig.SigningType',
+                        SigningType : '@elicenseConfig.SigningType',
+                        SigningPersons :null,
+                    };
+
+                    requestManage.functions.summary();
+                });
+            }
+        }
+        else {
+
+            $('#Status').on('change', function (e) {
+                if ($(this).val() == 'PAID_FEE_CREATING_LICENSE') {
+                    $('.pnlSigningPersonal, .pnlExtendedData, .pnlSigningPersonalNotFound').removeClass('hide');
+                }
+                else {
+                    $('.pnlSigningPersonal, .pnlExtendedData, .pnlSigningPersonalNotFound').addClass('hide');
+                }
+
+                if ($(this).val() == 'COMPLETED') {
+                    $('.pnlUploadELicense').removeClass('hide');
+                }
+                else {
+                    $('.pnlUploadELicense').addClass('hide');
+                }
+            });
+
+            var eLicenseUploader = new plupload.Uploader({
+                runtimes: 'html5,flash,silverlight,html4',
+                url : '',
+                browse_button: 'btnELicenseDocument',
+                chunk_size: '1.5mb',
+                headers: { 'Accept': 'application/json' },
+                filters: {
+                    max_file_size: '5mb',
+                    mime_types: [
+                        { title: "Document files", extensions: "pdf" }
+                    ]
+                },
+                multi_selection: false,
+                flash_swf_url: '/plupload/js/Moxie.swf',
+                silverlight_xap_url: '/plupload/js/Moxie.xap',
+                init: {
+                    FilesAdded: function (up, files) {
+                        $.each(files, function (i, file) {
+                            var reader = new window.FileReader();
+
+                            reader.readAsDataURL(file.getNative());
+                            reader.onload = function () {
+                                base64data = reader.result;
+                                base64data = base64data.substring(base64data.indexOf(",") + 1);
+
+                                eLicenseFile = {
+                                    FileName: file.name,
+                                    ContentType: file.type,
+                                    Base64String: base64data
+                                };
+
+                                $('#lblELicenseDocument').html(file.name);
+                            }
+                        });
+                    },
+                    Error: function (up, err) {
+                        swal('', err.message, 'error');
+                    }
+                }
+            });
+
+            eLicenseUploader.init();
+        }
+    }
+
+    function getELicenseData() {
+
+        var eLicenses = [];
+
+        var eLicense = {
+            ApplicationRequestID: '@elicenseConfig.ApplicationRequestID',
+            TemplateID: '@elicenseConfig.TemplateID',
+            DocumentID: '@Model.Select(e => e.DocumentID).FirstOrDefault()',
+            SigningDocumentType: '@elicenseConfig.SigningType',
+            SigningType: '@elicenseConfig.SigningType',
+            SigningStatus : '@elicenseConfig.SigningStatus'
+        };
+
+        var documents = $.grep(eLicenseDocuments, function (el, i) { return el.TemplateID == '@elicenseConfig.TemplateID' });
+
+
+        if ('@elicenseConfig.SigningType' == '@EDocumentType.NotSign.ToString()') {
+            eLicense.Attachment = eLicenseFile;
+        }
+        else if (('@elicenseConfig.SigningType' == '@EDocumentType.Personal.ToString()' ||  '@elicenseConfig.SigningType' == '@EDocumentType.OrgByPerson.ToString()') && '@elicenseConfig.SigningStatus' == '') {
+
+            var signingExtendedDatas = [];
+            var signingPersons = [];
+
+            // signing extended data
+            $('.extended-data').each(function (i, e) {
+                signingExtendedDatas.push({
+                    Type: $(e).attr('type'),
+                    Name: $(e).attr('name'),
+                    Label: $(e).attr('label'),
+                    Value: $(e).val()
+                });
+            });
+
+            // signing person
+            $('#signingTable tbody tr').each(function (i, e) {
+
+                var position = JSON.parse($(e).attr('data-position'));
+                var signer = JSON.parse($(e).find('select').val());
+
+                signer.Order = (i + 1);
+                signer.Left = position.Left;
+                signer.Bottom = position.Bottom;
+                signer.Width = position.Width;
+                signer.Height = position.Height;
+
+                signingPersons.push(signer);
+            });
+
+            eLicense.SigningExtendedDatas = signingExtendedDatas;
+            eLicense.SigningPersons = signingPersons;
+        }
+        else if (('@elicenseConfig.SigningType' == '@EDocumentType.Personal.ToString()' ||  '@elicenseConfig.SigningType' == '@EDocumentType.OrgByPerson.ToString()') && '@elicenseConfig.SigningStatus' != '') {
+            // เข้า case แก้ไขเริ่มทำการยื่น signing ใหม่
+            eLicense.TemplateID = '';
+        }
+
+        if (documents && documents.length > 0) {
+            eLicense.DocumentID = documents[0].DocumentID;
+        }
+
+        eLicenses.push(eLicense);
+        return eLicenses;
+    }
+
+    function renderELicense(callback) {
+
+        var elicenseData = getELicenseData();
+
+        if (elicenseData) {
+            var $loading = $(requestManage.controls.btnFormSummary).ladda();
+            var $loading2 = $(requestManage.controls.btnFormEditEdoc).ladda();
+
+                $loading.ladda('start');
+                $loading2.ladda('start');
+
+            $.post('@Url.Content("~/Api/V2/Applications/RenderELicense")', { ELicenses : elicenseData }, function (res) {
+                eLicenseDocuments = res;
+                callback(res);
+            }).error(function (res) {
+                swal({ title: '', text: 'ไม่สามารถสร้างเอกสารได้ กรุณาลองใหม่อีกครั้ง', type: 'error' });
+                $.ladda('stopAll');
+            });
+        }
+        else
+        {
+            $.ladda('stopAll');
+        }
+    }
+
+
+    function test() {
+        var data = [{ a: 1, b: "test1" }, { a: 2, b: "test2" }];
+        console.log($.grep(data,function (el, i) { return el.a == 1 }));
+    }
+
+</script>

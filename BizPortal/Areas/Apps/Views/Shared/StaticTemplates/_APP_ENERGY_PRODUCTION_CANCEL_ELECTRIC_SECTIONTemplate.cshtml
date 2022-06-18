@@ -1,0 +1,54 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_IDX :</label>
+            {{ARR_IDX}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_TYPE :</label>
+            {{this.AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_TYPE_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_KVA :</label>
+            {{this.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_KVA}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_VOLTAGE :</label>
+            {{this.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_VOLTAGE}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_AMP :</label>
+            {{this.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_AMP}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_PERCENT  :</label>
+            {{this.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_PERCENT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_YEAR  :</label>
+            {{this.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_YEAR}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_NAME  :</label>
+            {{this.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_NAME}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_ID  :</label>
+            {{this.APP_ENERGY_PRODUCTION_CANCEL_ELECTRIC_SECTION_ID}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

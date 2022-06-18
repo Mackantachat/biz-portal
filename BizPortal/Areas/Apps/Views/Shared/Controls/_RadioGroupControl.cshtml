@@ -1,0 +1,80 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+
+@model FormControl
+@{ 
+    var triggerDisplayClass = Model.WillTriggerDisplayOfOtherUI ? "trigger-display" : "trigger-display";
+}
+
+@if (Model.DisplayRadioButtonInline)
+{
+    if (Model.RadioGroup.RadioButtons.Count() > 3)
+    {
+        
+        <div class="row">
+            @foreach (var radioBtn in Model.RadioGroup.RadioButtons)
+            {
+
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="@string.Format("{0}-{1}", Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue)">
+                            @Html.RadioButton(Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue,
+                                new {
+                                    id = string.Format("{0}-{1}", Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue),
+                                    @class = triggerDisplayClass,
+                                    data_control_name = Model.Control,
+                                    data_radio_text = ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText)
+                                }) 
+                            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText))
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        var cols = Model.RadioGroup.RadioButtons.Count();
+        double maxCols = 12;
+        int colLen = (int)Math.Ceiling(maxCols / cols);
+
+        <div class="row">
+            @foreach (var radioBtn in Model.RadioGroup.RadioButtons)
+            {
+                <div class="col-md-@colLen">
+                    <div class="radio">
+                        <label for="@string.Format("{0}-{1}", Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue)">
+                            @Html.RadioButton(Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue,
+                                new {
+                                    id = string.Format("{0}-{1}", Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue),
+                                    @class= triggerDisplayClass,
+                                    data_control_name = Model.Control,
+                                    data_radio_text = ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText)
+                                }) 
+                            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText))
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+else
+{
+    foreach (var radioBtn in Model.RadioGroup.RadioButtons)
+    {
+        <div class="radio">
+            <label for="@string.Format("{0}-{1}", Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue)">
+                @Html.RadioButton(Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue,
+                    new {
+                        id = string.Format("{0}-{1}", Model.RadioGroup.RadioGroupName, radioBtn.RadioButtonValue),
+                        @class = triggerDisplayClass,
+                        data_control_name = Model.Control,
+                        data_radio_text = ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText)
+                    }) 
+                @Html.Raw(ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText))
+            </label>
+        </div>
+    }
+}

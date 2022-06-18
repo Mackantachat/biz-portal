@@ -1,0 +1,2994 @@
+﻿@model JuristicProfile
+@using BizPortal.ViewModels.Apps
+@using Resources = BizPortal.Resources
+@using System.Configuration
+@{
+    var trackingUrl = Url.BizAction("Index", "Track", new { area = "", language = ViewBag.CurrentLang });
+    string homeUrl = Url.BizAction("Index", "Home", new { area = "", language = ViewBag.CurrentLang });
+    var printUrl = "http://vsreg.rd.go.th/FVATNID/jsp/printega.jsp?txtTIN=" + Model.JuristicID;
+    var requiredData = "";
+    int appID = int.Parse(ConfigurationManager.AppSettings["VAT_APPID"]);
+
+    ViewBag.Title = Resources.Apps_VAT.APPS_TITLE;
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/rd-logo.png");
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+
+    List<SelectListItem> pp011BarnchTitle = new List<SelectListItem>()
+        {
+            new SelectListItem () { Value = "5211", Text = "บริษัท" },
+            new SelectListItem () { Value = "5213", Text = "บริษัทหลักทรัพย์" },
+            new SelectListItem () { Value = "5214", Text = "บริษัทเงินทุนหลักทรัพย์" },
+            new SelectListItem () { Value = "5217", Text = "บรรษัท" },
+            new SelectListItem () { Value = "5218", Text = "บริษัทขนส่งระหว่างประเทศ" },
+            new SelectListItem () { Value = "5222", Text = "ห้างหุ้นส่วนจำกัด" },
+            new SelectListItem () { Value = "5224", Text = "ห้างหุ้นส่วนสามัญนิติบุคคล" },
+            new SelectListItem () { Value = "5231", Text = "กิจการร่วมค้า" },
+            new SelectListItem () { Value = "5232", Text = "มูลนิธิ" },
+            new SelectListItem () { Value = "5233", Text = "สมาคม" },
+            new SelectListItem () { Value = "5234", Text = "สำนักงานผู้แทน" },
+            new SelectListItem () { Value = "5236", Text = "สำนักงานผู้แทนภูมิภาค" },
+            new SelectListItem () { Value = "5237", Text = "สำนักงานภูมิภาค" },
+            new SelectListItem () { Value = "5238", Text = "พรรค" },
+            new SelectListItem () { Value = "5240", Text = "ธนาคาร" },
+            new SelectListItem () { Value = "5241", Text = "หอการค้า" },
+            new SelectListItem () { Value = "5242", Text = "สมาคมหอการค้า" },
+            new SelectListItem () { Value = "6110", Text = "คลีนิค" },
+            new SelectListItem () { Value = "6120", Text = "ภัตตาคาร" },
+            new SelectListItem () { Value = "6140", Text = "โรงงาน" },
+            new SelectListItem () { Value = "6150", Text = "โรงพยาบาล" },
+            new SelectListItem () { Value = "6160", Text = "โรงพยาบาลสัตว์" },
+            new SelectListItem () { Value = "6170", Text = "โรงพิมพ์" },
+            new SelectListItem () { Value = "6180", Text = "โรงไฟฟ้า" },
+            new SelectListItem () { Value = "6190", Text = "โรงภาพยนตร์" },
+            new SelectListItem () { Value = "6200", Text = "โรงรับจำนำ" },
+            new SelectListItem () { Value = "6210", Text = "โรงแรม" },
+            new SelectListItem () { Value = "6220", Text = "โรงเลื่อย" },
+            new SelectListItem () { Value = "6230", Text = "โรงเลื่อยจักร" },
+            new SelectListItem () { Value = "6240", Text = "โรงสี" },
+            new SelectListItem () { Value = "6260", Text = "สถานพยาบาล" },
+            new SelectListItem () { Value = "6270", Text = "สำนักงาน" },
+            new SelectListItem () { Value = "6280", Text = "ห้างขายทอง" },
+            new SelectListItem () { Value = "6290", Text = "ห้างขายยา" },
+            new SelectListItem () { Value = "6310", Text = "ห้องอาหาร" },
+            new SelectListItem () { Value = "7115", Text = "กองทุนรวม" },
+            new SelectListItem () { Value = "7120", Text = "กองทุนสำรองเลี้ยงชีพ" },
+            new SelectListItem () { Value = "7180", Text = "มหาวิทยาลัย" },
+            new SelectListItem () { Value = "7190", Text = "โรงเรียน" },
+            new SelectListItem () { Value = "7200", Text = "วิทยาลัย" },
+            new SelectListItem () { Value = "7210", Text = "ศูนย์" },
+            new SelectListItem () { Value = "7220", Text = "สถาบัน" },
+            new SelectListItem () { Value = "7230", Text = "สมาพันธ์" },
+            new SelectListItem () { Value = "7251", Text = "ชุมนุมสหกรณ์" },
+            new SelectListItem () { Value = "7280", Text = "องค์การบริหารส่วนตำบล" },
+            new SelectListItem () { Value = "5243", Text = "สมาคมการค้า" }
+        };
+   
+    List<SelectListItem> trdbNationality = new List<SelectListItem>()
+        {
+            new SelectListItem () { Value = "00400", Text = "อัฟกานิสถาน" },
+            new SelectListItem () { Value = "00800", Text = "แอลเบเนีย" },
+            new SelectListItem () { Value = "01000", Text = "แอนตาร์กติกา" },
+            new SelectListItem () { Value = "01200", Text = "แอลจีเรีย" },
+            new SelectListItem () { Value = "01600", Text = "อเมริกันซามัว" },
+            new SelectListItem () { Value = "02000", Text = "อันดอร์รา" },
+            new SelectListItem () { Value = "02400", Text = "แองโกลา" },
+            new SelectListItem () { Value = "02800", Text = "แอนติกาและบาร์บูดา" },
+            new SelectListItem () { Value = "03100", Text = "อาเซอร์ไบจาน" },
+            new SelectListItem () { Value = "03200", Text = "อาร์เจนตินา" },
+            new SelectListItem () { Value = "03600", Text = "ออสเตรเลีย" },
+            new SelectListItem () { Value = "04000", Text = "ออสเตรีย" },
+            new SelectListItem () { Value = "04400", Text = "บาฮามาส" },
+            new SelectListItem () { Value = "04800", Text = "บาห์เรน" },
+            new SelectListItem () { Value = "05000", Text = "บังกลาเทศ" },
+            new SelectListItem () { Value = "05100", Text = "อาร์เมเนีย" },
+            new SelectListItem () { Value = "05200", Text = "บาร์เบโดส" },
+            new SelectListItem () { Value = "05600", Text = "เบลเยียม" },
+            new SelectListItem () { Value = "06000", Text = "เบอร์มิวดา" },
+            new SelectListItem () { Value = "06400", Text = "ภูฏาน" },
+            new SelectListItem () { Value = "06800", Text = "โบลิเวีย" },
+            new SelectListItem () { Value = "07000", Text = "บอสเนียและเฮอร์เซโกวีนา" },
+            new SelectListItem () { Value = "07200", Text = "บอตสวานา" },
+            new SelectListItem () { Value = "07400", Text = "บูเวต์" },
+            new SelectListItem () { Value = "07600", Text = "บราซิล" },
+            new SelectListItem () { Value = "08400", Text = "เบลีซ" },
+            new SelectListItem () { Value = "08600", Text = "บริติชอินเดียนโอเชียนเทร์ริทอรี" },
+            new SelectListItem () { Value = "09000", Text = "หมู่เกาะโซโลมอน" },
+            new SelectListItem () { Value = "09200", Text = "หมู่เกาะเวอร์จินของบริติช" },
+            new SelectListItem () { Value = "09600", Text = "เนการาบรูไนดารุสซาลาม" },
+            new SelectListItem () { Value = "10000", Text = "บัลแกเรีย" },
+            new SelectListItem () { Value = "10400", Text = "พม่า" },
+            new SelectListItem () { Value = "10800", Text = "บุรุนดี" },
+            new SelectListItem () { Value = "11200", Text = "เบลารุส" },
+            new SelectListItem () { Value = "11600", Text = "กัมพูชา" },
+            new SelectListItem () { Value = "12000", Text = "แคเมอรูน" },
+            new SelectListItem () { Value = "12400", Text = "แคนาดา" },
+            new SelectListItem () { Value = "13200", Text = "เคปเวิร์ด" },
+            new SelectListItem () { Value = "13600", Text = "หมู่เกาะเคย์แมน" },
+            new SelectListItem () { Value = "14000", Text = "สาธารณรัฐแอฟริกากลาง" },
+            new SelectListItem () { Value = "14400", Text = "ศรีลังกา" },
+            new SelectListItem () { Value = "14800", Text = "ชาด" },
+            new SelectListItem () { Value = "15200", Text = "ชิลี" },
+            new SelectListItem () { Value = "15600", Text = "จีน" },
+            new SelectListItem () { Value = "15800", Text = "ไต้หวัน" },
+            new SelectListItem () { Value = "16200", Text = "เกาะคริสต์มาส" },
+            new SelectListItem () { Value = "16600", Text = "หมู่เกาะโคคอส" },
+            new SelectListItem () { Value = "17000", Text = "โคลัมเบีย" },
+            new SelectListItem () { Value = "17400", Text = "คอโมโรส" },
+            new SelectListItem () { Value = "17500", Text = "มายอต" },
+            new SelectListItem () { Value = "17800", Text = "คองโก" },
+            new SelectListItem () { Value = "18000", Text = "สาธารณรัฐประชาธิปไตยคองโก" },
+            new SelectListItem () { Value = "18400", Text = "หมู่เกาะคุก" },
+            new SelectListItem () { Value = "18800", Text = "คอสตาริกา" },
+            new SelectListItem () { Value = "19100", Text = "โครเอเชีย" },
+            new SelectListItem () { Value = "19200", Text = "คิวบา" },
+            new SelectListItem () { Value = "19600", Text = "ไซปรัส" },
+            new SelectListItem () { Value = "20300", Text = "สาธารณรัฐเช็ก" },
+            new SelectListItem () { Value = "20400", Text = "เบนิน" },
+            new SelectListItem () { Value = "20800", Text = "เดนมาร์ก" },
+            new SelectListItem () { Value = "21200", Text = "โดมินิกา" },
+            new SelectListItem () { Value = "21400", Text = "สาธารณรัฐโดมินิกัน" },
+            new SelectListItem () { Value = "21800", Text = "เอกวาดอร์" },
+            new SelectListItem () { Value = "22200", Text = "เอลซัลวาดอร์" },
+            new SelectListItem () { Value = "22600", Text = "อิเควทอเรียลกินี" },
+            new SelectListItem () { Value = "23100", Text = "เอธิโอเปีย" },
+            new SelectListItem () { Value = "23200", Text = "เอริเทรีย" },
+            new SelectListItem () { Value = "23300", Text = "เอสโตเนีย" },
+            new SelectListItem () { Value = "23400", Text = "หมู่เกาะแฟโร" },
+            new SelectListItem () { Value = "23800", Text = "หมู่เกาะฟอล์กแลนด์" },
+            new SelectListItem () { Value = "23900", Text = "เซาท์จอร์เจียและเซาท์แซนด์วิช" },
+            new SelectListItem () { Value = "24200", Text = "ฟิจิ" },
+            new SelectListItem () { Value = "24600", Text = "ฟินแลนด์" },
+            new SelectListItem () { Value = "25000", Text = "ฝรั่งเศส" },
+            new SelectListItem () { Value = "25400", Text = "เฟรนช์เกียนา" },
+            new SelectListItem () { Value = "25800", Text = "เฟรนช์โปลินีเซีย" },
+            new SelectListItem () { Value = "26000", Text = "เฟรนช์เซาเทิร์นและแอนตาร์กติกเทร์ริทอรีส์" },
+            new SelectListItem () { Value = "26200", Text = "จิบูตี" },
+            new SelectListItem () { Value = "26600", Text = "กาบอง" },
+            new SelectListItem () { Value = "26800", Text = "จอร์เจีย" },
+            new SelectListItem () { Value = "27000", Text = "แกมเบีย" },
+            new SelectListItem () { Value = "27600", Text = "เยอรมนี" },
+            new SelectListItem () { Value = "28800", Text = "กานา" },
+            new SelectListItem () { Value = "29200", Text = "ยิบรอลตาร์" },
+            new SelectListItem () { Value = "29600", Text = "คิริบาส" },
+            new SelectListItem () { Value = "30000", Text = "กรีซ" },
+            new SelectListItem () { Value = "30400", Text = "กรีนแลนด์" },
+            new SelectListItem () { Value = "30800", Text = "เกรเนดา" },
+            new SelectListItem () { Value = "31200", Text = "กวาเดอลูป" },
+            new SelectListItem () { Value = "31600", Text = "กวม" },
+            new SelectListItem () { Value = "32000", Text = "กัวเตมาลา" },
+            new SelectListItem () { Value = "32400", Text = "กินี" },
+            new SelectListItem () { Value = "32800", Text = "กายอานา" },
+            new SelectListItem () { Value = "33200", Text = "เฮติ" },
+            new SelectListItem () { Value = "33400", Text = "เกาะเฮิร์ดและเกาะแมกดอนัลด์" },
+            new SelectListItem () { Value = "33600", Text = "นครรัฐวาติกัน" },
+            new SelectListItem () { Value = "34000", Text = "ฮอนดูรัส" },
+            new SelectListItem () { Value = "34400", Text = "ฮ่องกง" },
+            new SelectListItem () { Value = "34800", Text = "ฮังการี" },
+            new SelectListItem () { Value = "35200", Text = "ไอซ์แลนด์" },
+            new SelectListItem () { Value = "35600", Text = "อินเดีย" },
+            new SelectListItem () { Value = "36000", Text = "อินโดนีเซีย" },
+            new SelectListItem () { Value = "36400", Text = "อิหร่าน" },
+            new SelectListItem () { Value = "36800", Text = "อิรัก" },
+            new SelectListItem () { Value = "37200", Text = "ไอร์แลนด์" },
+            new SelectListItem () { Value = "37600", Text = "อิสราเอล" },
+            new SelectListItem () { Value = "38000", Text = "อิตาลี" },
+            new SelectListItem () { Value = "38400", Text = "โกตดิวัวร์" },
+            new SelectListItem () { Value = "38800", Text = "จาเมกา" },
+            new SelectListItem () { Value = "39200", Text = "ญี่ปุ่น" },
+            new SelectListItem () { Value = "39800", Text = "คาซัคสถาน" },
+            new SelectListItem () { Value = "40000", Text = "จอร์แดน" },
+            new SelectListItem () { Value = "40400", Text = "เคนยา" },
+            new SelectListItem () { Value = "40800", Text = "เกาหลีเหนือ" },
+            new SelectListItem () { Value = "41000", Text = "เกาหลีใต้" },
+            new SelectListItem () { Value = "41400", Text = "คูเวต" },
+            new SelectListItem () { Value = "41700", Text = "คีร์กีซ" },
+            new SelectListItem () { Value = "41800", Text = "ลาว" },
+            new SelectListItem () { Value = "42200", Text = "เลบานอน" },
+            new SelectListItem () { Value = "42600", Text = "เลโซโท" },
+            new SelectListItem () { Value = "42800", Text = "ลัตเวีย" },
+            new SelectListItem () { Value = "43000", Text = "ไลบีเรีย" },
+            new SelectListItem () { Value = "43400", Text = "ลิเบีย" },
+            new SelectListItem () { Value = "43800", Text = "ลิกเตนสไตน์" },
+            new SelectListItem () { Value = "44000", Text = "ลิทัวเนีย" },
+            new SelectListItem () { Value = "44200", Text = "ลักเซมเบิร์ก" },
+            new SelectListItem () { Value = "44600", Text = "มาเก๊า" },
+            new SelectListItem () { Value = "45000", Text = "มาดากัสการ์" },
+            new SelectListItem () { Value = "45400", Text = "มาลาวี" },
+            new SelectListItem () { Value = "45800", Text = "มาเลเซีย" },
+            new SelectListItem () { Value = "46200", Text = "มัลดีฟส์" },
+            new SelectListItem () { Value = "46600", Text = "มาลี" },
+            new SelectListItem () { Value = "47000", Text = "มอลตา" },
+            new SelectListItem () { Value = "47400", Text = "มาร์ตินีก" },
+            new SelectListItem () { Value = "47800", Text = "มอริเตเนีย" },
+            new SelectListItem () { Value = "48000", Text = "มอริเชียส" },
+            new SelectListItem () { Value = "48400", Text = "เม็กซิโก" },
+            new SelectListItem () { Value = "49200", Text = "โมนาโก" },
+            new SelectListItem () { Value = "49600", Text = "มองโกเลีย" },
+            new SelectListItem () { Value = "49800", Text = "มอลโดวา" },
+            new SelectListItem () { Value = "50000", Text = "มอนต์เซอร์รัต" },
+            new SelectListItem () { Value = "50400", Text = "โมร็อกโก" },
+            new SelectListItem () { Value = "50800", Text = "โมซัมบิก" },
+            new SelectListItem () { Value = "51200", Text = "โอมาน" },
+            new SelectListItem () { Value = "51600", Text = "นามิเบีย" },
+            new SelectListItem () { Value = "52000", Text = "นาอูรู" },
+            new SelectListItem () { Value = "52400", Text = "เนปาล" },
+            new SelectListItem () { Value = "52800", Text = "เนเธอร์แลนด์" },
+            new SelectListItem () { Value = "53000", Text = "เนเธอร์แลนด์แอนทิลลิส" },
+            new SelectListItem () { Value = "53300", Text = "อารูบา" },
+            new SelectListItem () { Value = "54000", Text = "นิวแคลิโดเนีย" },
+            new SelectListItem () { Value = "54800", Text = "วานูอาตู" },
+            new SelectListItem () { Value = "55400", Text = "นิวซีแลนด์" },
+            new SelectListItem () { Value = "55800", Text = "นิการากัว" },
+            new SelectListItem () { Value = "56200", Text = "ไนเจอร์" },
+            new SelectListItem () { Value = "56600", Text = "ไนจีเรีย" },
+            new SelectListItem () { Value = "57000", Text = "นีอูเอ" },
+            new SelectListItem () { Value = "57400", Text = "เกาะนอร์ฟอล์ก" },
+            new SelectListItem () { Value = "57800", Text = "นอร์เวย์" },
+            new SelectListItem () { Value = "58000", Text = "หมู่เกาะนอร์เทิร์นมาเรียนา" },
+            new SelectListItem () { Value = "58300", Text = "ไมโครนีเซีย" },
+            new SelectListItem () { Value = "58400", Text = "หมู่เกาะมาร์แชลล์" },
+            new SelectListItem () { Value = "58500", Text = "ปาเลา" },
+            new SelectListItem () { Value = "58600", Text = "ปากีสถาน" },
+            new SelectListItem () { Value = "59100", Text = "ปานามา" },
+            new SelectListItem () { Value = "59800", Text = "ปาปัวนิวกินี" },
+            new SelectListItem () { Value = "60000", Text = "ปารากวัย" },
+            new SelectListItem () { Value = "60400", Text = "เปรู" },
+            new SelectListItem () { Value = "60800", Text = "ฟิลิปปินส์" },
+            new SelectListItem () { Value = "61200", Text = "พิตแคร์น" },
+            new SelectListItem () { Value = "61600", Text = "โปแลนด์" },
+            new SelectListItem () { Value = "62000", Text = "โปรตุเกส" },
+            new SelectListItem () { Value = "62400", Text = "กินีบิสเซา" },
+            new SelectListItem () { Value = "62600", Text = "ติมอร์ตะวันออก" },
+            new SelectListItem () { Value = "63000", Text = "เปอร์โตริโก" },
+            new SelectListItem () { Value = "63400", Text = "กาตาร์" },
+            new SelectListItem () { Value = "63800", Text = "เรอูนียง" },
+            new SelectListItem () { Value = "64200", Text = "โรมาเนีย" },
+            new SelectListItem () { Value = "64300", Text = "รัสเซีย" },
+            new SelectListItem () { Value = "64600", Text = "รวันดา" },
+            new SelectListItem () { Value = "65400", Text = "เซนต์เฮเลนา" },
+            new SelectListItem () { Value = "65900", Text = "เซนต์คิตส์และเนวิส" },
+            new SelectListItem () { Value = "66000", Text = "แองกวิลลา" },
+            new SelectListItem () { Value = "66200", Text = "เซนต์ลูเซีย" },
+            new SelectListItem () { Value = "66600", Text = "แซงปีแยร์และมีเกอลง" },
+            new SelectListItem () { Value = "67000", Text = "เซนต์วินเซนต์และเกรนาดีนส์" },
+            new SelectListItem () { Value = "67400", Text = "ซานมารีโน" },
+            new SelectListItem () { Value = "67800", Text = "เซาโตเมและปรินซิเป" },
+            new SelectListItem () { Value = "68200", Text = "ซาอุดีอาระเบีย" },
+            new SelectListItem () { Value = "68600", Text = "เซเนกัล" },
+            new SelectListItem () { Value = "69000", Text = "เซเชลส์" },
+            new SelectListItem () { Value = "69400", Text = "เซียร์ราลีโอน" },
+            new SelectListItem () { Value = "70200", Text = "สิงคโปร์" },
+            new SelectListItem () { Value = "70300", Text = "สโลวะเกีย" },
+            new SelectListItem () { Value = "70400", Text = "เวียดนาม" },
+            new SelectListItem () { Value = "70500", Text = "สโลวีเนีย" },
+            new SelectListItem () { Value = "70600", Text = "โซมาลี" },
+            new SelectListItem () { Value = "71000", Text = "แอฟริกาใต้" },
+            new SelectListItem () { Value = "71600", Text = "ซิมบับเว" },
+            new SelectListItem () { Value = "72400", Text = "สเปน" },
+            new SelectListItem () { Value = "73200", Text = "ซาฮาราตะวันตก" },
+            new SelectListItem () { Value = "73600", Text = "ซูดาน" },
+            new SelectListItem () { Value = "74000", Text = "ซูรินาเม" },
+            new SelectListItem () { Value = "74400", Text = "หมู่เกาะสฟาลบาร์" },
+            new SelectListItem () { Value = "74800", Text = "สวาซิแลนด์" },
+            new SelectListItem () { Value = "75200", Text = "สวีเดน" },
+            new SelectListItem () { Value = "75600", Text = "สวิตเซอร์แลนด์" },
+            new SelectListItem () { Value = "76000", Text = "ซีเรีย" },
+            new SelectListItem () { Value = "76200", Text = "ทาจิกิสถาน" },
+            new SelectListItem () { Value = "76400", Text = "ไทย" },
+            new SelectListItem () { Value = "76800", Text = "โตโก" },
+            new SelectListItem () { Value = "77200", Text = "โตเกเลา" },
+            new SelectListItem () { Value = "77600", Text = "ตองกา" },
+            new SelectListItem () { Value = "78000", Text = "ตรินิแดดและโตเบโก" },
+            new SelectListItem () { Value = "78400", Text = "สหรัฐอาหรับเอมิเรตส์" },
+            new SelectListItem () { Value = "78800", Text = "ตูนิเซีย" },
+            new SelectListItem () { Value = "79200", Text = "ตุรกี" },
+            new SelectListItem () { Value = "79500", Text = "เติร์กเมนิสถาน" },
+            new SelectListItem () { Value = "79600", Text = "หมู่เกาะเติกส์ และเคคอส" },
+            new SelectListItem () { Value = "79800", Text = "ตูวาลู" },
+            new SelectListItem () { Value = "80000", Text = "ยูกันดา" },
+            new SelectListItem () { Value = "80400", Text = "ยูเครน" },
+            new SelectListItem () { Value = "80700", Text = "มาซิโดเนีย" },
+            new SelectListItem () { Value = "81800", Text = "อียิปต์" },
+            new SelectListItem () { Value = "82600", Text = "สหราชอาณาจักร" },
+            new SelectListItem () { Value = "83400", Text = "แทนซาเนีย" },
+            new SelectListItem () { Value = "84000", Text = "สหรัฐอเมริกา" },
+            new SelectListItem () { Value = "85000", Text = "หมู่เกาะเวอร์จินของสหรัฐอเมริกา" },
+            new SelectListItem () { Value = "85400", Text = "บูร์กินาฟาโซ" },
+            new SelectListItem () { Value = "85800", Text = "อุรุกวัย" },
+            new SelectListItem () { Value = "86000", Text = "อุซเบกิสถาน" },
+            new SelectListItem () { Value = "86200", Text = "เวเนซุเอลา" },
+            new SelectListItem () { Value = "87600", Text = "วาลลิสและฟุตูนา" },
+            new SelectListItem () { Value = "88200", Text = "ซามัว" },
+            new SelectListItem () { Value = "88700", Text = "เยเมน" },
+            new SelectListItem () { Value = "89100", Text = "เซอร์เบียและมอนเตเนโกร" },
+            new SelectListItem () { Value = "89400", Text = "แซมเบีย" },
+        };
+
+    Html.EnableClientValidation(false);
+    Html.EnableUnobtrusiveJavaScript(false);
+}
+
+<style type="text/css">
+    #frmVAT input:read-only {
+        background-color: #fff !important;
+    }
+</style>
+
+<form id="frmVAT" action="@Url.Content("~/Api/V2/Applications/Requests")" method="post">
+    <div class="row">
+        <!--จดทะเบียนภาษีมูลค่าเพิ่ม-->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">@Resources.Apps_VAT.VAT_REGISTER</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="radio" id="userIncomeReachOption" name="userIncomeOption" value="1" checked />
+                            <label for="userIncomeReachOption">@Resources.Apps_VAT.VAT_INCOME_REACH_TRESHOLD</label>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="radio" id="userIncomeNotReachOption" name="userIncomeOption" value="2" />
+                            <label for="userIncomeNotReachOption">@Resources.Apps_VAT.VAT_INCOME_NOT_REACH</label> <u><a data-toggle="modal" data-target="#notreachModal">@Resources.Apps_VAT.READ_MORE</a></u>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--จดทะเบียนภาษีมูลค่าเพิ่ม / มีรายได้ถึงเกณฑ์ต้องจดทะเบียน 1,800,000 บาทต่อปี-->
+        <div class="col-md-12" id="option1Control">
+            <div class="panel panel-default">
+                <div class="panel-heading">@Resources.Apps_VAT.REG_OPTION_TITLE</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group text-danger">
+                            <strong>@Resources.Apps_VAT.REG_OPTION_CHOOSE</strong>
+                        </div>
+                    </div>
+                    <div class="row pl30">
+                        <div class="col-md-12 form-group">
+                            @Resources.Apps_VAT.REG_OPTION_DESC
+                        </div>
+                        <div class="row pl30">
+                            <div class="col-md-12 form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="pp01ReachOption" name="pp01Option" value="1" checked />
+                                        @Resources.Apps_VAT.REG_OPTION_1
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="pp01PlanReachOption" name="pp01Option" value="2" />
+                                        @Resources.Apps_VAT.REG_OPTION_2
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--จดทะเบียนภาษีมูลค่าเพิ่ม / เป็นกิจการที่ได้รับยกเว้น หรือ มีรายได้ไม่ถึงเกณฑ์ต้องจดทะเบียน (รายได้ไม่ถึง 1,800,000 บาทต่อปี) แต่ประสงค์จะจดทะเบียนภาษีมูลค่าเพิ่ม -->
+        <div class="col-md-12" id="option2Control" hidden>
+            <div class="panel panel-default">
+                <div class="panel-heading">@Resources.Apps_VAT.REG_EXCEPT_TITLE</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group text-danger">
+                            <strong>@Resources.Apps_VAT.REG_OPTION_CHOOSE</strong>
+                        </div>
+                    </div>
+                    <div class="row pl30">
+                        <div class="col-md-12 form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" id="regExceptOption" name="pp011Option" value="1" checked />
+                                    @Resources.Apps_VAT.REG_EXCEPT_OPTION1
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row pl30">
+                            <div class="col-md-12 form-group ">
+                                @Resources.Apps_VAT.REG_EXCEPT_OPTION1_1
+                            </div>
+                            <div class="row pl30">
+                                <div class="col-md-12 form-group">
+                                    <ul>
+                                        <li>@Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_1</li>
+                                        <li>@Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_2</li>
+                                        <li>@Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_3</li>
+                                        <li>@Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_4</li>
+                                        <li>@Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_5</li>
+                                        <li>@Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_6</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" id="regExceptNotreachOption" name="pp011Option" value="2" />
+                                    @Resources.Apps_VAT.REG_EXCEPT_OPTION2
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--ข้อมูลแบบ ภ.พ.01-->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">@Resources.Apps_VAT.VAT_PP01_TITLE</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            @Resources.Apps_VAT.PP01_SEND_TO <span class="text-primary">@Resources.Apps_VAT.PP01_RECTOR</span>
+                        </div>
+                    </div>
+                    <!---1 ชือผู้ประกอบการ-->
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <strong>1. @Resources.Apps_VAT.PP01_OWNER_NAME</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group pl20">
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.VAT_TIN</label>
+                                @Html.TextBox("tin", Model.JuristicID, new { @class = "form-control", maxlength = "100", @readonly = true })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_TITLE</label>
+                                @Html.TextBox("juristicTitle", Model.JuristicType, new { @class = "form-control", maxlength = "30", @readonly = true })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.NAME</label>
+                                @Html.TextBox("juristicName", Model.JuristicName_TH, new { @class = "form-control", maxlength = "100", @readonly = true })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_VAT.NAME_EN</label>
+                                @{
+                                    if (Model.JuristicName_EN != null)
+                                    {
+                                        @Html.TextBox("juristicNameEN", Model.JuristicName_EN, new { @class = "form-control", maxlength = "100", @readonly = true })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBox("juristicNameEN", Model.JuristicName_EN, new { @class = "form-control", maxlength = "100" })
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_VAT.PP01_REG_DATE</label>
+                                @*<input type="text" id="juriscticRegDate" name="juriscticRegDate" value="@juriscticRegDate" class="form-control" readonly />*@
+                                @Html.TextBox("juriscticRegDate", Model.RegisterDate, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_VAT.PP01_ACCOUNTING_DATE<span class="text-danger">*</span></label>
+                                <div class="input-group date">
+                                    <input type="text" id="accountingDate" name="accountingDate" value="" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                                <label id="accountingDate-error" class="error" for="accountingDate" style="display: none;"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--2 ชื่อและที่ตั้งสถานประกอบการ-->
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <strong>2. @Resources.Apps_VAT.VAT_BUSINESS_NAME_AND_PLACE</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            2.1 @Resources.Apps_VAT.VAT_BUSINESS_NAME_AND_PLACE
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group pl20">
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_BUILDING<span class="text-danger">*</span></label>
+                                    @Html.TextBox("buildingName", Model.AddressInformations[0].Building, new { @class = "form-control", maxlength = "40", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_FLOOR</label>
+                                        @Html.TextBox("floorNumber", Model.AddressInformations[0].Floor, new { @class = "form-control", maxlength = "30", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_ROOM_NO</label>
+                                        @Html.TextBox("roomNumber", Model.AddressInformations[0].RoomNo, new { @class = "form-control", maxlength = "30", @disabled = "disabled" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_NO <span class="text-danger">*</span></label>
+                                        @Html.TextBox("houseNumber", Model.AddressInformations[0].AddressNo, new { @class = "form-control", maxlength = "30", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_MOO</label>
+                                        @Html.TextBox("mooNumber", Model.AddressInformations[0].Moo, new { @class = "form-control", maxlength = "40", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_VILLAGE</label>
+                                        @Html.TextBox("villageName", Model.AddressInformations[0].VillageName, new { @class = "form-control", maxlength = "40", @disabled = "disabled" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_SOI <span class="text-danger">*</span></label>
+                                        @Html.TextBox("soiName", Model.AddressInformations[0].Soi, new { @class = "form-control", maxlength = "60" , @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_ROAD <span class="text-danger">*</span></label>
+                                        @Html.TextBox("streetName", Model.AddressInformations[0].Road, new { @class = "form-control", maxlength = "40", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_PROVINCE <span class="text-danger">*</span></label>
+                                <select id="addrProvince" name="addrProvince" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_AMPUR <span class="text-danger">*</span></label>
+                                <select id="addrAmpur" name="addrAmpur" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_TUMBOL <span class="text-danger">*</span></label>
+                                <select id="addrTumbol" name="addrTumbol" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group" id="addrZipSelect" hidden>
+                                <label>@Resources.Apps_VAT.ADDRESS_ZIPCODE <span class="text-danger">*</span></label>
+                                <select id="addrZipcode" name="addrZipcode" class="form-control" readonly>
+                                </select>          
+                            </div>
+                            <div class="col-md-4 form-group" id="addrZipInput">
+                                <label>@Resources.Apps_VAT.ADDRESS_ZIPCODE <span class="text-danger">*</span></label>
+                                <input type="number" id="addrZipcode" name="addrZipcode" value="" class="form-control" maxlength="5" min="0"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_PHONE</label>
+                                @Html.TextBox("telNumber", Model.AddressInformations[0].Phone, new { @class = "form-control", maxlength = "25", @type = "text" })
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.VAT_EMAIL</label>
+                                <input type="text" id="email" name="email" value="@ViewBag.Email" class="form-control" maxlength="30" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            2.2 @Resources.Apps_VAT.VAT_BRANCH_NAME_AND_PLACE
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group pl20">
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                @Resources.Apps_VAT.VAT_BRANCH_AMOUNT
+                                <input type="number" id="branchAmount" name="branchAmount" value="0" class="form-control" min="0" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group pl20">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                @Resources.Apps_VAT.VAT_BRANCH_AMOUNT_NOTE
+                            </div>
+                        </div>
+                    </div>
+                    <!--3, 4, 5-->
+                        <div class="row pl20" id="regdateControl1">
+                                <div class="col-md-12 form-group">
+                                    <div class="radio">
+                                        <strong>3. </strong>
+                                        <label>
+                                            <input type="radio" name="regDateOption" id="busAnnounceDateOption" value="1">
+                                            <strong>@Resources.Apps_VAT.VAT_ANNOUNCE_DATE</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <div class="radio">
+                                        <strong> &nbsp;&nbsp;</strong>
+                                        <label>
+                                            <input type="radio" name="regDateOption" id="busIncomeReachDateOption" value="2">
+                                            <strong>@Resources.Apps_VAT.VAT_BUSSINESS_INCOME_DATE</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <div class="input-group date">
+                                        <input type="text" id="busIncomeReachDate" name="busIncomeReachDate" value="" class="form-control" readonly />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    <label id="busIncomeReachDate-error" class="error" for="busIncomeReachDate" style="display: none;"></label>
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label id="regDateOption-error" class="error" for="regDateOption" style="display: none;"></label>
+                                </div>
+                            </div>
+
+                        <div class="row pl20" id="regdateControl2">
+                                <div class="col-md-6 form-group">
+                                    <div class="checkbox">
+                                        <strong> &nbsp;&nbsp;</strong>
+                                        <label>
+                                            <strong>@Html.CheckBox("chkBusFirstReqDate", false, new { disabled = "disabled" }) @Resources.Apps_VAT.VAT_BISSINESS_FIRST_REQ_DATE</strong>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <div class="input-group date">
+                                        <input type="text" id="busFirstReqDate" name="busFirstReqDate" value="" class="form-control" disabled />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    <label id="busFirstReqDate-error" class="error" for="busFirstReqDate" style="display: none;"></label>
+                                </div>
+                            </div>
+                        <div class="row pl20">
+                            <div class="col-md-12 form-group">
+                                @Resources.Apps_VAT.VAT_INCOME_DAY_REQ
+                            </div>
+                        </div>
+                        <div class="row pl20">
+                            <div class="col-md-6 form-group">
+                                <label>(1) @Resources.Apps_VAT.VAT_BUSSINESS_CAPITAL_AMOUNT<span class="text-danger">*</span></label>
+                                @{
+                                        @Html.TextBox("busCapitalAmount", Model.RegisterCapital, new { @class = "form-control", @type = "text",  @readonly = true })
+                                }
+                                
+                            </div>
+                        </div>
+                        <div class="row pl20">
+                            <div class="col-md-6 form-group">
+                                <label>(2) @Resources.Apps_VAT.VAT_EST_INCOME_AMOUNT<span class="text-danger">*</span></label>
+                                <input id="estIncomeAmount" name="estIncomeAmount" value="" class="form-control" maxlength="15"/>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <strong>4. @Resources.Apps_VAT.VAT_BUSINESS_TYPE</strong><span class="text-danger">*</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group pl20">
+                        <label id="bustypcod-error" class="error" for="bustypcod_1" style="display: none;"></label><br />
+                        @for (var i = 1; i <= 6; i++)
+                        {
+                            <div class="row">
+                                <div class="col-md-1 form-group text-right">
+                                    <label>@Resources.Apps_VAT.VAT_ORDER @i</label>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <select class="form-control" id="bustypcod_@i" name="bustypcod_@i" style="width: 100%;" >
+                                        <option value="">@Resources.Apps_VAT.BUSINESS_TYPE_CHOOSE</option>
+                                        <option value="1">@Resources.Apps_VAT.BUSINESS_TYPE_PRODUCE</option>
+                                        <option value="2">@Resources.Apps_VAT.BUSINESS_TYPE_EXPORT</option>
+                                        <option value="3">@Resources.Apps_VAT.BUSINESS_TYPE_WHOLESELL</option>
+                                        <option value="4">@Resources.Apps_VAT.BUSINESS_TYPE_RETAIL</option>
+                                        <option value="5">@Resources.Apps_VAT.BUSINESS_TYPE_SERVICE</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1 form-group text-right">
+                                    <label>@Resources.Apps_VAT.VAT_GOODS_SPECIFY</label>
+                                </div>
+                                <div class="col-md-5 form-group">
+                                    <input type="text" id="gootypdes_@i" name="gootypdes_@i" value="" class="form-control" maxlength="250" disabled />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!--สาขา-->
+        <div class="col-md-12" id="branchInfoControl">
+            <div class="panel panel-default">
+                <div class="panel-heading">@Resources.Apps_VAT.VAT_BRANCH_NAME_AND_PLACE</div>
+                <div id="branchDiv" class="panel-body">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.VAT_BRANCH_NO</label>
+                                <input type="text" id="branchNo-0" name="branchNo-0" value="00000" class="form-control" maxlength="5" disabled />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_TITLE</label>
+                                <select id="branchTitle-0" name="branchTitle-0" class="form-control" readonly>
+                                    @foreach (var item in pp011BarnchTitle)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.NAME<span class="text-danger">*</span></label>
+                                <input type="text" id="branchName-0" name="branchName-0" value="" class="form-control" maxlength="160" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_BUILDING</label>
+                                <input type="text" id="branchBuilding-0" name="branchBuilding-0" value="" class="form-control" maxlength="40" />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_FLOOR</label>
+                                <input type="text" id="branchfloor-0" name="branchfloor-0" value="" class="form-control" maxlength="20" />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_ROOM_NO</label>
+                                <input type="text" id="branchRoom-0" name="branchRoom-0" value="" class="form-control" maxlength="20" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_NO<span class="text-danger">*</span></label>
+                                <input type="text" id="branchAddrNo-0" name="branchAddrNo-0" value="" class="form-control" maxlength="20" />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_MOO<span class="text-danger">*</span></label>
+                                <input type="text" id="branchMoo-0" name="branchMoo-0" value="" class="form-control" maxlength="2" />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_VILLAGE</label>
+                                <input type="text" id="branchVillage-0" name="branchVillage-0" value="" class="form-control" maxlength="40" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_SOI</label>
+                                <input type="text" id="branchSoi-0" name="branchSoi-0" value="" class="form-control" maxlength="40" />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_ROAD<span class="text-danger">*</span></label>
+                                <input type="text" id="branchRoad-0" name="branchRoad-0" value="" class="form-control" maxlength="40" />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_PROVINCE<span class="text-danger">*</span></label>
+                                <select id="branchProvince-0" name="branchProvince-0" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                                <label id="branchProvince-0-error" class="error" style="display: none;" for="branchProvince-0"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_AMPUR<span class="text-danger">*</span></label>
+                                <select id="branchAmpur-0" name="branchAmpur-0" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                                <label id="branchAmpur-0-error" class="error" style="display: none;" for="branchAmpur-0"></label>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_TUMBOL<span class="text-danger">*</span></label>
+                                <select id="branchTumbol-0" name="branchTumbol-0" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                                <label id="branchTumbol-0-error" class="error" style="display: none;" for="branchTumbol-0"></label>
+                            </div>
+                            <div class="col-md-4 form-group" id="branchZipSelect-0" hidden>
+                                <label>@Resources.Apps_VAT.ADDRESS_ZIPCODE<span class="text-danger">*</span></label>
+                                <select id="branchZipcode-0" name="branchZipcode-0" class="form-control" readonly>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group" id="branchZipInput-0">
+                                <label>@Resources.Apps_VAT.ADDRESS_ZIPCODE<span class="text-danger">*</span></label>
+                                <input type="number" id="branchZipcode-0" name="branchZipcode-0" value="" class="form-control" maxlength="5" min="0"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>@Resources.Apps_VAT.ADDRESS_PHONE<span class="text-danger">*</span></label>
+                                <input type="text" id="branchTelNo-0" name="branchTelNo-0" value="" class="form-control" maxlength="15" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--กรรมการ-->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">@Resources.Apps_VAT.COMMITTEE_INFORMATION</div>
+                @foreach (var committee in Model.CommitteeInformations)
+                {
+                    committee.LastName = committee.LastName.Replace("/", "");
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-2 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_SEQUENCE</label>
+                                @Html.TextBoxFor(model => committee.Sequence, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-10 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_CITIZEN_ID <span class="text-danger">*</span></label>
+                                <input type="text" id="committeeCitizenId_@committee.Sequence" name="committeeCitizenId_@committee.Sequence" value="@committee.CitizenID" class="form-control" maxlength="13" readonly/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_TITLE<span class="text-danger">*</span></label>
+                                <input type="text" id="committeeTitle_@committee.Sequence" name="committeeTitle_@committee.Sequence" value="@committee.Title" class="form-control" maxlength="30" readonly />
+                                <label id="committeeTitle_@committee.Sequence-error" class="error" style="display: none;" for="committeeTitle_@committee.Sequence"></label>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_FIRSTNAME <span class="text-danger">*</span></label>
+                                <input type="text" id="committeeFirstname_@committee.Sequence" name="committeeFirstname_@committee.Sequence" value="@committee.FirstName" class="form-control" maxlength="160" readonly />
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_LASTNAME <span class="text-danger">*</span></label>
+                                <input type="text" id="committeeLastname_@committee.Sequence" name="committeeLastname_@committee.Sequence" value="@committee.LastName" class="form-control" maxlength="80" readonly />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_NATIONALITY <span class="text-danger">*</span></label>
+                                <select id="committeeNat_@committee.Sequence" name="committeeNat_@committee.Sequence" class="form-control">
+                                    @foreach (var item in trdbNationality)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                </select>
+                                <label id="committeeNat_@committee.Sequence-error" class="error" style="display: none;" for="committeeNat_@committee.Sequence"></label>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_VAT.COMMITTEE_BIRTHDATE <span class="text-danger">*</span></label>
+                                <div class="input-group date">
+                                    <input type="text" id="committeeBd_@committee.Sequence" name="committeeBd_@committee.Sequence" value="" class="form-control" readonly />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                                <label id="committeeBd_@committee.Sequence-error" class="error" for="committeeBd_@committee.Sequence" style="display: none;"></label>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <!--AuthorizeDescription -->
+                @foreach (var desc in Model.AuthorizeDescriptions)
+                {
+                    <div class="row pl20">
+                        <div class="col-md-10 form-group">
+                            <label>@desc.Description</label>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <!--ข้อมูลแบบ ภ.พ.01.1-->
+        <div class="col-md-12" id="pp011Control" hidden>
+            <div class="panel panel-default">
+                <div class="panel-heading">@Resources.Apps_VAT.VAT_PP011_TITLE</div>
+                <div class="panel-body">
+                    <!--2-->
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <strong>@Resources.Apps_VAT.VAT_BUSSINESS_TYPE_DESC</strong>
+                        </div>
+
+                        <div class="col-md-12 form-group pl20">
+                            <div class="row">
+                                <div class="col-md-12 form-group"> 
+                                    @Resources.Apps_VAT.VAT_GOODS_DESC <label id="sellPlant-error" class="error" for="sellPlant" style="display: none;"></label>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="checkbox pl20">
+                                        <label>
+                                            @Html.CheckBox("sellPlant", false) @Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_1
+                                        </label>
+                                    </div>
+                                    <div class="checkbox pl20">
+                                        <label>
+                                            @Html.CheckBox("sellAnimal", false) @Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_2
+                                        </label>
+                                    </div>
+                                    <div class="checkbox pl20">
+                                        <label>
+                                            @Html.CheckBox("sellFertilizer", false) @Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_3
+                                        </label>
+                                    </div>
+                                    <div class="checkbox pl20">
+                                        <label>
+                                            @Html.CheckBox("sellFish", false) @Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_4
+                                        </label>
+                                    </div>
+                                    <div class="checkbox pl20">
+                                        <label>
+                                            @Html.CheckBox("sellMedicine", false) @Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_5
+                                        </label>
+                                    </div>
+                                    <div class="checkbox pl20">
+                                        <label>
+                                            @Html.CheckBox("sellBook", false) @Resources.Apps_VAT.REG_EXCEPT_OPTION1_1_6
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBox("airLogistic", false) @Resources.Apps_VAT.VAT_AIR_LOGISTIC
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBox("export", false) @Resources.Apps_VAT.VAT_EXPORT
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBox("fuel", false) @Resources.Apps_VAT.VAT_FUEL
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBox("smallBisiness", false, new { disabled = "disabled" }) @Resources.Apps_VAT.VAT_SMALL_BUS
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mb20">
+            <div class="checkbox checkbox-inline">
+                <label>
+                    <input type="checkbox" id="chkSubmit" /> @Resources.Apps_Utility.STRING_BEFOR_SUBMIT_1<a data-toggle="modal" data-target="#termsModal">@Resources.Apps_Utility.STRING_BEFOR_SUBMIT_2</a>@Resources.Apps_Utility.STRING_BEFOR_SUBMIT_3
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mb20">
+            <input type="hidden" id="Status" name="Status" value="@ApplicationStatusV2Enum.DRAFT.ToString()" />
+            <input type="hidden" id="checklistStatus" name="checklistStatus" value="false" />
+            <input type="hidden" id="agreementStatus" name="agreementStatus" value="false" />
+            <button type="submit" id="btnSaveDraftVATForm" class="btn btn-default" onclick="$(vatControl.controls.formStatus).val('@ApplicationStatusV2Enum.DRAFT.ToString()')">@Html.Raw(Resources.Application.BTN_SAVE_DRAFT)</button>
+            <button type="submit" id="btnSubmitVATForm" class="btn btn-success" onclick="$(vatControl.controls.formStatus).val('@ApplicationStatusV2Enum.WAITING.ToString()')">@Html.Raw(Resources.Application.BTN_SUBMIT_REQUEST)</button>
+        </div>
+    </div>
+</form>
+
+<div class="modal" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="termsModalLabel">@Resources.Apps_Utility.APPS_TERM_OF_USE</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>@Html.Raw(Resources.Apps_Utility.APPS_TERMS_AND_CONDITIONS)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnTermsModalAccept">@Resources.Apps_Utility.BTN_ACCEPT</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnTermsModalDecline">@Resources.Apps_Utility.BTN_DECLINE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="checklistModal" tabindex="-1" role="dialog" aria-labelledby="checklistModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                
+            </div>
+            <div class="modal-body">
+                <div class="row" id="divChecklist">
+                    <div class="col-md-12">
+                        <strong>@Resources.Apps_VAT.CHECKLIST</strong>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBox("chk1", false) @Resources.Apps_VAT.CHEKCLIST_1 <u><a href="http://www.rd.go.th/publish/5206.0.html#mata81" target="_blank">@Resources.Apps_VAT.CHEKCLIST_1_LINK</a></u>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBox("chk2", false) @Resources.Apps_VAT.CHEKCLIST_2
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBox("chk3", false) @Resources.Apps_VAT.CHEKCLIST_3
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBox("chk4", false) @Resources.Apps_VAT.CHEKCLIST_4
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBox("chk5", false) @Resources.Apps_VAT.CHEKCLIST_5
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnChecklistModalAccept" disabled>@Resources.Apps_Utility.BTN_ACCEPT</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnChecklistModalDecline">@Resources.Apps_Utility.BTN_DECLINE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="agreementModal" tabindex="-1" role="dialog" aria-labelledby="agreementModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="agreementModalLabel">@Html.Raw(Resources.Apps_VAT.AGREEMENT)</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 pl30">
+                        <p>@Html.Raw(string.Format(Resources.Apps_VAT.AGREEMENT_DESC, Model.JuristicType,Model.JuristicName_TH))</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnAgreementModalAccept">@Resources.Apps_Utility.BTN_ACCEPT</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnAgreementModalDecline">@Resources.Apps_Utility.BTN_DECLINE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="notreachModal" tabindex="-1" role="dialog" aria-labelledby="notreachModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="notreachModalLabel">@Resources.Apps_VAT.READ_MORE_TITLE</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>@Html.Raw(Resources.Apps_VAT.VAT_NOT_REACH_DETAIL)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="requiredModal" tabindex="-1" role="dialog" aria-labelledby="requiredModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="requiredModalLabel">@Resources.Apps_VAT.REQUIRED_DATA_TITLE</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 pl30">
+                        <p>@Resources.Apps_VAT.REQUIRED_CONTACT</p>
+                    </div>
+                    <div class="col-md-12 pl30">
+                        <p>@Resources.Apps_VAT.REQUIRED_LIST</p>
+                    </div>
+                    <div id="rBody" class="col-md-12 pl30">
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnRequiredModalClose">@Resources.Apps_VAT.CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="reviewModalLabel">@Html.Raw(Resources.Apps_VAT.REVIEW_TITLE)</h4>
+            </div>
+            <div class="modal-body" id="reviewDiv">
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnReviewConfirm">@Resources.Apps_VAT.BTN_CONFIRM</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnReviewEdit">@Resources.Apps_VAT.BTN_EDIT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/template" id="companyProfileTemplate">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.VAT_BRANCH_NO</label>
+                <input type="text" id="branchNo-{{BranchNo}}" name="branchNo-{{BranchNo}}" value="0000{{BranchNo}}" class="form-control" maxlength="5" disabled />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.COMMITTEE_TITLE</label>
+                <select id="branchTitle-{{BranchNo}}" name="branchTitle-{{BranchNo}}" class="form-control" readonly>
+                    @foreach (var item in pp011BarnchTitle)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.NAME<span class="text-danger">*</span></label>
+                <input type="text" id="branchName-{{BranchNo}}" name="branchName-{{BranchNo}}" value="" class="form-control" maxlength="160" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_BUILDING</label>
+                <input type="text" id="branchBuilding-{{BranchNo}}" name="branchBuilding-{{BranchNo}}" value="" class="form-control" maxlength="40" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_FLOOR</label>
+                <input type="text" id="branchfloor-{{BranchNo}}" name="branchfloor-{{BranchNo}}" value="" class="form-control" maxlength="20" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_ROOM_NO</label>
+                <input type="text" id="branchRoom-{{BranchNo}}" name="branchRoom-{{BranchNo}}" value="" class="form-control" maxlength="20" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_NO<span class="text-danger">*</span></label>
+                <input type="text" id="branchAddrNo-{{BranchNo}}" name="branchAddrNo-{{BranchNo}}" value="" class="form-control" maxlength="20" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_MOO<span class="text-danger">*</span></label>
+                <input type="text" id="branchMoo-{{BranchNo}}" name="branchMoo-{{BranchNo}}" value="" class="form-control" maxlength="2" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_VILLAGE</label>
+                <input type="text" id="branchVillage-{{BranchNo}}" name="branchVillage-{{BranchNo}}" value="" class="form-control" maxlength="40" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_SOI</label>
+                <input type="text" id="branchSoi-{{BranchNo}}" name="branchSoi-{{BranchNo}}" value="" class="form-control" maxlength="40" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_ROAD<span class="text-danger">*</span></label>
+                <input type="text" id="branchRoad-{{BranchNo}}" name="branchRoad-{{BranchNo}}" value="" class="form-control" maxlength="40" />
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_PROVINCE<span class="text-danger">*</span></label>
+                <select id="branchProvince-{{BranchNo}}" name="branchProvince-{{BranchNo}}" style="width: 100%;">
+                    <option></option>
+                </select>
+                <label id="branchProvince-{{BranchNo}}-error" class="error" style="display: none;" for="branchProvince-{{BranchNo}}"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_AMPUR<span class="text-danger">*</span></label>
+                <select id="branchAmpur-{{BranchNo}}" name="branchAmpur-{{BranchNo}}" style="width: 100%;">
+                    <option></option>
+                </select>
+                <label id="branchAmpur-{{BranchNo}}-error" class="error" style="display: none;" for="branchAmpur-{{BranchNo}}"></label>
+            </div>
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_TUMBOL<span class="text-danger">*</span></label>
+                <select id="branchTumbol-{{BranchNo}}" name="branchTumbol-{{BranchNo}}" style="width: 100%;">
+                    <option></option>
+                </select>
+                <label id="branchTumbol-{{BranchNo}}-error"  class="error" style="display: none;" for="branchTumbol-{{BranchNo}}"></label>
+            </div>
+            <div class="col-md-4 form-group" id="branchZipSelect-{{BranchNo}}" hidden>
+                <label>@Resources.Apps_VAT.ADDRESS_ZIPCODE<span class="text-danger">*</span></label>
+                <select id="branchZipcode-{{BranchNo}}" name="branchZipcode-{{BranchNo}}" class="form-control" readonly></select>
+            </div>
+            <div class="col-md-4 form-group" id="branchZipInput-{{BranchNo}}" >
+                <label>@Resources.Apps_VAT.ADDRESS_ZIPCODE<span class="text-danger">*</span></label>
+                <input type="number" id="branchZipcode-{{BranchNo}}" name="branchZipcode-{{BranchNo}}" value="" class="form-control" maxlength="5" min="0" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_PHONE<span class="text-danger">*</span></label>
+                <input type="text" id="branchTelNo-{{BranchNo}}" name="branchTelNo-{{BranchNo}}" value="" class="form-control" maxlength="15" />
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="reviewTemplate">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>@Resources.Apps_VAT.VAT_TIN</label>
+                    <span id="reviewTin-{{BranchNo}}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>@Resources.Apps_VAT.PP01_OWNER_NAME</label>
+                    <span id="reviewOwnerName-{{BranchNo}}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>@Resources.Apps_VAT.VAT_BRANCH_NAME</label>
+                    <span id="reviewBranchName-{{BranchNo}}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group" />
+                <div class="col-md-8 form-group">
+                    <label>@Resources.Apps_VAT.VAT_IS </label>
+                    <div class="checkbox-inline">
+                        <label>
+                            <input type="checkbox" id="chkReviewMainBranch-{{BranchNo}}" disabled /> @Resources.Apps_VAT.VAT_IS_MAIN_BRANCH
+                        </label>
+                    </div>
+                    <div class="checkbox-inline">
+                        <label>
+                            <input type="checkbox" id="chkReviewBranchNo-{{BranchNo}}" disabled /> @Resources.Apps_VAT.VAT_IS_BRANCH_NO <span id="reviewBranchNo-{{BranchNo}}"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_BUILDING</label>
+                    <span id="reviewBuilding-{{BranchNo}}"></span>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_ROOM_NO</label>
+                    <span id="reviewRoomNo-{{BranchNo}}"></span>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_FLOOR</label>
+                    <span id="reviewFloor-{{BranchNo}}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_VILLAGE</label>
+                    <span id="reviewVillage-{{BranchNo}}"></span>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_NO</label>
+                    <span id="reviewAddresNo-{{BranchNo}}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_MOO</label>
+                    <span id="reviewMoo-{{BranchNo}}"></span>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_SOI</label>
+                    <span id="reviewSoi-{{BranchNo}}"></span>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_ROAD</label>
+                    <span id="reviewRoad-{{BranchNo}}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_TUMBOL</label>
+                    <span id="reviewTumbol-{{BranchNo}}"></span>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_AMPUR</label>
+                    <span id="reviewAmpur-{{BranchNo}}"></span>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_PROVINCE</label>
+                    <span id="reviewProvince-{{BranchNo}}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>@Resources.Apps_VAT.ADDRESS_ZIPCODE</label>
+                <span id="reviewZipcode-{{BranchNo}}"></span>
+            </div>
+            <div class="col-md-6 form-group">
+                <label>@Resources.Apps_VAT.ADDRESS_PHONE</label>
+                <span id="reviewPhone-{{BranchNo}}"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>@Resources.Apps_VAT.REVIEW_VAT_DATE</label>
+                <span id="reviewRegistDate-{{BranchNo}}"></span>
+            </div>
+        </div>
+    </div>
+    </div>
+</script>
+
+@section PageScripts {
+    <script type="text/javascript">
+
+        var cleaveNumeral = new Cleave('#estIncomeAmount', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
+
+
+        $(function () {
+            vatControl.functions.init();
+
+            //requiredmodal
+            $('#btnRequiredModalClose').click(function (e) {
+                window.location = '@homeUrl';
+            });
+
+            //term modal
+            $("#btnTermsModalAccept").click(function (e) {
+                document.getElementById("chkSubmit").checked = true;
+
+                $("#checklistModal").modal('show');
+                $.ladda('stopAll');
+            });
+
+            $("#btnTermsModalDecline").click(function (e) {
+                document.getElementById("chkSubmit").checked = false;
+            });
+            //checklist modal
+            $("#btnChecklistModalAccept").click(function (e) {
+                if($("#chk1").is(':checked')==true && $("#chk2").is(':checked')==true && $("#chk3").is(':checked')==true && $("#chk4").is(':checked')==true && $("#chk5").is(':checked')==true){
+                   
+                    setTimeout(function () {
+                        var amount = $('#branchAmount').val();
+                        vatControl.functions.renderReview(amount);
+                    }, 200);
+                }
+            });
+
+            $("#btnChecklistModalDecline").click(function (e) {
+                $("#checklistStatus").val("false");
+            });
+
+            $('#divChecklist').on("change", ":checkbox", function () {
+                if ($("#divChecklist input[type='checkbox']").filter(":checked").length == 5) {
+                    $("#btnChecklistModalAccept").removeAttr("disabled");
+                } else {
+                    $("#btnChecklistModalAccept").attr("disabled", "disabled");
+                }
+            });
+
+            //reviewModal btnReviewConfirm
+            $("#btnReviewConfirm").click(function (e) {
+                   $("#checklistStatus").val("true");
+
+                    setTimeout(function () {
+                     $("#agreementModal").modal('show');
+                    }, 200);
+                    $.ladda('stopAll');
+            });
+            $("#btnReviewEdit").click(function (e) {
+                $("#checklistStatus").val("false");
+            });
+
+
+            //agreement modal
+            $("#btnAgreementModalAccept").click(function (e) {
+                $("#agreementStatus").val("true");
+
+                $("#btnSubmitVATForm").click();
+            });
+
+            $("#btnAgreementModalDecline").click(function (e) {
+                $("#checklistStatus").val("false");
+                $("#agreementStatus").val("false");
+            });
+
+            $('input[name=userIncomeOption]').change(function () {
+                $('#option1Control').toggle();
+                $('#option2Control').toggle();
+                $('#pp011Control').toggle();
+
+                var isAnnounceDate = $("#busAnnounceDateOption").is(':disabled');
+                var isIncomeReachDateOption = $("#busIncomeReachDateOption").is(':disabled');
+                var isIncomereachDate = $("#busIncomeReachDate").is(':disabled');
+                var isChkBusFirstReqDate = $("#chkBusFirstReqDate").is(':disabled');
+                var isBusFirstReqDate = $("#busFirstReqDate").is(':disabled');
+                var isUserIncomeReachOptionChecked = $('#userIncomeReachOption').is(':checked');
+
+                $('#busAnnounceDateOption').prop('disabled', !isAnnounceDate);
+                $('#busIncomeReachDateOption').prop('disabled', !isIncomeReachDateOption);
+                $('#busIncomeReachDate').prop('disabled', !isIncomereachDate).prop('readonly', isIncomereachDate);
+                $('#chkBusFirstReqDate').prop('disabled', !isChkBusFirstReqDate);
+                $('#busFirstReqDate').prop('disabled', !isBusFirstReqDate).prop('readonly', isBusFirstReqDate);
+                $('#chkBusFirstReqDate').prop('checked', !isUserIncomeReachOptionChecked);
+                if(isUserIncomeReachOptionChecked){
+                    //pp011 clear value
+                    $('input[name=pp011Option][value="1"]').prop("checked", true);
+                    $('#fuel').prop('checked',false);
+                    $('#export').prop('checked',false);
+                    $('#airLogistic').prop('checked',false);
+                    $('#sellBook').prop('checked',false);
+                    $('#sellMedicine').prop('checked',false);
+                    $('#sellFish').prop('checked',false);
+                    $('#sellFertilizer').prop('checked',false);
+                    $('#sellAnimal').prop('checked',false);
+                    $('#sellPlant').prop('checked',false);
+                    $('#smallBisiness').prop('checked',false);
+
+                    $('#fuel').prop('disabled',false);
+                    $('#export').prop('disabled',false);
+                    $('#airLogistic').prop('disabled',false);
+                    $('#sellBook').prop('disabled',false);
+                    $('#sellMedicine').prop('disabled',false);
+                    $('#sellFish').prop('disabled',false);
+                    $('#sellFertilizer').prop('disabled',false);
+                    $('#sellAnimal').prop('disabled',false);
+                    $('#sellPlant').prop('disabled',false);
+                    $('#smallBisiness').prop('disabled',true);
+
+
+                    $('#busFirstReqDate').val("");
+                    //vatControl.functions.addpp01Validate(1);
+                }else{
+                    $('input[name=regDateOption]').removeAttr('checked');
+                    $('#busIncomeReachDate').val("");
+                    $('#busFirstReqDate').val(moment(new Date()).format("DD/MM/YYYY"));
+                    //vatControl.functions.addpp011Validate(1);
+                }
+
+            });
+            $('input[name=regDateOption]').change(function () {
+                $('#busIncomeReachDate').val("");
+                //vatControl.functions.addpp01Validate($('input[name=regDateOption]:radio:checked').val());
+            });
+            $('input[name=pp011Option]').change(function () {
+
+                if($('input[name=pp011Option]:radio:checked').val() == "1"){
+                    $('#smallBisiness').prop('checked',false);
+
+                    $('#fuel').prop('disabled',false);
+                    $('#export').prop('disabled',false);
+                    $('#airLogistic').prop('disabled',false);
+                    $('#sellBook').prop('disabled',false);
+                    $('#sellMedicine').prop('disabled',false);
+                    $('#sellFish').prop('disabled',false);
+                    $('#sellFertilizer').prop('disabled',false);
+                    $('#sellAnimal').prop('disabled',false);
+                    $('#sellPlant').prop('disabled',false);
+                    $('#smallBisiness').prop('disabled',true);
+
+                }else{
+                    $('#fuel').prop('checked',false);
+                    $('#export').prop('checked',false);
+                    $('#airLogistic').prop('checked',false);
+                    $('#sellBook').prop('checked',false);
+                    $('#sellMedicine').prop('checked',false);
+                    $('#sellFish').prop('checked',false);
+                    $('#sellFertilizer').prop('checked',false);
+                    $('#sellAnimal').prop('checked',false);
+                    $('#sellPlant').prop('checked',false);
+                    $('#smallBisiness').prop('checked',true);
+
+                    $('#fuel').prop('disabled',true);
+                    $('#export').prop('disabled',true);
+                    $('#airLogistic').prop('disabled',true);
+                    $('#sellBook').prop('disabled',true);
+                    $('#sellMedicine').prop('disabled',true);
+                    $('#sellFish').prop('disabled',true);
+                    $('#sellFertilizer').prop('disabled',true);
+                    $('#sellAnimal').prop('disabled',true);
+                    $('#sellPlant').prop('disabled',true);
+                    $('#smallBisiness').prop('disabled',false);
+                }
+                //vatControl.functions.addpp011Validate($('input[name=pp011Option]:radio:checked').val());
+
+            });
+
+            //--ภ.พ.01 ชื่อและที่ตั้งสถานประกอบการ
+            $('#addrProvince').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_VAT.PLACEHOLDER_PROVINCE_SELECT',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+            $('#addrAmpur').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_VAT.PLACEHOLDER_AMPUR_SELECT',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $('#addrProvince').val()
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+            $('#addrTumbol').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_VAT.PLACEHOLDER_TUMBOL_SELECT',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $('#addrProvince').val(),
+                            aCode: $('#addrAmpur').val()
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+            $('#addrProvince').change(function () {
+                $("#addrAmpur").val("").trigger("change");
+                $('#addrAmpur option[value]').remove();
+            });
+            $('#addrAmpur').change(function () {
+                $("#addrTumbol").val("").trigger("change");
+                $('#addrTumbol option[value]').remove();
+            });
+
+
+            $('#accountingDate').datepicker({
+                autoclose: true,
+                language: currentLanguage == 'th' ? 'th-th' : currentLanguage,
+                format: 'dd/mm'
+            });
+
+        });
+
+        //ภ.พ.01/3.วันที่ประสงค์ขอจดทะเบียน
+        /*$('#busReqRegDate').datepicker({
+            autoclose: true,
+            language: currentLanguage == 'th' ? 'th-th' : currentLanguage,
+            format: 'dd/mm/yyyy',
+            startDate: "+15d",
+            endDate: "+30d"
+        });*/
+        $('#busIncomeReachDate').datepicker({
+            autoclose: true,
+            language: currentLanguage == 'th' ? 'th-th' : currentLanguage,
+            format: 'dd/mm/yyyy',
+            startDate: "-30d",
+            endDate: new Date()
+        });
+        //4.ประเภทกิจการ
+        @for(var i = 1; i <= 6; i++){
+            <text>
+        $('#bustypcod_@i').change(function(){
+            if($('#bustypcod_@i').val() != "")
+                $('#gootypdes_@i').removeAttr('disabled');
+            else
+                $('#gootypdes_@i').attr('disabled', 'disabled');
+        });
+        </text>
+        }
+
+        //ข้อมูลแบบ ภ.พ.01.1 / 1.ชื่อผู้ประกอบการ-
+        $('#pp011BranchProvince').select2({
+            allowClear: true,
+            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_PROVINCE_SELECT',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+        $('#pp011BranchAmpur').select2({
+            allowClear: true,
+            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_AMPUR_SELECT',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        pCode: $('#pp011BranchProvince').val()
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+        $('#pp011BranchTumbol').select2({
+            allowClear: true,
+            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_TUMBOL_SELECT',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        pCode: $('#pp011BranchProvince').val(),
+                        aCode: $('#pp011BranchAmpur').val()
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+        $('#pp011BranchProvince').change(function () {
+            $("#pp011BranchAmpur").val("").trigger("change");
+            $('#pp011BranchAmpur option[value]').remove();
+        });
+        $('#pp011BranchAmpur').change(function () {
+            $("#pp011BranchTumbol").val("").trigger("change");
+            $('#pp011BranchTumbol option[value]').remove();
+        });
+
+        //main branch
+        $('#branchTitle-0').select2({
+            allowClear: true,
+            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_TITLE_SELECT'
+        });
+        $('#branchTitle-0').val("").trigger("change");
+
+        $('#branchProvince-0').select2({
+            allowClear: true,
+            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_PROVINCE_SELECT',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+        $('#branchAmpur-0').select2({
+            allowClear: true,
+            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_AMPUR_SELECT',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        pCode: $('#branchProvince-0').val()
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+        $('#branchTumbol-0').select2({
+            allowClear: true,
+            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_TUMBOL_SELECT',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        pCode: $('#branchProvince-0').val(),
+                        aCode: $('#branchAmpur-0').val()
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+        $('#branchProvince-0').change(function () {
+            $('#branchAmpur-0').val("").trigger("change");
+            $('#branchAmpur-0 option[value]').remove();
+        });
+        $('#branchAmpur-0').change(function () {
+            $('#branchTumbol-0').val("").trigger("change");
+            $('#branchTumbol-0 option[value]').remove();
+        });
+        $('#branchTumbol-0').change(function () {
+            $('#branchZipcode-0 option[value]').remove();
+            $('input[name=branchZipcode-0]').val("").prop('disabled', false);
+
+            if($('#branchTumbol-0').val().length >0){
+                var provinceCode = $('#branchProvince-0').val()+$('#branchAmpur-0').val()+$('#branchTumbol-0').val();
+                if(provinceCode.length == 6){
+                    $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + provinceCode, function (data) {
+                        if(data.length < 1){
+                            $('#branchZipInput-0').show();
+                            $('#branchZipSelect-0').hide();
+                        }else{
+                            if(data.length == 1){
+                                $('#branchZipInput-0').show();
+                                $('#branchZipSelect-0').hide();
+                                $('input[name=branchZipcode-0]').val(data[0])
+                                        .prop('disabled', true);
+                            }else if(data.length > 1){
+                                $('#branchZipInput-0').hide();
+                                $('#branchZipSelect-0').show();
+                                $.each(data, function (key, value) {
+                                    $('#branchZipcode-0').append($("<option></option>").attr("value", value).text(value)).prop('disabled', false);
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        //render สาขาตามจำนวน
+        $('#branchAmount').change(function () {
+            var amount = $('#branchAmount').val();
+
+            if (amount > 5) {
+                $('#branchAmount').val(5);
+                amount = $('#branchAmount').val();
+            }
+
+            vatControl.functions.renderBranch(amount);
+            vatControl.functions.assignBranchProv(amount);
+        });
+
+        var num = $('#busCapitalAmount').val();
+        $('#busCapitalAmount').val(number_format(num));
+
+        //committee
+        @foreach(var committee in Model.CommitteeInformations)
+        {
+            <text>
+        $(function () {
+            $('#committeeBd_@committee.Sequence').datepicker({
+                autoclose: true,
+                language: currentLanguage == 'th' ? 'th-th' : currentLanguage,
+                format: 'dd/mm/yyyy'
+            });
+        });
+        /* $('#committeeTitle_committee.Sequence').select2({
+             allowClear: true,
+             placeholder: 'Resources.Apps_VAT.PLACEHOLDER_TITLE_SELECT'
+         });*/
+        $('#committeeNat_@committee.Sequence').select2({
+            allowClear: true,
+            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_NAT_SELECT'
+        });
+        $('#committeeNat_@committee.Sequence').val("").trigger("change");
+        </text>
+        }
+
+        $(window).load(function () {
+            showLoader(false);
+        });
+
+        var vatControl = {
+            controls: {
+                form: '#frmVAT',
+                //1.ชื้อผู้ประกอบการ
+                formAccountingDate: '#frmVAT #accountingDate',
+                //2.ชื่อและที่ตั้งสถานประกอบการ
+                formBuildingName: '#frmVAT #buildingName',
+                formRoomNumber: '#frmVAT #roomNumber',
+                formFloorNumber: '#frmVAT #floorNumber',
+                formVillageName: '#frmVAT #villageName',
+                formHouseNumber: '#frmVAT #houseNumber',
+                formMooNumber: '#frmVAT #mooNumber',
+                formSoiName: '#frmVAT #soiName',
+                formStreetName: '#frmVAT #streetName',
+                formThambolCode: '#frmVAT #addrTumbol',
+                formAmpurCode: '#frmVAT #addrAmpur',
+                formProvinceCode: '#frmVAT #addrProvince',
+                formPostCode: '#frmVAT #addrZipcode',
+                formTelNumber: '#frmVAT #telNumber',
+                //3.4.5.
+                formBranchAmount: '#frmVAT #branchAmount',
+                //formBusReqRegDate: '#frmVAT #busReqRegDate',
+                formAnnounceDate: '#frmVAT #busAnnounceDateOption',
+                formBusFirstReqDate: '#frmVAT #busFirstReqDate',
+                formBusIncomeDate: '#frmVAT #busIncomeReachDate',
+                formBusCapitalAmount: '#frmVAT #busCapitalAmount',
+                formEstIncomeAmount: '#frmVAT #estIncomeAmount',
+                formEmail: '#frmVAT #email',
+                formStatus: '#frmVAT #Status',
+
+                formAgree1: '#chk1',
+                formAgree2: '#chk2',
+                formAgree3: '#chk3',
+                formAgree4: '#chk4',
+                formAgree5: '#chk5',
+
+                //pp011
+                formSellPlant: '#sellPlant',
+                formSellAnimal: '#sellAnimal',
+                formSellFertilizer: '#sellFertilizer',
+                formSellFish: '#sellFish',
+                formSellMedicine: '#sellMedicine',
+                formSellBook: '#sellBook',
+                formAirLogistic: '#airLogistic',
+                formExport: '#export',
+                formFuel: '#fuel',
+                formSmallBisiness: '#smallBisiness',
+
+
+            },
+            variables :{
+                confirmed: false,
+            },
+            functions: {
+                init: function () {
+                    showLoader(true);
+
+                    $(vatControl.controls.form + ' button[type=submit]').ladda('bind');
+                    $(vatControl.controls.form).ajaxForm({
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        clearForm: false,
+                        beforeSubmit: function (data, jqForm, options) {
+                            if ($(vatControl.controls.formStatus).val() == '@ApplicationStatusV2Enum.DRAFT.ToString()') {
+                                $.ladda('stopAll');
+                                return true;
+                            }
+
+                            var errors = 0;
+                            var messages = {};
+
+                            //pp011
+                            if($('#userIncomeNotReachOption').is(':checked')){
+                                if ($('#regExceptOption').is(':checked')) {//pp011-option1 checked
+                                    if (!$('#sellPlant').is(':checked') && !$('#sellAnimal').is(':checked') && !$('#sellFertilizer').is(':checked') && !$('#sellFish').is(':checked') && !$('#sellMedicine').is(':checked') && !$('#airLogistic').is(':checked') && !$('#export').is(':checked') && !$('#fuel').is(':checked') && !$('#sellBook').is(':checked')) {
+                                        errors++;
+                                        messages.sellPlant = '@Resources.Apps_VAT.ERROR_REQUIRED';
+                                    }
+
+                                } else if ($('#regExceptNotreachOption').is(':checked') && !$('#smallBisiness').is(':checked')) {//pp011-option2 checked
+                                    errors++;
+                                    messages.sellPlant = '@Resources.Apps_VAT.ERROR_REQUIRED';
+                                }
+                            }
+                           
+                            if (errors > 0) {
+                                setTimeout(function () {
+                                    $(vatControl.controls.form).validate().showErrors(messages);
+                                }, 200);
+                                $.ladda('stopAll');
+                                return false;
+                            }
+
+                            var accepted = jqForm.validate().form();
+
+                            if (!accepted) {
+                                swal("@Resources.Apps_Utility.APPS_VALIDATE_FALSE_TITLE", "@Resources.Apps_Utility.APPS_VALIDATE_FALSE_TEXT", "warning");
+                            }
+
+                            // check terms & conditions
+                            if (accepted && !document.getElementById('chkSubmit').checked) {
+                                $("#termsModal").modal('show');
+                                $.ladda('stopAll');
+                                accepted = false;
+                            }
+
+                            // check checklist
+                            if (accepted && document.getElementById('chkSubmit').checked && $('#checklistStatus').val() == "false") {
+                                $("#checklistModal").modal('show');
+                                $.ladda('stopAll');
+                                accepted = false;
+                            }
+
+                            if (accepted && !vatControl.variables.confirmed && $('#checklistStatus').val() == "true" && $('#agreementStatus').val() == "true") {
+                                swal({
+                                    title: "@Resources.Apps_Utility.ALERT_CONFIRM_TITLE",
+                                    text: "@Resources.Apps_Utility.ALERT_CONFIRM_DESC",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#47a447",
+                                    confirmButtonText: "@Resources.Apps_Utility.ALERT_CONFIRM_BTN",
+                                    cancelButtonText: "@Resources.Apps_Utility.ALERT_CANCEL_BTN",
+                                    closeOnConfirm: false
+                                },
+                                function (isConfirm) {
+                                    if(isConfirm){
+                                        setTimeout(function () {
+                                            vatControl.variables.confirmed = true;
+                                            $('.sweet-alert button').prop('disabled', true);
+                                            $(vatControl.controls.form).submit();
+                                        }, 200);
+                                    }else{
+                                        for(var i = 1; i <= 5; i++){
+                                            $('#chk' + i).prop('checked',false);
+                                        }
+                                        $("#checklistStatus").val("false");
+                                        $("#agreementStatus").val("false");
+                                    }
+                                });
+                                $.ladda('stopAll');
+                                accepted = false;
+                            }
+
+                            return accepted;
+                        },
+                        customData: function (data, jqForm, options) {
+                            var l = $(vatControl.controls.form + ' button[type=submit]').ladda();
+                            l.ladda('start');
+
+                            var committeeData = {};
+                            committeeData['COMMITTEE_TOTAL'] =  @(Model != null ? Model.NumberOfCommittee : 0);
+                            for (var i = 1; i <= committeeData['COMMITTEE_TOTAL']; i++) {
+                                committeeData['COMMITTEE_' + i + '_IDNUMBER'] = $("#committeeCitizenId_" + i).val();
+                                //committeeData['COMMITTEE_' + i + 'TITLECODE'] = $("#committeeTitle_" + i + " option:selected").val();
+                                //committeeData['COMMITTEE_' + i + 'TITLENAME'] = $("#committeeTitle_" + i + " option:selected").text();
+                                committeeData['COMMITTEE_' + i + 'TITLE'] = $("#committeeTitle_" + i).val();
+                                committeeData['COMMITTEE_' + i + '_NAME'] = $('#committeeFirstname_' + i).val();
+                                committeeData['COMMITTEE_' + i + 'SURNAME'] = $("#committeeLastname_" + i).val();
+                                committeeData['COMMITTEE_' + i + 'NATIONALITY'] = $("#committeeNat_" + i + " option:selected").val();
+                                committeeData['COMMITTEE_' + i + 'NATIONALITYNAME'] = $("#committeeNat_" + i + " option:selected").text();
+                                committeeData['COMMITTEE_' + i + 'DATEOFBIRTH'] = $("#committeeBd_" + i).val();
+                            }
+
+                            var businessTypeData = {};
+                            businessTypeData['BUSINESS_TYPE_TOTAL'] = 6;
+                            for (var i = 1; i <= businessTypeData['BUSINESS_TYPE_TOTAL']; i++) {
+                                businessTypeData['BUSINESS_TYPE_' + i] = $('#bustypcod_' + i + ' option:selected').val();
+                                businessTypeData['BUSINESS_GOODS_' + i] = $('#gootypdes_' + i).val();
+                            }
+
+                            var branchData = {};
+                            branchData['BRANCH_TOTAL'] = $('#branchAmount').val();;
+                            for (var i = 0; i <= branchData['BRANCH_TOTAL']; i++) {
+                                branchData['BRANCH_' + i + '_NO'] = $('#branchNo-' + i).val();
+                                branchData['BRANCH_' + i + '_TITLE'] = $('#branchTitle-' + i + ' option:selected').val();
+                                branchData['BRANCH_' + i + '_TITLENAME'] = $('#branchTitle-' + i + ' option:selected').text();
+                                branchData['BRANCH_' + i + '_NAME'] = $('#branchName-' + i).val();
+                                branchData['BRANCH_' + i + '_BUILDING'] = $('#branchBuilding-' + i).val();
+                                branchData['BRANCH_' + i + '_FLOOR'] = $('#branchfloor-' + i).val();
+                                branchData['BRANCH_' + i + '_ROOM'] = $('#branchRoom-' + i).val();
+                                branchData['BRANCH_' + i + '_ADDRNO'] = $('#branchAddrNo-' + i).val();
+                                branchData['BRANCH_' + i + '_MOO'] = $('#branchMoo-' + i).val();
+                                branchData['BRANCH_' + i + '_VILLAGE'] = $('#branchVillage-' + i).val();
+                                branchData['BRANCH_' + i + '_SOI'] = $('#branchSoi-' + i).val();
+                                branchData['BRANCH_' + i + '_ROAD'] = $('#branchRoad-' + i).val();
+                                branchData['BRANCH_' + i + '_PROVINCE'] = $('#branchProvince-' + i + ' option:selected').val();
+                                branchData['BRANCH_' + i + '_AMPUR'] = $('#branchAmpur-' + i + ' option:selected').val();
+                                branchData['BRANCH_' + i + '_TUMBOL'] = $('#branchTumbol-' + i + ' option:selected').val();
+                                branchData['BRANCH_' + i + '_PROVINCENAME'] = $('#branchProvince-' + i + ' option:selected').text();
+                                branchData['BRANCH_' + i + '_AMPURNAME'] = $('#branchAmpur-' + i + ' option:selected').text();
+                                branchData['BRANCH_' + i + '_TUMBOLNAME'] = $('#branchTumbol-' + i + ' option:selected').text();
+                                branchData['BRANCH_' + i + '_ZIPCODE'] = $('input[name=branchZipcode-' + i + ']').val() != "" ? $('input[name=branchZipcode-' + i + ']').val() : $('#branchZipcode-' + i + ' option:selected').val();
+                                branchData['BRANCH_' + i + '_TELNO'] = $('#branchTelNo-' + i).val();
+                            }
+
+                            var data = {
+                                ApplicationID: @appID,
+                                Status: $(vatControl.controls.formStatus).val(),
+                                Data: {
+                                    CORPINFO: {
+                                        GroupName: "CORPINFO",
+                                        DATA: {
+                                            //JURISTICTITLE:$('#juristicTitle option:selected').val(),
+                                            //JURISTICTITLENAME:$('#juristicTitle option:selected').text(),
+                                            JURISTICTYPE:$('#juristicTitle').val(),
+                                            ACCOUNTINGDATE: $(vatControl.controls.formAccountingDate).val(),
+                                        }
+                                    },
+
+                                    CURRENTADDRESSINFOMATION: {
+                                        GroupName: "CURRENTADDRESSINFOMATION",
+                                        DATA: {
+                                            BUILDINGNUMBER: $(vatControl.controls.formBuildingName).val(),
+                                            ROOMNUMBER: $(vatControl.controls.formRoomNumber).val(),
+                                            FLOORNUMBER: $(vatControl.controls.formFloorNumber).val(),
+                                            VILLAGENUMBER: $(vatControl.controls.formVillageName).val(),
+                                            HOUSENUMBER: $(vatControl.controls.formHouseNumber).val(),
+                                            MOONUMBER: $(vatControl.controls.formMooNumber).val(),
+                                            SOINAME: $(vatControl.controls.formSoiName).val(),
+                                            STREETNAME: $(vatControl.controls.formStreetName).val(),
+                                            THAMBOLCODE: $("#addrTumbol option:selected").val(),
+                                            AMPURCODE: $("#addrAmpur option:selected").val(),
+                                            PROVINCECODE: $("#addrProvince option:selected").val(),
+                                            PROVINCENAME: $("#addrProvince option:selected").text(),
+                                            THAMBOLNAME: $("#addrTumbol option:selected").text(),
+                                            AMPURNAME: $("#addrAmpur option:selected").text(),
+                                            POSTCODE: $('input[name=addrZipcode]').val() != "" ? $('input[name=addrZipcode]').val() : $('#addrZipcode option:selected').val(),
+                                            TELNUMBER: $(vatControl.controls.formTelNumber).val()
+                                        }
+                                    },
+
+                                    PP01INFO: {
+                                        GroupName: "PP01INFO",
+                                        DATA: {
+                                            BRANUM: $(vatControl.controls.formBranchAmount).val(),
+                                            //BUSWATDAT: $(vatControl.controls.formBusReqRegDate).val(),
+                                            BUSWATDAT: moment(new Date()).format("DD/MM/YYYY"),
+                                            FORRECDAT: $(vatControl.controls.formBusFirstReqDate).val(),
+                                            BUSFIRDAT: $('input[name=regDateOption]:radio:checked').val() == 1 ? moment(new Date()).format("DD/MM/YYYY") : "",
+                                            BUSINCDAT: $(vatControl.controls.formBusIncomeDate).val(),
+                                            BUSCPTAMO: $(vatControl.controls.formBusCapitalAmount).val(),
+                                            ESTMONINCAMO: $(vatControl.controls.formEstIncomeAmount).val(),
+                                            EMAIL: $(vatControl.controls.formEmail).val(),
+
+                                            AGREE1: $(vatControl.controls.formAgree1).is(':checked') ? "1" : "0",
+                                            AGREE2: $(vatControl.controls.formAgree2).is(':checked') ? "1" : "0",
+                                            AGREE3: $(vatControl.controls.formAgree3).is(':checked') ? "1" : "0",
+                                            AGREE4: $(vatControl.controls.formAgree4).is(':checked') ? "1" : "0",
+                                            AGREE5: $(vatControl.controls.formAgree5).is(':checked') ? "1" : "0"
+                                        }
+                                    },
+
+                                    PP01BINFO: {
+                                        GroupName: "PP01BINFO",
+                                        DATA: branchData
+                                    },
+                                    COMMITTEE: {
+                                        GroupName: "COMMITTEE",
+                                        DATA: committeeData
+                                    },
+                                    PP01CINFO: {
+                                        GroupName: "PP01CINFO",
+                                        DATA: businessTypeData
+                                    },
+
+                                    PP011INFO: {
+                                        GroupName: "PP011INFO",
+                                        DATA: {
+                                            BUS1: $(vatControl.controls.formSellPlant).is(':checked') ? "1" : "0",
+                                            BUS2: $(vatControl.controls.formSellAnimal).is(':checked') ? "1" : "0",
+                                            BUS3: $(vatControl.controls.formSellFertilizer).is(':checked') ? "1" : "0",
+                                            BUS4: $(vatControl.controls.formSellFish).is(':checked') ? "1" : "0",
+                                            BUS5: $(vatControl.controls.formSellMedicine).is(':checked') ? "1" : "0",
+                                            BUS6: $(vatControl.controls.formSellBook).is(':checked') ? "1" : "0",
+                                            BUS7: $(vatControl.controls.formAirLogistic).is(':checked') ? "1" : "0",
+                                            BUS8: $(vatControl.controls.formExport).is(':checked') ? "1" : "0",
+                                            BUS9: $(vatControl.controls.formFuel).is(':checked') ? "1" : "0",
+                                            BUS10: $(vatControl.controls.formSmallBisiness).is(':checked') ? "1" : "0",
+                                            PP011STA: $('#userIncomeNotReachOption:radio:checked').val() == "2" ? "Y" : "N",
+
+                                        }
+                                    },
+
+                                    FORMINFO: {
+                                        GroupName: "FORMINFO",
+                                        DATA: {
+                                            USERINCOMEOPTION: $('input[name=userIncomeOption]:radio:checked').val(),
+                                            PP01OPTION: $('input[name=pp01Option]:radio:checked').val(),
+                                            PP011OPTION: $('input[name=pp011Option]:radio:checked').val(),
+                                            REGDATEOPTION: $('input[name=regDateOption]:radio:checked').val()
+                                        }
+                                    },
+
+
+                                }
+
+                            };
+                            options.data = JSON.stringify(data);
+                        },
+                        error: function (xhr, status, error, $form) {
+                            var data = xhr.responseJSON;
+                            $.ladda('stopAll');
+                            vatControl.variables.confirmed = false;
+                            notify('error', data.Message);
+                            vatControl.variables.confirmed = false;
+
+                            //TODO: ERROR ทำไร
+                        },
+                        success: function (responseText, statusText, xhr, $form) {
+                            var data = xhr.responseJSON;
+                            $.ladda('stopAll');
+                            vatControl.variables.confirmed = false;
+
+                            //TODO: SUCCESS ทำไร
+                            //REDIRECT ไปไหน ใส่ตรงนี้
+                            if (data.Type == 1) {
+                                if ($(vatControl.controls.formStatus).val() == '@ApplicationStatusV2Enum.WAITING.ToString()') {
+                                    //notify('success', data.Message, true, 'trackingUrl');
+                                    notifyPrint('success', data.Message, '@trackingUrl','@printUrl', '@Resources.Global.TRACKING_STASUS','@Resources.Apps_VAT.PRINT');
+                                }
+                                else {
+                                    notify('success', data.Message);
+                                }
+                            }
+                            else {
+                                notify('success', data.Message);
+                            }
+                        }
+                    });
+                    vatControl.functions.getDraft();
+                    vatControl.functions.formValidate();
+                },
+                getDraft:function(){
+                    $.get('@Url.Content("~/Api/V2/ApplicationRequests/" + appID + "/Draft")', function (data) {
+                        if(data){
+                            $('#accountingDate').val(data.Data.CORPINFO.Data.ACCOUNTINGDATE);
+
+                            $('#buildingName').val(data.Data.CURRENTADDRESSINFOMATION.Data.BUILDINGNUMBER);
+                            $('#floorNumber').val(data.Data.CURRENTADDRESSINFOMATION.Data.FLOORNUMBER);
+                            $('#roomNumber').val(data.Data.CURRENTADDRESSINFOMATION.Data.ROOMNUMBER);
+                            $('#houseNumber').val(data.Data.CURRENTADDRESSINFOMATION.Data.HOUSENUMBER);
+                            $('#mooNumber').val(data.Data.CURRENTADDRESSINFOMATION.Data.MOONUMBER);
+                            $('#villageName').val(data.Data.CURRENTADDRESSINFOMATION.Data.VILLAGENUMBER);
+                            $('#soiName').val(data.Data.CURRENTADDRESSINFOMATION.Data.SOINAME);
+                            $('#streetName').val(data.Data.CURRENTADDRESSINFOMATION.Data.STREETNAME);
+                            //$('input[name=addrZipcode]').val(data.Data.CURRENTADDRESSINFOMATION.Data.POSTCODE);
+                            $('#telNumber').val(data.Data.CURRENTADDRESSINFOMATION.Data.TELNUMBER);
+                            $('#addrProvince')
+                                .prepend("<option value='" + data.Data.CURRENTADDRESSINFOMATION.Data.PROVINCECODE + "'>" + data.Data.CURRENTADDRESSINFOMATION.Data.PROVINCENAME + "</option>")
+                                .val(data.Data.CURRENTADDRESSINFOMATION.Data.PROVINCECODE)
+                                .prop('disabled', true);
+                            $('#addrTumbol')
+                                .prepend("<option value='" + data.Data.CURRENTADDRESSINFOMATION.Data.THAMBOLCODE + "'>" + data.Data.CURRENTADDRESSINFOMATION.Data.THAMBOLNAME + "</option>")
+                                .val(data.Data.CURRENTADDRESSINFOMATION.Data.THAMBOLCODE)
+                                .prop('disabled', true);
+                            $('#addrAmpur')
+                                .prepend("<option value='" + data.Data.CURRENTADDRESSINFOMATION.Data.AMPURCODE + "'>" + data.Data.CURRENTADDRESSINFOMATION.Data.AMPURNAME + "</option>")
+                                .val(data.Data.CURRENTADDRESSINFOMATION.Data.AMPURCODE)
+                                .prop('disabled', true);
+
+                            vatControl.functions.setPostcodeFromWS($('#addrProvince').val()+$('#addrAmpur').val()+$('#addrTumbol').val());
+
+                            $('#branchAmount').val(data.Data.PP01INFO.Data.BRANUM);
+                            $('#busReqRegDate').val(data.Data.PP01INFO.Data.BUSWATDAT);
+                            $('#busIncomeReachDate').val(data.Data.PP01INFO.Data.BUSINCDAT);
+                            $('#busFirstReqDate').val(data.Data.PP01INFO.Data.FORRECDAT);
+                            $('#busCapitalAmount').val(data.Data.PP01INFO.Data.BUSCPTAMO);
+                            $('#estIncomeAmount').val(data.Data.PP01INFO.Data.ESTMONINCAMO);
+
+                            for(var i =1; i<=6;i++){
+                                if(data.Data.PP01CINFO.Data['BUSINESS_TYPE_'+i] != ""){
+                                    $('#bustypcod_'+i).val(data.Data.PP01CINFO.Data['BUSINESS_TYPE_'+i]);
+                                    $('#gootypdes_'+i).val(data.Data.PP01CINFO.Data['BUSINESS_GOODS_'+i]).prop('disabled',false);
+                                }
+                            }
+
+                            $('#email').val(data.Data.PP01INFO.Data.EMAIL);
+
+                            var numberOfBranch = data.Data.PP01BINFO.Data.BRANCH_TOTAL;
+                            vatControl.functions.renderBranch(numberOfBranch);
+                            vatControl.functions.assignBranchProv(numberOfBranch);
+
+                            for(var i = 0; i <= numberOfBranch; i++){
+                                $('#branchNo-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_NO']);
+                                $('#branchTitle-' +i)
+                                .prepend("<option value='" + data.Data.PP01BINFO.Data['BRANCH_'+i+'_TITLE'] + "'>" + data.Data.PP01BINFO.Data['BRANCH_'+i+'_TITLENAME'] + "</option>")
+                                .val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_TITLE']);
+
+                                $('#branchName-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_NAME']);
+                                $('#branchBuilding-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_BUILDING']);
+                                $('#branchfloor-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_FLOOR']);
+                                $('#branchRoom-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_ROOM']);
+                                $('#branchAddrNo-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_ADDRNO']);
+                                $('#branchMoo-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_MOO']);
+                                $('#branchVillage-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_VILLAGE']);
+                                $('#branchSoi-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_SOI']);
+                                $('#branchRoad-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_ROAD']);
+
+                                $('#branchProvince-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_PROVINCE']);
+                                $('#branchAmpur-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_AMPUR']);
+                                $('#branchTumbol-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_TUMBOL']);
+
+                                //$('input[name=branchZipcode-' + i + ']').val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_ZIPCODE']);
+                                $('#branchTelNo-'+i).val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_TELNO']);
+
+                                $('#branchProvince-'+i)
+                                    .prepend("<option value='" + data.Data.PP01BINFO.Data['BRANCH_'+i+'_PROVINCE'] + "'>" + data.Data.PP01BINFO.Data['BRANCH_'+i+'_PROVINCENAME'] + "</option>")
+                                    .val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_PROVINCE']);
+                                $('#branchTumbol-'+i)
+                                    .prepend("<option value='" + data.Data.PP01BINFO.Data['BRANCH_'+i+'_TUMBOL'] + "'>" + data.Data.PP01BINFO.Data['BRANCH_'+i+'_TUMBOLNAME'] + "</option>")
+                                    .val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_TUMBOL']);
+                                $('#branchAmpur-'+i)
+                                    .prepend("<option value='" + data.Data.PP01BINFO.Data['BRANCH_'+i+'_AMPUR'] + "'>" + data.Data.PP01BINFO.Data['BRANCH_'+i+'_AMPURNAME'] + "</option>")
+                                    .val(data.Data.PP01BINFO.Data['BRANCH_'+i+'_AMPUR']);
+
+                                vatControl.functions.setBranchPostcode($('#branchProvince-'+i).val()+$('#branchAmpur-'+i).val()+$('#branchTumbol-'+i).val(), i, data.Data.PP01BINFO.Data['BRANCH_'+i+'_ZIPCODE']);
+                            }
+
+                            var numberOfCommittee = data.Data.COMMITTEE.Data.COMMITTEE_TOTAL;
+                            for(var i = 1; i <= numberOfCommittee; i++){
+                                $('#committeeBd_'+i).val(data.Data.COMMITTEE.Data['COMMITTEE_'+i+'DATEOFBIRTH'] );
+                                $('#committeeTitle_'+i).val(data.Data.COMMITTEE.Data['COMMITTEE_'+i+'TITLE']);
+                                //$('#committeeTitle_'+i)
+                                //.prepend("<option value='" + data.Data.COMMITTEE.Data['COMMITTEE_'+i+'TITLECODE'] + "'>" + data.Data.COMMITTEE.Data['COMMITTEE_'+i+'TITLENAME'] + "</option>")
+                                //.val(data.Data.COMMITTEE.Data['COMMITTEE_'+i+'TITLECODE']);
+                                if(data.Data.COMMITTEE.Data['COMMITTEE_'+i+'NATIONALITYNAME'] != "")
+                                    $('#committeeNat_'+i)
+                                    .prepend("<option value='" + data.Data.COMMITTEE.Data['COMMITTEE_'+i+'NATIONALITY'] + "'>" + data.Data.COMMITTEE.Data['COMMITTEE_'+i+'NATIONALITYNAME'] + "</option>")
+                                    .val(data.Data.COMMITTEE.Data['COMMITTEE_'+i+'NATIONALITY']);
+                            }
+
+                            var userIncomeOption = data.Data.FORMINFO.Data.USERINCOMEOPTION;
+                            $('input[name=userIncomeOption][value="'+userIncomeOption+'"]').prop("checked", true);
+
+                            //disabled pp01
+                            $('input[name=regDateOption]').prop('disabled',userIncomeOption==="2");
+                            $('#busIncomeReachDate').prop('disabled', userIncomeOption==="2").prop('readonly', true);
+                            //$('#chkBusFirstReqDate').prop('disabled', userIncomeOption==="2");
+                            $('#busFirstReqDate').prop('disabled', userIncomeOption==="1").prop('readonly', true);
+                            $('#chkBusFirstReqDate').prop('checked', userIncomeOption==="2");
+                            $('#chkBusFirstReqDate').prop('disabled', userIncomeOption==="1");
+
+                            if(userIncomeOption === "1"){
+                                $('#option1Control').show();
+                                $('#option2Control').hide();
+                                $('#pp011Control').hide();
+
+                                var pp01Option = data.Data.FORMINFO.Data.PP01OPTION;
+                                $('input[name=pp01Option][value="'+pp01Option+'"]').prop("checked", true);
+                                $('input[name=regDateOption][value="'+data.Data.FORMINFO.Data.REGDATEOPTION+'"]').prop("checked", true);
+                            }else{
+                                $('#option1Control').hide();
+                                $('#option2Control').show();
+                                $('#pp011Control').show();
+
+                                var pp011Option = data.Data.FORMINFO.Data.PP011OPTION;
+                                $('input[name=pp011Option][value="'+pp011Option+'"]').prop("checked", true);
+                                //disabled p011
+                                $('#smallBisiness').prop('disabled', pp011Option==="1");
+                                $('#fuel').prop('disabled', pp011Option==="2");
+                                $('#export').prop('disabled', pp011Option==="2");
+                                $('#airLogistic').prop('disabled', pp011Option==="2");
+                                $('#sellBook').prop('disabled', pp011Option==="2");
+                                $('#sellMedicine').prop('disabled', pp011Option==="2");
+                                $('#sellFish').prop('disabled', pp011Option==="2");
+                                $('#sellFertilizer').prop('disabled', pp011Option==="2");
+                                $('#sellAnimal').prop('disabled', pp011Option==="2");
+                                $('#sellPlant').prop('disabled', pp011Option==="2");
+
+
+                                $('#sellPlant').prop('checked',data.Data.PP011INFO.Data.BUS1==="1");
+                                $('#sellAnimal').prop('checked',data.Data.PP011INFO.Data.BUS2==="1");
+                                $('#sellFertilizer').prop('checked',data.Data.PP011INFO.Data.BUS3==="1");
+                                $('#sellFish').prop('checked',data.Data.PP011INFO.Data.BUS4==="1");
+                                $('#sellMedicine').prop('checked',data.Data.PP011INFO.Data.BUS5==="1");
+                                $('#sellBook').prop('checked',data.Data.PP011INFO.Data.BUS6==="1");
+                                $('#airLogistic').prop('checked',data.Data.PP011INFO.Data.BUS7==="1");
+                                $('#export').prop('checked',data.Data.PP011INFO.Data.BUS8==="1");
+                                $('#fuel').prop('checked',data.Data.PP011INFO.Data.BUS9==="1");
+                                $('#smallBisiness').prop('checked',data.Data.PP011INFO.Data.BUS10==="1");
+                            }
+
+                        }else {
+                            vatControl.functions.setAddressFromWS();
+                        }
+                        vatControl.functions.addBranchValidate(0);
+                        vatControl.functions.addCommitteeValidate();
+                        vatControl.functions.addCommonValidate();
+                    }).fail(function() {
+                        vatControl.functions.addBranchValidate(0);
+                        vatControl.functions.addCommitteeValidate();
+                        vatControl.functions.addCommonValidate();
+                    });
+                },
+                formValidate: function () {
+                    var validators = $(vatControl.controls.form).validate({
+                        invalidHandler: function (e, validator) {
+                            $.ladda('stopAll');
+                        },
+                        rules: {
+                            accountingDate: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+
+                            addrZipcode: {
+                                regex: '[0-9]{5}',
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            addrTumbol: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            addrAmpur: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            addrProvince: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            estIncomeAmount: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            busCapitalAmount: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            email: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                        },
+                        messages: {
+                            accountingDate: {
+                                customrequiredif: '@Resources.Apps_VAT.ERROR_REQUIRED'
+                            },
+                            addrZipcode: {
+                                customrequiredif: '@Resources.Apps_VAT.ERROR_REQUIRED'
+                            },
+                            addrTumbol: {
+                                customrequiredif: '@Resources.Apps_VAT.ERROR_REQUIRED'
+                            },
+                            addrAmpur: {
+                                customrequiredif: '@Resources.Apps_VAT.ERROR_REQUIRED'
+                            },
+                            addrProvince: {
+                                customrequiredif: '@Resources.Apps_VAT.ERROR_REQUIRED'
+                            },
+                            estIncomeAmount: {
+                                customrequiredif: '@Resources.Apps_VAT.ERROR_REQUIRED'
+                            },
+                            busCapitalAmount: {
+                                customrequiredif: '@Resources.Apps_VAT.ERROR_REQUIRED'
+                            },
+                            email: {
+                                customrequiredif: '@Resources.Apps_VAT.ERROR_REQUIRED'
+                            },
+
+                        },
+                        highlight: function(element, errorClass, validClass) {
+                            var $ele = $(element);
+                            if ($ele.hasClass('select2-hidden-accessible')) {
+                                $ele.parent().find('span.select2-selection').removeClass(validClass).addClass(errorClass);
+                            }
+                            else {
+                                $ele.removeClass(validClass).addClass(errorClass);
+                            }
+
+
+                        },
+                        unhighlight: function(element, errorClass, validClass) {
+                            var $ele = $(element);
+                            if ($ele.hasClass('select2-hidden-accessible')) {
+                                $ele.parent().find('span.select2-selection').removeClass(errorClass).addClass(validClass);
+                            }
+                            else {
+                                $ele.removeClass(errorClass).addClass(validClass);
+                            }
+                            $ele.removeClass('error');
+                        },
+                    });
+                },
+                setAddressFromWS: function () {
+                    var pCode, aCode, geoCode;
+                    $.ajax({
+                        url: '@Url.Content("~/Api/v2/Geo/GetProvinceId")',
+                        dataType: 'json',
+                        data:
+                        {
+                            query: '@Model.AddressInformations[0].Province'
+                        },
+                        success: function (pData) {
+                            pCode = pData.results;
+                            $.ajax({
+                                url: '@Url.Content("~/Api/v2/Geo/GetAmphurId")?pCode=' + pCode + '&query=@HttpUtility.UrlEncode(Model.AddressInformations[0].Ampur)',
+                                dataType: 'json',
+                                success: function (aData) {
+                                    aCode = aData.results;
+                                    $.ajax({
+                                        url: '@Url.Content("~/Api/v2/Geo/GetTambolId")?pCode=' + pCode + '&aCode=' + aCode + '&query=@HttpUtility.UrlEncode(Model.AddressInformations[0].Tumbol)',
+                                        dataType: 'json',
+                                        success: function (tData) {
+                                            geoCode = pCode+aCode+tData.results;
+                                            $("#addrTumbol")
+                                                .prepend("<option value='" + tData.results + "'>@Model.AddressInformations[0].Tumbol</option>")
+                                                .val(tData.results)
+                                                .prop('disabled', true);
+
+                                            vatControl.functions.setPostcodeFromWS(geoCode);
+                                            vatControl.functions.checkRequiredData();
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            vatControl.functions.checkRequiredData();
+                                        }
+                                    });
+                                    $("#addrAmpur")
+                                        .prepend("<option value='" + aCode + "'>@Model.AddressInformations[0].Ampur</option>")
+                                        .val(aCode)
+                                        .prop('disabled', true);
+                                }
+                            });
+                            $("#addrProvince")
+                                .prepend("<option value='" + pCode + "'>@Model.AddressInformations[0].Province</option>")
+                                .val(pCode)
+                                .prop('disabled', true);
+                        }
+                    });
+                },
+                setBranchPostcode: function(geoCode, i, selectedVal){
+                    if(geoCode.length == 6){
+                        $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + geoCode, function (data) {
+                            if(data.length < 1){
+                                $('#branchZipSelect-'+i).hide();
+                                $('#branchZipInput-'+i).show();
+                            }else{
+                                if(data.length == 1){
+                                    $('#branchZipSelect-'+i).hide();
+                                    $('#branchZipInput-'+i).show();
+                                    $('input[name=branchZipcode-'+i+']').val(data[0])
+                                        .prop('disabled', true);
+                                }else if(data.length > 1){
+                                    $('#branchZipSelect-'+i).show();
+                                    $('#branchZipInput-'+i).hide();
+                                    $.each(data, function (key, value) {
+                                        $('#branchZipcode-'+i).append($("<option></option>").attr("value", value).text(value)).prop('disabled', false);
+                                    });
+                                    $('#branchZipcode-'+i).val(selectedVal);
+                                }
+                            }
+                        });
+                    }
+                },
+                setPostcodeFromWS: function(geoCode){
+                    if(geoCode.length == 6){
+                        $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + geoCode, function (data) {
+                            if(data.length < 1){
+                                $('#addrZipSelect').hide();
+                                $('#addrZipInput').show();
+                            }else{
+                                if(data.length == 1){
+                                    $('#addrZipSelect').hide();
+                                    $('#addrZipInput').show();
+                                    $('input[name=addrZipcode]').val(data[0])
+                                        .prop('disabled', true);
+                                }else if(data.length > 1){
+                                    $('#addrZipSelect').show();
+                                    $('#addrZipInput').hide();
+                                    $.each(data, function (key, value) {
+                                        $('#addrZipcode').append($("<option></option>").attr("value", value).text(value)).prop('disabled', false);
+                                    });
+                                }
+                            }
+                        });
+                    }
+                },
+                checkRequiredData:function(){
+                    var data = "";
+                    if($('#buildingName').val().length < 1 && $('#houseNumber').val().length < 1){
+                        data += "- " + '@Resources.Apps_VAT.ERROR_BUILDING_OR_ADDRNO' + "<br/>";
+                    }
+                    if($('#soiName').val().length < 1 && $('#streetName').val().length < 1){
+                        data += "- " + '@Resources.Apps_VAT.ERROR_SOI_OR_ROAD' + "<br/>";
+                    }
+                    if($('#addrProvince').val().length < 1){
+                        data += "- " + '@Resources.Apps_VAT.ADDRESS_PROVINCE' + "<br/>";
+                    }
+                    if($('#addrAmpur').val().length < 1){
+                        data += "- " + '@Resources.Apps_VAT.ADDRESS_AMPUR' + "<br/>";
+                    }
+                    if($('#addrTumbol').val().length < 1){
+                        data += "- " + '@Resources.Apps_VAT.ADDRESS_TUMBOL' + "<br/>";
+                    }
+
+                    var committeeTotal = @Model.NumberOfCommittee;
+                    for(var i = 1; i <= committeeTotal; i++){
+                        var txt = "";
+                        if($('#committeeCitizenId_' + i).val().length < 1){
+                            txt += '@Resources.Apps_VAT.COMMITTEE_CITIZEN_ID' + ",";
+                        }
+                        if($('#committeeTitle_' + i).val().length < 1){
+                            txt += '@Resources.Apps_VAT.COMMITTEE_TITLE' + ",";
+                        }
+                        if($('#committeeFirstname_' + i).val().length < 1){
+                            txt += '@Resources.Apps_VAT.COMMITTEE_FIRSTNAME' + ",";
+                        }
+                        if($('#committeeLastname_' + i).val().length < 1){
+                            txt += '@Resources.Apps_VAT.COMMITTEE_LASTNAME' + ",";
+                        }
+                        if (txt.length > 0)
+                        {
+                            data += "- " + '@Resources.Apps_VAT.COMMITTEE@Resources.Apps_VAT.VAT_ORDER' + " " + i + " : " + txt + "<br/>";
+                        }
+                    }
+
+                    if(data.length > 0){
+                        requiredData = data;
+                        setTimeout(function () {
+                            $("#requiredModal").modal('show');
+                            $("#requiredModal").find('#rBody').empty().append(requiredData);
+                        }, 200);
+                    }
+
+                },
+                addCommonValidate:function(){
+                   
+                    //pp01
+                    $(vatControl.controls.form + ' [name=regDateOption]')
+                           .rules('add', {
+                               required: function () {
+                                   if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                       && $('#userIncomeReachOption').is(':checked')
+                                       && $('input[name=regDateOption]:checked').length < 1) {
+                                       return true;
+                                   }
+                                   else {
+                                       return false;
+                                   }
+                               },
+                               messages: { required:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+                        
+                    $('#busIncomeReachDate')
+                      .rules('add', {
+                          required: function () {
+                              if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                  && $('#userIncomeReachOption').is(':checked')
+                                  && $('#busIncomeReachDateOption').is(':checked')) {
+                                  return true;
+                              }
+                              else {
+                                  return false;
+                              }
+                          },
+                          messages: { required:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+
+                    //currentAddress
+                    if ($(vatControl.controls.formBuildingName).val().trim().length == 0 || $(vatControl.controls.formHouseNumber).val().trim().length == 0) {
+                        $(vatControl.controls.formBuildingName)
+                           .rules('add', {
+                               required: function () {
+                                   if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                       && !$(vatControl.controls.formHouseNumber).val()) {
+                                       return true;
+                                   }
+                                   else {
+                                       return false;
+                                   }
+                               },
+                               messages: { required:  '@Resources.Apps_VAT.ERROR_BUILDING_OR_ADDRNO' }});
+
+                        $(vatControl.controls.formHouseNumber)
+                           .rules('add', {
+                               required: function () {
+                                   if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                       && !$(vatControl.controls.formBuildingName).val()) {
+                                       return true;
+                                   }
+                                   else {
+                                       return false;
+                                   }
+                               },
+                               messages: { required:  '@Resources.Apps_VAT.ERROR_BUILDING_OR_ADDRNO' }});
+                    }
+
+                    //if ($(vatControl.controls.formSoiName).val().trim().length == 0 || $(vatControl.controls.formStreetName).val().trim().length == 0) {
+                        $(vatControl.controls.formSoiName)
+                               .rules('add', {
+                                   required: function () {
+                                       if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                           && !$(vatControl.controls.formStreetName).val()) {
+                                           return true;
+                                       }
+                                       else {
+                                           return false;
+                                       }
+                                   },
+                                   messages: { required:  '@Resources.Apps_VAT.ERROR_SOI_OR_ROAD' }});
+
+                        $(vatControl.controls.formStreetName)
+                                               .rules('add', {
+                                                   required: function () {
+                                                       if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                                           && !$(vatControl.controls.formSoiName).val()) {
+                                                           return true;
+                                                       }
+                                                       else {
+                                                           return false;
+                                                       }
+                                                   },
+                                                   messages: { required:  '@Resources.Apps_VAT.ERROR_SOI_OR_ROAD' }});
+                   // }
+
+                    //biz type
+                    if ($('#bustypcod_1').val() == "" || $('#gootypdes_1').val().length < 1) {
+                        $(vatControl.controls.form + ' [name=bustypcod_1]')
+                            .rules('add', {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                },
+                                messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_BUS_TYPE' }});
+                        $(vatControl.controls.form + ' [name=gootypdes_1]')
+                            .rules('add', {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                },
+                                messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_BUS_TYPE' }});
+                    }
+
+                },
+                addBranchValidate:function(i){
+                    $(vatControl.controls.form + ' [name=branchName-' + i + ']')
+                           .rules('add', {
+                               customrequiredif: {
+                                   dependentproperty: 'Status',
+                                   targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                               },
+                               messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+                    $(vatControl.controls.form + ' [name=branchAddrNo-' + i + ']')
+                          .rules('add', {
+                              customrequiredif: {
+                                  dependentproperty: 'Status',
+                                  targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                              },
+                              messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+                    $(vatControl.controls.form + ' [name=branchProvince-' + i + ']')
+                          .rules('add', {
+                              customrequiredif: {
+                                  dependentproperty: 'Status',
+                                  targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                              },
+                              messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+
+                    $(vatControl.controls.form + ' [name=branchAmpur-' + i + ']')
+                           .rules('add', {
+                               customrequiredif: {
+                                   dependentproperty: 'Status',
+                                   targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                               },
+                               messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+                    $(vatControl.controls.form + ' [name=branchTumbol-' + i + ']')
+                           .rules('add', {
+                               customrequiredif: {
+                                   dependentproperty: 'Status',
+                                   targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                               },
+                               messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+
+                    $(vatControl.controls.form + ' [name=branchZipcode-' + i + ']')
+                           .rules('add',  {
+                               required: function () {
+                                   if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                       && ($(vatControl.controls.form + ' input[name=branchZipcode-' + i + ']').val().length > 0
+                                       ||$(vatControl.controls.form + ' select[name=branchZipcode-' + i + ']').val() != null)) {
+                                       return true;
+                                   }
+                                   else {
+                                       return false;
+                                   }
+                               },
+                               messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+
+                    $(vatControl.controls.form + ' [name=branchTelNo-' + i + ']')
+                           .rules('add', {
+                               customrequiredif: {
+                                   dependentproperty: 'Status',
+                                   targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                               },
+                               messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+
+
+
+                    if ($('#branchMoo-' + i).val().trim().length == 0 || $('#branchRoad-' + i).val().trim().length == 0) {
+                        $(vatControl.controls.form + ' [name=branchMoo-' + i + ']')
+                            .rules('add', {
+                                required: function () {
+                                    if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                        && !$(vatControl.controls.form + ' [name=branchRoad-' + i + ']').val()) {
+                                        return true;
+                                    }
+                                    else {
+                                        return false;
+                                    }
+                                },
+                                messages: { required:  '@Resources.Apps_VAT.ERR_MOO_OR_ROAD' }});
+                        $(vatControl.controls.form + ' [name=branchRoad-' + i + ']')
+                                           .rules('add', {
+                                               required: function () {
+                                                   if ($(vatControl.controls.form + ' input[name=Status]').val() == '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                                       && !$(vatControl.controls.form + ' [name=branchMoo-' + i + ']').val()) {
+                                                       return true;
+                                                   }
+                                                   else {
+                                                       return false;
+                                                   }
+                                               },
+                                               messages: { required:  '@Resources.Apps_VAT.ERR_MOO_OR_ROAD' }});
+                    }
+                },
+                addCommitteeValidate:function(){
+                    var committeeTotal = @Model.NumberOfCommittee;
+                    for(var i = 1; i <= committeeTotal; i++){
+                        $(vatControl.controls.form + ' [name=committeeTitle_' + i + ']')
+                            .rules('add', {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                },
+                                messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+                        $(vatControl.controls.form + ' [name=committeeNat_' + i + ']')
+                           .rules('add', {
+                               customrequiredif: {
+                                   dependentproperty: 'Status',
+                                   targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                               },
+                               messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+                        $(vatControl.controls.form + ' [name=committeeBd_' + i + ']')
+                           .rules('add', {
+                               customrequiredif: {
+                                   dependentproperty: 'Status',
+                                   targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                               },
+                               messages: { customrequiredif:  '@Resources.Apps_VAT.ERROR_REQUIRED' }});
+
+                    }
+                },
+                renderBranch: function(amount){
+                    var source = $('#companyProfileTemplate').html();
+                    var template = Handlebars.compile(source);
+
+                    var branchDiv = $('#branchDiv');
+                    //branchDiv.html('');
+
+                    branchDiv.find('.panel-body:gt('+(amount)+')').remove();
+
+                    for (var i = 1; i <= amount; i++) {
+                        if (!branchDiv.find('.panel-body:eq('+(i)+')').length) {
+                            var context = { BranchNo: i };
+                            var html = template(context);
+                            branchDiv.append(html);
+
+                            //validate
+                            vatControl.functions.addBranchValidate(i);
+                        }
+                    }
+                },
+                assignBranchProv: function(amount){
+                    for (var i = 1; i <= amount; i++) {
+                        $('#branchTitle-' + i).select2({
+                            allowClear: true,
+                            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_TITLE_SELECT'
+                        });
+                        $('#branchTitle-' + i).val("").trigger("change");
+                        //ข้อมูลสาขา
+                        $('#branchProvince-' + i).select2({
+                            allowClear: true,
+                            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_PROVINCE_SELECT',
+                            ajax: {
+                                url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                                dataType: 'json',
+                                delay: 250,
+                                data: function (params) {
+                                    return {
+                                        query: params.term
+                                    };
+                                },
+                                processResults: function (data, params) {
+                                    return data;
+                                },
+                                cache: true
+                            }
+                        });
+                        $('#branchAmpur-' + i).select2({
+                            allowClear: true,
+                            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_AMPUR_SELECT',
+                            ajax: {
+                                url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                                dataType: 'json',
+                                delay: 250,
+                                data: function (params) {
+                                    return {
+                                        query: params.term,
+                                        pCode: $(this).closest('.panel-body').find('select[name^=branchProvince]').val()
+                                    };
+                                },
+                                processResults: function (data, params) {
+                                    return data;
+                                },
+                                cache: true
+                            }
+                        });
+                        $('#branchTumbol-' + i).select2({
+                            allowClear: true,
+                            placeholder: '@Resources.Apps_VAT.PLACEHOLDER_TUMBOL_SELECT',
+                            ajax: {
+                                url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                                dataType: 'json',
+                                delay: 250,
+                                data: function (params) {
+                                    return {
+                                        query: params.term,
+                                        pCode: $(this).closest('.panel-body').find('select[name^=branchProvince]').val(),
+                                        aCode: $(this).closest('.panel-body').find('select[name^=branchAmpur]').val()
+                                    };
+                                },
+                                processResults: function (data, params) {
+                                    return data;
+                                },
+                                cache: true
+                            }
+                        });
+                        $('#branchProvince-' + i).change(function () {
+                            var i = this.name.split('-')[1];
+                            $('#branchAmpur-' + i).val("").trigger("change");
+                            $('#branchAmpur-' + i + ' option[value]').remove();
+                        });
+                        $('#branchAmpur-' + i).change(function () {
+                            var i = this.name.split('-')[1];
+                            $('#branchTumbol-' + i).val("").trigger("change");
+                            $('#branchTumbol-' + i + ' option[value]').remove();
+                        });
+
+                        $('#branchTumbol-' + i).change(function () {
+                            var i = this.name.split('-')[1];
+                            $('#branchZipcode-' + i + ' option[value]').remove();
+                            $('input[name=branchZipcode-' + i + ']').val("").prop('disabled', false);
+
+                            var provinceCode = $('#branchProvince-' + i).val()+$('#branchAmpur-' + i).val()+$('#branchTumbol-' + i).val();
+                            if(provinceCode.length == 6){
+                                $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + provinceCode, function (data) {
+                                    if(data.length < 1){
+                                        $('#branchZipInput-' + i).show();
+                                        $('#branchZipSelect-' + i).hide();
+                                    }else{
+
+
+                                        if(data.length == 1){
+                                            $('#branchZipInput-' + i).show();
+                                            $('#branchZipSelect-' + i).hide();
+                                            $('input[name=branchZipcode-' + i +']').val(data[0])
+                                                    .prop('disabled', true);
+                                        }else if(data.length > 1){
+                                            $('#branchZipInput-' + i).hide();
+                                            $('#branchZipSelect-' + i).show();
+                                            $.each(data, function (key, value) {
+                                                $('#branchZipcode-' + i).append($("<option></option>").attr("value", value).text(value)).prop('disabled', false);
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                },
+                renderReview: function(amount){
+                    var source = $('#reviewTemplate').html();
+                    var template = Handlebars.compile(source);
+
+                    var reviewDiv = $('#reviewDiv');
+
+                    for (var i = 0; i <= amount; i++) {
+                        if (!reviewDiv.find('.panel-body:eq('+(i)+')').length) {
+                            var context = { BranchNo: i };
+                            var html = template(context);
+                            reviewDiv.append(html);
+                        }
+                        $("#reviewTin-"+i).html($("#tin").val());
+                        $("#reviewOwnerName-"+i).html($("#juristicTitle").val() + " " + $("#juristicName").val());
+                        $("#reviewBranchName-"+i).html($('#branchTitle-' + i + ' option:selected').text() + " " +$('#branchName-' + i).val());
+                        $("#reviewBuilding-"+i).html($('#branchBuilding-' + i).val());
+                        $("#reviewRoomNo-"+i).html($('#branchRoom-' + i).val());
+                        $("#reviewFloor-"+i).html($('#branchfloor-' + i).val());
+                        $("#reviewVillage-"+i).html($('#branchVillage-' + i).val());
+                        $("#reviewAddresNo-"+i).html($('#branchAddrNo-' + i).val());
+                        $("#reviewMoo-"+i).html($('#branchMoo-' + i).val());
+                        $("#reviewSoi-"+i).html($('#branchSoi-' + i).val());
+                        $("#reviewRoad-"+i).html($('#branchRoad-' + i).val());
+                        $("#reviewTumbol-"+i).html($('#branchTumbol-' + i + ' option:selected').text());
+                        $("#reviewAmpur-"+i).html($('#branchAmpur-' + i + ' option:selected').text());
+                        $("#reviewProvince-"+i).html($('#branchProvince-' + i + ' option:selected').text());
+                        $("#reviewZipcode-"+i).html($('input[name=branchZipcode-' + i + ']').val() != "" ? $('input[name=branchZipcode-' + i + ']').val() : $('#branchZipcode-' + i + ' option:selected').val());
+                        $("#reviewPhone-"+i).html($('#branchTelNo-' + i).val());
+                        $("#reviewRegistDate-"+i).html($("#juriscticRegDate").val());
+
+                        if(i==0){
+                            $('#chkReviewMainBranch-'+i).prop('checked',true);
+                        }else{
+                            $('#chkReviewBranchNo-'+i).prop('checked',true);
+                            $("#reviewBranchNo-"+i).html(i);
+                        }
+
+                    }
+                    $("#reviewModal").modal('show');
+                },
+
+            }//function
+        };
+    </script>
+}

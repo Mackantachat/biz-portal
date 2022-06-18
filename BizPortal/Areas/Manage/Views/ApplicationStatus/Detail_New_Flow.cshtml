@@ -1,0 +1,1365 @@
+﻿@model BizPortal.DAL.MongoDB.ApplicationRequestEntity
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@using BizPortal.ViewModels.V2
+@using BizPortal.AppsHook
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Service;
+@using Mapster;
+
+@{
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+    ViewBag.Title = string.Format("{0} {1}", Resource.ApplicationStatusRequests.APPLICATION_REQUEST, Model.ApplicationName);
+    ViewBag.IsDetailView = true;
+
+    var rows = 1;
+    var firstRow = true;
+    var thisPageDateTimeFormat = "dd/MM/yyyy, HH.mm";
+    var thisPageDateFormat = "dd/MM/yyyy";
+    var hook = (IAppsHook)null;
+    var singleFormRendererHook = (SingleFormRendererAppHook)null;
+    var appTranslates = (Dictionary<string, string>)null;
+    var isEnabledChat = false;
+    var isEnabledExportData = false;
+    var isEmptyDataAppHooks = false;
+    var isCheckPaymentStatus = false;
+    var isEnableCGDPayment = false;
+    var isEnableELicense = false;
+    var eLicenses = (List<ELicenseViewModel>)null;
+    var billId = (string)null;
+
+    var ePermitFilesForDisplay = (FileMetadata[])null;
+    var viewModel = Model.Adapt<ApplicationRequestEntity, ApplicationRequestViewModel>();
+
+    if (Model.Status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE && Model.PaymentMethod == "BILL_PAYMENT")
+    {
+        isCheckPaymentStatus = Model.BillPaymentFiles.Where(e => e.Extras.ContainsKey("PAYMENT_GATEWAY_TYPE")).Select(e => e.Extras["PAYMENT_GATEWAY_TYPE"].ToString()).LastOrDefault() == "CGD";
+    }
+
+    if (!string.IsNullOrEmpty(ViewBag.AppsHookClassName))
+    {
+        hook = (IAppsHook)Activator.CreateInstance("BizPortal.AppsHook", ViewBag.AppsHookClassName).Unwrap();
+        appTranslates = hook.TranslateKeyValue(viewModel);
+        isEnabledChat = hook.IsEnabledChat();
+        isEnabledExportData = hook.IsEnabledExportData(Model.Status);
+    }
+
+    if (ViewBag.IsEnableCGDPayment != null)
+    {
+        isEnableCGDPayment = ViewBag.IsEnableCGDPayment;
+    }
+
+    if (ViewBag.IsEnableELicense != null)
+    {
+        isEnableELicense = ViewBag.IsEnableELicense;
+        eLicenses = ViewBag.ELicenses;
+
+        if (isEnableELicense)
+        {
+            Model.PermitDeliveryType = "E_DOCUMENT";
+        }
+    }
+
+    if (Model.BillPaymentFiles != null) 
+    {
+        billId = Model.BillPaymentFiles.OrderByDescending(o => o.CreatedDate).Select(e=>e.FileID).FirstOrDefault();
+    }
+
+    if (hook is SingleFormRendererAppHook)
+    {
+        singleFormRendererHook = hook as SingleFormRendererAppHook;
+    }
+
+    Func<string, string> fileNameByCodeFunc = (code) =>
+    {
+        string fileName = string.Empty;
+
+        if (!string.IsNullOrEmpty(code))
+        {
+            if (appTranslates != null && appTranslates.ContainsKey(code))
+            {
+                fileName = appTranslates[code];
+            }
+            else
+            {
+                fileName = ResourceHelper.GetResourceWordWithDefault(code.ToUpper(), "FileType", code);
+            }
+        }
+
+        return fileName;
+    };
+
+}
+
+@section PageStyles {
+    <style>
+        div.form-control-info {
+            position: relative;
+            text-align: left;
+            padding: 30px;
+            border: 1px solid #DEDEDE;
+            margin-bottom: 20px;
+            background: #FFFFFF;
+        }
+
+        .disabled {
+            color: lightgray;
+        }
+
+        .comment-list:before {
+            width: 0 !important;
+        }
+
+        body {
+            font-size: 16px;
+        }
+
+        h4, .h4 {
+            font-weight: bold;
+        }
+
+        h5, .h5 {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .comment-list .comment-item .panel-heading, .comment-list .comment-item .panel-footer {
+            font-size: 16px;
+        }
+
+        .label.actor {
+            width: 6em;
+            display: inline-block;
+        }
+    </style>
+}
+
+@section ContentHeader{
+    <div class="row">
+
+        <div class="col-lg-8 col-md-7 col-sm-7">
+            <i class="fa fa-file-text-o fa fa-2x padding-t-8"></i>
+            <h4 class="m-t-xs inline padder overme">@ViewBag.Title</h4>
+        </div>
+        <div class="col-lg-4 col-md-5 col-sm-5 padding-t-8">
+            <a id="btnPrintMap" class="btn btn-sm btn-info pull-right m-l-xs"
+               href="@Url.ServiceAction("PrintMap", "ApplicationStatus", new { area = "Manage", id = Model.ApplicationRequestID })"
+               target="_blank"><i class="fa fa-print"></i>พิมพ์แผนที่</a>
+            <a class="btn btn-sm btn-info pull-right  m-l-xs"
+               href="@Url.ServiceAction("Print", "ApplicationStatus", new { area = "Manage", id = Model.ApplicationRequestID })"
+               target="_blank"><i class="fa fa-print"></i>พิมพ์แบบฟอร์ม</a>
+
+            @if (isEnabledExportData)
+            {
+                <a class="btn btn-sm btn-info pull-right  m-l-xs"
+                   href="@Url.Content("~/Api/V2/Applications/ExportRequestData?applicationId=" + Model.ApplicationID+"&applicationRequestId=" + Model.ApplicationRequestID )"
+                   target="_blank"><i class="fa fa-file-text"></i>ดาวน์โหลดข้อมูลคำร้อง</a>
+            }
+        </div>
+    </div>
+}
+
+
+@*Appliction request info*@
+<div class="bg-white clearfix">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="button" data-toggle="collapse" id="headingSectionHead" href="#collapseSectionHead" aria-expanded="true" aria-controls="collapseSectionHead">
+            <a style="color:#0088cc;" href="javascript:void(0)">@Resource.ApplicationStatusRequests.REQUEST_BY</a>
+            <span class="fa fa-chevron-down pull-right"></span>
+        </div>
+        <div id="collapseSectionHead" class="panel-collapse collapse in" aria-labelledby="headingSectionHead">
+            <div class="panel-body">
+                @if (Model.IdentityType == UserTypeEnum.Juristic)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong> @Resource.ApplicationStatusRequests.REQUEST_BY_JURISTIC</strong> :
+                            @Model.IdentityName (@Model.IdentityID)
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong> @Resource.ApplicationStatusRequests.REQUEST_BY_CITIZEN</strong> :
+                            @Model.IdentityName (@Model.IdentityID)
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-md-6">
+                        @{
+                            var requestor = Model.GetRequestorInfo();
+                        }
+                        <div class="row">
+                            @if (Model.IdentityType != UserTypeEnum.Citizen)
+                            {
+                                <div class="col-md-12">
+
+                                    <strong> @Resource.ApplicationStatusRequests.REQUESTOR_NAME  </strong>:
+                                    @requestor.Name
+                                </div>
+                            }
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.REQUESTOR_TEL  </strong>:
+                                @if (!String.IsNullOrEmpty(@ViewBag.RequestorPhone))
+                                {
+                                    @ViewBag.RequestorPhone
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER  </strong>:
+                                @Model.ApplicationRequestNumber
+                                @if (ViewBag.IsOCPB)
+                                {
+                                    <span> / ...................................</span>
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.SUBMIT_DATE  </strong>:
+                                @Model.CreatedDateTxt
+                            </div>
+
+                            @if (Model.Fee.HasValue && Model.Fee > 0 && !string.IsNullOrEmpty(Model.PaymentMethod))
+                            {
+                                <div class="col-md-12">
+                                    <strong> @Resource.ApplicationStatusRequests.PAY_FEE_CHANNEL  </strong>:
+                                    @Model.GetPaymentChannel()
+                                    @if (Model.PaymentMethod == "BILL_PAYMENT" && !string.IsNullOrEmpty(billId)) 
+                                    {
+                                        <a class="button" style="color:dodgerblue;" target="_blank" href="@Url.Action("GetV2", "File", new { id = billId, rid = Model.ApplicationRequestID, area = "" })">  [<span class="fa fa-download"></span> ดาวน์โหลด] </a>
+                                    }
+                                </div>
+                            }
+
+                            @if (Model.DueDateForPayFee.HasValue && Model.DueDateForPayFee > DateTime.MinValue)
+                            {
+                                <div class="col-md-12">
+                                    <strong> @Resource.ApplicationStatusRequests.DUE_DATE_PAY_FEE </strong>:
+                                    @Model.DueDateForPayFee.Value.ToString(thisPageDateFormat)
+                                </div>
+                            }
+
+
+                            @if (!string.IsNullOrEmpty(Model.PermitDeliveryType))
+                            {
+                                <div class="col-md-12">
+                                    <strong> @Resource.ApplicationStatusRequests.RECEIVE_APP_CHANNEL  </strong>:
+                                    @{
+                                        var deliveryMethod = string.IsNullOrEmpty(Model.PermitDeliveryType) ? "PDT_Null" : "PDT_" + @Model.PermitDeliveryType;
+                                        if (Model.PermitDeliveryType == "AT_OWNER_ORG")
+                                            deliveryMethod = Model.OrgNameTH.Trim();
+
+                                        if (Model.PermitDeliveryType == "E_DOCUMENT")
+                                            deliveryMethod = "E-Document";
+                                    }
+                                    @ResourceHelper.GetResourceWordWithDefault(deliveryMethod, "ApplicationStatusRequests", deliveryMethod, System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
+                                </div>
+                            }
+
+                            @{
+                                string deliveryAddress = string.IsNullOrEmpty(Model.PermitDeliveryAddress) ? "-" : Model.PermitDeliveryAddress;
+                                switch (Model.PermitDeliveryType)
+                                {
+                                    case "AT_OSS": deliveryAddress = string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["OSSAddress"]) ? "-" : System.Configuration.ConfigurationManager.AppSettings["OSSAddress"]; break;
+                                    case "AT_OWNER_ORG": deliveryAddress = string.IsNullOrEmpty(Model.OrgAddress) ? "-" : Model.OrgAddress; break;
+                                    case "BY_MAIL": deliveryAddress = string.IsNullOrEmpty(Model.PermitDeliveryAddress) ? "-" : Model.PermitDeliveryAddress; break;
+                                    default: break;
+                                }
+                            }
+
+                            @if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OWNER_ORG)
+                            {
+                                <div class="col-md-12">
+                                    <strong> @Resource.ApplicationStatusRequests.RECEIVE_APP_LOCATION</strong> :
+                                    @deliveryAddress
+                                </div>
+
+                                if (Model.UserCanGetAppDate.HasValue)
+                                {
+                                    <div class="col-md-12">
+                                        <strong>@Resource.ApplicationStatusRequests.USER_CAN_GET_APP_DATE</strong> :
+
+                                        @if (Model.UserCanGetAppDateEnd.HasValue)
+                                        {
+                                            @Html.Raw(string.Format("{0} {1} {2}", Model.UserCanGetAppDate.Value.ToString(thisPageDateFormat), Resource.Global.TO, Model.UserCanGetAppDateEnd.Value.ToString(thisPageDateFormat)));
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(Model.UserCanGetAppDate.Value.ToString(thisPageDateFormat));
+                                        }
+                                    </div>
+                                }
+                            }
+
+                            @if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.BY_MAIL && !string.IsNullOrEmpty(Model.EMSTrackingNumber))
+                            {
+                                <div class="col-md-12">
+                                    <strong> @Resource.ApplicationStatusRequests.EMS_TRACKING </strong>:
+                                    @Model.EMSTrackingNumber
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.APPLICATION_STATUS_REQUEST  </strong> :
+                                @Model.StatusName
+                            </div>
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.APPLICATION_STATUS_OTHER_REQUEST  </strong> :
+                                @Model.GetStatusOtherText()
+                            </div>
+                            <div class="col-md-12">
+                                <form id="frmAppReqNumberAgent" class="form-inline" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")">
+                                    <div class="form-group">
+                                        <strong> @Resource.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER_AGENT  </strong> :
+                                        @Html.CustomTextBoxFor(model => model.ApplicationRequestNumberAgent, new { @class = "form-control" })
+                                        <button type="submit" class="btn btn-primary mt5">@Resource.ApplicationStatusRequests.BTN_SUBMIT_APP_REQ_NUMBER_AGENT</button>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            @if (ViewBag.IsOCPB || ViewBag.ShowSignForm)
+                            {
+                                <div class="col-md-12">
+                                    <strong> รับวันที่  </strong> : ................../................../..................
+                                </div>
+                                <div class="col-md-12">
+                                    <strong> ลงชื่อผู้รับคำขอ  </strong> : ...................................... ผู้รับคำขอ
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Appliction request detail*@
+<div class="row">
+    <div class="col-md-12">
+        @if (hook != null)
+        {
+            if (singleFormRendererHook != null)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="button" data-toggle="collapse" id="headingAppHook" href="#collapseApphook" aria-expanded="true" aria-controls="collapseApphook">
+                        <a href="javascript:void(0)">ข้อมูลใบคำร้อง/คำขอ</a>
+                        <span class="fa fa-chevron-down pull-right"></span>
+                    </div>
+                    <div id="collapseApphook" class="panel-collapse collapse" aria-labelledby="headingAppHook">
+                        <div class="panel-body">
+                            <form>
+                                @{
+                                    BizPortal.ViewModels.SingleForm.SingleFormAppsViewModel[] mm = singleFormRendererHook.RenderDataSingleForm(Model, ViewBag);
+                                    isEmptyDataAppHooks = ApplicationStatusService.IsEmptyDataAppHooks(ViewBag.SectionGroups, ViewBag.Sections, ViewBag.SectionRows);
+                                    Html.RenderPartial("~/Areas/Apps/Views/Shared/_StaticFormView.cshtml", mm);
+                                }
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                AppHookRenderViewModel hookModel = new AppHookRenderViewModel(hook, RenderStage.UserTracking, new BizPortal.ViewModels.V2.ApplicationRequestViewModel());
+                Mapster.TypeAdapter.Adapt<BizPortal.DAL.MongoDB.ApplicationRequestEntity, BizPortal.ViewModels.V2.ApplicationRequestViewModel>(Model, hookModel.Data);
+                Html.RenderPartial("~/Views/Shared/AppRequest/_AppHookRenderer2.cshtml", hookModel);
+            }
+        }
+    </div>
+</div>
+
+@*Uploaded file*@
+@if (Model.UploadedFiles != null && Model.UploadedFiles.Count > 0)
+{
+    <section class="panel panel-default no-print">
+        <header class="panel-heading" role="button" data-toggle="collapse" id="headingAttatchDocument" href="#collapseAttatchDocument" aria-expanded="false" aria-controls="collapseAttatchDocument">
+            <a>@Resource.ApplicationStatusRequests.ATTACH_DOCUMENT</a>
+            <span class="fa fa-chevron-down pull-right"></span>
+        </header>
+        <div id="collapseAttatchDocument" class="panel-collapse collapse" aria-labelledby="headingAttatchDocument">
+            <section class="panel-body">
+                <a class="btn btn-primary" href="@Url.Action("DownloadAllDoc", "File", new { area = "", appReqId = Model.ApplicationRequestID })">ดาวน์โหลดเอกสารทั้งหมด</a>
+                <br />
+                <br />
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 10px;">@Resource.ApplicationStatusRequests.REQUEST_FILE</th>
+                            <th class="text-center" style="width: 40px;">#</th>
+                            <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                            <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                            <th class="text-center" style="width:250px;">@Resource.ApplicationStatusRequests.UPLOAD_FILE_DOC_EXPLANATION</th>
+                            <th class="text-center" style="width:150px;">@Resource.ApplicationStatusRequests.DOCUMENT_DATETIME</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var group in Model.UploadedFiles)
+                            {
+                                if (group.Files != null && group.Files.Count > 0)
+                                {
+                                    foreach (var file in group.Files)
+                                    {
+                                        if (Model.ApplicationRequestVersion > 0 || singleFormRendererHook == null || singleFormRendererHook.IsRelatedFile(file.FileTypeCode))
+                                        {
+                                            <tr class="attach-doc-row-@rows">
+                                                <td class="text-center">
+                                                    <input type="checkbox" document-row="@rows" document-name="attach-doc-name-@rows" class="checkbox-edit-doc cb-req-@rows" />
+                                                </td>
+                                                <td class="text-center">@rows</td>
+                                                <td class="text-left attach-doc-name-@rows">@file.GetFileDisplayName(appTranslates)</td>
+                                                <td class="text-left">
+                                                    <a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a>
+                                                </td>
+
+                                                @{
+                                                    string fileReason = "-";
+                                                    if (file.Extras != null &&
+                                                        file.Extras.ContainsKey("REQUEST_FILE_REASON"))
+                                                    {
+                                                        fileReason = (string)file.Extras["REQUEST_FILE_REASON"];
+                                                    }
+                                                }
+                                                <td class="text-left">@fileReason</td>
+                                                <td class="text-left">@group.UpdatedDate.ToLocalTime().ToString(thisPageDateTimeFormat)</td>
+                                            </tr>
+                                            rows += 1;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </section>
+}
+
+@if (Model.GovFiles != null && Model.GovFiles.Count > 0)
+{
+    <section class="panel panel-default no-print">
+        <header class="panel-heading" role="button" data-toggle="collapse" id="headingGOVFiles" href="#collapseGOVFiles" aria-expanded="false" aria-controls="collapseGOVFiles">
+            <a>@Resource.ApplicationStatusRequests.GOV_FILES</a>
+            <span class="fa fa-chevron-down pull-right"></span>
+        </header>
+        <div id="collapseGOVFiles" class="panel-collapse collapse" aria-labelledby="headingGOVFiles">
+            <section class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">#</th>
+                            <th class="text-center" style="width:200px;">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                            <th class="text-center" style="width:200px;">@Resource.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                            <th class="text-center" style="width:250px;">@Resource.ApplicationStatusRequests.UPLOAD_FILE_DOC_EXPLANATION</th>
+                            <th class="text-center" style="width:160px;">@Resource.ApplicationStatusRequests.DOCUMENT_DATETIME</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            rows = 1;
+                            foreach (var file in Model.GovFiles)
+                            {
+                                <tr>
+                                    <td class="text-center">@rows</td>
+                                    <td class="text-left">@file.GovDocumentName</td>
+                                    <td class="text-center">
+                                        <a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a>
+                                    </td>
+                                    <td class="text-center">@file.GovDocumentDescription</td>
+                                    <td class="text-center">@file.UpdatedDate.ToLocalTime().ToString(thisPageDateTimeFormat)</td>
+                                </tr>
+                                rows += 1;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </section>
+}
+
+@if ((Model.EPermitFiles != null && Model.EPermitFiles.Count > 0) && BizPortal.Service.ApplicationStatusService.IsEnableEPermitLogic() == true)
+{
+    ePermitFilesForDisplay = new FileMetadata[Model.EPermitFiles.Count];
+    <section class="panel panel-default no-print">
+        <header class="panel-heading" role="button" data-toggle="collapse" id="headingEpermitFiles" href="#collapseEpermitFiles" aria-expanded="false" aria-controls="collapseEpermitFiles">
+            <a>@Resource.ApplicationStatusRequests.SECTION_EPERMIT_HEADER</a>
+            <span class="fa fa-chevron-down pull-right"></span>
+        </header>
+        <div id="collapseEpermitFiles" class="panel-collapse collapse" aria-labelledby="headingEpermitFiles">
+            <section class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">#</th>
+                            <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.HISTORY_SECTION_HEADER_COLUMN_EPERMIT_FILENAME</th>
+                            <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                            <th class="text-center" style="width: 250px;">@Resource.ApplicationStatusRequests.HISTORY_SECTION_HEADER_COLUMN_EPERMIT_DESC</th>
+                            <th class="text-center" style="width: 160px;">@Resource.ApplicationStatusRequests.HISTORY_SECTION_HEADER_COLUMN_EPERMIT_EXPIREDATE</th>
+                            <th class="text-center" style="width: 160px;">@Resource.ApplicationStatusRequests.DOCUMENT_DATETIME</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            rows = 1;
+                            foreach (var file in Model.EPermitFiles)
+                            {
+                                int iEpermitFile = rows - 1;
+                                ePermitFilesForDisplay[iEpermitFile] = new FileMetadata();
+                                ePermitFilesForDisplay[iEpermitFile].EPermitFileName = file.EPermitFileName;
+                                ePermitFilesForDisplay[iEpermitFile].FileID = file.FileID;
+                                ePermitFilesForDisplay[iEpermitFile].FileName = file.FileName;
+                                ePermitFilesForDisplay[iEpermitFile].EPermitFileDescription = file.EPermitFileDescription;
+                                ePermitFilesForDisplay[iEpermitFile].EPermitExpireDate = file.EPermitExpireDate.ToLocalTime().ToString(thisPageDateTimeFormat);
+
+                                <tr>
+                                    <td class="text-center">@rows</td>
+                                    <td class="text-left">@file.EPermitFileName</td>
+                                    <td class="text-center"><a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a></td>
+                                    <td class="text-center">@file.EPermitFileDescription</td>
+                                    <td class="text-center">@file.EPermitExpireDate.ToLocalTime().ToString(thisPageDateTimeFormat)</td>
+                                    <td class="text-center">@file.UpdatedDate.ToLocalTime().ToString(thisPageDateTimeFormat)</td>
+                                </tr>
+                                rows += 1;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </section>
+}
+
+@*Update status*@
+@if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_ORG_AGENT_NAME))
+{
+    <div class="panel panel-default no-print">
+        <div class="panel-heading" role="button" data-toggle="collapse" id="headingUpdateStatus" href="#collapseUpdateStatus" aria-expanded="true" aria-controls="collapseUpdateStatus">
+            <a style="color: red;">@Resource.ApplicationStatusRequests.UPDATE_SATUS_SECTION_HEADER</a>
+            <span class="fa fa-chevron-down pull-right"></span>
+        </div>
+        <div id="collapseUpdateStatus" class="panel-collapse" aria-labelledby="headingUpdateStatus">
+            <div class="panel-body">
+                @{
+                    if (Model.StatusOther == ApplicationStatusOtherValueConst.WAITING_AGENT_READ_REQUEST || Model.StatusOther == ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING || Model.StatusOther == ApplicationStatusOtherValueConst.WAITING_AGENT_PROCESS || Model.StatusOther == ApplicationStatusOtherValueConst.WAITING_AGENT_APPROVE_CANCEL)
+                    {
+                        // เจ้าหน้าที่ดำเนินการ
+                        @Html.Partial("~/Areas/Manage/Views/ApplicationStatus/_RequestForm_New_Flow.cshtml"
+                        , new BizPortal.ViewModels.V2.ApplicationRequestViewModel()
+                        {
+                            ApplicationRequestID = Model.ApplicationRequestID,
+                            ApplicationID = Model.ApplicationID,
+                            ApplicationRequestNumberAgent = Model.ApplicationRequestNumberAgent,
+                            Status = Model.Status,
+                            StatusOther = Model.StatusOther,
+                            Duration = Model.Duration,
+                            IdentityID = Model.IdentityID,
+                            NoDocument = Model.NoDocument,
+                            PermitDeliveryType = Model.PermitDeliveryType,
+                            Fee = Model.Fee,
+                            EMSFee = Model.EMSFee,
+                            OrgAddress = Model.OrgAddress,
+                            OrgNameTH = Model.OrgNameTH,
+                            PermitCanBeDeliveredOnPayment = Model.PermitCanBeDeliveredOnPayment,
+                            ExpectedFinishDate = Model.ExpectedFinishDate.HasValue ? Model.ExpectedFinishDate.Value.ToString(thisPageDateFormat) : Model.ExpectSLADate.ToString(thisPageDateFormat),
+                            IsPassStepWaiting = Model.WaitingApproveDateTime.HasValue ? true : false,
+                            EPermitFilesForDisplay = ePermitFilesForDisplay,
+                            IsCheckPaymentStatus = isCheckPaymentStatus,
+                            IsEnableCGDPayment = isEnableCGDPayment,
+                            IsEnableELicense = isEnableELicense,
+                            ELicenses = eLicenses
+                        })
+                    }
+                    else if (Model.StatusOther == ApplicationStatusOtherValueConst.WAITING_USER_WORKING)
+                    {
+                        // ผู้ใช้งานดำเนินการ
+                        @Html.Partial("~/Areas/Manage/Views/ApplicationStatus/_None_RequestForm.cshtml"
+                        , new BizPortal.ViewModels.V2.ApplicationRequestViewModel()
+                        {
+                            Status = Model.Status,
+                            StatusOther = Model.StatusOther,
+                            StatusOtherText = Model.GetStatusOtherText(),
+                        })
+                    }
+                    else
+                    {
+                        // อื่นๆ
+                        @Html.Partial("~/Areas/Manage/Views/ApplicationStatus/_None_RequestForm.cshtml"
+                        , new BizPortal.ViewModels.V2.ApplicationRequestViewModel()
+                        {
+                            Status = Model.Status,
+                            StatusOther = Model.StatusOther,
+                            StatusOtherText = Model.GetStatusOtherText(),
+                            ApplicationRequestID = Model.ApplicationRequestID,
+                            IsEnableELicense = isEnableELicense,
+                            ELicenses = eLicenses
+                        })
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@*Transaction*@
+<div class="panel panel-default no-print">
+    <div class="panel-heading" role="button" data-toggle="collapse" id="headingHistories" href="#collapseHistories" aria-expanded="true" aria-controls="collapseHistories">
+        <a>@Resource.ApplicationStatusRequests.APPROVE_STAGE_HISTORY</a>
+        <span class="fa fa-chevron-down pull-right"></span>
+    </div>
+    <div id="collapseHistories" class="panel-collapse collapse" aria-labelledby="headingHistories">
+        <div class="panel-body">
+
+            @{
+                int tran_i = 0;
+            }
+            @foreach (var trans in Model.Transactions.Where(o => o.Status != ApplicationStatusV2Enum.DRAFT).OrderByDescending(o => o.CreatedDate))
+            {
+                firstRow = true;
+                tran_i++;
+
+                <section class="comment-list block">
+                    <article id="comment-id-1" class="comment-item">
+                        <section class="comment-body-new panel panel-default">
+                            <header class="panel-heading bg-white" role="button" data-toggle="collapse" id="headingHistories" href="#collapseHistories-@tran_i" aria-expanded="true" aria-controls="collapseHistories-@tran_i">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span class="text-muted m-l-sm">
+                                            <i class="fa fa-clock-o"></i>
+                                            @trans.UpdatedDate.ToLocalTime().ToString("dd MMM yyyy HH:mm")
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        @if (trans.ApplicationID == 9)
+                                        {
+                                            if (trans.Status == ApplicationStatusV2Enum.CHECK)
+                                            {
+                                                <strong>@Resource.ApplicationStatusRequests.STATUS</strong> @ResourceHelper.GetResourceWord("STATUS_PENDING_VAT", "ApplicationStatusRequests")
+                                            }
+                                            else if (trans.Status == ApplicationStatusV2Enum.COMPLETED)
+                                            {
+                                                <strong>@Resource.ApplicationStatusRequests.STATUS</strong> Html.Raw("เป็นผู้ประกอบการจดทะเบียน เว้นแต่เข้าลักษณะที่ไม่ออกใบทะเบียน");
+                                            }
+                                            else
+                                            {
+                                                <strong>@Resource.ApplicationStatusRequests.STATUS</strong> @ResourceHelper.GetResourceWord("STATUS_" + @trans.Status.ToString().ToUpper(), "ApplicationStatusRequests")
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <strong>@Resource.ApplicationStatusRequests.STATUS</strong> @ResourceHelper.GetResourceWord("STATUS_" + @trans.Status.ToString().ToUpper(), "ApplicationStatusRequests")
+                                        }
+                                    </div>
+                                    <div class="col-md-4">
+                                        <strong>@Resource.ApplicationStatusRequests.APPLICATION_ACTION_REPLY</strong> @trans.GetStatusOtherText()
+                                    </div>
+                                    <div class="col-md-3">
+                                        @if (trans.ReplyFromOrg)
+                                        {
+                                            string staffFullName = BizPortal.Service.ApplicationStatusService.GetFullNameByUserUID(trans.UpdatedByAgent);
+                                            <label class="label actor bg-info m-l-xs">@ResourceHelper.GetResourceWord(UserTypeEnum.GovernmentAgent.ToString().ToUpper() + "_new_flow", "Global")</label>
+                                            <a href="#">@staffFullName</a>
+
+                                        }
+                                        else
+                                        {
+                                            <label class="label actor bg-primary m-l-xs">@ResourceHelper.GetResourceWord(trans.IdentityType.ToString().ToUpper() + "_new_flow", "Global")</label>
+                                            <a href="#">@trans.IdentityName</a>
+                                        }
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="panel-body collapse" id="collapseHistories-@tran_i">
+                                <span class="block">
+                                    @if (trans.ApplicationID == 9)
+                                    {
+                                        if (trans.Status == ApplicationStatusV2Enum.CHECK)
+                                        {
+                                            <strong>@Resource.ApplicationStatusRequests.STATUS</strong> @ResourceHelper.GetResourceWord("STATUS_PENDING_VAT", "ApplicationStatusRequests")
+                                        }
+                                        else if (trans.Status == ApplicationStatusV2Enum.COMPLETED)
+                                        {
+                                            <strong>@Resource.ApplicationStatusRequests.STATUS</strong> Html.Raw("เป็นผู้ประกอบการจดทะเบียน เว้นแต่เข้าลักษณะที่ไม่ออกใบทะเบียน");
+                                        }
+                                        else
+                                        {
+                                            <strong>@Resource.ApplicationStatusRequests.STATUS</strong> @ResourceHelper.GetResourceWord("STATUS_" + @trans.Status.ToString().ToUpper(), "ApplicationStatusRequests")
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <strong>@Resource.ApplicationStatusRequests.STATUS</strong> @ResourceHelper.GetResourceWord("STATUS_" + @trans.Status.ToString().ToUpper(), "ApplicationStatusRequests")
+                                    }
+                                </span>
+                                <span class="block">
+                                    <strong>@Resource.ApplicationStatusRequests.APPLICATION_ACTION_REPLY</strong> @trans.GetStatusOtherText()
+                                </span>
+
+                                @{
+                                    string lastExpectedFinishDate = "";
+                                    if (trans.ExpectedFinishDate.HasValue)
+                                    {
+                                        lastExpectedFinishDate = trans.ExpectedFinishDate.Value.ToString(thisPageDateFormat);
+                                    }
+                                    else
+                                    {
+                                        lastExpectedFinishDate = @trans.ExpectSLADate.ToString(thisPageDateFormat);
+                                    }
+                                }
+
+                                @if (!string.IsNullOrEmpty(trans.Remark))
+                                {
+                                    <span class="block">
+
+                                        @if (trans.ReplyFromOrg)
+                                        {
+                                            <strong>@Resource.ApplicationStatusRequests.AGENT_COMMENT_REMARK</strong> @trans.Remark
+                                        }
+                                        else
+                                        {
+                                            <strong>@Resource.ApplicationStatusRequests.USER_COMMENT_REMARK_IN_HISTORY</strong> @trans.Remark
+                                        }
+                                    </span>
+                                }
+
+                                @if (trans.Status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE || trans.PendingApproveDateTime.HasValue) //fix issue BIZ-168 slide 12 (Cosmetic)
+                                {
+                                    if (!string.IsNullOrEmpty(trans.PaymentMethod) &&
+                                       !string.IsNullOrEmpty(trans.PermitDeliveryType))
+                                    {
+
+                                        string paymentMethodTrans = "PAYMENT_" + trans.PaymentMethod;
+                                        if (trans.PaymentMethod == "AT_OWNER_ORG")
+                                        {
+                                            paymentMethodTrans = Model.OrgNameTH.Trim();
+                                        }
+
+
+                                        <span class="block">
+                                            <strong> @Resource.ApplicationStatusRequests.PAY_FEE_CHANNEL</strong> @ResourceHelper.GetResourceWordWithDefault(paymentMethodTrans, "ApplicationStatusRequests", paymentMethodTrans, System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
+                                        </span>
+
+                                        string deliveryMethodTrans = "PDT_" + trans.PermitDeliveryType;
+
+                                        if (trans.PermitDeliveryType == "AT_OWNER_ORG")
+                                        {
+                                            deliveryMethodTrans = Model.OrgNameTH.Trim();
+                                        }
+
+                                        if (trans.PermitDeliveryType == "E_DOCUMENT")
+                                        {
+                                            deliveryMethodTrans = "E-Document";
+                                        }
+
+                                        <span class="block">
+                                            <strong> @Resource.ApplicationStatusRequests.RECEIVE_APP_CHANNEL</strong> @ResourceHelper.GetResourceWordWithDefault(deliveryMethodTrans, "ApplicationStatusRequests", deliveryMethodTrans, System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
+                                        </span>
+                                    }
+
+                                    if (trans.DueDateForPayFee != null)
+                                    {
+                                        <span class="block">
+                                            <strong>@Resource.ApplicationStatusRequests.DUE_DATE_PAY_FEE</strong> @trans.DueDateForPayFee.Value.ToString(thisPageDateFormat)
+                                        </span>
+                                    }
+
+                                    if (trans.Fee.HasValue)
+                                    {
+                                        <span class="block">
+                                            <strong>@Resource.ApplicationStatusRequests.FEE_OF_APPLICATION</strong> @trans.Fee.Value.ToString("#,##0.00") @Resource.ApplicationStatusRequests.BATH
+                                        </span>
+                                    }
+                                    if (trans.PermitDeliveryType == PermitDeliveryTypeValueConst.BY_MAIL)
+                                    {
+                                        var EMSFeeText = trans.EMSFee != null ? trans.EMSFee.Value.ToString("#,##0.00") : "0.00";
+                                        var EMSFeePaymentBy = (trans.EMSFeePaymentType == null || trans.EMSFeePaymentType == "") ? "" : "( " + @ResourceHelper.GetResourceWord("EMS_FEE_PAYMENT_BY_" + trans.EMSFeePaymentType + "_TEXT", "ApplicationStatusRequests") + " )";
+                                        <span class="block">
+                                            <strong>@Resource.ApplicationStatusRequests.EMS_FEE_OF_APPLICATION</strong> @EMSFeeText @Resource.ApplicationStatusRequests.BATH @EMSFeePaymentBy
+                                        </span>
+                                    }
+                                    if (trans.PermitDeliveryType != PermitDeliveryTypeValueConst.BY_MAIL)
+                                    {
+                                        if (trans.UserCanGetAppDate.HasValue)
+                                        {
+                                            <span class="block">
+                                                <strong>@Resource.ApplicationStatusRequests.GOT_APP_DATE</strong> @trans.UserCanGetAppDate.Value.ToString(thisPageDateFormat)
+                                            </span>
+                                        }
+                                    }
+                                }
+
+                                @if (trans.RequestedFiles != null && trans.RequestedFiles.Count > 0)
+                                {
+                                    rows = 1;
+                                    <span class="block">
+                                        <strong>@Resource.ApplicationStatusRequests.REQUEST_FILE</strong>
+                                    </span>
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" style="width: 40px;">#</th>
+                                                <th class="text-center" style="width: 250px;">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                <th class="text-center" style="width: 250px;">@Resource.ApplicationStatusRequests.DOCUMENT_REASON</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var file in trans.RequestedFiles)
+                                            {
+                                                <tr>
+                                                    <td class="text-center">@rows</td>
+                                                    <td class="text-left">@Html.Raw(file.GetFileDisplayName(appTranslates))</td>
+                                                    <td class="text-left">@file.FileReason</td>
+                                                </tr>
+                                                rows += 1;
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+
+                                @if ((trans.UploadedFiles != null && trans.UploadedFiles.Count > 0 && trans.UploadedFiles.SelectMany(o => o.Files).Any()) || (trans.IdentityType == UserTypeEnum.GovernmentAgent && trans.GovFiles != null && trans.GovFiles.Count > 0))
+                                {
+                                    if (trans.IdentityType == UserTypeEnum.GovernmentAgent && trans.GovFiles != null && trans.GovFiles.Count > 0)
+                                    {
+                                        rows = 1;
+                                        <span class="block">
+                                            <br />
+                                            <strong>@Resource.ApplicationStatusRequests.ATTACH_DOCUMENT_OF_STAFF</strong>
+                                        </span>
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="width: 40px;">#</th>
+                                                    <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                    <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                                                    <th class="text-center" style="width: 250px;">@Resource.ApplicationStatusRequests.UPLOAD_FILE_DOC_DESC</th>
+                                                    <th class="text-center" style="width: 160px;">@Resource.ApplicationStatusRequests.DOCUMENT_DATETIME</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var file in trans.GovFiles)
+                                                {
+                                                    <tr>
+                                                        <td class="text-center">@rows</td>
+                                                        <td class="text-left">@file.GovDocumentName</td>
+                                                        <td class="text-left"><a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a></td>
+                                                        <td class="text-left">@file.GovDocumentDescription</td>
+                                                        <td class="text-left">@file.UpdatedDate.ToLocalTime().ToString(thisPageDateTimeFormat)</td>
+                                                    </tr>
+                                                    rows += 1;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+
+                                    if (trans.UploadedFiles != null && trans.UploadedFiles.Count > 0)
+                                    {
+                                        var fileCnt = 0;
+                                        foreach (var group in trans.UploadedFiles)
+                                        {
+                                            if (group.Files != null && group.Files.Count > 0)
+                                            {
+                                                foreach (var file in group.Files)
+                                                {
+                                                    if (Model.ApplicationRequestVersion > 0 || singleFormRendererHook == null || singleFormRendererHook.IsRelatedFile(file.FileTypeCode))
+                                                    {
+                                                        fileCnt++;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (fileCnt > 0)
+                                        {
+                                            <span class="block">
+                                                <br /><strong>@Resource.ApplicationStatusRequests.ATTACH_DOCUMENT</strong>
+                                            </span>
+                                        }
+                                        firstRow = true;
+                                        foreach (var group in trans.UploadedFiles)
+                                        {
+                                            if (group.Files != null && group.Files.Count > 0)
+                                            {
+                                                var relatedFiles = group.Files;
+                                                if (singleFormRendererHook != null)
+                                                {
+                                                    relatedFiles = singleFormRendererHook.GetRelatedFiles(relatedFiles);
+                                                }
+                                                if (relatedFiles.Count > 0)
+                                                {
+                                                    if (!firstRow)
+                                                    {
+                                                        <div class="line pull-in"></div>
+                                                    }
+                                                    firstRow = false;
+
+                                                    <article class="media">
+                                                        <div class="media-body">
+                                                            @if (group.Extras != null && group.Extras.Count > 0)
+                                                            {
+                                                                <blockquote class="fs12 row">
+                                                                    @foreach (var extra in group.Extras.Where(o => o.Key != "UPLOADERID"))
+                                                                    {
+                                                                        <div class="col-md-4">
+                                                                            <strong>@ResourceHelper.GetResourceWordWithDefault(extra.Key, "ExtraKey", extra.Key)</strong> @fileNameByCodeFunc(extra.Value.ToString())
+                                                                        </div>
+                                                                    }
+                                                                </blockquote>
+                                                            }
+                                                            @{
+                                                                rows = 1;
+                                                            }
+                                                            <label>@ResourceHelper.GetResourceWordWithDefault(group.Description, "Apps_SingleForm_Filegroup", group.Description)</label>
+                                                            <table class="table table-bordered table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center" style="width: 40px;">#</th>
+                                                                        <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                                        <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                                                                        <th class="text-center" style="width: 250px;">@Resource.ApplicationStatusRequests.UPLOAD_FILE_DOC_DESC</th>
+                                                                        <th class="text-center" style="width: 160px;">@Resource.ApplicationStatusRequests.DOCUMENT_DATETIME</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var file in group.Files)
+                                                                    {
+                                                                        if (Model.ApplicationRequestVersion > 0 || singleFormRendererHook == null || singleFormRendererHook.IsRelatedFile(file.FileTypeCode))
+                                                                        {
+                                                                            <tr>
+
+                                                                                <td class="text-center">@rows</td>
+                                                                                <td class="text-left">@Html.Raw(file.GetFileDisplayName(appTranslates))</td>
+                                                                                <td class="text-left">
+                                                                                    <a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a>
+                                                                                </td>
+                                                                                @{
+                                                                                    string fileReason = "-";
+                                                                                    if (file.Extras != null &&
+                                                                                        file.Extras.ContainsKey("REQUEST_FILE_REASON"))
+                                                                                    {
+                                                                                        fileReason = (string)file.Extras["REQUEST_FILE_REASON"];
+                                                                                    }
+                                                                                }
+                                                                                <td class="text-left">@fileReason</td>
+                                                                                <td class="text-left">@group.UpdatedDate.ToLocalTime().ToString(thisPageDateTimeFormat)</td>
+                                                                            </tr>
+                                                                            rows += 1;
+                                                                        }
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </article>
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                @if (trans.IdentityType == UserTypeEnum.GovernmentAgent && trans.EPermitFiles != null && trans.EPermitFiles.Count > 0)
+                                {
+                                    rows = 1;
+                                    <span class="block">
+                                        <br />
+                                        <strong>@Resource.ApplicationStatusRequests.HISTORY_SECTION_EPERMIT_HEADER</strong>
+                                    </span>
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" style="width: 40px;">#</th>
+                                                <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.HISTORY_SECTION_HEADER_COLUMN_EPERMIT_FILENAME</th>
+                                                <th class="text-center" style="width: 200px;">@Resource.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                                                <th class="text-center" style="width: 250px;">@Resource.ApplicationStatusRequests.HISTORY_SECTION_HEADER_COLUMN_EPERMIT_DESC</th>
+                                                <th class="text-center" style="width: 160px;">@Resource.ApplicationStatusRequests.HISTORY_SECTION_HEADER_COLUMN_EPERMIT_EXPIREDATE</th>
+                                                <th class="text-center" style="width: 160px;">@Resource.ApplicationStatusRequests.DOCUMENT_DATETIME</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var file in trans.EPermitFiles)
+                                            {
+                                                <tr>
+                                                    <td class="text-center">@rows</td>
+                                                    <td class="text-left">@file.EPermitFileName</td>
+                                                    <td class="text-left"><a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a></td>
+                                                    <td class="text-left">@file.EPermitFileDescription</td>
+                                                    <td class="text-left">@file.EPermitExpireDate.ToLocalTime().ToString(thisPageDateTimeFormat)</td>
+                                                    <td class="text-left">@file.UpdatedDate.ToLocalTime().ToString(thisPageDateTimeFormat)</td>
+                                                </tr>
+                                                rows += 1;
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        </section>
+                    </article>
+                </section>
+            }
+        </div>
+    </div>
+</div>
+<div class="bg-white clearfix">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="button" data-toggle="collapse" id="headingSectionHeadmail" href="#collapseSectionHeadmail" aria-expanded="true" aria-controls="collapseSectionHeadmail">
+            <a style="color:#0088cc;" href="javascript:void(0)">แจ้งผู้ประกอบการ ทาง E-mail</a>
+            <span class="fa fa-chevron-down pull-right"></span>
+        </div>
+        <div id="collapseSectionHeadmail" class="panel-collapse collapse" aria-labelledby="headingSectionHeadmail">
+            <div class="panel-body">
+                <form id="contact-form" method="post" role="form">
+
+                    <div class="messages"></div>
+
+                    <div class="controls">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_email">Email ที่ใช้ในการติตต่อ</label>
+
+                                    <input id="form_email" type="email" name="email" value="@ViewBag.GeneralEmail" readonly class="form-control">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="form_need">กรอกข้อความ</label>
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <textarea id="form_message" name="message" class="form-control" placeholder="" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            @if (string.IsNullOrEmpty(ViewBag.GeneralEmail))
+                                            {
+                                                <input type="button" class="btn btn-warning btn-send" value="ท่านยังไม่ได้ระบุ Email" disabled>
+                                            }
+                                            else
+                                            {
+                                                <input type="button" id="btn_sendmail" class="btn btn-primary mt5" value="ส่งข้อความ">
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+@*Chat*@
+@if (isEnabledChat)
+{
+    <div class="panel panel-default no-print">
+        <div class="panel-heading" role="button" data-toggle="collapse" id="headingChat" href="#collapseChat" aria-expanded="true" aria-controls="collapseChat">
+            <a>@Resource.ApplicationStatusRequests.CHAT_SECTION_HEADER_STAFF</a>
+            <span class="fa fa-chevron-down pull-right"></span>
+        </div>
+        <div id="collapseChat" class="panel-collapse collapse" aria-labelledby="headingChat">
+            <div class="panel-body">
+                @Html.Partial("~/Areas/Manage/Views/ApplicationStatus/ChatForm/StaffChatForm.cshtml", viewModel)
+            </div>
+        </div>
+    </div>
+}
+
+@*Script*@
+@section PageScripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/main.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/form-helper.js")"></script>
+    <script type="text/javascript">
+        window.singleForm = {
+            allApps: ['@viewModel.AppSysName']
+        }
+
+        $(document).ready(function () {
+            $('.file-size').each(function () {
+                var size = parseFloat($(this).text());
+                $(this).text(plupload.formatSize(size));
+            });
+
+            if ('@isCheckPaymentStatus' == 'True') {
+                $.ajax({
+                  method: 'POST',
+                  contentType : 'application/json',
+                    url: '@Url.Content("~/Api/v2/Payment/UpdateStatus")',
+                    data: JSON.stringify({
+                        IdentityID: '@Model.IdentityID',
+                        ApplicationRequestID: '@Model.ApplicationRequestID'
+                    })
+                })
+                .done(function (res) {
+                    if (res != null && res.length > 0) {
+                        var trans = $.grep(res, function (e) {
+                            return (e.ApplicationRequestId == '@Model.ApplicationRequestID' && e.Status == @((int)CGDPaymentStatus.Success));
+                        });
+
+                        if (trans.length > 0) {
+                            $.sweetModal({
+                                content: '@Html.Raw(Resource.ApplicationStatusRequests.CGD_COMFIRM_PAYMENT)'.replace('{0}', number_format(trans[0].Amount,2)) + new Date(trans[0].ConfirmPaidDate).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' }),
+	                            icon: $.sweetModal.ICON_SUCCESS
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+    @if (hook is SingleFormRendererAppHook)
+    {
+        Dictionary<string, object> defaults = ViewBag.Defaults;
+        FormSectionGroup[] sectionGroups = ViewBag.SectionGroups;
+        FormSection[] sections = ViewBag.Sections;
+        FormSectionRow[] sectionRows = ViewBag.SectionRows;
+        <script type="text/javascript">
+            var batchID = null;
+            var confirmation = {
+                variables: {
+                    @foreach (var sec in sections.Where(o => o.Type == SectionType.ArrayOfForms))
+                    {
+                        <text>
+                        @string.Format("arrObj{0}", sec.Section): { data: [], section: "@sec.Section" },
+                        </text>
+                    }
+                },
+                controls: {
+                    form: '#frmConfirmation',
+                    formApplicationRequestNumberAgent: '#frmAppReqNumberAgent',
+                    txtAppReqNumberAgent: '#frmAppReqNumberAgent #ApplicationRequestNumberAgent'
+                },
+                functions: {
+                    init: function () {
+                        confirmation.functions.getData();
+                        confirmation.functions.onSubmitAppReqNumberAgent();
+                        confirmation.functions.onClickPrintMap();
+                        confirmation.functions.isSetDisabledButtonPrint();
+                    },
+                    renderHandlebars: function (obj) {
+                        var source = $("#" + obj.section + "Template").html();
+                        var template = Handlebars.compile(source);
+                        $("#insert_" + obj.section).html(template(obj));
+                    },
+                    getData: function () {
+                        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.SingleFormData));
+
+                        if (data) {
+                            for (var i = 0; i < data.SectionData.length; i++) {
+                                var sec = data.SectionData[i];
+                                if (sec.Type == "Form") {
+                                    for (var key in sec.FormData) {
+                                        if (key.includes("ADDRESS_PROVINCE") || key.includes("ADDRESS_AMPHUR") || key.includes("ADDRESS_TUMBOL") || key.includes("AJAX_DROPDOWN")
+                                            || key.includes("ADDRESS_EN_PROVINCE") || key.includes("ADDRESS_EN_AMPHUR") || key.includes("ADDRESS_EN_TUMBOL")) {
+                                            if (key.includes("_TEXT")) {
+                                                $("input[name=" + key + "]").val(sec.FormData[key]);
+                                            } else {
+                                                $("select[name=" + key + "]").prepend("<option value='" + sec.FormData[key] + "'>" + sec.FormData[key + "_TEXT"] + "</option>").val(sec.FormData[key]);
+                                            }
+                                        } else {
+                                            if ($("input[type=text][name=" + key + "]").length == 1) { // Text Box
+                                                $("input[name=" + key + "]").val(sec.FormData[key]);
+                                            } else if ($("input[type=hidden][name=" + key + "]").length == 1) { // Hidden
+                                                $("input[name=" + key + "]").val(sec.FormData[key]).trigger('change');
+                                            } else if ($("input[type=radio][name=" + key + "]").length > 0) { // Radio Button
+                                                $("input[name=" + key + "][value=" + sec.FormData[key] + "]").prop('checked', true).trigger('change');
+                                            } else if ($("input[type=checkbox][name=" + key + "]").length == 1 && sec.FormData[key] == "true") { // Check Box
+                                                $("input[name=" + key + "]").prop('checked', true).trigger('change');
+                                            } else if ($("select[name=" + key + "]").length == 1) { // Select2
+                                                $("select[name=" + key + "]").val(sec.FormData[key]).trigger('change');
+                                            } else if ($("textarea[name=" + key + "]").length == 1) { // textarea
+                                                $("textarea[name=" + key + "]").val(sec.FormData[key]).trigger('change');
+                                            } else if ($("input[type=text]#" + key).length == 1) { // Dropdown
+                                                $("input[type=text]#" + key).val(sec.FormData[key]).trigger('change');
+                                            } else if ($("input[role=DATATABLE_VALUE]#" + key).length == 1) { // DataTable
+                                                $("input[role=DATATABLE_VALUE]#" + key).val(sec.FormData[key]).trigger('change');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (sec.Type == "ArrayOfForms" && sec.ArrayData != null) {
+                                    if (confirmation.variables["arrObj" + sec.SectionName] != null || confirmation.variables["arrObj" + sec.SectionName] != undefined) {
+                                        confirmation.variables["arrObj" + sec.SectionName].data = sec.ArrayData;
+                                        confirmation.functions.renderHandlebars(confirmation.variables["arrObj" + sec.SectionName]);
+
+                                        // Frontis: Trigger databound event on this arrayOfForm
+                                        $(document).trigger(sec.SectionName + '-databound', [sec.SectionName, confirmation.variables["arrObj" + sec.SectionName].data]);
+                                    }
+                                }
+                            }
+
+                            setTimeout(function () {
+                                // Frontis: Propagate application-databound event to let listeners perform their actions once data is loaded.
+                                $(document).trigger('application-request-databound', [data]);
+                            }, 500);
+                        }
+                    },
+                    onSubmitAppReqNumberAgent: function () {
+                        $(confirmation.controls.formApplicationRequestNumberAgent + ' button[type=submit]').ladda('bind');
+                        $(confirmation.controls.formApplicationRequestNumberAgent).ajaxForm({
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            clearForm: false,
+                            customData: function (data, jqForm, options) {
+                                var l = $(confirmation.controls.formApplicationRequestNumberAgent + ' button[type=submit]').ladda();
+                                l.ladda('start');
+
+                                options.data = JSON.stringify({
+                                    ApplicationID: "@Model.ApplicationID",
+                                    ApplicationRequestID: "@Model.ApplicationRequestID",
+                                    IsRequestNumberAgent: true,
+                                    ReplyFromOrg: true,
+                                    ApplicationRequestNumberAgent: $(confirmation.controls.txtAppReqNumberAgent).val(),
+                                    Status: "@Model.Status",
+                                    StatusOther: "@Model.StatusOther"
+                                });
+                            },
+                            error: function (xhr, status, error, $form) {
+                                var data = xhr.responseJSON;
+                                $.ladda('stopAll');
+                                notify('error', data.Message);
+                            },
+                            success: function (responseText, statusText, xhr, $form) {
+                                var data = xhr.responseJSON;
+                                $.ladda('stopAll');
+                                swal({
+                                    title: '',
+                                    text: decodeURIComponent(data.Message),
+                                    type: 'success',
+                                });
+                            }
+                        });
+                    },
+                    onClickPrintMap: function () {
+                        $('#btnPrintMap').on('click', function (e) {
+                            document.write(contents.innerHTML);
+                            window.print();
+
+                            var printContents = $('.google-map-box').innerHTML;
+                            var originalContents = document.body.innerHTML;
+
+                            document.body.innerHTML = printContents;
+
+                            window.print();
+
+                            document.body.innerHTML = originalContents;
+                        });
+                    },
+                    isSetDisabledButtonPrint: function () {
+                        if (@Convert.ToInt16(isEmptyDataAppHooks) == 1) {
+                            $('.btn-print').attr('disabled', 'disabled');
+                            $('.btn-print').attr('href', 'javascript:void(0);');
+                        } else {
+                            $('.btn-print').removeAttr('disabled');
+                        }
+                    }
+                }
+            };
+
+            $(document).ready(function () {
+                showLoader(true);
+
+                // Register handlebars functions *** IMPORTANT !!! Always call it first ***
+                Handlebars.registerHelper("x", function(expression, options) {
+                    var result;
+
+                    // you can change the context, or merge it with options.data, options.hash
+                    var context = this;
+
+                    // yup, i use 'with' here to expose the context's properties as block variables
+                    // you don't need to do {{x 'this.age + 2'}}
+                    // but you can also do {{x 'age + 2'}}
+                    // HOWEVER including an UNINITIALIZED var in a expression will return undefined as the result.
+                    with(context) {
+                        result = (function() {
+                            try {
+                                return eval(expression);
+                            } catch (e) {
+                                console.warn('•Expression: {{x \'' + expression + '\'}}\n•JS-Error: ', e, '\n•Context: ', context);
+                            }
+                        }).call(context); // to make eval's lexical this=context
+                    }
+                    return result;
+                });
+
+                Handlebars.registerHelper("xif", function(expression, options) {
+                    return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+                });
+                // End Registering Handlebars functions
+
+                // Normal Javascripts Begin
+                confirmation.functions.init();
+
+                $(window).load(function(){
+                    showLoader(false);
+                });
+
+                $("#btn_sendmail").click(function () {
+                    var comment = $.trim($("#form_message").val());
+                    if (comment != "") {
+                        var icon = "success";
+                        $.ajax({
+                            method: 'POST',
+                            contentType: 'application/json',
+                            url: '@Url.Content("~/Api/V2/Applications/Sendmailalert")',
+                            data: JSON.stringify({
+                                fullname: ' @Model.IdentityName',
+                                email: '@ViewBag.GeneralEmail',
+                                msgbody: comment
+                            })
+                        }).done(function (res) {
+                            if (res != null) {
+                                //alert(res.Type);
+                                console.log(res);
+                                if (res.Type == "1") {
+                                    icon = 'success';
+                                    $("#form_message").val("");
+                                } else {
+                                    icon = 'warning';
+                                }
+                                swal(res.Message, "", icon);
+
+                            }
+                        });
+
+                    }
+                    else
+                    {
+                        swal("กรุณากรอกข้อความ", "", "warning");
+                    }
+
+
+                });
+
+            });
+
+        </script>
+    }
+
+}

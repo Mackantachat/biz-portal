@@ -1,0 +1,254 @@
+﻿@using Resource = BizPortal.Resources;
+
+@{
+    ViewBag.Title = Resource.Global.PAGE_TITLE_CATEGORY;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@section breadcrumb{
+    <section class="breadcrumb" style="margin-bottom: 15px;">
+        <div class="container">
+            <h2></h2>
+            <ul>
+                <li class="">
+                    <a href="@Url.Action("Index","Home", new { language = ViewBag.CurrentLang })">@Resource.Breadcrumb.HOME</a>
+                </li>
+                <li class="active">@Resource.Breadcrumb.CATEGORY <span id="categoryName"></span></li>
+            </ul>
+        </div>
+    </section>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="D-3">
+            <div class="group-container biz bordered mb15">
+                <form>
+                    <div class="body">
+                        <div class="form-group">
+                            <label class="control-label">@Resource.Global.SEARCH_KEYWORD</label>
+                            @Html.TextBox("SearchKeyword", (string)ViewBag.SearchKeyword, new { @class = "form-control", @placeholder = Resource.Global.PLACE_SEARCH })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">@Resource.Global.SEARCH_TAG</label>
+                            @Html.TextBox("SearchTag", (string)ViewBag.SearchTag, new { @class = "form-control", @placeholder = Resource.Global.PLACE_TAG })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">@Resource.Global.CATEGORY</label>
+                            @Html.DropDownList("Category", (SelectList)ViewBag.CategorySelectList, Resource.Global.SELECT_ALL, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <button type="button" class="btn btn-biz" onclick="pageList.reload();" style="background-color: #ddd !important;"><i class="fa fa-search"></i> @Resource.Global.SEARCH</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="D-9">
+            <div class="group-container biz mt15">
+                <div id="pagelist-body" class="body">
+
+                </div>
+                <div class="footer">
+                    <div id="pagelist-selection" class="hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section PageScripts{
+    <script type="text/javascript">
+        var bootPage;
+        /*var itemTemplate = '<div class="row appear-animation-visible appear-animation fadeInLeft">' +
+                           '    <a href="<<<link>>>">' +
+                           '        <div class="D-2 M-3 SM-4 p-sm hidden-SM">' +
+                           '            <img class="img-responsive img-thumbnail img-category-thumbnail" src="<<<thumbnail>>>" />' +
+                           '        </div>' +
+                           '        <div class="D-10 M-9 SM-12 p-sm">' +
+                           '            <h3 style="margin-bottom: 10px;"> <<<service>>></h3>' +
+                           '            <<<description>>>' +
+                           '        </div>' +
+                           '    </a>' +
+                           '    <div class="D-12 p-sm">' +
+                           '        <ul class="tag-labels"><<<tag>>></ul>' +
+                           '    </div>' +
+                           '</div>' +
+                           '<hr class="dashed" />';*/
+        var itemTemplate = '<div class="row appear-animation-visible appear-animation fadeInLeft">' +
+                           '    <div>' +
+                           '        <div class="D-2 M-3 SM-4 p-sm hidden-SM">' +
+                           '            <a href="<<<link>>>">' +
+                           '                <img class="img-responsive img-thumbnail img-category-thumbnail" src="<<<thumbnail>>>" />' +
+                           '            </a>' +
+                           '        </div>' +
+                           '        <div class="D-10 M-9 SM-12 p-sm">' +
+                           '            <a href="<<<link>>>">' +
+                           '                <h3 style="margin-bottom: 10px; color: #333;"> <<<service>>></h3>' +
+                           '            </a>' +
+                           '            <<<description>>>' +
+                           '        </div>' +
+                           '    </div>' +
+                           '</div>' +
+                           '<hr class="dashed" style="margin-left: 17%; border: 0.7px solid #dddddd;" />';
+        var tagTemplate = '<li><span onclick="pageList.tag(\'<<<tagname>>>\')" class="tag-label"><<<tagname>>></spam></li>';
+
+        var pageList = {
+            url: '@Url.Content("~/api/Article/Published")',
+            pageLenght: 5,
+            pageNavigation: null,
+            scrollToTopDelayTime: 300,
+            init: function () {
+                pageList.reload();
+            },
+            tag: function (tagname) {
+                $('#SearchTag').val(tagname);
+                pageList.reload();
+            },
+            reload: function () {
+                var categoryId = $("#Category").val();
+                var searchKeyword = $("#SearchKeyword").val();
+                var searchTag = $("#SearchTag").val();
+                var ordering = "Ordering";
+                var isAsc = true;
+                var pageNo = 1;
+
+                pageList.getData(categoryId, searchKeyword, searchTag, ordering, isAsc, pageNo, pageList.pageLenght, function (res) {
+                    if (res.TotalDisplayData > 0) {
+                        pageList.updateData(res.Data);
+                        if (pageList.pageNavigation == null) {
+                            pageList.pageNavigation = $('#pagelist-selection').bootpag({
+                                total: Math.ceil(res.TotalDisplayData / pageList.pageLenght) || 1,
+                                maxVisible: 10,
+                                page: pageNo,
+                            }).on("page", function (event, pageNo) {
+                                var categoryId = $("#Category").val();
+                                var searchKeyword = $("#SearchKeyword").val();
+                                var searchTag = $("#SearchTag").val();
+                                var ordering = "Ordering";
+                                var isAsc = true;
+
+                                pageList.getData(categoryId, searchKeyword, searchTag, ordering, isAsc, pageNo, pageList.pageLenght, function (res) {
+                                    if (res.TotalDisplayData > 0) {
+                                        pageList.updateData(res.Data);
+                                    }
+                                    else {
+                                        $('#pagelist-selection').addClass('hidden');
+                                        $('#pagelist-body').empty().append('<div class="well appear-animation-visible appear-animation fadeInLeft">' + "@Resource.Global.SEARCH_NOTFOUND" + '</div>');
+                                    }
+
+                                    pageList.pageNavigation.bootpag({ total: Math.ceil(res.TotalDisplayData / pageList.pageLenght) || 1 });
+                                });
+                            });
+                        }
+                        else {
+                            pageList.pageNavigation.bootpag({ total: Math.ceil(res.TotalDisplayData / pageList.pageLenght) || 1 });
+                        }
+                    }
+                    else {
+                        $('#pagelist-selection').addClass('hidden');
+                        $('#pagelist-body').empty().append('<div class="well appear-animation-visible appear-animation fadeInLeft">' + "@Resource.Global.SEARCH_NOTFOUND" + '</div>');
+                    }
+                });
+            },
+            getData: function (categoryId, searchKeyword, searchTag, ordering, isAsc, pageNo, pageLenght, callback) {
+                $.post(this.url,
+                    {
+                        CategoryId: categoryId,
+                        SearchKeyword: searchKeyword,
+                        SearchTag: searchTag,
+                        PageNo: pageNo,
+                        PageLength: pageLenght
+                    }).done(function (res) {
+                        callback(res)
+                    }).error(function (res) {
+                        callback(res);
+                    });
+            },
+            updateData: function (data) {
+                scrollToTop(pageList.scrollToTopDelayTime, function () {
+                    var items = "";
+                    var tags = "";
+
+                    for (var key in data) {
+                        tags = "";
+
+                        if (data[key].TagName) {
+
+                            var tagNames = data[key].TagName.split(',');
+
+                            for (tagName in tagNames) {
+                                tags = tags + tagTemplate.replace(/<<<tagname>>>/g, tagNames[tagName]);
+                            }
+                        }
+
+                        items = items + itemTemplate.replace(/<<<link>>>/g, '@Url.Action("Article","Home", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })/' + data[key].ArticleID)
+                                                    .replace(/<<<thumbnail>>>/g, '@Url.Content("~/th/File/GetThumbnail")/' + data[key].ThumbnailID + '?cid=' + data[key].CategoryID)
+                                                    .replace(/<<<service>>>/g, data[key].ArticleName || '')
+                                                    .replace(/<<<description>>>/g, data[key].ArticleIntroText || '')
+                                                    .replace(/<<<tag>>>/g, tags || '');
+                    }
+
+
+                    $('#pagelist-body').empty();
+                    $('#pagelist-body').append(items);
+                    $('#pagelist-selection').removeClass('hidden');
+                    fixCategoryImgNotfound();
+                });
+            }
+        };
+
+        function initComponent() {
+            $("#Category").on('change', function (e) {
+                var text = $(this).val() ? $(this).find("option:selected").text() : '';
+                updateCategoryname(text);
+            });
+        }
+
+        function updateCategoryname(name) {
+            if (name) {
+                $('#categoryName').text('(' + name + ')');
+            }
+            else {
+                $('#categoryName').text('');
+            }
+        }
+
+        function fixCategoryImgNotfound() {
+            $(".img-category-thumbnail").error(function () {
+                var categoryId = $(this).attr('data-categoryId');
+                var imgUrl = '/Bizportal/Content/Images/businessLogo';
+                switch (categoryId) {
+                    case '1':
+                        imgUrl = imgUrl + '/menu_02.jpg';
+                        break;
+                    case '2':
+                        imgUrl = imgUrl + '/menu_03.jpg';
+                        break;
+                    case '3':
+                        imgUrl = imgUrl + '/menu_04.jpg';
+                        break;
+                    case '4':
+                        imgUrl = imgUrl + '/menu_01.jpg';
+                        break;
+                    case '5':
+                        imgUrl = imgUrl + '/menu_05.jpg';
+                        break;
+                    default:
+                        imgUrl = imgUrl + '/menu_03.jpg';
+                        break;
+                }
+
+                $(this).attr('src', imgUrl);
+            });
+        }
+
+        $(function () {
+            updateCategoryname('@ViewBag.CategoryName');
+            initComponent();
+            pageList.init();
+        });
+
+    </script>
+}

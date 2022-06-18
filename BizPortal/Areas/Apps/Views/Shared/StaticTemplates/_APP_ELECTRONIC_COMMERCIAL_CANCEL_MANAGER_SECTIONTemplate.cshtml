@@ -1,0 +1,88 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ELECTRONIC_COMMERCIAL.APP_ELECTRONIC_COMMERCIAL_MANAGER_SECTION_FIRSTNAME :</label>
+            {{ this.DROPDOWN_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_TITLE_TEXT }} {{ this.APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_FIRSTNAME }} {{ this.APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_LASTNAME }}
+        </div>
+
+        {{#xif " this.DROPDOWN_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_NATIONALITY == 'TH' " }}
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ELECTRONIC_COMMERCIAL.APP_ELECTRONIC_COMMERCIAL_MANAGER_SECTION_ID_CARD :</label>
+            {{this.APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ID_CARD}}
+        </div>
+        {{else}}
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ELECTRONIC_COMMERCIAL.APP_ELECTRONIC_COMMERCIAL_MANAGER_SECTION_PASSPORT_NUMBER :</label>
+            {{this.APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_PASSPORT_NUMBER}}
+        </div>
+        {{/xif}}
+
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ELECTRONIC_COMMERCIAL.APP_ELECTRONIC_COMMERCIAL_MANAGER_SECTION_BIRTH_DATE :</label>
+            {{this.APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_BIRTH_DATE}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.Apps_SingleForm.REQUESTOR_INFORMATION_AGE :</label>
+            {{this.APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_BIRTH_DATE_AGE}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ELECTRONIC_COMMERCIAL.APP_ELECTRONIC_COMMERCIAL_MANAGER_SECTION_NATIONALITY :</label>
+            {{this.DROPDOWN_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_NATIONALITY_TEXT}}
+        </div>
+        <div class="col-md-12">
+            {{#xif " fieldExist(this.ADDRESS_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>เลขที่: </label> {{this.ADDRESS_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_MOO_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>หมู่ที่: </label> {{this.ADDRESS_MOO_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_VILLAGE_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>หมู่บ้าน: </label> {{this.ADDRESS_VILLAGE_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_SOI_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>ซอย: </label> {{this.ADDRESS_SOI_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_BUILDING_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>อาคาร: </label> {{this.ADDRESS_BUILDING_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROOMNO_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>ห้องเลขที่: </label> {{this.ADDRESS_ROOMNO_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_FLOOR_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>ชั้น: </label> {{this.ADDRESS_FLOOR_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROAD_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>ถนน: </label> {{this.ADDRESS_ROAD_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}</>
+            {{/xif}}
+            <label>ตำบล/แขวง: </label> {{this.ADDRESS_TUMBOL_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS_TEXT}}
+            <label>อำเภอ/เขต: </label> {{this.ADDRESS_AMPHUR_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS_TEXT}}
+            <label>จังหวัด: </label> {{this.ADDRESS_PROVINCE_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS_TEXT}}
+            {{#xif " fieldExist(this.ADDRESS_POSTCODE_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>รหัสไปรษณีย์: </label> {{this.ADDRESS_POSTCODE_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>โทรศัพท์: </label> {{this.ADDRESS_TELEPHONE_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_EXT_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <label>ต่อ:</label> {{this.ADDRESS_TELEPHONE_EXT_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_FAX_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS) " }}
+            <nobr><label>โทรสาร:</label> {{this.ADDRESS_FAX_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION_ADDRESS}}</nobr>
+            {{/xif}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

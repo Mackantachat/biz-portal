@@ -1,0 +1,300 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@model FormSection
+@{
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+    string regisDate = string.Empty;
+    DateTime datetime = DateTime.Now;
+    if (defaults.ContainsKey("VAT_REGIS_DATE"))
+    {
+        var dt = defaults["VAT_REGIS_DATE"];
+        if (dt.GetType() == typeof(DateTime))
+        {
+            datetime = (DateTime)dt;
+        }
+        else
+        {
+            datetime = DateTime.Parse(dt.ToString());
+        }
+    }
+
+    regisDate = datetime.ToString("d MMMM yyyy");
+
+    var rd = string.Empty;
+    if (Model.PartialReadonly)
+    {
+        rd = "disabled";
+    }
+}
+<div class="col-md-12" id="insertVATExample">
+    <div class="row">
+        <div class="col-md-12 form-group" style="border:solid 2px #000000;border-radius: 4px;padding-top: 15px;padding-bottom: 15px;">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-8 text-center">
+                    <label>เลขประจำตัวผู้เสียภาษีอากร</label><br /><span id="ExHQIdentityID"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 style="line-height:1em; color:#6f6f6f;">ภ.พ.20</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 style="line-height:2em; color:#6f6f6f;">ตัวอย่างใบทะเบียนภาษีมูลค่าเพิ่ม</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label>ชื่อผู้ประกอบการ</label> <span id="ExHQIdentityName"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label>ชื่อสถานประกอบการ</label> <span id="ExHQName"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-md-offset-2">
+                    <label>เป็น</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" id="ExHQChecked" checked disabled /> <label for="ExHQChecked">สำนักงานใหญ่</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="checkbox" id="ExBranchChecked" disabled /> <label for="ExBranchChecked">สาขาที่ ...</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>ตั้งอยู่:</label> <label>อาคาร</label> <span id="ExHQBuilding"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>ห้องเลขที่</label> <span id="ExHQRoomNo"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>ชั้นที่</label> <span id="ExHQFloor"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>หมู่บ้าน</label> <span id="ExHQVillage"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>เลขที่</label> <span id="ExHQHomeNo"></span>
+                </div>
+                <div class="col-md-2">
+                    <label>หมู่ที่</label> <span id="ExHQMoo"></span>
+                </div>
+                <div class="col-md-4">
+                    <label>ตรอก/ซอย</label> <span id="ExHQSoi"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>แยก</label> <span id="ExHQYak"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>ถนน</label> <span id="ExHQRoad"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>ตำบล/แขวง</label> <span id="ExHQSubDistrict"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>อำเภอ/เขต</label> <span id="ExHQDistrict"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>จังหวัด</label> <span id="ExHQProvince"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>รหัสไปรษณีย์</label> <span id="ExHQZipcode"></span>
+                </div>
+                <div class="col-md-6">
+                    <label>โทรศัพท์</label> <span id="ExHQTelNo"></span>
+                </div>
+                <div class="col-md-12">
+                    <label>วันที่ให้เป็นผู้ประกอบการจดทะเบียน</label> <span>@regisDate</span>
+                </div>
+            </div>
+        </div>
+
+        @if (!Model.PartialReadonly)
+        {
+            <div class="col-md-12">
+                <div class="checkbox">
+                    <label for="VAT_HQ_EXAMPLE_CHECK" class="bold">
+                        <input type="checkbox" name="VAT_HQ_EXAMPLE_CHECK" id="VAT_HQ_EXAMPLE_CHECK" value="true" @rd />
+                        @ResourceHelper.GetResourceWordWithDefault("VAT_EXAMPLE_CHECK", "Apps_SingleForm", "VAT_EXAMPLE_CHECK")
+                    </label>
+                </div>
+            </div>
+        }
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        var idx = 0;
+
+        $.ajax({
+            url: '@Url.Content("~/Api/v2/VAT/HQExample")',
+            dataType: 'json',
+            success: function (data) {
+                if (data) {
+                    $('#ExHQIdentityID').text(data.IdentityID);
+                    $('#ExHQIdentityName').text(data.IdentityName);
+                    $('#ExHQName').text(data.HQName);
+                    $('#ExHQBuilding').text(data.Building ? data.Building : "-");
+                    $('#ExHQRoomNo').text(data.RoomNo ? data.RoomNo : "-");
+                    $('#ExHQFloor').text(data.Floor ? data.Floor : "-");
+                    $('#ExHQVillage').text(data.Village ? data.Village : "-");
+                    $('#ExHQHomeNo').text(data.HomeNo ? data.HomeNo : "-");
+                    $('#ExHQMoo').text(data.Moo ? data.Moo : "-");
+                    $('#ExHQSoi').text(data.Soi ? data.Soi : "-");
+                    $('#ExHQYak').text(data.Yak ? data.Yak : "-");
+                    $('#ExHQRoad').text(data.Road ? data.Road : "-");
+                    $('#ExHQSubDistrict').text(data.SubDistrict);
+                    $('#ExHQDistrict').text(data.District);
+                    $('#ExHQProvince').text(data.Province);
+                    $('#ExHQZipcode').text(data.Zipcode);
+                    $('#ExHQTelNo').text(data.TelNo);
+                }
+            }
+        });
+
+        @if (!Model.PartialReadonly)
+        {
+            <text>
+        singleForm.customRules['VAT_HQ_EXAMPLE_CHECK'] = {
+            customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณายืนยันความถูกต้อง' }
+        };
+        </text>
+        }
+
+        $.ajax({
+            url: '@Url.Content("~/Api/v2/VAT/BranchExample")',
+            dataType: 'json',
+            success: function (data) {
+                if (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var branch = data[i];
+
+                        $branch = $('<div class="col-md-12 form-group" style="border:solid 2px #000000;border-radius: 4px;padding-top: 15px;padding-bottom: 15px;"></div>');
+
+                        $row1 = $('<div class="row"></div>');
+                        $row1.append('<div class="col-md-4 col-md-offset-8 text-center"><label>เลขประจำตัวผู้เสียภาษีอากร</label><br /><span>' + branch.IdentityID + '</span></div>');
+
+                        $row2 = $('<div class="row"></div>');
+                        $row2.append('<div class="col-md-12"><h4 style="line-height:1em; color:#6f6f6f;">ภ.พ.20</h4></div>');
+
+                        $row3 = $('<div class="row"></div>');
+                        $row3.append('<div class="col-md-12"><h5 style="line-height:2em; color:#6f6f6f;">ตัวอย่างใบทะเบียนภาษีมูลค่าเพิ่ม</h5></div>');
+
+                        $row4 = $('<div class="row"></div>');
+                        $row4.append('<div class="col-md-12"><label>ชื่อผู้ประกอบการ</label> <span>' + branch.IdentityName + '</span></div>');
+
+                        $row5 = $('<div class="row"></div>');
+                        $row5.append('<div class="col-md-12"><label>ชื่อสถานประกอบการ</label> <span>' + branch.BranchType + ' ' + branch.BranchName + '</span></div>');
+
+                        $row6 = $('<div class="row"></div>');
+                        $row6.append('<div class="col-md-1 col-md-offset-2"><label>เป็น</label></div><div class="col-md-3"><input type="checkbox" disabled /> <label>สำนักงานใหญ่</label></div><div class="col-md-3"><input type="checkbox" checked disabled /> <label>' + branch.BranchID + '</label></div>');
+
+                        $row7 = $('<div class="row"></div>');
+                        var building = branch.Building;
+                        if (!building) {
+                            building = "-";
+                        }
+                        $row7.append('<div class="col-md-6"><label>ตั้งอยู่:</label> <label>อาคาร</label> <span>' + building + '</span></div>');
+                        var roomno = branch.RoomNo;
+                        if (!roomno) {
+                            roomno = "-";
+                        }
+                        $row7.append('<div class="col-md-3"><label>ห้องเลขที่</label> <span>' + roomno + '</span></div>');
+                        var floor = branch.Floor;
+                        if (!floor) {
+                            floor = "-";
+                        }
+                        $row7.append('<div class="col-md-3"><label>ชั้นที่</label> <span>' + floor + '</span></div>');
+                        var village = branch.Village;
+                        if (!village) {
+                            village = "-";
+                        }
+                        $row7.append('<div class="col-md-6"><label>หมู่บ้าน</label> <span>' + village + '</span></div>');
+                        var homeno = branch.HomeNo;
+                        if (!homeno) {
+                            homeno = "-";
+                        }
+                        $row7.append('<div class="col-md-6"><label>เลขที่</label> <span>' + homeno + '</span></div>');
+                        var moo = branch.Moo;
+                        if (!moo) {
+                            moo = "-";
+                        }
+                        $row7.append('<div class="col-md-2"><label>หมู่ที่</label> <span>' + moo + '</span></div>');
+                        var soi = branch.Soi;
+                        if (!soi) {
+                            soi = "-";
+                        }
+                        $row7.append('<div class="col-md-4"><label>ตรอก/ซอย</label> <span>' + soi + '</span></div>');
+                        var yak = branch.Yak;
+                        if (!yak) {
+                            yak = "-";
+                        }
+                        $row7.append('<div class="col-md-6"><label>แยก</label> <span>' + yak + '</span></div>');
+                        var road = branch.Road;
+                        if (!road) {
+                            road = "-";
+                        }
+                        $row7.append('<div class="col-md-6"><label>ถนน</label> <span>' + road + '</span></div>');
+                        $row7.append('<div class="col-md-6"><label>ตำบล/แขวง</label> <span>' + branch.SubDistrict + '</span></div>');
+                        $row7.append('<div class="col-md-6"><label>อำเภอ/เขต</label> <span>' + branch.District + '</span></div>');
+                        $row7.append('<div class="col-md-6"><label>จังหวัด</label> <span>' + branch.Province + '</span></div>');
+                        $row7.append('<div class="col-md-3"><label>รหัสไปรษณีย์</label> <span>' + branch.Zipcode + '</span></div>');
+                        $row7.append('<div class="col-md-3"><label>โทรศัพท์</label> <span>' + branch.TelNo + '</span></div>');
+                        $row7.append('<div class="col-md-12"><label>วันที่ให้เป็นผู้ประกอบการจดทะเบียน</label> <span>@regisDate</span></div>');
+
+                        $branch.append($row1).append($row2).append($row3).append($row4).append($row5).append($row6).append($row7);
+
+                        $branchrow = $('<div class="row"></div>');
+                        $branchrow.append($branch);
+
+                        @if (!Model.PartialReadonly)
+                        {
+                            <text>
+                        //$row8 = $('<div class="row"></div>');
+                        //$row8.append('<div class="col-md-12"><div class="checkbox"><label for="VAT_BRANCH_' + i + '_EXAMPLE_CHECK" class="bold"><input type="checkbox" name="VAT_BRANCH_' + i + '_EXAMPLE_CHECK" id="VAT_BRANCH_' + i + '_EXAMPLE_CHECK" value="true" @rd />@ResourceHelper.GetResourceWordWithDefault("VAT_EXAMPLE_CHECK", "Apps_SingleForm", "VAT_EXAMPLE_CHECK")</label></div></div>');
+                        //$branch.append($row8);
+                        $branchrow.append('<div class="col-md-12"><div class="checkbox"><label for="VAT_BRANCH_' + i + '_EXAMPLE_CHECK" class="bold"><input type="checkbox" name="VAT_BRANCH_' + i + '_EXAMPLE_CHECK" id="VAT_BRANCH_' + i + '_EXAMPLE_CHECK" value="true" @rd />@ResourceHelper.GetResourceWordWithDefault("VAT_EXAMPLE_CHECK", "Apps_SingleForm", "VAT_EXAMPLE_CHECK")</label></div></div>');
+                        </text>
+                        }
+
+                        //$('#insertVATExample').append('<hr style="height: 0; border-top: 1px dashed #8c8b8b;" />').append($branch);
+                        $('#insertVATExample').append($branchrow);
+
+                        idx = i;
+                    }
+                }
+
+                @if (!Model.PartialReadonly)
+                {
+                    <text>
+                for (var i = 0; i <= idx; i++) {
+                    singleForm.customRules['VAT_BRANCH_' + i + '_EXAMPLE_CHECK'] = {
+                        customrequiredif: { dependentproperty: 'Status', targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()' }, messages: { customrequiredif: 'กรุณายืนยันความถูกต้อง' }
+                    };
+                }
+
+                singleForm.functions.formValidate();
+
+                </text>
+                }
+
+
+
+            }
+        });
+    });
+</script>

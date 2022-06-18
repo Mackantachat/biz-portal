@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_HOSPITAL_PLAN" xml:space="preserve">
+    <value>ข้อมูลแผนการจัดตั้งสถานพยาบาลประเภทที่รับผู้ป่วยค้างคืน (ส.พ.4)</value>
+    <comment>SectionGroup: APP_HOSPITAL_PLAN</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_INFO_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION_MED_TYPE" xml:space="preserve">
+    <value>บริการของสถานพยาบาลที่จัดให้มีเพิ่มเติม</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_1" xml:space="preserve">
+    <value>อายุรกรรม</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_2" xml:space="preserve">
+    <value>ศัลยกรรม</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_3" xml:space="preserve">
+    <value>สูตินรีเวชกรรม</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_4" xml:space="preserve">
+    <value>กุมารเวชกรรม</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_5" xml:space="preserve">
+    <value>แผนกเทคนิคการแพทย์</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_6" xml:space="preserve">
+    <value>แผนกออร์โธปิดิกส์</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_7" xml:space="preserve">
+    <value>แผนกโรคผิวหนัง</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_8" xml:space="preserve">
+    <value>แผนกการผสมเทียม</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_9" xml:space="preserve">
+    <value>แผนกกายภาพบำบัด</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_10" xml:space="preserve">
+    <value>แผนกการแพทย์แผนไทย</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_11" xml:space="preserve">
+    <value>แผนกโภชนาการ</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_12" xml:space="preserve">
+    <value>แผนกซักฟอก</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_13" xml:space="preserve">
+    <value>หอผู้ป่วยหนัก</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_14" xml:space="preserve">
+    <value>ห้องตรวจภายในและขูดมดลูก</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_15" xml:space="preserve">
+    <value>ห้องผ่าตัดเล็ก</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_16" xml:space="preserve">
+    <value>ห้องให้การรักษา</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_17" xml:space="preserve">
+    <value>ห้องทารกหลังคลอด</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_18" xml:space="preserve">
+    <value>การผ่าตัดเปลี่ยนอวัยวะ</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_19" xml:space="preserve">
+    <value>ห้องไตเทียม</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_20" xml:space="preserve">
+    <value>ห้องทันตกรรม</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_21" xml:space="preserve">
+    <value>รังสีวินิจฉัยด้วยคอมพิวเตอร์</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_22" xml:space="preserve">
+    <value>การผ่าตัดเปิดหัวใจ</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_23" xml:space="preserve">
+    <value>การสวนหัวใจ</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_24" xml:space="preserve">
+    <value>รังสีบำบัด</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_25" xml:space="preserve">
+    <value>การตรวจอวัยวะภายในชนิดสนามแม่เหล็กไฟฟ้า</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_26" xml:space="preserve">
+    <value>การสลายนิ่วด้วยเครื่องมือ</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_27" xml:space="preserve">
+    <value>ห้องเก็บศพ</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_28" xml:space="preserve">
+    <value>แผนกการแพทย์แผนไทยประยุกต์</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_29" xml:space="preserve">
+    <value>แผนกการนวด</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_30" xml:space="preserve">
+    <value>แผนกการแพทย์แผนจีน</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_MED_TYPE_31" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F35_02_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION_MED_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F35_02_02</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION_BUILD_TYPE" xml:space="preserve">
+    <value>ลักษณะอาคารสถานพยาบาล</value>
+    <comment>FieldID: F35_02_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION_BUILD_TYPE_APP_HOSPITAL_PLAN_INFO_SECTION_BUILD_TYPE_1" xml:space="preserve">
+    <value>เป็นอาคารสร้างใหม่ </value>
+    <comment>FieldID: F35_02_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION_BUILD_TYPE_APP_HOSPITAL_PLAN_INFO_SECTION_BUILD_TYPE_2" xml:space="preserve">
+    <value>เป็นอาคารดัดแปลงจากอาคารเดิม</value>
+    <comment>FieldID: F35_02_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION_BUILD_TYPE_APP_HOSPITAL_PLAN_INFO_SECTION_BUILD_TYPE_3" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F35_02_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION_BUILD_TYPE_OTHER" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F35_02_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_INFO_SECTION_INVESTMENT" xml:space="preserve">
+    <value>งบลงทุนโดยประมาณ (บาท)</value>
+    <comment>FieldID: F35_02_05</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_HEADER" xml:space="preserve">
+    <value>แหล่งเงินทุน</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_HEADER</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION" xml:space="preserve">
+    <value>แหล่งเงินทุน</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล แหล่งเงินทุน ในขณะนี้ คุณสามารถเพิ่มข้อมูลแหล่งเงินทุน&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มแหล่งเงินทุน"&lt;/div&gt;</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มแหล่งเงินทุน</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มแหล่งเงินทุน</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE" xml:space="preserve">
+    <value>ประเภทแหล่งลงทุน</value>
+    <comment>FieldID: F35_02_06</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE_APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE_PERSONAL" xml:space="preserve">
+    <value>ส่วนตัว</value>
+    <comment>FieldID: F35_02_06</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE_APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE_SHARE" xml:space="preserve">
+    <value>หุ้น</value>
+    <comment>FieldID: F35_02_06</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE_APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE_INSIDE" xml:space="preserve">
+    <value>สถาบันการเงินในประเทศ</value>
+    <comment>FieldID: F35_02_06</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE_APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_TYPE_OUTSIDE" xml:space="preserve">
+    <value>สถาบันการเงินต่างประเทศ</value>
+    <comment>FieldID: F35_02_06</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_INVEST_SECTION_PERCENT" xml:space="preserve">
+    <value>เปอร์เซ็นต์</value>
+    <comment>FieldID: F35_02_07</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION_HEADER" xml:space="preserve">
+    <value>พื้นที่บริการครอบคลุม</value>
+    <comment>FieldID: F35_02_08</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION_LOCATION" xml:space="preserve">
+    <value>ในเขตท้องที่การปกครองของกระทรวงมหาดไทย (อำเภอ/เขต/จังหวัด)</value>
+    <comment>FieldID: F35_02_09</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION_PEOPLE_AMOUNT" xml:space="preserve">
+    <value>จำนวนประชากรภายในเขตรัศมี 5 กิโลเมตร โดยรอบสถานพยาบาล มีประมาณ (คน)</value>
+    <comment>FieldID: F35_02_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION_NURSE_AMOUNT" xml:space="preserve">
+    <value>จำนวนสถานพยาบาลเอกชน(แห่ง)</value>
+    <comment>FieldID: F35_02_11</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION_HEADING" xml:space="preserve">
+    <value>การบริการ</value>
+    <comment>FieldID: F35_02_12</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION" xml:space="preserve">
+    <value>การบริการ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล การบริการ ในขณะนี้ คุณสามารถเพิ่มข้อมูลการบริการ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มการบริการ"&lt;/div&gt;</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มการบริการ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มการบริการ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE" xml:space="preserve">
+    <value>การบริการ</value>
+    <comment>FieldID: F35_02_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_1" xml:space="preserve">
+    <value>ผู้ป่วยใน(เตียง)</value>
+    <comment>FieldID: F35_02_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_2" xml:space="preserve">
+    <value>ห้องผ่าตัด(เตียง)</value>
+    <comment>FieldID: F35_02_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_3" xml:space="preserve">
+    <value>เครื่องเอกซเรย์คอมพิวเตอร์(ห้อง) </value>
+    <comment>FieldID: F35_02_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_4" xml:space="preserve">
+    <value>เครื่องตรวจอวัยวะภายในชนิดสนามแม่เหล็กไฟฟ้า(ห้อง) </value>
+    <comment>FieldID: F35_02_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_5" xml:space="preserve">
+    <value>เครื่องสลายนิ่ว(ห้อง)</value>
+    <comment>FieldID: F35_02_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_CHOICE_6" xml:space="preserve">
+    <value>เครื่องล้างไต(ห้อง)</value>
+    <comment>FieldID: F35_02_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวน</value>
+    <comment>FieldID: F35_02_14</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_PROBLEM_SECTION" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_PROBLEM_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_PROBLEM_SECTION_REASON" xml:space="preserve">
+    <value>ปัญหาการบริการรักษาพยาบาลในพื้นที่ที่ครอบคลุม ซึ่งเป็นเหตุให้สมควรลงทุน</value>
+    <comment>FieldID: F35_02_15</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_PROBLEM_SECTION_DURATION" xml:space="preserve">
+    <value>ระยะเวลาในการดำเนินการตามแผนงานการจัดตั้งสถานพยาบาลนับตั้งแต่วันที่ได้รับอนุมัติแผนการจัดตั้งสถานพยาบาล</value>
+    <comment>FieldID: F35_02_16</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_PROBLEM_SECTION_DURATION_YEAR" xml:space="preserve">
+    <value>ระยะเวลา (ปี)</value>
+    <comment>FieldID: F35_02_17</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_PROBLEM_SECTION_DURATION_MONTH" xml:space="preserve">
+    <value>ระยะเวลา (เดือน)</value>
+    <comment>FieldID: F35_02_18</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION" xml:space="preserve">
+    <value>ข้อมูลบุคลากร</value>
+    <comment>Section: APP_HOSPITAL_PLAN_PERSONNEL_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_DOCTOR_AMOUNT" xml:space="preserve">
+    <value>จำนวนแพทย์(คน)</value>
+    <comment>FieldID: F35_02_19</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_NURSE_AMOUNT" xml:space="preserve">
+    <value>จำนวนพยาบาล(คน)</value>
+    <comment>FieldID: F35_02_20</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_DENTIST_AMOUNT" xml:space="preserve">
+    <value>จำนวนทันตแพทย์(คน)</value>
+    <comment>FieldID: F35_02_21</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_PHARMACIST_AMOUNT" xml:space="preserve">
+    <value>จำนวนเภสัชกร(คน)</value>
+    <comment>FieldID: F35_02_22</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_THERAPIST_AMOUNT" xml:space="preserve">
+    <value>จำนวนนักกายภาพบำบัด(คน)</value>
+    <comment>FieldID: F35_02_23</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_TECHNICAL_AMONT" xml:space="preserve">
+    <value>จำนวนนักเทคนิคการแพทย์(คน)</value>
+    <comment>FieldID: F35_02_24</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_THAI_TRADITIONAL" xml:space="preserve">
+    <value>จำนวนแพทย์แผนไทย(คน)</value>
+    <comment>FieldID: F35_02_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_THAI_TRADITIONAL_APPLIED" xml:space="preserve">
+    <value>จำนวนแพทย์แผนไทยประยุกต์(คน)</value>
+    <comment>FieldID: F35_02_26</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_THAI_MEDICINE" xml:space="preserve">
+    <value>จำนวนเวชกรรมไทย(คน)</value>
+    <comment>FieldID: F35_02_27</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_THAI_PHARMACY" xml:space="preserve">
+    <value>จำนวนเภสัชกรรมไทย(คน)</value>
+    <comment>FieldID: F35_02_28</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_OTHER" xml:space="preserve">
+    <value>อื่นๆ(คน)</value>
+    <comment>FieldID: F35_02_29</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_HEADER" xml:space="preserve">
+    <value>ผู้ประกอบวิชาชีพที่จะมาปฏิบัติงานในตำแหน่งที่สำคัญ</value>
+    <comment>FieldID: F35_02_30</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION" xml:space="preserve">
+    <value>ผู้ประกอบวิชาชีพ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ผู้ประกอบวิชาชีพ ในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้ประกอบวิชาชีพ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มผู้ประกอบวิชาชีพ"&lt;/div&gt;</value>
+    <comment>Section: APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มผู้ประกอบวิชาชีพ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มผู้ประกอบวิชาชีพ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION" xml:space="preserve">
+    <value>ตำแหน่ง</value>
+    <comment>FieldID: F35_02_31</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_OWNER" xml:space="preserve">
+    <value>ผู้ดำเนินการสถานพยาบาล</value>
+    <comment>FieldID: F35_02_31</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_DIRECTOR" xml:space="preserve">
+    <value>ผู้อำนวยการฝ่ายการแพทย์</value>
+    <comment>FieldID: F35_02_31</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_NURSE" xml:space="preserve">
+    <value>ผู้อำนวยการฝ่ายการพยาบาล</value>
+    <comment>FieldID: F35_02_31</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F35_02_31</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_OTHER" xml:space="preserve">
+    <value>ระบุุ</value>
+    <comment>FieldID: F35_02_32</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้า</value>
+    <comment>FieldID: F35_02_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F35_02_34</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F35_02_35</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_ID_CARD" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F35_02_36</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_CONFIRM_SIGNATURE" xml:space="preserve">
+    <value>ลายมือชื่อ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_CONFIRM_SIGNATURE</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_SECTION_NURSE_AMOUNT_GOV" xml:space="preserve">
+    <value>จำนวนสถานพยาบาลรัฐ(แห่ง)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_OFFICER_LABEL" xml:space="preserve">
+    <value>ผู้ประกอบโรคศิลปะ</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_CHINESS_MEDICEN" xml:space="preserve">
+    <value>การแพทย์แผนจีน(คน)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_CORRECTION" xml:space="preserve">
+    <value>จำนวนการแก้ไขความผิดปกติของการสื่อความหมาย (คน)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_CYCOLOGY" xml:space="preserve">
+    <value>จำนวนจิตวิทยาคลินิกอก(คน)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_HEART" xml:space="preserve">
+    <value>จำนวนเทคโนโลยีหัวใจและทรวงอก(คน)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_REDIATION" xml:space="preserve">
+    <value>จำนวนรังสีเทคนิค(คน)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_TOOL" xml:space="preserve">
+    <value>จำนวนกายอุปกรณ์(คน)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_TREATMENT" xml:space="preserve">
+    <value>จำนวนกิจกรรมบำบัด(คน)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_PERSONNEL_SECTION_YEAR_PLAN" xml:space="preserve">
+    <value>ระยะเวลาในการดำเนินการตามแผนงาน (ปี)</value>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มการบริการ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวน</value>
+    <comment>FieldID: F35_02_14</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_CHOICE" xml:space="preserve">
+    <value>การบริการ</value>
+    <comment>FieldID: F35_02_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล การบริการ ในขณะนี้ คุณสามารถเพิ่มข้อมูลการบริการ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มการบริการ"&lt;/div&gt;</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_GOV_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มการบริการ</value>
+    <comment>Section: APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PLAN_BUSSINESS_SERVICE_TYPE_SECTION_ARR_GOV" xml:space="preserve">
+    <value>การบริการ</value>
+  </data>
+</root>

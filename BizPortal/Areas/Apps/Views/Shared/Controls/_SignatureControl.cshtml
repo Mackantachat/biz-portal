@@ -1,0 +1,7 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+<div>
+    @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.Control, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), Model.Control))
+</div>

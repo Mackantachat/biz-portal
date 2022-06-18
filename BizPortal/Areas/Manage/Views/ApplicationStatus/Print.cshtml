@@ -1,0 +1,508 @@
+﻿@model BizPortal.DAL.MongoDB.ApplicationRequestEntity
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@using BizPortal.ViewModels.V2
+@using BizPortal.AppsHook
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Service;
+@using Mapster;
+
+@{
+    Layout = "~/Views/Shared/_LayoutBackendPrint.cshtml";
+    ViewBag.Title = string.Format("{0} {1}", Resource.ApplicationStatusRequests.APPLICATION_REQUEST, Model.ApplicationName);
+    ViewBag.IsDetailView = true;
+
+    var rows = 1;
+    var firstRow = true;
+    var thisPageDateTimeFormat = "dd/MM/yyyy, HH.mm";
+    var thisPageDateFormat = "dd/MM/yyyy";
+    var hook = (IAppsHook)null;
+    var singleFormRendererHook = (SingleFormRendererAppHook)null;
+    var appTranslates = (Dictionary<string, string>)null;
+    var isEnabledChat = false;
+    var isEmptyDataAppHooks = false;
+    var isCheckPaymentStatus = false;
+    var ePermitFilesForDisplay = (FileMetadata[])null;
+    var viewModel = Model.Adapt<ApplicationRequestEntity, ApplicationRequestViewModel>();
+
+    if (!string.IsNullOrEmpty(ViewBag.AppsHookClassName))
+    {
+        hook = (IAppsHook)Activator.CreateInstance("BizPortal.AppsHook", ViewBag.AppsHookClassName).Unwrap();
+        appTranslates = hook.TranslateKeyValue(viewModel);
+        isEnabledChat = false;
+    }
+
+    if (hook is SingleFormRendererAppHook)
+    {
+        singleFormRendererHook = hook as SingleFormRendererAppHook;
+    }
+
+    Func<string, string> fileNameByCodeFunc = (code) =>
+    {
+        string fileName = string.Empty;
+
+        if (!string.IsNullOrEmpty(code))
+        {
+            if (appTranslates != null && appTranslates.ContainsKey(code))
+            {
+                fileName = appTranslates[code];
+            }
+            else
+            {
+                fileName = ResourceHelper.GetResourceWordWithDefault(code.ToUpper(), "FileType", code);
+            }
+        }
+
+        return fileName;
+    };
+
+    Func<FileMetadataEntity, string> fileNameFunc = (file) =>
+    {
+        string fileName = fileNameByCodeFunc(file.FileTypeCode ?? file.Extras.TryGetString("FILETYPECODE"));
+
+        if (string.IsNullOrEmpty(fileName) || fileName == file.FileTypeCode)
+        {
+            if (!string.IsNullOrEmpty(file.FileName))
+            {
+                fileName = file.FileName;
+            }
+            else
+            {
+                fileName = file.FileTypeCode;
+            }
+        }
+
+        return fileName;
+    };
+}
+
+@section PageStyles {
+    <style type="text/css">
+        div.form-control-info {
+            position: relative;
+            text-align: left;
+            padding: 30px;
+            border: 1px solid #DEDEDE;
+            margin-bottom: 20px;
+            background: #FFFFFF;
+        }
+
+        .disabled {
+            color: lightgray;
+        }
+
+        .comment-list:before {
+            width: 0 !important;
+        }
+
+        body {
+            background: white;
+            font-size: 16px;
+        }
+
+        h4, .h4 {
+            font-weight: bold;
+        }
+
+        h5, .h5 {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .comment-list .comment-item .panel-heading, .comment-list .comment-item .panel-footer {
+            font-size: 16px;
+        }
+
+        .comment-list:before {
+            width: 0 !important;
+        }
+
+        .label.actor {
+            width: 6em;
+            display: inline-block;
+        }
+
+    </style>
+}
+
+@*Appliction request info*@
+<div class="bg-white clearfix">
+    <div class="panel panel-default">
+        <div class="panel-heading" id="headingSectionHead" href="#collapseSectionHead">
+            <a style="color:#0088cc;">@Resource.ApplicationStatusRequests.REQUEST_BY</a>
+        </div>
+        <div id="collapseSectionHead" class="panel-collapse" aria-labelledby="headingSectionHead">
+             <div class="panel-body">
+                @if (Model.IdentityType == UserTypeEnum.Juristic)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong> @Resource.ApplicationStatusRequests.REQUEST_BY_JURISTIC</strong> :
+                            @Model.IdentityName (@Model.IdentityID)
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong> @Resource.ApplicationStatusRequests.REQUEST_BY_CITIZEN</strong> :
+                            @Model.IdentityName (@Model.IdentityID)
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-md-6">
+                        @{
+                            var requestor = Model.GetRequestorInfo();
+                        }
+                        <div class="row">
+                            @if (Model.IdentityType != UserTypeEnum.Citizen)
+                            {
+                                <div class="col-md-12">
+
+                                    <strong> @Resource.ApplicationStatusRequests.REQUESTOR_NAME  </strong>:
+                                    @requestor.Name
+                                </div>
+                            }
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.REQUESTOR_TEL  </strong>:
+                                @if (!String.IsNullOrEmpty(@ViewBag.RequestorPhone))
+                                {
+                                    @ViewBag.RequestorPhone
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER  </strong>:
+                                @Model.ApplicationRequestNumber
+                                @if (ViewBag.IsOCPB)
+                                {
+                                    <span> / ...................................</span>
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.SUBMIT_DATE  </strong>:
+                                @Model.CreatedDateTxt
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(Model.PaymentMethod))
+                            {
+                                <div class="col-md-12">
+                                    <strong> @Resource.ApplicationStatusRequests.PAY_FEE_CHANNEL  </strong>:
+                                    @Model.GetPaymentChannel()
+                                </div>
+                            }
+
+                            @if (Model.DueDateForPayFee.HasValue && Model.DueDateForPayFee > DateTime.MinValue)
+                            {
+                                <div class="col-md-12">
+                                    <strong> @Resource.ApplicationStatusRequests.DUE_DATE_PAY_FEE </strong>:
+                                    @Model.DueDateForPayFee.Value.ToString(thisPageDateFormat)
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.APPLICATION_STATUS_REQUEST  </strong> :
+                                @Model.StatusName
+                            </div>
+                            <div class="col-md-12">
+                                <strong> @Resource.ApplicationStatusRequests.APPLICATION_STATUS_OTHER_REQUEST  </strong> :
+                                @Model.GetStatusOtherText()
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(Model.ApplicationRequestNumberAgent))
+                            {
+                                <div class="col-md-12">
+                                    <form id="frmAppReqNumberAgent" class="form-inline" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")">
+                                        <div class="form-group">
+                                            <strong> @Resource.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER_AGENT  </strong> :
+                                            @Model.ApplicationRequestNumberAgent
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+                            
+                            @if (ViewBag.IsOCPB || ViewBag.ShowSignForm)
+                            {
+                                <div class="col-md-12">
+                                    <strong> รับวันที่  </strong> : ................../................../..................
+                                </div>
+                                <div class="col-md-12">
+                                    <strong> ลงชื่อผู้รับคำขอ  </strong> : ...................................... ผู้รับคำขอ
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.PermitDeliveryType))
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong> @Resource.ApplicationStatusRequests.RECEIVE_APP_CHANNEL  </strong>:
+                            @{
+                                var deliveryMethod = string.IsNullOrEmpty(Model.PermitDeliveryType) ? "PDT_Null" : "PDT_" + @Model.PermitDeliveryType;
+                                if (Model.PermitDeliveryType == "AT_OWNER_ORG")
+                                    deliveryMethod = Model.OrgNameTH.Trim();
+
+                                 if (Model.PermitDeliveryType == "E_DOCUMENT")
+                                    deliveryMethod = "E-Document";
+                            }
+                            @ResourceHelper.GetResourceWordWithDefault(deliveryMethod, "ApplicationStatusRequests", deliveryMethod, System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
+                        </div>
+                    </div>
+                }
+
+                @{
+                    string deliveryAddress = string.IsNullOrEmpty(Model.PermitDeliveryAddress) ? "-" : Model.PermitDeliveryAddress;
+                    switch (Model.PermitDeliveryType)
+                    {
+                        case "AT_OSS": deliveryAddress = string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["OSSAddress"]) ? "-" : System.Configuration.ConfigurationManager.AppSettings["OSSAddress"]; break;
+                        case "AT_OWNER_ORG": deliveryAddress = string.IsNullOrEmpty(Model.OrgAddress) ? "-" : Model.OrgAddress; break;
+                        case "BY_MAIL": deliveryAddress = string.IsNullOrEmpty(Model.PermitDeliveryAddress) ? "-" : Model.PermitDeliveryAddress; break;
+                        default: break;
+                    }
+                }
+
+                @if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OWNER_ORG)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong> @Resource.ApplicationStatusRequests.RECEIVE_APP_LOCATION</strong> :
+                            @deliveryAddress
+                        </div>
+                    </div>
+
+                    if (Model.UserCanGetAppDate.HasValue)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong>@Resource.ApplicationStatusRequests.USER_CAN_GET_APP_DATE</strong> :
+
+                                @if (Model.UserCanGetAppDateEnd.HasValue)
+                                {
+                                    @Html.Raw(string.Format("{0} {1} {2}", Model.UserCanGetAppDate.Value.ToString(thisPageDateFormat), Resource.Global.TO, Model.UserCanGetAppDateEnd.Value.ToString(thisPageDateFormat)));
+                                }
+                                else
+                                {
+                                    @Html.Raw(Model.UserCanGetAppDate.Value.ToString(thisPageDateFormat));
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+
+                @if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.BY_MAIL && !string.IsNullOrEmpty(Model.EMSTrackingNumber))
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong> @Resource.ApplicationStatusRequests.EMS_TRACKING </strong>:
+                            @Model.EMSTrackingNumber
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Appliction request detail*@
+<div class="row">
+    <div class="col-md-12">
+        @if (hook != null)
+        {
+            if (singleFormRendererHook != null)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading"  id="headingAppHook">
+                        <a>ข้อมูลใบคำร้อง/คำขอ</a>
+                    </div>
+                    <div id="collapseApphook" class="panel-collapse" aria-labelledby="headingAppHook">
+                        <div class="panel-body">
+                            <form>
+                                @{
+                                    BizPortal.ViewModels.SingleForm.SingleFormAppsViewModel[] mm = singleFormRendererHook.RenderDataSingleForm(Model, ViewBag);
+                                    isEmptyDataAppHooks = ApplicationStatusService.IsEmptyDataAppHooks(ViewBag.SectionGroups, ViewBag.Sections, ViewBag.SectionRows);
+                                    Html.RenderPartial("~/Areas/Apps/Views/Shared/_StaticFormView.cshtml", mm);
+                                }
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                AppHookRenderViewModel hookModel = new AppHookRenderViewModel(hook, RenderStage.UserTracking, new BizPortal.ViewModels.V2.ApplicationRequestViewModel());
+                Mapster.TypeAdapter.Adapt<BizPortal.DAL.MongoDB.ApplicationRequestEntity, BizPortal.ViewModels.V2.ApplicationRequestViewModel>(Model, hookModel.Data);
+                Html.RenderPartial("~/Views/Shared/AppRequest/_AppHookRenderer2.cshtml", hookModel);
+            }
+        }
+    </div>
+</div>
+
+@if (hook != null && hook.PrintFormHeaderRight != null)
+{
+    <div class="header-right">
+        @hook.PrintFormHeaderRight
+    </div>
+}
+
+@if (hook != null && hook.PrintFormTitle != null)
+{
+    ViewBag.Title = hook.PrintFormTitle;
+}
+
+@*Script*@
+@section PageScripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/main.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/form-helper.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.file-size').each(function () {
+                var size = parseFloat($(this).text());
+                $(this).text(plupload.formatSize(size));
+            });
+        });
+    </script>
+
+    @if (hook is SingleFormRendererAppHook)
+    {
+
+        Dictionary<string, object> defaults = ViewBag.Defaults;
+        FormSectionGroup[] sectionGroups = ViewBag.SectionGroups;
+        FormSection[] sections = ViewBag.Sections;
+        FormSectionRow[] sectionRows = ViewBag.SectionRows;
+        <script type="text/javascript">
+        var batchID = null;
+        var confirmation = {
+            variables: {
+                @foreach (var sec in sections.Where(o => o.Type == SectionType.ArrayOfForms))
+                    {
+                        <text>
+                @string.Format("arrObj{0}", sec.Section): { data: [], section: "@sec.Section" },
+                </text>
+                    }
+            },
+            controls: {
+                form: '#frmConfirmation'
+            },
+            functions: {
+                init: function () {
+                    confirmation.functions.getData();
+                },
+                renderHandlebars: function (obj) {
+                    var source = $("#" + obj.section + "Template").html();
+                    var template = Handlebars.compile(source);
+                    $("#insert_" + obj.section).html(template(obj));
+                },
+                getData: function () {
+                    var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.SingleFormData));
+                        if (data) {
+                            for (var i = 0; i < data.SectionData.length; i++) {
+                                var sec = data.SectionData[i];
+                                if (sec.Type == "Form") {
+                                    for (var key in sec.FormData) {
+                                        if (key.includes("ADDRESS_PROVINCE") || key.includes("ADDRESS_AMPHUR") || key.includes("ADDRESS_TUMBOL") || key.includes("AJAX_DROPDOWN")
+                                        || key.includes("ADDRESS_EN_PROVINCE") || key.includes("ADDRESS_EN_AMPHUR") || key.includes("ADDRESS_EN_TUMBOL")) {
+                                            if (key.includes("_TEXT")) {
+                                                $("input[name=" + key + "]").val(sec.FormData[key]);
+                                            } else {
+                                                $("select[name=" + key + "]").prepend("<option value='" + sec.FormData[key] + "'>" + sec.FormData[key + "_TEXT"] + "</option>").val(sec.FormData[key]);
+                                            }
+                                        } else {
+                                            if ($("input[type=text][name=" + key + "]").length == 1) { // Text Box
+                                                $("input[name=" + key + "]").val(sec.FormData[key]);
+                                            } else if ($("input[type=radio][name=" + key + "]").length > 0) { // Radio Button
+                                                $("input[name=" + key + "][value=" + sec.FormData[key] + "]").prop('checked', true).trigger('change');
+                                            } else if ($("input[type=checkbox][name=" + key + "]").length == 1 && sec.FormData[key] == "true") { // Check Box
+                                                $("input[name=" + key + "]").prop('checked', true).trigger('change');
+                                            } else if ($("select[name=" + key + "]").length == 1) { // Select2
+                                                $("select[name=" + key + "]").val(sec.FormData[key]).trigger('change');
+                                            } else if ($("textarea[name=" + key + "]").length == 1) { // textarea
+                                                $("textarea[name=" + key + "]").val(sec.FormData[key]).trigger('change');
+                                            } else if ($("input[type=text]#" + key).length == 1) { // Dropdown
+                                                $("input[type=text]#" + key).val(sec.FormData[key]).trigger('change');
+                                            } else if ($("input[role=DATATABLE_VALUE]#" + key).length == 1) { // DataTable
+                                                $("input[role=DATATABLE_VALUE]#" + key).val(sec.FormData[key]).trigger('change');
+                                            }
+                                        }
+                                    }
+                                } else if (sec.Type == "ArrayOfForms" && sec.ArrayData != null) {
+                                    if (confirmation.variables["arrObj" + sec.SectionName] != null || confirmation.variables["arrObj" + sec.SectionName] != undefined) {
+                                        confirmation.variables["arrObj" + sec.SectionName].data = sec.ArrayData;
+                                        confirmation.functions.renderHandlebars(confirmation.variables["arrObj" + sec.SectionName]);
+                                        //$(document).trigger(sec.SectionName + '-databound', [sec.SectionName, confirmation.variables["arrObj" + sec.SectionName].data]);
+                                    }
+                                }
+                            }
+                            setTimeout(window.print, 3000);
+                            //window.print();
+                        }
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            showLoader(true);
+
+            // Register handlebars functions *** IMPORTANT !!! Always call it first ***
+            Handlebars.registerHelper("x", function(expression, options) {
+                var result;
+
+                // you can change the context, or merge it with options.data, options.hash
+                var context = this;
+
+                // yup, i use 'with' here to expose the context's properties as block variables
+                // you don't need to do {{x 'this.age + 2'}}
+                // but you can also do {{x 'age + 2'}}
+                // HOWEVER including an UNINITIALIZED var in a expression will return undefined as the result.
+                with(context) {
+                    result = (function() {
+                        try {
+                            return eval(expression);
+                        } catch (e) {
+                            console.warn('•Expression: {{x \'' + expression + '\'}}\n•JS-Error: ', e, '\n•Context: ', context);
+                        }
+                    }).call(context); // to make eval's lexical this=context
+                }
+                return result;
+            });
+
+            Handlebars.registerHelper("xif", function(expression, options) {
+                return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+            });
+            // End Registering Handlebars functions
+
+            // Normal Javascripts Begin
+            confirmation.functions.init();
+
+            $(window).load(function(){
+                showLoader(false);
+            });
+
+            // Replace all col-md-xx with col-xs-xx
+            for (var i = 1; i < 13; i++) {
+                var origClass = 'col-md-' + i;
+                var newClass = 'col-xs-' + i;
+                $('.' + origClass).each(function(){
+                    $(this).removeClass(origClass);
+                    $(this).addClass(newClass);
+                });
+            }
+            
+        });
+
+        </script>
+    }
+
+}

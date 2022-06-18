@@ -1,0 +1,88 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>ชื่อ - นามสกุล :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_FIRSTNAME }}
+            </div>
+
+            <div class="col-md-6">
+                <label>เลขบัตรประจำตัวประชาชน 13 หลัก :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_CITIZEN_ID }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <label>ที่อยู่ :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_ADDRESS_AREA }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <label>ที่ตั้งแปลง :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_LOCATION }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>ชนิดพืช :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_PLANT_TYPE }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>ช่วงการผลิต (เดือนเริ่มต้น) :</label>
+                {{ this.DROPDOWN_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_START_MONTH_TEXT }}
+            </div>
+
+            <div class="col-md-6">
+                <label>ช่วงการผลิต (เดือนสิ้นสุด) :</label>
+                {{ this.DROPDOWN_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_LAST_MONTH_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>เดือนที่คาดว่าจะเก็บเกี่ยว :</label>
+                {{ this.DROPDOWN_APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_HARVEST_MONTH_TEXT }}
+            </div>
+
+            <div class="col-md-6">
+                <label>ผลผลิตรวมที่คาดว่าจะได้รับต่อปี :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_RENEW_GROUP_PRODUCE_SECTION_BENEFIT_PER_YEAR }}
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่พบข้อมูล
+        </div>
+    </div>
+    {{/xif}}
+</script>

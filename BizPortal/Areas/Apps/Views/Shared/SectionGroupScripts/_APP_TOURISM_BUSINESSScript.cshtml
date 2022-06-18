@@ -1,0 +1,65 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")">
+</script>
+
+<script type="text/javascript">
+    
+    $('input[type=radio][name=APP_TOURISM_BUSINESS_INFO_SECTION_TYPE_OPTION]').change(function () {
+        input_money_radio(this.value);
+    });
+
+    window.singleFormHelpers.form.onDraftDataBound(function (data) {    
+        prefill_money_tour();
+    });
+
+    function input_money_radio(str) {
+        if (str == "Local") {
+            $('input[name=APP_TOURISM_BUSINESS_INFO_SECTION_AMOUNT]').val(10000);
+        }
+        if (str == "Domestic") {
+            $('input[name=APP_TOURISM_BUSINESS_INFO_SECTION_AMOUNT]').val(50000);
+        }
+        if (str == "Inbound") {
+            $('input[name=APP_TOURISM_BUSINESS_INFO_SECTION_AMOUNT]').val(100000);
+        }
+        if (str == "Outbound") {
+            $('input[name=APP_TOURISM_BUSINESS_INFO_SECTION_AMOUNT]').val(200000);
+        }
+    }
+
+    function prefill_money_tour() {
+        var mm = $('input[type=radio][name=APP_TOURISM_BUSINESS_INFO_SECTION_TYPE_OPTION]').val();
+        if (mm != null) {
+            if (str == "Local") {
+                $('input[name=APP_TOURISM_BUSINESS_INFO_SECTION_AMOUNT]').val(10000);
+            }
+            if (str == "Domestic") {
+                $('input[name=APP_TOURISM_BUSINESS_INFO_SECTION_AMOUNT]').val(50000);
+            }
+            if (str == "Inbound") {
+                $('input[name=APP_TOURISM_BUSINESS_INFO_SECTION_AMOUNT]').val(100000);
+            }
+            if (str == "Outbound") {
+                $('input[name=APP_TOURISM_BUSINESS_INFO_SECTION_AMOUNT]').val(200000);
+            }
+        }
+    }
+
+    //function HideENGAddress() {
+    //    var Sel_11 = $('select[name=DROPDOWN_APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_NEW_ORG_AG]').val();
+    //    var Sel_22 = $('select[name=DROPDOWN_APP_ORGANIC_PLANT_PRODUCTION_NEW_SPECIFIC_NEW_ORG_AG_DOC_LANGUAGE]').val();
+    //    if (Sel_11 == '1' && Sel_22 == '2') {
+    //        $('section[data-section-name=APP_ORGANIC_PLANT_PRODUCTION_ENG_ADDRESS_SECTION]').show();
+    //    }
+    //    else {
+    //        $('section[data-section-name=APP_ORGANIC_PLANT_PRODUCTION_ENG_ADDRESS_SECTION]').hide();
+    //    }
+    //}
+
+</script>
+
+
+

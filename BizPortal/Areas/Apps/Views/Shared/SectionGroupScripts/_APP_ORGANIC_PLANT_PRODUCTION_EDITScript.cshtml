@@ -1,0 +1,174 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+        $("input[name='APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE_CHECKED_STANDALONE_INFO_SECTION_2_EDIT_STANDALONE_INFO_SECTION_2_CHECKED']").change(function (e) {
+            const isChecked = $(this).is(':checked');
+            if (!isChecked) {
+                $("input[name='APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE_LICENSE_INFORMATION']").prop('checked', false).trigger('change');
+            }
+        });
+
+        $("input[name='APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE_LICENSE_INFORMATION_NAME_THAI']").change(function (e) {
+            const isChecked = $(this).is(':checked');
+            $("input[name='APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE_LICENSE_INFORMATION_FARMER']").prop('disabled', isChecked).prop('checked', false);
+        });
+
+        $("input[name='APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE_LICENSE_INFORMATION_FARMER']").change(function (e) {
+            const isChecked = $(this).is(':checked');
+            $("input[name='APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_SECTION_LICENCE_LICENSE_INFORMATION_NAME_THAI']").prop('disabled', isChecked).prop('checked', false);
+        });
+
+        $(document).find('section').each(function () {
+            if (this.dataset.sectionName == 'APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION') {
+                window.singleFormHelpers.form.setReadonly(this);
+
+                // All fields should not required.
+                window.singleFormHelpers.form.ignoreValidations(this);
+            }
+        });
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            $(document).find('section').each(function () {
+                if (this.dataset.sectionName == 'APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION') {
+                    window.singleFormHelpers.form.setReadonly(this);
+
+                    // All fields should not required.
+                    window.singleFormHelpers.form.ignoreValidations(this);
+                }
+            });
+    });
+
+        window.singleForm.sectionGroupValidators.push({
+            sectionGroup: '@Model.SectionGroup',
+            validate: function () {
+                console.log('Length : ', $("input[type='checkbox'][name$='_CHECKED']:checked").length);
+                if ($("input[type='checkbox'][name$='_CHECKED']:checked").length == 0) {
+                    return 'กรุณาเลือกแก้ไขข้อมูลอย่างน้อยหนึ่งรายการ';
+                } else {
+                    return '';
+                }
+            }
+        });
+    });
+
+    window.singleFormHelpers.form.onDraftDataLoaded(function () {
+        LoopCheck();
+    });
+
+    $("[name='APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ORGANIC_TYPE_SECTION_1_ORGANIC_AREA']").keypress(function (e) {
+        isDec(this);
+    });
+
+    $("[name='APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ORGANIC_TYPE_SECTION_1_ORGANIC_AREA']").change(function (e) {
+        $(this).val(validFormat($(this).val()));
+        var num = $(this).val();
+        if (num <= 0)
+        {
+            $(this).val('');
+        }
+    });
+
+    function validFormat(parmStr)
+    {
+        try {
+            var str = parmStr;
+            var count = 0;
+            var newStr;
+            var foundDot = str.includes(".");
+
+            for (var i = 0; i < str.length; i++) {
+                if (str.charAt(i) == "0") {
+                    count = count + 1;
+                }
+                else { break; }
+            }
+
+            if (count == 0 && !foundDot) {
+                newStr = str;
+            }
+
+            if (count == 0 && foundDot) {
+                newStr = str;
+                var res = newStr.split(".");
+                var n = res[0].length;
+                if (n == 0) {
+                    newStr = "0." + res[1];
+                }
+            }
+
+            if (count > 0 && !foundDot) {
+                newStr = str.substr(count, str.length);
+            }
+
+            if (count == 1 && foundDot) {
+                var res = str.split(".");
+                var n = res[0];
+                if (n == "0") {
+                    newStr = str;
+                }
+            }
+
+            if (count == 1 && foundDot) {
+                var res = str.split(".");
+                var n = res[0].length;
+                if (n > 1) {
+                    newStr = str.substr(1, str.length);;
+                }
+            }
+
+            if (count > 0 && foundDot) {
+                var res = str.split(".");
+                var n = res[0].length;
+                if (n > 1) {
+                    newStr = str.substr(count, str.length);;
+                }
+                var x = newStr.split(".");
+                var y = x[0].length;
+                if (y == 0) {
+                    newStr = "0." + x[1];
+                }
+            }
+
+            if (foundDot) {
+                var m = newStr.split(".");
+                var mm = m[1].length;
+                if (mm == 0) {
+                    newStr = newStr + "0";
+                }
+            }
+        }
+        catch (er)
+        {
+            alert(er.message);
+        }
+        return newStr;
+    }
+
+    function isDec(obj)
+    {
+        $(obj).val($(obj).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(obj).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57))
+        {
+            event.preventDefault();
+        }
+    }
+
+    function LoopCheck() {
+        try {
+            let i;
+            for (i = 1; i <= 10; i++) {
+                $('[name=APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION_FORM_INCLUDE_FORM_TYPE_' + i + ']').attr("disabled", true);
+            }
+            $('#APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION_BUILDING_TYPE_OPTION-INFORMATION_STORE_BUILDING_TYPE_OPTION__OWNED').attr("disabled", true);
+            $('#APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION_BUILDING_TYPE_OPTION-INFORMATION_STORE_BUILDING_TYPE_OPTION__RENT').attr("disabled", true);
+            $('#APP_ORGANIC_PLANT_PRODUCTION_EDIT_STANDALONE_INFO_ADDRESS_SECTION_BUILDING_TYPE_OPTION-INFORMATION_STORE_BUILDING_TYPE_OPTION__RENT_FREE').attr("disabled", true);
+        }
+        catch (ex) {
+            alert(ex.message);
+        }
+    };
+</script>

@@ -1,0 +1,773 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+
+@{
+    ViewBag.Title = @Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@section breadcrumb {
+<section class="breadcrumb">
+    <div class="container">
+        <h2>@Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO</h2>
+        <ul>
+            <li class="active"><a>@Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO</a></li>
+        </ul>
+    </div>
+</section>
+}
+
+<div class="coming-soon-wrapper"><h2>เปิดให้ใช้บริการเร็วๆนี้</h2></div>
+<section class="slide-buniness">
+    <div class="slider-holder">
+        <div class="container">
+            <h3 style="color: #5CA1BF; margin-bottom: 40px; margin-top: 20px;">
+                ดูข้อมูลรายประเภทธุรกิจ
+            </h3>
+            <!-- <div class="b-slider"> -->
+            <div class="row">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Restaurant", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b1.png")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจร้านอาหารและเครื่องดื่ม</p>
+                            <p class="detail" style="font-size: 20px;">ธุรกิจที่มีการประกอบอาหาร เครื่องดื่ม ไอศกรีม ขนมหรือเค้ก และมีการจำหน่ายรวมไปถึงให้บริการที่ร้าน หรือจัดส่งถึงบ้าน</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Retail", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b2.png")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจร้านค้าปลีก</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่มีการขายสินค้ามือหนึ่งหรือมือสองเพื่อให้ผู้ซื้อนำไปใช้หรือรับประทานโดยตรงและผู้ขายไม่ได้ผลิตหรือแปรรูปสินค้านั้นเอง
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("CoffeeShop", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b3.png")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจ Co-working space</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่ให้บริการเรื่องสถานที่ รวมถึงสิ่งอำนวยความสะดวกสำหรับการทำงานและการประชุมกลุ่ม โดยอาจจะมีการบริการในส่วนของอาหาร และเครื่องดื่มด้วย
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("hotel", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b4.png")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจโรงแรมและรีสอร์ทขนาดเล็ก</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่ให้บริการที่พักสำหรับนักท่องเที่ยวโดยที่มีระยะเวลาชัดเจนและไม่ยาวนานนักและมีห้องพักอย่างน้อย 4 ห้องขึ้นไป
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Spa, Construction, Animal, Electronics -->
+            <div class="row" style="margin-top: 50px;">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Spa", "Business", new { area="", id="Spa", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b5.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจสปา</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจบริการด้านสุขภาพ ที่เน้นการฟื้นฟูร่างกายโดยวิธีการบำบัดด้วยน้ำและการนวดร่างกายเป็นหลัก เช่น การใช้น้ำมันนวดตัวเพื่อบรรเทาอาการปวดล้า การอบซาวน่าสมุนไพรเพื่อการผ่อนคลาย การบำบัดในอ่างน้ำวนเพื่อช่วยกระตุ้นการไหลเวียนเลือด เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("PetMedicine", "Business", new { area="", id="Animal", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b6.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจสถานพยาบาลสัตว์</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการรักษาพยาบาลสัตว์เลี้ยง เช่น สุนัข แมว กระต่าย เป็นต้น ที่ป่วยหรือมีความผิดปกติ โดยไม่ใช่โรงพยาบาล แต่มีการให้บริการทั้งในรูปแบบค้างคืน และไม่ค้างคืนแก่สัตว์ป่วยหรือผิดปกติ
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Construction", "Business", new { area="", id="Construction", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b7.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจก่อสร้างและรับเหมาก่อสร้าง</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการก่อสร้างสิ่งปลูกสร้างทุกชนิดตามความต้องการของลูกค้า ตั้งแต่การออกแบบ ไปจนถึงการก่อสร้างจนเสร็จสมบูรณ์
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("ElectronicSell", "Business", new { area="", id="Electronic", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b8.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจซ่อมและขายอุปกรณ์อิเล็กทรอนิกส์</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการขายอุปกรณ์อิเล็กทรอนิกส์และให้บริการตรวจเช็คหรือซ่อมอุปกรณ์อิเล็กทรอนิกส์รวมถึงเครื่องใช้ไฟฟ้าต่าง ๆ ที่ไม่สามารถใช้งานได้ตามปกติ เช่น คอมพิวเตอร์ โทรศัพท์มือถือ เครื่องวิทยุสื่อสาร เครื่องซักผ้า เตารีด เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Fitness, Car Care -->
+            <div class="row" style="margin-top: 50px;">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Fitness", "Business", new { area="", id="Fitness", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b9.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจฟิตเนส</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่ให้บริการสถานที่ออกกำลังกายที่รวบรวมการออกกำลังกายในรูปแบบต่าง ๆ เช่น การออกกำลังกายโดยใช้เครื่องออกกำลังกาย อุปกรณ์ยกน้ำหนัก คลาสชกมวย โยคะ เต้นออกกำลังกาย เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("CarCare", "Business", new { area="", id="CarCare", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b10.jpeg")" alt="" style="max-height:165px">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจคาร์แคร์</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจให้บริการดูแลรักษารถทุกชนิดซึ่งครอบคลุมถึงการให้บริการเพื่อความสะอาด ล้างรถ ดูดฝุ่น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("AccountAndLawConsult", "Business", new { area="", id="LEGAL", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw1.jpg")" alt="" style="min-height:165px">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจให้คำปรึกษาด้านกฎหมาย และ บัญชี</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการบริการให้คำปรึกษาด้านกฎหมายและบัญชี รวมไปถึงการให้บริการว่าความ จัดทำระบบบัญชี ตรวจสอบบัญชี หรือให้คำปรึกษาด้านภาษี
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Cosmetic", "Business", new { area="", id="COSMETICS", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw2.jpg")" alt="" style="max-height:165px">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจผลิตครีมบำรุง เครื่องสำอาง น้ำหอม</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการผลิตผลิตภัณฑ์ที่ใช้ภายนอกร่างกายเพื่อดูแลผิวพรรณ เส้นผม เล็บ ให้เกิดความสวยงาม และสุขภาพดี เช่น ครีมบำรุง น้ำหอม เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Tourism", "Business", new { area="", id="TOURISM", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw3.jpg")" alt="" style="height:165px">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจการท่องเที่ยว</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการนำนักท่องเที่ยวเดินทางไปท่องเที่ยวทั้งใน และต่างประเทศ หรือเดินทางไปเพื่อวัตถุประสงค์อื่น ๆ เช่น สัมมนา เข้าค่าย ทัศนศึกษา เป็นต้น 
+                                โดยจัดให้มีการบริการและการอำนวยความสะดวกในเรื่องต่าง ๆ เช่น ที่พัก อาหาร มัคคุเทศก์ เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("SoftwareHouse", "Business", new { area="", id="Software", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw4.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจพัฒนาแอปพลิเคชันซอฟต์แวร์ซื้อมา-ขายไป</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการสร้าง หรือพัฒนาโปรแกรมประยุกต์สำหรับใช้งานเฉพาะทาง เพื่ออำนวยความสะดวกในด้านต่าง ๆ เช่น การใช้งานอินเทอร์เน็ต โปรแกรม สำนักงาน เป็นต้น 
+                                ซึ่งถูกออกแบบมาสำหรับการใช้งานบนสมาร์ทโฟน แท็บเล็ต หรืออุปกรณ์อื่น ๆ เพื่อให้ตรงกับความต้องการของผู้ใช้งาน
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Business", "Quiz", new { area="", id="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw5.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจเกษตรปลอดสารพิษ</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่มีการผลิตและขายผักหรือผลไม้ที่มีระบบการผลิตที่ปราศจากสารเคมี ทั้งในด้านการป้องกันและกำจัดศัตรูพืช การใช้ปุ๋ยเพื่อการเจริญเติบโต การเก็บเกี่ยว ผลผลิต 
+                                รวมไปถึงการบรรจุเพื่อนำออกจำหน่าย
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Logistics", "Business", new { area="", id="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw6.gif")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจขนส่ง Logistics (ขนส่งสินค้า)</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการขนส่งสินค้าหรือบุคคลทั้งทางบกและทางน้ำ จากต้นทางไปยังปลายทาง ตามความต้องการของลูกค้า รวมไปถึงการประกอบกิจการเกี่ยวกับ 
+                                คลังสินค้า ซึ่งเป็นสถานที่สำหรับวาง จัดเก็บ พัก หรือกระจายสินค้าที่อยู่ภายในคลัง
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("CosmeticOnline", "Business", new { area="", id="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw7.jpg")" alt="" style="height:140px">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจขายสินค้า online (ด้านเครื่องสำอาง)</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการขาย (ซื้อมา-ขายไป) ผลิตภัณฑ์ที่ใช้ภายนอกร่างกายเพื่อดูแลผิวพรรณ เส้นผม เล็บ ให้เกิดความสวยงาม และมีการเสนอขายสินค้าผ่าน ช่องทางออนไลน์ 
+                                เช่น Facebook Line Instagram ฝากขายผ่านตลาดออนไลน์ เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("FabricECommerce", "Business", new { area="", id="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw8.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจ e-Commerce (ด้านเสื้อผ้า)</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการขายเสื้อผ้าผ่านสื่ออิเล็กทรอนิกส์ ที่ลูกค้าสามารถทำการซื้อขายสินค้ากับผู้ประกอบการได้โดยตรง 
+                                คือ มีการชำระเงินค่าสินค้าผ่านหน้า เว็บไซต์ ทั้งนี้ไม่รวมการผลิตจากโรงงานตัดเย็บเสื้อผ้าที่มีเครื่องจักรอุตสาหกรร
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("SparPower", "Business", new { area="", id="ENERGY", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw9.jpg")" alt="" style="height:140px">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจพลังงานสำรอง พลังงานทดแทนและขายกระแสไฟฟ้าให้ภาครัฐ</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการนำพลังงานทดแทนมาใช้ในการผลิตกระแสไฟฟ้าและขายให้กับภาครัฐ ซึ่งพลังงานทดแทนคือพลังงานที่มีอยู่ตามธรรมชาติ มักจะอยู่ในรูปของ น้ำ ลม หรือแสงอาทิตย์ และสามารถนำมาใช้ทดแทนพลังงานเดิมที่ใช้กันในปัจจุบัน 
+                                โดยส่วนใหญ่เป็นพลังงานที่มาจากฟอสซิล เช่น ถ่านหิน ปิโตรเลียม แก๊สธรรมชาติ เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Education", "Business", new { area="", id="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw10.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจการศึกษา</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการให้ความรู้แก่ผู้เรียนในคอร์สสั้น ๆ โดยมีจุดประสงค์เพื่อน าไปใช้ในการเตรียมสอบวัดผล หรือสอบเข้าสถาบันต่าง ๆ โดยไม่ใช่โรงเรียน เช่น สถาบันกวดวิชา เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("Business", "Quiz", new { area="", id="FINANCE", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw11.jpg")" alt="" style="height:188px">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจทางการเงิน</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการน าเทคโนโลยีมาประยุกต์ใช้ในธุรกิจด้านการเงิน การธนาคาร หรือการลงทุน เช่น การชำระเงินค่าสินค้าผ่านแอปพลิเคชัน 
+                                การให้บริการ ชำระเงิน/โอนเงินของธนาคารต่าง ๆ ผ่านแอปพลิเคชัน การระดมเงินทุนผ่านช่องทางออนไลน์ เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("AgriproductProcessing", "Business", new { area="", id="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw12.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจแปรรูปสินค้าเกษตรขนาดเล็ก</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่มีการผลิตสินค้า โดยใช้วัตถุดิบที่เป็นผลิตผลทางการเกษตร เช่น สุรา ยาง น้ำตาล ยาสูบ ไม้ เป็นต้น เพื่อขายเป็นผลิตภัณฑ์สู่ผู้บริโภคภายในประเทศ 
+                                และ ส่งออกไปขายยังต่างประเทศ
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("MedicineTool", "Business", new { area="", id="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw13.jpg")" alt="" >
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจอุปกรณ์เครื่องมือทางการแพทย์</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการขายเครื่องมือหรืออุปกรณ์ทางการแพทย์ โดยมีการนำเข้ามาขายจากต่างประเทศหรือรับซื้อจากผู้ผลิตในประเทศ ทั้งนี้ไม่รวมถึงการผลิต
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("PatientService", "Business", new { area="", id="ELDERLYCARE", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw14.jpg")" alt="" style="height:188px">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจการให้บริการสถานดูแลผู้ป่วย </p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการให้บริการดูแล และจัดหาผู้ดูแลให้กับผู้ป่วย และผู้สูงอายุ โดยมีการให้บริการดูแลและรักษาด้านร่างกายและจิตใจ เช่น การรักษาโรคที่ต้อง อาศัยแพทย์ผู้เชี่ยวชาญ 
+                                การพยาบาลผู้ป่วยหรือผู้สูงอายุที่ดูแลตัวเองไม่ได้ หรือการให้คำปรึกษาด้านจิตใจ เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <a href="@Url.BizAction("CosmeticShortTerm", "Business", new { area="", id="BEAUTYCLINIC", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="slider-item">
+                        <div class="img-holder">
+                            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/cw15.jpg")" alt="">
+                            <div class="blog-text">
+                                <p>กำลังเร่งดำเนินการเพื่อให้สามารถรองรับธุรกิจได้เร็ว ๆ นี้ </p>
+                            </div>
+                        </div>
+                        <div class="content" style="height: 215px;">
+                            <p class="head">ธุรกิจคลินิกเสริมความงาม (แบบไม่ค้างคืน)</p>
+                            <p class="detail" style="font-size: 20px;">
+                                ธุรกิจที่เกี่ยวกับการให้บริการทางการแพทย์ในด้านเสริมความงาม โดยไม่มีการให้ผู้ป่วยค้างคืน ณ สถานที่ให้บริการ เช่น รักษาสิว ฉีดโบท็อกซ์ ทำทรีตเมนท์ใบหน้า เป็นต้น
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+            <!--
+        <a href="" class="slider-item">
+            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b1.png")" alt="">
+            <div class="content">
+                <p class="head">ธุรกิจร้านอาหารและเครื่องดื่ม</p>
+                <p class="detail">ธุรกิจที่มีการประกอบอาหาร เครื่องดื่ม ไอศกรีม ขนมหรือเค้ก และมีการจำหน่ายรวมไปถึงให้บริการที่ร้าน หรือจัดส่งถึงบ้าน</p>
+            </div>
+        </a>
+        <a href="" class="slider-item">
+            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b2.png")" alt="">
+            <div class="content">
+                <p class="head">ธุรกิจร้านค้าปลีก</p>
+                <p class="detail">ธุรกิจที่มีการขายสินค้าสู่ผู้บริโภคโดยตรงเพื่ออุปโภคบริโภคในครัวเรือน โดยที่ผู้ขายไม่มีการผลิตหรือแปรรูปสินค้า</p>
+            </div>
+        </a>
+        <a href="" class="slider-item disabled">
+            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b3.png")" alt="">
+            <div class="content">
+                <p class="head">ธุรกิจร้านกาแฟ & Co-working space</p>
+                <p class="detail">ธุรกิจที่มีการเคลื่อนย้ายคนและสิ่งของจากที่หนึ่งไปยังอีกที่หนึ่ง การขนส่งแบ่งออกเป็นหมวดใหญ่ดังนี้ ทางบก ทางน้ำ ทางอากาศ และ อื่นๆ</p>
+            </div>
+        </a>
+        <a href="" class="slider-item disabled">
+            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b4.png")" alt="">
+            <div class="content">
+                <p class="head">ธุรกิจโรงแรมและรีสอร์ทขนาดเล็ก</p>
+                <p class="detail"> สถานที่ประกอบการเชิงการค้าที่นักธุรกิจตั้งขึ้น เพื่อบริการผู้เดินทางในเรื่องของที่พักอาศัย อาหาร และบริการอื่น ๆ ที่เกี่ยวข้องกับการพักอาศัยและเดินทาง</p>
+            </div>
+        </a>
+        <a href="" class="slider-item">
+            <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/b4.png")" alt="">
+            <div class="content">
+                <p class="head">ธุรกิจโรงแรมและรีสอร์ทขนาดเล็ก</p>
+                <p class="detail"> สถานที่ประกอบการเชิงการค้าที่นักธุรกิจตั้งขึ้น เพื่อบริการผู้เดินทางในเรื่องของที่พักอาศัย อาหาร และบริการอื่น ๆ ที่เกี่ยวข้องกับการพักอาศัยและเดินทาง</p>
+            </div>
+        </a>
+    -->
+            <!-- </div> -->
+        </div>
+        <div class="carousel-arrows"></div>
+    </div>
+</section>
+<section class="service disabled" id="coming-soon">
+    <div class="container">
+        <div class="head">
+            <h2>ดูข้อมูลการติดต่อราชการตลอดวงจรธุรกิจรายหัวข้อ</h2>
+        </div>
+        <div class="row">
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=3">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/1 Starting a Business.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การเริ่มต้นธุรกิจ</h2>
+                            <p>จดทะเบียนนิติบุคคล, จดทะเบียนพาณิชย์, จดทะเบียนภาษีมูลค่าเพิ่ม</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=4">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/2 Contruction.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การขออนุญาตก่อสร้าง</h2>
+                            <p>ก่อสร้าง-ดัดแปลง-รื้อถอนอาคาร, ตั้ง-ขยายโรงงาน, จดทะเบียนเครื่องจักร, พิจารณาผลกระทบสิ่งแวดล้อม (EIA)</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=5">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/3 Getting Utilities.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การขอใช้สาธารณูปโภค</h2>
+                            <p>ขอติดตั้ง-ใช้ไฟฟ้า น้ำประปา โทรศัพท์, ขอย้ายมิเตอร์น้ำ-ไฟ, ขอคืนเงินค้ำประกัน</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=6">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/4 Hiring People.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การจ้างงาน</h2>
+                            <p>ขึ้นทะเบียนนายจ้าง-ลูกจ้าง, นำส่งเงินสมทบประกันสังคม, จ้างงานคนต่างด้าว, ขอส่งคนงานไปฝึกงานต่างประเทศ</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=7">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/5 Registering Property.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การจดทะเบียนทรัพย์สิน</h2>
+                            <p>ซื้อ-ขายที่ดิน, โอนที่ดิน, จดทะเบียนจำนอง</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=8">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/6 Paying Taxes.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การชำระภาษี</h2>
+                            <p>ชำระ-ขอคืนภาษีเงินได้นิติบุคคล, ภาษีมูลค่าเพิ่ม, ภาษีสรรพสามิต, ภาษีป้าย, ส่งงบการเงิน</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=9">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/7 Getting Credits.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การได้รับสินเชื่อ</h2>
+                            <p>ขอสินเชื่อ, ขอตรวจสอบเครดิต, ค้ำประกันและหลักประกัน </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=10">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/8 Trading across Borderse.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การนำเข้า-ส่งออก</h2>
+                            <p>ส่งออก-นำเข้า, ภาษีศุลกากร, พิธีศุลกากร, ยื่นใบขนสินค้า, ใบอนุญาตส่งออก-นำเข้าสินค้าควบคุม</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=11">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/9 Investment Incentives.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การขอสนับสนุนการลงทุน</h2>
+                            <p>
+                                ประเภทกิจการที่ให้การส่งเสริม (BOI) รับการส่งเสริมการลงทุน, นำช่างฝีมือ- ผู้ชำนาญต่างด้าวมาทำงานในไทย
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=12">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/10 Protecting Intellectual Property.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การคุ้มครองทรัพย์สินทางปัญญา</h2>
+                            <p>จดทะเบียนสิทธิบัตร อนุสิทธิบัตรเครื่องหมายการค้า เครื่องบ่งชี้ทางภูมิศาสตร์ (GI)</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=13">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/11 Protecting Investor.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การคุ้มครองผู้ลงทุน</h2>
+                            <p>สิทธิของผู้ถือหุ้น, ความรับผิดชอบของกรรมการบริษัท, หน้าที่การเปิดเผยข้อมูลของบริษัทจดทะเบียนในตลาดหลักทรัพย์</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=14">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/12 Enforcing Contract.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การบังคับให้เป็นไปตามข้อตกลง</h2>
+                            <p>ยื่นฟ้องคดี, ขอให้อายัดทรัพย์สิน, ขอให้บังคับคดี, ขออุทธรณ์คดี, เจรจาไกล่เกลี่ยคดี, ขายทรัพย์สินทอดตลาด</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=15">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/13 Resolving Insolvency.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การปิดกิจการ</h2>
+                            <p>ยื่นฟ้องล้มละลาย, สิทธิ-หน้าที่ของลูกหนี้, ขอประนอมหนี้, ยื่นฟื้นฟูกิจการ</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="http://wispcreative.com/info/business-info.html?TaxonomyID=16">
+                <div class="D-3 T-4 M-6 SM-12">
+                    <div class="service-item">
+                        <div class="icon">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Business_main/14 Business License.svg")"></object>
+                        </div>
+                        <div class="content">
+                            <h2 class="business">การขออนุญาตประกอบธุรกิจเฉพาะ</h2>
+                            <p>ธุรกิจอาหารและเครื่องดื่ม, ธุรกิจค้าปลีก, ธุรกิจร้านกาแฟ, ธุรกิจโรงแรมขนาดเล็ก</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="trend business disabled" id="coming-soon">
+    <div class="container">
+        <div class="row">
+            <div class="D-6 T-12">
+                <div class="head">
+                    <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Trending_business/Trending Info.svg")"></object>
+                    <h2>หัวข้อที่มีการเรียกดูมากที่สุด</h2>
+                </div>
+                <hr class="main">
+                <div id="most-trend">
+                    <!--                         <a href="citizenguide-result.html?findbyprocedureid=132" class="trend-item">
+                                                <p>การขอรับใบอนุญาตประกอบกิจการโรงงาน (รง. 4)</p>
+                                            </a>
+                                            <a href="citizenguide-result.html?findbyprocedureid=8142" class="trend-item">
+                                                <p>การขออนุญาตนำหรือสั่งอาหารเข้ามาในราชอาณาจักร</p>
+                                            </a>
+                                            <a href="citizenguide-result.html?findbyprocedureid=5139" class="trend-item">
+                                                <p>การขึ้นทะเบียนนายจ้าง - ลูกจ้าง</p>
+                                            </a>
+                                            <a href="citizenguide-result.html?findbyprocedureid=9423" class="trend-item">
+                                                <p>การรับการส่งเสริมการลงทุน</p>
+                                            </a>
+                                            <a href="citizenguide-result.html?findbyprocedureid=5234" class="trend-item">
+                                                <p>การจดทะเบียนภาษีมูลค่าเพิ่ม</p>
+                                            </a>
+                                            <a href="citizenguide-result.html?findbyprocedureid=5139" class="trend-item">
+                                                <p>การจดทะเบียนเครื่องหมายการค้า</p>
+                                            </a>
+                                            <a href="citizenguide-result.html?findbyprocedureid=9354" class="trend-item">
+                                                <p>การชำระภาษีป้าย</p>
+                                            </a>
+                                            <a href="citizenguide-result.html?findbyprocedureid=6362" class="trend-item">
+                                                <p>จดทะเบียนจำนองที่ดิน</p>
+                                            </a> -->
+                </div>
+            </div>
+            <div class="D-6 T-12">
+                <div class="head">
+                    <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/Trending_business/Trending service.svg")"></object>
+                    <h2>บริการออนไลน์จากหน่วยงานที่แนะนำ</h2>
+                </div>
+                <hr class="main">
+                <a href="https://biz.govchannel.go.th/" target="_blank" class="trend-item">
+                    <p>เริ่มต้นธุรกิจอย่างครบวงจร (BizPortal)</p>
+                </a>
+                <a href="http://rdserver.rd.go.th/publish/index.php" target="_blank" class="trend-item">
+                    <p>ยื่นแบบ-ชำระภาษีออนไลน์ (e-Filing)</p>
+                </a>
+                <a href="http://www.sso.go.th/eservices/home.do?lang=th&webId=0&cat=629" target="_blank" class="trend-item">
+                    <p>ส่งข้อมูลเงินสมทบประกันสังคมออนไลน์</p>
+                </a>
+                <a href="http://smartservice.mea.or.th/" target="_blank" class="trend-item">
+                    <p>ขอใช้ไฟฟ้าทางอินเตอร์เน็ต (MEA Smart Service)</p>
+                </a>
+                <a href="http://www.ipthailand.go.th/th/e-service/%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%A1%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B9%89%E0%B8%B2-e-filing.html"
+                   target="_blank" class="trend-item">
+                    <p>จดทะเบียนเครื่องหมายการค้าออนไลน์ (Trademark e-Filing)</p>
+                </a>
+                <a href="http://e-investment.boi.go.th/auth/login" target="_blank" class="trend-item">
+                    <p>ขอรับการส่งเสริมการลงทุน (e-Investment)</p>
+                </a>
+                <a href="http://www.dft.go.th/th-th/%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%B2%E0%B8%81%E0%B8%81%E0%B8%A3%E0%B8%A1/%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3-e-Service/%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%A1%E0%B8%B5%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B3%E0%B8%95%E0%B8%B1%E0%B8%A7"
+                   target="_blank" class="trend-item">
+                    <p>ยื่นทำบัตรประจำตัวผู้นำเข้า - ส่งออก</p>
+                </a>
+                <a href="https://eservice.dlt.go.th/esvapp/login.jsf" target="_blank" class="trend-item">
+                    <p>ต่อภาษีรถผ่านอินเทอร์เน็ต</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+@section PageScripts
+{
+    
+}

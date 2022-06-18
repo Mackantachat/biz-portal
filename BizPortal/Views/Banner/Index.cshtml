@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow:hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+    <img src="~/Content/Images/banner/BizBanner1-01.png" onclick="javascript: window.top.location.href = '@Url.Action("Index", "Home")'" />
+</body>
+</html>

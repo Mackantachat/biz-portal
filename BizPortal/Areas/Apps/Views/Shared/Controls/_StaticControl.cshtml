@@ -1,0 +1,78 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+
+@if (Model.Type == ControlType.DatePicker)
+{
+    if (Model.Data is DateTime)
+    {
+        DateTime dateTime = (DateTime)Model.Data;
+        @Html.Hidden(Model.DataKey, dateTime.ToString(Model.DataFormat));
+        <span class="form-control form-control-static">
+            @dateTime.ToString(Model.DataFormat)
+        </span>
+    }
+    else
+    {
+        @Html.Hidden(Model.DataKey, Model.Data);
+        <span class="form-control form-control-static">
+            @Model.Data
+        </span>
+    }
+}
+else if (Model.Type == ControlType.AddressForm)
+{
+    var data = Model.Data as AddressControlData;
+    if (data != null)
+    {
+        <div class="row">
+            @if (Model.AddressForm_ShowProvinceControl && data.Province != null)
+            {
+                <div class="col-md-6">
+                    <span class="form-control form-control-static">
+                        @data.Province.Text
+                    </span>
+                </div>
+            }
+        </div>
+    }
+}
+else if (Model.Type == ControlType.Dropdown)
+{
+    var selectId = "dropdown";
+    var selectName = "DROPDOWN";
+    if (Model.IsAjaxDropdown)
+    {
+        selectId = "ajax_dropdown";
+        selectName = "AJAX_DROPDOWN";
+    }
+    var data = (BizPortal.ViewModels.Select2.Select2Opt[])Model.Data;
+    var placeholder = Model.PlaceholderText != null ? Model.PlaceholderText : string.Empty;
+    <select class="form-control" id="@string.Format("{0}_{1}", selectId, Model.ClientID)" name="@string.Format("{0}_{1}", selectName, Model.DataKey)" disabled>
+        <option></option>
+    </select>
+   
+    <script type="text/javascript">
+    $(function () {
+        $("#@string.Format("{0}_{1}", selectId, Model.ClientID)").select2({
+            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Data)),
+            allowClear: false,
+            placeholder: '@placeholder',
+            width: '100%',
+        });
+        $("#@string.Format("{0}_{1}", selectId, Model.ClientID)")
+            .val('@data[0].ID').trigger('change');
+    });
+
+    </script>
+}
+else
+{
+    var ctrlDataKey = Model.Type == ControlType.RadioGroup ? Model.RadioGroup.RadioGroupName : Model.DataKey;
+    @Html.Hidden(ctrlDataKey, ResourceHelper.GetResourceWordWithDefault(Model.Data.ToString(), "Apps_SingleForm", Model.Data.ToString()));
+    <span class="form-control form-control-static">
+        @ResourceHelper.GetResourceWordWithDefault(Model.Data.ToString(), "Apps_SingleForm", Model.Data.ToString())
+    </span>
+}

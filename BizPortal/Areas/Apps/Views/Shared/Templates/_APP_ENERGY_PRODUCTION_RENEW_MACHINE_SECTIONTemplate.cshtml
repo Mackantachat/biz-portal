@@ -1,0 +1,107 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>เครื่องที่ :</label>
+            {{ARR_IDX}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_TYPE :</label>
+            {{this.AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_TYPE_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_FUEL :</label>
+            {{this.AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_FUEL_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_HORSEPOWER :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_HORSEPOWER}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_YEAR_ACTIVE :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_YEAR_ACTIVE}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_NAME  :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_NAME}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_ID  :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_ID}}
+        </div>
+
+        {{#xif " this.AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_TYPE == '7' " }}
+        
+            <div class="col-md-12 PHOTOVOLTAIC-{{ARR_IDX}}" style="margin: 0 0 15px 0 !important; padding-left: 10px;">
+                <div class="row" >
+                    <div class="col-md-12" style="padding: 0px 10px 0px 10px; margin-top: 10px;">
+                    <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_PHOTOVOLTAIC</label>
+                    </div>
+                </div>
+                <div class="row" style="padding: 0px 10px 0px 10px;">      
+                    <div class="col-md-1" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">
+                        <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_PHOTOVOLTAIC_SECTION_INDEX</label>
+                    </div>
+                    <div class="col-md-3" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">
+                        <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_PHOTOVOLTAIC_SECTION_SOLAR</label>
+                    </div>
+                    <div class="col-md-3" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE;">
+                        <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_PHOTOVOLTAIC_SECTION_TYPE</label>
+                    </div>
+                    <div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE;">
+                        <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_PHOTOVOLTAIC_SECTION_WATT</label>
+                    </div>
+                    <div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE;">
+                        <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_PHOTOVOLTAIC_SECTION_AMOUNT</label>
+                    </div>
+                </div>
+            </div>
+        {{/xif}}
+
+        <div class="col-md-2 pr5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        <div class="col-md-2 pl5">
+            <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>
+
+
+<script type="text/javascript">
+    $(document).on('APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION-databound', function (e, section, datalist) {
+        
+        $(datalist).each(function (index, data) {
+            if (data.hasOwnProperty('AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_TYPE')
+                && data.AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_TYPE == '7'
+                && data.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_PHOTOVOLTAIC) { // แผงโฟโต้ = id 7
+
+                var container = $('div.PHOTOVOLTAIC-' + (index + 1));
+                $(container).find("div.row:gt(1)").remove();
+                var photoList = JSON.parse(data.APP_ENERGY_PRODUCTION_RENEW_MACHINE_SECTION_PHOTOVOLTAIC);
+                for (var i = 0; i < photoList.length; i++) {                    
+                    $(container).append('<div class="row" style="padding: 0px 10px 0px 10px;">'
+                        + '<div class="col-md-1" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + photoList[i].PHOTOVOLTAIC_INDEX + '</div>'
+                        + '<div class="col-md-3" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + photoList[i].PHOTOVOLTAIC_SOLAR_TEXT + '</div>'
+                        + '<div class="col-md-3" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + photoList[i].PHOTOVOLTAIC_TYPE_TEXT + (photoList[i].PHOTOVOLTAIC_TYPE_EXTRA ? ': '+photoList[i].PHOTOVOLTAIC_TYPE_EXTRA : photoList[i].PHOTOVOLTAIC_TYPE_EXTRA) + '</div>' 
+                        + '<div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + photoList[i].PHOTOVOLTAIC_WATT + '</div>' 
+                        +  '<div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + photoList[i].PHOTOVOLTAIC_AMOUNT + '</div>' 
+                        + '</div>');
+                }
+            }
+        });
+    });
+</script>

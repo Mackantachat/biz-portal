@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT" xml:space="preserve">
+    <value>ข้อมูลคำขอแก้ไขใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ส.พ.10) และใบอนุญาตให้ดำเนินการสถานพยาบาล (ส.พ.22) หรือเปลี่ยนตัวผู้ดำเนินการสถานพยาบาลประเภทที่รับผู้ป่วยไว้ค้างคืน (ส.พ.18)</value>
+    <comment>SectionGroup: APP_HOSPITAL_PERMISSION_EDIT</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลการขอแก้ไขใบอนุญาต</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_PURPOSE" xml:space="preserve">
+    <value>มีความประสงค์แก้ไขตามข้อใด</value>
+    <comment>FieldID: F47_01_01</comment>
+  </data>
+  <data name="PURPOSE_CHANGE_DETAIL" xml:space="preserve">
+    <value>เปลี่ยนแปลงรายการใบอนุญาตให้ประกอบกิจการสถานพยาบาลและใบอนุญาตให้ดำเนินการสถานพยาบาล (ประเภทที่รับผู้ป่วยค้างคืน)</value>
+    <comment>FieldID: F47_01_01</comment>
+  </data>
+  <data name="PURPOSE_CHANGE_OPERATOR" xml:space="preserve">
+    <value>เปลี่ยนตัวผู้ดำเนินการสถานพยาบาล (ประเภทที่รับผู้ป่วยค้างคืน)</value>
+    <comment>FieldID: F47_01_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2" xml:space="preserve">
+    <value>ข้อมูลการแก้ไขใบอนุญาตให้ประกอบกิจการสถานพยาบาลและใบอนุญาตให้ดำเนินการสถานพยาบาล (ประเภทที่รับผู้ป่วยค้างคืน)</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2_INFO" xml:space="preserve">
+    <value>กรุณาแนบใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ส.พ.7) และสมุดทะเบียนสถานพยาบาล ตัวจริงมาในวันที่พบหน่วยงาน</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2_REQUEST_CHANGE" xml:space="preserve">
+    <value>เปลี่ยนแปลงข้อมูล</value>
+    <comment>FieldID: F47_01_02</comment>
+  </data>
+  <data name="REQUEST_CHANGE_NAME" xml:space="preserve">
+    <value>เปลี่ยนชื่อสถานพยาบาลเป็น</value>
+    <comment>FieldID: F47_01_02</comment>
+  </data>
+  <data name="REQUEST_CHANGE_ADDRESS" xml:space="preserve">
+    <value>เปลี่ยนที่อยู่สถานพยาบาล</value>
+    <comment>FieldID: F47_01_02</comment>
+  </data>
+  <data name="REQUEST_CHANGE_LICENSEE" xml:space="preserve">
+    <value>เปลี่ยนชื่อตัว ชื่อสกุล ของผู้รับอนุญาต</value>
+    <comment>FieldID: F47_01_02</comment>
+  </data>
+  <data name="REQUEST_CHANGE_WORKING_DATE" xml:space="preserve">
+    <value>เปลี่ยนแปลงวัน/เวลาทำการ</value>
+    <comment>FieldID: F47_01_02</comment>
+  </data>
+  <data name="REQUEST_CHANGE_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F47_01_02</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2_NAME" xml:space="preserve">
+    <value>ชื่อร้าน/สถานประกอบการ (ภาษาไทย)</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2_NAME_ENG" xml:space="preserve">
+    <value>ชื่อร้าน/สถานประกอบการ (ภาษาอังกฤษ)</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F47_01_05</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2_EMAIL" xml:space="preserve">
+    <value>อีเมล</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION" xml:space="preserve">
+    <value>ผู้รับใบอนุญาต</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ผู้รับใบอนุญาต ในขณะนี้ คุณสามารถเพิ่มข้อมูลผู้รับใบอนุญาต&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มผู้รับใบอนุญาต"&lt;/div&gt;</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มผู้รับใบอนุญาต</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มผู้รับใบอนุญาต</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้า</value>
+    <comment>FieldID: F47_01_07</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F47_01_08</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_LICENSEE_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F47_01_09</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION" xml:space="preserve">
+    <value>รายละเอียดวัน/เวลาทำการ</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล รายละเอียดวัน/เวลาทำการ ในขณะนี้ คุณสามารถเพิ่มข้อมูลรายละเอียดวัน/เวลาทำการ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มรายละเอียดวัน/เวลาทำการ"&lt;/div&gt;</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มรายละเอียดวัน/เวลาทำการ</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มรายละเอียดวัน/เวลาทำการ</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_DAY" xml:space="preserve">
+    <value>วัน</value>
+    <comment>FieldID: F47_01_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_DAY_MONDAY" xml:space="preserve">
+    <value>จันทร์</value>
+    <comment>FieldID: F47_01_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_DAY_TUESDAY" xml:space="preserve">
+    <value>อังคาร</value>
+    <comment>FieldID: F47_01_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_DAY_WEDNESDAY" xml:space="preserve">
+    <value>พุธ</value>
+    <comment>FieldID: F47_01_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_DAY_THURSDAY" xml:space="preserve">
+    <value>พฤหัส</value>
+    <comment>FieldID: F47_01_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_DAY_FRIDAY" xml:space="preserve">
+    <value>ศุกร์</value>
+    <comment>FieldID: F47_01_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_DAY_SATURDAY" xml:space="preserve">
+    <value>เสาร์</value>
+    <comment>FieldID: F47_01_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_DAY_SUNDAY" xml:space="preserve">
+    <value>อาทิตย์</value>
+    <comment>FieldID: F47_01_10</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_START_TIME" xml:space="preserve">
+    <value>เวลาเริ่มงาน</value>
+    <comment>FieldID: F47_01_11</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_DAY_SECTION_END_TIME" xml:space="preserve">
+    <value>เวลาเลิกงาน</value>
+    <comment>FieldID: F47_01_12</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_3" xml:space="preserve">
+    <value>ข้อมูลการขอแก้ไขใบอนุญาต</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_3</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_3_DESCRIPTION" xml:space="preserve">
+    <value>ระบุรายละเอียด</value>
+    <comment>FieldID: F47_01_13</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_3_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F47_01_14</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_3_CONFIRM_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+&lt;div class="col-xs-12"&gt;พร้อมกับคำขอนี้ข้าพเจ้าได้แนบหลักฐานต่างๆ มาด้วย คือ&lt;/div&gt;
+&lt;div class="col-xs-11 style="padding-left: 20px;"&gt;- ใบอนุญาตให้ประกอบกิจการสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-11 style="padding-left: 20px;"&gt;- เอกสารที่เป็นหลักฐานเกี่ยวข้องกับการขอเปลี่ยนแปลง&lt;/div&gt;
+&lt;div class="col-xs-11 style="padding-left: 20px;"&gt;- สมุดทะเบียนสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-11 style="padding-left: 20px;"&gt;- เอกสารอื่นๆ (ถ้ามี)&lt;/div&gt;
+&lt;/div&gt;</value>
+    <comment>FieldID: F47_01_14</comment>
+  </data>
+  <data name="CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ</value>
+    <comment>FieldID: F47_01_14</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4" xml:space="preserve">
+    <value>ข้อมูลผู้ดำเนินการ</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4_INFO" xml:space="preserve">
+    <value>กรุณาแนบใบอนุญาตให้ดำเนินการสถานพยาบาล (สพ.19) และ สมุดทะเบียนตัวจริงมาวันที่พบหน่วยงาน</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4_BECAUSE" xml:space="preserve">
+    <value>ขอเปลี่ยนผู้ดำเนินการสถานพยาบาลเดิม เนื่องจาก</value>
+    <comment>FieldID: F47_01_15</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4_BECAUSE_LICENSEE_CHANGE" xml:space="preserve">
+    <value>ผู้รับอนุญาตให้ประกอบกิจการสถานพยาบาลประสงคจ์ะเปลี่ยน</value>
+    <comment>FieldID: F47_01_15</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_4_BECAUSE_LICENSEE_LEAVE" xml:space="preserve">
+    <value>ผู้ดำเนินการสถานพยาบาลเดิมไม่ประสงค์จะเป็นผู้ดำเนินการสถานพยาบาลต่อไป </value>
+    <comment>FieldID: F47_01_15</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้ดำเนินการ</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้า</value>
+    <comment>FieldID: F47_01_16</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F47_01_17</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F47_01_18</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_AGE" xml:space="preserve">
+    <value>อายุ (ปี)</value>
+    <comment>FieldID: F47_01_19</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+    <comment>FieldID: F47_01_20</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_CHECK_NATIONALITY" xml:space="preserve">
+    <value>CHECK_NATIONALITY</value>
+    <comment>FieldID: F47_01_21</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_ID_CARD" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+    <comment>FieldID: F47_01_22</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_PASSPORT" xml:space="preserve">
+    <value>เลขหนังสือเดินทาง</value>
+    <comment>FieldID: F47_01_23</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_PROFESSIONAL" xml:space="preserve">
+    <value>เป็นผู้ประกอบวิชาชีพ </value>
+    <comment>FieldID: F47_01_24</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_PROFESSIONAL_PRACTICING_DISEASE" xml:space="preserve">
+    <value>ประกอบวิชาชีพ</value>
+    <comment>FieldID: F47_01_24</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_PROFESSIONAL_MEDICAL_PRACTICE" xml:space="preserve">
+    <value>ประกอบโรคศิลปะ</value>
+    <comment>FieldID: F47_01_24</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH" xml:space="preserve">
+    <value>สาขา</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_MEDICINE" xml:space="preserve">
+    <value>เวชกรรม</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_DENTAL" xml:space="preserve">
+    <value>ทันตกรรม</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_NURSING_AND_MIDWIFERY" xml:space="preserve">
+    <value>การพยาบาลและการผดุงครรภ์</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_MEDICAL_TECHNIQUE" xml:space="preserve">
+    <value>เทคนิคการแพทย์</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_PHYSICAL_THERAPY" xml:space="preserve">
+    <value>กายภาพบำบัด</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_THAI_TRADITIONAL_MEDICINE" xml:space="preserve">
+    <value>การแพทย์แผนไทย</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_HEALING_ARTS_PRACTICE" xml:space="preserve">
+    <value>การประกอบโรคศิลปะ</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_SPECIALIZED_MEDICINE" xml:space="preserve">
+    <value>เฉพาะทางเวชกรรม</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_SPECIALIZED_DENTISTRY" xml:space="preserve">
+    <value>เฉพาะทางทันตกรรม</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_SPECIALIZED_IN_NURSING_AND_MIDWIFE" xml:space="preserve">
+    <value>เฉพาะทางด้านการพยาบาลและผดุงครรภ์</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_SPECIALIZED_IN_THE_ENT" xml:space="preserve">
+    <value>เฉพาะทาง หู คอ จมูก</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_HEART_DISEASE" xml:space="preserve">
+    <value>เฉพาะทางโรคหัวใจ</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_SPECIFIC_TO_CANCER" xml:space="preserve">
+    <value>เฉพาะทางโรคมะเร็ง</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_BRANCH_OTHER_SPECIALTY" xml:space="preserve">
+    <value>เฉพาะทางอื่นๆ</value>
+    <comment>FieldID: F47_01_25</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_LICENSE" xml:space="preserve">
+    <value>เลขที่ใบอนุญาตประกอบวิชาชีพหรือใบอนุญาตประกอบโรคศิลปะ</value>
+    <comment>FieldID: F47_01_26</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_SECTION_LICENSE_DATE" xml:space="preserve">
+    <value>วันที่ออกใบอนุญาต</value>
+    <comment>FieldID: F47_01_27</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION" xml:space="preserve">
+    <value>วุฒิบัตร/หนังสืออนุมัติ/หนังสือรับรอง</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล วุฒิบัตร/หนังสืออนุมัติ/หนังสือรับรอง ในขณะนี้ คุณสามารถเพิ่มข้อมูลวุฒิบัตร/หนังสืออนุมัติ/หนังสือรับรอง&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มวุฒิบัตร/หนังสืออนุมัติ/หนังสือรับรอง"&lt;/div&gt;</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มวุฒิบัตร/หนังสืออนุมัติ/หนังสือรับรอง</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มวุฒิบัตร/หนังสืออนุมัติ/หนังสือรับรอง</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_TYPE" xml:space="preserve">
+    <value>ประเภท</value>
+    <comment>FieldID: F47_01_28</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_TYPE_DIPLOMA" xml:space="preserve">
+    <value>วุฒิบัตร</value>
+    <comment>FieldID: F47_01_28</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_TYPE_APPROVAL_LETTER" xml:space="preserve">
+    <value>หนังสืออนุมัติ</value>
+    <comment>FieldID: F47_01_28</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_TYPE_CERTIFICATE" xml:space="preserve">
+    <value>หนังสือรับรอง</value>
+    <comment>FieldID: F47_01_28</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_BRANCH" xml:space="preserve">
+    <value>สาขา</value>
+    <comment>FieldID: F47_01_29</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_NUMBER" xml:space="preserve">
+    <value>เลขที่</value>
+    <comment>FieldID: F47_01_30</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_DATE" xml:space="preserve">
+    <value>ออกให้ ณ วันที่</value>
+    <comment>FieldID: F47_01_31</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CERTIFICATE_SECTION_EXPIRED_DATE" xml:space="preserve">
+    <value>วันที่หมดอายุ</value>
+    <comment>FieldID: F47_01_32</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION" xml:space="preserve">
+    <value>วันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล วันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล ในขณะนี้ คุณสามารถเพิ่มข้อมูลวันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล โดยคลิกที่ปุ่ม "เพิ่มวันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล"&lt;/div&gt;
+</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_DAY" xml:space="preserve">
+    <value>วัน</value>
+    <comment>FieldID: F47_01_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_DAY_MONDAY" xml:space="preserve">
+    <value>จันทร์</value>
+    <comment>FieldID: F47_01_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_DAY_TUESDAY" xml:space="preserve">
+    <value>อังคาร</value>
+    <comment>FieldID: F47_01_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_DAY_WEDNESDAY" xml:space="preserve">
+    <value>พุธ</value>
+    <comment>FieldID: F47_01_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_DAY_THURSDAY" xml:space="preserve">
+    <value>พฤหัส</value>
+    <comment>FieldID: F47_01_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_DAY_FRIDAY" xml:space="preserve">
+    <value>ศุกร์</value>
+    <comment>FieldID: F47_01_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_DAY_SATURDAY" xml:space="preserve">
+    <value>เสาร์</value>
+    <comment>FieldID: F47_01_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_DAY_SUNDAY" xml:space="preserve">
+    <value>อาทิตย์</value>
+    <comment>FieldID: F47_01_33</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_START_TIME" xml:space="preserve">
+    <value>เวลาเริ่มงาน</value>
+    <comment>FieldID: F47_01_34</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATING_DATE_SECTION_END_TIME" xml:space="preserve">
+    <value>เวลาเลิกงาน</value>
+    <comment>FieldID: F47_01_35</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_SECTION" xml:space="preserve">
+    <value>ข้อมูลที่อยู่ตามบัตรประชาชน</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่่อยู่</value>
+    <comment>FieldID: F47_01_36</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_SECTION_EMAIL" xml:space="preserve">
+    <value>อีเมล</value>
+    <comment>FieldID: F47_01_37</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_CURRENT_SECTION" xml:space="preserve">
+    <value>ข้อมูลที่อยู่ที่ติดต่อได้/ข้อมูลที่อยู่ปัจจุบัน</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_CURRENT_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_CURRENT_SECTION_USED_CURRENT_ADDRESS" xml:space="preserve">
+    <value>ใช้ที่อยู่เดียวกับที่อยู่ตามบัตรประชาชน</value>
+    <comment>FieldID: F47_01_38</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_CURRENT_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F47_01_39</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_ADDRESS_CURRENT_SECTION_EMAIL" xml:space="preserve">
+    <value>อีเมล</value>
+    <comment>FieldID: F47_01_40</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION" xml:space="preserve">
+    <value>ข้อมูลสถานะการทำงาน</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_STATUS" xml:space="preserve">
+    <value>สถานะการดำเนินการในปัจจุบันของผู้ดำเนินการเป็นอย่างไร</value>
+    <comment>FieldID: F47_01_41</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_STATUS_OPERATOR" xml:space="preserve">
+    <value>เป็นผู้ดำเนินการสถานพยาบาลประเภทที่</value>
+    <comment>FieldID: F47_01_41</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_STATUS_PROFESSIONAL" xml:space="preserve">
+    <value>เป็นผู้ประกอบวิชาชีพหรือปฏิบัติงานหน้าที่อื่นในสถานพยาบาล หรือในส่วนราชการ หรือหน่วยงานอื่น ดังนี้</value>
+    <comment>FieldID: F47_01_41</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_TYPE" xml:space="preserve">
+    <value>เป็นผู้ดำเนินการสถานพยาบาลประเภทที่</value>
+    <comment>FieldID: F47_01_42</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_TYPE_CLINIC" xml:space="preserve">
+    <value>ประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+    <comment>FieldID: F47_01_42</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_TYPE_HOSPITAL" xml:space="preserve">
+    <value>ประเภทที่รับผู้ป่วยไว้ค้างคืน</value>
+    <comment>FieldID: F47_01_42</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_HOSPITAL_LICENSE" xml:space="preserve">
+    <value>เลขที่ใบอนุญาตให้ดำเนินการสถานพยาบาล</value>
+    <comment>FieldID: F47_01_43</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_HOSPITAL_NAME" xml:space="preserve">
+    <value>ชื่อสถานพยาบาล/ส่วนราชการ/หน่วยงาน</value>
+    <comment>FieldID: F47_01_44</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_WORKING_STATUS_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F47_01_45</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION" xml:space="preserve">
+    <value>วันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล วันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน ในขณะนี้ คุณสามารถเพิ่มข้อมูลวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน"&lt;/div&gt;</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_DAY" xml:space="preserve">
+    <value>วัน</value>
+    <comment>FieldID: F47_01_46</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_DAY_MONDAY" xml:space="preserve">
+    <value>จันทร์</value>
+    <comment>FieldID: F47_01_46</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_DAY_TUESDAY" xml:space="preserve">
+    <value>อังคาร</value>
+    <comment>FieldID: F47_01_46</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_DAY_WEDNESDAY" xml:space="preserve">
+    <value>พุธ</value>
+    <comment>FieldID: F47_01_46</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_DAY_THURSDAY" xml:space="preserve">
+    <value>พฤหัส</value>
+    <comment>FieldID: F47_01_46</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_DAY_FRIDAY" xml:space="preserve">
+    <value>ศุกร์</value>
+    <comment>FieldID: F47_01_46</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_START_TIME" xml:space="preserve">
+    <value>เวลาเริ่มงาน</value>
+    <comment>FieldID: F47_01_47</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_OPERATOR_WORKING_DAY_SECTION_END_TIME" xml:space="preserve">
+    <value>เวลาเลิกงาน</value>
+    <comment>FieldID: F47_01_48</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CONFIRM_SECTION" xml:space="preserve">
+    <value>ข้าพเจ้ารับรองว่า</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_EDIT_CONFIRM_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CONFIRM_SECTION_OPERATOR_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F47_01_49</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CONFIRM_SECTION_OPERATOR_CONFIRM_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+&lt;div class="col-xs-1"&gt;1. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ไม่เคยเป็นผู้ดำเนินการสถานพยาบาลอยู่ก่อนแล้วสองแห่ง&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;2. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สามารถควบคุมดูแลการดำเนินการสถานพยาบาลได้โดยใกล้ชิด (ในกรณีสถานพยาบาลประเภทที่รับผู้ป่วยไว้ค้างคืน ผู้ดำเนินการสถานพยาบาลต้องสามารถปฏิบัติงานในสถานพยาบาลในเวลาราชการได้ไม่น้อยกว่า 40 ชั่วโมงต่อสัปดาห์)&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;3. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ผู้รับอนุญาตให้ประกอบกิจการสถานพยาบาลยินยอมให้ข้าพเจ้าดำเนินการสถานพยาบาล ตามมาตรา 23 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;4. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ผู้รับอนุญาตมีอำนาจให้ข้าพเจ้าพ้นจากหน้าที่ก่อนใบอนุญาตสิ้นอายุ&lt;/div&gt;
+&lt;div class="col-xs-12"&gt;พร้อมกับคำขอนี้ข้าพเจ้าได้แนบเอกสารหลักฐานต่างๆมาด้วย คือ&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;1. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สําเนาบัตรประจําตัว&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;2. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สําเนาใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;3. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สําเนาทะเบียนบ้าน&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;4. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สําเนาวุฒิบัตร หรือหนังสืออนุมัติหรือ หนังสือรับรอง&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;5. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบรับรองแพทย์&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;6. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบอนุญาตให้ดําเนินการสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;7. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สมุดทะเบียนสถานพยาบาล (ถ้ามี)&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;8. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร จํานวน 3 รูป ถ่ายไว้ไม่เกินหนึ่งปี&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;9. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;รูปถ่าย ขนาด 8 x 13 เซนติเมตร จํานวน 3 รูป ถ่ายไว้ไม่เกินหนึ่งปี&lt;/div&gt;
+&lt;/div&gt;</value>
+    <comment>FieldID: F47_01_49</comment>
+  </data>
+  <data name="OPERATOR_CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ</value>
+    <comment>FieldID: F47_01_49</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_CONFIRM_SECTION_OPERATOR_CONFIRM_2" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F47_01_50</comment>
+  </data>
+  <data name="OPERATOR_CONFIRM_2_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้ายินยอมให้บุคคลดังกล่าวข้างต้น เป็นผู้ดำเนินการสถานพยาบาลแห่งนี้</value>
+    <comment>FieldID: F47_01_50</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITA" xml:space="preserve">
+    <value>ข้อมูลคำขอแก้ไขใบอนุญาตให้ประกอบกิจการสถานพยาบาล (ส.พ.10)</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITB" xml:space="preserve">
+    <value>ข้อมูลคำขอเปลี่ยนตัวผู้ดำเนินการสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน (ส.พ.18)</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC" xml:space="preserve">
+    <value>ข้อมูลคำขอแก้ไขใบอนุญาตให้ดำเนินการสถานพยาบาล (ส.พ.22)</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA" xml:space="preserve">
+    <value>ข้อมูลผู้ดำเนินการ</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_CONA" xml:space="preserve">
+    <value>คำนำหน้า</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_CONB" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_CONC" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_COND" xml:space="preserve">
+    <value>อายุ (ปี)</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_CONE" xml:space="preserve">
+    <value>สัญชาติ</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_CONF" xml:space="preserve">
+    <value>เป็นผู้ประกอบวิชาชีพ</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_CONG" xml:space="preserve">
+    <value>สาขา</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_CONH" xml:space="preserve">
+    <value>เลขที่ใบอนุญาตประกอบวิชาชีพหรือใบอนุญาตประกอบโรคศิลปะ</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_CONI" xml:space="preserve">
+    <value>วันที่ออกใบอนุญาต</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECB" xml:space="preserve">
+    <value>วันและเวลาปฏิบัติงานของผู้ดำเนินกำรสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECB_ADD" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECB_CONA" xml:space="preserve">
+    <value>วัน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECB_CONB" xml:space="preserve">
+    <value>เวลาเริ่มงาน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECB_CONC" xml:space="preserve">
+    <value>เวลาเลิกงาน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECB_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล วันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล ในขณะนี้ คุณสามารถเพิ่มข้อมูลวันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล โดยคลิกที่ปุ่ม "เพิ่มวันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล"&lt;/div&gt;</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECB_SUBMIT" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของผู้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECC" xml:space="preserve">
+    <value>ข้อมูลที่อยู่ที่ติดต่อได้/ข้อมูลที่อยู่ปัจจุบัน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECD" xml:space="preserve">
+    <value>ข้อมูลสถานะการทำงาน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECD_CONA" xml:space="preserve">
+    <value>สถานะการดำเนินการในปัจจุบันของผู้ดำเนินการเป็นอย่างไร</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECD_CONB" xml:space="preserve">
+    <value>เป็นผู้ดำเนินการสถานพยาบาลประเภทที่</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECD_CONC" xml:space="preserve">
+    <value>เลขที่ใบอนุญาตให้ดำเนินการสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECD_COND" xml:space="preserve">
+    <value>ชื่อสถานพยาบาล/ส่วนราชการ/หน่วยงาน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECE" xml:space="preserve">
+    <value>วันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECE_CONA" xml:space="preserve">
+    <value>วัน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECE_CONB" xml:space="preserve">
+    <value>เวลาเริ่มงาน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECE_CONC" xml:space="preserve">
+    <value>เวลาเลิกงาน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECE_ADD" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECE_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล วันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน ในขณะนี้ คุณสามารถเพิ่มข้อมูลวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน"&lt;/div&gt;</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECE_SUBMIT" xml:space="preserve">
+    <value>เพิ่มวันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECF_CONA" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECF_CONA_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+&lt;div class="col-xs-1"&gt;1. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ไม่เคยเป็นผู้ดำเนินการสถานพยาบาลอยู่ก่อนแล้วสองแห่ง&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;2. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สามารถควบคุมดูแลการดำเนินการสถานพยาบาลได้โดยใกล้ชิด (ในกรณีสถานพยาบาลประเภทที่รับผู้ป่วยไว้ค้างคืน ผู้ดำเนินการสถานพยาบาลต้องสามารถปฏิบัติงานในสถานพยาบาลในเวลาราชการได้ไม่น้อยกว่า 40 ชั่วโมงต่อสัปดาห์)&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;3. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ผู้รับอนุญาตให้ประกอบกิจการสถานพยาบาลยินยอมให้ข้าพเจ้าดำเนินการสถานพยาบาล ตามมาตรา 23 แห่งพระราชบัญญัติสถานพยาบาล พ.ศ. 2541&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;4. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ผู้รับอนุญาตมีอำนาจให้ข้าพเจ้าพ้นจากหน้าที่ก่อนใบอนุญาตสิ้นอายุ&lt;/div&gt;
+&lt;div class="col-xs-12"&gt;พร้อมกับคำขอนี้ข้าพเจ้าได้แนบเอกสารหลักฐานต่างๆมาด้วย คือ&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;1. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สําเนาบัตรประจําตัว&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;2. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สําเนาใบอนุญาตประกอบวิชาชีพ/ใบอนุญาตประกอบโรคศิลปะ&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;3. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สําเนาทะเบียนบ้าน&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;4. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สําเนาวุฒิบัตร หรือหนังสืออนุมัติหรือ หนังสือรับรอง&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;5. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบรับรองแพทย์&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;6. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบอนุญาตให้ดําเนินการสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;7. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สมุดทะเบียนสถานพยาบาล (ถ้ามี)&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;8. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;รูปถ่าย ขนาด 2.5 x 3 เซนติเมตร จํานวน 3 รูป ถ่ายไว้ไม่เกินหนึ่งปี&lt;/div&gt;
+&lt;div class="col-xs-1"&gt;9. &lt;/div&gt;
+&lt;div class="col-xs-11"&gt;รูปถ่าย ขนาด 8 x 13 เซนติเมตร จํานวน 3 รูป ถ่ายไว้ไม่เกินหนึ่งปี&lt;/div&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECF_CONB" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>ข้าพเจ้ายินยอมให้บุคคลดังกล่าวข้างต้น เป็นผู้ดำเนินการสถานพยาบาลแห่งนี้</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDIT_INFO_SECTION_2_ID" xml:space="preserve">
+    <value>เลขที่ใบอนุญาต</value>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_EDITC_SECA_ID" xml:space="preserve">
+    <value>เลขที่ใบอนุญาต</value>
+  </data>
+</root>

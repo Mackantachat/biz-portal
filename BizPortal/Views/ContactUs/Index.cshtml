@@ -1,0 +1,155 @@
+﻿@using Resource = BizPortal.Resources
+@model BizPortal.ViewModels.EmailViewModel
+@{
+    ViewBag.Title = Resource.ContactUs.CONTACT_US;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section breadcrumb{
+    <div class="breadcrumb-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb container">
+                        <li><a href="@Url.Action("Index", "Home", new { language = ViewBag.CurrentLang })">@Resource.Breadcrumb.HOME</a></li>
+                        <li class="active">@Resource.Breadcrumb.CONTACTUS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="group-container">
+                <hr class="dashed" style="margin:0; margin-bottom:10px;" />
+                <div class="body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.AntiForgeryToken()
+                        <div class="col-md-4 form-horizontal">
+                            <h4>@Resource.ContactUs.CONTACT_US</h4>
+                            <div class="form-group">
+                                @Resource.ContactUs.SUBJECT
+                                @foreach (var item in (List<SelectListItem>)ViewBag.Questions)
+                                {
+                                    <div>
+                                        @Html.RadioButtonFor(model => model.Question, item.Text)
+                                        @item.Text
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                @Html.TextAreaFor(model => model.Message, new { @placeholder = Resource.ContactUs.PLACE_DETAIL, @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.Name, new { @placeholder = @Resource.ContactUs.PLACE_NAME, @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.CitizenId, new { @placeholder = @Resource.ContactUs.PLACE_CITIZEN_ID, @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.CheckBoxFor(model => model.IsContactBack)  @Resource.ContactUs.IS_CONTACT_BACK
+                            </div>
+                            <small>@Resource.ContactUs.PLEASE_ENTER_MORE_DETAIL</small>
+                            <div id="pnlMore" style="display:none">
+                                <div class="form-group">                                   
+                                    @Html.TextBoxFor(model => model.Email, new { @placeholder = @Resource.ContactUs.PLACE_EMAIL, @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Telephone, new { @placeholder = @Resource.ContactUs.PLACE_PHONE_NO, @class = "form-control" })
+                                </div>
+                                
+                            </div>
+
+                            <div class="form-group">
+                                <input id="submit-btn" class="btn btn-block btn-info" type="submit" value="@Resource.ContactUs.SEND" />
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <h4>@Resource.ContactUs.OWNER_NAME</h4>
+                            <div class="row">
+                                <div class="col-xs-1"><img src="@Url.Content("~/Content/Images/contactus/phone-icon.png")"></div>
+                                <div class="col-xs-11">@Resource.ContactUs.CONTACT_NO</div>
+                            </div>
+                            <p class="clear"></p>
+                            <div class="row">
+                                <div class="col-xs-1"><img src="@Url.Content("~/Content/Images/contactus/icon_world.png")"></div>
+                                <div class="col-xs-11"><a href="@Resource.ContactUs.CONTACT_WEB">@Resource.ContactUs.CONTACT_WEB</a></div>
+                            </div>
+                            <p class="clear"></p>
+                            <div class="row">
+                                <div class="col-xs-1"><img src="@Url.Content("~/Content/Images/contactus/pin-icon.png")"></div>
+                                <div class="col-xs-11">@Resource.ContactUs.CONTACT_ADDRESS</div>
+                            </div>
+                            <p class="clear"></p>
+                            <div class="row">
+                                <div class="col-xs-1"><img src="@Url.Content("~/Content/Images/contactus/contact-icon.png")"></div>
+                                <div class="col-xs-11">@Resource.ContactUs.CONTACT_MAIL</div>
+                            </div>
+                        </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <h4>@Resource.ContactUs.OFFICE_HOUR</h4>
+                                    <span class="text-weight-bold">@DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName))</span>
+                                    <span class="">@DateTime.Now.ToString("dd MMMM yyyy")</span><br />
+
+                                    @{List<HollidayViewModel> hollidays = (List<HollidayViewModel>)ViewBag.Holliday;}
+                                    @if (hollidays.Any(e => e.Date == DateTime.Now))
+                                    {
+                                        <span class="text-weight-bold text-danger">@Resource.ContactUs.CLOSE</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-weight-bold">@Resource.ContactUs.OPEN</span>
+                                        <span class="">@Resource.ContactUs.OPEN_TIME</span>
+                                    }
+
+                                    <p></p>
+                                    <hr />
+                                    <h4>@Resource.ContactUs.GOVERNMENT_CLOSE</h4>
+
+
+                                    @foreach (var holliday in hollidays)
+                                    {
+                                        <div class="row">
+                                            <div class="col-xs-8 text-weight-bold">@holliday.Name</div>
+                                            <div class="col-xs-4">
+                                                @holliday.Date.ToString("dddd", new System.Globalization.CultureInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName))
+                                                @holliday.Date.ToString("dd/MM/yyyy")
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                                        }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts{
+    
+
+    <script type="text/javascript">
+        $(function () {
+            
+            $("input[name='IsContactBack']").on("change", function () {
+                if ($("input[name='IsContactBack']:checked").length == 1)
+                {
+                    $("#pnlMore").show();
+                }
+                else {
+                    $("#pnlMore").hide();
+                }
+            })
+        });
+    </script>
+}

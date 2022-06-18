@@ -1,0 +1,39 @@
+﻿@using Resource = BizPortal.Resources
+@{
+    ViewBag.Title = Resource.AboutUs.ABOUTUS;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section breadcrumb{
+    <div class="breadcrumb-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb container">
+                        <li><a href="@Url.Action("Index", "Home", new { language = ViewBag.CurrentLang })">@Resource.Breadcrumb.HOME</a></li>
+                        <li class="active">@Resource.Breadcrumb.ABOUTUS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="row">
+            <div class="col-md-12">
+                <div class="group-container">
+                    <h2 class="detail-header">@Resource.AboutUs.ABOUTUS</h2>
+                    <hr class="dashed" style="margin:0; margin-bottom:10px;" />
+                    <div class="body">
+                       @Html.Raw( @Resource.AboutUs.DETAIL)
+                        <p class="text-center">
+                            <img class="img-responsive" src="@Url.Content(string.Format("~/Content/Images/aboutus/about_{0}.png", ViewBag.CurrentLang))" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+</div>
+

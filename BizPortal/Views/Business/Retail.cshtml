@@ -1,0 +1,1490 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+
+@{
+    ViewBag.Title = @Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO_RETAIL;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@section breadcrumb {
+    <section class="breadcrumb">
+        <div class="container">
+            <h2>@Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO_RETAIL</h2>
+            <ul>
+                <li class="">
+                    <a href="@Url.BizAction("Index", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                        @Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO
+                    </a>
+                </li>
+                <li class="">
+                    <a>@Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO_RETAIL</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+}
+
+<section class="banner-subpage" style="background: transparent url('@Url.Content("~/Content/SingleForm-frontis/v2/images/shop.png")') no-repeat center center;
+        background-size: cover;">
+    <!--         <div class="container" style="">
+                <h1>ข้อมูลสำหรับธุรกิจ</h1>
+                <p>คุณสามารถค้นหาข้อมูลจากหลายหน่วยงานได้ในที่เดียว</p>
+            </div> -->
+</section>
+<section class="business-food">
+    <div class="container">
+        <h2>ธุรกิจร้านค้าปลีกคืออะไร​</h2>
+        <hr>
+        <p class="subtitle">ธุรกิจที่มีการขายสินค้าเพื่อให้ผู้ซื้อนำไปอุปโภคบริโภคโดยตรง และผู้ขายไม่ได้ผลิตหรือแปรรูปสินค้านั้นเอง</p>
+        <br>
+        <!--             <h2>จะทำธุรกิจร้านค้าปลีกต้องของขออนุญาตอะไรบ้าง</h2>
+                    <hr>
+                    <p class="subtitle">ใบอนุญาตในการประกอบธุรกิจร้านค้าปลีกมี 2 ประเภทใหญ่ๆ ได้แก่</br>การขออนุญาตตามวิธีขายและ การขออนุญาตตามประเภทสินค้าที่ขาย</p>
+                    <ul>
+                        <li>การขออนุญาตตามรูปแบบการขาย</li>
+                        <li>การขออนุญาตตาม
+ประเภทของสินค้า</li>
+                    </ul> -->
+    </div>
+</section>
+<section class="business-info">
+    <div class="container">
+        <h2>ร้านของคุณต้องขออนุญาตอะไรบ้าง</h2>
+        <h3>หากร้านของคุณ..</h3>
+        <div class="row">
+            <div class="D-9 T-12">
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/1 company.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีเจ้าของหรือหุ้นส่วนตั้งแต่ 2 คนขึ้นไป ที่ต้องการแบ่งกำไรและความรับผิดชอบจากธุรกิจนั้นร่วมกัน</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนนิติบุคคล</p>
+                                    <p class="detail">ที่กรมพัฒนาธุรกิจการค้า หรือสำนักงานพาณิชย์จังหวัด</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนจำกัด / ห้างหุ้นส่วนสามัญนิติบุคคล</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/244/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบริษัทจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/2652/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบริษัทมหาชนจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/2653/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ <span class="regular"> ตาม พ.ร.บ.กำหนดความผิดเกี่ยวกับห้างหุ้นส่วนจดทะเบียน ห้างหุ้นส่วนจำกัด บริษัทจำกัด สมาคม และมูลนิธิ พ.ศ. 2499</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--1 company -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/2 basket.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">ขายสินค้าได้ 20 บาทขึ้นไปต่อวัน หรือมีสินค้าไว้เพื่อขายมูลค่ารวม 500 บาทขึ้นไป (ยกเว้นขายเร่ และแผงลอย​)</p>
+                            <p class="detail hide">โดยที่ร้านของคุณเป็นกิจการเจ้าของคนเดียว ห้างหุ้นส่วนสามัญ หรือคณะบุคคล</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนพาณิชย์</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบุคคลธรรมดา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนสามัญ คณะบุคคลและกิจการร่วมค้า</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1422/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ <span class="regular">ตาม พ.ร.บ. ทะเบียนพาณิชย์ พ.ศ. 2499</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 2 basket -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/3 money.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">ขายได้มากกว่า 1.8 ล้านบาทต่อปี</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">จดทะเบียนภาษีมูลค่าเพิ่ม</p>
+                                    <p class="detail">ที่สำนักงานบริหารภาษีธุรกิจขนาดใหญ่ สำนักงานสรรพากรพื้นที่ หรือ สำนักงานสรรพากรพื้นที่สาขา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/5234/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B5%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%93%E0%B8%B5%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A1%E0%B8%B5%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B9%83%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ<span class="regular"> ตามบทบัญญัติแห่งประมวลรัษฎากร หมวด 4 ภาษีมูลค่าเพิ่ม</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--3 money-->
+
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/4 shop.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายสินค้าผ่านหน้าร้าน</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตก่อสร้างอาคารหรือขอรับรองการเปิดใช้อาคาร</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/4905/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%20%E0%B8%94%E0%B8%B1%E0%B8%94%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B8%87%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%A3%E0%B8%B7%E0%B9%89%E0%B8%AD%E0%B8%96%E0%B8%AD%E0%B8%99%E0%B8%AD%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%20(%E0%B9%81%E0%B8%9A%E0%B8%9A%20%E0%B8%82.1)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ<span class="regular"> ตาม พ.ร.บ. ควบคุมอาคาร พ.ศ. 2522</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--4 shop-->
+
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/5 salesman.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการเสนอขายสินค้าผ่านตัวแทนขายตรงหรือตัวแทนอิสระ ต่อผู้บริโภคโดยตรงที่บ้าน ที่ทำงาน หรือสถานที่อื่นที่ไม่ใช่ร้านค้า</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตประกอบธุรกิจขายตรง</p>
+                                    <p class="detail">ที่สำนักงานคณะกรรมการคุ้มครองผู้บริโภค กรุงเทพมหานคร</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8864/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%98%E0%B8%B8%E0%B8%A3%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%95%E0%B8%A3%E0%B8%87%20(%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกจำคุกไม่เกิน 1 ปี  ปรับไม่เกิน 100,000 บาท หรือทั้งจำทั้งปรับ<span class="regular">ตาม พ.ร.บ. ขายตรงและตลาดแบบตรง พ.ศ. 2545</span></p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>ข้อควรรู้…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="detail">คุณไม่สามารถขายสินค้าประเภท ยา เครื่องมือแพทย์ สุรา ปุ๋ยและสินค้าชนิดอื่น ที่กฎหมายห้ามมิให้จำหน่ายนอกสถานที่ทำการของผู้ประกอบธุรกิจ ในธุรกิจตลาดแบบตรงและขายตรงได้</p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--5 salesman-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/6 online.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                เสนอขายสินค้าผ่านสื่อ เช่น โทรทัศน์ อินเทอร์เน็ต สิ่งพิมพ์ วิทยุ เพื่อให้ลูกค้าติดต่อกลับเพื่อซื้อของ
+                            </p>
+                            <p class="detail hide">ทั้งนี้ไม่นับรวมการขายผ่าน Facebook, Instagram หรือ LINE</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตประกอบธุรกิจตลาดแบบตรง</p>
+                                    <p class="detail">ที่สำนักงานคณะกรรมการคุ้มครองผู้บริโภค กรุงเทพมหานคร</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/9074/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%98%E0%B8%B8%E0%B8%A3%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%95%E0%B8%A3%E0%B8%87%20(%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกจำคุกไม่เกิน 1 ปี หรือปรับไม่เกิน 100,000 บาท หรือทั้งจำทั้งปรับ<span class="regular">ตาม พ.ร.บ. ขายตรงและตลาดแบบตรง พ.ศ. 2545</span></p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>ข้อควรรู้…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="detail">คุณไม่สามารถขายสินค้าประเภท ยา เครื่องมือแพทย์ สุรา ปุ๋ยและสินค้าชนิดอื่น ที่กฎหมายห้ามมิให้จำหน่ายนอกสถานที่ทำการของผู้ประกอบธุรกิจ ในธุรกิจตลาดแบบตรงและขายตรงได้</p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--6 online-->
+
+                <div class="item-info">
+                    <!-- internet -->
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/earth.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายของผ่านอินเทอร์เน็ต</p>
+                            <p class="detail hide">เช่น เว็บไซต์ของตัวเอง ผ่านเว็บไซต์อื่น (เช่น Ebay, Amazon) หรือโซเชียลมีเดีย (เช่น Line, Facebook, Twitter, Instragram เป็นต้น)</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนพาณิชย์</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบุคคลธรรมดา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนสามัญ คณะบุคคลและกิจการร่วมค้า</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1422/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนจดทะเบียน บริษัทจำกัด บริษัทมหาชนจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1482/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">
+                                คุณอาจถูกปรับ
+                                <span class="regular">ตาม พ.ร.บ. ทะเบียนพาณิชย์ พ.ศ. 2499</span>
+                            </p>
+                            <br>
+                            <div class="btn-hold">
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- internet -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/7 food.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายอาหารหรือเครื่องดื่ม</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">หากพื้นที่ร้านน้อยกว่า 200 ตารางเมตร คุณต้องแจ้งจัดตั้งสถานที่จำหน่ายหรือสะสมอาหาร</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/8598/%E0%B8%AA%E0%B8%B0%E0%B8%AA%E0%B8%A1%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">หากพื้นที่ร้านมากกว่า 200 ตารางเมตร คุณต้องขออนุญาตจัดตั้งสถานที่จำหน่ายหรือสะสมอาหาร</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/3871/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%88%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%88%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AA%E0%B8%B0%E0%B8%AA%E0%B8%A1%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%20(%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ<span class="regular"> ตาม พ.ร.บ. การสาธารณสุข พ.ศ. 2535</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--7 food-->
+
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/8 alcohol.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายเบียร์ ไวน์ เหล้า หรือแอลกอฮอล์ประเภทอื่น ๆ</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตขายสุรา</p>
+                                    <p class="detail">ที่กรมสรรพสามิตในพื้นที่ที่จะทำการขาย</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/48626/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B8%E0%B8%A3%E0%B8%B2%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%E0%B8%97%E0%B8%B5%E0%B9%88%203%20%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%E0%B8%97%E0%B8%B5%E0%B9%88%204%20(%E0%B8%A2%E0%B8%81%E0%B9%80%E0%B8%A7%E0%B9%89%E0%B8%99%E0%B9%81%E0%B8%AD%E0%B8%A5%E0%B8%81%E0%B8%AD%E0%B8%AE%E0%B8%AD%E0%B8%A5%E0%B9%8C)%C2%A0(%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%B2%2017)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับหากไม่ขออนุญาตขายสุรา<span class="regular"> ตาม พ.ร.บ. สุรา พ.ศ. 2493</span></p>
+                            <div class="btn-hold">
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 8 alcohol -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/9 cigar.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายบุหรี่ ซิการ์ ยาเส้นหรือยาสูบประเภทอื่น ๆ</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตขายยาสูบ</p>
+                                    <p class="detail">ที่กรมสรรพสามิตในพื้นที่ที่จะทำการขาย</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/5182/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%B9%E0%B8%9A%E0%B8%8A%E0%B8%99%E0%B8%B4%E0%B8%94%E0%B8%9A%E0%B8%B8%E0%B8%AB%E0%B8%A3%E0%B8%B5%E0%B9%88%E0%B8%8B%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B9%81%E0%B8%A3%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%203/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ <span class="regular">ตาม พ.ร.บ. ควบคุมผลิตภัณฑ์ยาสูบ พ.ศ. 2535</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- 9 cigar -->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/10 lipstick.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายเครื่องสำอาง (ผลิตภัณฑ์ที่ใช้ภายนอกร่างกายเพื่อดูแลผิวพรรณ เส้นผม เล็บ) ที่นำเข้ามาเอง</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขอแจ้งรายละเอียดการนำเข้าเพื่อขายเครื่องสำอางควบคุม ที่…</p>
+                                    <p class="detail">- คณะกรรมการอาหารและยา (สำหรับพื้นที่ในกรุงเทพมหานคร) หรือ</p>
+                                    <p class="detail">- สาธารณสุขจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/205/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%88%E0%B8%94%E0%B9%81%E0%B8%88%E0%B9%89%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%A5%E0%B8%B0%E0%B9%80%E0%B8%AD%E0%B8%B5%E0%B8%A2%E0%B8%94%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9C%E0%B8%A5%E0%B8%B4%E0%B8%95%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%99%E0%B8%B3%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%9E%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%AA%E0%B8%B3%E0%B8%AD%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ <span class="regular">ตาม พ.ร.บ. เครื่องสำอาง พ.ศ. 2558</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--10 lipstick-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/11 medicine.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายยาแผนปัจจุบันที่ไม่ใช่ยาสามัญประจำบ้าน (ยาที่ต้องขายโดยเภสัชกรเท่านั้น) เช่น ยาลดความดันเลือด ยาคลายกล้ามเนื้อ เป็นต้น</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตขายยาแผนปัจจุบัน ที่...</p>
+                                    <p class="detail">- ศูนย์สุขภาพเบ็ดเสร็จ สำนักงานคณะกรรมการอาหารและยา (สำหรับพื้นที่กรุงเทพมหานคร) หรือ</p>
+                                    <p class="detail">- สาธารณสุขจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/2633/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%A2%E0%B8%B2%E0%B9%81%E0%B8%9C%E0%B8%99%E0%B8%9B%E0%B8%B1%E0%B8%88%E0%B8%88%E0%B8%B8%E0%B8%9A%E0%B8%B1%E0%B8%99/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับและจำคุก<span class="regular"> ตาม พ.ร.บ. ยา พ.ศ. 2510</span></p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>ข้อควรรู้…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="detail">- ต้องมีเภสัชกรประจำอยู่ที่ร้านขายยาแผนปัจจุบัน</p>
+                            <p class="detail">- ห้ามขายเครื่องดื่มแอลกอฮอล์ และยาสูบ ทุกชนิดในร้านขายยา</p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--11 medicine-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/12 disc.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายแผ่นภาพยนตร์ ละครซีรีย์ บันทึกคอนเสิร์ต หรือการแสดงอื่น ๆ</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนพาณิชย์</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถื่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบุคคลธรรมดา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนสามัญ คณะบุคคลและกิจการร่วมค้า</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1422/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนจดทะเบียน บริษัทจำกัด บริษัทมหาชนจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1482/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตเช่า แลกเปลี่ยน จำหน่าย ภาพยนตร์ ที่...</p>
+                                    <p class="detail">- สำนักพิจารณาภาพยนตร์และวิดีทัศน์ (สำหรับพื้นที่ในกรุงเทพมหานคร) หรือ</p>
+                                    <p class="detail">- สำนักงานวัฒนธรรมประจำจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/6658/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%8A%E0%B9%88%E0%B8%B2%20%E0%B9%81%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%88%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%A2%E0%B8%99%E0%B8%95%E0%B8%A3%E0%B9%8C/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ<span class="regular"> ตาม พ.ร.บ.ภาพยนตร์และวีดิทัศน์ พ.ศ. 2551</span></p>
+                            <p class="head">คุณอาจถูกปรับ<span class="regular"> ตาม พ.ร.บ.ทะเบียนพาณิชย์ พ.ศ. 2499</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--12 disc-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/13 movie.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายวีดิทัศน์ เช่น แผ่นคาราโอเกะ แผ่นเกม</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนพาณิชย์</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถื่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบุคคลธรรมดา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนสามัญ คณะบุคคลและกิจการร่วมค้า</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1422/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนจดทะเบียน บริษัทจำกัด บริษัทมหาชนจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1482/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตเช่า แลกเปลี่ยน จำหน่าย วีดิทัศน์ ที่...</p>
+                                    <p class="detail">- สำนักพิจารณาภาพยนตร์และวิดีทัศน์ (สำหรับพื้นที่ในกรุงเทพมหานคร) หรือ</p>
+                                    <p class="detail">- สำนักงานวัฒนธรรมประจำจังหวัด (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/6716/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B4%E0%B8%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B9%80%E0%B8%8A%E0%B9%88%E0%B8%B2%20%E0%B9%81%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%88%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%A7%E0%B8%B5%E0%B8%94%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%A8%E0%B8%99%E0%B9%8C/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ<span class="regular"> ตาม พ.ร.บ.ภาพยนตร์และวีดิทัศน์ พ.ศ. 2551</span></p>
+                            <p class="head">คุณอาจถูกปรับ<span class="regular"> ตาม พ.ร.บ.ทะเบียนพาณิชย์ พ.ศ. 2499</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--13 movie-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/14 cow.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายหมู ไก่ หรือสัตว์อื่นๆที่ยังมีชีวิตอยู่</p>
+                            <p class="detail hide">เช่น สุนัข แมว นก เป็นต้น</p>
+                            <!--                         <br>
+                                                    <div class="hide">
+                                                          <div class="row hide">
+                                                            <div class="D-6 T-12">1. ช้าง</div>
+                                                            <div class="D-6 T-12">2. ม้า</div>
+                                                            <div class="D-6 T-12">3. โค</div>
+                                                            <div class="D-6 T-12">4. กระบือ</div>
+                                                            <div class="D-6 T-12">5. แพะ</div>
+                                                            <div class="D-6 T-12">6. แกะ</div>
+                                                            <div class="D-6 T-12">7. กวาง</div>
+                                                            <div class="D-6 T-12">8. หมู</div>
+                                                            <div class="D-6 T-12">9. หมูป่า</div>
+                                                            <div class="D-6 T-12">10. สุนัข</div>
+                                                            <div class="D-6 T-12">11. แมว</div>
+                                                            <div class="D-6 T-12">12. นก</div>
+                                                            <div class="D-6 T-12">13. ไก่</div>
+                                                            <div class="D-6 T-12">14. เป็ด</div>
+                                                            <div class="D-6 T-12">15. ห่าน</div>
+                                                            <div class="D-6 T-12">16. กบ และรวมถึงสัตว์จําพวกสัตว์สะเทินนน้ำสะเทินบก</div>
+                                                            <div class="D-6 T-12">17. กระจงหรือโก้</div>
+                                                            <div class="D-6 T-12">18. กระซู่</div>
+                                                            <div class="D-6 T-12">19. กระทิงหรือเมย</div>
+                                                            <div class="D-6 T-12">20. กวาง</div>
+                                                            <div class="D-6 T-12">21. กวางผา</div>
+                                                            <div class="D-6 T-12">22. กุ้ง และรวมถึงสัตว์จําพวกครัสเตเชียน (Crustacean)</div>
+                                                            <div class="D-6 T-12">23. กูปรีหรือโคไพร</div>
+                                                            <div class="D-6 T-12">24. ควายป่า</div>
+                                                            <div class="D-6 T-12">25. ค่าง</div>
+                                                            <div class="D-6 T-12">26. จระเข้ และรวมถึงสัตว์ในวงศ์ครอกโคไดลิดี (Family Crocodylidae)</div>
+                                                            <div class="D-6 T-12">27. จิงโจ้</div>
+                                                            <div class="D-6 T-12">28. ตะโขง และรวมถึงสัตว์ในวงศ์แกเวียลิดี (Family Gavialidae)</div>
+                                                            <div class="D-6 T-12">29. ตะพาบน้ำา</div>
+                                                            <div class="D-6 T-12">30. เต่า</div>
+                                                            <div class="D-6 T-12">31. ทรายหรือเนื้อทรายหรือตามะแน</div>
+                                                            <div class="D-6 T-12">32. นากหญ้า</div>
+                                                            <div class="D-6 T-12">33. นางอายหรือลิงลม</div>
+                                                            <div class="D-6 T-12">34. ปลา</div>
+                                                            <div class="D-6 T-12">35. ปลิงทะเล</div>
+                                                            <div class="D-6 T-12">36. ผึ้ง</div>
+                                                            <div class="D-6 T-12">37. พะยูน</div>
+                                                            <div class="D-6 T-12">38. เพรียงทราย และรวมถึงสัตว์จําพวกโพลิคีท (Polychaete)</div>
+                                                            <div class="D-6 T-12">39. แมวป่า</div>
+                                                            <div class="D-6 T-12">40. แมวน้ํา</div>
+                                                            <div class="D-6 T-12">41. ยีราฟ</div>
+                                                            <div class="D-6 T-12">42. แรด</div>
+                                                            <div class="D-6 T-12">43. ละองหรือละมั่ง</div>
+                                                            <div class="D-6 T-12">44. โลมา</div>
+                                                            <div class="D-6 T-12">45. เลียงผาหรือเยียงหรือโครําหรือกูรํา</div>
+                                                            <div class="D-6 T-12">46. วาฬ</div>
+                                                            <div class="D-6 T-12">47. วัวแดงหรือวัวดําหรือวัวเพาะ</div>
+                                                            <div class="D-6 T-12">48. สมเสร็จหรือผสมเสร็จ</div>
+                                                            <div class="D-6 T-12">49. สมันหรือเนื้อสมัน</div>
+                                                            <div class="D-6 T-12">50. สิงโต</div>
+                                                            <div class="D-6 T-12">51. สิงโตทะเล</div>
+                                                            <div class="D-6 T-12">52. เสือ</div>
+                                                            <div class="D-6 T-12">53. หมี</div>
+                                                            <div class="D-6 T-12">54. หมึก</div>
+                                                            <div class="D-6 T-12">55. หมูป่า</div>
+                                                            <div class="D-6 T-12">56. หอย</div>
+                                                            <div class="D-6 T-12">57. อีกัวน่า</div>
+                                                            <div class="D-6 T-12">58. อีเก้งหรือฟาน</div>
+                                                            <div class="D-6 T-12">59. อูฐ ลามะ อัลปาก้า และรวมถึงสัตว์ในวงศ์คาเมลลิดี (Family Camelidae)</div>
+                                                            <div class="D-6 T-12">60. อัลลิเกเตอร์ และรวมถึงสัตว์ในวงศ์แอลลิแกเตอริดี (Family Alligatoridae)</div>
+                                                            <div class="D-6 T-12">61. ฮิปโปโปเตมัส</div>
+                                                        </div>
+                                                        <br>
+                                                        <a href="" class="hiperlink">อ่านข้อกฎหมายที่เกี่ยวข้อง</a>
+                                                    </div>  -->
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตค้าสัตว์ </p>
+                                    <p class="detail">ที่ปศุสัตว์จังหวัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/9729/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%97%E0%B8%B3%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%8B%E0%B8%B2%E0%B8%81%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C%20(%E0%B8%A3.10)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div><!-- right-tab -->
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับหากไม่ขออนุญาตค้าสัตว์<span class="regular"> ตาม พ.ร.บ. โรคระบาดสัตว์ พ.ศ. 2558</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--14 cow-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/15 meat.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายซากสัตว์หรือส่วนของสัตว์ที่ตายแล้ว เช่น เนื้อ หนัง เขา</p>
+                            <p class="detail hide">เช่น เนื้อหมูสด นมดิบ ไข่ดิบ หรือชิ้นส่วนของสัตว์อื่นๆที่ยังไม่ผ่านการแปรรูป เป็นต้น</p>
+                            <!--                         <br>
+                                                    <div class="hide">
+                                                        <div class="row">
+                                                            <div class="D-6 T-12">1. ช้าง</div>
+                                                            <div class="D-6 T-12">2. ม้า</div>
+                                                            <div class="D-6 T-12">3. โค</div>
+                                                            <div class="D-6 T-12">4. กระบือ</div>
+                                                            <div class="D-6 T-12">5. แพะ</div>
+                                                            <div class="D-6 T-12">6. แกะ</div>
+                                                            <div class="D-6 T-12">7. กวาง</div>
+                                                            <div class="D-6 T-12">8. หมู</div>
+                                                            <div class="D-6 T-12">9. หมูป่า</div>
+                                                            <div class="D-6 T-12">10. สุนัข</div>
+                                                            <div class="D-6 T-12">11. แมว</div>
+                                                            <div class="D-6 T-12">12. นก</div>
+                                                            <div class="D-6 T-12">13. ไก่</div>
+                                                            <div class="D-6 T-12">14. เป็ด</div>
+                                                            <div class="D-6 T-12">15. ห่าน</div>
+                                                            <div class="D-6 T-12">16. กบ และรวมถึงสัตว์จําพวกสัตว์สะเทินนน้ำสะเทินบก</div>
+                                                            <div class="D-6 T-12">17. กระจงหรือโก้</div>
+                                                            <div class="D-6 T-12">18. กระซู่</div>
+                                                            <div class="D-6 T-12">19. กระทิงหรือเมย</div>
+                                                            <div class="D-6 T-12">20. กวาง</div>
+                                                            <div class="D-6 T-12">21. กวางผา</div>
+                                                            <div class="D-6 T-12">22. กุ้ง และรวมถึงสัตว์จําพวกครัสเตเชียน (Crustacean)</div>
+                                                            <div class="D-6 T-12">23. กูปรีหรือโคไพร</div>
+                                                            <div class="D-6 T-12">24. ควายป่า</div>
+                                                            <div class="D-6 T-12">25. ค่าง</div>
+                                                            <div class="D-6 T-12">26. จระเข้ และรวมถึงสัตว์ในวงศ์ครอกโคไดลิดี (Family Crocodylidae)</div>
+                                                            <div class="D-6 T-12">27. จิงโจ้</div>
+                                                            <div class="D-6 T-12">28. ตะโขง และรวมถึงสัตว์ในวงศ์แกเวียลิดี (Family Gavialidae)</div>
+                                                            <div class="D-6 T-12">29. ตะพาบน้ำา</div>
+                                                            <div class="D-6 T-12">30. เต่า</div>
+                                                            <div class="D-6 T-12">31. ทรายหรือเนื้อทรายหรือตามะแน</div>
+                                                            <div class="D-6 T-12">32. นากหญ้า</div>
+                                                            <div class="D-6 T-12">33. นางอายหรือลิงลม</div>
+                                                            <div class="D-6 T-12">34. ปลา</div>
+                                                            <div class="D-6 T-12">35. ปลิงทะเล</div>
+                                                            <div class="D-6 T-12">36. ผึ้ง</div>
+                                                            <div class="D-6 T-12">37. พะยูน</div>
+                                                            <div class="D-6 T-12">38. เพรียงทราย และรวมถึงสัตว์จําพวกโพลิคีท (Polychaete)</div>
+                                                            <div class="D-6 T-12">39. แมวป่า</div>
+                                                            <div class="D-6 T-12">40. แมวน้ํา</div>
+                                                            <div class="D-6 T-12">41. ยีราฟ</div>
+                                                            <div class="D-6 T-12">42. แรด</div>
+                                                            <div class="D-6 T-12">43. ละองหรือละมั่ง</div>
+                                                            <div class="D-6 T-12">44. โลมา</div>
+                                                            <div class="D-6 T-12">45. เลียงผาหรือเยียงหรือโครําหรือกูรํา</div>
+                                                            <div class="D-6 T-12">46. วาฬ</div>
+                                                            <div class="D-6 T-12">47. วัวแดงหรือวัวดําหรือวัวเพาะ</div>
+                                                            <div class="D-6 T-12">48. สมเสร็จหรือผสมเสร็จ</div>
+                                                            <div class="D-6 T-12">49. สมันหรือเนื้อสมัน</div>
+                                                            <div class="D-6 T-12">50. สิงโต</div>
+                                                            <div class="D-6 T-12">51. สิงโตทะเล</div>
+                                                            <div class="D-6 T-12">52. เสือ</div>
+                                                            <div class="D-6 T-12">53. หมี</div>
+                                                            <div class="D-6 T-12">54. หมึก</div>
+                                                            <div class="D-6 T-12">55. หมูป่า</div>
+                                                            <div class="D-6 T-12">56. หอย</div>
+                                                            <div class="D-6 T-12">57. อีกัวน่า</div>
+                                                            <div class="D-6 T-12">58. อีเก้งหรือฟาน</div>
+                                                            <div class="D-6 T-12">59. อูฐ ลามะ อัลปาก้า และรวมถึงสัตว์ในวงศ์คาเมลลิดี (Family Camelidae)</div>
+                                                            <div class="D-6 T-12">60. อัลลิเกเตอร์ และรวมถึงสัตว์ในวงศ์แอลลิแกเตอริดี (Family Alligatoridae)</div>
+                                                            <div class="D-6 T-12">61. ฮิปโปโปเตมัส</div>
+                                                        </div>
+                                                    </div>
+                                                  <br>
+                                                  <a href="" class="hiperlink">อ่านข้อกฎหมายที่เกี่ยวข้อง</a> -->
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตค้าซากสัตว์ </p>
+                                    <p class="detail">ที่ปศุสัตว์จังหวัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/9729/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%97%E0%B8%B3%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B9%89%E0%B8%B2%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B8%8B%E0%B8%B2%E0%B8%81%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C%20(%E0%B8%A3.10)/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div><!-- right-tab -->
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับหากไม่ขออนุญาตค้าสัตว์<span class="regular">ตาม พ.ร.บ.โรคระบาดสัตว์ พ.ศ. 2558</span></p>
+                            <div class="btn-hold">
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!--15 meat-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/16 grain.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายข้าวเปลือก ข้าวโพด ถั่วเขียว ถั่วเหลืองหรือเมล็ดพันธุ์ควบคุมอื่น ๆ</p>
+                            <p class="detail hide">
+                                เมล็ดพันธุ์ควบคุมมีทั้งสิ้น 44 ดังนี้
+                            </p>
+                            <br>
+                            <div class="hide">
+                                <div class="row">
+                                    <div class="D-6 T-12">
+                                        1. กระเจี๊ยบเขียว<br>
+                                        2. กระเทียมใบ<br>
+                                        3. กะหล่ําปลี<br>
+                                        4. กะหล่ำาดอก<br>
+                                        5. คะน้า<br>
+                                        6. บรอคโคล<br>
+                                        7. ข้าวเปลือก<br>
+                                        8. ข้าวโพด<br>
+                                        9. ข้าวโพดหวาน<br>
+                                        10. ข้าวฟ่าง<br>
+                                        11. แคนตาลูป<br>
+                                        12. แตงเทศ<br>
+                                        13. เมล่อน<br>
+                                        14. แตงกวา<br>
+                                        15. แตงร้าน<br>
+                                        16. แตงโม<br>
+                                        17. ถั่วฝักยาว<br>
+                                        18. ถั่วลันเตา<br>
+                                        19. ถั่วเขียว<br>
+                                        20.ถั่วเขียวผิวดํา<br>
+                                        21. ถั่วเหลือง<br>
+                                        22. ทานตะวัน<br>
+                                    </div>
+                                    <div class="D-6 T-12">
+                                        23. บวบเหลี่ยม<br>
+                                        24. ปาล์มน้ำามัน<br>
+                                        25. ผักกาดกวางตุ้ง<br>
+                                        26. ผักกาดขาว<br>
+                                        27. ผักกาดเขียว<br>
+                                        28. ผักกาดหอม<br>
+                                        29. ผักกาดหัว<br>
+                                        30. ผักชี<br>
+                                        31. ผักบุ้งจีน<br>
+                                        32. ฝ้าย<br>
+                                        33. พริก<br>
+                                        34. ฟักทอง<br>
+                                        35. ฟัก<br>
+                                        36. แฟง<br>
+                                        37. มะระจีน<br>
+                                        38. มะระขี้นก<br>
+                                        39. มะเขือยาว<br>
+                                        40. มะเขือม่วง<br>
+                                        41. มะเขือเปราะ<br>
+                                        42. มะเขือเทศ<br>
+                                        43. หอมหัวใหญ่<br>
+                                        44. มะละกอ<br>
+                                    </div>
+                                    <!--                                   <div class="D-6 T-12">1. กระเจี๊ยบเขียว</div>
+                                                                      <div class="D-6 T-12">2. กระเทียมใบ</div>
+                                                                      <div class="D-6 T-12">3. กะหล่ําปลี</div>
+                                                                      <div class="D-6 T-12">4. กะหล่ำาดอก</div>
+                                                                      <div class="D-6 T-12">5. คะน้า</div>
+                                                                      <div class="D-6 T-12">6. บรอคโคล</div>
+                                                                      <div class="D-6 T-12">7. ข้าวเปลือก</div>
+                                                                      <div class="D-6 T-12">8. ข้าวโพด</div>
+                                                                      <div class="D-6 T-12">9. ข้าวโพดหวาน</div>
+                                                                      <div class="D-6 T-12">10. ข้าวฟ่าง</div>
+                                                                      <div class="D-6 T-12">11. แคนตาลูป</div>
+                                                                      <div class="D-6 T-12">12. แตงเทศ</div>
+                                                                      <div class="D-6 T-12">13. เมล่อน</div>
+                                                                      <div class="D-6 T-12">14. แตงกวา</div>
+                                                                      <div class="D-6 T-12">15. แตงร้าน</div>
+                                                                      <div class="D-6 T-12">16. แตงโม</div>
+                                                                      <div class="D-6 T-12">17. ถั่วฝักยาว</div>
+                                                                      <div class="D-6 T-12">18. ถั่วลันเตา</div>
+                                                                      <div class="D-6 T-12">19. ถั่วเขียว</div>
+                                                                      <div class="D-6 T-12">20.ถั่วเขียวผิวดํา</div>
+                                                                      <div class="D-6 T-12">21. ถั่วเหลือง</div>
+                                                                      <div class="D-6 T-12">22. ทานตะวัน</div>
+                                                                      <div class="D-6 T-12">23. บวบเหลี่ยม</div>
+                                                                      <div class="D-6 T-12">24. ปาล์มน้ำามัน</div>
+                                                                      <div class="D-6 T-12">25. ผักกาดกวางตุ้ง</div>
+                                                                      <div class="D-6 T-12">26. ผักกาดขาว</div>
+                                                                      <div class="D-6 T-12">27. ผักกาดเขียว</div>
+                                                                      <div class="D-6 T-12">28. ผักกาดหอม</div>
+                                                                      <div class="D-6 T-12">29. ผักกาดหัว</div>
+                                                                      <div class="D-6 T-12">30. ผักชี</div>
+                                                                      <div class="D-6 T-12">31. ผักบุ้งจีน</div>
+                                                                      <div class="D-6 T-12">32. ฝ้าย</div>
+                                                                      <div class="D-6 T-12">33. พริก</div>
+                                                                      <div class="D-6 T-12">34. ฟักทอง</div>
+                                                                      <div class="D-6 T-12">35. ฟัก</div>
+                                                                      <div class="D-6 T-12">36. แฟง</div>
+                                                                      <div class="D-6 T-12">37. มะระจีน</div>
+                                                                      <div class="D-6 T-12">38. มะระขี้นก</div>
+                                                                      <div class="D-6 T-12">39. มะเขือยาว</div>
+                                                                      <div class="D-6 T-12">40. มะเขือม่วง</div>
+                                                                      <div class="D-6 T-12">41. มะเขือเปราะ</div>
+                                                                      <div class="D-6 T-12">42. มะเขือเทศ</div>
+                                                                      <div class="D-6 T-12">43. หอมหัวใหญ่</div>
+                                                                      <div class="D-6 T-12">44. มะละกอ</div> -->
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตค้าเมล็ดพันธุ์ควบคุม  ที่...</p>
+                                    <p class="detail">- สำนักควบคุมพืชและวัสดุการเกษตร (สำหรับพื้นที่ในกรุงเทพมหานคร)</p>
+                                    <p class="detail">- สำนักวิจัยและพัฒนาการเกษตร (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/9460/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B9%80%E0%B8%A1%E0%B8%A5%E0%B9%87%E0%B8%94%E0%B8%9E%E0%B8%B1%E0%B8%99%E0%B8%98%E0%B8%B8%E0%B9%8C%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับ<span class="regular"> ตาม พ.ร.บ. พันธุ์พืช พ.ศ. 2518</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--16 grain-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/17 animal.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายข้าวโพดป่น ปลาป่น หรืออาหารสำหรับสัตว์อื่น ๆ</p>
+                            <p class="detail hide">
+                                อาหารสัตว์ควบคุมแบ่งเป็น 4 ประเภทหลัก ดังนี้</br>
+                                1) วัตดุดิบ มี 25 ชนิด : </br>
+                            </p>
+                            <div class="hide">
+                                <div class="row">
+                                    <div class="D-6 T-12">
+                                        <span class="space-tab"></span> 1.1 กากถั่วเหลือง
+                                        <br>
+                                        <span class="space-tab"></span> 1.2 ถั่วเหลืองอบ
+                                        <br>
+                                        <span class="space-tab"></span> 1.3 กากถั่วลิสง
+                                        <br>
+                                        <span class="space-tab"></span> 1.4 รำสกัดน้ำมัน
+                                        <br>
+                                        <span class="space-tab"></span> 1.5 ข้าวโพดป่นเกรด 1
+                                        <br>
+                                        <span class="space-tab"></span> 1.6 ข้าวโพดป่นเกรด 2
+                                        <br>
+                                        <span class="space-tab"></span> 1.7 โปรตีนข้าวโพดหรือกลูเทนข้าวโพด
+                                        <br>
+                                        <span class="space-tab"></span> 1.8 กากดีดีจีเอส
+                                        <br>
+                                        <span class="space-tab"></span> 1.9 กากเรปซีดหรือกากคาโนลา
+                                        <br>
+                                        <span class="space-tab"></span> 1.10 กากเมล็ดทานตะวัน
+                                        <br>
+                                        <span class="space-tab"></span> 1.11 ปลาป่น ชั้นคุณภาพที่ 1
+                                        <br>
+                                        <span class="space-tab"></span> 1.12 ปลาป่น ชั้นคุณภาพที่ 2
+                                        <br>
+                                        <span class="space-tab"></span> 1.13 ปลาป่น ชั้นคุณภาพที่ 3
+                                        <br>
+                                    </div>
+                                    <div class="D-6 T-12">
+                                        <span class="space-tab"></span> 1.14 ปลาและกระดูกปลาป่น
+                                        <br>
+                                        <span class="space-tab"></span> 1.15 เนื้อป่น
+                                        <br>
+                                        <span class="space-tab"></span> 1.16 เนื้อป่นสกัดไขมัน
+                                        <br>
+                                        <span class="space-tab"></span> 1.17 เนื้อและกระดูกป่น (โปรตีนร้อยละ 50)
+                                        <br>
+                                        <span class="space-tab"></span> 1.18 เนื้อและกระดูกป่น (โปรตีนร้อยละ 45)
+                                        <br>
+                                        <span class="space-tab"></span> 1.19 เนื้อสัตว์ปีกป่น
+                                        <br>
+                                        <span class="space-tab"></span> 1.20 ผลพลอยได้จากสัตว์ปีกป่น
+                                        <br>
+                                        <span class="space-tab"></span> 1.21 ขนสัตว์ปีกป่น
+                                        <br>
+                                        <span class="space-tab"></span> 1.22 ข้าวสาลีเมล็ด
+                                        <br>
+                                        <span class="space-tab"></span> 1.23 กากเนื้อในเมล็ดปาล์ม
+                                        <br>
+                                        <span class="space-tab"></span> 1.24 กากปาล์มทั้งหมด
+                                        <br>
+                                        <span class="space-tab"></span> 1.25 รำข้าวสาลี
+                                        <br>
+                                    </div>
+
+                                    <!--                                 <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.1 กากถั่วเหลือง
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.2 ถั่วเหลืองอบ
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.3 กากถั่วลิสง
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.4 รำสกัดน้ำมัน
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.5 ข้าวโพดป่นเกรด 1
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.6 ข้าวโพดป่นเกรด 2
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.7 โปรตีนข้าวโพดหรือกลูเทนข้าวโพด
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.8 กากดีดีจีเอส
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.9 กากเรปซีดหรือกากคาโนลา
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.10 กากเมล็ดทานตะวัน
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.11 ปลาป่น ชั้นคุณภาพที่ 1
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.12 ปลาป่น ชั้นคุณภาพที่ 2
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.13 ปลาป่น ชั้นคุณภาพที่ 3
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.14 ปลาและกระดูกปลาป่น
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.15 เนื้อป่น
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.16 เนื้อป่นสกัดไขมัน
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.17 เนื้อและกระดูกป่น (โปรตีนร้อยละ 50)
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.18 เนื้อและกระดูกป่น (โปรตีนร้อยละ 45)
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.19 เนื้อสัตว์ปีกป่น
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.20 ผลพลอยได้จากสัตว์ปีกป่น
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.21 ขนสัตว์ปีกป่น
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.22 ข้าวสาลีเมล็ด
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.23 กากเนื้อในเมล็ดปาล์ม
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.24 กากปาล์มทั้งหมด
+                                                                    </div>
+                                                                    <div class="D-6 T-12">
+                                                                        <span class="space-tab"></span> 1.25 รำข้าวสาล
+                                                                    </div> -->
+                                </div>
+                            </div>
+                            <br>
+                            <p class="detail hide">
+                                2) ประเภทผลิตภัณฑ์นมสำหรับสัตว์ มี 8 ชนิด :
+                            </p>
+                            <div class="hide">
+                                <div class="row">
+                                    <div class="D-6 T-12">
+                                        <span class="space-tab"></span> 2.1 นมผงสำหรับสัตว์
+                                        <br>
+                                        <span class="space-tab"></span> 2.2 หางนมผงขาดมันเนยสำหรับสัตว์
+                                        <br>
+                                        <span class="space-tab"></span> 2.3 หางนมผงพร่องมันเนยสำหรับสัตว์
+                                        <br>
+                                        <span class="space-tab"></span> 2.4 หางนมผงดัดแปลงสำหรับสัตว์
+                                        <br>
+                                    </div>
+                                    <div class="D-6 T-12">
+                                        <span class="space-tab"></span> 2.5 หางเนยผงสำหรับสัตว์
+                                        <br>
+                                        <span class="space-tab"></span> 2.6 อาหารแทนนมสำหรับสัตว์
+                                        <br>
+                                        <span class="space-tab"></span> 2.7 หางเนยผงดัดแปลงสำหรับสัตว์
+                                        <br>
+                                        <span class="space-tab"></span> 2.8 หางเนยผงผ่านกระบวนการสำหรับสัตว์
+                                        <br>
+                                    </div>
+                                    <!--
+                                                                      <div class="D-6 T-12"><span class="space-tab"></span> 2.1 นมผงสำหรับสัตว์</div>
+                                                                      <div class="D-6 T-12"><span class="space-tab"></span> 2.2 หางนมผงขาดมันเนยสำหรับสัตว์</div>
+                                                                      <div class="D-6 T-12"><span class="space-tab"></span> 2.3 หางนมผงพร่องมันเนยสำหรับสัตว์</div>
+                                                                      <div class="D-6 T-12"><span class="space-tab"></span> 2.4 หางนมผงดัดแปลงสำหรับสัตว์</div>
+                                                                      <div class="D-6 T-12"><span class="space-tab"></span> 2.5 หางเนยผงสำหรับสัตว์</div>
+                                                                      <div class="D-6 T-12"><span class="space-tab"></span> 2.6 อาหารแทนนมสำหรับสัตว์</div>
+                                                                      <div class="D-6 T-12"><span class="space-tab"></span> 2.7 หางเนยผงดัดแปลงสำหรับสัตว์</div>
+                                                                      <div class="D-6 T-12"><span class="space-tab"></span> 2.8 หางเนยผงผ่านกระบวนการสำหรับสัตว</div> -->
+                                </div>
+                            </div>
+                            <br>
+                            <p class="detail hide">
+                                3) วัตถุผสมแล้ว มี 6 ชนิด :
+                            </p>
+                            <div class="hide">
+                                <div class="row">
+                                    <div class="D-12">
+                                        <span class="space-tab"></span> 3.1) หัวอาหารสัตว์ <br>
+                                        <span class="space-tab"></span> 3.2) อาหารสัตว์ผสมสำเร็จรูป <br>
+                                        <span class="space-tab"></span> 3.3) สารผสมล่วงหน้า (พรีมิกซ์) <br>
+                                        <span class="space-tab"></span> 3.4) อาหารสัตว์เลี้ยงที่มีโภชนาการครบถ้วน <br>
+                                        <span class="space-tab"></span> 3.5) อาหารคบเคี้ยว/อาหารว่างสำหรับสัตว์เลี้ยง <br>
+                                        <span class="space-tab"></span> 3.6) อาหารประกอบการรักษาโรคสำหรับสัตว์เลี้ยง <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <p class="detail hide">
+                                4) อาหารเสริมสำหรับสัตว์ มี 4 ชนิด <br>
+                            </p>
+                            <div class="hide">
+                                <span class="space-tab"></span>   4.1 อาหารเสริมโปรตีน <br>
+                                <span class="space-tab"></span>   4.2 อาหารเสริมแร่ธาตุ <br>
+                                <span class="space-tab"></span>  4.3 อาหารเสริมวิตามิน <br>
+                                <span class="space-tab"></span>  4.4 อาหารเสริมไขมัน <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตขายอาหารสัตว์ควบคุมเฉพาะ</p>
+                                    <p class="detail">ที่ปศุสัตว์จังหวัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/11091/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%A7%E0%B9%8C%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%A1%E0%B9%80%E0%B8%89%E0%B8%9E%E0%B8%B2%E0%B8%B0/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div><!-- right-tab -->
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับหากไม่ขออนุญาตขายอาหารสัตว์ควบคุมเฉพาะ<span class="regular"> ตาม พ.ร.บ. ควบคุมคุณภาพอาหารสัตว์ พ.ศ. 2558</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--17 animal-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/18 fertilizer.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายปุ๋ย</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">ขออนุญาตค้าปุ๋ย ที่...</p>
+                                    <p class="detail">- สำนักควบคุมพืชและวัสดุการเกษตร (สำหรับพื้นที่กรุงเทพมหานคร) หรือ</p>
+                                    <p class="detail">- สำนักวิจัยและพัฒนาการเกษตร (สำหรับพื้นที่ต่างจังหวัด)</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/7969/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%9A%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%9B%E0%B8%B8%E0%B9%8B%E0%B8%A2/" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div><!-- right-tab -->
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ จำคุก หรือทั้งจำทั้งปรับหากไมขออนุญาตค้าปุ๋ย<span class="regular"> ตาม พ.ร.บ. ปุ๋ย พ.ศ. 2518</span></p>
+                            <div class="btn-hold">
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!--18 fertilizer-->
+                <div class="item-info">
+                    <div class="row-bar">
+                        <div class="left-tab img">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/jewel.svg")"></object>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">มีการขายอัญมณี และเครื่องประดับที่ทำจากอัญมณี</p>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>คุณต้อง...</p>
+                        </div>
+                        <div class="right-tab">
+                            <div class="row">
+                                <div class="D-12">
+                                    <p class="head">จดทะเบียนพาณิชย์</p>
+                                    <p class="detail">ที่องค์กรปกครองส่วนท้องถิ่น (เช่น สำนักงานเขต เทศบาล องค์การบริหารส่วนตำบล หรือองค์การบริหารส่วนจังหวัด)</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับบุคคลธรรมดา</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนสามัญ คณะบุคคลและกิจการร่วมค้า</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1422/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="D-9 T-6 SM-12">
+                                    <p class="head">สำหรับห้างหุ้นส่วนจดทะเบียน บริษัทจำกัด บริษัทมหาชนจำกัด</p>
+                                </div>
+                                <div class="D-3 T-6 SM-12">
+                                    <a href="https://info.go.th/#!/th/search/1482/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C%20(%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88)/​" class="button primary" target="_blank"><i class="fa fa-file-text-o"></i> ไปที่คู่มือประชาชน</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-bar">
+                        <div class="left-tab">
+                            <p>หากไม่ปฏิบัติตาม…</p>
+                        </div>
+                        <div class="right-tab">
+                            <p class="head">คุณอาจถูกปรับ <span class="regular">ตาม พ.ร.บ. ทะเบียนพาณิชย์ พ.ศ. 2499</span></p>
+                            <div class="btn-hold">
+                            </div>
+                        </div>
+                    </div>
+                </div><!--20 Jewel-->
+            </div>
+            <div class="D-3 T-12">
+                <div class="btn-group-sticky">
+                    <h3>
+                        ช่องทางการให้บริการข้อมูล และขออนุญาตออนไลน์</h3>
+                        <div class="row">
+                            <div class="D-12 T-6 SM-12">
+                                <a href="@(Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))#retail"
+                                   class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/folder.svg")" type=""></object><p>ขอใบอนุญาตได้ทันทีที่ Biz Portal</p></a>
+                            </div>
+                            <div class="D-12 T-6 SM-12">
+                                <a href="" class="button-icon primary" id="chat-up"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/customer.svg")" type=""></object><p>สอบถามเจ้าหน้าที่ผ่าน Chat</p></a>
+                            </div>
+                            <div class="D-12 T-6 SM-12">
+                                <a href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                   class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")" type=""></object><p>ร้านของฉันต้องขออนุญาตอะไรบ้าง?</p></a>
+                            </div>
+                            <div class="D-12 T-6 SM-12">
+                                <a href="@(Url.BizAction("BDBBusinessList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName,parmBType = "Retail" }))"
+                                   class="button-icon primary"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SVG_icon/statistics.svg")" type=""></object><p>ดูข้อมูลสถิติของธุรกิจที่เกี่ยวข้องที่ DBD DataWarehouse+</p></a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--         <section class="information-way">
+                <div class="container">
+                    <hr>
+                    <h2>ช่องทางการให้บริการข้อมูล และขออนุญาตออนไลน์</h2>
+                    <div class="btn-group">
+                        <div class="row">
+                            <div class="D-4 T-6 SM-12"><a href="landing.html" class="button-icon primary"><object data="images/folder.svg" type=""></object><p>ขอใบอนุญาตได้ทันทีที่ Biz Portal</p></a></div>
+                            <div class="D-4 T-6 SM-12"><a href="" class="button-icon primary" id="chat-up"><object data="images/customer.svg" type=""></object><p>สอบถามเจ้าหน้าที่ผ่าน Chat</p></a></div>
+                            <div class="D-4 T-6 SM-12"><a href="http://slatest.info.go.th/BizPortal/th/Quiz/Business/Restaurant" class="button-icon primary"><object data="images/smartquiz.svg" type=""></object><p>ร้านของฉันต้องขออนุญาตอะไรบ้าง?</p></a></div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+</section>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+        $.src="https://v2.zopim.com/?51QWbJHtlTd1CZbVRcYvrExRiI1ShrJo";z.t=+new Date;$.
+        type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+
+        var userImage = document.getElementById('chat-up');
+        userImage.onclick = function(e) {
+          e.preventDefault();
+          $zopim.livechat.window.show();
+        };
+    </script>
+}

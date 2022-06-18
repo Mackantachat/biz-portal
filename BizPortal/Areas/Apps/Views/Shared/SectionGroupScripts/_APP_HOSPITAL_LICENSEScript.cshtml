@@ -1,0 +1,68 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+    
+    $(document).ready(function (e) {
+
+        $("input[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT]").attr('min', '1');
+
+        //$('[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_OPTION]').attr('disabled', true);
+        // Remark : To fix data not to be save.
+        $(':radio[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_OPTION]:not(:checked)').attr('disabled', true);
+
+    });
+
+    $('[name=APP_HOSPITAL_LICENSE_INFO_TOTAL_BED]').on('change', function () {
+
+        let $radOpt = $('[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_OPTION]');
+
+        if ($(this).val() >= 1 && $(this).val() <= 30) {
+            $radOpt.filter('[value=OPT_A]').prop('checked', true);
+            $("input[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_HIDDEN]").val('OPT_A')
+        }
+        else if ($(this).val() >= 31 && $(this).val() <= 90) {
+            $radOpt.filter('[value=OPT_B]').prop('checked', true);
+            $("input[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_HIDDEN]").val('OPT_B')
+        }
+        else{
+            $radOpt.filter('[value=OPT_C]').prop('checked', true);
+            $("input[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_HIDDEN]").val('OPT_C')
+        }
+
+    });
+
+    window.singleFormHelpers.form.onDraftDataBound(function () {
+
+        if ($('[name=APP_HOSPITAL_LICENSE_INFO_TOTAL_BED]').val() === '') {
+
+            let $radOpt = $('[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_OPTION]');
+            $radOpt.prop('checked', false);
+
+        }
+        else {
+
+            let $radOpt = $('[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_OPTION]');
+            if ($('[name=APP_HOSPITAL_LICENSE_INFO_TOTAL_BED]').val() >= 1 && $('[name=APP_HOSPITAL_LICENSE_INFO_TOTAL_BED]').val() <= 30) {
+                $radOpt.filter('[value=OPT_A]').prop('checked', true);
+                $("input[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_HIDDEN]").val('OPT_A')
+            }
+            else if ($('[name=APP_HOSPITAL_LICENSE_INFO_TOTAL_BED]').val() >= 31 && $('[name=APP_HOSPITAL_LICENSE_INFO_TOTAL_BED]').val() <= 90) {
+                $radOpt.filter('[value=OPT_B]').prop('checked', true);
+                $("input[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_HIDDEN]").val('OPT_B')
+            }
+            else {
+                $radOpt.filter('[value=OPT_C]').prop('checked', true);
+                $("input[name=APP_HOSPITAL_LICENSE_INFO_SECTION_BED_AMOUNT_HIDDEN]").val('OPT_C')
+            }
+
+        }
+
+    });
+	
+</script>
+
+
+

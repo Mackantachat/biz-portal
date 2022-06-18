@@ -1,0 +1,1060 @@
+﻿@model BizPortal.ViewModels.MemberViewModel
+@{
+    ViewBag.Title = BizPortal.Resources.Member.HEADING_MEMBER_EDIT;
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+@section ContentHeader{
+    <i class="fa fa-file-text-o fa fa-2x "></i>
+    <h4 class="m-t-xs inline padder">@BizPortal.Resources.Member.HEADING_MEMBER_EDIT</h4>
+}
+
+<style type="text/css">
+
+    .bootstrap-duallistbox-container .box1, .bootstrap-duallistbox-container .box2 {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    #bootstrap-duallistbox-nonselected-list_memberManageService, #bootstrap-duallistbox-selected-list_memberManageService, #bootstrap-duallistbox-nonselected-list_memberService, #bootstrap-duallistbox-selected-list_memberService {
+        min-height: 200px !important;
+        overflow-x: auto;
+    }
+
+    select option:disabled {
+        background: #e8e6e6;
+    }
+
+    .select2-dropdown {
+        z-index: 9001;
+    }
+</style>
+
+@using (Html.BeginForm("Edit", "Members", new { id = Model.Id }, FormMethod.Post, new { id = "frmMemberEdit" }))
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username)
+                <span class="form-control form-control-static disabled">
+                    @Model.Username
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FullName)
+                <span class="form-control form-control-static disabled">
+                    @Model.FullName
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserType)
+                @Html.DropDownListFor(model => model.UserType, (SelectList)ViewBag.UserTypeList, new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.UserType, "", new { @class = "text-danger", @style = "width:100%;" })
+            </div>
+        </div>
+        <div class="col-md-6 organization-panel" style="visibility:hidden">
+            <div class="form-group">
+                @Html.LabelFor(model => model.OrgCode)
+
+                @if (ViewBag.IsOrgAdmin)
+                {
+                    @Html.DropDownListFor(model => model.OrgCode, (SelectList)ViewBag.OrganizationList, new { @class = "form-control", @disabled = "disabled" })
+                }
+                else
+                {
+                    @Html.DropDownListFor(model => model.OrgCode, (SelectList)ViewBag.OrganizationList, new { @class = "form-control" })
+                    <div class="error-message hidden">
+                        <span class="text-danger">กรุณาระบุ</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 role-panel" style="display:none;">
+            @Html.LabelFor(model => model.RoleIds)
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        @foreach (var role in (SelectList)ViewBag.RolesList)
+                        {
+                            var isDisabled = true;
+
+                            <label class="block">
+
+                                @if (ViewBag.IsAdmin)
+                                {
+                                    isDisabled = false;
+                                }
+                                else if (ViewBag.IsOPDCAdmin)
+                                {
+                                    if (role.Value != ViewBag.AdminRoleId)
+                                    {
+                                        isDisabled = false;
+                                    }
+                                }
+
+                                <input type="radio" name="RoleIds" value="@role.Value" @(Model.RoleIds != null && Model.RoleIds.Contains(role.Value) ? " checked " : "") @(isDisabled ? " disabled " : "") /> @role.Text
+                            </label>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row manage-service-panel" style="display:none;">
+        <div class="col-md-12">
+            @Html.Label("", BizPortal.Resources.Member.MANAGE_SERVICE)
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <select id="memberManageService" name="memberManageService" multiple></select>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row service-panel" style="display:none;">
+        <div class="col-md-12">
+            @Html.Label("", BizPortal.Resources.Member.OWNSERVICE)
+            <div>
+                <input type="text" id="txtSearchService" class="form-control" style="width:250px; float: left; margin-right:4px;" />
+                <button type="button" id="btnSearchSevice" class="btn btn-primary"><i class="fa fa-search"></i> ค้นหา</button>
+                <button type="button" id="btnAddSevice" class="btn btn-info btn-add-area"><i class="fa fa-plus"></i> เพิ่มบริการ</button>
+            </div>
+            <br />
+            <div class="service-container"></div>
+            <div class="service-empty hidden">ไม่พบบริการที่รับผิดชอบ<hr /></div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-s-md btn-primary">@Html.Raw(BizPortal.Resources.Global.BTN_EDIT)</button>
+                <a href="@Url.Action("Index","Members",new { Area="Manage"})" class="btn btn-s-md btn-default">@Html.Raw(BizPortal.Resources.Global.BTN_BACK)</a>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="modal fade" id="serviceModal" role="dialog" aria-labelledby="serviceModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">เพิ่มบริการที่รับผิดชอบ</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmAddService" class="unvalidate">
+                    <ul id="modalServiceNav" class="nav nav-tabs m-b-md">
+                        <li class="active"><a href="#servicetab" data-toggle="tab">เพิ่มตามบริการ</a></li>
+                        <li><a href="#areatab" data-toggle="tab">เพิ่มตามพื้นที่</a></li>
+
+                        @if (User.IsInRole(ConfigurationValues.ROLES_ADMIN_NAME) || User.IsInRole(ConfigurationValues.ROLES_OPDC_ADMIN_NAME))
+                        {
+                            <li><a href="#importtab" data-toggle="tab">เพิ่มด้วยเอกสาร</a></li>
+                        }
+                    </ul>
+                    <div class="tab-content ">
+                        <div class="tab-pane active" id="servicetab">
+                            <div class="col-md-12">
+                                @Html.Label("", BizPortal.Resources.Member.SERVICE)
+                                <select class="form-control service " required></select>
+                                <div class="error-message hidden">
+                                    <span class="text-danger">@BizPortal.Resources.Member.VAL_REQUIRED</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 m-t-md">
+                                @Html.Label("", BizPortal.Resources.Member.AREA)
+                                <div class="panel panel-default">
+                                    <div class="panel-body ">
+                                        <div class="area-container"></div>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn btn-info btn-add-area">@Html.Raw(BizPortal.Resources.Member.ADD_AREA)</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="areatab">
+                            <div class="col-md-12">
+                                @Html.Label("", BizPortal.Resources.Member.AREA)
+                                <div class="panel panel-default">
+                                    <div class="panel-body" style="padding-bottom:25px;">
+                                        <div class="area-container-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <select id="memberService" name="memberService" multiple></select>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="importtab">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-label m-b-sm"> 1. ดาวน์โหลดข้อมูลปัจจุบัน </div>
+                                    <a class="btn btn-info" style="width:120px;" href="@Url.Action("ExportMemberServices","Members", new { area="Manage", userId = Model.Id  })" target="_blank"><i class="fa fa-download"></i> ดาวน์โหลด</a>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label"> 2. อัปเดตข้อมูลด้วยเอกสาร</div>
+                                    <div class="text-danger m-b-sm">* ข้อควรระวัง *  ข้อมูลบริการเดิมของเจ้าหน้าที่ที่มีอยู่เดิม จะถูกลบทั้งหมดและแทนที่ด้วยข้อมูลจากเอกสารนี้</div>
+                                    <div>
+                                        <button type="button" class="btn btn-success" style="width:120px; float:left;" onclick="document.getElementById('importFile').click();"><i class="fa fa-upload"></i> เลือกเอกสาร</button>
+                                        <p id="importFileName" style="float:left; margin: 15px 10px 0px;">test</p>
+                                        <input type="file" id="importFile" name="importFile" class="hidden" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="border:none;">
+                <div class="col-md-12">
+                    <button type="button" id="btnServiceModalCancel" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                    <button type="button" id="btnServiceModalAdd" class="btn btn-primary">ตกลง</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Styles.Render("~/Bundles/Style/DualListBox")
+@Scripts.Render("~/Bundles/Scripts/DualListBox")
+@section PageScripts
+{
+    <script type="text/javascript">
+        var isAdmin = @Html.Raw(Json.Encode(ViewBag.IsAdmin));
+        var isOPDCAdmin = @Html.Raw(Json.Encode(ViewBag.IsOPDCAdmin));
+        var isOrgAdmin = @Html.Raw(Json.Encode(ViewBag.IsOrgAdmin));
+        var adminRoleId = '@ViewBag.AdminRoleId';
+        var orgAdminRoleId = '@ViewBag.OrgAdminRoleId';
+        var orgAgentRoleId = '@ViewBag.OrgAgentRoleId';
+        var serviceList = @Html.Raw(Json.Encode(ViewBag.ServiceList));
+        var manageServiceList = @Html.Raw(Json.Encode(ViewBag.ManageServiceList));
+        var memberServiceList = @Html.Raw(Json.Encode(Model.Services));
+        var memberManageServiceList = @Html.Raw(Json.Encode(Model.ManageServices));
+        var serviceTemplate =  '<div class="panel panel-default">\
+                                    <div class="panel-body">\
+                                        <div class="col-md-12">\
+                                            @Html.Label("", BizPortal.Resources.Member.SERVICE)\
+                                            <button type="button" class="btn btn-danger  pull-right btn-delete-service ">ลบ</button>\
+                                            <button type="button" class="btn btn-warning  pull-right btn-edit-service m-r-xs">แก้ไข</button>\
+                                            <div class="service-name"></div>\
+                                        </div>\
+                                        <div class="col-md-12 m-t-md">\
+                                            @Html.Label("", BizPortal.Resources.Member.AREA)\
+                                            <table class="table table-bordered table-striped service-area">\
+                                                <thead>\
+                                                    <tr>\
+                                                        <td>จังหวัด</td>\
+                                                        <td>อำเภอ/เขต</td>\
+                                                        <td>ตำบล/แขวง</td>\
+                                                    </tr>\
+                                                </thead>\
+                                                <tbody></tbody>\
+                                                <tfoot>\
+                                                    <tr>\
+                                                        <td colspan="3">ทุกพื้นที่</td>\
+                                                    </tr>\
+                                                </tfoot>\
+                                            </table>\
+                                        </div>\
+                                    </div>\
+                                </div>';
+
+        var areaTemplate = '<div class="row area-body">\
+                                <div class="col-md-10">\
+                                    <div class="col-md-4">\
+                                        <label>@BizPortal.Resources.Member.PROVINCE</label>\
+                                        <select class="form-control province" required></select>\
+                                    </div>\
+                                    <div class="col-md-4">\
+                                        <label>@BizPortal.Resources.Member.DISTRICT</label>\
+                                        <select class="form-control district"></select>\
+                                    </div>\
+                                    <div class="col-md-4">\
+                                        <label>@BizPortal.Resources.Member.SECTION</label>\
+                                        <select class="form-control section"></select>\
+                                    </div>\
+                                    <div class="col-md-12 error-message hidden">\
+                                        <span class="text-danger">@BizPortal.Resources.Member.VAL_AREA</span>\
+                                    </div>\
+                                </div>\
+                                <div id="btnDeleteAreaContainer" class="col-md-2">\
+                                    <div class="col-md-12">\
+                                        <label>&nbsp;</label><br/>\
+                                        <button type="button" class="btn btn-danger btn-delete">@Html.Raw(@BizPortal.Resources.Member.DELETE)</button>\
+                                    </div>\
+                                </div>\
+                            </div>';
+
+        var $panelOrganization = $('.organization-panel');
+        var $panelRole = $('.role-panel');
+        var $panelManageService = $('.manage-service-panel');
+        var $panelService = $('.service-panel');
+        var $radioRoles = $('input[name="RoleIds"]');
+        var $ddlOrgCode = $('#OrgCode');
+        var $ddlUserType = $('#UserType');
+        var $ddlMemberManageService = $('#memberManageService');
+        var isShowSubmitMessage = true;
+
+        $(function () {
+
+            $.validator.setDefaults({
+                highlight: function (e) {
+                    if (!$(e).closest('form').hasClass('unvalidate')) {
+                        var $errorMsg = $(e).hasClass('province') ?  $(e).parent('div').parent('div').children('.error-message') : $(e).parent('div').children('.error-message');
+                        $errorMsg.removeClass('hidden')
+                    }
+                },
+                unhighlight: function (e) {
+                    var $errorMsg = $(e).hasClass('province') ? $(e).parent('div').parent('div').children('.error-message') : $(e).parent('div').children('.error-message');
+                    $errorMsg.addClass('hidden');
+                },
+                errorPlacement: function (error, e) {
+
+                }
+            });
+
+            $ddlUserType.select2().on('change', function (e) {
+                if ($(this).val() == '@UserTypeEnum.GovernmentAgent.GetEnumStringValue()') {
+                    $panelOrganization.show().css('visibility', 'visible');
+                    $panelRole.show();
+
+                    if ((isAdmin == true || isOPDCAdmin == true) && getRoleData().length == 0) {
+                        $radioRoles.filter('[value="' + orgAdminRoleId + '"]').prop('checked', true);
+                    }
+                    else if (isOrgAdmin == true) {
+                        $radioRoles.filter('[value="' + orgAgentRoleId + '"]').prop('checked', true);
+                        $radioRoles.prop('disabled', true);
+                    }
+                }
+                else
+                {
+                    $panelOrganization.hide();
+                    $panelRole.hide();
+                }
+
+                $radioRoles.trigger('change');
+            });
+
+            $radioRoles.on('change', function (e) {
+                $panelManageService.hide();
+                $panelService.hide();
+
+                if ($ddlUserType.val() == '@UserTypeEnum.GovernmentAgent.GetEnumStringValue()') {
+                    if ($('input[name="RoleIds"]:checked').val() == orgAdminRoleId) {
+                        $panelManageService.show();
+                    }
+                    else if($('input[name="RoleIds"]:checked').val() == orgAgentRoleId) {
+                        $panelService.show();
+                    }
+                }
+            });
+
+            $ddlMemberManageService.append(function () {
+                var options = "";
+
+                $.each(manageServiceList, function (i, e) {
+                    var selected = $(memberManageServiceList).filter(function (j, f) {
+                        return e.id == f;
+                    });
+
+                    var isSelected = selected.length > 0;
+
+                    if (memberManageServiceList.length == 0) {
+                        isSelected = (e.group == $ddlOrgCode.val());
+                    }
+
+                    options += '<option value="' + e.id + '" group="' + e.group + '"' + (isSelected ? ' selected ' : '') + '>' + e.text + '</option>';
+                });
+
+                return options;
+            }).bootstrapDualListbox({
+                nonSelectedListLabel: 'บริการทั้งหมด',
+                selectedListLabel: 'บริการที่เลือก',
+                filterPlaceHolder: 'ค้นหา',
+                preserveSelectionOnMove: 'moved',
+                infoText: false,
+                moveOnSelect: false
+                })
+            .on('change', function () {
+                $('select[multiple="multiple"] option:selected').css('width', 0);
+            });
+
+            $('select[multiple="multiple"]').on('change', function (e) {
+                $("option:selected", this).css('width', $(this)[0].scrollWidth + 'px');
+            });
+
+            $ddlOrgCode.select2().on('change', function (e) {
+                if ($('input[name="RoleIds"]:checked').val() == orgAdminRoleId) {
+                    if (memberManageServiceList.length == 0) {
+                        $ddlMemberManageService.children('option').each(function (i, f) {
+                            var $option = $(f);
+
+                            $option.removeAttr('selected');
+
+                            if ($option.attr('group') == $ddlOrgCode.val()) {
+                                $option.attr('selected', true);
+                            }
+                        });
+                    }
+
+                    $('#memberManageService option').prop('selected', false);
+                    $('#memberManageService').bootstrapDualListbox('refresh',true);
+                }
+            });
+
+            initService();
+            initServiceModal();
+            initForm();
+
+            $ddlUserType.val($ddlUserType.val()).trigger('change');
+        });
+
+        function initForm() {
+            $('#frmMemberEdit').on('submit', function (e) {
+                e.preventDefault();
+                showLoader(true);
+
+                try {
+                    var postData = {
+                        userType: $('#UserType').val(),
+                        orgCode: $('#OrgCode').val(),
+                        roleIds: getRoleData(),
+                        manageServices: getManageServiceData(),
+                        services: getServiceData()
+                    };
+
+                    $.post($(this).attr('action'), postData, function (res) {
+
+                        if (res.Status == true) {
+
+                            if (isShowSubmitMessage) {
+                                swal('', res.Message, 'success');
+                            }
+                        }
+                        else {
+                            swal('', res.Message, 'error');
+                        }
+
+                        isShowSubmitMessage = true;
+                        showLoader(false);
+                    }).fail(function () {
+                        isShowSubmitMessage = true;
+                        showLoader(false);
+                        swal('', '@BizPortal.Resources.Global.MSG_ERROR', 'error');
+                    });
+                }
+                catch (ex) {
+                    showLoader(false);
+                }
+
+                return false;
+            });
+        }
+
+        function initService() {
+            addService(memberServiceList, $('.service-container'));
+
+            $('#btnSearchSevice').on('click', function (e) {
+                searchService($('#txtSearchService').val());
+            });
+        }
+
+        function addService(services, $container, isUpdate) {
+
+            if (services != null && services.length == 0 && !isUpdate) {
+                $('.service-empty').removeClass('hidden');
+            }
+            else {
+                $('.service-empty').addClass('hidden');
+            }
+
+            $.each(services, function (i, e) {
+
+                var $service = (isUpdate == true) ? $(serviceTemplate) : $('<div class="service-body" serviceId="' + e.ServiceId + '" refId="' + guid() + '">' + serviceTemplate + '</div>');
+                var $serviceName = $('.service-name', $service);
+                var $serviceArea = $('.service-area', $service);
+                var $btnEdit = $('.btn-edit-service', $service);
+                var $btnDelete = $('.btn-delete-service', $service);
+
+                $serviceName.html(e.Service);
+
+                if (e.Areas.length > 0) {
+                    $.each(e.Areas, function (j, f) {
+                        $serviceArea.children('tbody').append('<tr provinceId="' + f.ProvinceId + '" districtId="' + f.DistrictId + '" sectionId="' + f.SectionId +'" province="' + f.Province + '" district="' + f.District + '" section="' + f.Section +'">\
+                                                                  <td>'+ (f.Province || 'ทุกพื้นที่') + '</td>\
+                                                                  <td>'+ (f.District || 'ทุกพื้นที่') +'</td>\
+                                                                  <td>'+ (f.Section || 'ทุกพื้นที่') +'</td>\
+                                                               </tr>');
+                    });
+
+                    $serviceArea.children('tfoot').hide();
+                }
+                else {
+                    $serviceArea.children('tfoot').show();
+                }
+
+                if (e.IsCanManage == true) {
+                    $btnEdit.on('click', function () {
+                        updateServiceModal(e, $service);
+                    });
+
+                    $btnDelete.on('click', function () {
+                        $service.remove();
+                    });
+                }
+                else {
+                    $btnEdit.remove();
+                    $btnDelete.remove();
+                }
+
+                $container.append($service);
+            });
+        }
+
+        function initServiceModal()
+        {
+            var $modalService = $('#serviceModal');
+            var $modalServiceTitle = $('.modal-title', $modalService);
+            var $modalServiceNav = $('#modalServiceNav', $modalService);
+            var $modalServiceTab = $('a[data-toggle="tab"]', $modalService);
+            var $frmService = $('#frmAddService', $modalService);
+            var $areaContainer = $('.area-container', $modalService);
+            var $btnAddSevice = $('#btnAddSevice');
+            var $btnServiceModalAdd = $('#btnServiceModalAdd');
+            var $ddlService = $('.service', $modalService);
+            var $btnAddArea = $('.btn-add-area', $modalService);
+            var $areaTabAreaContainer = $(".area-container-2", $modalService);
+            var $areaTabDDLMemberServices = $("#memberService", $modalService);
+            var $serviceNav = $('.nav-tabs a[href="#servicetab"]', $modalService);
+            var $serviceTab = $('#servicetab', $modalService);
+            var $areaTab = $('#areatab', $modalService);
+            var $importFile = $("#importtab #importFile");
+            var $importFileName = $("#importtab #importFileName");
+
+            // init tab service
+            $btnAddArea.on('click', function (e) {
+                addServiceModalArea([{}], $('.area-container', $modalService));
+            });
+
+            // init tab area
+            $areaTabDDLMemberServices.bootstrapDualListbox({
+	            nonSelectedListLabel: 'บริการทั้งหมด',
+	            selectedListLabel: 'บริการที่เลือก',
+	            filterPlaceHolder : 'ค้นหา',
+	            preserveSelectionOnMove: 'moved',
+	            infoText: false,
+	            moveOnSelect: false
+            });
+
+            // init tab import
+            $importFile.on('change', function (e) {
+
+                if ($(this).get(0).files.length > 0) {
+                    var fileName = $(this).val().split(/(\\|\/)/g).pop();
+                    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+
+                    if (fileNameExt == 'xlsx') {
+                        $importFileName.html(fileName);
+                    }
+                    else {
+                        $(this).val(null);
+                        swal('', 'ระบบรองรับเฉพาะเอกสารประเภท .xlsx เท่านั้น กรุณาเลือกเอกสารใหม่', 'error');
+                    }
+                }
+            });
+
+            // init modal
+            $btnAddSevice.on('click', function (e) {
+                $modalService.modal();
+            });
+
+            $modalServiceTab.on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr("href");
+
+                if (target == '#areatab') {
+                    $('#areatab .area-container-2 .section, .area-container-2 .district, .area-container-2 .province').val(null).trigger('change');
+                    $('#areatab #memberService option').removeAttr('selected');
+                    $('#areatab #memberService').bootstrapDualListbox('refresh', true);
+                }
+                else if (target == '#servicetab') {
+                    $('#servicetab .service').val(null).trigger('change');
+                    $('#servicetab .area-container').empty();
+                    addServiceModalArea([{}], $('#servicetab .area-container'));
+                }
+                else if (target == '#importtab') {
+                    $importFile.val(null);
+                    $importFileName.html("");
+                }
+
+                $('.error-message').addClass('hidden');
+            });
+
+            $btnServiceModalAdd.on('click', function(e){
+
+                var serviceData = [];
+                var currentTab = $('a[data-toggle="tab"]').parent('li.active').children('a').attr('href');
+
+                $frmService.removeClass('unvalidate');
+
+                if (currentTab == '#servicetab') {
+
+                    if ($('.service', $serviceTab).valid()) {
+                        var serviceSelected = $('.service', $serviceTab).select2('data');
+
+                        serviceData = [{
+                            Service: (serviceSelected.length > 0 ? serviceSelected[0].text : null),
+                            ServiceId: (serviceSelected.length > 0 ? serviceSelected[0].id : -1),
+                            Areas: [],
+                            IsCanManage: true
+                        }];
+
+                        $('.area-body', $serviceTab).each(function (i, f) {
+                            var provinceSelected = $('.province', f).select2('data');
+                            var districtSelected = $('.district', f).select2('data');
+                            var sectionSelected = $('.section', f).select2('data');
+
+                            if (provinceSelected.length > 0) {
+
+                                var area = {
+                                    Province: (provinceSelected.length > 0 ? provinceSelected[0].text : null),
+                                    ProvinceId: (provinceSelected.length > 0 ? provinceSelected[0].id : -1),
+                                    District: (districtSelected.length > 0 ? districtSelected[0].text : null),
+                                    DistrictId: (districtSelected.length > 0 ? districtSelected[0].id : -1),
+                                    Section: (sectionSelected.length > 0 ? sectionSelected[0].text : null),
+                                    SectionId: (sectionSelected.length > 0 ? sectionSelected[0].id : -1),
+                                };
+
+                                var isDuplicate = false;
+                                $.each(serviceData[0].Areas, function (i, e) {
+                                    if (e.ProvinceId == area.ProvinceId && e.DistrictId == area.DistrictId && e.SectionId == area.SectionId) {
+                                        isDuplicate = true;
+                                        return;
+                                    }
+                                });
+
+                                if (!isDuplicate) {
+                                    serviceData[0].Areas.push(area);
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        return;
+                    }
+                }
+                else if (currentTab == '#areatab') {
+
+                    if ($('.province', $areaTab).valid()) {
+                        var area = [];
+                        var provinceSelected = $('.province', $areaTab).select2('data');
+                        var districtSelected = $('.district', $areaTab).select2('data');
+                        var sectionSelected = $('.section', $areaTab).select2('data');
+
+                        if (provinceSelected.length > 0) {
+                            area.push({
+                                Province: (provinceSelected.length > 0 ? provinceSelected[0].text : null),
+                                ProvinceId: (provinceSelected.length > 0 ? provinceSelected[0].id : -1),
+                                District: (districtSelected.length > 0 ? districtSelected[0].text : null),
+                                DistrictId: (districtSelected.length > 0 ? districtSelected[0].id : -1),
+                                Section: (sectionSelected.length > 0 ? sectionSelected[0].text : null),
+                                SectionId: (sectionSelected.length > 0 ? sectionSelected[0].id : -1),
+                            });
+                        }
+
+                        var services = $('#memberService option:selected', $areaTab).each(function (i, e) {
+                            serviceData.push({
+                                Service:  $(e).text(),
+                                ServiceId:  $(e).val(),
+                                Areas: area,
+                                IsCanManage: true
+                            });
+                        });
+                    }
+                    else {
+                        return;
+                    }
+                }
+                else if (currentTab == '#importtab') {
+
+                    if ($importFile.get(0).files.length > 0) {
+                        importUserManageServices($importFile.get(0), '@Model.Id');
+                    }
+                }
+
+                if ($modalService.attr('mode') == 'edit') {
+                    var $updateContainer = $('div[serviceid="' + $('.service', $modalService).val() + '"]');
+                    $updateContainer.empty();
+                    addService(serviceData, $updateContainer, true);
+                }
+                else {
+
+                    if (currentTab != '#importtab') {
+                        addService(serviceData, $('.service-container'));
+                    }
+                }
+
+                $modalService.modal('hide');
+            });
+
+            $modalService.on('show.bs.modal', function (e) {
+
+                if ($modalService.attr('mode') == 'edit') {
+                    $modalServiceTitle.html('แก้ไขบริการที่รับผิดชอบ');
+                    $modalServiceNav.hide();
+                }
+                else {
+
+                    var currentServiceList = getServiceData().map(function (f) {
+                        return f.ServiceId;
+                    });
+
+                    var remainingServiceList = $(manageServiceList).filter(function (j, f) {
+                        return (currentServiceList.indexOf(f.id) == -1);
+                    });
+
+                    if (remainingServiceList.length > 0) {
+
+                        // init service tab
+                        $modalServiceTitle.html('เพิ่มบริการที่รับผิดชอบ');
+                        $modalServiceNav.show();
+                        $ddlService.empty();
+                        $ddlService.select2({
+                            placeholder: 'กรุณาเลือก',
+                            data: remainingServiceList,
+                            width: '100%'
+                        }).on('change', function (e) {
+                            $(this).valid();
+                        });
+
+                        addServiceModalArea([{}], $('.area-container', $modalService));
+
+                        // init area tab
+                        $areaTabDDLMemberServices.append(function () {
+                            var options = "";
+
+                            $.each(remainingServiceList, function (i, e) {
+                                options += '<option value="' + e.id + '" group="' + e.group + '"' + '>' + e.text + '</option>';
+                            });
+
+                            return options;
+                        });
+                        $areaTabDDLMemberServices.bootstrapDualListbox('refresh', true);
+                        addServiceModalArea([{}], $('.area-container-2', $modalService), false);
+                    }
+                    else {
+                        alert('ไม่พบบริการที่สามารถเพิ่มได้อีก');
+                        e.preventDefault();
+                        return false;
+                    }
+                }
+            });
+
+            $modalService.on('hidden.bs.modal', function (e) {
+                $modalService.removeAttr('mode');
+                $ddlService.removeAttr('disabled');
+                $serviceNav.tab('show');
+                $areaContainer.empty();
+                $areaTabAreaContainer.empty();
+                $areaTabDDLMemberServices.empty();
+                $frmService.addClass('unvalidate');
+                $('.error-message').addClass('hidden');
+            });
+        }
+
+        function updateServiceModal(service, $container) {
+            var $modalService = $('#serviceModal');
+            var $ddlService = $('.service', $modalService);
+            var $areaContainer = $('.area-container', $modalService);
+
+            $modalService.attr('mode', 'edit');
+
+            $ddlService.empty();
+            $ddlService.select2({
+                placeholder: 'กรุณาเลือก',
+                data: serviceList,
+                width: '100%'
+            });
+            $ddlService.attr('disabled', true).val(service.ServiceId).trigger('change');
+
+            if (service.Areas.length > 0) {
+                addServiceModalArea(service.Areas, $areaContainer);
+            }
+            else {
+                addServiceModalArea([{}], $areaContainer);
+            }
+
+            $modalService.modal('show');
+        }
+
+        function addServiceModalArea(areas, $container, isDeletable) {
+
+            $.each(areas, function (i, e) {
+
+                var $area = $(areaTemplate + (isDeletable == false ? '': '<hr/>'));
+
+                if (isDeletable == false) {
+                    $('.col-md-10', $area).addClass('col-md-12').removeClass('col-md-10');
+                    $('#btnDeleteAreaContainer', $area).remove();
+                }
+
+                $('.btn-delete', $area).on('click', function (e) {
+                    $area.remove();
+                });
+
+                $('.province', $area).select2({
+                    allowClear: true,
+                    placeholder: 'เลือกทั้งหมด',
+                    ajax: {
+                        url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+
+                            return {
+                                isMetro: '',
+                                query: params.term
+                            };
+                        },
+                        processResults: function (data, params) {
+                            return data;
+                        },
+                        cache: true
+                    },
+                    width: '100%'
+                })
+                .on('change', function (e, params) {
+                    if (params != "init") {
+                        $(this).valid();
+                    }
+                    $('.district', $area).html('').val(null).trigger('change');
+                });
+
+                $('.district',$area).select2({
+                    allowClear: true,
+                    placeholder: 'เลือกทั้งหมด',
+                    ajax: {
+                        url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                query: params.term,
+                                pCode: $('.province',$area).val().padStart(2, "0")
+                            }
+                        },
+                        processResults: function (data, params) {
+                            return data;
+                        },
+                        cache: true
+                    },
+                    width:'100%'
+                })
+                .on('change', function (e) {
+                    $('.section',$area).html('').val(null).trigger('change');
+                });
+
+                $('.section', $area).select2({
+                    allowClear: true,
+                    placeholder: 'เลือกทั้งหมด',
+                    ajax: {
+                        url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                query: params.term,
+                                pCode: $('.province', $area).val().padStart(2, "0"),
+                                aCode: $('.district', $area).val().padStart(2, "0")
+                            }
+                        },
+                        processResults: function (data, params) {
+                            return data;
+                        },
+                        cache: true
+                    },
+                    width: '100%'
+                });
+
+                if (e.ProvinceId != -1 && e.ProvinceId != null) {
+                    $('.province', $area).append(new Option(e.Province, e.ProvinceId, true, true)).trigger('change', "init");
+                }
+
+                if (e.DistrictId != -1 && e.DistrictId != null) {
+                    $('.district', $area).append(new Option(e.District, e.DistrictId, true, true)).trigger('change');
+                }
+
+                if (e.SectionId != -1 && e.SectionId != null) {
+                    $('.section', $area).append(new Option(e.Section, e.SectionId, true, true)).trigger('change');
+                }
+
+                $container.append($area);
+            });
+        }
+
+        function getManageServiceData() {
+            return $('#memberManageService').val();
+        }
+
+        function getServiceData() {
+
+            var serviceData = [];
+
+            $('.service-body').each(function (i, e) {
+                if (e.hasChildNodes()) {
+                    var areas = [];
+                    $('.service-area tbody tr', e).each(function (j, f) {
+                        areas.push({
+                            Province: $(f).attr('province'),
+                            ProvinceId : $(f).attr('provinceId'),
+                            District : $(f).attr('district'),
+                            DistrictId : $(f).attr('districtId'),
+                            Section:  $(f).attr('section'),
+                            SectionId : $(f).attr('sectionId')
+                        });
+                    });
+
+                    serviceData.push({
+                        Service: $('.service-name', e).html(),
+                        ServiceId: $(e).attr('serviceId'),
+                        Areas: areas
+                    });
+                }
+            });
+
+            return serviceData;
+        }
+
+        function getRoleData() {
+            var ids = [];
+
+            $('input[name="RoleIds"]:checked').each(function (i, e) {
+                ids.push($(e).val());
+            });
+
+            return ids;
+        }
+
+        function searchService(filter) {
+
+            var countshow = 0;
+
+            $('.service-body').each(function (i, e) {
+
+                var name = $(e).find('.service-name');
+
+                $(e).addClass('hidden');
+
+                if (name) {
+
+                    if (name[0].innerText.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+                        $(e).removeClass('hidden');
+                        countshow = countshow + 1;
+                    }
+                }
+            });
+
+            if (countshow > 0) {
+                $('.service-empty').addClass('hidden');
+            }
+            else {
+                $('.service-empty').removeClass('hidden');
+            }
+        }
+
+        function importUserManageServices(fileUpload, userid)
+        {
+            swal({
+                title: '',
+                text: '<div class="status-container">\
+                            <div class="circle-loader">\
+                                <div class="checkmark"></div>\
+                            </div>\
+                            <div id="status"> กำลังนำข้อมูลเข้าสู่ระบบ </div>\
+                        </div>',
+                html: true,
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+
+            var files = fileUpload.files;
+
+            var fileData = new FormData();
+
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            fileData.append('userId', userid);
+
+            isShowSubmitMessage = false;
+            $('#frmMemberEdit').submit();
+
+            $.ajax({
+                url: '@Url.Action("ImportMemberServices","Members", new { area="Manage" })',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (res) {
+                    if (res.Status == true) {
+
+                        swal({
+                          title: '',
+                          text: res.Message,
+                          type: "success",
+                          showCancelButton: false,
+                          closeOnConfirm: false
+                        },
+                        function(){
+                           window.location.reload();
+                        });
+                    }
+                    else {
+
+                        if (res.Url) {
+                             swal({
+                                title: '',
+                                type : 'error',
+                                text: '<div>\
+                                         ไม่สามารถนำเข้าข้อมูลได้ กรุณาดาวน์โหลดเอกสารด้านล่างเพื่อทำการตรวจสอบ\
+                                         <br/>\
+                                         <br/>\
+                                         <a href="'+ res.Url + '" target="_blank" onclick="javascript: swal.close();" style="font-size:18px;"> ดาวน์โหลดเอกสาร </a>\
+                                       </div>',
+                                html: true,
+                                showCancelButton: false,
+                                showConfirmButton: false
+                            });
+                        }
+                        else {
+                            swal('', 'ไม่สามารถนำเข้าข้อมูลได้ กรุณาลองใหม่อีกครั้งในภายหลัง', 'error');
+                        }
+                    }
+                },
+                error: function (err) {
+                    swal('', 'ไม่สามารถนำเข้าข้อมูลได้ กรุณาลองใหม่อีกครั้งในภายหลัง', 'error');
+                }
+            });
+        }
+
+    </script>
+}

@@ -1,0 +1,240 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+@using BizPortal.DAL.MongoDB;
+
+@{
+    ViewBag.Title = @Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+}
+
+@section PageStyles {
+    <style>
+        .ps .icon.checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #5CA1BF;
+            border-radius: 3px;
+        }
+
+        .ps .icon.checkbox-disabled {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #DEDEDE;
+            background: #DEDEDE;
+            border-radius: 3px;
+        }
+
+        a.disable-info {
+            color: #5CA1BF;
+            margin-left: 0.5em;
+        }
+
+        .ps .fa.fa-user {
+            color: #DEDEDE;
+            font-size: 16.5px;
+        }
+
+        .external-link span {
+            color: #6F6F6F;
+        }
+
+        .external-link i.fa.fa-user {
+            color: #DEDEDE;
+            font-size: 25px;
+        }
+
+        .mr-checkbox-disble {
+            margin-right: 54px;
+        }
+    </style>
+}
+
+<section class="banner-subpage" 
+         style="background: transparent url('@Url.Content("~/Content/SingleForm-frontis/v2/images/landing.png")') no-repeat center center;background-size: cover;">
+</section>
+
+<section class="landing-component">
+    <div class="container">
+        <h2>รวมใบอนุญาตทั้งหมด</h2>
+        <div class="row">
+            <div class="D-12 T-12 D-offset-1 T-offset-0">
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="ALLPERMIT">
+                        <input type="radio" class="biz-radio choice" id="ALLPERMIT" name="choice" value="ALLPERMIT"><label for="ALLPERMIT"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/security2.png")"></object> รวมใบอนุญาตทั้งหมด</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+                        <div class="choice-form" data-id="ALLPERMIT">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="ALLPERMIT" />
+                                <input type="hidden" name="appList" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_44_1" name="APP_44_1" value="@AppSystemNameTextConst.APP_FACTORY_TYPE2"><label for="APP_44_1"><b>[44.1]</b>ขอหนังสือแจ้งผลการรับฟังความคิดเห็นของประชาชนในการพิจารณาเกี่ยวกับโรงงานจำพวกที่ 2</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_42_1" name="APP_42_1" value="@AppSystemNameTextConst.APP_CLINIC"><label for="APP_42_1"><b>[42.1]</b>ขอใบอนุญาตประกอบกิจการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_35_1" name="APP_35_1" value="@AppSystemNameTextConst.APP_HOSPITAL"><label for="APP_35_1"><b>[35.1] </b>ขอใบอนุมัติแผนงานการจัดตั้งสถานพยาบาลประเภทที่รับผู้ป่วยไว้ค้างคืน</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_36_1" name="APP_36_1" value="@AppSystemNameTextConst.APP_LAW_OFFICE"><label for="APP_36_1"><b>[36.1] </b> ขอขึ้นทะเบียนสำนักงานทนายความ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_36_3" name="APP_36_3" value="@AppSystemNameTextConst.APP_LAW_OFFICE_EDIT"><label for="APP_36_3"><b>[36.3] </b> ขอเปลี่ยนแปลงข้อมูลสำนักงานทนายความ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_36_4" name="APP_36_4" value="@AppSystemNameTextConst.APP_LAW_OFFICE_CANCEL"><label for="APP_36_4"><b>[36.4] </b> ขอยกเลิกขึ้นทะเบียนสำนักงานทนายความ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_37_1" name="APP_37_1" value="@AppSystemNameTextConst.APP_ELECTRONIC_COMMERCIAL"><label for="APP_37_1"><b>[37.1] </b>จดทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_37_3" name="APP_37_3" value="@AppSystemNameTextConst.APP_ELECTRONIC_COMMERCIAL_EDIT"><label for="APP_37_3"><b>[37.3] </b> จดทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์ [ แก้ไข ]</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_37_4" name="APP_37_4" value="@AppSystemNameTextConst.APP_ELECTRONIC_COMMERCIAL_CANCEL"><label for="APP_37_4"><b>[37.4] </b> จดทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์ [ ยกเลิก ]</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_38_1" name="APP_38_1" value="@AppSystemNameTextConst.APP_ENERGY_PRODUCTION"><label for="APP_38_1"><b>[38.1] </b> ใบอนุญาตให้ผลิตพลังงานควบคุม</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_38_2" name="APP_38_2" value="@AppSystemNameTextConst.APP_ENERGY_PRODUCTION_RENEW"><label for="APP_38_2"><b>[38.2] </b> ขอต่ออายุใบอนุญาตให้ผลิตพลังงานควบคุม</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_38_3" name="APP_38_3" value="@AppSystemNameTextConst.APP_ENERGY_PRODUCTION_EDIT"><label for="APP_38_3"><b>[38.3] </b> ขอแก้ไขใบอนุญาตให้ผลิตพลังงานควบคุม</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_38_4" name="APP_38_4" value="@AppSystemNameTextConst.APP_ENERGY_PRODUCTION_CANCEL"><label for="APP_38_4"><b>[38.4] </b> ขอยกเลิกใบอนุญาตให้ผลิตพลังงานควบคุม</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_39_1" name="APP_39_1" value="@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK"><label for="APP_39_1"><b>[39.1] </b> ขอใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_39_2" name="APP_39_2" value="@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW"><label for="APP_39_2"><b>[39.2] </b> ขอต่ออายุใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_39_3" name="APP_39_3" value="@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT"><label for="APP_39_3"><b>[39.3] </b> ขอแก้ไขใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_39_4" name="APP_39_4" value="@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL"><label for="APP_39_4"><b>[39.4] </b> ขอยกเลิกใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_40_1" name="APP_40_1" value="@AppSystemNameTextConst.APP_SECURITIES_BUSINESS"><label for="APP_40_1"><b>[40.1]</b> ใบอนุญาตประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_40_3" name="APP_40_3" value="@AppSystemNameTextConst.APP_SECURITIES_BUSINESS_EDIT"><label for="APP_40_3"><b>[40.3]</b> ขอแก้ไขใบอนุญาตประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_40_4" name="APP_40_4" value="@AppSystemNameTextConst.APP_SECURITIES_BUSINESS_CANCEL"><label for="APP_40_4"><b>[40.4]</b> ใขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_42_2" name="APP_42_2" value="@AppSystemNameTextConst.APP_CLINIC_RENEW"><label for="APP_42_2"><b>[42.2]</b>ขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาลหรือใบอนุญาตให้ดำเนินการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_42_3" name="APP_42_3" value="@AppSystemNameTextConst.APP_CLINIC_EDIT"><label for="APP_42_3"><b>[42.3]</b>ขอแก้ไขใบอนุญาตให้ประกอบกิจการสถานพยาบาลและใบอนุญาตให้ดำเนินการสถานพยาบาลหรือเปลี่ยนตัวผู้ดำเนินการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_42_4" name="APP_42_4" value="@AppSystemNameTextConst.APP_CLINIC_CANCEL"><label for="APP_42_4"><b>[42.4]</b>ขอแจ้งเลิกกิจการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_43_1" name="APP_43_1" value="@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE"><label for="APP_43_1"><b>[43.1]</b> ใบขอจดทะเบียนนิติบุคคลเพื่อประกอบกิจการให้บริการด้านวิชาชีพบัญชี</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_43_2" name="APP_43_2" value="@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_RENEW"><label for="APP_43_2"><b>[43.2 - 1]</b> ขอแจ้งรายละเอียดเกี่ยวกับหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สาม</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_43_2_2" name="APP_43_2_2" value="@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_RENEW_TYPE_2"><label for="APP_43_2_2"><b>[43.2 - 2]</b> ขอต่ออายุทะเบียนนิติบุคคลเพื่อประกอบกิจการให้บริการด้านวิชาชีพบัญชี</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_43_3" name="APP_43_3" value="@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT"><label for="APP_43_3"><b>[43.3 - 1]</b> ขอแก้ไขทะเบียนนิติบุคคลเพื่อประกอบกิจการให้บริการด้านวิชาชีพบัญชี</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_43_3_2" name="APP_43_3_2" value="@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2"><label for="APP_43_3_2"><b>[43.3 - 2]</b> ขอแจ้งเปลี่ยนแปลงประเภทของหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สาม</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_43_4" name="APP_43_4" value="@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_CANCEL"><label for="APP_43_4"><b>[43.4]</b> ขอยกเลิกทะเบียนนิติบุคคลเพื่อประกอบวิชาชีพบัญชี</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_46_1" name="APP_46_1" value="@AppSystemNameTextConst.APP_TOURISM_BUSINESS"><label for="APP_46_1"><b>[46.1]</b> ใบอนุญาตประกอบธุรกิจนำเที่ยว</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_46_2" name="APP_46_2" value="@AppSystemNameTextConst.APP_TOURISM_BUSINESS_RENEW"><label for="APP_46_2"><b>[46.2]</b> ใบอนุญาตประกอบธุรกิจนำเที่ยว</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_46_3" name="APP_46_3" value="@AppSystemNameTextConst.APP_TOURISM_BUSINESS_EDIT"><label for="APP_46_3"><b>[46.3]</b> ใบอนุญาตประกอบธุรกิจนำเที่ยว</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_46_4" name="APP_46_4" value="@AppSystemNameTextConst.APP_TOURISM_BUSINESS_CANCEL"><label for="APP_46_4"><b>[46.4]</b> ใบอนุญาตประกอบธุรกิจนำเที่ยว</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_47_1" name="APP_47_1" value="@AppSystemNameTextConst.APP_HOSPITAL_PERMISSION"><label for="APP_47_1"><b>[47.1]</b> ขอใบอนุญาตให้ประกอบกิจการสถานพยาบาล(โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_47_2" name="APP_47_2" value="@AppSystemNameTextConst.APP_HOSPITAL_PERMISSION_RENEW"><label for="APP_47_2"><b>[47.2]</b> ขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาลหรือใบอนุญาตให้ดำเนินการสถานพยาบาล (โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_47_3" name="APP_47_3" value="@AppSystemNameTextConst.APP_HOSPITAL_PERMISSION_EDIT"><label for="APP_47_3"><b>[47.3]</b> ขอแก้ไขใบอนุญาตให้ประกอบกิจการสถานพยาบาลและใบอนุญาตให้ดำเนินการสถานพยาบาลหรือเปลี่ยนตัวผู้ดำเนินการสถานพยาบาล (โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_47_4" name="APP_47_4" value="@AppSystemNameTextConst.APP_HOSPITAL_PERMISSION_CANCEL"><label for="APP_47_4"><b>[47.4]</b> ขอแจ้งเลิกกิจการสถานพยาบาล (โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_23_1" name="APP_23_1" value="@AppSystemNameTextConst.APP_FRT_NEW_001"><label for="APP_23_1"><b>[23.1] </b>ขอใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_23_2" name="APP_23_2" value="@AppSystemNameTextConst.APP_FRT_RENEW_001"><label for="APP_23_2"><b>[23.2] </b>ขอต่ออายุใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_23_3" name="APP_23_3" value="@AppSystemNameTextConst.APP_FRT_EDIT_001"><label for="APP_23_3"><b>[23.3] </b>ขอแก้ไขใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_23_4" name="APP_23_4" value="@AppSystemNameTextConst.APP_FRT_CANCEL_001"><label for="APP_23_4"><b>[23.4] </b>ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_48_1" name="APP_48_1" value="@AppSystemNameTextConst.APP_ENERGY_PRODUCTION_NOT_PERMIT"><label for="APP_48_1"><b>[48.1] </b>การรับแจ้งการประกอบกิจการพลังงานที่ได้รับการยกเว้นไม่ต้องขอรับใบอนุญาต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_41_1" name="APP_41_1" value="@AppSystemNameTextConst.APP_SOFTWARE_HOUSE_NEW"><label for="APP_41_1"><b>[41.1] </b>ขอมีเลขประจำตัวซอฟต์แวร์เฮ้าส์</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_41_2" name="APP_41_2" value="@AppSystemNameTextConst.APP_SOFTWARE_HOUSE_RENEW"><label for="APP_41_2"><b>[41.2] </b>ขอแจ้งข้อมูลการจำหน่ายซอฟต์แวร์ตามมาตราฐานซอฟต์แวร์ของกรมสรรพากร</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_41_3" name="APP_41_3" value="@AppSystemNameTextConst.APP_SOFTWARE_HOUSE_EDIT"><label for="APP_41_3"><b>[41.3] </b>ขอแก้ไขเลขประจำตัวซอฟต์แวร์เฮ้าส์</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_FACTORY_CLASS_2_NEW" name="APP_FACTORY_CLASS_2_NEW" value="@AppSystemNameTextConst.APP_FACTORY_CLASS_2_NEW"><label for="APP_FACTORY_CLASS_2_NEW"><b>[45.1] </b>ใบรับแจ้งการประกอบกิจการโรงงานจำพวกที่ 2</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_FACTORY_CLASS_2_EDIT" name="APP_FACTORY_CLASS_2_EDIT" value="@AppSystemNameTextConst.APP_FACTORY_CLASS_2_EDIT"><label for="APP_FACTORY_CLASS_2_EDIT"><b>[45.3] </b>ขอแก้ไขการแจ้งการประกอบกิจการโรงงานจำพวกที่ 2</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_FACTORY_CLASS_2_CANCEL" name="APP_FACTORY_CLASS_2_CANCEL" value="@AppSystemNameTextConst.APP_FACTORY_CLASS_2_CANCEL"><label for="APP_FACTORY_CLASS_2_CANCEL"><b>[45.4] </b>ยกเลิกการแจ้งการประกอบกิจการโรงงานจำพวกที่ 2</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_49_1" name="APP_49_1" value="@AppSystemNameTextConst.APP_ORGANIC_PLANT_PRODUCTION_NEW"><label for="APP_49_1"><b>[49.1] </b>ขอใบรับรองแหล่งผลิตพืชอินทรีย์ (แปลงเดียว/รายเดียว หรือกลุ่ม)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_49_2" name="APP_49_2" value="@AppSystemNameTextConst.APP_ORGANIC_PLANT_PRODUCTION_RENEW"><label for="APP_49_2"><b>[49.2] </b>ขอต่ออายุใบรับรองแหล่งผลิตพืชอินทรีย์</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_49_3" name="APP_49_3" value="@AppSystemNameTextConst.APP_ORGANIC_PLANT_PRODUCTION_EDIT"><label for="APP_49_3"><b>[49.3] </b>ขอแก้ไขใบรับรองแหล่งผลิตพืชอินทรีย์ (แปลงเดียว/รายเดียว)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_49_4" name="APP_49_4" value="@AppSystemNameTextConst.APP_ORGANIC_PLANT_PRODUCTION_CANCEL"><label for="APP_49_4"><b>[49.4] </b>ขอยกเลิกใบรับรองแหล่งผลิตพืชอินทรีย์</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_EDIT" name="APP_SEC_EDIT" value="@AppSystemNameTextConst.APP_SEC_EDIT"><label for="APP_SEC_EDIT"><b>[ ] </b>ขอแก้ไขข้อมูลผู้ประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_A" name="APP_SEC_CANCEL_A" value="@AppSystemNameTextConst.APP_SEC_CANCEL_A"><label for="APP_SEC_CANCEL_A"><b>[ ] </b>ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ก และใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_B" name="APP_SEC_CANCEL_B" value="@AppSystemNameTextConst.APP_SEC_CANCEL_B"><label for="APP_SEC_CANCEL_B"><b>[ ] </b>ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ข และใบอนุญาตประกอบกิจสัญญาซื้อขายล่วงหน้าแบบ ส-2</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_C" name="APP_SEC_CANCEL_C" value="@AppSystemNameTextConst.APP_SEC_CANCEL_C"><label for="APP_SEC_CANCEL_C"><b>[ ] </b>ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ค และใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ประเภทการเป็นผู้จัดการทุนสัญญาซื้อขายล่วงหน้าผู้จัดการเงินทุนสัญญา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_D" name="APP_SEC_CANCEL_D" value="@AppSystemNameTextConst.APP_SEC_CANCEL_D"><label for="APP_SEC_CANCEL_D"><b>[ ] </b>ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์ แบบ ง</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_E" name="APP_SEC_CANCEL_E" value="@AppSystemNameTextConst.APP_SEC_CANCEL_E"><label for="APP_SEC_CANCEL_E"><b>[ ] </b>ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการเป็นที่ปรึกษาการลงทุน และใบอนุญาตประกอบธุรกิจที่ปรึกษาสัญญาซื้อขายล่วงหน้า</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_F" name="APP_SEC_CANCEL_F" value="@AppSystemNameTextConst.APP_SEC_CANCEL_F"><label for="APP_SEC_CANCEL_F"><b>[ ] </b>ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทกิจการการยืมและให้ยืมหลักทรัพย์</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_G" name="APP_SEC_CANCEL_G" value="@AppSystemNameTextConst.APP_SEC_CANCEL_G"><label for="APP_SEC_CANCEL_G"><b>[ ] </b>ขอใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SPA_FEE_PER_YEAR" name="APP_SPA_FEE_PER_YEAR" value="@AppSystemNameTextConst.APP_SPA_FEE_PER_YEAR"><label for="APP_SPA_FEE_PER_YEAR"><b>[ ] </b>การชำระค่าธรรมเนียมการประกอบกิจการสถานประกอบการเพื่อสุขภาพรายปี (สปา)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_NOT_ONE_NIGHT_STAND" name="APP_CLINIC_NOT_ONE_NIGHT_STAND" value="@AppSystemNameTextConst.APP_CLINIC_NOT_ONE_NIGHT_STAND"><label for="APP_CLINIC_NOT_ONE_NIGHT_STAND"><b>[ ] </b>การชำระค่าธรรมเนียมการประกอบกิจการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_OVER_NIGHT" name="APP_CLINIC_OVER_NIGHT" value="@AppSystemNameTextConst.APP_CLINIC_OVER_NIGHT"><label for="APP_CLINIC_OVER_NIGHT"><b>[ ] </b>การชำระค่าธรรมเนียมการประกอบกิจการสถานพยาบาล (โรงพยาบาล)</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_BUSINESS" name="" value="@AppSystemNameTextConst.APP_CLINIC_BUSINESS"><label for="APP_CLINIC_BUSINESS"><b>[ ] </b>ขออนุญาตให้ประกอบกิจการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_OPERATION" name="" value="@AppSystemNameTextConst.APP_CLINIC_OPERATION"><label for="APP_CLINIC_OPERATION"><b>[ ] </b>ขอรับใบอนุญาตให้ดำเนินการสถานพยาบาล (คลินิก)</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_HOSPITAL_BUSINESS" name="" value="@AppSystemNameTextConst.APP_HOSPITAL_BUSINESS"><label for="APP_HOSPITAL_BUSINESS"><b>[ ] </b>ขออนุญาตให้ประกอบกิจการสถานพยาบาล (โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_HOSPITAL_OPERATION" name="" value="@AppSystemNameTextConst.APP_HOSPITAL_OPERATION"><label for="APP_HOSPITAL_OPERATION"><b>[ ] </b>ขอรับใบอนุญาตให้ดำเนินการสถานพยาบาล (โรงพยาบาล)</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_BUSINESS_RENEW" name="" value="@AppSystemNameTextConst.APP_CLINIC_BUSINESS_RENEW"><label for="APP_CLINIC_BUSINESS_RENEW"><b>[ ] </b>ขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_OPERATION_RENEW" name="" value="@AppSystemNameTextConst.APP_CLINIC_OPERATION_RENEW"><label for="APP_CLINIC_OPERATION_RENEW"><b>[ ] </b>ขอต่ออายุใบอนุญาตให้ดำเนินการสถานพยาบาล (คลินิก)</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_HOSPITAL_BUSINESS_RENEW" name="" value="@AppSystemNameTextConst.APP_HOSPITAL_BUSINESS_RENEW"><label for="APP_HOSPITAL_BUSINESS_RENEW"><b>[ ] </b>ขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาล (โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_HOSPITAL_OPERATION_RENEW" name="" value="@AppSystemNameTextConst.APP_HOSPITAL_OPERATION_RENEW"><label for="APP_HOSPITAL_OPERATION_RENEW"><b>[ ] </b>ขอต่ออายุใบอนุญาตให้ดำเนินการสถานพยาบาล (โรงพยาบาล)</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_BUSINESS_EDIT" name="" value="@AppSystemNameTextConst.APP_CLINIC_BUSINESS_EDIT"><label for="APP_CLINIC_BUSINESS_EDIT"><b>[ ] </b>ขอแก้ไขใบอนุญาตให้ประกอบกิจการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_OPERATION_EDIT" name="" value="@AppSystemNameTextConst.APP_CLINIC_OPERATION_EDIT"><label for="APP_CLINIC_OPERATION_EDIT"><b>[ ] </b>ขอเปลี่ยนตัวผู้ดำเนินการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_CLINIC_OPERATION_EDIT_B" name="" value="@AppSystemNameTextConst.APP_CLINIC_OPERATION_EDIT_B"><label for="APP_CLINIC_OPERATION_EDIT_B"><b>[ ] </b>ขอแก้ไขใบอนุญาตให้ดำเนินการสถานพยาบาล (คลินิก)</label>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_HOSPITAL_BUSINESS_EDIT" name="" value="@AppSystemNameTextConst.APP_HOSPITAL_BUSINESS_EDIT"><label for="APP_HOSPITAL_BUSINESS_EDIT"><b>[ ] </b>ขอแก้ไขใบอนุญาตให้ประกอบกิจการสถานพยาบาล (โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_HOSPITAL_OPERATION_EDIT" name="" value="@AppSystemNameTextConst.APP_HOSPITAL_OPERATION_EDIT"><label for="APP_HOSPITAL_OPERATION_EDIT"><b>[ ] </b>ขอเปลี่ยนตัวผู้ดำเนินการสถานพยาบาล (โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_HOSPITAL_OPERATION_EDIT_B" name="" value="@AppSystemNameTextConst.APP_HOSPITAL_OPERATION_EDIT_B"><label for="APP_HOSPITAL_OPERATION_EDIT_B"><b>[ ] </b>ขอแก้ไขใบอนุญาตให้ดำเนินการสถานพยาบาล (โรงพยาบาล)</label>
+                            </div>
+
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="NOTUSE">
+                        <input type="radio" class="biz-radio choice" id="NOTUSE" name="choice" value="NOTUSE"><label for="NOTUSE"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/security2.png")"></object> ไม่ได้ใช้งาน</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+                        <div class="choice-form" data-id="NOTUSE">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="NOTUSE" />
+                                <input type="hidden" name="appList" />
+                                @*<input type="checkbox" class="biz-checkbox app-item" id="APP_35_1" name="APP_35_1" value="APP_HOSPITAL"><label for="APP_35_1"><b>[35.1] </b>ขอใบอนุมัติแผนงานการจัดตั้งสถานพยาบาลประเภทที่รับผู้ป่วยไว้ค้างคืน</label>*@
+                            </div>
+
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            function showAlertGoingNextPage() {
+                swal({
+                    title: "กำลังไปยังหน้าถัดไป",
+                    type: "success",
+                    showConfirmButton: false
+                });
+            }
+
+            $(".form-landing").submit(function (e) {
+                var appList = [];
+                $(this).find('input.app-item:checked').each(function () {
+                    appList.push($(this).val());
+                });
+                $(this).find('input[name=appList]').val(JSON.stringify(appList));
+                showAlertGoingNextPage();
+
+                var self = this;
+                window.setTimeout(function () {
+                    self.submit();
+                }, 1500);
+
+                return false;
+            });
+
+        });
+
+    </script>
+}

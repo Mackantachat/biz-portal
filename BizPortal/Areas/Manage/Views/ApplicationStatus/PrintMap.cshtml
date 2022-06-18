@@ -1,0 +1,216 @@
+﻿@model BizPortal.DAL.MongoDB.ApplicationRequestEntity
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@using BizPortal.ViewModels.V2
+@using BizPortal.AppsHook
+@using BizPortal.DAL.MongoDB
+
+<style>
+    .txt-label {
+        
+    }
+    #addressFormGoogleMapPrint {
+        margin: 0px 15px 0px 15px;
+    }
+</style>
+@{
+    string latControlId = "";
+    string longControlId = "";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutBackendPrint.cshtml";
+    ViewBag.Title = string.Format("แผนที่_{0} {1}", Resource.ApplicationStatusRequests.APPLICATION_REQUEST, Model.ApplicationName);
+    
+
+    ApplicationRequestViewModel viewModel = new ApplicationRequestViewModel();
+    Mapster.TypeAdapter.Adapt<ApplicationRequestEntity, ApplicationRequestViewModel>(Model, viewModel);
+    IAppsHook hook = null;
+    Dictionary<string, string> appTranslates = null;
+    if (!string.IsNullOrEmpty(ViewBag.AppsHookClassName))
+    {
+        hook = (IAppsHook)Activator.CreateInstance("BizPortal.AppsHook", ViewBag.AppsHookClassName).Unwrap();
+        appTranslates = hook.TranslateKeyValue(viewModel);
+    }
+    ViewBag.IsDetailView = true;
+}
+
+@{
+    SingleFormRendererAppHook singleFormRendererHook = null;
+    if (hook is SingleFormRendererAppHook)
+    {
+        singleFormRendererHook = hook as SingleFormRendererAppHook;
+    }
+
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+    FormSectionGroup[] sectionGroups = null;
+    FormSection[] sections = null;
+    FormSectionRow[] sectionRows = null;
+}
+<br />
+<div class="row google-map-box-print">
+
+
+    @if (hook != null)
+    {
+        if (singleFormRendererHook != null)
+        {
+            BizPortal.ViewModels.SingleForm.SingleFormAppsViewModel[] mm = singleFormRendererHook.RenderDataSingleForm(Model, ViewBag);
+            sectionGroups = ViewBag.SectionGroups;
+            sections = ViewBag.Sections;
+            sectionRows = ViewBag.SectionRows;
+
+            <section data-section-group-name="INFORMATION_STORE" class="col-md-12">
+                @foreach (var row in sectionRows)
+                {
+
+                    foreach (var ctrl in row.Controls)
+                    {
+                        if (ctrl.AddressForm_ShowMapControl)
+                        {
+                            <div class="col-md-12">
+                                <label style="font-weight:bold; font-size:15px;">
+                                    @ResourceHelper.GetResourceWordWithDefault("INFORMATION_STORE", "Apps_SingleForm", "INFORMATION_STORE")
+                                </label>
+                            </div>
+
+                            latControlId = string.Format("{0}_{1}", "ADDRESS_LAT", ctrl.ClientID);
+                            longControlId = string.Format("{0}_{1}", "ADDRESS_LNG", ctrl.ClientID);
+
+                            <div class="col-md-6">
+                                <label>ละติจูด : </label>
+                                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_LAT", ctrl.DataKey), null, new { @class = "form-control txt-label", id = latControlId, @readonly = "readonly" })
+                            </div>
+                            <div class="col-md-6">
+                                <label>ลองจิจูด :</label>
+                                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_LNG", ctrl.DataKey), null, new { @class = "form-control txt-label", id = longControlId, @readonly = "readonly" })
+                            </div>
+
+                        }
+                    }
+                }
+            </section>
+        }
+    }
+
+</div>
+<br />
+<div class="row google-map-box-print">
+    <div class="col-md-12 text-center">
+        <div id="addressFormGoogleMapPrint">
+
+        </div>
+    </div>
+</div>
+@if (hook != null && hook.PrintFormHeaderRight != null)
+{
+    <div class="header-right">
+        @hook.PrintFormHeaderRight
+    </div>
+}
+@if (hook != null && hook.PrintFormTitle != null)
+{
+    ViewBag.Title = hook.PrintFormTitle;
+}
+
+
+@section PageScripts {
+    @if (hook is SingleFormRendererAppHook)
+    {
+        <script type="text/javascript">
+        var batchID = null;
+        var confirmation = {
+            variables: {
+
+            },
+            controls: {
+            },
+            functions: {
+                init: function () {
+                    confirmation.functions.getData();
+                },
+                renderHandlebars: function (obj) {
+                    var source = $("#" + obj.section + "Template").html();
+                    var template = Handlebars.compile(source);
+                    $("#insert_" + obj.section).html(template(obj));
+                },
+                getData: function () {
+                    var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.SingleFormData));
+                    if (data) {
+                        for (var i = 0; i < data.SectionData.length; i++) {
+                            var sec = data.SectionData[i];
+                            if (sec.Type == "Form") {
+                                var countLatLng = 0;
+                                for (var key in sec.FormData) {
+                                    if (key.includes('ADDRESS_LAT') || key.includes('ADDRESS_LNG')) {
+                                        if ($("input[type=text][name=" + key + "]").length == 1) { // Text Box
+                                            $("input[name=" + key + "]").val(sec.FormData[key]);
+                                            countLatLng += 1;
+                                        }
+                                    }
+
+                                    if (countLatLng >= 2) {
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        //setTimeout(window.print, 2500);
+                    }
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            // Normal Javascripts Begin
+            confirmation.functions.init();
+
+            });
+
+            function initialGoogleMap() {
+                showLoader(true);
+                window.setTimeout(function () {
+                    var latVal = $('#' + '@latControlId').val();
+                    var longVal = $('#' + '@longControlId').val();
+                    //var latVal = '13.7286963';
+                    //var longVal = '100.5356873';
+                    //console.log('latVal', latVal);
+                    //console.log('longVal', longVal);
+                    var isFoundLatLong = ((latVal != '' && longVal != '') && (typeof latVal !== 'undefined' && typeof longVal !== 'undefined'));
+                    if (isFoundLatLong) {
+                        var myCenter = new google.maps.LatLng(latVal, longVal);
+                        //console.log('lat', { lat: latVal, long: longVal });
+
+                        var mapProp = {
+                            center: myCenter,
+                            zoom: 16,
+                        };
+                        var mapCanvas = document.getElementById("addressFormGoogleMapPrint");
+                        var mapGoogleObj = new google.maps.Map(mapCanvas, mapProp);
+                        var marker = new google.maps.Marker({ position: myCenter });
+                        marker.setMap(mapGoogleObj);
+                        var pageHeight = $(window).height();
+                        var pageHeight20Percent = (pageHeight * 20) / 100;
+                        pageHeight = pageHeight - pageHeight20Percent;
+                        $('#addressFormGoogleMapPrint').height(pageHeight);
+                        showLoader(false);
+                        setTimeout(window.print, 1500);
+                    }
+                    else {
+                        $('.google-map-box-print').remove();
+                        swal({
+                            title: '',
+                            text: 'ไม่มีแผนที่ในใบคำขอที่เลือก',
+                            type: 'warning'
+                        });
+                        showLoader(false);
+                    }
+                }, 1500);
+
+            }
+
+        </script>
+
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=@(ConfigurationValues.GoogleMapsKey)&libraries=places&callback=initialGoogleMap"></script>
+    }
+
+}

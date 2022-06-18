@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+    UserTypeEnum identityType = ViewBag.IdentityType;
+    var url = "";
+    if (identityType == UserTypeEnum.Citizen)
+    {
+        url = System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + "Citizen/Account/Intro#rowVerify";
+    }
+    else if (identityType == UserTypeEnum.Juristic)
+    {
+        url = System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + "Business/EditJuristicContact";
+    }
+}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            <p>ขออภัย ท่านจะต้องดำเนินการยืนยันข้อมูล <strong>อีเมล/เบอร์โทรศัพท์มือถือ</strong>และ<strong>เลขบัตรประจำตัวประชาชน/เลขประจำตัวผู้เสียภาษี</strong> ก่อนดำเนินการยื่นคำร้องขอใช้บริการต่างๆของภาครัฐ</p>
+            <p>หลังจากยืนยันข้อมูลเรียบร้อยแล้ว กรุณาเปิดหน้านี้ใหม่อีกครั้งเพื่อเข้าสู่หน้าจอแบบฟอร์มยืนคำร้องขอใช้บริการ</p>
+        </div>
+        <div class="form-group text-center">
+            <a href="@url" target="_blank" class="btn btn-success btn-sm">คลิกเพื่อยืนยันข้อมูล</a>
+        </div>
+    </div>
+</div>

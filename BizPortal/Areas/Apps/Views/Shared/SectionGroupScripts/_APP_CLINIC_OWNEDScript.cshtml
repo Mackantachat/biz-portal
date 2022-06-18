@@ -1,0 +1,119 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+//import { debug } from "console";
+
+//import { forEach } from "underscore";
+
+    
+    $(document).ready(function (e) {
+
+        function setDisabled(disabled, checked) {
+            $('input[type="radio"][name="APP_CLINIC_OWNED_OPARETOR_SECTION_DETAIL_OPTION"]').each(function (e) {
+                $(this).prop('disabled', disabled);
+
+                if (checked) {
+                    $(this).prop('checked', false).trigger('change');
+                }
+            });
+        }
+
+        window.singleFormHelpers.form.onArrayOfFormModalDataBound('APP_CLINIC_OWNED_OPARETOR_SECTION', function (sectionName, data, datalist, action) {
+            var checkOparetor = false;
+            $(datalist || []).each(function (index, item) {
+                if (item.APP_CLINIC_OWNED_OPARETOR_SECTION_DETAIL_OPTION === 'OPARETOR') {
+                    checkOparetor = true;
+                }
+            });
+
+            if (checkOparetor) {
+                if (action === 'EDIT') {
+                    if (data.APP_CLINIC_OWNED_OPARETOR_SECTION_DETAIL_OPTION === 'OPARETOR') {
+                        setDisabled(false);
+                    } else {
+                        $('input[type="radio"][name="APP_CLINIC_OWNED_OPARETOR_SECTION_DETAIL_OPTION"]').each(function (e) {
+                            if ($(this).val() === 'EMPLOYEE') {
+                                $(this).prop('checked', true).trigger('change');
+                            } else {
+                                $(this).prop('disabled', true);
+                            }
+                        });
+                    };
+                } else {
+                    $('input[type="radio"][name="APP_CLINIC_OWNED_OPARETOR_SECTION_DETAIL_OPTION"]').each(function (e) {
+                        if ($(this).val() === 'EMPLOYEE') {
+                            $(this).prop('checked', true).trigger('change');
+                        } else {
+                            $(this).prop('disabled', true);
+                        }
+                    });
+                }
+            } else {
+                if (action === 'EDIT') {
+                    $('input[type="radio"][name="APP_CLINIC_OWNED_OPARETOR_SECTION_DETAIL_OPTION"]').each(function (e) {
+                        if ($(this).val() === 'EMPLOYEE') {
+                            $(this).prop('checked', true).trigger('change');
+                        } else {
+                            $(this).prop('disabled', false);
+                        }
+                    });
+                } else {
+                    setDisabled(false, true);
+                }
+            }
+        });
+
+        $('[name=APP_CLINIC_OPERATION_SECA_CONA]').attr('maxlength', '10');
+        
+    });
+
+    $('[name=APP_CLINIC_OPERATION_SECA_CONA]').keydown(function (e) {
+
+        if ($(this).val() == '') {
+
+            if (e.key == 'แ' || e.key == '่') {
+                e.preventDefault();
+            }
+
+            let beginStrAllow = [67,74,9];
+            let isAllow = false;
+            for (let i = 0; i <= beginStrAllow.length - 1; i++) {
+                if (e.keyCode == beginStrAllow[i]) {
+
+                    isAllow = true;
+                    return;
+                }
+            }
+            if (!isAllow) {
+                e.preventDefault();
+            }
+        }
+
+        else if ($(this).val().length <= 10) {
+            if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 37 || e.keyCode == 39) {
+                return;
+            }
+            else {
+                e.preventDefault();
+            }
+        }
+
+    });
+
+    $('[name=APP_CLINIC_OPERATION_SECA_CONA]').change(function () {
+
+        $(this).val($(this).val().toUpperCase());
+
+    });
+
+</script>
+
+<style type="text/css">
+    div#MODAL_APP_CLINIC_OWNED_OPARETOR_SECTION  div.modal-content {
+        min-height: 1400px;
+    }
+</style>
+

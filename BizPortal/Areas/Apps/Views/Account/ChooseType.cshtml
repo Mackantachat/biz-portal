@@ -1,0 +1,66 @@
+﻿@using BizPortal.Models
+@using Resource = BizPortal.Resources
+@model LoginViewModel
+
+@{
+    ViewBag.Title = Resource.Global.E_AUTHENTICATION;
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="featured-box featured-box-primary align-left mt-xlg">
+            <div class="box-content">
+                <h5 class="heading-primary text-uppercase mb-md">@Resource.Global.E_AUTHENTICATION</h5>
+                <form action="@Url.Action("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl, language = ViewBag.CurrentLang })" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            กรุณาเลือกประเภทของบัญชีที่ต้องการเข้าใช้งาน มีดังนี้
+                            <ul>
+                                @*<li>
+                                    <p>
+                                        บัญชีการพิสูจน์และยืนยันตัวตนทางดิจิทัล
+                                    </p>
+                                    <p>
+                                        <button type="submit" class="btn btn-primary" name="provider" value="NDID">@BizPortal.Resources.Global.LOGIN_NDID</button>
+                                    </p>
+                                </li>*@
+                                <li>
+                                    <p>
+                                        บัญชีประชาชน สำหรับท่านที่ต้องการเข้าใช้บริการภาครัฐ โดยท่านสามารถสมัครผ่านระบบหรือขอผ่านศูนย์บริการร่วมที่รัฐให้บริการได้ทุกสาขา
+                                    </p>
+                                    <p>
+                                        <button type="submit" class="btn btn-primary" name="provider" value="EGA OpenID Citizen">@BizPortal.Resources.Global.LOGIN_CITIZEN</button>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        บัญชีผู้ประกอบการ สำหรับผู้ประกอบการที่ต้องการเข้างานบริการภาครัฐ โดยบัญชีจะออกให้โดยกรมพัฒนาธุรกิจการค้าหลังจากที่ท่านได้ดำเนินการจดทะเบียนบริษัทเรียบร้อย
+                                    </p>
+                                    <p>
+                                        <button type="submit" class="btn btn-primary" name="provider" value="EGA OpenID">@BizPortal.Resources.Global.LOGIN_JUIRSTIC</button>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            @*<a href="@(!string.IsNullOrEmpty(ViewBag.ReturnUrl) ? ViewBag.ReturnUrl : Url.BizAction("Index", "Home", new { area = "" }))" class="btn btn-default">ย้อนกลับ</a>*@
+                            <a href="@Url.BizAction("Index", "Home", new { area = "" })" class="btn btn-default">กลับหน้าแรก</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row center">
+    © 2015 DGA. All rights reserved.
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

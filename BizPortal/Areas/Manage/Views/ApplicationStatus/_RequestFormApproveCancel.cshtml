@@ -1,0 +1,152 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using BizPortal.Utils.Helpers
+@using System.Threading;
+
+<style type="text/css">
+    .remove-request-file {
+        display: inline-block;
+        margin: 7px 0;
+    }
+</style>
+@Styles.Render("~/Bundles/Style/sweetmodal")
+
+<div class="row">
+    <div class="col-md-6">
+        <strong> @Resources.ApplicationStatusRequests.APPLICATION_STATUS_REQUEST  </strong> :
+        @ResourceHelper.GetResourceWord("STATUS_" + @Model.Status, "ApplicationStatusRequests", Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
+    </div>
+</div>
+
+<form id="frmRequestApproveCancel" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")">
+    @Html.HiddenFor(o => o.ApplicationID)
+    @Html.HiddenFor(o => o.ApplicationRequestID)
+    @Html.HiddenFor(o => o.Status)
+    @Html.HiddenFor(o => o.StatusBeforeCancel)
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                @Html.Label(Resources.ApplicationStatusRequests.APPLICATION_ACTION_REPLY)
+                @Html.CustomDropDownListFor(model => model.Status, (SelectList)ViewBag.ApplicationStatusList, new { @style = "width: 100%;" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                <label for="@Model.Remark">@Resources.ApplicationStatusRequests.AGENT_COMMENT_REMARK</label>
+                @Html.CustomTextAreaFor(model => model.Remark, new { @class = "form-control", @rows = 7 })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary hide" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resources.Global.BTN_SUBMIT)</span></button>
+                <button type="button" class="btn btn-primary btn-show-modal" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resources.Global.BTN_SUBMIT)</span></button>
+            </div>
+        </div>
+    </div>
+</form>
+@Scripts.Render("~/Bundles/Scripts/sweetmodal")
+
+<script type="text/javascript">
+    var requestManage = {
+        controls: {
+            form: '#frmRequestApproveCancel',
+            formApplicationID: '#frmRequestApproveCancel #ApplicationID',
+            formApplicationRequestID: '#frmRequestApproveCancel #ApplicationRequestID',
+            formStatus: '#frmRequestApproveCancel #Status',
+            formStatusBeforeCancel: '#frmRequestApproveCancel #StatusBeforeCancel',
+            formActionReply: '#frmRequestApproveCancel #ActionReply',
+            formRemark: '#frmRequestApproveCancel #Remark'
+        },
+        variables: {
+        },
+        functions: {
+            changeLabelButtonInModalConfirm: function () {
+                $.sweetModal.defaultSettings.confirm.cancel.label = "@Resources.Global.BTN_NO";
+                $.sweetModal.defaultSettings.confirm.yes.label = "@Resources.Global.BTN_YES";
+            },
+            init: function () {
+                requestManage.functions.changeLabelButtonInModalConfirm();
+                $(requestManage.controls.formActionReply).select2();
+                $('#frmRequestApproveCancel .btn-show-modal').on('click', function () {
+                    var actionReply = $(requestManage.controls.formActionReply).select2('data');
+                    var agentComment = '<span> ' + $(requestManage.controls.formRemark).val() + '</span>';
+                    if ($(requestManage.controls.formRemark).val().trim() == "") {
+                        agentComment = "";
+                    }
+
+                    var htmlText = '<div class="row">' +
+                            '<div class="col-md-12 text-left">' +
+                                '<label style="font-weight:bold;">@BizPortal.Resources.ApplicationStatusRequests.APPLICATION_ACTION_REPLY : </label>' +
+                                '<span> ' + actionReply[0].text + '</span>' +
+                            '</div>' +
+                            '<div class="col-md-12 text-left">' +
+                                '<label style="font-weight:bold;">@BizPortal.Resources.ApplicationStatusRequests.AGENT_COMMENT_REMARK : </label>' +
+                                agentComment +
+                            '</div>' +
+                        '</div>';
+
+                    // --- Sweet modal [Begin] ---
+
+                    //var isConfirm = false;
+                    $.sweetModal.confirm('<p class="text-center">ยืนยันการส่งข้อมูล</p>', htmlText, function () {
+                        $('#frmRequestApproveCancel button[type="submit"]').trigger('click');
+                    }, function () {
+                        //$.sweetModal('You declined. That\'s okay!');
+                        $.ladda('stopAll');
+                    });
+
+                    // --- Sweet modal [End] ---
+                });
+                $(requestManage.controls.form + ' .btn-show-modal').ladda('bind');
+                $(requestManage.controls.form).ajaxForm({
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    clearForm: true,
+                    customData: function (data, jqForm, options) {
+                        var l = $(requestManage.controls.form + ' .btn-show-modal').ladda();
+                        l.ladda('start');
+
+                        options.data = {
+                            ApplicationID: $(requestManage.controls.formApplicationID).val(),
+                            ApplicationRequestID: $(requestManage.controls.formApplicationRequestID).val(),
+                            Status: $(requestManage.controls.formStatus).val(),
+                            StatusBeforeCancel: $(requestManage.controls.formStatusBeforeCancel).val(),
+                            ActionReply: $(requestManage.controls.formActionReply).val(),
+                            Remark: $(requestManage.controls.formRemark).val(),
+                        };
+
+                        options.data = JSON.stringify(options.data);
+                    },
+                    error: function (xhr, status, error, $form) {
+                        var data = xhr.responseJSON;
+                        $.ladda('stopAll');
+                        notify('error', data.Message);
+                    },
+                    success: function (responseText, statusText, xhr, $form) {
+                        var data = xhr.responseJSON;
+                        $.ladda('stopAll');
+                        //notify('success', data.Message);
+                        swal({ title: '', text: decodeURIComponent(data.Message), type: 'success' }, function (isConfirm) {
+                            location.reload();
+                        });
+                        $("div.sa-confirm-button-container button.confirm").text("@Resources.Global.BTN_OK");
+                    }
+                });
+            }
+
+        }
+    };
+
+    $(document).ready(function () {
+        requestManage.functions.init();
+    });
+</script>

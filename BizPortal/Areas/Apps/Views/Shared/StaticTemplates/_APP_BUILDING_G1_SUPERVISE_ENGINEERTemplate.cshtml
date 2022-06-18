@@ -1,0 +1,53 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_BUILDING_G1_SUPERVISE_ENGINEERTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        {{#xif " this.APP_BUILDING_G1_SUPERVISE_ENGINEER_KIND_OF_PERSON_OPTION == '1' "}}
+        <div class="col-md-12">
+            <label>วิศวกรผู้ควบคุมงานลำดับที่ {{this.ARR_IDX}}</label>
+        </div>
+        {{else }}
+        <div class="col-md-12">
+            <label>ผู้ควบคุมงานลำดับที่ {{this.ARR_IDX}}</label>
+        </div>
+        {{/xif}}
+
+        {{#xif " this.APP_BUILDING_G1_SUPERVISE_ENGINEER_KIND_OF_PERSON_OPTION == '1' "}}
+
+        <div class="col-md-12">
+            <label>เลขบัตรประจำตัวประชาชน 13 หลัก :</label>
+            {{this.APP_BUILDING_G1_SUPERVISE_ENGINEER_CITIZENID}}
+        </div>
+        <div class="col-md-12">
+            <label>วิศวกรชื่อ : </label>{{this.DROPDOWN_APP_BUILDING_G1_SUPERVISE_ENGINEER_ARCHITECT_TITLE_TEXT}} {{this.APP_BUILDING_G1_SUPERVISE_ENGINEER_ARCHITECT_FIRSTNAME}} {{this.APP_BUILDING_G1_SUPERVISE_ENGINEER_ARCHITECT_LASTNAME}}
+        </div>
+        <div class="col-md-12">
+            <label>เลขที่สมาชิก : </label>{{this.APP_BUILDING_G1_SUPERVISE_ENGINEER_ARCHITECT_MEMBER_NO}}
+        </div>
+        <div class="col-md-12">
+            <label>เลขที่ใบอนุญาต : </label>{{this.APP_BUILDING_G1_SUPERVISE_ENGINEER_ARCHITECT_LICENSE_ID}}
+        </div>
+        {{else }}
+        <div class="col-md-12">
+            <label>เลขบัตรประจำตัวประชาชน 13 หลัก :</label>
+            {{this.APP_BUILDING_G1_SUPERVISE_ENGINEER_CITIZENID}}
+        </div>
+        <div class="col-md-12">
+            <label>ชื่อ : </label>{{this.DROPDOWN_APP_BUILDING_G1_SUPERVISE_ENGINEER_CITIZEN_TITLE_TEXT}} {{this.APP_BUILDING_G1_SUPERVISE_ENGINEER_CITIZEN_FIRSTNAME}} {{this.APP_BUILDING_G1_SUPERVISE_ENGINEER_CITIZEN_LASTNAME}}
+        </div>
+        {{/xif}}
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

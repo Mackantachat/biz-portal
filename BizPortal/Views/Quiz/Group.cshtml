@@ -1,0 +1,448 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@using BizPortal.Utils.Extensions;
+
+@{
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+
+    QuizGroup group = ViewBag.Group;
+    QuizSectionRow[] sectionRows = ViewBag.SectionRows;
+}
+
+<form id="frmSingleForm" method="post" action="@Url.ServiceAction("List", "SingleForm", new { area = "Apps", id = group.QuizGroupName, language = ViewBag.CurrentLang })" class="frm-single-form-group">
+    <input type="hidden" name="Group" value="@group.QuizGroupName" />
+    <div class="single-form">
+        @foreach (var row in sectionRows)
+        {
+            var cols = row.Controls.Count();
+            double maxCols = 12;
+            int colLen = (int)Math.Ceiling(maxCols / cols);
+
+            <div class="row">
+                @foreach (var ctrl in row.Controls)
+                {
+                    ctrl.ClientID = string.Format("{0}-{1}", ctrl.DataKey, DateTime.Now.Ticks);
+                    ctrl.ValidateNeeded = ctrl.Rules != null && ctrl.Rules.Length > 0;
+
+                    if (ctrl.ColFixed > 0 && ctrl.ColFixed <= 12)
+                    {
+                        colLen = ctrl.ColFixed;
+                    }
+
+                    var addClass = ctrl.IsCustomClass ? ctrl.CustomClassName : string.Empty;
+
+                    <div class="col-md-@colLen form-group @addClass">
+                        @if ((ctrl.Type != ControlType.AddressForm && ctrl.Type != ControlType.ChainedDropdown) || (ctrl.Type == ControlType.AddressForm && ctrl.DisplayStaticIfHasData))
+                        {
+                            if (ctrl.Type == ControlType.None && ctrl.DisplayOnlyLabel)
+                            {
+                                <label>@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "Quiz", ctrl.Control)</label>
+                            }
+                            else
+                            {
+                                <label>@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "Quiz", ctrl.Control) :</label>
+                            }
+                        }
+
+                        <div style="padding-left: 15px;">
+
+                            @if (ctrl.DisplayStaticIfHasData && ctrl.Data != null)
+                            {
+                                ctrl.ValidateNeeded = false; // Already has data, No need to validate
+                                Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_StaticControl.cshtml", ctrl);
+                            }
+                            else if (ctrl.Type == ControlType.AjaxStaticControl && ctrl.IsUtilDataNeeded && ctrl.Data != null)
+                            {
+                                Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_AjaxStaticControl.cshtml", ctrl);
+                            }
+                            else
+                            {
+                                @* Switch Controls *@
+                                switch (ctrl.Type)
+                                {
+                                    case ControlType.TextBox:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_TextBoxControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.Number:
+                                        break;
+                                    case ControlType.DatePicker:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_DatePickerControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.CheckBox:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_CheckBoxControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.Dropdown:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_DropdownControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.ChainedDropdown:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_ChainedDropdownControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.RadioGroup:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_RadioGroupControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.CheckBoxWithDropdown:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_CheckBoxWithDropdownControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.AddressForm:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_AddressFormControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.AjaxStaticControl:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_AjaxStaticControl.cshtml", ctrl);
+                                        break;
+                                    case ControlType.None:
+                                        break;
+                                    default:
+                                        Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_StaticControl.cshtml", ctrl);
+                                        break;
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+
+        <div class="row mt10 mb20">
+            <div class="col-md-12 text-center">
+                <button id="btnSubmitSingleForm" class="btn btn-success">ดำเนินการต่อ</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section PageScripts {
+    <script type="text/javascript">
+        var singleForm = {
+            variables: {
+            },
+            controls: {
+                form: '#frmSingleForm',
+                formStatus: '#frmSingleForm #Status',
+                formNextApp: '#frmSingleForm #IsNextApp'
+            },
+            functions: {
+                init: function () {
+                    $(singleForm.controls.form).submit(function (e)
+                    {
+                        var formValid = $(this).validate().form();
+                        var errors = 0;
+
+                        $("span.custom-req-danger").remove(); // Clear all custom Required <span>s
+
+                        @foreach (var row in sectionRows)
+                        {
+                            foreach (var ctrl in row.Controls)
+                            {
+                                if (ctrl.Rules != null && ctrl.Rules.Length > 0)
+                                {
+                                    if (ctrl.Type == ControlType.CheckBoxWithDropdown)
+                                    {
+                                        foreach (var rule in ctrl.Rules)
+                                        {
+                                            if (rule.Type == ValidationType.Required)
+                                            {
+                                                <text>
+                        var checkboxRequired_@ctrl.DataKey = $('[data-checkbox-group=@ctrl.DataKey] :input[type=checkbox]:checked').length > 0 ? true : false;
+                        if (!checkboxRequired_@ctrl.DataKey) {
+                            $("[data-checkbox-group=@ctrl.DataKey]").before("<span class='text-danger custom-req-danger'>@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "QuizRequired", ctrl.Control)</span>");
+                            errors++;
+                        }
+                        </text>
+                                            }
+                                        }
+                                    }
+                                    else if (ctrl.Type == ControlType.CheckBox)
+                                    {
+                                        foreach (var rule in ctrl.Rules)
+                                        {
+                                            if (rule.Type == ValidationType.Required)
+                                            {
+                                                <text>
+                        var checkboxRequired_@ctrl.DataKey = $(':input[type=checkbox][name^=@(ctrl.DataKey)_]:checked').length > 0 ? true : false;
+                        if (!checkboxRequired_@ctrl.DataKey) {
+                            $(":input[type=checkbox][name^=@(ctrl.DataKey)_]").parents('.form-group:first').find('label:first').after("<span class='text-danger custom-req-danger'>@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "QuizRequired", ctrl.Control)</span>");
+                            errors++;
+                        }
+                        </text>
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        formValid = formValid && errors == 0;
+
+                        // Next or Submit
+                        if (!formValid) {
+                            e.preventDefault();
+                            var errorText = $(singleForm.controls.formNextApp).val() == "false" ? "ไม่สามารถส่งข้อมูลได้" : "ไม่สามารถไปยังหน้าถัดไปได้";
+                            swal(errorText, "กรุณาตรวจสอบข้อมูลให้ถูกต้องและครบถ้วน", "warning");
+                        }
+                        else {// ถ้า formValid แล้ว แสดง alert แล้วรอ 1.5วิค่อย submit form
+
+                            swal({
+                                title: "กำลังไปยังหน้าถัดไป",
+                                type: "success",
+                                showConfirmButton: false
+                            });
+                            var self = this;
+                            window.setTimeout(function () {
+                                self.submit();
+                            }, 1500);
+
+                            return false; //is superfluous, but I put it here as a fallback
+                        }
+                    });
+
+                    singleForm.functions.formValidate();
+
+                    //setTimeout(function () {
+                    //    singleForm.functions.calculateOverview();
+                    //}, 500);
+
+                    //$(singleForm.controls.form).on('keyup change', function () {
+                    //    singleForm.functions.calculateOverview();
+                    //});
+                },
+                formValidate: function () {
+                    $(singleForm.controls.form).validate({
+                        errorElement: 'span',
+                        errorClass: 'error text-danger',
+                        invalidHandler: function (e, validator) {
+                            $.ladda('stopAll');
+                        },
+                        errorPlacement: function (error, element) {
+                            if (element[0].type == 'radio') {
+                                error.insertAfter(element.parents(".form-group:first").find("label:first"));
+                            } else if (element[0].type == 'text' && $(element).parent().hasClass('date')) {
+                                error.insertAfter(element.parent());
+                            } else {
+                                error.appendTo(element.parent());
+                            }
+                        }
+                    });
+
+                    @{
+                            foreach (var row in sectionRows)
+                            {
+                                foreach (var ctrl in row.Controls.Where(o => o.Rules != null && o.Rules.Length > 0 && o.ValidateNeeded))
+                                {
+                                    foreach (var rule in ctrl.Rules)
+                                    {
+                                        switch (rule.Type)
+                                        {
+                                            case ValidationType.Required:
+                                                    if (ctrl.Type == ControlType.AddressForm)
+                                                    {
+                                                        if (ctrl.AddressForm_ShowBranchControl)
+                                                        {
+                                                            <text>
+                    $('[name=BRANCH_@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    </text>
+                                                        }
+
+                                                        <text>
+                    $('[name=ADDRESS_@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    $('[name=ADDRESS_PROVINCE_@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    $('[name=ADDRESS_AMPHUR_@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    $('[name=ADDRESS_TUMBOL_@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    $('[name=ADDRESS_POSTCODE_@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    </text>
+                                                        if (ctrl.AddressForm_ShowMapControl)
+                                                        {
+                                                            <text>
+                    $('[name=ADRESS_LAT_@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    $('[name=ADRESS_LNG_@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    </text>
+                                                        }
+                                                    }
+                                                    else if (ctrl.Type == ControlType.CheckBoxWithDropdown)
+                                                    {
+                                                        foreach (var opt in ctrl.CheckboxWithDropdown)
+                                                        {
+                                                            <text>
+                    $('[data-checkbox-group=@ctrl.DataKey] :input[type=checkbox][name=@opt.CheckboxWithDropdownOptName]').on('change', function () {
+                        if ($('[data-checkbox-group=@ctrl.DataKey] :input[type=checkbox][name=@opt.CheckboxWithDropdownOptName]').prop('checked')) {
+                            $('[name=@string.Format("DROPDOWN_{0}", opt.CheckboxWithDropdownOptName)]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "QuizRequired", ctrl.Control)' } });
+                        } else {
+                            $('[name=@string.Format("DROPDOWN_{0}", opt.CheckboxWithDropdownOptName)]').rules('remove', 'required');
+                            $('[name=@string.Format("DROPDOWN_{0}", opt.CheckboxWithDropdownOptName)]').val("").trigger('change');
+                        }
+                    });
+                    </text>
+                                                        }
+                                                    }
+                                                    else if (ctrl.Type == ControlType.Dropdown)
+                                                    {
+                                                        <text>
+                    $('[name=@string.Format("DROPDOWN_{0}", ctrl.DataKey)').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "QuizRequired", ctrl.Control)' } });
+                    </text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <text>
+                    $('[name=@ctrl.DataKey]').rules('add', { required: true, messages: { required: '@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "QuizRequired", ctrl.Control)' } });
+                    </text>
+                                                    }
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                }
+                            }
+                }
+                },
+                calculateOverview: function () {
+                    $(singleForm.controls.form).find('section[data-section-name]').each(function () {
+                        var sectionName = $(this).attr('data-section-name'); // Name of section
+
+                        // Textbox
+                        var textboxCount = $(this).find('input:text').length;
+                        var textboxReqCount = 0, textboxFilled = 0, textboxReqFilled = 0;
+                        if (textboxCount > 0) {
+                            $(this).find('input:text').each(function () {
+                                if ($(this).rules().hasOwnProperty('required') || $(this).rules().hasOwnProperty('required')) {
+                                    textboxReqCount++;
+                                    if ($(this).val() != null && $(this).val() != "") {
+                                        textboxFilled++;
+                                        textboxReqFilled++;
+                                    }
+                                } else {
+                                    if ($(this).val() != null && $(this).val() != "") {
+                                        textboxFilled++;
+                                    }
+                                }
+                            });
+                        }
+
+                        // Select
+                        var selectCount = $(this).find('select').length;
+                        var selectReqCount = 0, selectFilled = 0, selectReqFilled = 0;
+                        if (selectCount > 0) {
+                            $(this).find('select').each(function () {
+                                if ($(this).rules().hasOwnProperty('required') || $(this).rules().hasOwnProperty('required')) {
+                                    selectReqCount++;
+                                    if ($(this).select2('data')[0].id != null && $(this).select2('data')[0].id != '') {
+                                        selectFilled++;
+                                        selectReqFilled++;
+                                    }
+                                } else {
+                                    if ($(this).select2('data')[0].id != null && $(this).select2('data')[0].id != '') {
+                                        selectFilled++;
+                                    }
+                                }
+                            });
+                        }
+
+                        // Checkbox
+                        var checkboxCount = $(this).find('input:checkbox').length;
+                        var checkboxReqCount = 0, checkboxFilled = 0, checkboxReqFilled = 0;
+                        if (checkboxCount > 0) {
+                            $(this).find('input:checkbox').each(function () {
+                                if ($(this).rules().hasOwnProperty('required') || $(this).rules().hasOwnProperty('required')) {
+                                    checkboxReqCount++;
+                                }
+                            });
+
+                            $(this).find('input:checkbox:checked').each(function () {
+                                checkboxFilled++;
+                                if ($(this).rules().hasOwnProperty('required') || $(this).rules().hasOwnProperty('required')) {
+                                    checkboxReqFilled++;
+                                }
+                            });
+                        }
+
+                        // Radio Group
+                        var radiogroups = [];
+                        var radiogroupCount = 0, radiogroupReqCount = 0, radiogroupFilled = 0, radiogroupReqFilled = 0;
+                        $(this).find('input:radio').each(function () {
+                            var radiogroupName = $(this).attr('name');
+                            if (radiogroups.indexOf(radiogroupName) < 0) {
+                                radiogroups.push(radiogroupName);
+                                radiogroupCount++;
+                                if ($('[name=' + radiogroupName + ']').rules().hasOwnProperty('required') || $('[name=' + radiogroupName + ']').rules().hasOwnProperty('required')) {
+                                    radiogroupReqCount++;
+                                }
+                            }
+                        });
+
+                        if (radiogroupCount > 0) {
+                            radiogroupFilled = $(this).find('input:radio:checked').length;
+                            $(this).find('input:radio:checked').each(function () {
+                                if ($(this).rules().hasOwnProperty('required') || $(this).rules().hasOwnProperty('required')) {
+                                    radiogroupReqFilled++;
+                                }
+                            });
+                        }
+
+                        if (textboxCount > 0 || selectCount > 0 || checkboxCount > 0 || radiogroupCount > 0) {
+                            var allInputs = textboxCount + selectCount + checkboxCount + radiogroupCount;
+                            var allRequiredInputs = textboxReqCount + selectReqCount + checkboxReqCount + radiogroupReqCount;
+                            var allFilled = textboxFilled + selectFilled + checkboxFilled + radiogroupFilled;
+                            var allRequiredFilled = textboxReqFilled + selectReqFilled + checkboxReqFilled + radiogroupReqFilled;
+
+                            var allPercentage = ((allFilled / allInputs) * 100).toFixed();
+                            var allRequiredPercentage = ((allRequiredFilled / allRequiredInputs) * 100).toFixed();
+
+                            $('[data-section-overview=' + sectionName + '] label[name=allRequiredPercentage] span').text(allRequiredPercentage);
+
+                            $('[data-section-overview=' + sectionName + '] div.progress-bar').attr('aria-valuenow', allRequiredPercentage).css('width', allRequiredPercentage + '%');
+                            if (allRequiredPercentage == 100) {
+                                $('[data-section-overview=' + sectionName + '] div.progress-bar').removeClass('progress-bar-danger');
+                                $('[data-section-overview=' + sectionName + '] div.progress-bar').addClass('progress-bar-success');
+
+                                $('[data-section-overview=' + sectionName + '] div[name=allRequiredRemain]').hide();
+                            } else {
+                                $('[data-section-overview=' + sectionName + '] div.progress-bar').removeClass('progress-bar-success');
+                                $('[data-section-overview=' + sectionName + '] div.progress-bar').addClass('progress-bar-danger');
+
+                                $('[data-section-overview=' + sectionName + '] div[name=allRequiredRemain]').show();
+                                $('[data-section-overview=' + sectionName + '] div[name=allRequiredRemain] span').text(allRequiredInputs - allRequiredFilled);
+                            }
+                        }
+                    });
+
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            // Register handlebars functions *** IMPORTANT !!! Always call it first ***
+            Handlebars.registerHelper("x", function (expression, options) {
+                var result;
+
+                // you can change the context, or merge it with options.data, options.hash
+                var context = this;
+
+                // yup, i use 'with' here to expose the context's properties as block variables
+                // you don't need to do {{x 'this.age + 2'}}
+                // but you can also do {{x 'age + 2'}}
+                // HOWEVER including an UNINITIALIZED var in a expression will return undefined as the result.
+                with (context) {
+                    result = (function () {
+                        try {
+                            return eval(expression);
+                        } catch (e) {
+                            console.warn('•Expression: {{x \'' + expression + '\'}}\n•JS-Error: ', e, '\n•Context: ', context);
+                        }
+                    }).call(context); // to make eval's lexical this=context
+                }
+                return result;
+            });
+
+            Handlebars.registerHelper("xif", function (expression, options) {
+                return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+            });
+            // End Registering Handlebars functions
+
+            // Normal Javascripts Begin
+            singleForm.functions.init();
+
+        });
+
+    </script>
+}

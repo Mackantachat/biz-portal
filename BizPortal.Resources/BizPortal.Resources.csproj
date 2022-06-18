@@ -1,0 +1,1379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2FB5419D-3DDF-459C-A747-3EDFCB3B6DCB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BizPortal.Resources</RootNamespace>
+    <AssemblyName>BizPortal.Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PreRelease|AnyCPU'">
+    <OutputPath>bin\PreRelease\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Training|AnyCPU'">
+    <OutputPath>bin\Training\</OutputPath>
+    <DefineConstants>TRACE;Release</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Training165|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Training165\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Application.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationStatusRequests.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationStatusRequests.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_EmployeeRegis.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_EmployeeRegis.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_EmployeeRegis.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_EmployeeRegis.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_EmployerRegis.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_EmployerRegis.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_EmployerRegis.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_EmployerRegis.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_SingleForm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_SingleForm.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_SingleForm_Filegroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_SingleForm_Filegroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_SingleForm_Filelist.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_SingleForm_Filelist.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_SingleForm_SectionGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_SingleForm_SectionGroup.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_SingleForm_Template.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_SingleForm_Template.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_SmartQuiz.Designer.cs">
+      <DependentUpon>Apps_SmartQuiz.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Apps_SingleForm_Required.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_SingleForm_Required.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility_MEAOSS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility_MEAOSS.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility_MEAOSS.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility_MEAOSS.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility_PEAMeter.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility_PEAMeter.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility_PEAMeter.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility_PEAMeter.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility_PWA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility_PWA.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility_PWA.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility_PWA.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility_TOT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility_TOT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_Utility_TOT.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_Utility_TOT.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_VAT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_VAT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Apps_VAT.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Apps_VAT.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Article.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Article.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Breadcrumb.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Breadcrumb.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Category.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Category.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactUs.Designer.cs">
+      <DependentUpon>ContactUs.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ContactUs.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactUs.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraKey.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExtraKey.resx</DependentUpon>
+    </Compile>
+    <Compile Include="FAQ.Designer.cs">
+      <DependentUpon>FAQ.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AboutUs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AboutUs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationStatusRequests.Designer.cs">
+      <DependentUpon>ApplicationStatusRequests.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Application.Designer.cs">
+      <DependentUpon>Application.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Article.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Article.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Breadcrumb1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Breadcrumb.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Category.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Category.resx</DependentUpon>
+    </Compile>
+    <Compile Include="FileType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalV2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalV2.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalV2.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalV2.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Member.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Member.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Membership.Designer.cs">
+      <DependentUpon>Membership.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Global.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Language.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Membership.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Membership.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Organization.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Organization.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Organization.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Organization.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_CLINIC_NOT_ONE_NIGHT_STAND.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_CLINIC_NOT_ONE_NIGHT_STAND.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_CLINIC_OVER_NIGHT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_CLINIC_OVER_NIGHT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_CANCEL_A.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_CANCEL_A.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_CANCEL_B.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_CANCEL_B.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_CANCEL_C.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_CANCEL_C.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_CANCEL_D.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_CANCEL_D.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_CANCEL_E.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_CANCEL_E.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_CANCEL_F.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_CANCEL_F.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_CANCEL_G.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_CANCEL_G.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_NEW_A.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_NEW_A.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_NEW_B.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_NEW_B.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_NEW_C.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_NEW_C.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_NEW_D.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_NEW_D.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_NEW_E.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_NEW_E.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_NEW_F.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_NEW_F.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SEC_NEW_G.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SEC_NEW_G.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SOFTWARE_HOUSE_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SOFTWARE_HOUSE_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SOFTWARE_HOUSE_NEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SOFTWARE_HOUSE_NEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\APP_SPA_FEE_PER_YEAR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APP_SPA_FEE_PER_YEAR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2.Designer.cs">
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH.Designer.cs">
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2.Designer.cs">
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH.Designer.cs">
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_EDIT_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_EDIT_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_OWNED.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_OWNED.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_RENEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_RENEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_RENEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ENERGY_PRODUCTION_RENEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_RENEW_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ENERGY_PRODUCTION_RENEW_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_CANCEL_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_CANCEL_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_CANCEL_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ENERGY_PRODUCTION_CANCEL_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HEALTH_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HEALTH_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HEALTH_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HEALTH_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HEALTH_RENEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HEALTH_RENEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_DETAIL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_DETAIL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ACCOUNTING_SERVICE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_CANCEL_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_CANCEL_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_LICENSE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_LICENSE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_PLAN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_PLAN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_CLINIC_RENEW_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_CLINIC_RENEW_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ELECTRONIC_COMMERCIAL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ENERGY_PRODUCTION.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ELECTRONIC_COMMERCIAL_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ENERGY_PRODUCTION_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_LICENSE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_LICENSE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PERMISSION.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PERMISSION_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_CANCEL_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PERMISSION_CANCEL_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PERMISSION_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_EDIT_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PERMISSION_EDIT_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_RENEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PERMISSION_RENEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_RENEW_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PERMISSION_RENEW_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_HOSPITAL_PLAN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_HOSPITAL_PLAN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_LAW_OFFICE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_LAW_OFFICE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_LAW_OFFICE_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_LAW_OFFICE_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_LAW_OFFICE_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_LAW_OFFICE_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ORGANIC_NEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ORGANIC_NEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_RENEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_RENEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_SECURITIES_BUSINESS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_SECURITIES_BUSINESS.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_TOURISM_BUSINESS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_TOURISM_BUSINESS.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitResource\RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PermitSummary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PermitSummary.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quiz.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quiz.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QuizConditionReason.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizConditionReason.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QuizRequired.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizRequired.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Report.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Report.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Section.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Section.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Section.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Section.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tracking.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tracking.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tracking.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tracking.en.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutUs.en.resx" />
+    <EmbeddedResource Include="Application.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Application.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationStatusRequests.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationStatusRequests.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_EmployeeRegis.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_EmployeeRegis.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_EmployeeRegis.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_EmployeeRegis.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_EmployerRegis.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_EmployerRegis.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_EmployerRegis.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_EmployerRegis.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_SingleForm_SectionGroup.resx">
+      <LastGenOutput>Apps_SingleForm_SectionGroup.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_SmartQuiz.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_SmartQuiz.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_SingleForm.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_SingleForm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_SingleForm_Filegroup.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_SingleForm_Filegroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_SingleForm_Required.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_SingleForm_Required.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_SingleForm_Template.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_SingleForm_Template.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility_MEAOSS.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility_MEAOSS.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility_MEAOSS.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility_MEAOSS.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility_PEAMeter.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility_PEAMeter.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility_PEAMeter.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility_PEAMeter.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility_PWA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility_PWA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility_TOT.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility_TOT.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_Utility_TOT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility_TOT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_VAT.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_VAT.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_VAT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_VAT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Article.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Article.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Breadcrumb.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Breadcrumb.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Category.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Category.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactUs.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContactUs.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactUs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContactUs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtraKey.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExtraKey.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FAQ.en.resx" />
+    <EmbeddedResource Include="FAQ.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FAQ.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AboutUs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationStatusRequests.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationStatusRequests.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Application.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Article.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Article.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Breadcrumb.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Breadcrumb1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Category.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Category.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FileType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Global.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Global.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalV2.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalV2.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalV2.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalV2.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Member.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Member.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Membership.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Membership.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Membership.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Membership.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Global.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Global.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Language.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Organization.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Organization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps_SingleForm_Filelist.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_SingleForm_Filelist.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_CLINIC_NOT_ONE_NIGHT_STAND.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_CLINIC_NOT_ONE_NIGHT_STAND.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_CLINIC_OVER_NIGHT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_CLINIC_OVER_NIGHT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_CANCEL_A.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_CANCEL_A.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_CANCEL_B.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_CANCEL_B.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_CANCEL_C.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_CANCEL_C.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_CANCEL_D.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_CANCEL_D.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_CANCEL_E.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_CANCEL_E.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_CANCEL_F.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_CANCEL_F.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_CANCEL_G.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_CANCEL_G.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_EDIT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_NEW_A.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_NEW_A.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_NEW_B.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_NEW_B.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_NEW_C.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_NEW_C.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_NEW_D.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_NEW_D.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_NEW_E.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_NEW_E.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_NEW_F.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_NEW_F.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SEC_NEW_G.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SEC_NEW_G.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SOFTWARE_HOUSE_EDIT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SOFTWARE_HOUSE_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SOFTWARE_HOUSE_NEW.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SOFTWARE_HOUSE_NEW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\APP_SPA_FEE_PER_YEAR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>APP_SPA_FEE_PER_YEAR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_CANCEL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_CANCEL_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_CANCEL_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_EDIT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_EDIT.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_SEARCH.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_EDIT_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_SEARCH.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_RENEW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_RENEW.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_RENEW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ENERGY_PRODUCTION_RENEW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_RENEW_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ENERGY_PRODUCTION_RENEW_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_RENEW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE_RENEW_SEARCH.Designer.cs</LastGenOutput>
+      <LastGenOutput>RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ENERGY_PRODUCTION_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_CANCEL_SEARCH.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ENERGY_PRODUCTION_CANCEL_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HEALTH_CANCEL.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HEALTH_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HEALTH_EDIT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HEALTH_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HEALTH_RENEW.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HEALTH_RENEW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_DETAIL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_DETAIL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ACCOUNTING_SERVICE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ACCOUNTING_SERVICE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_CANCEL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_CANCEL_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_CANCEL_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_EDIT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_EDIT_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_EDIT_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_LICENSE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_LICENSE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_OWNED.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_OWNED.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_PLAN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_PLAN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_CLINIC_RENEW_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_CLINIC_RENEW_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ELECTRONIC_COMMERCIAL.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ENERGY_PRODUCTION.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL_EDIT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ELECTRONIC_COMMERCIAL_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_EDIT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ENERGY_PRODUCTION_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ENERGY_PRODUCTION_EDIT_SEARCH.resx" />
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_CANCEL.resx" />
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_CANCEL_SEARCH.resx" />
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_LICENSE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_LICENSE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PERMISSION.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_CANCEL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PERMISSION_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_CANCEL_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PERMISSION_CANCEL_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_EDIT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PERMISSION_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_EDIT_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PERMISSION_EDIT_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_RENEW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PERMISSION_RENEW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PERMISSION_RENEW_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PERMISSION_RENEW_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_HOSPITAL_PLAN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_HOSPITAL_PLAN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_LAW_OFFICE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_LAW_OFFICE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_LAW_OFFICE_CANCEL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_LAW_OFFICE_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_LAW_OFFICE_EDIT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_LAW_OFFICE_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_EDIT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_EDIT_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ORGANIC_NEW.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ORGANIC_NEW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_RENEW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_RENEW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_ORGANIC_PLANT_PRODUCTION_RENEW_SEARCH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_SECURITIES_BUSINESS.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_SECURITIES_BUSINESS.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_TOURISM_BUSINESS.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_TOURISM_BUSINESS.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitResource\RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RESOURCE_APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermitSummary.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PermitSummary.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quiz.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Quiz.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuizConditionReason.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>QuizConditionReason.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuizRequired.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>QuizRequired.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Report.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Section.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Section.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Section.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Section.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tracking.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Tracking.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tracking.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Tracking.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Apps_Utility_PWA.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Apps_Utility_PWA.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Organization.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Organization.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

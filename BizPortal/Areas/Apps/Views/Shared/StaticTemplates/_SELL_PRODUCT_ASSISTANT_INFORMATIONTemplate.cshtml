@@ -1,0 +1,27 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="SELL_PRODUCT_ASSISTANT_INFORMATIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-4">
+            <p class="bold form-control-static">{{this.DROPDOWN_ASSISTANT_TITLE_TEXT}} {{this.ASSISTANT_FIRSTNAME}} {{this.ASSISTANT_LASTNAME}}</p>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-2 pr5">
+        </div>
+        <div class="col-md-2 pl5">
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            -
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

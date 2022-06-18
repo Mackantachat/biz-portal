@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_ENERGY_PRODUCTION" xml:space="preserve">
+    <value>ข้อมูลการขอรับใบอนุญาตให้ผลิตพลังงานควบคุม</value>
+    <comment>SectionGroup: APP_ENERGY_PRODUCTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_INFO_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION_REASON" xml:space="preserve">
+    <value>พลังงานควบคุม ที่ผลิตมีไว้เพื่อ</value>
+    <comment>FieldID: F38_01_01</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION_REASON_EMERGENCY" xml:space="preserve">
+    <value>ใช้สำรองฉุกเฉิน</value>
+    <comment>FieldID: F38_01_01</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION_REASON_ALONE" xml:space="preserve">
+    <value>ใช้แบบแยกเดี่ยว (Stand alone)</value>
+    <comment>FieldID: F38_01_01</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION_TYPE" xml:space="preserve">
+    <value>ธุรกิจของคุณมีเครื่องต้นกำลัง ดังนี้</value>
+    <comment>FieldID: F38_01_02</comment>
+  </data>
+  <data name="GENERAL" xml:space="preserve">
+    <value>เครื่องต้นกำลังชนิดทั่วไป</value>
+    <comment>FieldID: F38_01_02</comment>
+  </data>
+  <data name="PHOTOVOLTEIC" xml:space="preserve">
+    <value>แผงโฟโตโวลเทอิก</value>
+    <comment>FieldID: F38_01_02</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION" xml:space="preserve">
+    <value>รายละเอียดเครื่องต้นกำลัง</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_MACHINE_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล รายละเอียดเครื่องต้นกำลัง ในขณะนี้ คุณสามารถเพิ่มข้อมูลรายละเอียดเครื่องต้นกำลัง&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มรายละเอียดเครื่องต้นกำลัง"&lt;/div&gt;</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_MACHINE_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มรายละเอียดเครื่องต้นกำลัง</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_MACHINE_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มรายละเอียดเครื่องต้นกำลัง</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_MACHINE_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE" xml:space="preserve">
+    <value>ชนิดเครื่องต้นกำลัง</value>
+    <comment>FieldID: F38_01_03</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE_DISEL" xml:space="preserve">
+    <value>เครื่องยนต์ดีเซล</value>
+    <comment>FieldID: F38_01_03</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE_GAS" xml:space="preserve">
+    <value>เครื่องยนต์ก๊าซ</value>
+    <comment>FieldID: F38_01_03</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE_TURBINE_GAS" xml:space="preserve">
+    <value>กังหันก๊าซ</value>
+    <comment>FieldID: F38_01_03</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE_TURBINE_VAPOUR" xml:space="preserve">
+    <value>กังหันไอน้ำ</value>
+    <comment>FieldID: F38_01_03</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE_TURBINE_WATER" xml:space="preserve">
+    <value>กังหันน้ำ</value>
+    <comment>FieldID: F38_01_03</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_TYPE_TURBINE_WIND" xml:space="preserve">
+    <value>กังหันลม</value>
+    <comment>FieldID: F38_01_03</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_FUEL" xml:space="preserve">
+    <value>เชื้อเพลิง (ระบุ)</value>
+    <comment>FieldID: F38_01_04</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_HORSEPOWER" xml:space="preserve">
+    <value>พิกัดกำลัง (แรงม้า)</value>
+    <comment>FieldID: F38_01_05</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_YEAR_ACTIVE" xml:space="preserve">
+    <value>ปีที่ติดตั้งใช้งาน (พ.ศ.)</value>
+    <comment>FieldID: F38_01_06</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CHECK_ERA_YEAR_ACTIVE_EXCEED" xml:space="preserve">
+    <value>กรุณากรอกปีที่ติดตั้งใช้งาน (พ.ศ.)ให้ถูกต้อง</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_NAME" xml:space="preserve">
+    <value>ชื่อผู้ผลิต</value>
+    <comment>FieldID: F38_01_07</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_ID" xml:space="preserve">
+    <value>หมายเลขประจำเครื่อง</value>
+    <comment>FieldID: F38_01_08</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION" xml:space="preserve">
+    <value>รายละเอียดแผงโฟโตโวลเทอิก</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล รายละเอียดแผงโฟโตโวลเทอิก ในขณะนี้ คุณสามารถเพิ่มข้อมูลรายละเอียดแผงโฟโตโวลเทอิก&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มรายละเอียดแผงโฟโตโวลเทอิก"&lt;/div&gt;</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มรายละเอียดแผงโฟโตโวลเทอิก</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มรายละเอียดแผงโฟโตโวลเทอิก</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_TYPE" xml:space="preserve">
+    <value>ชนิดของแผงโฟโตโวลเทอิก</value>
+    <comment>FieldID: F38_01_09</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_TYPE_CRYTAL" xml:space="preserve">
+    <value>ผลึก</value>
+    <comment>FieldID: F38_01_09</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_TYPE_FILM" xml:space="preserve">
+    <value>ฟิลม์บาง</value>
+    <comment>FieldID: F38_01_09</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_TYPE_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F38_01_09</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F38_01_10</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_WATT" xml:space="preserve">
+    <value>ขนาด (วัตต์/แผง)</value>
+    <comment>FieldID: F38_01_11</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนแผง</value>
+    <comment>FieldID: F38_01_12</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION" xml:space="preserve">
+    <value>รายละเอียดเครื่องผลิตไฟฟ้า</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_ELECTRIC_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_SECTION" xml:space="preserve">
+    <value>ข้อมูลผู้ติดต่อประสานงาน</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_CONTACT_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล รายละเอียดเครื่องผลิตไฟฟ้า ในขณะนี้ คุณสามารถเพิ่มข้อมูลรายละเอียดเครื่องผลิตไฟฟ้า&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มรายละเอียดเครื่องผลิตไฟฟ้า"&lt;/div&gt;</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_ELECTRIC_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มรายละเอียดเครื่องผลิตไฟฟ้า</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_ELECTRIC_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มรายละเอียดเครื่องผลิตไฟฟ้า</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_ELECTRIC_SECTION</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_TYPE" xml:space="preserve">
+    <value>ชนิด</value>
+    <comment>FieldID: F38_01_13</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_TYPE_GENERATOR" xml:space="preserve">
+    <value>เครื่องกำเนิดไฟฟ้า</value>
+    <comment>FieldID: F38_01_13</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_TYPE_MOTOR" xml:space="preserve">
+    <value>อินดักชั่นมอร์เตอร์</value>
+    <comment>FieldID: F38_01_13</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_TYPE_VECTOR" xml:space="preserve">
+    <value>อินเวอร์เตอร์</value>
+    <comment>FieldID: F38_01_13</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_KVA" xml:space="preserve">
+    <value>พิกัดกำลัง (กิโลโวลต์แอมแปร์)</value>
+    <comment>FieldID: F38_01_14</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_VOLTAGE" xml:space="preserve">
+    <value>พิกัดแรงดัน (โวลต์)</value>
+    <comment>FieldID: F38_01_15</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_AMP" xml:space="preserve">
+    <value>พิกัดกระแส (แอมแปร์)</value>
+    <comment>FieldID: F38_01_16</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_PERCENT" xml:space="preserve">
+    <value>ตัวประกอบกำลัง (%)</value>
+    <comment>FieldID: F38_01_17</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_YEAR" xml:space="preserve">
+    <value>ปีที่ติดตั้งใช้งาน (พ.ศ.)</value>
+    <comment>FieldID: F38_01_18</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CHECK_ERA_YEAR_EXCEED" xml:space="preserve">
+    <value>กรุณากรอกปีที่ติดตั้งใช้งาน (พ.ศ.)ให้ถูกต้อง</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_NAME" xml:space="preserve">
+    <value>ชื่อผู้ผลิต</value>
+    <comment>FieldID: F38_01_19</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_ID" xml:space="preserve">
+    <value>หมายเลขประจำเครื่อง</value>
+    <comment>FieldID: F38_01_20</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION_CONFIRM" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_ENERGY_PRODUCTION_INFO_SECTION_CONFIRM</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION_CONFIRM_COMFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F38_01_21</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION_CONFIRM_COMFIRM_INFO" xml:space="preserve">
+    <value>พร้อมกับคำขอนี้ข้าพเจ้าได้แนบหลักฐานต่าง ๆ มาด้วย คือ&lt;br/&gt;1. สําเนาหรือภาพถ่ายหนังสือรับรองการจดทะเบียน วัตถุประสงค์ และผู้มีอํานาจลงลายมือชื่อแทนนิติบุคคลผู้ขอรับใบอนุญาตไม่เกินหกเดือน ในกรณีที่ผู้ขอรับใบอนุญาตเป็นนิติบุคคล&lt;br/&gt;2. หนังสือมอบอํานาจตามแบบของพนักงานเจ้าหน้าที่ ในกรณีที่ผู้ยื่นคําขอรับใบอนุญาตได้รับมอบอํานาจให้ยื่นคําขอรับใบอนุญาต &lt;br/&gt;3. สําเนาหรือภาพถ่ายทะเบียนบ้านของผู้รับมอบอํานาจและผู้มอบอำนาจ&lt;br/&gt;4. สําเนาหรือภาพถ่ายบัตรประจำตัวประชาชนหรือใบสําคัญประจำตัวคนต่างด้าวของผู้รับมอบอํานาจและผู้มอบอำนาจ&lt;br/&gt;5. แผนผังบริเวณที่ตั้งสถานที่ทําการผลิตพลังงานควบคุม &lt;br/&gt;6. แผนผังแสดงวิธีการเดินสายและการจ่ายพลังงานควบคุม&lt;br/&gt;7. พิกัดขนาดติดตั้งของเครื่องใช้พลังงานที่ใช้กับพลังงานควบคุมจากแต่ละแหล่งผลิตพลังงานควบคุม&lt;br/&gt;8. สําเนาหรือภาพถ่ายใบอนุญาตเป็นผู้ประกอบวิชาชีพวิศวกรรมควบคุมของผู้ควบคุมการผลิตพลังงานควบคุม ซึ่งตรงตามหลักเกณฑ์ผู้ควบคุมการผลิตพลังงานควบคุม</value>
+    <comment>FieldID: F38_01_21</comment>
+  </data>
+  <data name="TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารแนบและข้อความข้างต้นเป็นความจริงทุกประการ</value>
+    <comment>FieldID: F38_01_21</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_INFO_SECTION_CONFIRM_SIGNATURE" xml:space="preserve">
+    <value>&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+    (ลายมือชื่อ) ............................................. ผู้ขอรับใบอนุญาต
+&lt;/div&gt;
+&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+            (................................................)
+&lt;/div&gt;</value>
+    <comment>FieldID: F38_01_22</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_IDX" xml:space="preserve">
+    <value>เครื่องที่</value>
+    <comment>FieldID: F38_01_ELECTRIC_IDX</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_ELECTRIC_SECTION_INSTALL_TYPE" xml:space="preserve">
+    <value>ประเภทติดตั้ง</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_IDX" xml:space="preserve">
+    <value>เครื่องที่</value>
+    <comment>FieldID: F38_01_MACHINE_IDX</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_INSTALL_TYPE" xml:space="preserve">
+    <value>ประเภทติดตั้ง</value>
+    <comment>FieldID: F38_01_MACHINE_IDX</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_IDX" xml:space="preserve">
+    <value>แบบที่</value>
+    <comment>FieldID: F38_01_PHOTOVOLTAIC_IDX</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_SOLAR" xml:space="preserve">
+    <value>แบบของแผงโฟโตโวลเทอิก</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_PHOTOVOLTAIC" xml:space="preserve">
+    <value>รายละเอียดแผงโฟโตโวลเทอิก</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_PHOTOVOLTAIC_SECTION_INDEX" xml:space="preserve">
+    <value>แบบที่</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_LICENSE_REASON" xml:space="preserve">
+    <value>มีความประสงค์ขอรับใบอนุญาตผลิตพลังงานควบคุมเพื่อประกอบกิจการ</value>
+    <comment>FieldID: F38_01_01_01</comment>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_SAME_PERSON" xml:space="preserve">
+    <value>เป็นบุคคลเดียวกับบุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_SAME_PERSON_CONFIRM" xml:space="preserve">
+    <value>เป็นบุคคลเดียวกับบุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_TITLE" xml:space="preserve">
+    <value>คำนำหน้า</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_NAME" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_ID_CARD" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_MOBILE" xml:space="preserve">
+    <value>มือถือ</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_TEL" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_FAX" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_CONTACT_INFORMATION_EMAIL" xml:space="preserve">
+    <value>อีเมล์</value>
+  </data>
+  <data name="APP_ENERGY_PRODUCTION_MACHINE_SECTION_HORSEPOWER_REQUIRED" xml:space="preserve">
+    <value>กรุณากรอก พิกัดกำลัง (แรงม้า)</value>
+  </data>
+</root>

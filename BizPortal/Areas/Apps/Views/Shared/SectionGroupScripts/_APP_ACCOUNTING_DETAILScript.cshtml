@@ -1,0 +1,124 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")">
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+
+        window.singleFormHelpers.form.setRadioCheckboxReadonly($('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_REASON_TYPE_OPTION]'));
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            updateAccountingIncome();
+            updateAuditoringIncome();
+            updateReasonTypeAndTotalPolicy();
+        });
+
+        function getCustomerNumber (name) {
+            var value = $('input[name=' + name + ']').val();
+            if (value == '' || value == undefined) {
+                value = '0';
+            }
+            var number = Number(value.replace(/[^0-9.-]+/g, ""));
+            return number;
+        };
+
+        function updateAccountingIncome() {
+            var income = getCustomerNumber('APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_ACCOUNTING_CUSTOMER_INCOME');
+            var noneincome = getCustomerNumber('APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_ACCOUNTING_CUSTOMER_NONE_INCOME');
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_ACCOUNTING_TOTAL_INCOME]').val(formatNumber(income + noneincome));
+            updateTotalIncome();
+        }
+
+        function updateAuditoringIncome() {
+            var Auditorincome = getCustomerNumber('APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_AUDITORING_CUSTOMER_INCOME');
+            var Auditornoneincome = getCustomerNumber('APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_AUDITORING_CUSTOMER_NONE_INCOME');
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_AUDITORING_TOTAL_INCOME]').val(formatNumber(Auditorincome + Auditornoneincome));
+            updateTotalIncome();
+        };
+
+        function updateTotalIncome() {
+            var accountingIncome = getCustomerNumber('APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_ACCOUNTING_TOTAL_INCOME');
+            var auditoringIncome = getCustomerNumber('APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_AUDITORING_TOTAL_INCOME');
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_TOTAL_INCOME]').val(formatNumber(accountingIncome + auditoringIncome)).trigger('change');
+        }
+
+        function updateReasonTypeAndTotalPolicy() {
+            var fund = getCustomerNumber('APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_FUND');
+            var totalIncome = getCustomerNumber('APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_TOTAL_INCOME');
+            var totalIncomePolicy = 0;
+            var rate = 1.03; // 3 Percentage
+            var radioReasonType = $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_REASON_TYPE_OPTION]');
+            var option;
+
+            if (fund >= totalIncome) {
+                option = radioReasonType[0];
+                totalIncomePolicy = (fund * 3) / 100;
+            }
+            else {
+                option = radioReasonType[1];
+                totalIncomePolicy = (totalIncome * 3) / 100;
+            }
+            option.checked = true;
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_TOTAL_INCOME_POLICY]').val(formatNumber(totalIncomePolicy));
+        }
+
+        function formatNumber(num) {
+            return num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+        }
+
+        if ($('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_ACCOUNTING_TOTAL_INCOME]').length > 0) {
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_ACCOUNTING_CUSTOMER_INCOME]').change(updateAccountingIncome);
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_ACCOUNTING_CUSTOMER_NONE_INCOME]').change(updateAccountingIncome);
+
+        }
+
+        if ($('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_AUDITORING_TOTAL_INCOME]').length > 0) {
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_AUDITORING_CUSTOMER_INCOME]').change(updateAuditoringIncome);
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_AUDITORING_CUSTOMER_NONE_INCOME]').change(updateAuditoringIncome);
+        }
+
+        if ($('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_TOTAL_INCOME]').length > 0 && $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_FUND]').length > 0) {
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_FUND]').change(updateReasonTypeAndTotalPolicy);
+            $('input[name=APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_TOTAL_INCOME]').change(updateReasonTypeAndTotalPolicy);
+        }
+
+        window.APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_TOTAL_INCOME_POLICY_VAILDATE = function() {
+            const checked = $("input[name='APP_ACCOUNTING_DETAIL_PROVIDING_SECTION_TYPE_OPTION']:checked").val();
+            const income_policy = parseFloat($("input[name='APP_ACCOUNTING_DETAIL_CALCULATE_SECTION_TOTAL_INCOME_POLICY']").val().replace(/,/g, "") || 0);
+
+            let policy = 0;
+
+            if (checked == "DEPOSIT") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_DETAIL_DEPOSIT_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_DETAIL_DEPOSIT_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            } else if (checked == "DEPOSIT_CARD") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_DETAIL_DEPOSIT_CARD_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_DETAIL_DEPOSIT_CARD_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            } else if (checked == "THAI_BONDS") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_DETAIL_THAI_BONDS_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_DETAIL_THAI_BONDS_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            } else if (checked == "CORPARATE_BONDS") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_DETAIL_CORPARATE_BONDS_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_DETAIL_CORPARATE_BONDS_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            } else if (checked == "POLICY") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_DETAIL_POLICY_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_DETAIL_POLICY_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            }
+
+            return policy >= income_policy;
+        }
+	});
+
+</script>
+
+
+

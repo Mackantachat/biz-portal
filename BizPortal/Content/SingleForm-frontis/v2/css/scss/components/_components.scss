@@ -1,0 +1,87 @@
+@import "box-message";
+@import "button";
+@import "link";
+@import "scrollbar";
+@import "text-label";
+@import "title-hgroup";
+
+
+.product-item{
+  .title > h5{
+    @extend .f-30;
+    color: $c-header;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .icon{
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+  .des > p{
+    @extend .f-24;
+    color: $c-title;
+    margin-bottom: 0px;
+  }
+}
+
+.security-item{
+  position: relative;
+  margin-top: 50px;
+  text-align: left;
+  .icon{
+    position: absolute;
+    left: 10px;
+  }
+  .text{
+    padding-left: 100px;
+    .title > h5{
+      @extend .f-30;
+      color: $c-main-blue;
+      margin-bottom: 20px;
+    }
+    .des > p{
+        color: $c-title;
+    }
+  }
+}
+
+.company-item{
+  
+  display: block;
+  color: $c-white;
+  text-align: center;
+  .icon{
+    @include transition(0.2s, ease-in);
+    -webkit-filter: opacity(90%);
+    //filter: opacity(50%);
+  }
+  &:active, &:hover, &:focus{
+    .icon{
+      //-webkit-filter: opacity(100%);
+      //filter: opacity(100%);
+    }
+  }
+
+  .des > p{margin-top: 8px;}
+  margin-top: 50px;
+}
+
+.profile-menu{
+  img{
+    width: 100%;
+    max-width: 135px;
+    border-radius: 50%;
+    border: 2px solid $c-white;
+    margin: 20px;
+  }
+  color: $c-white;
+  text-align: center;
+  @include flex(column, center, center);
+  .id > p{
+    @extend .f-26;
+    margin-bottom: 5px;
+  }
+  .name > p{
+    @extend .f-26;
+  }
+}

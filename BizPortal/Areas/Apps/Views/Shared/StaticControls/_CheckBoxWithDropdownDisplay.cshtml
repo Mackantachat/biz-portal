@@ -1,0 +1,36 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+<div data-checkbox-group="@Model.DataKey">
+    @foreach (var opt in Model.CheckboxWithDropdown)
+    {
+        <div class="row pb5">
+            <div class="form-group form-inline">
+                <div class="col-md-2">
+                    <input type="checkbox" name="@opt.CheckboxWithDropdownOptName" id="@string.Format("{0}-{1}", opt.CheckboxWithDropdownOptName, Model.ClientID)" value="true" disabled />
+                    <label for="@string.Format("{0}-{1}", opt.CheckboxWithDropdownOptName, Model.ClientID)">@ResourceHelper.GetResourceWordWithDefault(opt.CheckboxWithDropdownOptName, "Apps_SingleForm", opt.CheckboxWithDropdownOptName)</label>
+                </div>
+                <div class="col-md-10">
+                    <select class="form-control w50p" id="@string.Format("DROPDOWN-{0}-{1}", opt.CheckboxWithDropdownOptName, Model.ClientID)" name="@string.Format("DROPDOWN_{0}", opt.CheckboxWithDropdownOptName)" disabled>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        @foreach (var opt in Model.CheckboxWithDropdown)
+        {
+            <text>
+        $("#@string.Format("DROPDOWN-{0}-{1}", opt.CheckboxWithDropdownOptName, Model.ClientID)").select2({
+            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( opt.CheckboxWithDropdownOpts )),
+            allowClear: true
+        });
+        </text>
+        }
+    });
+</script>

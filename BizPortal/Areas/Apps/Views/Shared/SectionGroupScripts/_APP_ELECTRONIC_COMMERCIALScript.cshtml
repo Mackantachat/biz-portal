@@ -1,0 +1,352 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")" >
+</script>
+
+<script type="text/javascript">
+
+    window.APP_ELECTRONIC_COMMERCIAL_validateSeparatedTo = function () {
+        var groupContainer = $(document);
+        var strStocks = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_SEPERATED_TO']").val();
+
+        if (!strStocks) strStocks = '0';
+
+        // Get stock summary from ArrayOfForm
+        var totalStock = 0.0;
+        $(window.singleForm.variables['arrObjAPP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_2'].data || []).each(function (index, data) {
+            totalStock += parseFloat(data.APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_2_SHARE.replace(',', ''));
+        });
+        
+        // จำนวนหุ้นรวมแล้วต้องเท่ากับรายการใน ArrayOfForm
+        return parseFloat(strStocks.replace(',', '')) == totalStock;
+    }
+
+    window.APP_ELECTRONIC_COMMERCIAL_validateStartDate = function () {
+        var start = window.singleFormHelpers.form.getSelectedDate($("input[name='APP_ELECTRONIC_COMMERCIAL_START_IN_THAILAND_SECTION_DATE']"));
+        var end = window.singleFormHelpers.form.getSelectedDate($("input[name='APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION_DATE']"));
+        
+        if (start && end) {
+            return start.getTime() <= end.getTime();
+        }
+
+        return false;
+    }
+
+    window.APP_ELECTRONIC_COMMERCIAL_validateRegisteredCapital = function () {
+        var groupContainer = $(document);
+
+        var strCapital = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_REGISTERED_CAPITAL']").val();
+        var strStocks = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_SEPERATED_TO']").val();
+        var strPrice = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_SHARE_BATH']").val();
+
+        if (!strCapital) strCapital = '0';
+        if (!strStocks) strStocks = '0';
+        if (!strPrice) strPrice = '0';
+        
+        // จำนวนหุ้นรวมแล้วต้องเท่ากับรายการใน ArrayOfForm
+        return parseFloat(strCapital.replace(',', '')) == (parseFloat(strStocks.replace(',', '')) * parseFloat(strPrice.replace(',', '')));
+    }
+
+    window.APP_ELECTRONIC_COMMERCIAL_validateBudget = function () {
+        var groupContainer = $(document);
+        var strAmount = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_INVESTMENT_SECTION_AMOUNT']").val();
+        var strBudget = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_BUDGET']").val();
+
+        if (!strAmount) strAmount = '0';
+        if (!strBudget) strBudget = '0';
+
+
+        // จำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ ต้องมากกว่า จำนวนเงินทุน(ที่ใช้ในการทำพาณิชย์อิเล็กทรอนิกส์) 
+        //console.log(strAmount, strBudget);
+        return parseFloat(strAmount.replace(',', '')) >= parseFloat(strBudget.replace(',', ''));
+    }
+    
+    $(document).ready(function (e) {
+
+        APP_ELECTRONIC_COMMERCIAL_cascadeMapping();
+
+        var groupContainer = $("section[data-section-name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION']");
+        var isTransferAddrSync = false;
+
+        var fncClearTransferForm = function () {
+            $("section[data-section-name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION']").find('input, select').each(function (index, elm) {
+                if ($(this).attr('name') != 'APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_COMMERCIAL_NUMBER'
+                    && $(this).attr('name') != 'APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_REQUEST_NUMBER') {
+                    $(this).val('').trigger('change');
+                }                
+            });
+        };
+        
+        $(groupContainer).find("button[name='btnCheckCommerce']").parent().prepend('<label>&nbsp;</label>');
+        $(groupContainer).find("button[name='btnCheckCommerce']").click(function (e) {
+
+            fncClearTransferForm();
+            var commerceNo = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_COMMERCIAL_NUMBER']").val();
+            var regisNo = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_REQUEST_NUMBER']").val();
+
+            window.singleFormHelpers.DBD.checkTransferCommerceById('@Model.SectionGroup', commerceNo, regisNo, this, function (data) {
+                //console.log(data);
+                window.singleForm.functions.setSectionData(data.Data);
+                isTransferAddrSync = true;
+            });
+        });
+        
+        // User cannot manually select request type.
+        window.singleFormHelpers.form.setRadioCheckboxReadonly($('input[name="APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_REQUEST_TYPE_OPTION"]'));
+
+        // ทุนจดทะเบียน (บาท) จะเท่ากับ จำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ (บาท)
+        $('input[name="APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_REGISTERED_CAPITAL"]').prop('readonly', true);
+        $('input[name="APP_ELECTRONIC_COMMERCIAL_INVESTMENT_SECTION_AMOUNT"]').change(function (e) {
+            $('input[name="APP_ELECTRONIC_COMMERCIAL_STOCK_SECTION_REGISTERED_CAPITAL"]').val($(this).val());
+        });
+
+        @* Listening on datatable-binded event to determine request type automatically. *@
+        $('#APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_TYPE').on('datatable-binded', function (e, datalist, selectOptions) {
+            if (!datalist || datalist.length == 0) {
+                $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_REQUEST_TYPE_OPTION"]').attr('checked', false);
+            } else {
+
+                var hasElect = false;
+                $(datalist).each(function (index, data) {
+                    for (var i = 0; i < selectOptions.APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_TYPE_TYPE.length; i++) {
+                        if (data.TYPE == selectOptions.APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_TYPE_TYPE[i].id
+                            && selectOptions.APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_TYPE_TYPE[i].Flag == 'W') {
+                            hasElect = true;
+                            break;
+                        }
+                    }
+                });
+
+                var reqType = hasElect ? 'ELECTRONIC' : 'NORMAL';
+                $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_REQUEST_TYPE_OPTION"]').val([reqType]);
+                $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_REQUEST_TYPE_OPTION"][value="' + reqType + '"]').trigger('change');
+
+                // store actual value in hidden field.
+                $('input[type="hidden"][name="APP_ELECTRONIC_COMMERCIAL_INFO_SECTION_REQUEST_TYPE_OPTION"]').val(reqType).trigger('change');
+            }
+
+        });
+
+        // Defualt text on select facebook or instragram
+        $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_OTHER_ELECTRONIC_SECTION_ELECTRONIC_MEDIA_OPTION"]').change(function (e) {
+            switch ($(this).val()) {
+                case '01':    // website
+                    if ($('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_NAME_WEBSITE"]').val() == '') {
+                        $('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_NAME_WEBSITE"]').val('http://');
+                    }
+                    break;
+                case '02':    // FACEBOOK
+                    if ($('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_NAME_FACEBOOK"]').val() == '') {
+                        $('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_NAME_FACEBOOK"]').val('www.facebook.com/');
+                    }
+                    break;
+                case '03':    // Line
+                    if ($('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_NAME_LINE"]').val() == '') {
+                        $('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_NAME_LINE"]').val('www.line.com/');
+                    }
+                    break;
+                case '04':
+                    if ($('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_NAME_INSTRAGRAM"]').val() == '') {
+                        $('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_NAME_INSTRAGRAM"]').val('www.instagram.com/');
+                    }
+                    break;
+            }
+        });
+
+        // If date is not valid, just clear it.
+        window.singleForm.triggerCtrlList.push('APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_DATE');
+        $("input[name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_DATE']").change(function (e) {
+            var val = $(this).val();
+            var patt = /[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}/g;
+            if (val && !patt.test(val)) {
+                $(this).val('').trigger('change');
+            }
+        });
+                
+        $("input[name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_TYPE_SECTION_IS_TRANSFER_OPTION']").change(function () {
+            var isTransfer = $(this).val() == 'YES';
+            window.singleFormHelpers.form.setReadonly($("section[data-section-name='APP_ELECTRONIC_COMMERCIAL_INFORMATION_STORE_SECTION']"), isTransfer);
+
+            @* Always enable following fields. *@
+            $('input[name="ADDRESS_EMAIL_INFORMATION_STORE__ADDRESS"]').prop('readonly', false);
+            $('input[name="ADDRESS_LAT_INFORMATION_STORE__ADDRESS"]').prop('readonly', false);
+            $('input[name="ADDRESS_LNG_INFORMATION_STORE__ADDRESS"]').prop('readonly', false);
+            window.singleFormHelpers.form.setRadioCheckboxReadonly($('input[name="INFORMATION_STORE_BUILDING_TYPE_OPTION"], input[name="CITIZEN_INFORMATION_STORE_BUILDING_TYPE_OPTION"]'), false);
+            window.singleFormHelpers.form.setRadioCheckboxReadonly($('input[name="INFORMATION_STORE_BUILDING_RENTING_OWNER_TYPE_OPTION"]'), false);
+            window.singleFormHelpers.form.setSelect2Readonly($('select[name="AJAX_DROPDOWN_INFORMATION_STORE_OFFICE_CODE"]'), false);
+            $('#btn-showmap-INFORMATION_STORE__ADDRESS').prop('disabled', false);
+            $('#MAP_INFORMATION_STORE__ADDRESS_MODAL').find('button').prop('disabled', false);
+
+            if (!isTransfer && isTransferAddrSync) {
+                // Reset address form
+                $("section[data-section-name='APP_ELECTRONIC_COMMERCIAL_INFORMATION_STORE_SECTION']").find("input[name^='INFORMATION_STORE_NAME_'], input[name$='INFORMATION_STORE__ADDRESS'], select[name$='INFORMATION_STORE__ADDRESS']").each(function (index, elm) {
+                    $(this).val('').trigger('change');
+                });
+
+                fncClearTransferForm();
+            }
+        });
+
+        
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+
+            $(data.SectionData).each(function (index, sec) {
+                if (sec.SectionName == 'APP_ELECTRONIC_COMMERCIAL_TRANSFER_TYPE_SECTION') {
+                    if (sec.FormData && sec.FormData.hasOwnProperty('APP_ELECTRONIC_COMMERCIAL_TRANSFER_TYPE_SECTION_IS_TRANSFER_OPTION')) {
+                        isTransferAddrSync = sec.FormData.APP_ELECTRONIC_COMMERCIAL_TRANSFER_TYPE_SECTION_IS_TRANSFER_OPTION == 'YES';
+                    }                    
+                }
+            });
+
+            // Enable some fields on Transfer section
+            window.singleFormHelpers.form.setReadonly($("section[data-section-name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION']"));
+            $("input[name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_COMMERCIAL_NUMBER']").prop('readonly', false);
+            $("input[name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_REQUEST_NUMBER']").prop('readonly', false);
+            $("textarea[name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_CAUSE']").prop('readonly', false);
+            $("button[name='btnCheckCommerce']").prop('disabled', false);
+            window.singleFormHelpers.form.setDatePickerReadonly($("input[name='APP_ELECTRONIC_COMMERCIAL_TRANSFER_SECTION_DATE']"), false);
+
+            // Enable some fields on Website address
+            $("input[name$='_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN']").prop('readonly', true);
+            $("select[name$='_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN']").each(function (index, elm) {
+                window.singleFormHelpers.form.setSelect2Readonly(elm, true);
+            });
+
+            $("select[name='ADDRESS_EN_POSTCODE_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN']").each(function (index, elm) {
+                window.singleFormHelpers.form.setSelectReadonly(elm, true);
+            });
+
+            $("input[name='ADDRESS_EN_SOI_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN']").prop('readonly', false);
+            $("input[name='ADDRESS_EN_BUILDING_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN']").prop('readonly', false);
+            $("input[name='ADDRESS_EN_ROAD_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN']").prop('readonly', false);
+
+            $(APP_ELECTRONIC_COMMERCIAL_mappingPairs).each(function (index, pair) {
+
+                if (pair.source == 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS') {
+                    APP_ELECTRONIC_COMMERCIAL_onProvinceChange(pair);
+                }
+                else if (pair.source == 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS') {
+                    setTimeout(function () {
+                        APP_ELECTRONIC_COMMERCIAL_onAmphurChange(pair);
+                    }, 500);
+                }
+                else if (pair.source == 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS') {
+                    setTimeout(function () {
+                        APP_ELECTRONIC_COMMERCIAL_onTumbolChange(pair);
+                    }, 1000);
+                }
+                else
+                {
+                    $("[name='" + pair.source + "']").trigger('change');
+                }
+
+            });
+        });
+        
+    });
+
+    var APP_ELECTRONIC_COMMERCIAL_mappingPairs = [
+            { source: 'ADDRESS_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN' },
+            { source: 'ADDRESS_MOO_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_MOO_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN' },
+            { source: 'ADDRESS_ROOMNO_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_ROOMNO_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN' },
+            { source: 'ADDRESS_FLOOR_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_FLOOR_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN' },
+            { source: 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_PROVINCE_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN' },
+            { source: 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_AMPHUR_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN' },
+            { source: 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_TUMBOL_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN' },
+            { source: 'ADDRESS_POSTCODE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_POSTCODE_APP_ELECTRONIC_COMMERCIAL_WEBSITE_SECTION_ADDRESS_EN' },
+        ];
+
+    var APP_ELECTRONIC_COMMERCIAL_provinceEnList = [];
+    function APP_ELECTRONIC_COMMERCIAL_cascadeMapping() {
+        
+        var fncSetProvinceEN = function (pCode, target) {
+            var provinces = APP_ELECTRONIC_COMMERCIAL_provinceEnList;
+            for (var i = 0; i < provinces.length; i++) {
+                if (provinces[i].id == pCode) {
+                    window.singleFormHelpers.form.setSelect2WithDefault($(target), provinces[i].id, provinces[i].text);
+                    break;
+                }
+            }
+        };
+
+        $(APP_ELECTRONIC_COMMERCIAL_mappingPairs).each(function (index, pair) {
+            if ($("[name='" + pair.source + "']").length > 0 && $("[name='" + pair.target + "']").length > 0) {
+                window.singleForm.triggerCtrlList.push(pair.source);
+
+                $("[name='" + pair.source + "']").change(function (e) {
+                    
+                    var srcVal = $(this).val();
+                    if (pair.source == 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS') {
+                        APP_ELECTRONIC_COMMERCIAL_onProvinceChange(pair);                        
+                    }
+                    else if (pair.source == 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS') {
+                        APP_ELECTRONIC_COMMERCIAL_onAmphurChange(pair);
+                    }
+                    else if (pair.source == 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS') {
+                        APP_ELECTRONIC_COMMERCIAL_onTumbolChange(pair);
+                    }
+                    else
+                    {
+                        $("[name='" + pair.target + "']").val(srcVal);
+                    }
+                });
+            }
+        });
+    }
+
+    function APP_ELECTRONIC_COMMERCIAL_onProvinceChange(pair) {
+
+        var fncSetProvinceEN = function (pCode, target) {
+            var provinces = APP_ELECTRONIC_COMMERCIAL_provinceEnList;
+            for (var i = 0; i < provinces.length; i++) {
+                if (provinces[i].id == pCode) {
+                    window.singleFormHelpers.form.setSelect2WithDefault($(target), provinces[i].id, provinces[i].text);
+                    break;
+                }
+            }
+        };
+
+        var srcVal = $("[name='" + pair.source + "']").val();
+        if (APP_ELECTRONIC_COMMERCIAL_provinceEnList.length > 0) {
+            fncSetProvinceEN(srcVal, "[name='" + pair.target + "']");
+        } else {
+            $.get("@Url.Content("~/Api/v2/Geo/ProvincesEN")", function (resp) {
+                APP_ELECTRONIC_COMMERCIAL_provinceEnList = resp.results;
+                fncSetProvinceEN(srcVal, "[name='" + pair.target + "']");
+            });
+        }
+    }
+
+    function APP_ELECTRONIC_COMMERCIAL_onAmphurChange(pair) {  
+        var srcVal = $("[name='" + pair.source + "']").val();
+        var pcode = $("[name='ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS']").val();
+        $.get("@Url.Content("~/Api/v2/Geo/AmphursEN?pCode=")" + pcode, function (resp) {
+            for (var i = 0; i < resp.results.length; i++) {
+                if (resp.results[i].id == srcVal) {
+                    window.singleFormHelpers.form.setSelect2WithDefault("[name='" + pair.target + "']", resp.results[i].id, resp.results[i].text);
+                    break;
+                }
+            }
+        });
+    }
+
+    function APP_ELECTRONIC_COMMERCIAL_onTumbolChange(pair) {   
+        var srcVal = $("[name='" + pair.source + "']").val();
+        var pcode = $("[name='ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS']").val();
+        var acode = $("[name='ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS']").val()
+        $.get("@Url.Content("~/Api/v2/Geo/TambolsEN?pCode=")" + pcode + "&aCode=" + acode, function (resp) {
+            for (var i = 0; i < resp.results.length; i++) {
+                if (resp.results[i].id == srcVal) {
+                    window.singleFormHelpers.form.setSelect2WithDefault("[name='" + pair.target + "']", resp.results[i].id, resp.results[i].text);
+                    break;
+                }
+            }
+        });
+    }
+	
+</script>
+
+
+

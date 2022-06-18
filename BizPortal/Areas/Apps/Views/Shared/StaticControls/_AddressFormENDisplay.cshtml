@@ -1,0 +1,166 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+    var address = Model.Data as AddressControlData;
+    var rd = Model.DisplayReadonly;
+}
+
+@* ADDRESS_NO, MOO *@
+    <div class="row">
+        <div class="col-md-4">
+            <label>No :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN", Model.DataKey), address != null ? address.Address : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN", Model.ClientID), @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            <label>Moo :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_MOO", Model.DataKey), address != null ? address.Moo : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_MOO", Model.ClientID), @readonly = "readonly" })
+        </div>
+        @if (Model.AddressFormEN_ShowVillageControl)
+        {
+            <div class="col-md-6">
+                <label>Muban :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_MUBAN_EN", Model.DataKey), address != null ? address.Moo : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MUBAN_EN", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+    </div>
+@* VILLAGE & SOI *@
+<div class="row">
+    @*<div class="col-md-6">
+            <label>Village :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_VILLAGE", Model.DataKey), address != null ? address.Village : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_VILLAGE", Model.ClientID), @readonly = "readonly" })
+        </div>*@
+    <div class="col-md-6">
+        <label>Trok/Soi :</label>
+        @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_SOI", Model.DataKey), address != null ? address.Soi : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_SOI", Model.ClientID), @readonly = "readonly" })
+    </div>
+    @* BUILDING + FLOOR & ROAD *@
+    @if (Model.AddressFormEN_ShowBuildingControl)
+    {
+        <div class="col-md-4">
+            <label>Building :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_BUILDING", Model.DataKey), address != null ? address.Building : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_BUILDING", Model.ClientID), @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            <label>Room :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_ROOMNO", Model.DataKey), address != null ? address.Floor : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROOMNO", Model.ClientID), @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            <label>Floor :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_FLOOR", Model.DataKey), address != null ? address.Floor : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_FLOOR", Model.ClientID), @readonly = "readonly" })
+        </div>
+    }
+    @if (Model.AddressFormEN_ShowBuildingControl)
+    {
+        <div class="col-md-4">
+            <label>Road :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.DataKey), address != null ? address.Road : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.ClientID), @readonly = "readonly" })
+        </div>
+    }
+    else
+    {
+        <div class="col-md-6">
+            <label>Road :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.DataKey), address != null ? address.Road : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.ClientID), @readonly = "readonly" })
+        </div>
+    }
+</div>
+
+@* PROVINCE & AMPHUR *@
+@if (rd)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <label>Province :</label>
+            <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.Text : null)" readonly />
+        </div>
+        <div class="col-md-6">
+            <label>District/Amphur :</label>
+            <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.Text : null)" readonly />
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <label>Province :</label>
+            <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)" disabled>
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label>District/Amphur :</label>
+            <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)" disabled>
+                <option></option>
+            </select>
+        </div>
+    </div>
+}
+
+@* TUMBOL & POSTCODE *@
+<div class="row">
+    @if (rd)
+    {
+        <div class="col-md-6">
+            <label>Sub-District/Tumbol :</label>
+            <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.Text : null)" readonly />
+        </div>
+    }
+    else
+    {
+        <div class="col-md-6">
+            <label>Sub-District/Tumbol :</label>
+            <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)" disabled>
+                <option></option>
+            </select>
+        </div>
+    }
+    <div class="col-md-6">
+        <label>Postcode :</label>
+        @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_POSTCODE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_POSTCODE", Model.ClientID), @readonly = "readonly" })
+    </div>
+
+</div>
+
+@* TELEPHONE & FAX *@
+@if (Model.AddressForm_ShowTelephoneControl)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <label>Tel :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE", Model.ClientID), @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            <label>Ext. :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE_EXT", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE_EXT", Model.ClientID), @readonly = "readonly" })
+        </div>
+        <div class="col-md-6">
+            <label>Fax :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_FAX", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_FAX", Model.ClientID), @readonly = "readonly" })
+        </div>
+    </div>
+}
+@* MOBILE && EMAIL *@
+@if (Model.AddressForm_ShowEmailControl || Model.AddressForm_ShowMapControl)
+{
+    <div class="row">
+        @if (Model.AddressForm_ShowMobileControl)
+        {
+            <div class="col-md-6">
+                <label>Mobile :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_MOBILE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+        @if (Model.AddressForm_ShowEmailControl)
+        {
+            <div class="col-md-6">
+                <label>Email :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_EMAIL", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+    </div>
+}

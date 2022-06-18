@@ -1,0 +1,24 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="REQUESTOR_INFORMATIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-4">
+            <p class="bold form-control-static">{{this.DROPDOWN_REQUESTOR_INFORMATION_TITLE_TEXT}} {{this.REQUESTOR_INFORMATION_NAME}} {{this.REQUESTOR_INFORMATION_LASTNAME}}</p>
+        </div>
+        <div class="col-md-8">
+            <p class="form-control-static">{{this.ADDRESS_REQUESTOR_INFORMATION_ADDRESS}} {{this.ADDRESS_TUMBOL_REQUESTOR_INFORMATION_ADDRESS_TEXT}} {{this.ADDRESS_AMPHUR_REQUESTOR_INFORMATION_ADDRESS_TEXT}} {{this.ADDRESS_PROVINCE_REQUESTOR_INFORMATION_ADDRESS_TEXT}}</p>
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>
+

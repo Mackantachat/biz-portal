@@ -1,0 +1,766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ADDRESS_AMPHUR" xml:space="preserve">
+    <value>อำเภอ/เขต</value>
+  </data>
+  <data name="ADDRESS_BUILDING" xml:space="preserve">
+    <value>อาคาร</value>
+  </data>
+  <data name="ADDRESS_BUILDING_VILLAGE" xml:space="preserve">
+    <value>ชื่ออาคาร/หมู่บ้าน</value>
+  </data>
+  <data name="ADDRESS_CHOOSE_AMPHUR" xml:space="preserve">
+    <value>กรุณาเลือกอำเภอ</value>
+  </data>
+  <data name="ADDRESS_CHOOSE_PROVINCE" xml:space="preserve">
+    <value>กรุณาเลือกจังหวัด</value>
+  </data>
+  <data name="ADDRESS_CHOOSE_TAMBOL" xml:space="preserve">
+    <value>กรุณาเลือกตำบล</value>
+  </data>
+  <data name="ADDRESS_FAX" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="ADDRESS_FLOOR" xml:space="preserve">
+    <value>ชั้น</value>
+  </data>
+  <data name="ADDRESS_HOUSE_REG_ID" xml:space="preserve">
+    <value>รหัสประจำบ้านตามทะเบียนบ้าน 11 หลัก</value>
+  </data>
+  <data name="ADDRESS_INFORMATION" xml:space="preserve">
+    <value>เลือกสถานที่ขอติดตั้ง</value>
+  </data>
+  <data name="ADDRESS_LAT" xml:space="preserve">
+    <value>ละติจูด</value>
+  </data>
+  <data name="ADDRESS_LNG" xml:space="preserve">
+    <value>ลองจิจูด</value>
+  </data>
+  <data name="ADDRESS_MOO" xml:space="preserve">
+    <value>หมู่</value>
+  </data>
+  <data name="ADDRESS_NUMBER" xml:space="preserve">
+    <value>บ้านเลขที่</value>
+  </data>
+  <data name="ADDRESS_PROVINCE" xml:space="preserve">
+    <value>จังหวัด</value>
+  </data>
+  <data name="ADDRESS_SOI" xml:space="preserve">
+    <value>ซอย</value>
+  </data>
+  <data name="ADDRESS_STREET" xml:space="preserve">
+    <value>ถนน</value>
+  </data>
+  <data name="ADDRESS_TAMBOL" xml:space="preserve">
+    <value>ตำบล/แขวง</value>
+  </data>
+  <data name="ADDRESS_TEL" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="ADDRESS_TEL_EXT" xml:space="preserve">
+    <value>ต่อ</value>
+  </data>
+  <data name="ADDRESS_VILLAGE" xml:space="preserve">
+    <value>หมู่บ้าน</value>
+  </data>
+  <data name="ADDRESS_ZIP_CODE" xml:space="preserve">
+    <value>รหัสไปรษณีย์</value>
+  </data>
+  <data name="ALERT_CANCEL_BTN" xml:space="preserve">
+    <value>ตรวจสอบข้อมูลอีกครั้ง</value>
+  </data>
+  <data name="ALERT_CONFIRM_BTN" xml:space="preserve">
+    <value>ส่งข้อมูล</value>
+  </data>
+  <data name="ALERT_CONFIRM_DESC" xml:space="preserve">
+    <value>กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนส่งข้อมูล</value>
+  </data>
+  <data name="ALERT_CONFIRM_TITLE" xml:space="preserve">
+    <value>ยืนยันการส่งข้อมูล</value>
+  </data>
+  <data name="APPS_ATTACH_COPY_OF_CITIZEN_CARD" xml:space="preserve">
+    <value>แนบสำเนาบัตรประชาชน</value>
+  </data>
+  <data name="APPS_ATTACH_FILES" xml:space="preserve">
+    <value>เอกสารแนบเพิ่มเติม</value>
+  </data>
+  <data name="APPS_ATTACH_FILE_TYPE_SUPPORTED" xml:space="preserve">
+    <value>รองรับเอกสารชนิด pdf, png, jpg ที่มีขนาดไม่เกิน 5 MB เท่านั้น</value>
+  </data>
+  <data name="APPS_ATTACH_REMARK" xml:space="preserve">
+    <value>หมายเหตุ: หลักฐานข้างต้น จะต้องลงนามรับรองสำเนาถูกต้อง</value>
+  </data>
+  <data name="APPS_CHOOSE_MEA" xml:space="preserve">
+    <value>ขอใช้ไฟฟ้า (นครหลวง)</value>
+  </data>
+  <data name="APPS_CHOOSE_MWA" xml:space="preserve">
+    <value>ขอใช้น้ำประปา (นครหลวง)</value>
+  </data>
+  <data name="APPS_CHOOSE_PEA" xml:space="preserve">
+    <value>ขอใช้ไฟฟ้า (ส่วนภูมิภาค)</value>
+  </data>
+  <data name="APPS_CHOOSE_PWA" xml:space="preserve">
+    <value>ขอใช้น้ำประปา (ส่วนภูมิภาค)</value>
+  </data>
+  <data name="APPS_CHOOSE_REQUEST" xml:space="preserve">
+    <value>โปรดเลือกการขอใช้สาธารณูปโภค</value>
+  </data>
+  <data name="APPS_CHOOSE_TOT" xml:space="preserve">
+    <value>ขอใช้โทรศัพท์ (TOT)</value>
+  </data>
+  <data name="APPS_FORM_UTILITY" xml:space="preserve">
+    <value>แบบฟอร์มขอใช้สาธารณูปโภค</value>
+  </data>
+  <data name="APPS_GETBRANCH_INFO" xml:space="preserve">
+    <value>กรุณาติดต่อ contact@ega.or.th สำหรับข้อมูลเพิ่มเติม</value>
+  </data>
+  <data name="APPS_GETBRANCH_MEA" xml:space="preserve">
+    <value>ไม่สามารถเชื่อมต่อฐานข้อมูลสาขาของการไฟฟ้าได้</value>
+  </data>
+  <data name="APPS_GETBRANCH_MWA" xml:space="preserve">
+    <value>ไม่สามารถเชื่อมต่อฐานข้อมูลสาขาของการประปาได้</value>
+  </data>
+  <data name="APPS_GETBRANCH_TIMEOUT" xml:space="preserve">
+    <value>เกิดข้อผิดพลาด</value>
+  </data>
+  <data name="APPS_MEA_BIZ_TYPE" xml:space="preserve">
+    <value>ประเภทธุรกิจ</value>
+  </data>
+  <data name="APPS_MEA_BRANCH" xml:space="preserve">
+    <value>ไฟฟ้าเขตที่รับผิดชอบ</value>
+  </data>
+  <data name="APPS_MEA_DETAIL" xml:space="preserve">
+    <value>รายละเอียดคำขอใช้ไฟฟ้า (นครหลวง)</value>
+  </data>
+  <data name="APPS_MEA_LOCATION_BIZ" xml:space="preserve">
+    <value>กิจการประเภทอื่นนอกเหนือจากบ้านอยู่อาศัย</value>
+  </data>
+  <data name="APPS_MEA_LOCATION_HOUSE" xml:space="preserve">
+    <value>บ้านอยู่อาศัย</value>
+  </data>
+  <data name="APPS_MEA_LOCATION_TYPE" xml:space="preserve">
+    <value>ประเภทสถานที่ขอใช้ไฟฟ้า</value>
+  </data>
+  <data name="APPS_MEA_MEASUREMENT" xml:space="preserve">
+    <value>ขนาดเครื่องวัด</value>
+  </data>
+  <data name="APPS_MEA_NEW_APPLICATION" xml:space="preserve">
+    <value>ไฟใหม่</value>
+  </data>
+  <data name="APPS_MEA_SERVICE_TYPE" xml:space="preserve">
+    <value>ประเภทการบริการ</value>
+  </data>
+  <data name="APPS_MEA_WAREHOUSE" xml:space="preserve">
+    <value>คลังสินค้า</value>
+  </data>
+  <data name="APPS_MWA_BRANCH" xml:space="preserve">
+    <value>สาขาที่ผู้ใช้น้ำต้องการติดตั้ง</value>
+  </data>
+  <data name="APPS_MWA_CIS_CODE" xml:space="preserve">
+    <value>เลขคำร้องของการประปานครหลวง (อ้างอิง)</value>
+  </data>
+  <data name="APPS_MWA_DETAIL" xml:space="preserve">
+    <value>รายละเอียดคำขอใช้น้ำประปา (นครหลวง)</value>
+  </data>
+  <data name="APPS_PEA_DETAIL" xml:space="preserve">
+    <value>รายละเอียดคำขอใช้ไฟฟ้า (ส่วนภูมิภาค)</value>
+  </data>
+  <data name="APPS_PWA_DETAIL" xml:space="preserve">
+    <value>รายละเอียดคำขอใช้น้ำประปา (ส่วนภูมิภาค)</value>
+  </data>
+  <data name="APPS_SUBMIT_CONFIRMATION" xml:space="preserve">
+    <value>ยืนยันการบันทึกข้อมูล</value>
+  </data>
+  <data name="APPS_TERMS_AND_CONDITIONS" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        &lt;b&gt;คำนิยาม&lt;/b&gt;&lt;br /&gt;
+        “ผู้ให้บริการ” หมายความถึง หน่วยงานของรัฐ, รัฐวิสาหกิจ หรือหน่วยงานใดๆ ที่มีบริการบนระบบบริการนี้&lt;br /&gt;
+        “ผู้ใช้บริการ” หมายความถึง บุคคลธรรมดาหรือนิติบุคคลที่ใช้บริการใดๆ ของผู้ให้บริการ&lt;br /&gt;
+        “บริการ” หมายความรวมถึง การใช้เว็บไซต์ของ biz.govchannel.go.th และ service.govchannel.go.th&lt;br /&gt;
+        &lt;br /&gt;
+        &lt;b&gt;ข้อกำหนดในการให้บริการของ ผู้ให้บริการ&lt;/b&gt;&lt;br /&gt;
+        &lt;br /&gt;
+        1. ข้อกำหนด&lt;br /&gt;
+        &lt;br /&gt;
+        1.1 ผู้ให้บริการ จะให้บริการแก่ผู้ใช้บริการภายใต้ข้อกำหนดและนโยบายการให้บริการ ที่กำหนดไว้ในเอกสารฉบับนี้ ซึ่งต่อไปจะเรียกว่า “ข้อกำหนดทั่วไป” และภายใต้
+        ข้อตกลงการใช้บริการที่กำหนดเพิ่มเติมไว้สำหรับบริการหนึ่งบริการใดโดยเฉพาะ ซึ่งต่อไปจะเรียกว่า “ข้อกำหนดเฉพาะ”&lt;br /&gt;
+        1.2 ผู้ใช้บริการสามารถรับทราบข้อกำหนดทั่วไป และข้อกำหนดเฉพาะได้โดยการเข้าใช้งานผ่านบริการของ ผู้ให้บริการ&lt;br /&gt;
+        1.3 ข้อกำหนดทั่วไปและข้อกำหนดเฉพาะ ซึ่งต่อไปจะเรียกรวมว่า “ข้อกำหนด” ถือเป็นสาระสำคัญในการให้บริการของผู้ให้บริการ โดยผู้ใช้บริการมีหน้าที่จะต้องอ่านข้อกำหนดเหล่านี้ให้เข้าใจโดยละเอียด
+        และให้มีผลผูกพัน ทางกฎหมายระหว่างผู้ใช้บริการและผู้ให้บริการ&lt;br /&gt;
+        1.4 ในกรณีที่ข้อกำหนดทั่วไปมีข้อความขัดแย้งกับข้อกำหนดเฉพาะ ให้ข้อความในข้อกำหนดเฉพาะบังคับมีผลบังคับใช้สำหรับบริการนั้นแทนข้อกำหนดทั่วไป&lt;br /&gt;
+        1.5 ผู้ให้บริการ คงไว้ซึ่งสิทธิในการแก้ไขเพิ่มเติมข้อกำหนด โดยไม่ต้องแจ้งให้แก่ผู้ใช้บริการทราบล่วงหน้า เป็นลายลักษณ์อักษร&lt;br /&gt;
+        &lt;br /&gt;
+        2. การยอมรับข้อกำหนด&lt;br /&gt;
+        &lt;br /&gt;
+        2.1 ผู้ใช้บริการจะต้องรับทราบและยอมรับข้อกำหนด มิฉะนั้น ผู้ใช้บริการจะไม่สามารถใช้บริการได้&lt;br /&gt;
+        2.2 ผู้ใช้บริการสามารถรับทราบและยอมรับข้อกำหนดได้โดย&lt;br /&gt;
+        โดยการใช้บริการของผู้ให้บริการในกรณีนี้ ให้ถือว่าผู้ใช้บริการรับทราบและยอมรับข้อกำหนดโดยปริยาย นับจากเวลาที่เริ่มใช้บริการเป็นต้นไป&lt;br /&gt;
+        2.2 ผู้ใช้บริการควรบันทึกหรือทำสำเนาข้อกำหนดทั่วไปไว้เพื่อเป็นหลักฐาน&lt;br /&gt;
+        &lt;br /&gt;
+        3. การให้บริการโดยผู้ให้บริการ&lt;br /&gt;
+        &lt;br /&gt;
+        3.1 ผู้ให้บริการ อาจมีการพัฒนาหรือปรับปรุงรูปแบบและลักษณะของบริการเพื่อมอบ ประสบการณ์ที่ดีที่สุดเท่าที่จะเป็นไปได้แก่ผู้ใช้บริการ โดยไม่ต้องแจ้งให้ผู้ใช้บริการทราบล่วงหน้า&lt;br /&gt;
+        3.2 ผู้ให้บริการอาจหยุดให้บริการเป็นการชั่วคราวหรือถาวร หรือยกเลิกการให้บริการแก่ผู้ใช้บริการรายใดเป็นการเฉพาะ หากการให้บริการดังกล่าวส่งผลกระทบต่อผู้ใช้บริการอื่นๆ หรือขัดแย้งต่อข้อกฏหมาย โดยไม่ต้องแจ้งให้ผู้ใช้บริการทราบล่วงหน้า และจะทำการแจ้งให้ผู้ใช้บริการทราบหลังจากดำเนินการภายใน ๗ วัน&lt;br /&gt;
+        3.3 การหยุด หรือการยกเลิกบริการตามข้อ 3.2 ผู้ใช้บริการจะไม่สามารถเข้าใช้ บริการ และเข้าถึงรายละเอียดบัญชี ของผู้ใช้บริการ ไฟล์เอกสารใดๆ หรือเนื้อหาอื่นๆ ที่อยู่ในบัญชีของผู้ใช้บริการได้&lt;br /&gt;
+        &lt;br /&gt;
+        **ใน กรณีที่ผู้ให้บริการหยุดให้บริการเป็นการถาวร หรือยกเลิกบริการแก่ผู้ใช้บริการ ผู้ให้บริการมีสิทธิในการลบข้อมูลต่างๆ ที่อยู่ในบัญชีของผู้ใช้บริการได้ โดยไม่ต้องแจ้งให้ผู้ใช้บริการทราบล่วงหน้า&lt;br /&gt;
+        &lt;br /&gt;
+        3.4 ผู้ให้บริการอาจกำหนดขอบเขตสูงสุดของปริมาณข้อมูลที่ผู้ใช้บริการอาจส่งหรือได้รับผ่านบริการ หรือจำนวนพื้นที่จัดเก็บที่ใช้สำหรับการให้บริการใดๆ เมื่อใดก็ได้ โดยขึ้นอยู่กับการพิจารณาของ ผู้ให้บริการ ยกเว้นกรณีที่มีการตกลงเป็นลายลักษณ์อักษรไว้กับทางผู้ให้บริการ&lt;br /&gt;
+        3.5 ผู้ให้บริการสามารถทำการแจ้งขอข้อมูลเพิ่มเติมเพื่อให้สามารถให้บริการได้ต่อเนื่อง เสร็จสมบูรณ์ และผู้ให้บริการสามาถแจ้งยกเลิกการให้บริการหากผู้ใช้บริการดำเนินการให้ข้อมูลไม่ครบถ้วนถูกต้องตามความต้องการของบริการหรือผิดเงื่อนไขของของการใช้บริการ&lt;br /&gt;
+        3.6 ระยะเวลาการให้บริการขึ้นอยู่กับแต่ละผู้ให้บริการ ซึ่งอาจไม่เท่ากัน โดยผู้รับบริการสามารถตรวจสอบ หรือสอบถามกับผู้ให้บริการนั้นๆ ก่อนการใช้บริการ&lt;br /&gt;
+        &lt;br /&gt;
+        4 การใช้บริการโดยผู้ใช้บริการ&lt;br /&gt;
+        &lt;br /&gt;
+        4.1 ผู้ใช้บริการจะให้ข้อมูลเกี่ยวกับตนเอง เช่น ข้อมูลระบุตัวตนหรือรายละเอียดการติดต่อ ที่ถูกต้อง เป็นจริง และเป็นปัจจุบันเสมอ แก่ผู้ให้บริการอันเป็นส่วนหนึ่งของกระบวนการลงทะเบียนใช้บริการ หรือการใช้บริการที่ต่อเนื่อง&lt;br /&gt;
+        4.2 ผู้ใช้บริการจะใช้บริการนี้เพื่อวัตถุประสงค์ที่ได้รับอนุญาตตามข้อตกลง ที่ได้ทำกับผู้ให้บริการ และไม่ขัดต่อกฎหมาย  กฎ ระเบียบ ข้อบังคับ หลักปฏิบัติ ที่เป็นที่ยอมรับโดยทั่วไป&lt;br /&gt;
+        4.3 ผู้ใช้บริการจะไม่เข้าใช้ หรือพยายามเข้าใช้บริการหนึ่งบริการใดโดยวิธีอื่น รวมถึงการใช้วิธีการอัตโนมัติ (การใช้สคริปต์) นอกจากช่องทางที่ผู้ให้บริการจัดเตรียมไว้ให้ เว้นแต่ผู้ใช้บริการจะได้รับอนุญาตจากผู้ให้บริการ โดยชัดแจ้งให้ทำเช่นนั้นได้&lt;br /&gt;
+        4.4 ผู้ใช้บริการจะไม่ทำหรือมีส่วนร่วมในการขัดขวางหรือรบกวนบริการของผู้ให้บริการ รวมทั้งเครื่องแม่ข่ายและเครือข่ายที่เชื่อมต่อกับบริการ&lt;br /&gt;
+        4.5 ผู้ใช้บริการจะไม่ทำสำเนา คัดลอก ทำซ้ำ ขาย แลกเปลี่ยน หรือขายต่อบริการเพื่อวัตถุประสงค์ใดๆ เว้นแต่ผู้ใช้บริการจะได้รับอนุญาตจากผู้ให้บริการโดยชัดแจ้งให้ทำเช่นนั้นได้&lt;br /&gt;
+        4.6 ผู้ใช้บริการจะเป็นผู้รับผิดชอบแต่เพียงผู้เดียวต่อบุคคลใดๆ ในความเสียหายอันเกิดจากการละเมิดข้อกำหนด&lt;br /&gt;
+        &lt;br /&gt;
+        5. รหัสผ่านและการรักษาความปลอดภัยของบัญชี&lt;br /&gt;
+        &lt;br /&gt;
+        5.1 ผู้ใช้บริการมีหน้าที่ในการรักษาความลับของรหัสผ่านที่เชื่อมโยงกับบัญชีใดๆ ที่ใช้ในการเข้าถึงบริการ&lt;br /&gt;
+        5.2 ผู้ใช้บริการจะเป็นผู้รับผิดชอบแต่เพียงผู้เดียวต่อผู้ให้บริการ สำหรับการใช้งานทั้งหมดที่เกิดขึ้นภายใต้บัญชีของผู้ใช้บริการ&lt;br /&gt;
+        &lt;br /&gt;
+        6. การรักษาความเป็นส่วนตัวและข้อมูลส่วนบุคคลของผู้ใช้บริการ&lt;br /&gt;
+        &lt;br /&gt;
+        6.1 ผู้ให้บริการจะปฏิบัติต่อข้อมูลส่วนบุคคลและปกป้องความเป็นส่วนตัวของผู้ใช้บริการ ภายใต้นโยบายส่วนบุคคลของผู้ให้บริการ&lt;br /&gt;
+        6.2 ผู้ใช้บริการตกลงว่าจะปฏิบัติตามนโยบายส่วนบุคคลของผู้ให้บริการ&lt;br /&gt;
+        &lt;br /&gt;
+        7. เนื้อหาในบริการ&lt;br /&gt;
+        &lt;br /&gt;
+        7.1 ผู้ใช้บริการอาจได้รับ เข้าถึง สร้าง ส่งหรือแสดงข้อมูล เช่น ไฟล์ข้อมูล ข้อความลายลักษณ์อักษร ซอฟต์แวร์คอมพิวเตอร์ ดนตรี ไฟล์เสียง หรือเสียงอื่นๆ
+        ภาพถ่าย วิดีโอ หรือรูปภาพอื่นๆ โดยเป็นส่วนหนึ่งของบริการหรือโดยผ่านการใช้บริการ ซึ่งต่อไปนี้จะเรียกว่า “เนื้อหา”&lt;br /&gt;
+        7.2 เนื้อหา ที่นำเสนอ ต่อผู้ใช้บริการ อาจได้รับการคุ้มครองโดยสิทธิในทรัพย์สินทางปัญญาของเจ้าของเนื้อหานั้น ผู้ใช้บริการไม่มีสิทธิเปลี่ยนแปลงแก้ไข จำหน่ายจ่ายโอน หรือสร้างผลงานต่อเนื่อง โดยอาศัยเนื้อหาดังกล่าวไม่ว่าจะทั้งหมดหรือบางส่วน เว้นแต่ผู้ใช้บริการจะได้รับอนุญาตโดยชัดแจ้งจากเจ้าของเนื้อหานั้น&lt;br /&gt;
+        7.3 ผู้ใช้บริการอาจพบเนื้อหาที่ไม่เหมาะสม หรือหยาบคาย อันก่อให้เกิดความไม่พอใจ ภายใต้ความเสี่ยงของตนเอง&lt;br /&gt;
+        7.4 ผู้ให้บริการทรงไว้ซึ่งสิทธิในการคัดกรอง ตรวจทาน ทำเครื่องหมาย เปลี่ยนแปลงแก้ไข ปฏิเสธ หรือลบเนื้อหาใดๆ ที่ไม่เหมาะสมออกจากบริการ ซึ่งผู้ให้บริการอาจจัดเตรียมเครื่องมือในการคัดกรองเนื้อหาอย่างชัดเจน โดยไม่ขัดต่อกฎหมาย กฎ ระเบียบของทางราชการที่เกี่ยวข้อง&lt;br /&gt;
+        7.5 ผู้ให้บริการจะไม่มีส่วนรับผิดชอบต่อบุคคลใดๆ ในความสูญเสียหรือเสียหาย อันเกิดจากเนื้อหาที่ผู้ให้บริการมิได้เป็นผู้สร้างขึ้น โดยผู้ที่สร้างเนื้อหาดังกล่าวจะต้องเป็นผู้รับผิดชอบแต่เพียงผู้เดียว&lt;br /&gt;
+        &lt;br /&gt;
+        ** หากผู้ใช้บริการได้สร้าง ส่ง หรือแสดงเนื้อหาใดๆ ในบริการ ผู้ใช้บริการจะต้องเป็นผู้รับผิดชอบแต่เพียงผู้เดียวต่อความสูญเสียหรือเสีย หายใดๆ อันเกิดจากเนื้อหาดังกล่าวนั้น ต่อบุคคลใดๆ รวมถึงผู้ให้บริการด้วย&lt;br /&gt;
+        &lt;br /&gt;
+        8. กรรมสิทธิ์และสิทธิในทรัพย์สินทางปัญญา&lt;br /&gt;
+        &lt;br /&gt;
+        8.1 ผู้ให้บริการ หรือผู้ให้อนุญาตแก่ ผู้ให้บริการ เป็นผู้มีสิทธิตามกฎหมายแต่เพียงผู้เดียวใน กรรมสิทธิ์ ผลประโยชน์ทั้งหมด รวมถึงสิทธิในทรัพย์สินทางปัญญาใดๆ ที่มีอยู่ในบริการซึ่งผู้ให้บริการ หรือผู้ให้อนุญาตแก่ผู้ให้บริการ เป็นผู้จัดทำขึ้น ไม่ว่าสิทธิเหล่านั้นจะได้รับการจดทะเบียนไว้หรือไม่ก็ตาม&lt;br /&gt;
+        8.2 ผู้ใช้บริการจะต้องไม่เปิดเผยข้อมูลที่ผู้ให้บริการกำหนดให้เป็นความลับ โดยไม่ได้รับความยินยอมเป็นลายลักษณ์อักษรล่วงหน้าจากผู้ให้บริการ&lt;br /&gt;
+        8.3 ผู้ใช้บริการจะต้องไม่ใช้ชื่อทางการค้า เครื่องหมายการค้า เครื่องหมายการบริการ ตราสัญลักษณ์ ชื่อโดเมนของผู้ให้บริการ โดยไม่ได้รับความยินยอม เป็นลายลักษณ์อักษรจากผู้ให้บริการ&lt;br /&gt;
+    &lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="APPS_TERM_OF_USE" xml:space="preserve">
+    <value>ข้อกำหนดและนโยบายการให้บริการ biz.govchannel.go.th และ service.govchannel.go.th</value>
+  </data>
+  <data name="APPS_TOT_DETAIL" xml:space="preserve">
+    <value>รายละเอียดคำขอใช้โทรศัพท์ (TOT)</value>
+  </data>
+  <data name="APPS_TOT_SERVICE_TYPE" xml:space="preserve">
+    <value>ประเภทการบริการ</value>
+  </data>
+  <data name="APPS_VALIDATE_FALSE_TEXT" xml:space="preserve">
+    <value>กรุณากรอกข้อมูลหรือแนบไฟล์ให้ครบถ้วนและถูกต้อง</value>
+  </data>
+  <data name="APPS_VALIDATE_FALSE_TEXT_CITIZEN" xml:space="preserve">
+    <value>กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง</value>
+  </data>
+  <data name="APPS_VALIDATE_FALSE_TITLE" xml:space="preserve">
+    <value>ไม่สามารถส่งข้อมูลได้</value>
+  </data>
+  <data name="BIZ_APPLICANT_INFOMATION" xml:space="preserve">
+    <value>รายละเอียดผู้ขอใช้งาน</value>
+  </data>
+  <data name="BIZ_BRANCH" xml:space="preserve">
+    <value>เลขที่สาขา</value>
+  </data>
+  <data name="BIZ_BRANCH_PLACEHOLDER" xml:space="preserve">
+    <value>ตัวอย่างเช่น 00000</value>
+  </data>
+  <data name="BIZ_COMMITTEES" xml:space="preserve">
+    <value>ดำเนินการโดย</value>
+  </data>
+  <data name="BIZ_COMMITTEE_NOTE" xml:space="preserve">
+    <value>กรณีผู้ดำเนินการเป็นชาวต่างชาติที่ไม่มีสัญชาติไทย ให้ระบุเลขที่หนังสือเดินทางและแนบเอกสารสำเนาหนังสือเดินทาง</value>
+  </data>
+  <data name="BIZ_NAME" xml:space="preserve">
+    <value>ขอใช้ในนาม</value>
+  </data>
+  <data name="BIZ_REG_ID" xml:space="preserve">
+    <value>เลขทะเบียนการค้า</value>
+  </data>
+  <data name="BIZ_TAX_ID" xml:space="preserve">
+    <value>เลขประจำตัวผู้เสียภาษี 13 หลัก</value>
+  </data>
+  <data name="BIZ_TEL" xml:space="preserve">
+    <value>หมายเลขโทรศัพท์</value>
+  </data>
+  <data name="BIZ_TYPE" xml:space="preserve">
+    <value>ประเภทบริษัท</value>
+  </data>
+  <data name="BTN_ACCEPT" xml:space="preserve">
+    <value>ยอมรับ</value>
+  </data>
+  <data name="BTN_CANCEL" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="BTN_DECLINE" xml:space="preserve">
+    <value>ไม่ยอมรับ</value>
+  </data>
+  <data name="BTN_GMAPS" xml:space="preserve">
+    <value>ใช้ Google Maps ช่วยเลือกสาขา</value>
+  </data>
+  <data name="BTN_OK" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="CERTIFICATION_OF_COMPANY_REGISTRATION_COPY" xml:space="preserve">
+    <value>สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล </value>
+  </data>
+  <data name="CERTIFICATION_OF_COMPANY_REGISTRATION_COPY_6M" xml:space="preserve">
+    <value>สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล (มีอายุไม่เกิน 6 เดือนนับถึงวันที่ยื่นคำขอ)</value>
+  </data>
+  <data name="CERTIFICATION_OF_SPECIFIED_BUSINESS" xml:space="preserve">
+    <value>ใบทะเบียนภาษีธุรกิจเฉพาะ</value>
+  </data>
+  <data name="CITIZEN_BIRTH_DATE" xml:space="preserve">
+    <value>วัน เดือน ปี(พ.ศ.) ที่เกิด</value>
+  </data>
+  <data name="CITIZEN_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก</value>
+  </data>
+  <data name="CITIZEN_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="CITIZEN_NAME" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="CITIZEN_PREFIX" xml:space="preserve">
+    <value>คำนำหน้า</value>
+  </data>
+  <data name="COMMERCIAL_REGISTRATION" xml:space="preserve">
+    <value>ใบทะเบียนพาณิชย์</value>
+  </data>
+  <data name="COMPANY_NAME_EN" xml:space="preserve">
+    <value>ชื่อสถานประกอบการ (ชื่อนิติบุคคล) ภาษาอังกฤษ</value>
+  </data>
+  <data name="COMPANY_NAME_TH" xml:space="preserve">
+    <value>ชื่อสถานประกอบการ (ชื่อนิติบุคคล) ภาษาไทย</value>
+  </data>
+  <data name="CONTACT_EMAIL" xml:space="preserve">
+    <value>อีเมลสำหรับติดต่อ</value>
+  </data>
+  <data name="CONTACT_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อของผู้ติดต่อ</value>
+  </data>
+  <data name="CONTACT_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน 13 หลัก ของผู้ติดต่อ</value>
+  </data>
+  <data name="CONTACT_INFORMATION" xml:space="preserve">
+    <value>รายละเอียดของผู้ติดต่อ</value>
+  </data>
+  <data name="CONTACT_LASTNAME" xml:space="preserve">
+    <value>นามสกุลของผู้ติดต่อ</value>
+  </data>
+  <data name="CONTACT_TEL" xml:space="preserve">
+    <value>โทรศัพท์สำหรับติดต่อ</value>
+  </data>
+  <data name="CONTRACT_AGREEMENT" xml:space="preserve">
+    <value>สัญญาจะซื้อ จะขาย</value>
+  </data>
+  <data name="DBD_ERROR_BACK" xml:space="preserve">
+    <value>กลับไปยังก่อนหน้า</value>
+  </data>
+  <data name="DBD_ERROR_RELOAD" xml:space="preserve">
+    <value>ลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="DBD_ERROR_TEXT" xml:space="preserve">
+    <value>กรุณาลองใหม่อีกครั้ง หรือกลับไปยังก่อนหน้า</value>
+  </data>
+  <data name="DBD_ERROR_TITLE" xml:space="preserve">
+    <value>ไม่สามารถเชื่อมต่อข้อมูลระหว่างหน่วยงานได้ในขณะนี้</value>
+  </data>
+  <data name="FIELD_REQUIRED_1" xml:space="preserve">
+    <value>กรุณากรอก</value>
+  </data>
+  <data name="FIELD_REQUIRED_2" xml:space="preserve">
+    <value>ลงในช่องว่าง</value>
+  </data>
+  <data name="FIELD_REQUIRED_ADDRESS_ID" xml:space="preserve">
+    <value>กรุณากำหนดรหัสประจำบ้านตามทะเบียนบ้านโดยตัวเลข 0-9 จำนวน 11 หลัก</value>
+  </data>
+  <data name="FIELD_REQUIRED_ATTACHFILES" xml:space="preserve">
+    <value>กรุณาแนบเอกสารข้างต้น</value>
+  </data>
+  <data name="FIELD_REQUIRED_BIZ_BRANCH" xml:space="preserve">
+    <value>กรุณากำหนดสาขาโดยตัวเลข 0-9 จำนวน 5 หลัก</value>
+  </data>
+  <data name="FIELD_REQUIRED_CITIZEN_ID" xml:space="preserve">
+    <value>กรุณากำหนดเลขบัตรประจำตัวประชาชนโดยตัวเลข 0-9 จำนวน 13 หลัก</value>
+  </data>
+  <data name="FIELD_REQUIRED_LATLNG" xml:space="preserve">
+    <value>กรุณาเลือกสถานที่ขอติดตั้งในแผนที่</value>
+  </data>
+  <data name="FIELD_REQUIRED_SELECTFORM" xml:space="preserve">
+    <value>กรุณาเลือก</value>
+  </data>
+  <data name="FIELD_REQUIRED_TAX_ID" xml:space="preserve">
+    <value>กรุณากำหนดเลขประจำตัวผู้เสียภาษีโดยตัวเลข 0-9 จำนวน 13 หลัก</value>
+  </data>
+  <data name="FIELD_REQUIRED_ZIP_CODE" xml:space="preserve">
+    <value>กรุณากำหนดรหัสไปรษณีย์โดยตัวเลข 0-9 จำนวน 5 หลัก</value>
+  </data>
+  <data name="FOREIGNER_IDENTITY_COPY" xml:space="preserve">
+    <value>ใบสําคัญประจำตัวคนต่างด้าว</value>
+  </data>
+  <data name="FOREIGNER_PASSPORT_COPY" xml:space="preserve">
+    <value>สําเนาหนังสือเดินทาง</value>
+  </data>
+  <data name="GENERAL_INFORMATION_JURISTIC_TYPE" xml:space="preserve">
+    <value>ประเภทนิติบุคคล</value>
+  </data>
+  <data name="HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้านที่ขอใช้บริการ</value>
+  </data>
+  <data name="HOUSE_ID_DOC_COPY" xml:space="preserve">
+    <value>หนังสือให้หมายเลขบ้านที่ขอใช้บริการ</value>
+  </data>
+  <data name="HOUSE_OWNER_DOCUMENT_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้านที่ขอใช้บริการ ซึ่งระบุชื่อผู้ขอใช้บริการเป็นเจ้าของบ้าน หรือหนังสือให้หมายเลขบ้าน หรือสัญญาซื้อขายที่ดินพร้อมสิ่งปลูกสร้าง</value>
+  </data>
+  <data name="HOUSE_OWNER_REG_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้านที่ขอใช้บริการ ซึ่งระบุชื่อผู้ขอใช้บริการเป็นเจ้าของบ้าน</value>
+  </data>
+  <data name="IDENTITY_COPY" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายบัตรประจําตัวประชาชน (คนต่างด้าวใช้สําเนาหนังสือเดินทางหรือใบสําคัญประจำตัวคนต่างด้าว)</value>
+  </data>
+  <data name="INDIVIDUAL_TAXPAYER_COPY" xml:space="preserve">
+    <value>หลักฐานการจ่ายภาษีบุคคลธรรมดา (ภ.ง.ด. ๙๐)</value>
+  </data>
+  <data name="INFORMATION_HEADER_REQUEST_AT" xml:space="preserve">
+    <value>เขียนที่</value>
+  </data>
+  <data name="INFORMATION_HEADER_REQUEST_DATE" xml:space="preserve">
+    <value>วัน/เดือน/ปีที่ยื่นคำขอ</value>
+  </data>
+  <data name="INFORMATION_REQUEST_AS" xml:space="preserve">
+    <value>ขออนุญาตในฐานะบุคคลธรรมดาหรือนิติบุคคล</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_AMPHUR" xml:space="preserve">
+    <value>อำเภอ</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_BUILDING" xml:space="preserve">
+    <value>อาคาร</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_EXT" xml:space="preserve">
+    <value>ต่อ</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_FAX" xml:space="preserve">
+    <value>โทรสาร</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_FLOOR" xml:space="preserve">
+    <value>ชั้น</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_MOO" xml:space="preserve">
+    <value>หมู่</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_NO" xml:space="preserve">
+    <value>เลขที่</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_POSTCODE" xml:space="preserve">
+    <value>รหัสไปษณีย์</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_PROVINCE" xml:space="preserve">
+    <value>จังหวัด</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_ROAD" xml:space="preserve">
+    <value>ถนน</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_SEARCH" xml:space="preserve">
+    <value>ค้นหาที่อยู่</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_SOI" xml:space="preserve">
+    <value>ซอย</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_TELEPHONE" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_TUMBOL" xml:space="preserve">
+    <value>ตำบล</value>
+  </data>
+  <data name="INFORMATION_STORE_ADDRESS_VILLAGE" xml:space="preserve">
+    <value>หมู่บ้าน</value>
+  </data>
+  <data name="INFORMATION_STORE_AREA" xml:space="preserve">
+    <value>พื้นที่ใช้สอย (ตารางเมตร)</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_RENTING_TYPE_HEADER" xml:space="preserve">
+    <value>ประเภทของผู้ให้เช่า/ให้ใช้สถานที่</value>
+  </data>
+  <data name="INFORMATION_STORE_BUILDING_TYPE_HEADER" xml:space="preserve">
+    <value>อาคารที่ตั้งร้านของคุณมีลักษณะกรรมสิทธิ์เป็นแบบ</value>
+  </data>
+  <data name="INFORMATION_STORE_IN_GOVERNMENT_AREA_OPTION" xml:space="preserve">
+    <value>ร้านของคุณตั้งอยู่ในพื้นที่ภาครัฐ/ราชพัสดุหรือไม่</value>
+  </data>
+  <data name="INFORMATION_STORE_NAME_EN" xml:space="preserve">
+    <value>ชื่อร้าน (ภาษาอังกฤษ)</value>
+  </data>
+  <data name="INFORMATION_STORE_NAME_TH" xml:space="preserve">
+    <value>ชื่อร้าน (ภาษาไทย)</value>
+  </data>
+  <data name="INFORMATION_STORE_USE_JURISTIC_ADDRESS_TRUE" xml:space="preserve">
+    <value>ใช้ที่อยู่เดียวกันกับนิติบุคคล</value>
+  </data>
+  <data name="LANDWITHBUILDING_CONTRACT_AGREEMENT" xml:space="preserve">
+    <value>สัญญาซื้อขายที่ดินพร้อมสิ่งปลูกสร้าง</value>
+  </data>
+  <data name="LANDWITHBUILDING_RENTAL_AGREEMENT" xml:space="preserve">
+    <value>สัญญาเช่าซื้อที่ดินพร้อมอาคารหรือที่มีสิ่งก่อสร้างถาวรตั้งอยู่</value>
+  </data>
+  <data name="MAP_MODAL_HOWTO" xml:space="preserve">
+    <value>กรุณาลากหมุดเพื่อกำหนดพิกัดของสถานที่ขอติดตั้ง</value>
+  </data>
+  <data name="MEA_BRANCH_REQUIRED" xml:space="preserve">
+    <value>กรุณาเลือกสาขาของการไฟฟ้าโดยการปักหมุดบนแผนที่</value>
+  </data>
+  <data name="MEA_CERTIFICATION_OF_OPERATOR_COPY" xml:space="preserve">
+    <value>หลักฐานการเป็นผู้ประกอบการ เช่น ใบทะเบียนภาษีมูลค่าเพิ่ม ใบทะเบียนภาษีธุรกิจเฉพาะ ใบทะเบียนพาณิชย์ หลักฐานการจ่ายภาษีบุคคลธรรมดา(ภ.ง.ด. ๙๐) ฯลฯ</value>
+  </data>
+  <data name="MEA_HOUSEHOLD_REGISTRATION_OF_APPLICANT_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้านที่มีชื่อของผู้ใช้ไฟฟ้า</value>
+  </data>
+  <data name="MEA_OPTION_OPERATOR" xml:space="preserve">
+    <value>ผู้ประกอบการในสถานที่ใช้ไฟฟ้า</value>
+  </data>
+  <data name="MEA_OPTION_OWNER" xml:space="preserve">
+    <value>เจ้าของที่ดินหรือเจ้าของสถานที่ใช้ไฟฟ้า</value>
+  </data>
+  <data name="MEA_OPTION_RENT" xml:space="preserve">
+    <value>ผู้เช่าหรือผู้เช่าซื้อสถานที่ใช้ไฟฟ้า</value>
+  </data>
+  <data name="MEA_OPTION_RESIDENT" xml:space="preserve">
+    <value>ผู้ขอใช้ไฟฟ้ามีชื่ออยู่ในทะเบียนบ้านที่ใช้ไฟฟ้า</value>
+  </data>
+  <data name="MEA_OSS_TYPE_REQUIRED" xml:space="preserve">
+    <value> กรุณาเลือกขนาดเครื่องวัดที่ต้องการติดตั้ง</value>
+  </data>
+  <data name="MWA_BRANCH_REQUIRED" xml:space="preserve">
+    <value>กรุณาเลือกสาขาของการประปาโดยการปักหมุดบนแผนที่</value>
+  </data>
+  <data name="MWA_OPTION_OWNER" xml:space="preserve">
+    <value>เจ้าของสถานที่</value>
+  </data>
+  <data name="MWA_OPTION_RENT" xml:space="preserve">
+    <value>เช่าสถานที่</value>
+  </data>
+  <data name="PEA_METER_SIZE" xml:space="preserve">
+    <value>ขนาดมิเตอร์</value>
+  </data>
+  <data name="PEA_METER_TYPE" xml:space="preserve">
+    <value>ประเภทมิเตอร์</value>
+  </data>
+  <data name="PEA_TSIC" xml:space="preserve">
+    <value>ประเภทกิจการ</value>
+  </data>
+  <data name="PREFIX_MR" xml:space="preserve">
+    <value>นาย</value>
+  </data>
+  <data name="PREFIX_MRS" xml:space="preserve">
+    <value>นาง</value>
+  </data>
+  <data name="PREFIX_MS" xml:space="preserve">
+    <value>น.ส.</value>
+  </data>
+  <data name="REGISTER_DATE" xml:space="preserve">
+    <value>วัน/เดือน/ปี ที่จดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="RENTAL_AGREEMENT_COPY" xml:space="preserve">
+    <value>สัญญาเช่าหรือสัญญาเช่าซื้อที่ดินพร้อมอาคารหรือที่มีสิ่งก่อสร้างถาวรตั้งอยู่</value>
+  </data>
+  <data name="RENTAL_AGREEMENT_DOCUMENT" xml:space="preserve">
+    <value>สัญญาเช่า</value>
+  </data>
+  <data name="REQUESTOR_INFORMATION_REQUESTOR_HEADER" xml:space="preserve">
+    <value>รายชื่อผู้ขออนุญาต</value>
+  </data>
+  <data name="REQUESTOR_INFORMATION_REQUEST_TYPE_OPTION" xml:space="preserve">
+    <value>การขออนุญาตครั้งนี้</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_MANAGER_INFO_AGE" xml:space="preserve">
+    <value>อายุ</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_MANAGER_INFO_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_MANAGER_INFO_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_MANAGER_INFO_TITLE" xml:space="preserve">
+    <value>คำนำหน้า</value>
+  </data>
+  <data name="SELL_FOOD_FOOD_WORKER_INFO" xml:space="preserve">
+    <value>รายชื่อผู้ที่ต้องสัมผัสอาหาร เช่น พ่อครัว/แม่ครัว พนักงานเสิร์ฟ ฯลฯ</value>
+  </data>
+  <data name="SELL_FOOD_INFORMATION_APP_TYPE" xml:space="preserve">
+    <value>ประเภทการขออนุญาต</value>
+  </data>
+  <data name="SELL_FOOD_INFORMATION_BUSINESS_TYPE" xml:space="preserve">
+    <value>ประเภทสถานประกอบการ</value>
+  </data>
+  <data name="SELL_FOOD_INFORMATION_FOOD_TYPE" xml:space="preserve">
+    <value>ประเภทอาหาร</value>
+  </data>
+  <data name="SELL_FOOD_INFORMATION_LICENSE_TYPE" xml:space="preserve">
+    <value>ใบอนุญาต หรือหนังสือฯ ที่ยื่นขอ</value>
+  </data>
+  <data name="SELL_FOOD_INFORMATION_NATIONALITY_OPTION" xml:space="preserve">
+    <value>สัญชาติ</value>
+  </data>
+  <data name="SELL_FOOD_INFORMATION_PURPOSE_OPTION" xml:space="preserve">
+    <value>เพื่อประกอบกิจการ</value>
+  </data>
+  <data name="STRING_BEFOR_SUBMIT_1" xml:space="preserve">
+    <value>คลิกเพื่อยอมรับ</value>
+  </data>
+  <data name="STRING_BEFOR_SUBMIT_2" xml:space="preserve">
+    <value>เงื่อนไขการให้บริการ</value>
+  </data>
+  <data name="STRING_BEFOR_SUBMIT_3" xml:space="preserve">
+    <value>การดำเนินการทุกครั้ง</value>
+  </data>
+  <data name="THAI_IDENTITY_COPY" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายบัตรประจําตัวประชาชน</value>
+  </data>
+  <data name="TYPE_OF_DOCUMENT" xml:space="preserve">
+    <value>ประเภทเอกสารที่ต้องการอัปโหลด</value>
+  </data>
+  <data name="VAT_REGISTRATION" xml:space="preserve">
+    <value>ใบทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ. 20)</value>
+  </data>
+  <data name="VAT_REGISTRATION_OPTIONAL" xml:space="preserve">
+    <value>ใบทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ. 20) (ถ้ามี)</value>
+  </data>
+</root>

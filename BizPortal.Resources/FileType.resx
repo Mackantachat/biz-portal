@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CERTIFICATION_OF_COMPANY_REGISTRATION_COPY" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายหนังสือรับรองการจดทะเบียนนิติบุคคลพร้อมวัตถุประสงค์</value>
+  </data>
+  <data name="CERTIFICATION_OF_OPERATOR_COPY" xml:space="preserve">
+    <value>หลักฐานการเป็นผู้ประกอบการ เช่น ใบทะเบียนภาษีมูลค่าเพิ่ม ใบทะเบียนภาษีธุรกิจเฉพาะ ใบทะเบียนพาณิชย์ หลักฐานการจ่ายภาษีบุคคลธรรมดา(ภ.ง.ด. ๙๐) ฯลฯ</value>
+  </data>
+  <data name="EMPLOYER_IDENTITY_COPY" xml:space="preserve">
+    <value>หลักฐานการแสดงตัวของนายจ้าง</value>
+  </data>
+  <data name="EMPLOYER_REGISTER_FORM_1_0_1" xml:space="preserve">
+    <value>แบบขึ้นทะเบียนนายจ้าง (สปส.1-01)</value>
+  </data>
+  <data name="FOREIGNER" xml:space="preserve">
+    <value>ชาวต่างชาติ</value>
+  </data>
+  <data name="HOUSEHOLD_REGISTRATION_COPY" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายทะเบียนบ้าน</value>
+  </data>
+  <data name="HOUSEHOLD_REGISTRATION_OF_APPLICANT_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนบ้านที่มีชื่อของผู้ใช้ไฟฟ้า</value>
+  </data>
+  <data name="HOUSE_OWNER_DOCUMENT_COPY" xml:space="preserve">
+    <value>สำเนาทะเบียนที่ขอใช้บริการ ซึ่งระบุชื่อผู้ขอใช้บริการเป็นเจ้าของบ้าน หรือหนังสือให้หมายเลขบ้าน หรือสัญญาซื้อขายบ้านพร้อมที่ดิน หรือสัญญาจะซื้อจะขาย</value>
+  </data>
+  <data name="IDENTITY_COPY" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายบัตรประจําตัวประชาชน (คนต่างด้าวใช้สําเนาหนังสือเดินทางหรือใบสําคัญประจำตัวคนต่างด้าว)</value>
+  </data>
+  <data name="MAP_AND_PHOTO_OF_ORGANIZATION" xml:space="preserve">
+    <value>แผนที่ตั้งและภาพถ่ายของสถานประกอบการ</value>
+  </data>
+  <data name="NONE" xml:space="preserve">
+    <value>ไม่ระบุ</value>
+  </data>
+  <data name="POWER_OF_ATTORNEY_COPY" xml:space="preserve">
+    <value>หนังสือมอบอำนาจ</value>
+  </data>
+  <data name="RENTAL_AGREEMENT_COPY" xml:space="preserve">
+    <value>สำเนาหนังสือสัญญาเช่า หรือหนังสือยินยอมให้ใช้สถานที่ หรือสัญญาเช่าแผง หรือหลักฐานแสดงเลขที่แผงและที่ตั้งของตลาด หรือห้างสรรพสินค้า</value>
+  </data>
+  <data name="SSO102" xml:space="preserve">
+    <value>สปส. 1-02</value>
+  </data>
+  <data name="SSO103" xml:space="preserve">
+    <value>สปส. 1-03</value>
+  </data>
+  <data name="SSO607" xml:space="preserve">
+    <value>สปส. 6-07</value>
+  </data>
+  <data name="TAX_IDENTITY_COPY" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่าย บัตรประจำตัวผู้เสียภาษีอากร/ร.ง. 4/ภ.พ.20/ภ.ธ. 20</value>
+  </data>
+  <data name="TAX_IDENTITY_COPY_OR_FORGEIGN_BUSSINESS_LICENSE" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่าย ภ.พ.01/ ภธ.20/ ใบอนุญาตประกอบธุรกิจของคนต่างด้าว</value>
+  </data>
+  <data name="THAI_CITIZEN" xml:space="preserve">
+    <value>ประชาชนไทย</value>
+  </data>
+  <data name="WORK_PERMITTED_COPY" xml:space="preserve">
+    <value>สำเนาใบอนุญาติทำงานคนต่างด้าว</value>
+  </data>
+</root>

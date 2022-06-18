@@ -1,0 +1,63 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@model FormControl
+
+@{
+    var query = Model.GeoDropdown.AjaxQueryString != null ? Model.GeoDropdown.AjaxQueryString : string.Empty;
+    var placeholder = Model.PlaceholderText != null ? Model.PlaceholderText : string.Empty;
+    var fromControl = Model.GeoDropdown.FromControlName;
+}
+<select class="form-control" id="@string.Format("ajax_dropdown_{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN_{0}", Model.DataKey)">
+    <option></option>
+</select>
+
+<script type="text/javascript">
+    $(function () {
+        $("@string.Format("[name={0}_{1}]", "ADDRESS_PROVINCE", fromControl)").change(function () {
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID)").val("").trigger("change");
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID) option[value]").remove();
+        });
+        $("@string.Format("[name={0}_{1}]", "ADDRESS_AMPHUR", fromControl)").change(function () {
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID)").val("").trigger("change");
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID) option[value]").remove();
+        });
+        $("@string.Format("[name={0}_{1}]", "ADDRESS_TUMBOL", fromControl)").change(function () {
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID)").val("").trigger("change");
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID) option[value]").remove();
+        });
+        $("@string.Format("[name={0}_{1}]", "ADDRESS_MOO", fromControl)").on('input',function () {
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID)").val("").trigger("change");
+                $("#@string.Format("ajax_dropdown_{0}", Model.ClientID) option[value]").remove();
+        });
+
+        $("#@string.Format("ajax_dropdown_{0}", Model.ClientID)").select2({
+            ajax: {
+                url: '@Url.Content(Model.GeoDropdown.AjaxUrl)@query',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        pCode: $("@string.Format("[name={0}_{1}]", "ADDRESS_PROVINCE", fromControl)").val(),
+                        aCode: $("@string.Format("[name={0}_{1}]", "ADDRESS_AMPHUR", fromControl)").val(),
+                        tCode: $("@string.Format("[name={0}_{1}]", "ADDRESS_TUMBOL", fromControl)").val(),
+                        moo: $("@string.Format("[name={0}_{1}]", "ADDRESS_MOO", fromControl)").val()
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            allowClear: true,
+            placeholder: '@placeholder',
+            width: '100%',
+            @if (Model.IsInModal)
+            {
+                <text>
+            dropdownParent: $('#MODAL_@Model.ModalSectionName')
+            </text>
+            }
+        });
+    });
+</script>

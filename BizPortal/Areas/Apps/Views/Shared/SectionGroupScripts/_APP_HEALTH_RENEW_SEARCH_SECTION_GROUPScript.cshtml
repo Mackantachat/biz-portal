@@ -1,0 +1,48 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")">
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+        $('#btnSaveDraftSingleForm, #btnNextAppSingleForm').hide();
+
+        function ValidateDocID() {
+            var value = $('input[name="APP_HEALTH_DOC_ID"]').val();
+            if (!value) {
+                swal('', "กรุณากรอกเลขที่ใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ : ประเภทกิจการสปา", "warning");
+                return;
+            }
+            $.ajax({             
+                url: '@Url.Content("~/Api/v2/HSS/SPA/ValidateDocID")',
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "Doc_ID": value,
+                }),
+                timeout: 30000,
+                success: function (data) {
+                    if (data['VALUE'] == true) {
+                        $('#btnNextAppSingleForm, #btnSaveDraftSingleForm').show();
+                    }
+                    else {
+                        swal('', "ไม่พบเลขที่ใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ : ประเภทกิจการสปา", "warning");
+                        $('#btnNextAppSingleForm, #btnSaveDraftSingleForm').hide();
+                    }
+                },
+                error: function (error) {
+                    console.log('error', err);
+                    swal('', "เกิดความผิดพลาดขณะเชื่อมต่อกับกรมพัฒนาธุรกิจการค้า", "error");
+                    $.ladda('stopAll');
+                }
+            });
+        };
+        $("button[name='APP_HEALTH_RENEW_SEARCH_BTN']").click(ValidateDocID);
+    });
+
+</script>
+

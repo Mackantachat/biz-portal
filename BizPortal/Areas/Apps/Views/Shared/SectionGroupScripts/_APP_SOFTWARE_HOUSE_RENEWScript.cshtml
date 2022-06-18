@@ -1,0 +1,60 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@using Resources = BizPortal.Resources
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")">
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            // TODO: xxx
+
+        });
+
+        $("input[name=SOFTWARE_PUBLISH_DATE]").focus(function () {
+            var requiredSpan = $(this).parent().parent().find(".custom-req-danger");
+            if (requiredSpan.length > 0) {
+                $(this).datepicker('hide');
+            }
+        });
+
+        $('#MODAL_SOFTWARE_HOUSE_BUSSINESS_INFO_RENEW_ARR').on('shown.bs.modal', function (e) {
+            var SOFTWARE_PUBLISH_DATE_elem = $("input[name=SOFTWARE_PUBLISH_DATE]");
+            var dateFrom_elem = $("input[name=DATE_FROM_SOFTWARE_HOUSE_DATE_RANGE]");
+            var dateTo_elem = $("input[name=DATE_TO_SOFTWARE_HOUSE_DATE_RANGE]");
+
+            SOFTWARE_PUBLISH_DATE_elem.parent().parent().find("span.custom-req-danger").remove();
+            if (!dateFrom_elem.val() || !dateTo_elem.val()) {
+                var dateRangeTitle = '@ResourceHelper.GetResourceWordWithDefault("SOFTWARE_HOUSE_DATE_RANGE", StringHelper.DefaultIfEmpty(null, "Apps_SingleForm"), "SOFTWARE_HOUSE_DATE_RANGE")';
+                SOFTWARE_PUBLISH_DATE_elem.parent().after("<span class='text-danger custom-req-danger'>กรุณากลับไปเลือก " + dateRangeTitle + "</span>");
+            }
+            else {
+                var dateFrom = dateFrom_elem.datepicker('getDate');
+                var dateTo = dateTo_elem.datepicker('getDate');
+                dateTo.setDate(dateTo.getDate() + 1);
+                SOFTWARE_PUBLISH_DATE_elem.datepicker('setStartDate', dateFrom);
+                SOFTWARE_PUBLISH_DATE_elem.datepicker('setEndDate', dateTo);
+            }
+
+            if (SOFTWARE_PUBLISH_DATE_elem.val()) {
+                SOFTWARE_PUBLISH_DATE_elem.datepicker('update');
+                var SOFTWARE_PUBLISH_DATE_date = SOFTWARE_PUBLISH_DATE_elem.datepicker('getDate');
+                var DATE_FROM_SOFTWARE_HOUSE_DATE_RANGE_date = dateFrom_elem.datepicker('getDate');
+                var DATE_TO_SOFTWARE_HOUSE_DATE_RANGE_date = dateTo_elem.datepicker('getDate');
+                if (SOFTWARE_PUBLISH_DATE_date > DATE_TO_SOFTWARE_HOUSE_DATE_RANGE_date) {
+                    SOFTWARE_PUBLISH_DATE_elem.datepicker('setDate', DATE_TO_SOFTWARE_HOUSE_DATE_RANGE_date);
+                }
+                if (SOFTWARE_PUBLISH_DATE_date < DATE_FROM_SOFTWARE_HOUSE_DATE_RANGE_date) {
+                    SOFTWARE_PUBLISH_DATE_elem.datepicker('setDate', DATE_FROM_SOFTWARE_HOUSE_DATE_RANGE_date);
+                }
+            }
+        });
+
+    });
+
+</script>
+
+
+

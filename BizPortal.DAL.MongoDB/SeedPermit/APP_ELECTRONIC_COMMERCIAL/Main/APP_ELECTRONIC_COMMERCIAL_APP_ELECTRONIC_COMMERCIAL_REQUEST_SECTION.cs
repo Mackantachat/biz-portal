@@ -1,0 +1,93 @@
+
+using BizPortal.DAL.MongoDB;
+using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
+using BizPortal.ViewModels.Select2;
+
+namespace BizPortal.SeedPermit.APP_ELECTRONIC_COMMERCIAL
+{
+    public partial class APP_ELECTRONIC_COMMERCIAL_APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION
+    {
+        public static void Init()
+        {
+            var db = MongoFactory.GetFormSectionCollection();
+            List<FormSection> items = new List<FormSection>();
+
+            if (db.AsQueryable().Where(x => x.Section == "APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION").Count() == 0)
+            {
+                items.Add(new FormSection()
+                {
+                    Section = "APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION",
+                    SectionGroup = "APP_ELECTRONIC_COMMERCIAL",
+                    Type = SectionType.Form,
+                    ShowOnSpecificApps = true,
+                    AppSystemNames = new string[] {
+                        AppSystemNameTextConst.APP_ELECTRONIC_COMMERCIAL,
+                    },
+					Ordering = 4,
+					ResourceName = "PermitResource.RESOURCE_APP_ELECTRONIC_COMMERCIAL",
+                });
+            }
+
+            if (items.Count > 0)
+            {
+                db.InsertMany(items.ToArray());
+            }
+
+            InitFormSectionRow();
+        }
+
+        private static void InitFormSectionRow()
+        {
+            var db = MongoFactory.GetFormSectionRowCollection();
+
+            List<FormSectionRow> items = new List<FormSectionRow>();
+
+            if (db.AsQueryable().Where(x => x.Section == "APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION").Count() == 0)
+            {
+                items.Add(new FormSectionRow()
+                {
+                    Section = "APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION",
+                    RowNumber = 0,
+                    Controls = new List<FormControl>()
+                    {
+                        new FormControl()
+                        {
+                            FieldID = "F37_01_13",
+                            Control = "APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION_DATE",
+                            Type = ControlType.DatePicker,
+                            DataKey = "APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION_DATE",
+                            DatePickerPropertiesConfig = new FormControl.DatePickerProperties()
+                            {
+                                EndDate = "+0d",
+                            },
+                            IdentityTypes = new UserTypeEnum[] {
+                                UserTypeEnum.Juristic,
+                                UserTypeEnum.Citizen,
+                             },
+                            Rules = new FormValidationRule[] { new FormValidationRule() { Type = ValidationType.Required, ErrorMessage = "* Required" } },
+                            ColFixed = 6,
+                            DataFormat = "dd/MM/yyyy",
+                        	ResourceName = "PermitResource.RESOURCE_APP_ELECTRONIC_COMMERCIAL",
+                        },
+                        new FormControl()
+                        {
+                            Control = "APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION_JURISTIC_TYPE",
+                            Type = ControlType.Hidden,
+                            DataKey = "APP_ELECTRONIC_COMMERCIAL_REQUEST_SECTION_JURISTIC_TYPE",
+                            IdentityTypes = new UserTypeEnum[] {
+                                UserTypeEnum.Juristic,
+                            },
+                        }
+                    }
+                });
+            }
+
+            if (items.Count > 0)
+            {
+                db.InsertMany(items.ToArray());
+            }
+        }
+    }
+}

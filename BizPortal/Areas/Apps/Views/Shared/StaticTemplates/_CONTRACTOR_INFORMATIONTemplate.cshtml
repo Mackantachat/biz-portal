@@ -1,0 +1,24 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="CONTRACTOR_INFORMATIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>ชื่อบุคคล/นิติบุคคลของผู้รับเหมาช่วง : </label> {{this.CONTRACTOR_NAME}}<br />
+            <label>เลขประจำตัวผู้เสียภาษี 13 หลัก : </label> {{this.CONTRACTOR_IDENTITY_ID}}<br />
+        </div>
+    </div>
+
+    {{/each}}
+
+    {{else}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลผู้รับเหมาช่วง
+        </div>
+    </div>
+
+    {{/xif}}
+</script>

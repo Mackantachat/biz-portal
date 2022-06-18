@@ -1,0 +1,57 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="SSO_EMPLOYEE_INFORMATIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-8">
+            <p class="form-control-static">
+                <label>เลขบัตรประจำตัวประชาชน 13 หลัก: </label> {{this.SSO_EMPLOYEE_CITIZEN_ID}}<br />
+                {{#xif " fieldExist(this.SSO_EMPLOYEE_REG_STATUS) && this.SSO_EMPLOYEE_REG_STATUS != 'null' " }}
+                    <label>ชื่อ: </label>
+                    {{#xif "this.SSO_EMPLOYEE_REG_STATUS == 'true'" }}
+                        {{this.SSO_EMPLOYEE_TITLE_TRUE_TEXT}} {{this.SSO_EMPLOYEE_NAME_TRUE}} {{this.SSO_EMPLOYEE_LASTNAME_TRUE}}<br />
+                    {{else}}
+                        {{this.SSO_EMPLOYEE_TITLE_FALSE_TEXT}} {{this.SSO_EMPLOYEE_NAME_FALSE}} {{this.SSO_EMPLOYEE_LASTNAME_FALSE}}<br />
+                    {{/xif}}
+                {{/xif}}
+
+                {{#xif " fieldExist(this.SSO_EMPLOYEE_REG_STATUS) && this.SSO_EMPLOYEE_REG_STATUS != 'null' " }}
+                    {{#xif "this.SSO_EMPLOYEE_REG_STATUS == 'true'" }}
+                        {{#xif " typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE_TEXT !== 'undefined' " }}
+                            <label>สาขาหรือสถานที่ทำงานของลูกจ้าง : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE_TEXT}}<br />
+                        {{/xif}}
+                        {{#xif " typeof this.SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE !== 'undefined' " }}
+                            <label>วันที่ผู้ประกันตนเข้าทำงาน : </label> {{this.SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE}}<br />
+                        {{/xif}}
+                    {{else}}
+                        {{#xif " typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE_TEXT !== 'undefined' " }}
+                            <label>สาขาหรือสถานที่ทำงานของลูกจ้าง : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE_TEXT}}<br />
+                        {{/xif}}
+                        {{#xif " typeof this.SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE !== 'undefined' " }}
+                            <label>วันที่ผู้ประกันตนเข้าทำงาน : </label> {{this.SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE}}<br />
+                        {{/xif}}
+                    {{/xif}}
+                {{/xif}}
+            </p>
+        </div>
+        <div class="col-md-2 pr5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        <div class="col-md-2 pl5">
+            <button type="button" class="btn btn-danger" name="SSO_EMPLOYEE_REMOVE_BTN" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+        </div>
+    </div>
+
+    {{/each}}
+
+    {{else}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+
+    {{/xif}}
+</script>

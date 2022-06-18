@@ -1,0 +1,25 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")" >
+</script>
+
+<script type="text/javascript">
+
+    // On load.
+    window.singleFormHelpers.form.onDraftDataBound(function () { 
+        
+    });
+
+    $(document).ready(function () {
+        $('input[name=APP_CLINIC_NOT_ONE_NIGHT_STAND_B_CONTROL_B]').val(500);
+        //$('input[name=APP_CLINIC_NOT_ONE_NIGHT_STAND_B_CONTROL_C]').val(75);
+        $('input[name=APP_CLINIC_NOT_ONE_NIGHT_STAND_B_CONTROL_B]').css("text-align", "right");
+        //$('input[name=APP_CLINIC_NOT_ONE_NIGHT_STAND_B_CONTROL_C]').css("text-align", "right");
+    });
+
+</script>
+
+
+

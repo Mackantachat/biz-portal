@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW" xml:space="preserve">
+    <value>ข้อมูลการขอต่ออายุใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก</value>
+    <comment>SectionGroup: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_TRANSPORT_IN" xml:space="preserve">
+    <value>การขนส่งไม่ประจำทางจะกระทำในท้องที่จังหวัด</value>
+    <comment>FieldID: F39_02_01</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_TRANSPORT_IN_KINGDOM" xml:space="preserve">
+    <value>ทั่วราชอาณาจักร</value>
+    <comment>FieldID: F39_02_01</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_TRANSPORT_IN_OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F39_02_01</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION" xml:space="preserve">
+    <value>ข้อมูลจังหวัด</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลจังหวัด ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลจังหวัด&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลจังหวัด"&lt;/div&gt;</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลจังหวัด</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลจังหวัด</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANSPORT_PROVINCE_SECTION_PROVINCE" xml:space="preserve">
+    <value>ระบุชื่อจังหวัด</value>
+    <comment>FieldID: F39_02_02</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION" xml:space="preserve">
+    <value>ข้อมูลรถในกิจการ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+&lt;p&gt;ดูตัวอย่างลักษณะรถได้ที่ :&lt;/p&gt;
+&lt;p&gt;ลักษณะ1 (รถกระบะบรรทุก) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_39.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_39.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ลักษณะ2 (รถตู้บรรทุก) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_41.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_41.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ลักษณะ3 (รถบรรทุกของเหลว) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_43.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_43.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ลักษณะ4 (รถบรรทุกวัสดุอันตราย) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_44.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_44.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ลักษณะ5 (รถบรรทุกเฉพาะกิจ) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_46.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_46.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ลักษณะ6 (รถพ่วง) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_47.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_47.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ลักษณะ7 (รถกึ่งพ่วง) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_48.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_48.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ลักษณะ8 (รถกึ่งพ่วงบรรทุกวัสดุยาว) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_49.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_49.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ลักษณะ9 (รถลากจูง) &lt;a href="https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_50.pdf" target="_blank"&gt;https://www.dlt-inspection.info/dlt/indexn/pdf/3-2017-04-02_22_50.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลรถในกิจการ ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลรถในกิจการ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลรถในกิจการ"&lt;/div&gt;</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลรถในกิจการ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลรถในกิจการ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_REQUEST_TYPE" xml:space="preserve">
+    <value>รูปแบบในการขออนุญาต</value>
+    <comment>FieldID: F39_02_03</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_REQUEST_TYPE_HAVE_CAR" xml:space="preserve">
+    <value>มีตัวรถแล้ว</value>
+    <comment>FieldID: F39_02_03</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_REQUEST_TYPE_NOT_HAVE_CAR" xml:space="preserve">
+    <value>ขอในหลักการ (ยังไม่มีรถ)</value>
+    <comment>FieldID: F39_02_03</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_LICENSE" xml:space="preserve">
+    <value>เลขทะเบียนรถ</value>
+    <comment>FieldID: F39_02_04</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_CASSIS" xml:space="preserve">
+    <value>เลขคัสซี</value>
+    <comment>FieldID: F39_02_05</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_ENGINE" xml:space="preserve">
+    <value>เลขเครื่องยนต์</value>
+    <comment>FieldID: F39_02_06</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_BRAND" xml:space="preserve">
+    <value>ชนิดของรถ</value>
+    <comment>FieldID: F39_02_07</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_OTHER" xml:space="preserve">
+    <value>อื่นๆ (ระบุ)</value>
+    <comment>FieldID: F39_02_08</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE" xml:space="preserve">
+    <value>ลักษณะรถ</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_PICKUP" xml:space="preserve">
+    <value>ลักษณะ1(รถกระบะบรรทุก)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_VAN" xml:space="preserve">
+    <value>ลักษณะ2(รถตู้บรรทุก)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_LIQUID" xml:space="preserve">
+    <value>ลักษณะ3(รถบรรทุกของเหลว)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_DANGER" xml:space="preserve">
+    <value>ลักษณะ4(รถบรรทุกวัสดุอันตราย)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_SPECIAL" xml:space="preserve">
+    <value>ลักษณะ5(รถบรรทุกเฉพาะกิจ)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_TRAILER" xml:space="preserve">
+    <value>ลักษณะ6(รถพ่วง)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_SEMI_TRAILER" xml:space="preserve">
+    <value>ลักษณะ7(รถกึ่งพ่วง)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_SEMI_TRAILER_LONG" xml:space="preserve">
+    <value>ลักษณะ8(รถกึ่งพ่วงบรรทุกวัสดุยาว)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_TYPE_TOWING_TRUCK" xml:space="preserve">
+    <value>ลักษณะ9(รถลากจูง)</value>
+    <comment>FieldID: F39_02_09</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_CAR_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนรถ (คัน)</value>
+    <comment>FieldID: F39_02_10</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_CHECK_CAR_SECTION" xml:space="preserve">
+    <value>CHECK_CAR_SECTION</value>
+    <comment>FieldID: F39_02_11</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_1" xml:space="preserve">
+    <value>ลักษณะ1(รถกระบะบรรทุก)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_12</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_2" xml:space="preserve">
+    <value>ลักษณะ2(รถตู้บรรทุก)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_13</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_3" xml:space="preserve">
+    <value>ลักษณะ3(รถบรรทุกของเหลว)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_14</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_4" xml:space="preserve">
+    <value>ลักษณะ4(รถบรรทุกวัสดุอันตราย)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_15</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_5" xml:space="preserve">
+    <value>ลักษณะ5(รถบรรทุกเฉพาะกิจ)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_16</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_6" xml:space="preserve">
+    <value>ลักษณะ6(รถพ่วง)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_17</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_7" xml:space="preserve">
+    <value>ลักษณะ7(รถกึ่งพ่วง)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_18</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_8" xml:space="preserve">
+    <value>ลักษณะ8(รถกึ่งพ่วงบรรทุกวัสดุยาว-)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_19</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_TYPE_9" xml:space="preserve">
+    <value>ลักษณะ9(รถลากจูง)จำนวน(คัน)</value>
+    <comment>FieldID: F39_02_20</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_CAR_TOTAL_AMOUNT" xml:space="preserve">
+    <value>กิจการนี้มีรถรวมทั้งหมด (คัน)</value>
+    <comment>FieldID: F39_02_21</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_DRIVER_TOTAL_AMOUNT" xml:space="preserve">
+    <value>กิจการนี้จะมีจำนวนผู้ขับรถยนต์ (คน)</value>
+    <comment>FieldID: F39_02_22</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_INFO_SECTION_2_WITHIN_TIME" xml:space="preserve">
+    <value>ระยะเวลาในการจัดหาให้ได้ครบตามจำนวนที่แจ้ง (วัน)</value>
+    <comment>FieldID: F39_02_23</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION" xml:space="preserve">
+    <value>ข้อมูลสถานที่เก็บ ซ่อม และบำรุงรักษารถ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลสถานที่เก็บ ซ่อม และบำรุงรักษารถ ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลสถานที่เก็บ ซ่อม และบำรุงรักษารถ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลสถานที่เก็บ ซ่อม และบำรุงรักษารถ"&lt;/div&gt;</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลสถานที่เก็บ ซ่อม และบำรุงรักษารถ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลสถานที่เก็บ ซ่อม และบำรุงรักษารถ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F39_02_27</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_BUILDING_TYPE_JURISTIC" xml:space="preserve">
+    <value>สถานที่เก็บ ซ่อม และบำรุงรักษารถของคุณมีลักษณะกรรมสิทธิ์ตามข้อใด</value>
+    <comment>FieldID: F39_02_28</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_BUILDING_TYPE_CITIZEN" xml:space="preserve">
+    <value>สถานที่เก็บ ซ่อม และบำรุงรักษารถของคุณมีลักษณะกรรมสิทธิ์ตามข้อใด</value>
+    <comment>FieldID: F39_02_29</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_BUILDING_RENTING_OWNER_TYPE" xml:space="preserve">
+    <value>โปรดระบุประเภทของผู้ให้เช่า/ให้ใช้สถานที่</value>
+    <comment>FieldID: F39_02_30</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANFER_PLACE_SECTION" xml:space="preserve">
+    <value>ข้อมูลสถานที่หยุดจอดเพื่อขนถ่าย</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANFER_PLACE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANFER_PLACE_SECTION_HAVE_TRANFER" xml:space="preserve">
+    <value>กิจการนี้มีสถานที่หยุดและจอดเพื่อขนถ่าย</value>
+    <comment>FieldID: F39_02_24</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANFER_PLACE_SECTION_HAVE_TRANFER_HAVE_TRANFER" xml:space="preserve">
+    <value>มี</value>
+    <comment>FieldID: F39_02_24</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANFER_PLACE_SECTION_HAVE_TRANFER_NOT_HAVE_TRANFER" xml:space="preserve">
+    <value>ไม่มี</value>
+    <comment>FieldID: F39_02_24</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_TRANFER_PLACE_SECTION_TRANFER" xml:space="preserve">
+    <value>กิจการของคุณมีสถานที่หยุดและจอดเพื่อขนถ่ายสิ่งใด</value>
+    <comment>FieldID: F39_02_25</comment>
+  </data>
+  <data name="TRANFER_ANIMAL" xml:space="preserve">
+    <value>สัตว์</value>
+    <comment>FieldID: F39_02_25</comment>
+  </data>
+  <data name="TRANFER_OTHER" xml:space="preserve">
+    <value>สิ่งของ</value>
+    <comment>FieldID: F39_02_25</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION" xml:space="preserve">
+    <value>ข้อมูลที่อยู่สถานที่หยุดจอดเพื่อขนถ่าย</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลที่อยู่สถานที่หยุดจอดเพื่อขนถ่าย ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลที่อยู่สถานที่หยุดจอดเพื่อขนถ่าย&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลที่อยู่สถานที่หยุดจอดเพื่อขนถ่าย"&lt;/div&gt;</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่อยู่สถานที่หยุดจอดเพื่อขนถ่าย</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลที่อยู่สถานที่หยุดจอดเพื่อขนถ่าย</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_PLACE_SECTION_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+    <comment>FieldID: F39_02_26</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2" xml:space="preserve">
+    <value>ข้อมูลสถานที่เก็บ ซ่อม และบำรุงรักษารถ</value>
+    <comment>Section: APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_AREA_METER" xml:space="preserve">
+    <value>พื้นที่สถานที่เก็บ ซ่อม และบำรุงรักษา (ตารางเมตร)</value>
+    <comment>FieldID: F39_02_31</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_CAR_AMOUNT" xml:space="preserve">
+    <value>ซึ่งสามารถเก็บรถได้ในขณะนี้ รวม (คัน)</value>
+    <comment>FieldID: F39_02_32</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_READY" xml:space="preserve">
+    <value>ข้าพเจ้าพร้อมที่จะดำเนินการตามคำขอนี้ได้ตั้งแต่</value>
+    <comment>FieldID: F39_02_33</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_READY_GET_PERMIT" xml:space="preserve">
+    <value>วันที่ได้รับใบอนุญาต</value>
+    <comment>FieldID: F39_02_33</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_READY_WITHIN" xml:space="preserve">
+    <value>ระบุวันที่</value>
+    <comment>FieldID: F39_02_33</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_DATETIME" xml:space="preserve">
+    <value>วันที่</value>
+    <comment>FieldID: F39_02_34</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_CAR_CURRENT" xml:space="preserve">
+    <value>ในขณะนี้ข้าพเจ้ามีรถอันมีลักษณะครบถ้วนตามกฎกระทรวง รวม (คัน)</value>
+    <comment>FieldID: F39_02_35</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_REQUEST_BY" xml:space="preserve">
+    <value>ในนามของ</value>
+    <comment>FieldID: F39_02_36</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_TYPE" xml:space="preserve">
+    <value>เป็นผู้ได้รับใบอนุญาตประกอบการขนส่งประเภท</value>
+    <comment>FieldID: F39_02_37</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_TYPE_TEXT" xml:space="preserve">
+    <value>การขนส่งไม่ประจำทางจำพวกรถบรรทุก</value>
+    <comment>FieldID: F39_02_37</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_RENEW_PERMIT" xml:space="preserve">
+    <value>มีความประสงค์จะขอต่ออายุใบอนุญาตประกอบการขนส่งใบอนุญาตเลขที่</value>
+    <comment>FieldID: F39_02_38</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_EXPIRE_DATE" xml:space="preserve">
+    <value>วันที่สิ้นอายุ</value>
+    <comment>FieldID: F39_02_39</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_CONFIRM" xml:space="preserve">
+    <value>ตามความในมาตรา ๒๘ วรรคสาม แห่งพระราชบัญญัติการขนส่งทางบก พ.ศ. ๒๕๒๒ โดยขอใช้เงื่อนไข</value>
+    <comment>FieldID: F39_02_40</comment>
+  </data>
+  <data name="CONFIRM" xml:space="preserve">
+    <value>ตามใบอนุญาตฉบับเดิมทุกประการ</value>
+    <comment>FieldID: F39_02_40</comment>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_SECTION_2_SIGNATURE" xml:space="preserve">
+    <value>&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+             ................................................
+&lt;/div&gt;
+&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+            (................................................)
+&lt;/div&gt;
+&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+             ผู้ขออนุญาต
+&lt;/div&gt;</value>
+    <comment>FieldID: F39_02_41</comment>
+  </data>
+</root>

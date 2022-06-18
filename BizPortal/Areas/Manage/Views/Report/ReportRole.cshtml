@@ -1,0 +1,96 @@
+﻿@using Resource = BizPortal.Resources;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@model  List<BizPortal.ViewModels.ReportAdminDataTable>
+@{
+    List<ApplicationRole> roles = (ViewBag.Roles != null) ? (List<ApplicationRole>)ViewBag.Roles : null;
+}
+
+
+
+
+
+
+
+
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+    string currentLang = ViewBag.CurrentLanguage;
+}
+
+@Styles.Render("~/Bundles/Backend/Chart/Style")
+
+<div name="ReportRoleSummary">
+    <div class="row">
+        <div style="float:left;">
+            <div class="logo" style="margin:15px;"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/logo.png")" alt="" style="width:60%; height:60%;"></div>
+        </div>
+        <div style="float:right;">
+            <h1 class="text-right" style="margin:15px;">รายงานสิทธิ์ Admin</h1>
+        </div>
+    </div>
+    <div class="row" style="background-color: #6bcafa; width:auto; height: 50px;">&nbsp;</div>
+    <br />
+    <table class="table table-striped table-bordered dataTable no-footer"  style="width:80%">
+        @foreach (var item in roles.OrderBy(x => x.Order))
+        {
+            int index = 0;
+
+
+            if (item.Name != "OrgAgent")
+            {
+                <tr>
+                    <th colspan="3" style="text-align:left">
+                        <h4>@item.Description</h4> 
+                    </th>
+                </tr>
+                <tr>
+                    <th>ที่</th>
+
+                    <th>ชื่อ-นามสกุล</th>
+                    <th>หน่วยงาน</th>
+                </tr>
+
+                foreach (var subitem in Model.Where(x => x.RoleId == item.Id))
+                {
+                    index++;
+
+                    <tr>
+                        <td style="text-align:center">@index</td>
+
+                        <td>@subitem.FullName</td>
+                        <td>@( !string.IsNullOrEmpty(subitem.OrgName) ? subitem.OrgName : "-")</td>
+                    </tr>
+                }
+
+
+
+
+            }
+            else
+            {
+                <tr>
+                    <th colspan="3" style="text-align:left">
+                        <h4>@item.Description</h4>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="3" style="text-align:center">
+                        <font  style="font-size:larger">จำนวน @Model.Where(x => x.RoleId == item.Id).Count() คน</font>
+                    </th>
+                    
+                </tr>
+            }
+
+        }
+    </table>
+    <br />
+    <br />
+</div>
+
+
+
+
+
+

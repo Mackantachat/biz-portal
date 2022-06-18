@@ -1,0 +1,686 @@
+﻿@using Resources = BizPortal.Resources;
+@{
+    ViewBag.Title = Resources.Apps_EmployeeRegis.APPS_NAME;
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/sso_full_logo.jpg");
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayout.cshtml";
+}
+
+<div class="container">
+    @if (string.IsNullOrEmpty(ViewBag.NotifyMsg))
+    {
+        <div class="row">
+            <div class="col-md-12 font-size-lg">
+                <p style="text-indent:50px;">
+                    @Resources.Apps_EmployeeRegis.APPS_INTRO
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>@Resources.Apps_EmployeeRegis.APPS_STEP</h3>
+                <ol>
+                    <li id="step-1">
+                        <form id="frmSubmit103Form" novalidate>
+                            <p class="font-size-lg">
+                                @Html.Raw(string.Format(Resources.Apps_EmployeeRegis.APPS_STEP_1, Url.Action("EmployeeRegis103Form", "SSO", new { area = "Apps" }), Url.Content("~/Uploads/apps/sso/แบบสปส.1-03.pdf")))
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading panel-default">
+                                            @Resources.Apps_EmployeeRegis.APPS_STEP_1_CHOOSE_DOCUMENT
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">
+                                                        @Resources.Apps_EmployeeRegis.APPS_STEP_1_ARE_YOU_THAI
+                                                    </label>
+                                                    <div class="form-control-static">
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="rdoEmployeeType" id="employeeType1" value="true" checked /> @Resources.Apps_EmployeeRegis.APPS_STEP_1_YES
+                                                        </label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="rdoEmployeeType" id="employeeType2" value="false" /> @Resources.Apps_EmployeeRegis.APPS_STEP_1_NO
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="pnlThai" class="fade in">
+                                                    <div class="form-group">
+                                                        <div class="col-md-5 p-none">
+                                                            <label class="control-label">* @Resources.Apps_EmployeeRegis.APPS_STEP_1_CITIZEN_ID</label>
+                                                            <input type="text" id="citizenId" name="citizenId" class="form-control" maxlength="13" required data-msg-required="@Resources.Apps_EmployeeRegis.APPS_STEP_1_CITIZEN_ID_REQUIRED" />
+                                                        </div>
+                                                    </div>
+
+                                                    @foreach (var upload in ViewBag.EmployeeThaiFileList)
+                                                    {
+                                                        <div class="form-group">
+                                                            <span>@Html.Raw(upload.Validation == "required" ? "*" : "") @upload.Text</span><br />
+                                                            <button type="button" id="EmpThai_@upload.Name" data-type="@upload.Name" data-filetype="@upload.Type" data-filedescription="@upload.Text" data-group="true" class="btn btn-default uploader"> @Html.Raw(Resources.Application.BTN_BROWSE_FILE) </button>
+                                                            <i class="font-size-sm">@Resources.Apps_EmployeeRegis.APPS_ALLOWED_EXTENSIONS</i>
+                                                            <div>
+                                                                <input type="text" id="Val_EmpThai_@upload.Name" name="Val_EmpThai_@upload.Name" class="invisibility" required data-msg-required="@Resources.Apps_EmployeeRegis.APPS_SELECT_AND_WAIT" />
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                                <div id="pnlForeigner" class="fade in hidden">
+                                                    <div class="form-group">
+                                                        <div class="col-md-5 p-none">
+                                                            <label class="control-label">* @Resources.Apps_EmployeeRegis.APPS_STEP_1_PASSPORT_NUMBER</label>
+                                                            <input type="text" id="passportId" name="passportId" class="form-control" required data-msg-required="@Resources.Apps_EmployeeRegis.APPS_STEP_1_PASSPORT_NUMBER_IS_REQUIRED" />
+                                                        </div>
+                                                    </div>
+
+                                                    @foreach (var upload in ViewBag.EmployeeForeignerFileList)
+                                                    {
+                                                        <div class="form-group">
+                                                            <span>@Html.Raw(upload.Validation == "required" ? "*" : "") @upload.Text</span><br />
+                                                            <a href="#" id="EmpForeigner_@upload.Name" data-type="@upload.Name" data-filetype="@upload.Type" data-filedescription="@upload.Text" data-group="true" class="btn btn-default uploader"> @Html.Raw(Resources.Application.BTN_BROWSE_FILE) </a>
+                                                            <i class="font-size-sm">@Resources.Apps_EmployeeRegis.APPS_ALLOWED_EXTENSIONS</i>
+                                                            <div>
+                                                                <input type="text" id="Val_EmpForeigner_@upload.Name" name="Val_EmpForeigner_@upload.Name" class="invisibility" required data-msg-required="@Resources.Apps_EmployeeRegis.APPS_SELECT_AND_WAIT" />
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <p>@Html.Raw(Resources.Apps_EmployeeRegis.APPS_STEP_1_REMARK)</p>
+                                                    <button type="submit" id="btnAddEmployeeFile" class="btn btn-primary">@Html.Raw(Resources.Application.BTN_ADD_FILE_GROUP)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li id="step-2">
+                        <p class="font-size-lg">
+                            @Html.Raw(string.Format(Resources.Apps_EmployeeRegis.APPS_STEP_2_INTRO, "javascript:download102form()", Url.Content("~/Uploads/apps/sso/แบบสปส.1-02.pdf"), Url.Content("~/Uploads/apps/sso/sso607.pdf"), Url.Content("~/Uploads/apps/sso/sso607.docx")))
+                        </p>
+                        <form id="frmSubmit102Form" novalidate>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading panel-default">
+                                            @Resources.Apps_EmployeeRegis.APPS_STEP_2_SELECT_PAPERS
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    @foreach (var upload in ViewBag.FormFileList)
+                                                    {
+                                                        <div class="form-group">
+                                                            <span>@Html.Raw(upload.Validation == "required" ? "*" : "") @upload.Text</span><br />
+                                                            <button type="button" id="Form_@upload.Name" data-type="@upload.Name" data-filetype="@upload.Type" data-filedescription="@upload.Text" class="btn btn-default uploader"> @Html.Raw(Resources.Application.BTN_BROWSE_FILE) </button>
+                                                            <i class="font-size-sm">@Resources.Apps_EmployeeRegis.APPS_ALLOWED_EXTENSIONS</i>
+                                                            <div>
+                                                                <input type="text" id="Val_Form_@upload.Name" name="Val_Form_@upload.Name" class="invisibility" required data-msg-required="@Resources.Apps_EmployeeRegis.APPS_SELECT_AND_WAIT" />
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <p>@Html.Raw(Resources.Apps_EmployeeRegis.APPS_STEP_1_REMARK)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li id="step-3">
+                        <p class="font-size-lg">
+                            @Resources.Apps_EmployeeRegis.APPS_STEP_3_INTRO
+                        </p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-default">
+                                        @Resources.Apps_EmployeeRegis.APPS_STEP_3_CHECK_DOCUMENT
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <table id="tableUploadFiles" class="table table-bordered table-striped table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th>@Resources.Application.TABLE_FILE_TYPE</th>
+                                                        <th>@Resources.Application.TABLE_FILE_NAME_REF</th>
+                                                        <th>@Resources.Application.TABLE_FILE_NAME</th>
+                                                        <th>@Resources.Application.TABLE_FILE_STATUS</th>
+                                                        <th>@Resources.Application.TABLE_FILE_TOOL</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="emptyRow">
+                                                        <td colspan="5">
+                                                            @Resources.Application.MSG_TABLE_EMPTY
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center mb20">
+                                <button type="button" id="btnSaveDraft102Form" class="btn btn-default">@Html.Raw(Resources.Application.BTN_SAVE_DRAFT)</button>
+                                <button type="button" id="btnSubmit102Form" class="btn btn-success">@Html.Raw(Resources.Application.BTN_SUBMIT_FILE)</button>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-12 center">
+                <i class="fa fa-exclamation-circle " style="font-size:8em; color:#fee355;"></i>
+                <br /><br />
+                <p class="font-size-xl">@Html.Raw(ViewBag.NotifyMsg)</p> <a href="@Url.Action("Index", "Track", new { area="" })" class="btn btn-primary"> @Resources.Apps_EmployeeRegis.APPS_TRACKING_YOUR_REQUEST </a>
+            </div>
+        </div>
+    }
+</div>
+
+@section PageScripts {
+    <script type="text/javascript">
+        var uploaders = Array();
+        var forms = Array();
+        var tmpForms = Array();
+        var uploadedFiles = Array();
+        var datatable;
+        var requestId;
+
+        $(function () {
+            initComponent();
+            initUploaders();
+            initDatatable('tableUploadFiles');
+        });
+
+        function initComponent() {
+            @if (ViewBag.RequestID != null)
+            {
+@("requestId = " + ViewBag.RequestID +";")
+            }
+
+            if (requestId) {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetFiles", "File", new { area = "Apps" })',
+                    data: {
+                        appId: @ViewBag.AppID,
+                        juristicRequestId: requestId
+
+                    },
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function(data, status, xhr) {
+                        for (var i = 0; i < data.length; i++) {
+                            var group = data[i];
+                            if (group.RefName != '') {
+                                var recordId = new Date().getTime();
+                                var filesDisplay = '';
+                                for (var j = 0; j < group.Files.length; j++) {
+                                    var file = group.Files[j];
+                                    uploadedFiles.push(file);
+
+                                    filesDisplay += file.Extras.Name + ' (' + file.FileName + ')<br /><br />';
+                                    file._recordId = new Date().getTime();
+                                }
+                                datatable.add(file._recordId, [file.Extras.Type, file.FileDescription, filesDisplay]);
+                            }
+                            else {
+                                for (var j = 0; j < group.Files.length; j++) {
+                                    var file = group.Files[j];
+                                    uploadedFiles.push(file);
+
+                                    var filesDisplay = file.Extras.Name + ' (' + file.FileName + ')<br /><br />'
+                                    file._recordId = new Date().getTime();
+                                    datatable.add(file._recordId, [file.Extras.Type, '', filesDisplay]);
+                                }
+                            }
+                        }
+                    },
+                    error: function (xhr, status, error) {
+
+                    }
+                });
+            }
+
+            $("#frmSubmit103Form").validate({
+                rules: {
+                    citizenId: {
+                        regex: '[0-9]{13}'
+                    }
+                },
+                messages: {
+                    citizenId: {
+                        regex: '@Resources.Apps_EmployeeRegis.APPS_STEP_1_CITIZEN_ID_INVALID'
+                    }
+                }
+            }).resetForm();
+            $('input[name="rdoEmployeeType"]').change(function (e) {
+                var checked = $('input[name=rdoEmployeeType]:checked').val();
+                if (checked == 'true') {
+                    $('#pnlThai').removeClass('hidden');
+                    $('#pnlForeigner').addClass('hidden');
+                }
+                else {
+                    $('#pnlThai').addClass('hidden');
+                    $('#pnlForeigner').removeClass('hidden');
+                }
+
+                var formData = $.map(tmpForms, function (data) {
+                    return data.Type == 'AttachedFile' ? data : null;
+                });
+
+                formData = formData.length > 0 ? formData[0] : null;
+
+                if (formData) {
+                    formData.Files = Array();
+                }
+
+                var $form = $('#frmSubmit103Form');
+                $form.find('input[id*=Val_], input#citizenId, input#passportId').each(function (e) {
+                    $(this).val('');
+                });
+
+                $form.find('.uploader').each(function (e) {
+                    $(this).html('@Html.Raw(Resources.Application.BTN_BROWSE_FILE)').attr('disabled', false);
+                });
+                $form.validate().resetForm();
+            });
+
+            $('#frmSubmit102Form').validate().resetForm();
+            //$('#frmSubmit102Form').submit(submit102form);
+
+            $('#btnSaveDraft102Form').click(function (e) {
+                e.preventDefault();
+                var $form = $('#frmSubmit102Form');
+                $form.data('form-type', 'SaveDraft');
+                //$form.submit();
+                submit102form(e);
+            });
+            $('#btnSubmit102Form').click(function (e) {
+                e.preventDefault();
+                var $form = $('#frmSubmit102Form');
+                $form.data('form-type', 'Submit');
+                //$form.submit();
+
+                var application102 = $.map(uploadedFiles, function (data) {
+                    return data.Extras.Name == '@Resources.Apps_EmployeeRegis.APPS_DOC_RegistrationForm102' ? data : null;
+                });
+                var application607 = $.map(uploadedFiles, function (data) {
+                    return data.Extras.Name == '@Resources.Apps_EmployeeRegis.APPS_DOC_RegistrationForm607' ? data : null;
+                });
+                var attachments = $.map(uploadedFiles, function (data) {
+                    return data.Extras.Type == 'AttachedFile' ? data : null;
+                });
+
+                if (!application102.length)
+                    $('#Val_Form_RegistrationForm102').valid();
+
+                if (!application607.length)
+                    $('#Val_Form_RegistrationForm607').valid();
+
+                if (!attachments.length)
+                    $('#frmSubmit103Form').valid();
+
+                if (application102.length && application607.length && attachments.length)
+                    submit102form(e);
+                else
+                    swal({ title: $form.data('form-type') == 'SaveDraft' ? '@Resources.Apps_EmployeeRegis.SAVE_DRAFT' : '@Resources.Apps_EmployeeRegis.SUBMIT_REQUEST', text: '@Resources.Apps_EmployeeRegis.PLEASE_UPLOAD_DOC_IN_STEP_1_2', type: 'error'});
+            });
+
+            $('#frmSubmit103Form').validate().resetForm();
+            $('#frmSubmit103Form').submit(function (e) {
+                e.preventDefault();
+
+                var $form = $(this);
+                if ($form.valid()) {
+                    var checked = $('input[name=rdoEmployeeType]:checked').val();
+                    var formData = $.map(tmpForms, function (data) {
+                        return data.Type == 'AttachedFile' ? data : null;
+                    });
+
+                    formData = formData.length > 0 ? formData[0] : null;
+
+                    if (formData) {
+                        formData.RefName = checked == 'true' ? $('#citizenId').val() : $('#passportId').val();
+
+                        var recordId = new Date().getTime();
+                        var filesDisplay = '';
+                        for (var i = 0; i < formData.Files.length; i++) {
+                            var file = formData.Files[i];
+                            filesDisplay += file.Description + ' (' + file.FileName + ')<br /><br />';
+
+                            file.UploadData._recordId = recordId;
+                            file.UploadData.FileDescription = formData.RefName;
+                            uploadedFiles.push(file.UploadData);
+                        }
+
+                        datatable.add(recordId, [formData.Type, formData.RefName, filesDisplay]);
+                        formData.Files = Array();
+                    }
+
+                    $form.validate().resetForm();
+                    $('#citizenId, #passportId').val('');
+
+                    $form.find('.uploader').each(function (e) {
+                        $(this).html('@Html.Raw(Resources.Application.BTN_BROWSE_FILE)').attr('disabled', false);
+                    });
+                    $form.find('input[id*=Val_]').each(function (e) {
+                        $(this).val('');
+                    });
+                }
+            });
+        }
+
+        function submit102form(e) {
+            e.preventDefault();
+            var $form = $('#frmSubmit102Form');
+
+            var attachments = $.map(uploadedFiles, function (data) {
+                return data.Extras.Type == 'AttachedFile' ? data : null;
+            });
+            var application102 = $.map(uploadedFiles, function (data) {
+                return data.Extras.Name == '@Resources.Apps_EmployeeRegis.APPS_DOC_RegistrationForm102' ? data : null;
+            });
+            var application607 = $.map(uploadedFiles, function (data) {
+                return data.Extras.Name == '@Resources.Apps_EmployeeRegis.APPS_DOC_RegistrationForm607' ? data : null;
+            });
+
+            //if (!attachments.length) {
+            //    $('#frmSubmit103Form').valid();
+            //}
+            //if (!application102.length || !application607.length) {
+            //    $form.valid();
+            //}
+
+            var formType = $form.data('form-type');
+            if ((attachments.length && application102.length && application607.length) || formType == 'SaveDraft') {
+                buttonSpinner('#btnSaveDraft102Form, #btnSubmit102Form');
+
+                var postData = {
+                    JuristicID: '@ViewBag.JuristicID',
+                    FileIDs: uploadedFiles,
+                    ApplicationID: @ViewBag.AppID,
+                    JuristicApplicationStatusRequestID: requestId
+                };
+                var actionUrl = '';
+                if (formType == 'SaveDraft') {
+                    actionUrl = '@Url.Content("~/api/JuristicApplicationStatusRequest/save")?language=@ViewBag.CurrentLang';
+                }
+                else if (formType == 'Submit') {
+                    actionUrl = '@Url.Content("~/api/JuristicApplicationStatusRequest/submit")?language=@ViewBag.CurrentLang'
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: actionUrl,
+                    data: JSON.stringify(postData),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function(data, status, xhr) {
+                        if (data.Type == 1) {
+                            if (formType == 'SaveDraft')
+                            {
+                                requestId = data.Data.JuristicApplicationStatusRequestID;
+                                swal({ title: '@Resources.Apps_EmployeeRegis.SAVE_DRAFT', text: data.Message, type: data.Type == 1 ? 'success' : 'error'});
+                            }
+                            else if (formType == 'Submit')
+                            {
+                                registrationRedirect();
+                            }
+                        }
+                        else if (data.Type == 3) {
+                            swal({ title: formType == 'SaveDraft' ? '@Resources.Apps_EmployeeRegis.SAVE_DRAFT' : '@Resources.Apps_EmployeeRegis.SUBMIT_REQUEST', text: data.Message, type: 'warning', showCancelButton: true, cancelButtonText: '@Resources.Apps_EmployeeRegis.CANCEL', confirmButtonText: '@Resources.Apps_EmployeeRegis.SUBMIT_EMAIL', closeOnConfirm: true }, function (isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '@Url.Content("~/api/JuristicApplicationStatusRequest/save")?language=@ViewBag.CurrentLang',
+                                        data: JSON.stringify(postData),
+                                        contentType: 'application/json; charset=utf-8',
+                                        dataType: 'json',
+                                        success: function(data, status, xhr) {
+                                            if (data.Type == 1) {
+                                                window.location = '@System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"]/Account/UpdateEmail?callbackUrl=@HttpUtility.UrlEncode( BizPortal.Utils.Extensions.UrlHelperExtensions.AbsoluteAction(Url, "InitUserData", "Account", new { area = "", returnUrl = Request.Url.PathAndQuery }))';
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                        else {
+                            swal({ title: formType == 'SaveDraft' ? '@Resources.Apps_EmployeeRegis.SAVE_DRAFT' : '@Resources.Apps_EmployeeRegis.SUBMIT_REQUEST', text: data.Message, type: 'error',  confirmButtonText: '@Resources.Apps_EmployeeRegis.CLOSE'});
+                        }
+                    },
+                    error: function (xhr, status, error) {
+
+                    }
+                }).done(function (data) {
+                    buttonReset('#btnSaveDraft102Form, #btnSubmit102Form');
+                });
+            }
+            else {
+                swal({ title: formType == 'SaveDraft' ? '@Resources.Apps_EmployeeRegis.SAVE_DRAFT' : '@Resources.Apps_EmployeeRegis.SUBMIT_REQUEST', text: '@Resources.Apps_EmployeeRegis.PLEASE_UPLOAD_DOC_IN_STEP_1_2', type: 'error'});
+            }
+        }
+
+        function download102form() {
+            var countPage = Array();
+            var page = 0;
+            for (var i = 0; i < uploadedFiles.length; i++) {
+                var data = uploadedFiles[i];
+                if (data.Extras.Type == 'AttachedFile') {
+                    if (!countPage[data._recordId]) {
+                        countPage[data._recordId] = true;
+                        page++;
+                    }
+                }
+            }
+            window.open('@Url.Action("EmployeeRegisForm", "SSO", new { area = "Apps", language = ViewBag.CurrentLang })?page='+page);
+        }
+
+        function initUploaders() {
+            $(".uploader").each(function () {
+                var el = $(this);
+                var button = el.attr("id");
+                var uploader = new plupload.Uploader({
+                    browse_button: button,
+                    runtimes: 'html5,flash,silverlight,html4',
+                    flash_swf_url: '@Url.Content("~/Script/plupload/Moxie.swf")',
+                    silverlight_xap_url: '@Url.Content("~/Script/plupload/Moxie.xap")',
+                    url: '@Url.Action("PLUpload","File", new { area ="Apps"})',
+                    max_file_size: '5mb',
+                    chunk_size: '1mb',
+                    filters: [
+                        { title: "Document files", extensions: "jpg,png,pdf" }
+                    ]
+                });
+
+                uploader.bind('FilesAdded', function (up, files) {
+                    var $button = $(up.settings.browse_button[0]);
+                    $button.html('@Html.Raw(Resources.Application.BTN_BROWSE_FILE_UPLOADING)').attr('disabled', true);
+                    setTimeout(function () {
+                        up.start();
+                    }, 100);
+                });
+
+                uploader.bind('BeforeUpload', function (up, file) {
+                    var $button = $(up.settings.browse_button[0]);
+                    var type = $button.attr('data-filetype');
+                    var name = $button.attr('data-filedescription');
+                    up.settings.multipart_params = { type: type, name: name, appId: @ViewBag.AppID, fileName: file.name };
+                });
+
+                uploader.bind('UploadComplete', function (up, files) {
+                    var $button = $(up.settings.browse_button[0]);
+                    if ($button.attr('data-fileType') != 'RegistrationForm')
+                        $button.html('@Html.Raw(Resources.Application.BTN_BROWSE_FILE_SUCCESS)');
+                });
+
+                uploader.bind("FileUploaded", function (up, file, data) {
+                    var $button = $(up.settings.browse_button[0]);
+                    if (data.status == 200) {
+                        // Find exists form data
+                        var formData = $.map(tmpForms, function (data) {
+                            return data.Type == $button.attr('data-fileType') ? data : null;
+                        });
+                        formData = formData.length > 0 ? formData[0] : null;
+
+                        if (formData == null) {
+                            formData = {
+                                RefName: null,
+                                Type: $button.attr('data-fileType'),
+                                Grouped: $button.attr('data-group') == "true",
+                                Files: Array()
+                            };
+                            tmpForms.push(formData);
+                        }
+
+                        $('#Val_' + $button.attr('id')).val('true').valid();
+                        var newFile = {
+                            FileID: file.id,
+                            FileName: file.name,
+                            Description: $button.attr('data-fileDescription'),
+                            UploadData: eval('(' + data.response + ')')
+                        };
+                        formData.Files.push(newFile);
+
+                        if (formData.Type == 'RegistrationForm') {
+                            var recordId = new Date().getTime();
+                            var filesDisplay = '';
+                            for (var i = 0; i < formData.Files.length; i++) {
+                                var file = formData.Files[i];
+                                filesDisplay += file.Description + ' (' + file.FileName + ')<br /><br />';
+
+                                file.UploadData._recordId = recordId;
+                                file.UploadData.FileDescription = formData.RefName;
+                                uploadedFiles.push(file.UploadData);
+                            }
+
+                            datatable.add(recordId, [formData.Type, '', filesDisplay]);
+                            formData.Files = Array();
+
+                            var $form =  $('#frmSubmit102Form');
+                            //$form.validate().resetForm();
+
+                            $form.find('.uploader').each(function (e) {
+                                $(this).html('@Html.Raw(Resources.Application.BTN_BROWSE_FILE)').attr('disabled', false);
+                            });
+                            $form.find('input[id*=Val_]').each(function (e) {
+                                $(this).val('');
+                            });
+                        }
+                    }
+                    else {
+                        $button.html('@Html.Raw(Resources.Application.BTN_BROWSE_FILE_FAILED)');
+                    }
+                });
+
+                uploader.bind('Error', function (up, err) {
+                    var msg = '';
+                    var msg = '';
+                    if (err.code == -600) {
+                        msg = '@Resources.Apps_EmployeeRegis.APPS_FILES_ERROR_SIZE';
+                    }
+                    else if (err.code == -601) {
+                        msg = '@Resources.Apps_EmployeeRegis.APPS_FILES_ERROR_EXTENSION';
+                    }
+                    else {
+                        msg = '@Resources.Apps_EmployeeRegis.APPS_FILES_ERROR_UPLOAD_FAILED';
+                    }
+
+                    swal({ type: 'warning', title: "", text: msg });
+                });
+
+
+                uploader.init();
+                uploaders.push(uploader);
+            });
+        }
+
+        function initDatatable(tableId) {
+            datatable = {
+                table: $('#' + tableId),
+                add: function (fileId, values) {
+                    //console.log(values);
+                    var rowId = fileId;
+                    var rowTemplate = '<tr id="<<<id>>>" rowspan="<<<rowspan>>>"><<<column>>></tr>';
+                    var columnDataTemplate = '<td><<<value>>></td>';
+                    var columnStatusTemplate = '<td class="status">@Html.Raw(Resources.Application.BTN_BROWSE_FILE_SUCCESS)</td>'
+                    var columnActionTemplate = '<td  align="center"><button type="button" class="btn btn-danger btn-delete" data-rowid="<<<rowId>>>" ><i class="fa fa-trash-o"></i> @Resources.Apps_EmployeeRegis.DELETE</button></td>'
+                    var row = '';
+                    var columns = '';
+
+                    // column data
+                    for (var key in values) {
+                        var value = values[key];
+                        if (value == 'RegistrationForm')
+                            value = '@Resources.Apps_EmployeeRegis.REGISTRATION_FORM';
+                        else if (value == 'AttachedFile')
+                            value = '@Resources.Apps_EmployeeRegis.ATTACHED_FILE';
+
+                        columns = columns + columnDataTemplate.replace(/<<<value>>>/g, value);
+                    }
+
+                    // column status
+                    columns = columns + columnStatusTemplate;
+
+                    // column action
+                    columns = columns + columnActionTemplate.replace(/<<<rowId>>>/g, rowId);
+
+                    // row
+                    row = rowTemplate.replace(/<<<id>>>/g, rowId)
+                                     .replace(/<<<rowspan>>>/g, 0)
+                                     .replace(/<<<column>>>/g, columns);
+
+                    this.table.find('tbody').append(row);
+                    this.table.find('tr#' + rowId + ' .btn-delete').on('click', { table: this.table, rowId: rowId }, this.delete);
+                    this.table.trigger('change');
+                },
+                delete: function (e) {
+                    var $table = $(e.data.table);
+                    var rowId = e.data.rowId;
+
+                    $table.find('tr#' + rowId).remove();
+                    var deleteIds = Array();
+                    uploadedFiles = $.map(uploadedFiles, function (data) {
+                        if (data._recordId == e.data.rowId )
+                            deleteIds.push(data.FileID);
+                        return data._recordId != e.data.rowId ? data : null;
+                    });
+
+                    if (deleteIds.length) {
+                        // remove form server
+                        $.ajax({
+                            url: '@Url.Action("DeleteFiles", "File", new { area = "Apps" })' + '?' + $.param({ appId: '@ViewBag.AppID', fileIds: deleteIds.toString() }),
+                            type: 'DELETE'
+                        });
+                    }
+
+                    $table.trigger('change');
+                }
+            }
+
+            datatable.table.on('change', function () {
+                var $table = $(this);
+                var $trow = $table.find('tbody tr');
+                var $emptyRow = $table.find('tbody > .emptyRow');
+
+                if ($trow.length <= 1) {
+                    $emptyRow.show();
+                }
+                else {
+                    $emptyRow.hide();
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,1576 @@
+﻿@using Resource = BizPortal.Resources;
+
+@{
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+    string currentLang = ViewBag.CurrentLanguage;
+}
+
+@Styles.Render("~/Bundles/Backend/Chart/Style")
+
+<div name="statisticsSummary">
+    <div class="row">
+        <div style="float:left;">
+            <div class="logo" style="margin:15px;"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/logo.png")" alt="" style="width:60%; height:60%;"></div>
+        </div>
+        <div style="float:right;">
+            <h1 class="text-right" style="margin:15px;">@Resource.Report.Statistics_Header</h1>
+        </div>
+    </div>
+    <div class="row" style="background-color: #6bcafa; width:auto; height: 50px;">&nbsp;</div>
+    <div class="row">
+        <form class="col-md-12" id="search-query">
+            <div class="row query-row">
+                <div class="col-md-2">
+                    <div class="label-box">
+                        <label for="year-search">@Resource.Report.Statistics_Query_Year</label>
+                    </div>
+                    <div class="component-box">
+                        <select class="form-control query-ddl" name="YearList" id="year-search">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="label-box">
+                        <label for="month-search">@Resource.Report.Statistics_Query_Month</label>
+                    </div>
+                    <div class="component-box">
+                        <select class="form-control query-ddl" name="MonthList" id="month-search">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="label-box">
+                        <label for="requestor-type-search">@Resource.Report.Statistics_Query_Requestor_Type</label>
+                    </div>
+                    <div class="component-box">
+                        <select class="form-control query-ddl" name="RequestorTypeList" id="requestor-type-search">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="label-box">
+                        <label for="org-search">@Resource.Report.Statistics_Query_Organization</label>
+                    </div>
+                    <div class="component-box">
+                        <select class="form-control query-ddl" name="OrganizationList" id="org-search">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row query-row">
+                <div class="col-md-2">
+                    <div class="label-box">
+                        <label for="province-search">@Resource.Report.Statistics_Query_Province</label>
+                    </div>
+                    <div class="component-box">
+                        <select class="form-control province" name="ProvinceList" id="province-search">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="label-box">
+                        <label for="district-search">@Resource.Report.Statistics_Query_District</label>
+                    </div>
+                    <div class="component-box">
+                        <select class="form-control district" name="DistrictList" id="district-search">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="label-box">
+                        <label for="permit-search">@Resource.Report.Statistics_Query_Permit</label>
+                    </div>
+                    <div class="component-box">
+                        <select class="form-control query-ddl" name="PermitList" id="permit-search">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div style="text-align:right; margin:15px;">
+            <p>*กรณีเลือกปีหรือเดือน จะกรองการขออนุญาตโดยวันที่อัพเดทล่าสุด</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div name="overall-request-statistics-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+            <h2>@Resource.Report.Statistics_Overall_header</h2>
+        </div>
+        <div style="margin: 15px;">
+            <table class="table table-bordered" id="overall-statistics">
+                <thead>
+                    <tr>
+                        <th class="col-md-2" scope="col" rowspan="2"></th>
+                        <th class="col-md-2" scope="col" rowspan="2">@Resource.Report.Statistics_Overall_All_Permit</th>
+                        <th class="col-md-2" scope="col">@Resource.Report.Statistics_Overall_Done</th>
+                        <th class="col-md-2" scope="col">@Resource.Report.Statistics_Overall_OnProcess</th>
+                        <th class="col-md-2" scope="col" rowspan="2">@Resource.Report.Statistics_Overall_InTime_SLA</th>
+                        <th class="col-md-2" scope="col" rowspan="2">@Resource.Report.Statistics_Overall_Fee</th>
+                    </tr>
+                    <tr>
+                        <th class="col-md-2" scope="col">@Resource.Report.Statistics_Overall_Done_2</th>
+                        <th class="col-md-2" scope="col">@Resource.Report.Statistics_Overall_OnProcess_2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-md-2 overall-statistics-header" rowspan="2"><h3>@Resource.Report.Statistics_Overall_At_Start</h3></td>
+                        <td class="col-md-2 overall-statistics-allrequest" rowspan="2"><h3 id="allPermit"></h3></td>
+                        <td class="col-md-2 overall-statistics-complete-1"><h3 id="allPermitCompleted"></h3></td>
+                        <td class="col-md-2 overall-statistics-onprocess-1"><h3 id="allPermitInProgress"></h3></td>
+                        <td class="col-md-2 overall-statistics-intime-sla" rowspan="2"><h3 id="allPermitInExpectedFinishDate"></h3></td>
+                        <td class="col-md-2 overall-statistics-allfee" rowspan="2"><h3 id="allPermitFee"></h3></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2 overall-statistics-complete-2"><h3 id="allPermitCompletedPercentage"></h3></td>
+                        <td class="col-md-2 overall-statistics-onprocess-2"><h3 id="allPermitInProgressPercentage"></h3></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2 overall-statistics-header" rowspan="2"><h3>@Resource.Report.Statistics_Overall_At_First_Day_Of_Year</h3></td>
+                        <td class="col-md-2 overall-statistics-allrequest" rowspan="2"><h3 id="allPermitYearSelected"></h3></td>
+                        <td class="col-md-2 overall-statistics-complete-1"><h3 id="allPermitCompletedYearSelected"></h3></td>
+                        <td class="col-md-2 overall-statistics-onprocess-1"><h3 id="allPermitInProgressYearSelected"></h3></td>
+                        <td class="col-md-2 overall-statistics-intime-sla" rowspan="2"><h3 id="allPermitInExpectedFinishDateYearSelected"></h3></td>
+                        <td class="col-md-2 overall-statistics-allfee" rowspan="2"><h3 id="allPermitFeeYearSelected"></h3></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2 overall-statistics-complete-2"><h3 id="allPermitCompletedYearSelectedPercentage"></h3></td>
+                        <td class="col-md-2 overall-statistics-onprocess-2"><h3 id="allPermitInProgressYearSelectedPercentage"></h3></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2 overall-statistics-header" rowspan="2"><h3>@Resource.Report.Statistics_Overall_At_Latest_Month</h3></td>
+                        <td class="col-md-2 overall-statistics-allrequest" rowspan="2"><h3 id="allPermitLatestMonth"></h3></td>
+                        <td class="col-md-2 overall-statistics-complete-1"><h3 id="allPermitCompletedLatestMonth"></h3></td>
+                        <td class="col-md-2 overall-statistics-onprocess-1"><h3 id="allPermitInProgressLatestMonth"></h3></td>
+                        <td class="col-md-2 overall-statistics-intime-sla" rowspan="2"><h3 id="allPermitInExpectedFinishDateLatestMonth"></h3></td>
+                        <td class="col-md-2 overall-statistics-allfee" rowspan="2"><h3 id="allPermitFeeLatestMonth"></h3></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2 overall-statistics-complete-2"><h3 id="allPermitCompletedLatestMonthPercentage"></h3></td>
+                        <td class="col-md-2 overall-statistics-onprocess-2"><h3 id="allPermitInProgressLatestMonthPercentage"></h3></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:right; margin:15px;">
+            <p>*สถิตินับจากวันที่อัพเดทล่าสุดของการขออนุญาต</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div name="statistics-sla-status-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+            <h2>@Resource.Report.Statistics_SLA_Status_header</h2>
+        </div>
+        <div class="chart-divContainer">
+            <canvas id="statistics-sla-status"></canvas>
+        </div>
+        <div style="text-align:right; margin:15px;">
+            <p>*สถิติการแบ่งตามสถานะ SLA นับจากวันที่อัพเดทล่าสุดของการขออนุญาต</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div name="request-by-identity-type-statistics-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+            <h2>@Resource.Report.Statistics_Request_By_Identity_Type_header</h2>
+        </div>
+        <div class="row">
+            <div style="width: 100%; padding-left: 15px; padding-right:15px;">
+                <ul class="nav nav-tabs" id="statistics-identity-type" role="tablist">
+                    <li class="nav-item col-md-6">
+                        <a class="nav-link text-center active" id="citizen-tab" data-toggle="tab" href="#citizen" role="tab" aria-controls="citizen" aria-selected="true">
+                            @Resource.Report.Statistics_Identity_Type_Citizen
+                        </a>
+                    </li>
+                    <li class="nav-item col-md-6">
+                        <a class="nav-link text-center" id="juristic-tab" data-toggle="tab" href="#juristic" role="tab" aria-controls="juristic" aria-selected="false">
+                            @Resource.Report.Statistics_Identity_Type_Juristic
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="statistics-identity-type-content" style="margin-left: 25px; margin-right:25px;">
+                    <div class="tab-pane fade active" id="citizen" role="tabpanel" aria-labelledby="citizen-tab">
+                        <div class="card">
+                            <div class="row">
+                                <div class="d-flex flex-row">
+                                    <img src="@Url.Content("~/Content/BackOffice-Report/icon/citizen.svg")" class="card-img statistics-identity-type-img" alt="Citizen">
+                                    <div class="d-flex flex-column">
+                                        <h3 class="form-label">@Resource.Report.Statistics_Identity_Type_Citizen</h3>
+                                        <div class="form-group col-md-2">
+                                            <label for="statistics-citizen-type-total">@Resource.Report.Statistics_Identity_Type_Request_Total</label>
+                                            <input type="text" class="form-control text-right" id="statistics-citizen-type-total" readonly>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="statistics-citizen-type-percentage">@Resource.Report.Statistics_Identity_Type_Request_Pencentage</label>
+                                            <input type="text" class="form-control text-right" id="statistics-citizen-type-percentage" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div name="statistics-citizen-request-organization-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+                                        <h2>@Resource.Report.Statistics_Identity_Type_Request_Organization</h2>
+                                    </div>
+                                    <div class="chart-divContainer">
+                                        <canvas id="statistics-citizen-request-organization"></canvas>
+                                        <div class="center-inline">
+                                            <div>
+                                                <button type="button" id="prev-citizen-request-organization" class="btn btn-secondary">ย้อนกลับ</button>
+                                                <select class="form-control" id="pagination-ddl-citizen-request-organization">
+                                                </select>
+                                                <button type="button" id="next-citizen-request-organization" class="btn btn-secondary">ถัดไป</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div name="statistics-citizen-request-permitname-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+                                        <h2>@Resource.Report.Statistics_Identity_Type_Request_PermitName</h2>
+                                    </div>
+                                    <div class="chart-divContainer">
+                                        <canvas id="statistics-citizen-request-permitname"></canvas>
+                                        <div class="center-inline">
+                                            <div>
+                                                <button type="button" id="prev-citizen-request-permitname" class="btn btn-secondary">ย้อนกลับ</button>
+                                                <select class="form-control" id="pagination-ddl-citizen-request-permitname">
+                                                </select>
+                                                <button type="button" id="next-citizen-request-permitname" class="btn btn-secondary">ถัดไป</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="juristic" role="tabpanel" aria-labelledby="juristic-tab">
+                        <div class="card">
+                            <div class="row">
+                                <div class="d-flex flex-row">
+                                    <img src="@Url.Content("~/Content/BackOffice-Report/icon/juristic.svg")" class="card-img statistics-identity-type-img" alt="Juristic">
+                                    <div class="d-flex flex-column">
+                                        <h3>@Resource.Report.Statistics_Identity_Type_Juristic</h3>
+                                        <div class="form-group col-md-2">
+                                            <label for="statistics-citizen-type-total">@Resource.Report.Statistics_Identity_Type_Request_Total</label>
+                                            <input type="text" class="form-control text-right" id="statistics-juristic-type-total" readonly>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="statistics-citizen-type-percentage">@Resource.Report.Statistics_Identity_Type_Request_Pencentage</label>
+                                            <input type="text" class="form-control text-right" id="statistics-juristic-type-percentage" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div name="statistics-juristic-request-organization-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+                                        <h2>@Resource.Report.Statistics_Identity_Type_Request_Organization</h2>
+                                    </div>
+                                    <div class="chart-divContainer">
+                                        <canvas id="statistics-juristic-request-organization"></canvas>
+                                        <div class="center-inline">
+                                            <div>
+                                                <button type="button" id="prev-juristic-request-organization" class="btn btn-secondary">ย้อนกลับ</button>
+                                                <select class="form-control" id="pagination-ddl-juristic-request-organization">
+                                                </select>
+                                                <button type="button" id="next-juristic-request-organization" class="btn btn-secondary">ถัดไป</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div name="statistics-juristic-request-permitname-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+                                        <h2>@Resource.Report.Statistics_Identity_Type_Request_PermitName</h2>
+                                    </div>
+                                    <div class="chart-divContainer">
+                                        <canvas id="statistics-juristic-request-permitname"></canvas>
+                                        <div class="center-inline">
+                                            <div>
+                                                <button type="button" id="prev-juristic-request-permitname" class="btn btn-secondary">ย้อนกลับ</button>
+                                                <select class="form-control" id="pagination-ddl-juristic-request-permitname">
+                                                </select>
+                                                <button type="button" id="next-juristic-request-permitname" class="btn btn-secondary">ถัดไป</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div name="statistics-sla-done-request-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+            <h2>@Resource.Report.Statistics_SLA_Done_Request_header</h2>
+        </div>
+        <div class="chart-divContainer">
+            <canvas id="statistics-sla-done-request"></canvas>
+        </div>
+        <div style="text-align:right; margin:15px;">
+            <p>*สถิตินับจากวันที่อัพเดทล่าสุดของการขออนุญาต</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div name="statistics-average-operation-days-header" style="margin:15px; font-weight:900; color: #0c6c9c">
+            <h2>@Resource.Report.Statistics_Average_Operation_Days_Title</h2>
+        </div>
+        <div style="margin: 15px;">
+            <table class="table" id="statistics-average-operation-days">
+                <thead>
+                    <tr>
+                        <th class="col-md-4" scope="col">@Resource.Report.Statistics_Average_Operation_Days_Status</th>
+                        <th class="col-md-2" scope="col">@Resource.Report.Statistics_Average_Operation_Days_Check</th>
+                        <th class="col-md-2" scope="col">@Resource.Report.Statistics_Average_Operation_Days_Pending</th>
+                        <th class="col-md-2" scope="col">@Resource.Report.Statistics_Average_Operation_Days_Paid_Fee</th>
+                        <th class="col-md-2" scope="col">@Resource.Report.Statistics_Average_Operation_Days_Publish_License</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-md-4 td-header">
+                            <div style="white-space:nowrap;">
+                                <img src="@Url.Content("~/Content/BackOffice-Report/icon/time.svg")" class="statistics-average-operation-days-img" alt="AverageDays">
+                                <h3 style="display:inline-block; white-space: normal;">@Resource.Report.Statistics_Average_Operation_Days_Average_Operation_Days</h3>
+                            </div>
+                        </td>
+                        <td class="col-md-2 td-center"><h3 id="checkStatusAverageDay"></h3></td>
+                        <td class="col-md-2 td-center"><h3 id="pendingStatusAverageDay"></h3></td>
+                        <td class="col-md-2 td-center"><h3 id="paidFeeStatusAverageDay"></h3></td>
+                        <td class="col-md-2 td-center"><h3 id="publishPermitStatusAverageDay"></h3></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4 td-header">
+                            <div style="white-space:nowrap;">
+                                <img src="@Url.Content("~/Content/BackOffice-Report/icon/rejected.svg")" class="statistics-average-operation-days-img" style="color: red;" alt="Rejected">
+                                <h3 style="display:inline-block; white-space: normal;">@Resource.Report.Statistics_Average_Operation_Days_Rejected_Request</h3>
+                            </div>
+                        </td>
+                        <td class="col-md-2 td-center"><h3 id="rejectedOnCheckStatus"></h3></td>
+                        <td class="col-md-2 td-center"><h3 id="rejectedOnPendingStatus"></h3></td>
+                        <td class="col-md-2 td-center"></td>
+                        <td class="col-md-2 td-center"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align:right; margin:15px;">
+            <p>*สถิตินับจากวันที่อัพเดทล่าสุดของการขออนุญาต</p>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/Bundles/Backend/Chart/Script")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        initQueryComponent();
+        initOrganizationAndPermitNameChart();
+        submitRequest();
+
+        //default citizen when data loaded.
+        $("#citizen-tab").click();
+
+        $(".query-ddl, .district").change(function () { // $(".query-ddl, .province, .district") not include .province becasue .district already trigger .province
+            $('#search-query').submit();
+        });
+    });
+
+    var reportPage2 = {
+        statisticsSlaStatusChart: {
+            rawDataset: [],
+            xAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultStatisticsSlaStatusChartLabels: [],
+            defaultStatisticsSlaStatusChartDatasets: [],
+            chartElem: document.getElementById('statistics-sla-status').getContext('2d'),
+            chartObj: new Chart(document.getElementById('statistics-sla-status').getContext('2d'), {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: '@Resource.Report.Statistics_SLA_Status_Not_Start_SLA',
+                            backgroundColor: "rgba(102, 102, 102, 1)",
+                            borderColor: "rgba(102, 102, 102, 1)",
+                            fill: false
+                        },
+                        {
+                            label: '@Resource.Report.Statistics_SLA_Status_InTime_SLA',
+                            backgroundColor: "rgba(102, 255, 0, 1)",
+                            borderColor: "rgba(102, 255, 0, 1)",
+                            fill: false
+                        },
+                        {
+                            label: '@Resource.Report.Statistics_SLA_Status_OutTime_SLA',
+                            backgroundColor: "rgba(255, 0, 0, 1)",
+                            borderColor: "rgba(255, 0, 0, 1)",
+                            fill: false
+                        },
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 4,
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: {
+                                fontSize: 16,
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontSize: 16
+                        },
+                        onClick: function (e, legendItem) {
+                            var index = legendItem.datasetIndex;
+                            var ci = this.chart;
+                            var meta = ci.getDatasetMeta(index);
+
+                            // See controller.isDatasetVisible comment
+                            meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+                            // We hid a dataset ... rerender the chart
+                            ci.update();
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.Statistics_SLA_Status_Title',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    layout: {
+                        padding: {
+                            left: 100,
+                            right: 100,
+                        }
+                    },
+                    tooltips: {
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                        position: 'nearest',
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function (tooltipItems) {
+                                return "เดือน" + tooltipItems[0].xLabel;
+                            },
+                            label: function (tooltipItem, chartData) {
+                                let data = chartData.datasets[tooltipItem.datasetIndex] || '';
+                                return data.label + " " + tooltipItem.value + " ใบ";
+                            },
+                        },
+                    }
+                },
+            }),
+        },
+        statisticsOrganizationByCitizenChart: {
+            datasetChunk: {
+                labelChunkArray: [],
+                valueChunkArray: []
+            },
+            currentPage: -1,
+            rawDataset: [],
+            xAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultstatisticsOrganizationByCitizenChartLabels: [],
+            defaultstatisticsOrganizationByCitizenChartDatasets: [],
+            chartElem: document.getElementById('statistics-citizen-request-organization').getContext('2d'),
+            chartObj: new Chart(document.getElementById('statistics-citizen-request-organization').getContext('2d'), {
+                type: 'horizontalBar',
+                data: {
+                    datasets: [
+                        {
+                            label: "@Resource.Report.Statistics_Organization_Request_Qty",
+                            backgroundColor: "rgba(41, 96, 214, 0.2)",
+                            borderColor: "rgba(41, 96, 214, 1)",
+                            borderWidth: 1,
+                            data: []
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    //aspectRatio: 4,
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            maxBarThickness: 60,
+                            ticks: {
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontSize: 16
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.Statistics_Organization_By_Citizen',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    tooltips: {
+                        intersect: false,
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                    }
+                },
+            }),
+        },
+        statisticsPermitnameByCitizenChart: {
+            datasetChunk: {
+                labelChunkArray: [],
+                valueChunkArray: []
+            },
+            currentPage: -1,
+            rawDataset: [],
+            xAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultstatisticsPermitnameByCitizenChartLabels: [],
+            defaultstatisticsPermitnameByCitizenChartDatasets: [],
+            chartElem: document.getElementById('statistics-citizen-request-permitname').getContext('2d'),
+            chartObj: new Chart(document.getElementById('statistics-citizen-request-permitname').getContext('2d'), {
+                type: 'horizontalBar',
+                data: {
+                    datasets: [
+                        {
+                            label: "@Resource.Report.Statistics_Permitname_Request_Qty",
+                            backgroundColor: "rgba(41, 96, 214, 0.2)",
+                            borderColor: "rgba(41, 96, 214, 1)",
+                            borderWidth: 1,
+                            data: []
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    //aspectRatio: 4,
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            maxBarThickness: 60,
+                            ticks: {
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontSize: 16
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.Statistics_Permitname_By_Citizen',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    tooltips: {
+                        intersect: false,
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                    }
+                },
+            }),
+        },
+        statisticsOrganizationByJuristicChart: {
+            datasetChunk: {
+                labelChunkArray: [],
+                valueChunkArray: []
+            },
+            currentPage: -1,
+            rawDataset: [],
+            xAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultstatisticsOrganizationByJuristicChartLabels: [],
+            defaultstatisticsOrganizationByJuristicChartDatasets: [],
+            chartElem: document.getElementById('statistics-juristic-request-organization').getContext('2d'),
+            chartObj: new Chart(document.getElementById('statistics-juristic-request-organization').getContext('2d'), {
+                type: 'horizontalBar',
+                data: {
+                    datasets: [
+                        {
+                            label: "@Resource.Report.Statistics_Organization_Request_Qty",
+                            backgroundColor: "rgba(41, 96, 214, 0.2)",
+                            borderColor: "rgba(41, 96, 214, 1)",
+                            borderWidth: 1,
+                            data: []
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    //aspectRatio: 4,
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            maxBarThickness: 60,
+                            ticks: {
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontSize: 16
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.Statistics_Organization_By_Juristic',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    tooltips: {
+                        intersect: false,
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                    }
+                },
+            }),
+        },
+        statisticsPermitnameByJuristicChart: {
+            datasetChunk: {
+                labelChunkArray: [],
+                valueChunkArray: []
+            },
+            currentPage: -1,
+            rawDataset: [],
+            xAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultstatisticsPermitnameByJuristicChartLabels: [],
+            defaultstatisticsPermitnameByJuristicChartDatasets: [],
+            chartElem: document.getElementById('statistics-juristic-request-permitname').getContext('2d'),
+            chartObj: new Chart(document.getElementById('statistics-juristic-request-permitname').getContext('2d'), {
+                type: 'horizontalBar',
+                data: {
+                    datasets: [
+                        {
+                            label: "@Resource.Report.Statistics_Permitname_Request_Qty",
+                            backgroundColor: "rgba(41, 96, 214, 0.2)",
+                            borderColor: "rgba(41, 96, 214, 1)",
+                            borderWidth: 1,
+                            data: []
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    //aspectRatio: 4,
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            maxBarThickness: 60,
+                            ticks: {
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontSize: 16
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.Statistics_Permitname_By_Juristic',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    tooltips: {
+                        intersect: false,
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                    }
+                },
+            }),
+        },
+        statisticsSlaDonePermitChart: {
+            rawDataset: [],
+            xAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultstatisticsSlaDonePermitChartLabels: [],
+            defaultstatisticsSlaDonePermitChartDatasets: [],
+            chartElem: document.getElementById('statistics-sla-done-request').getContext('2d'),
+            chartObj: new Chart(document.getElementById('statistics-sla-done-request').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: ["rgba(60, 230, 25, 0.2)", "rgba(230, 25, 25, 0.2)"],
+                            borderColor: ["rgba(60, 230, 25, 1)", "rgba(230, 25, 25, 1)"],
+                            borderWidth: 1,
+                            data: []
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 6,
+                    layout: {
+                        padding: {
+                            left: 200,
+                            right: 200
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            maxBarThickness: 100,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: {
+                                fontSize: 16,
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.Statistics_SLA_Done_Request_header',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    tooltips: {
+                        intersect: false,
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                        callbacks: {
+                            label: function (tooltipItem, chartData) {
+                                return " จำนวน " + tooltipItem.value + " ใบ";
+                            },
+                        }
+                    }
+                },
+            }),
+        }
+    }
+
+    function initQueryComponent() {
+        showReportLoading(true, "กำลังโหลด...");
+        
+        $.ajax({
+            url: '@Url.Content("~/Api/V2/Report/GetStatisticsReportParameterList")',
+            type: "GET",
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (result) {
+                insertParamDataListToSelect2(result);
+                showReportLoading(false);
+
+            },
+            error: function (xhr, status, error) {
+                let err = eval("(" + xhr.responseText + ")");
+                console.log(err.Message);
+                showReportLoading(false);
+            }
+        });
+
+        $('.province').select2({
+            allowClear: true,
+            placeholder: 'ทั้งหมด',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        isMetro: '',
+                        query: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        })
+        .on('change', function (e, params) {
+            if (params != "init") {
+                $(this).valid();
+            }
+            $('.district').val(null).trigger('change');
+        });
+
+        $('.district').select2({
+            allowClear: true,
+            placeholder: 'ทั้งหมด',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        pCode: $('.province').val()
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        function insertParamDataListToSelect2(data) {
+            $(".query-ddl").each(function () {
+                $(this).select2({
+                    data: data[this.name] || [],
+                    allowClear: true,
+                    width: '100%',
+                    placeholder: "ทั้งหมด",
+                    //minimumResultsForSearch: -1
+                });
+            });
+        }
+    }
+
+    $('#search-query').on('submit', function (e) {
+        e.preventDefault();
+        submitRequest();
+    });
+
+    function submitRequest() {
+        showReportLoading(true, "กำลังโหลด...");
+        var formData = {
+            YearSelected: $("#year-search").val(),
+            MonthSelected: $("#month-search").val(),
+            RequestorSelected: $("#requestor-type-search").val(),
+            OrganizationSelected: $("#org-search").val(),
+            ProvinceSelected: $("#province-search").val(),
+            DistrictSelected: $("#district-search").val(),
+            PermitSelected: $("#permit-search").val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/Api/V2/Report/StatisticsReport")',
+            data: JSON.stringify(formData),
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (result) {
+                updateOverallStatistics(result);
+                updateStatisticsSlaChart(result);
+                updateStatisticsIdentityType(result);
+                updateOrganizationAndPermitNameChart(result);
+                updateStatisticsSlaDoneRequestChart(result);
+                updateStatisticsAverageOperationDays(result);
+                showReportLoading(false);
+            },
+            error: function (xhr, status, error) {
+                let err = eval("(" + xhr.responseText + ")");
+                console.log(err.Message);
+                showReportLoading(false);
+            }
+        });
+
+        function updateOverallStatistics(data) {
+            $("#allPermit").html(toNumeric(data.AllPermit));
+            $("#allPermitCompleted").html(toNumeric(data.AllPermitCompleted));
+            $("#allPermitInProgress").html(toNumeric(data.AllPermitInProgress));
+            $("#allPermitFee").html(toCurrency(data.AllPermitFee));
+            let allPermitTotal = data.AllPermitInProgress + data.AllPermitCompleted;
+            if (allPermitTotal > 0) {
+                $("#allPermitCompletedPercentage").html(toPercentage(data.AllPermitCompleted / allPermitTotal * 100));
+                $("#allPermitInProgressPercentage").html(toPercentage(data.AllPermitInProgress / allPermitTotal * 100));
+            }
+            else {
+                $("#allPermitCompletedPercentage").html("-");
+                $("#allPermitInProgressPercentage").html("-");
+            }
+            if (data.AllPermit > 0) {
+                $("#allPermitInExpectedFinishDate").html(toPercentage(data.AllPermitInExpectedFinishDate / data.AllPermit * 100));
+            }
+            else {
+                $("#allPermitInExpectedFinishDate").html("-");
+            }
+
+            $("#allPermitYearSelected").html(toNumeric(data.AllPermitYearSelected));
+            $("#allPermitCompletedYearSelected").html(toNumeric(data.AllPermitCompletedYearSelected));
+            $("#allPermitInProgressYearSelected").html(toNumeric(data.AllPermitInProgressYearSelected));
+            $("#allPermitFeeYearSelected").html(toCurrency(data.AllPermitFeeYearSelected));
+            let allPermitYearSelectedTotal = data.AllPermitCompletedYearSelected + data.AllPermitInProgressYearSelected;
+            if (allPermitYearSelectedTotal > 0) {
+                $("#allPermitCompletedYearSelectedPercentage").html(toPercentage(data.AllPermitCompletedYearSelected / allPermitYearSelectedTotal * 100));
+                $("#allPermitInProgressYearSelectedPercentage").html(toPercentage(data.AllPermitInProgressYearSelected / allPermitYearSelectedTotal * 100));
+            }
+            else {
+                $("#allPermitCompletedYearSelectedPercentage").html("-");
+                $("#allPermitInProgressYearSelectedPercentage").html("-");
+            }
+            if (data.AllPermitYearSelected > 0) {
+                $("#allPermitInExpectedFinishDateYearSelected").html(toPercentage(data.AllPermitInExpectedFinishDateYearSelected / data.AllPermitYearSelected * 100));
+            }
+            else {
+                $("#allPermitInExpectedFinishDateYearSelected").html("-");
+            }
+
+            $("#allPermitLatestMonth").html(toNumeric(data.AllPermitLatestMonth));
+            $("#allPermitCompletedLatestMonth").html(toNumeric(data.AllPermitCompletedLatestMonth));
+            $("#allPermitInProgressLatestMonth").html(toNumeric(data.AllPermitInProgressLatestMonth));
+            $("#allPermitInExpectedFinishDateLatestMonth").html(toNumeric(data.AllPermitInExpectedFinishDateLatestMonth));
+            $("#allPermitFeeLatestMonth").html(toCurrency(data.AllPermitFeeLatestMonth));
+            let allPermitLatestMonthTotal = data.AllPermitCompletedLatestMonth + data.AllPermitInProgressLatestMonth;
+            if (allPermitLatestMonthTotal > 0) {
+                $("#allPermitCompletedLatestMonthPercentage").html(toPercentage(data.AllPermitCompletedLatestMonth / allPermitLatestMonthTotal * 100));
+                $("#allPermitInProgressLatestMonthPercentage").html(toPercentage(data.AllPermitInProgressLatestMonth / allPermitLatestMonthTotal * 100));
+            }
+            else {
+                $("#allPermitCompletedLatestMonthPercentage").html("-");
+                $("#allPermitInProgressLatestMonthPercentage").html("-");
+            }
+            if (data.AllPermitLatestMonth > 0) {
+                $("#allPermitInExpectedFinishDateLatestMonth").html(toPercentage(data.AllPermitInExpectedFinishDateLatestMonth / data.AllPermitLatestMonth * 100));
+            }
+            else {
+                $("#allPermitInExpectedFinishDateLatestMonth").html("-");
+            }
+        }
+
+        function updateStatisticsSlaChart(data) {
+            reportPage2.statisticsSlaStatusChart.rawDataset = data.slaDataSet;
+            let maxYAxesHeight = 0;
+            reportPage2.statisticsSlaStatusChart.chartObj.data.datasets[0].data = data.slaDataSet.PermitNotStartedYet;
+            reportPage2.statisticsSlaStatusChart.chartObj.data.datasets[1].data = data.slaDataSet.PermitInTime;
+            reportPage2.statisticsSlaStatusChart.chartObj.data.datasets[2].data = data.slaDataSet.PermitOutTime;
+            reportPage2.statisticsSlaStatusChart.chartObj.data.labels = data.slaDataSet.monthLabels;
+            maxYAxesHeight = Math.max.apply(Math, [Math.max.apply(Math, data.slaDataSet.PermitNotStartedYet), Math.max.apply(Math, data.slaDataSet.PermitInTime), Math.max.apply(Math, data.slaDataSet.PermitOutTime)]);
+            reportPage2.statisticsSlaStatusChart.chartObj.options.scales.yAxes[0].ticks.suggestedMax = maxYAxesHeight + 10;
+            reportPage2.statisticsSlaStatusChart.defaultStatisticsSlaStatusChartLabels = data.slaDataSet.monthLabels;
+            reportPage2.statisticsSlaStatusChart.defaultStatisticsSlaStatusChartDatasets = reportPage2.statisticsSlaStatusChart.chartObj.data.datasets.slice();
+            reportPage2.statisticsSlaStatusChart.chartObj.update();
+        }
+
+        function updateStatisticsIdentityType(data) {
+            $("#statistics-citizen-type-total").val(toNumeric(data.CitizenCount));
+            $("#statistics-juristic-type-total").val(toNumeric(data.JuristicCount));
+
+            let total = data.CitizenCount + data.JuristicCount;
+            if (total > 0) {
+                $("#statistics-citizen-type-percentage").val(toPercentage(data.CitizenCount / total * 100));
+                $("#statistics-juristic-type-percentage").val(toPercentage(data.JuristicCount / total * 100));
+            }
+            else {
+                $("#statistics-citizen-type-percentage").val(toPercentage(0));
+                $("#statistics-juristic-type-percentage").val(toPercentage(0));
+            }
+        }
+
+        function updateOrganizationAndPermitNameChart(data) {
+            let labelArray = [];
+            let valueArray = [];
+            var i, chunk = 5;
+            let labelChunkArray = [];
+            let valueChunkArray = [];
+            let paginationDDL = [];
+            // Citizen Organization Chart
+            reportPage2.statisticsOrganizationByCitizenChart.datasetChunk.labelChunkArray = [];
+            reportPage2.statisticsOrganizationByCitizenChart.datasetChunk.valueChunkArray = [];
+            labelArray = data.requestByOrganization.OrganizationLabelsByCitizen;
+            valueArray = data.requestByOrganization.OrganizationRequestCountByCitizen;
+            for (i = 0; i < labelArray.length; i += chunk) {
+                labelChunkArray.push(labelArray.slice(i, i + chunk));
+                valueChunkArray.push(valueArray.slice(i, i + chunk));
+            }
+            reportPage2.statisticsOrganizationByCitizenChart.datasetChunk.labelChunkArray = labelChunkArray;
+            reportPage2.statisticsOrganizationByCitizenChart.datasetChunk.valueChunkArray = valueChunkArray;
+            
+            paginationDDL = [];
+            reportPage2.statisticsOrganizationByCitizenChart.datasetChunk.labelChunkArray.forEach(function (elem, idx) {
+                paginationDDL.push(
+                    {
+                        id: idx,
+                        text: idx + 1
+                    });
+            });
+            updateSelect2Option(paginationDDL, "pagination-ddl-citizen-request-organization");
+            $("#pagination-ddl-citizen-request-organization").val('0').trigger('change');
+
+            // Juristic Organization Chart
+            reportPage2.statisticsOrganizationByJuristicChart.datasetChunk.labelChunkArray = [];
+            reportPage2.statisticsOrganizationByJuristicChart.datasetChunk.valueChunkArray = [];
+            labelArray = data.requestByOrganization.OrganizationLabelsByJuristic;
+            valueArray = data.requestByOrganization.OrganizationRequestCountByJuristic;
+            labelChunkArray = [];
+            valueChunkArray = [];
+            for (i = 0; i < labelArray.length; i += chunk) {
+                labelChunkArray.push(labelArray.slice(i, i + chunk));
+                valueChunkArray.push(valueArray.slice(i, i + chunk));
+            }
+            reportPage2.statisticsOrganizationByJuristicChart.datasetChunk.labelChunkArray = labelChunkArray;
+            reportPage2.statisticsOrganizationByJuristicChart.datasetChunk.valueChunkArray = valueChunkArray;
+
+            paginationDDL = [];
+            reportPage2.statisticsOrganizationByJuristicChart.datasetChunk.labelChunkArray.forEach(function (elem, idx) {
+                paginationDDL.push(
+                    {
+                        id: idx,
+                        text: idx + 1
+                    });
+            });
+            updateSelect2Option(paginationDDL, "pagination-ddl-juristic-request-organization");
+            $("#pagination-ddl-juristic-request-organization").val('0').trigger('change');
+
+            // Citizen PermitName Chart
+            reportPage2.statisticsPermitnameByCitizenChart.datasetChunk.labelChunkArray = [];
+            reportPage2.statisticsPermitnameByCitizenChart.datasetChunk.valueChunkArray = [];
+            labelArray = data.requestByPermitName.PermitNameLabelsByCitizen;
+            valueArray = data.requestByPermitName.PermitNameRequestCountByCitizen;
+            labelChunkArray = [];
+            valueChunkArray = [];
+            for (i = 0; i < labelArray.length; i += chunk) {
+                labelChunkArray.push(labelArray.slice(i, i + chunk));
+                valueChunkArray.push(valueArray.slice(i, i + chunk));
+            }
+            reportPage2.statisticsPermitnameByCitizenChart.datasetChunk.labelChunkArray = labelChunkArray;
+            reportPage2.statisticsPermitnameByCitizenChart.datasetChunk.valueChunkArray = valueChunkArray;
+
+            paginationDDL = [];
+            reportPage2.statisticsPermitnameByCitizenChart.datasetChunk.labelChunkArray.forEach(function (elem, idx) {
+                paginationDDL.push(
+                    {
+                        id: idx,
+                        text: idx + 1
+                    });
+            });
+            updateSelect2Option(paginationDDL, "pagination-ddl-citizen-request-permitname");
+            $("#pagination-ddl-citizen-request-permitname").val('0').trigger('change');
+
+            // Juristic PermitName Chart
+            reportPage2.statisticsPermitnameByJuristicChart.datasetChunk.labelChunkArray = [];
+            reportPage2.statisticsPermitnameByJuristicChart.datasetChunk.valueChunkArray = [];
+            labelArray = data.requestByPermitName.PermitNameLabelsByJuristic;
+            valueArray = data.requestByPermitName.PermitNameRequestCountByJuristic;
+            labelChunkArray = [];
+            valueChunkArray = [];
+            for (i = 0; i < labelArray.length; i += chunk) {
+                labelChunkArray.push(labelArray.slice(i, i + chunk));
+                valueChunkArray.push(valueArray.slice(i, i + chunk));
+            }
+            reportPage2.statisticsPermitnameByJuristicChart.datasetChunk.labelChunkArray = labelChunkArray;
+            reportPage2.statisticsPermitnameByJuristicChart.datasetChunk.valueChunkArray = valueChunkArray;
+
+            paginationDDL = [];
+            reportPage2.statisticsPermitnameByJuristicChart.datasetChunk.labelChunkArray.forEach(function (elem, idx) {
+                paginationDDL.push(
+                    {
+                        id: idx,
+                        text: idx + 1
+                    });
+            });
+            updateSelect2Option(paginationDDL, "pagination-ddl-juristic-request-permitname");
+            $("#pagination-ddl-juristic-request-permitname").val('0').trigger('change');
+        }
+
+        function updateStatisticsSlaDoneRequestChart(data) {
+            let labelsArray = ['@Resource.Report.Statistics_SLA_Done_Request_InTime', '@Resource.Report.Statistics_SLA_Done_Request_OutTime'];
+            let maxYAxesHeight = 0;
+
+            reportPage2.statisticsSlaDonePermitChart.rawDataset = data.slaDataSet;
+            let dataArray = [data.slaDataSet.PermitDoneInTime.reduce((a, b) => a + b, 0), data.slaDataSet.PermitDoneOutTime.reduce((a, b) => a + b, 0)];
+            reportPage2.statisticsSlaDonePermitChart.chartObj.data.datasets[0].data = dataArray;
+            maxYAxesHeight = Math.max.apply(Math, dataArray) + 10;
+            reportPage2.statisticsSlaDonePermitChart.chartObj.data.labels = labelsArray;
+            reportPage2.statisticsSlaDonePermitChart.chartObj.options.scales.yAxes[0].ticks.suggestedMax = maxYAxesHeight;
+            reportPage2.statisticsSlaDonePermitChart.defaultstatisticsSlaDonePermitChartLabels = labelsArray;
+            reportPage2.statisticsSlaDonePermitChart.defaultstatisticsSlaDonePermitChartDatasets = reportPage2.statisticsSlaDonePermitChart.chartObj.data.datasets.slice();
+            reportPage2.statisticsSlaDonePermitChart.chartObj.update();
+        }
+
+        function updateStatisticsAverageOperationDays(data) {
+            $("#checkStatusAverageDay").html(toCurrency(data.CheckStatusAverageDay) || "-");
+            $("#pendingStatusAverageDay").html(toCurrency(data.PendingStatusAverageDay) || "-");
+            $("#paidFeeStatusAverageDay").html(toCurrency(data.PaidFeeStatusAverageDay) || "-");
+            $("#publishPermitStatusAverageDay").html(toCurrency(data.PublishPermitStatusAverageDay) || "-");
+            $("#rejectedOnCheckStatus").html(toNumeric(data.RejectedOnCheckStatus) || "-");
+            $("#rejectedOnPendingStatus").html(toNumeric(data.RejectedOnPendingStatus) || "-");
+        }
+    }
+
+    function initOrganizationAndPermitNameChart() {
+        //Organization Citizen
+        $("#pagination-ddl-citizen-request-organization").select2({
+            allowClear: false,
+        });
+
+        $("#pagination-ddl-citizen-request-organization").change(function () {
+            let pageSelected = $("#pagination-ddl-citizen-request-organization").val();
+            pageSelectedInt = parseInt(pageSelected);
+            onCitizenOrganizePaginationChange(pageSelectedInt);
+        });
+
+        $("#prev-citizen-request-organization").click(function () {
+            let pageSelected = $("#pagination-ddl-citizen-request-organization").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt -= 1
+            $("#pagination-ddl-citizen-request-organization").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        $("#next-citizen-request-organization").click(function () {
+            let pageSelected = $("#pagination-ddl-citizen-request-organization").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt += 1
+            $("#pagination-ddl-citizen-request-organization").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        //Organization Juristic
+        $("#pagination-ddl-juristic-request-organization").select2({
+            allowClear: false,
+        });
+
+        $("#pagination-ddl-juristic-request-organization").change(function () {
+            let pageSelected = $("#pagination-ddl-juristic-request-organization").val();
+            pageSelectedInt = parseInt(pageSelected);
+            onJuristicOrganizePaginationChange(pageSelectedInt);
+        });
+
+        $("#prev-juristic-request-organization").click(function () {
+            let pageSelected = $("#pagination-ddl-juristic-request-organization").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt -= 1
+            $("#pagination-ddl-juristic-request-organization").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        $("#next-juristic-request-organization").click(function () {
+            let pageSelected = $("#pagination-ddl-juristic-request-organization").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt += 1
+            $("#pagination-ddl-juristic-request-organization").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        //PermitName Citizen
+        $("#pagination-ddl-citizen-request-permitname").select2({
+            allowClear: false,
+        });
+
+        $("#pagination-ddl-citizen-request-permitname").change(function () {
+            let pageSelected = $("#pagination-ddl-citizen-request-permitname").val();
+            pageSelectedInt = parseInt(pageSelected);
+            onCitizenPermitNamePaginationChange(pageSelectedInt);
+        });
+
+        $("#prev-citizen-request-permitname").click(function () {
+            let pageSelected = $("#pagination-ddl-citizen-request-permitname").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt -= 1
+            $("#pagination-ddl-citizen-request-permitname").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        $("#next-citizen-request-permitname").click(function () {
+            let pageSelected = $("#pagination-ddl-citizen-request-permitname").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt += 1
+            $("#pagination-ddl-citizen-request-permitname").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        //PermitName Juristic
+        $("#pagination-ddl-juristic-request-permitname").select2({
+            allowClear: false,
+        });
+
+        $("#pagination-ddl-juristic-request-permitname").change(function () {
+            let pageSelected = $("#pagination-ddl-juristic-request-permitname").val();
+            pageSelectedInt = parseInt(pageSelected);
+            onJuristicPermitNamePaginationChange(pageSelectedInt);
+        });
+
+        $("#prev-juristic-request-permitname").click(function () {
+            let pageSelected = $("#pagination-ddl-juristic-request-permitname").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt -= 1
+            $("#pagination-ddl-juristic-request-permitname").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        $("#next-juristic-request-permitname").click(function () {
+            let pageSelected = $("#pagination-ddl-juristic-request-permitname").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt += 1
+            $("#pagination-ddl-juristic-request-permitname").val(pageSelectedInt.toString()).trigger('change');
+        });
+    }
+
+    function onCitizenOrganizePaginationChange(page) {
+        let labelsColor = [];
+        let labelsArray = [];
+        let valuesArray = [];
+        let maxXAxesHeight = 0;
+        reportPage2.statisticsOrganizationByCitizenChart.currentPage = -1;
+        if (isNumber(page)) {
+            reportPage2.statisticsOrganizationByCitizenChart.currentPage = page;
+            if (reportPage2.statisticsOrganizationByCitizenChart.chartObj.data.datasets.length > 0) {
+                labelsArray = reportPage2.statisticsOrganizationByCitizenChart.datasetChunk.labelChunkArray[page];
+                valuesArray = reportPage2.statisticsOrganizationByCitizenChart.datasetChunk.valueChunkArray[page];
+            }
+        }
+        if (valuesArray.length > 0) {
+            maxXAxesHeight = Math.max.apply(Math, valuesArray) + 10;
+        }
+        else {
+            maxXAxesHeight = 10;
+        }
+
+        if (labelsArray.length > 0) {
+            labelsArray.forEach(function (item, index) {
+                labelsColor.push(reportPage2.statisticsOrganizationByCitizenChart.xAxesBaseLabelsColor[index % reportPage2.statisticsOrganizationByCitizenChart.xAxesBaseLabelsColor.length]);
+            });
+        }
+        reportPage2.statisticsOrganizationByCitizenChart.chartObj.options.scales.xAxes[0].ticks.suggestedMax = maxXAxesHeight;
+        reportPage2.statisticsOrganizationByCitizenChart.chartObj.data.labels = labelsArray;
+        reportPage2.statisticsOrganizationByCitizenChart.chartObj.data.datasets[0].data = valuesArray;
+        reportPage2.statisticsOrganizationByCitizenChart.defaultstatisticsOrganizationByCitizenChartLabels = labelsArray.slice();
+        reportPage2.statisticsOrganizationByCitizenChart.defaultstatisticsOrganizationByCitizenChartDatasets = reportPage2.statisticsOrganizationByCitizenChart.chartObj.data.datasets.slice();
+        reportPage2.statisticsOrganizationByCitizenChart.chartObj.options.scales.yAxes[0].ticks.fontColor = labelsColor;
+        reportPage2.statisticsOrganizationByCitizenChart.chartObj.update();
+        
+        let paginationDDLLength = $('#pagination-ddl-citizen-request-organization > option').length;
+        if (paginationDDLLength == 0) {
+            $('#pagination-ddl-citizen-request-organization').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pagination-ddl-citizen-request-organization').removeAttr('disabled');
+        }
+
+        if (reportPage2.statisticsOrganizationByCitizenChart.currentPage <= 0) {
+            $("#prev-citizen-request-organization").attr('disabled', 'disabled');
+        }
+        else {
+            $("#prev-citizen-request-organization").removeAttr('disabled');
+        }
+
+        if (reportPage2.statisticsOrganizationByCitizenChart.currentPage >= paginationDDLLength - 1) {
+            $("#next-citizen-request-organization").attr('disabled', 'disabled');
+        }
+        else {
+            $("#next-citizen-request-organization").removeAttr('disabled');
+        }
+    }
+
+    function onJuristicOrganizePaginationChange(page) {
+        let labelsColor = [];
+        let labelsArray = [];
+        let valuesArray = [];
+        let maxXAxesHeight = 0;
+        reportPage2.statisticsOrganizationByJuristicChart.currentPage = -1;
+        if (isNumber(page)) {
+            reportPage2.statisticsOrganizationByJuristicChart.currentPage = page;
+            if (reportPage2.statisticsOrganizationByJuristicChart.chartObj.data.datasets.length > 0) {
+                labelsArray = reportPage2.statisticsOrganizationByJuristicChart.datasetChunk.labelChunkArray[page];
+                valuesArray = reportPage2.statisticsOrganizationByJuristicChart.datasetChunk.valueChunkArray[page];
+            }
+        }
+        if (valuesArray.length > 0) {
+            maxXAxesHeight = Math.max.apply(Math, valuesArray) + 10;
+        }
+        else {
+            maxXAxesHeight = 10;
+        }
+
+        if (labelsArray.length > 0) {
+            labelsArray.forEach(function (item, index) {
+                labelsColor.push(reportPage2.statisticsOrganizationByJuristicChart.xAxesBaseLabelsColor[index % reportPage2.statisticsOrganizationByJuristicChart.xAxesBaseLabelsColor.length]);
+            });
+        }
+        reportPage2.statisticsOrganizationByJuristicChart.chartObj.options.scales.xAxes[0].ticks.suggestedMax = maxXAxesHeight;
+        reportPage2.statisticsOrganizationByJuristicChart.chartObj.data.labels = labelsArray;
+        reportPage2.statisticsOrganizationByJuristicChart.chartObj.data.datasets[0].data = valuesArray;
+        reportPage2.statisticsOrganizationByJuristicChart.defaultstatisticsOrganizationByJuristicChartLabels = labelsArray.slice();
+        reportPage2.statisticsOrganizationByJuristicChart.defaultstatisticsOrganizationByJuristicChartDatasets = reportPage2.statisticsOrganizationByJuristicChart.chartObj.data.datasets.slice();
+        reportPage2.statisticsOrganizationByJuristicChart.chartObj.options.scales.yAxes[0].ticks.fontColor = labelsColor;
+        reportPage2.statisticsOrganizationByJuristicChart.chartObj.update();
+        
+        let paginationDDLLength = $('#pagination-ddl-juristic-request-organization > option').length;
+        if (paginationDDLLength == 0) {
+            $('#pagination-ddl-juristic-request-organization').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pagination-ddl-juristic-request-organization').removeAttr('disabled');
+        }
+
+        if (reportPage2.statisticsOrganizationByJuristicChart.currentPage <= 0) {
+            $("#prev-juristic-request-organization").attr('disabled', 'disabled');
+        }
+        else {
+            $("#prev-juristic-request-organization").removeAttr('disabled');
+        }
+
+        if (reportPage2.statisticsOrganizationByJuristicChart.currentPage >= paginationDDLLength - 1) {
+            $("#next-juristic-request-organization").attr('disabled', 'disabled');
+        }
+        else {
+            $("#next-juristic-request-organization").removeAttr('disabled');
+        }
+    }
+
+    function onCitizenPermitNamePaginationChange(page) {
+        let labelsColor = [];
+        let labelsArray = [];
+        let valuesArray = [];
+        let maxXAxesHeight = 0;
+        reportPage2.statisticsPermitnameByCitizenChart.currentPage = -1;
+        if (isNumber(page)) {
+            reportPage2.statisticsPermitnameByCitizenChart.currentPage = page;
+            if (reportPage2.statisticsPermitnameByCitizenChart.chartObj.data.datasets.length > 0) {
+                labelsArray = reportPage2.statisticsPermitnameByCitizenChart.datasetChunk.labelChunkArray[page];
+                valuesArray = reportPage2.statisticsPermitnameByCitizenChart.datasetChunk.valueChunkArray[page];
+            }
+        }
+        if (valuesArray.length > 0) {
+                    maxXAxesHeight = Math.max.apply(Math, valuesArray) + 10;
+        }
+        else {
+            maxXAxesHeight = 10;
+        }
+        if (labelsArray.length > 0) {
+            labelsArray.forEach(function (item, index) {
+                labelsColor.push(reportPage2.statisticsPermitnameByCitizenChart.xAxesBaseLabelsColor[index % reportPage2.statisticsPermitnameByCitizenChart.xAxesBaseLabelsColor.length]);
+            });
+        }
+        reportPage2.statisticsPermitnameByCitizenChart.chartObj.options.scales.xAxes[0].ticks.suggestedMax = maxXAxesHeight;
+        reportPage2.statisticsPermitnameByCitizenChart.chartObj.data.labels = labelsArray;
+        reportPage2.statisticsPermitnameByCitizenChart.chartObj.data.datasets[0].data = valuesArray;
+        reportPage2.statisticsPermitnameByCitizenChart.defaultstatisticsPermitnameByCitizenChartLabels = labelsArray.slice();
+        reportPage2.statisticsPermitnameByCitizenChart.defaultstatisticsPermitnameByCitizenChartDatasets = reportPage2.statisticsPermitnameByCitizenChart.chartObj.data.datasets.slice();
+        reportPage2.statisticsPermitnameByCitizenChart.chartObj.options.scales.yAxes[0].ticks.fontColor = labelsColor;
+        reportPage2.statisticsPermitnameByCitizenChart.chartObj.update();
+
+        let paginationDDLLength = $('#pagination-ddl-citizen-request-permitname > option').length;
+        if (paginationDDLLength == 0) {
+            $('#pagination-ddl-citizen-request-permitname').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pagination-ddl-citizen-request-permitname').removeAttr('disabled');
+        }
+
+        if (reportPage2.statisticsPermitnameByCitizenChart.currentPage <= 0) {
+            $("#prev-citizen-request-permitname").attr('disabled', 'disabled');
+        }
+        else {
+            $("#prev-citizen-request-permitname").removeAttr('disabled');
+        }
+
+        if (reportPage2.statisticsPermitnameByCitizenChart.currentPage >= paginationDDLLength - 1) {
+            $("#next-citizen-request-permitname").attr('disabled', 'disabled');
+        }
+        else {
+            $("#next-citizen-request-permitname").removeAttr('disabled');
+        }
+    }
+
+    function onJuristicPermitNamePaginationChange(page) {
+        let labelsColor = [];
+        let labelsArray = [];
+        let valuesArray = [];
+        let maxXAxesHeight = 0;
+        reportPage2.statisticsPermitnameByJuristicChart.currentPage = -1;
+        if (isNumber(page)) {
+            reportPage2.statisticsPermitnameByJuristicChart.currentPage = page;
+            if (reportPage2.statisticsPermitnameByJuristicChart.chartObj.data.datasets.length > 0) {
+                labelsArray = reportPage2.statisticsPermitnameByJuristicChart.datasetChunk.labelChunkArray[page];
+                valuesArray = reportPage2.statisticsPermitnameByJuristicChart.datasetChunk.valueChunkArray[page];
+            }
+        }
+        if (valuesArray.length > 0) {
+            maxXAxesHeight = Math.max.apply(Math, valuesArray) + 10;
+        }
+        else {
+            maxXAxesHeight = 10;
+        }
+
+        if (labelsArray.length > 0) {
+            labelsArray.forEach(function (item, index) {
+                labelsColor.push(reportPage2.statisticsPermitnameByJuristicChart.xAxesBaseLabelsColor[index % reportPage2.statisticsPermitnameByJuristicChart.xAxesBaseLabelsColor.length]);
+            });
+        }
+        reportPage2.statisticsPermitnameByJuristicChart.chartObj.options.scales.xAxes[0].ticks.suggestedMax = maxXAxesHeight;
+        reportPage2.statisticsPermitnameByJuristicChart.chartObj.data.labels = labelsArray;
+        reportPage2.statisticsPermitnameByJuristicChart.chartObj.data.datasets[0].data = valuesArray;
+        reportPage2.statisticsPermitnameByJuristicChart.defaultstatisticsPermitnameByJuristicChartLabels = labelsArray.slice();
+        reportPage2.statisticsPermitnameByJuristicChart.defaultstatisticsPermitnameByJuristicChartDatasets = reportPage2.statisticsPermitnameByJuristicChart.chartObj.data.datasets.slice();
+        reportPage2.statisticsPermitnameByJuristicChart.chartObj.options.scales.yAxes[0].ticks.fontColor = labelsColor;
+        reportPage2.statisticsPermitnameByJuristicChart.chartObj.update();
+        let paginationDDLLength = $('#pagination-ddl-juristic-request-permitname > option').length;
+        if (paginationDDLLength == 0) {
+            $('#pagination-ddl-juristic-request-permitname').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pagination-ddl-juristic-request-permitname').removeAttr('disabled');
+        }
+
+        if (reportPage2.statisticsPermitnameByJuristicChart.currentPage <= 0) {
+            $("#prev-juristic-request-permitname").attr('disabled', 'disabled');
+        }
+        else {
+            $("#prev-juristic-request-permitname").removeAttr('disabled');
+        }
+
+        if (reportPage2.statisticsPermitnameByJuristicChart.currentPage >= paginationDDLLength - 1) {
+            $("#next-juristic-request-permitname").attr('disabled', 'disabled');
+        }
+        else {
+            $("#next-juristic-request-permitname").removeAttr('disabled');
+        }
+    }
+
+    function updateSelect2Option(data, selector) {
+        let selected = $("#" + selector).select2("val");
+        $("#" + selector + " option").each(function() {
+            $(this).remove();
+        });
+        data.forEach(function (item) {
+            $("#" + selector).append(new Option(item.text, item.id));
+        });
+        $("#" + selector).val(selected);
+    }
+
+    function toCurrency(value) {
+        if (isNumber(value)) {
+            return Number(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+        else {
+            return value;
+        }
+    }
+
+    function toNumeric(value) {
+        if (isNumber(value)) {
+            return Number(value).toFixed(0).replace(/\d(?=(\d{3})+(?!\d))/g, '$&,');
+        }
+        else {
+            return value;
+        }
+    }
+
+    function toPercentage(value) {
+        if (isNumber(value)) {
+            return Number(value).toFixed(2).replace(/\d(?=(\d{3})+(?!\d))/g, '$&,').toString() + " %";
+        }
+        else {
+            return value;
+        }
+    }
+</script>
+
+

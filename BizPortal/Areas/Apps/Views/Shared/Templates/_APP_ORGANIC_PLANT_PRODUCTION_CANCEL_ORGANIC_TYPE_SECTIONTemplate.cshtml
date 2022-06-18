@@ -1,0 +1,94 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label>ชนิดพืช/พันธุ์/ผลิตภัณฑ์ :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_ORGANIC_TYPE }}
+            </div>
+
+            <div class="col-md-4">
+                <label>รหัสแปลง :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_AREA_ID }}
+            </div>
+
+            <div class="col-md-4">
+                <label>รหัสรับรอง :</label>
+                {{ this.APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_LICENCE_ID }}
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-8">
+                {{#xif " fieldExist(this.ADDRESS_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>เลขที่: </label> {{this.ADDRESS_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_MOO_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>หมู่ที่: </label> {{this.ADDRESS_MOO_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_VILLAGE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>หมู่บ้าน: </label> {{this.ADDRESS_VILLAGE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_SOI_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>ซอย: </label> {{this.ADDRESS_SOI_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_BUILDING_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>อาคาร: </label> {{this.ADDRESS_BUILDING_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_ROOMNO_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>ห้องเลขที่: </label> {{this.ADDRESS_ROOMNO_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_FLOOR_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>ชั้น: </label> {{this.ADDRESS_FLOOR_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_ROAD_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>ถนน: </label> {{this.ADDRESS_ROAD_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}</>
+                {{/xif}}
+                <label>ตำบล/แขวง: </label> {{this.ADDRESS_TUMBOL_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION_TEXT}}
+                <label>อำเภอ/เขต: </label> {{this.ADDRESS_AMPHUR_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION_TEXT}}
+                <label>จังหวัด: </label> {{this.ADDRESS_PROVINCE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION_TEXT}}
+                {{#xif " fieldExist(this.ADDRESS_POSTCODE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>รหัสไปรษณีย์: </label> {{this.ADDRESS_POSTCODE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_TELEPHONE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>โทรศัพท์: </label> {{this.ADDRESS_TELEPHONE_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_TELEPHONE_EXT_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <label>ต่อ:</label> {{this.ADDRESS_TELEPHONE_EXT_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}
+                {{/xif}}
+                {{#xif " fieldExist(this.ADDRESS_FAX_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION) " }}
+                <nobr><label>โทรสาร:</label> {{this.ADDRESS_FAX_APP_ORGANIC_PLANT_PRODUCTION_CANCEL_ORGANIC_TYPE_SECTION_PRODUCING_LOCATION}}</nobr>
+                {{/xif}}
+            </div>
+        </div>
+
+
+            <div class="col-md-12" style="float: right">
+
+                <div class="col-md-2 pr5" style="float: right;padding-left:0">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+                </div>
+                <div class="col-md-2 pl5" style="float: right">
+                    <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        {{/each}}
+        {{else}}
+        <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+            <div class="col-md-12 text-center">
+                ไม่พบข้อมูล
+            </div>
+        </div>
+        {{/xif}}
+</script>

@@ -1,0 +1,1181 @@
+﻿@model ApplicationViewModel
+@using Resources = BizPortal.Resources;
+@{
+    ViewBag.Title = Resources.Application.APPLICATION_TITLE_ADD;
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+@section ContentHeader{
+    <i class="fa fa-ticket fa fa-2x "></i>
+    <h4 class="m-t-xs inline padder">@ViewBag.Title</h4>
+}
+
+
+
+
+@using (Html.BeginForm("Add", "Applications", FormMethod.Post, new { id = "frmApplicationAdd" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.FileUploadRefCode)
+    @Html.HiddenFor(model => model.FileUploadName)
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApplicationSysName)
+                @Html.CustomTextBoxFor(model => model.ApplicationSysName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ApplicationSysName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApplicationName)
+                @Html.CustomTextBoxFor(model => model.ApplicationName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ApplicationName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.OrgCode)
+                @Html.DropDownListFor(model => model.OrgCode, (SelectList)ViewBag.OrganizationList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OrgCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConsumerKey)
+                @Html.CustomTextBoxFor(model => model.ConsumerKey, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.AppsHookClassName)
+                @Html.CustomTextBoxFor(model => model.AppsHookClassName, new { @class = "form-control", placeholder = Resources.Application.APPLICATION_HOOK_PLH })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SingleFormEnabled)
+                <label class="block">
+                    @Html.CheckBoxFor(model => model.SingleFormEnabled)
+                    @*<input type="checkbox" name="SingleFormEnabled" id="SingleFormEnabled" value="true" />*@ @Resources.Application.ENABLE_SINGLE_FORM
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="div_sec">
+        <div class="col-md-12 portlet">
+            <section class="panel panel-success app-info-configs-biz">
+                <header class="panel-heading">
+                    ผู้ประกอบการ (Juristic)
+                </header>
+                <section class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ApplicationUrl)
+                                @Html.CustomTextBoxFor(model => model.ApplicationUrl, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HandbookUrl)
+                                @Html.CustomTextBoxFor(model => model.HandbookUrl, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row operating-cost">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.OperatingCostType)
+                                        @Html.DropDownListFor(model => model.OperatingCostType, SelectListFactory.GetOperatingCostType(), new { @class = "form-control select2", placeholder = Resources.Application.LABEL_OPERATION_COST_TYPE })
+                                        @Html.ValidationMessageFor(model => model.OperatingCostType, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.OperatingCost)
+                                        @Html.TextBoxFor(model => model.OperatingCost, "{0:###0.00}", new { @class = "form-control", type = "number" })
+                                        @Html.ValidationMessageFor(model => model.OperatingCost, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.OperatingCost2)
+                                        @Html.TextBoxFor(model => model.OperatingCost2, "{0:###0.00}", new { @class = "form-control", type = "number" })
+                                        @Html.ValidationMessageFor(model => model.OperatingCost2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row operating-day">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.OperatingDayType)
+                                        @Html.DropDownListFor(model => model.OperatingDayType, SelectListFactory.GetOperatingDayType(), new { @class = "form-control select2", placeholder = Resources.Application.LABEL_OPERATION_DAY_TYPE })
+                                        @Html.ValidationMessageFor(model => model.OperatingDayType, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.OperatingDays)
+                                        @Html.TextBoxFor(model => model.OperatingDays, new { @class = "form-control", type = "number" })
+                                        @Html.ValidationMessageFor(model => model.OperatingDays, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.OperatingDays2)
+                                        @Html.TextBoxFor(model => model.OperatingDays2, new { @class = "form-control", type = "number" })
+                                        @Html.ValidationMessageFor(model => model.OperatingDays2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ShowRemark)
+                                <label class="block">
+                                    @Html.CheckBoxFor(model => model.ShowRemark)
+                                    @Resources.Application.TEXT_SHOW_REMARK
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-9 remark" style="display: none;">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Remark)
+                                @Html.TextAreaFor(model => model.Remark, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section class="panel panel-success app-info-configs-citizen">
+                <header class="panel-heading">
+                    ประชาชน (Citizen)
+                </header>
+                <section class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CitizenApplicationUrl)
+                                @Html.CustomTextBoxFor(model => model.CitizenApplicationUrl, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CitizenHandbookUrl)
+                                @Html.CustomTextBoxFor(model => model.CitizenHandbookUrl, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row operating-cost">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CitizenOperatingCostType)
+                                        @Html.DropDownListFor(model => model.CitizenOperatingCostType, SelectListFactory.GetOperatingCostType(), new { @class = "form-control select2", placeholder = Resources.Application.LABEL_OPERATION_COST_TYPE })
+                                        @Html.ValidationMessageFor(model => model.CitizenOperatingCostType, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CitizenOperatingCost)
+                                        @Html.TextBoxFor(model => model.CitizenOperatingCost, "{0:###0.00}", new { @class = "form-control", type = "number" })
+                                        @Html.ValidationMessageFor(model => model.CitizenOperatingCost, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CitizenOperatingCost2)
+                                        @Html.TextBoxFor(model => model.CitizenOperatingCost2, "{0:###0.00}", new { @class = "form-control", type = "number" })
+                                        @Html.ValidationMessageFor(model => model.CitizenOperatingCost2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row operating-day">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CitizenOperatingDayType)
+                                        @Html.DropDownListFor(model => model.CitizenOperatingDayType, SelectListFactory.GetOperatingDayType(), new { @class = "form-control select2", placeholder = Resources.Application.LABEL_OPERATION_DAY_TYPE })
+                                        @Html.ValidationMessageFor(model => model.CitizenOperatingDayType, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CitizenOperatingDays)
+                                        @Html.TextBoxFor(model => model.CitizenOperatingDays, new { @class = "form-control", type = "number" })
+                                        @Html.ValidationMessageFor(model => model.CitizenOperatingDays, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CitizenOperatingDays2)
+                                        @Html.TextBoxFor(model => model.CitizenOperatingDays2, new { @class = "form-control", type = "number" })
+                                        @Html.ValidationMessageFor(model => model.CitizenOperatingDays2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CitizenShowRemark)
+                                <label class="block">
+                                    @Html.CheckBoxFor(model => model.CitizenShowRemark)
+                                    @Resources.Application.TEXT_SHOW_REMARK
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-9 remark" style="display: none;">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CitizenRemark)
+                                @Html.TextAreaFor(model => model.CitizenRemark, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CitizenRemark, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section class="panel panel-success app-info-configs-digital-signature">
+                <header class="panel-heading">
+                    @Resources.Application.MANAGE_E_LICENSE
+                </header>
+                <section class="panel-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label class="block">
+                                    @Html.CheckBoxFor(model => model.IsEnableELicense)
+                                    @Resources.Application.ENABLE_E_LICENSE
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="showDigitalSignature" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div id="div_SigningDocumentType" class="col-md-12">
+                                    <span id="validateSigningDocumentType" class="text-danger ValidateSigningDocumentType" style="display: none;">กรุณาระบุประเภทเอกสาร</span>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SigningDocumentType)<br />
+                                    @Html.RadioButtonFor(model => model.SigningDocumentType, EDocumentPermitType.Organization)
+                                    @Resources.Application.DEPARTMENT_DOCUMENT<br />
+                                    @Html.RadioButtonFor(model => model.SigningDocumentType, EDocumentPermitType.Template)
+                                    @Resources.Application.SYSTEM_DOCUMENT<br />
+                                    @Html.ValidationMessageFor(model => model.SigningDocumentType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="form-group" id="showDocTemplateId">
+                                <div id="div_SigningDocumentTemplateID" class="col-md-12">
+                                    <span id="validateSigningDocumentTemplateID" class="text-danger ValidateSigningDocumentTemplateID" style="display: none;">กรุณาระบุ Template ID</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SigningDocumentCitizenTemplateID)
+                                        @Html.CustomTextBoxFor(model => model.SigningDocumentCitizenTemplateID, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SigningDocumentJuristicTemplateID)
+                                        @Html.CustomTextBoxFor(model => model.SigningDocumentJuristicTemplateID, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div id="div_SigningType" class="col-md-12">
+                                    <span id="validateSigningType" class="text-danger ValidateSigningType" style="display: none;">กรุณาระบุประเภทการลงลายมือชื่อแบบดิจิทัล</span>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SigningType)<br />
+                                    @Html.ValidationMessageFor(model => model.SigningType, "", new { @class = "text-danger" })
+                                    @Html.RadioButtonFor(model => model.SigningType, EDocumentType.NotSign)
+                                    @Resources.Application.NOT_SIGNING<br />
+                                    @Html.RadioButtonFor(model => model.SigningType, EDocumentType.Organization.ToString())
+                                    @Resources.Application.DEPARTMENT_SIGNING<br />
+                                    @Html.RadioButtonFor(model => model.SigningType, EDocumentType.Personal.ToString())
+                                    @Resources.Application.PERSONS_SIGNING<br />
+                                    @Html.RadioButtonFor(model => model.SigningType, EDocumentType.OrgByPerson)
+                                    @Resources.Application.ORG_BY_PERSON_SIGNING<br />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="showPersonsSigning" style="display: none;">
+                            <div class="col-md-9 no-padder">
+                                @if (ViewBag.Error != null)
+                                {
+                                    <p style="color:red">@ViewBag.Error</p>
+                                }
+                                @Html.Partial("~/Areas/Manage/Views/Applications/_SigningPositions.cshtml")
+                            </div>
+                            <div class="col-md-9 no-padder">
+                                @Html.Partial("~/Areas/Manage/Views/Applications/_SigningPersons.cshtml")
+                            </div>
+                        </div>
+
+                        <div id="showSigningExtendData" style="display: none;">
+                            <div class="col-md-9 no-padder">
+                                @Html.Partial("~/Areas/Manage/Views/Applications/_SigningExtendedData.cshtml")
+                            </div>
+                            <div class="col-md-9 no-padder">
+                                @Html.Partial("~/Areas/Manage/Views/Applications/_SigningExtendedDataJuristic.cshtml")
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.LogoFileID)
+                <div>
+                    <img id="appLogo" style="display: none; max-width: 150px; margin-bottom: 10px;" />
+                </div>
+                <div id="uploadLogoContainer"></div>
+                <button id="btnUploadLogo" type="button" tabindex="-1" class="btn btn-info"><i class="fa fa-upload"></i> Upload</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApplicationDetail)
+                <div id="ApplicationDetailEditor"></div>
+                @Html.HiddenFor(model => model.ApplicationDetail)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubmitMailMessage)
+                <div id="SubmitMailMessageEditor"></div>
+                @Html.HiddenFor(model => model.SubmitMailMessage)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ApprovedMailMessage)
+                <div id="ApprovedMailMessageEditor"></div>
+                @Html.HiddenFor(model => model.ApprovedMailMessage)
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.RejectedMailMessage)
+                <div id="RejectedMailMessageEditor"></div>
+                @Html.HiddenFor(model => model.RejectedMailMessage)
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group text-right">
+
+                <button type="submit" id="btn_submit" class="btn btn-s-md btn-primary">@Html.Raw(BizPortal.Resources.Global.BTN_ADD)</button>
+                <a href="@Url.Action("Index","Applications",new { Area="Manage"})" class="btn btn-s-md btn-default">@Html.Raw(BizPortal.Resources.Global.BTN_BACK)</a>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@*<hr>
+
+
+
+    <hr style="height: 100vh;">
+
+    <div id="two">
+        Second Element
+    </div>
+
+    <hr style="height: 100vh;">*@
+
+
+
+
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        var appsManage = {
+            variables: {
+                appImageUploader: null,
+                appImageUploadUrl: {
+                    url: '',
+                    reference: ''
+                },
+                appImageUploader1: null,
+                appImageUploadUrl1: {
+                    url1: '',
+                    reference1: ''
+                }
+            },
+            controls: {
+                form: '#frmApplicationAdd',
+                orgCode: '#OrgCode',
+                applicationDetail: '#ApplicationDetail',
+                applicationDetailEditor: '#ApplicationDetailEditor',
+                submitMailMessage: '#SubmitMailMessage',
+                submitMailMessageEditor: '#SubmitMailMessageEditor',
+                approvedMailMessage: '#ApprovedMailMessage',
+                approvedMailMessageEditor: '#ApprovedMailMessageEditor',
+                rejectedMailMessage: '#RejectedMailMessage',
+                rejectedMailMessageEditor: '#RejectedMailMessageEditor'
+            },
+            functions: {
+                guid: function () {
+                    function s4() {
+                        return Math.floor((1 + Math.random()) * 0x10000)
+                            .toString(16)
+                            .substring(1);
+                    }
+                    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                        s4() + '-' + s4() + s4() + s4();
+                },
+                init: function () {
+                    $(appsManage.controls.form).data('validator').settings.ignore = '';
+
+                    $('#ShowRemark, #CitizenShowRemark').change(function () {
+                        var $this = $(this);
+                        var $parent = $(this).parents('.row:first');
+
+                        if ($this.prop('checked')) {
+                            $('.remark', $parent).show();
+                        }
+                        else {
+                            $('.remark', $parent).hide();
+                        }
+                    }).trigger('change');
+
+                  $("#IsEnableELicense").on("change", function () {
+
+                        if ($(this).is(':checked')) {
+
+                         $("#showDigitalSignature").show();
+                        }
+                        else {
+                         $("#showDigitalSignature").hide();
+                        }
+                    }).trigger('change');
+                     $("input[name='SigningDocumentType']").on("change", function () {
+
+
+                        if ($(this).val() == '@EDocumentPermitType.Template' && $(this).is(':checked')) {
+                             $("#showSigningExtendData").show();
+                            if ( $("input[name='SigningType']").val() == '@EDocumentType.NotSign' && $("input[name='SigningType']").is(':checked')) {
+                                 $("#showSigningExtendData").hide();
+                            }
+
+                        }
+                        else {
+                            $("#showSigningExtendData").hide();
+
+                        }
+                    }).trigger('change');
+                   $("input[name='SigningType']").on("change", function () {
+                         if ($(this).val() == '@EDocumentType.NotSign' ) {
+                                $("#showSigningExtendData").hide();
+                         } else {
+                             if ($(this).is(':checked')) {
+                                 $("#showSigningExtendData").show();
+                             }
+
+                        }
+                        if ((($(this).val() == '@EDocumentType.NotSign' && $(this).is(':checked')) || $(this).val() == '@EDocumentType.Organization') && $(this).is(':checked')) {
+                            $("#showPersonsSigning").hide();
+
+                            if ($(this).val() == '@EDocumentType.NotSign') {
+                                $("#showSigningExtendData").hide();
+                            }
+                        }
+                        else {
+                            if ($(this).is(':checked')) {
+                                $("#showPersonsSigning").show();
+                            }
+                        }
+                    }).trigger('change');
+
+                    $('.app-info-configs-biz').each(function () {
+                        var $container = $(this);
+                        $('.operating-cost .select2', $container).each(function () {
+                            var $this = $(this);
+                            $this.select2({
+                                minimumResultsForSearch: -1,
+                                allowClear: true,
+                                placeholder: $this.attr('placeholder')
+                            }).change(function () {
+                                var val = $(this).val();
+                                if (val === 'Fixed') {
+                                    var $group = $('#OperatingCost', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_COST');
+                                    $group.show();
+                                    $('#OperatingCost2', $container).parents('.form-group').hide();
+                                }
+                                else if (val === 'StartAt') {
+                                    var $group = $('#OperatingCost', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_COST1');
+                                    $group.show();
+                                    $('#OperatingCost2', $container).parents('.form-group').hide();
+                                }
+                                else if (val === 'Range') {
+                                    var $group = $('#OperatingCost', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_COST1');
+                                    $group.show();
+
+                                    var $group2 = $('#OperatingCost2', $container).parents('.form-group');
+                                    $group2.find('label').text('@Resources.Application.APPLICATION_OPERATING_COST2');
+                                    $group2.show();
+                                }
+                                else {
+                                    $('#OperatingCost', $container).parents('.form-group').hide();
+                                    $('#OperatingCost2', $container).parents('.form-group').hide();
+                                }
+                            }).trigger('change');
+                        });
+
+                        $('.operating-day .select2', $container).each(function () {
+                            var $this = $(this);
+                            $this.select2({
+                                minimumResultsForSearch: -1,
+                                allowClear: true,
+                                placeholder: $this.attr('placeholder')
+                            }).change(function () {
+                                var val = $(this).val();
+                                if (val === 'Fixed') {
+                                    var $group = $('#OperatingDays', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_DAYS');
+                                    $group.show();
+                                    $('#OperatingDays2', $container).parents('.form-group').hide();
+                                }
+                                else if (val === 'StartAt') {
+                                    var $group = $('#OperatingDays', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_DAYS1');
+                                    $group.show();
+                                    $('#OperatingDays2', $container).parents('.form-group').hide();
+                                }
+                                else if (val === 'Range') {
+                                    var $group = $('#OperatingDays', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_DAYS1');
+                                    $group.show();
+
+                                    var $group2 = $('#OperatingDays2', $container).parents('.form-group');
+                                    $group2.find('label').text('@Resources.Application.APPLICATION_OPERATING_DAYS2');
+                                    $group2.show();
+                                }
+                                else {
+                                    $('#OperatingDays', $container).parents('.form-group').hide();
+                                    $('#OperatingDays2', $container).parents('.form-group').hide();
+                                }
+                            }).trigger('change');
+                        });
+                    });
+
+                    $('.app-info-configs-citizen').each(function () {
+                        var $container = $(this);
+                        $('.operating-cost .select2', $container).each(function () {
+                            var $this = $(this);
+                            $this.select2({
+                                minimumResultsForSearch: -1,
+                                allowClear: true,
+                                placeholder: $this.attr('placeholder')
+                            }).change(function () {
+                                var val = $(this).val();
+                                if (val === 'Fixed') {
+                                    var $group = $('#CitizenOperatingCost', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_COST');
+                                    $group.show();
+                                    $('#CitizenOperatingCost2', $container).parents('.form-group').hide();
+                                }
+                                else if (val === 'StartAt') {
+                                    var $group = $('#CitizenOperatingCost', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_COST1');
+                                    $group.show();
+                                    $('#CitizenOperatingCost2', $container).parents('.form-group').hide();
+                                }
+                                else if (val === 'Range') {
+                                    var $group = $('#CitizenOperatingCost', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_COST1');
+                                    $group.show();
+
+                                    var $group2 = $('#CitizenOperatingCost2', $container).parents('.form-group');
+                                    $group2.find('label').text('@Resources.Application.APPLICATION_OPERATING_COST2');
+                                    $group2.show();
+                                }
+                                else {
+                                    $('#CitizenOperatingCost', $container).parents('.form-group').hide();
+                                    $('#CitizenOperatingCost2', $container).parents('.form-group').hide();
+                                }
+                            }).trigger('change');
+                        });
+
+                        $('.operating-day .select2', $container).each(function () {
+                            var $this = $(this);
+                            $this.select2({
+                                minimumResultsForSearch: -1,
+                                allowClear: true,
+                                placeholder: $this.attr('placeholder')
+                            }).change(function () {
+                                var val = $(this).val();
+                                if (val === 'Fixed') {
+                                    var $group = $('#CitizenOperatingDays', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_DAYS');
+                                    $group.show();
+                                    $('#CitizenOperatingDays2', $container).parents('.form-group').hide();
+                                }
+                                else if (val === 'StartAt') {
+                                    var $group = $('#CitizenOperatingDays', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_DAYS1');
+                                    $group.show();
+                                    $('#CitizenOperatingDays2', $container).parents('.form-group').hide();
+                                }
+                                else if (val === 'Range') {
+                                    var $group = $('#CitizenOperatingDays', $container).parents('.form-group');
+                                    $group.find('label').text('@Resources.Application.APPLICATION_OPERATING_DAYS1');
+                                    $group.show();
+
+                                    var $group2 = $('#CitizenOperatingDays2', $container).parents('.form-group');
+                                    $group2.find('label').text('@Resources.Application.APPLICATION_OPERATING_DAYS2');
+                                    $group2.show();
+                                }
+                                else {
+                                    $('#CitizenOperatingDays', $container).parents('.form-group').hide();
+                                    $('#CitizenOperatingDays2', $container).parents('.form-group').hide();
+                                }
+                            }).trigger('change');
+                        });
+                    });
+
+                    $(appsManage.controls.form).submit(function () {
+                        $(appsManage.controls.applicationDetail).val($(appsManage.controls.applicationDetailEditor).summernote('code'));
+                        $(appsManage.controls.submitMailMessage).val($(appsManage.controls.submitMailMessageEditor).summernote('code'));
+                        $(appsManage.controls.approvedMailMessage).val($(appsManage.controls.approvedMailMessageEditor).summernote('code'));
+                        $(appsManage.controls.rejectedMailMessage).val($(appsManage.controls.rejectedMailMessageEditor).summernote('code'));
+                    });
+                    $(appsManage.controls.orgCode).select2();
+                    $(appsManage.controls.applicationDetailEditor).summernote({
+                        height: 400,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['para', ['ol', 'ul', 'paragraph', 'height']],
+                            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                            ['font', ['fontname', 'fontsize', 'color']],
+                            ['insert', ['picture', 'link', 'video']],
+                            ['hr', ['hr']],
+                            ['table', ['table']],
+                            ['misc', ['fullscreen', 'codeview', 'undo', 'redo']],
+                            ['mybutton', ['setID']]
+                        ],
+                        callbacks: {
+                            onImageUpload: function (files, editor, welEditable) {
+                                data = new FormData();
+                                data.append("file", files[0]);
+                                $.ajax({
+                                    data: data,
+                                    type: "POST",
+                                    url: "@Url.Action("FormUpload", "File", new { @id = 0 })?type=apps-image",
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        var imgNode = document.createElement('img');
+                                        imgNode.setAttribute('src', '@Url.Action("Get", "File", new { @area = "" })/' + data.FileID);
+                                        imgNode.setAttribute('class', 'img-responsive');
+                                        $(appsManage.controls.applicationDetailEditor).summernote('insertNode', imgNode);
+                                    }
+                                });
+                            }
+                        }
+                    });
+                    $(appsManage.controls.submitMailMessageEditor).summernote({
+                        height: 400,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['para', ['ol', 'ul', 'paragraph', 'height']],
+                            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                            ['font', ['fontname', 'fontsize', 'color']],
+                            ['insert', ['picture', 'link', 'video']],
+                            ['hr', ['hr']],
+                            ['table', ['table']],
+                            ['misc', ['fullscreen', 'codeview', 'undo', 'redo']],
+                            ['mybutton', ['setID']]
+                        ],
+                        callbacks: {
+                            onImageUpload: function (files, editor, welEditable) {
+                                data = new FormData();
+                                data.append("file", files[0]);
+                                $.ajax({
+                                    data: data,
+                                    type: "POST",
+                                    url: "@Url.Action("FormUpload", "File", new { @id = 0 })?type=apps-image",
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        var imgNode = document.createElement('img');
+                                        imgNode.setAttribute('src', '@Url.Action("Get", "File", new { @area = "" })/' + data.FileID);
+                                        imgNode.setAttribute('class', 'img-responsive');
+                                        $(appsManage.controls.submitMailMessageEditor).summernote('insertNode', imgNode);
+                                    }
+                                });
+                            }
+                        }
+                    });
+                    $(appsManage.controls.approvedMailMessageEditor).summernote({
+                        height: 400,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['para', ['ol', 'ul', 'paragraph', 'height']],
+                            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                            ['font', ['fontname', 'fontsize', 'color']],
+                            ['insert', ['picture', 'link', 'video']],
+                            ['hr', ['hr']],
+                            ['table', ['table']],
+                            ['misc', ['fullscreen', 'codeview', 'undo', 'redo']],
+                            ['mybutton', ['setID']]
+                        ],
+                        callbacks: {
+                            onImageUpload: function (files, editor, welEditable) {
+                                data = new FormData();
+                                data.append("file", files[0]);
+                                $.ajax({
+                                    data: data,
+                                    type: "POST",
+                                    url: "@Url.Action("FormUpload", "File", new { @id = 0 })?type=apps-image",
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        var imgNode = document.createElement('img');
+                                        imgNode.setAttribute('src', '@Url.Action("Get", "File", new { @area = "" })/' + data.FileID);
+                                        imgNode.setAttribute('class', 'img-responsive');
+                                        $(appsManage.controls.approvedMailMessageEditor).summernote('insertNode', imgNode);
+                                    }
+                                });
+                            }
+                        }
+                    });
+                    $(appsManage.controls.rejectedMailMessageEditor).summernote({
+                        height: 400,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['para', ['ol', 'ul', 'paragraph', 'height']],
+                            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                            ['font', ['fontname', 'fontsize', 'color']],
+                            ['insert', ['picture', 'link', 'video']],
+                            ['hr', ['hr']],
+                            ['table', ['table']],
+                            ['misc', ['fullscreen', 'codeview', 'undo', 'redo']],
+                            ['mybutton', ['setID']]
+                        ],
+                        callbacks: {
+                            onImageUpload: function (files, editor, welEditable) {
+                                data = new FormData();
+                                data.append("file", files[0]);
+                                $.ajax({
+                                    data: data,
+                                    type: "POST",
+                                    url: "@Url.Action("FormUpload", "File", new { @id = 0 })?type=apps-image",
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        var imgNode = document.createElement('img');
+                                        imgNode.setAttribute('src', '@Url.Action("Get", "File", new { @area = "" })/' + data.FileID);
+                                        imgNode.setAttribute('class', 'img-responsive');
+                                        $(appsManage.controls.rejectedMailMessageEditor).summernote('insertNode', imgNode);
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+
+
+                    appsManage.variables.appImageUploadUrl.reference = appsManage.functions.guid();
+                    appsManage.variables.appImageUploadUrl.url = '@Url.Content("~/plupload.axd")?reference=' + appsManage.variables.appImageUploadUrl.reference;
+
+
+
+
+                   appsManage.variables.appImageUploadUrl1.reference1 = appsManage.functions.guid();
+                   appsManage.variables.appImageUploadUrl1.url1 = '@Url.Content("~/plupload.axd")?reference=' + appsManage.variables.appImageUploadUrl1.reference1;
+
+
+
+
+
+                    appsManage.variables.appImageUploader = new plupload.Uploader({
+                        multi_selection: false,
+
+                        runtimes: 'html5,flash,silverlight,html4',
+
+                        browse_button: document.getElementById('btnUploadLogo'), // you can pass in id...
+                        container: document.getElementById('uploadLogoContainer'), // ... or DOM Element itself
+
+                        url: appsManage.variables.appImageUploadUrl.url,
+
+                        filters: {
+                            max_file_size: '3mb',
+                            mime_types: [
+                                { title: "Image files", extensions: "jpg,gif,png" }
+                            ]
+                        },
+
+                        // Flash settings
+                        flash_swf_url: '@Url.Content("~/Scripts/plupload/js/Moxie.swf")',
+
+                        // Silverlight settings
+                        silverlight_xap_url: '@Url.Content("~/Scripts/plupload/js/Moxie.xap")',
+
+                        init: {
+                            PostInit: function () {
+                                $('#btnUploadLogo').click(function () {
+                                    appsManage.variables.appImageUploader.start();
+                                    return false;
+                                });
+                            },
+
+                            FilesAdded: function (up, files) {
+                                var file = files[0];
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var $img = $('#appLogo');
+                                    $img.prop('src', e.target.result);
+                                    $img.show();
+                                };
+                                reader.readAsDataURL(file.getNative());
+
+                                appsManage.variables.appImageUploader.start();
+                            },
+
+                            FileUploaded: function (up, file, response) {
+                                $('#frmApplicationAdd #FileUploadRefCode').val(appsManage.variables.appImageUploadUrl.reference);
+                                $('#frmApplicationAdd #FileUploadName').val(file.name);
+                            },
+
+                            Error: function (up, err) {
+                                console.log('error', file, response);
+                            }
+                        }
+                    });
+                    appsManage.variables.appImageUploader.init();
+
+
+
+
+
+                    appsManage.variables.appImageUploader1 = new plupload.Uploader({
+                    multi_selection: false,
+
+                    runtimes: 'html5,flash,silverlight,html4',
+
+                    browse_button: document.getElementById('btnUploadSignature'),// you can pass in id...
+                    resize: {
+                        width: 0,
+                        height: 0,
+                        enabled: true
+                    },
+                    //container: document.getElementById('uploadLogoContainer'), // ... or DOM Element itself
+
+                    url: appsManage.variables.appImageUploadUrl1.url1,
+
+                    filters: {
+                        max_file_size: '3mb',
+                        mime_types: [
+                            { title: "Image files", extensions: "jpg,gif,png" }
+                        ]
+                    },
+
+                    // Flash settings
+                    flash_swf_url: '@Url.Content("~/Scripts/plupload/js/Moxie.swf")',
+
+                    // Silverlight settings
+                    silverlight_xap_url: '@Url.Content("~/Scripts/plupload/js/Moxie.xap")',
+
+                    init: {
+                        PostInit: function () {
+
+                            $('#btnUploadSignature').click(function () {
+                                // alert("btn up2");
+                                $("#uploadSignatureContainer").empty();
+                                $("#SignatureImageName").val("");
+                                $("#SignatureImageFile").val("");
+                                $("#img_signing_error").text("");
+                                appsManage.variables.appImageUploader1.start();
+                                return false;
+                            });
+                        },
+
+                        FilesAdded: function (up, files) {
+
+                            var file = files[0];
+                            var reader = new FileReader();
+                            var fileName = file.name;
+                            // alert(file.name);  //  get ชื่อ file
+                            // alert(file.type);  //  get file type
+                            $("#uploadSignatureContainer").append(fileName);
+                            $("#SignatureImageName").val(fileName);
+
+                            reader.onload = function (e) {
+                                // alert("loaded");
+                                $("#SignatureImageFile").val(e.target.result);
+
+                                var image = new Image();
+                                image.src = e.target.result;
+                                image.onload = function () {
+                                    // access image size here using this.width and this.height
+
+                                        if (200 != this.width && 50 != this.height) {
+                                            //alert("image width:" + this.width + " image hight" + this.height + '- image size is not suitable')
+                                            $("#img_signing_error").text("ขนาดรูปไม่ตรงตามข้อกำหนด");
+                                            $("#SignatureImageName").val("");
+                                            $("#SignatureImageFile").val("");
+                                            $("#uploadSignatureContainer").empty();
+                                            //$.each(appsManage.variables.appImageUploader1.files, function (i, file) {
+                                            //    appsManage.variables.appImageUploader1.removeFile(file);
+                                            //});
+                                            //alert(e.target.result);
+                                            //base64data = e.target.result;
+
+                                            //alert(base64data.indexOf(",")); //   ได้ตำแหน่ง comman string.substring(start, end[option])
+                                            //base64data = base64data.substring(base64data.indexOf(",") + 1);
+
+                                        }
+                                        else {
+                                           // alert("image width:" + this.width + " image hight" + this.height + '- image size is suitable');
+                                          //  $("#img_signing_error").text("");
+
+                                        }
+                                    }
+
+                                //alert(e.file.name);
+                                // var $img = $('#appLogo');
+                                // alert(e.target.result)
+                                // $img.prop('src', e.target.result); //
+                                // $img.show();
+                                // var img = new mOxie.Image();
+                                //img.onload = function () {
+                                    //   alert(this.width);
+                                //};
+                            };
+                            reader.readAsDataURL(file.getNative());
+                            appsManage.variables.appImageUploader1.start();
+                        },
+
+                        FileUploaded: function (up, file, response) {
+
+                            // $('#frmApplicationEdit #FileUploadRefCode').val(appsManage.variables.appImageUploadUrl.reference);
+                            // $('#frmApplicationEdit #FileUploadName').val(file.name);
+                        },
+
+                        Error: function (up, err) {
+                            console.log('error', file, response);
+
+                        }
+                    }
+                });
+                    appsManage.variables.appImageUploader1.init();
+
+
+
+                }
+            }
+        };
+
+          $("#btn_submit").click(function () {
+
+           // var rowCount = $('#SigningPositionsTable tr').length;
+           // var rowCount = $("#SigningPositionsTable > tbody").children.length - 1
+           // alert(rowCount);
+           // var table = $('#example').DataTable();
+           // alert($("input[name='SigningType']:checked").val());
+            var isValidDataTable = true;
+            var message_Positions = $('.ValidatePositions');
+               var message_Persons = $('.ValidatePersons');
+               var message_SigningDocumentType = $('.ValidateSigningDocumentType');
+               var message_SigningType = $('.ValidateSigningType');
+               var message_SigningDocumentTemplateID = $('.ValidateSigningDocumentTemplateID');
+                message_Positions.hide();
+                message_Persons.hide();
+               message_SigningDocumentType.hide();
+               message_SigningType.hide();
+               message_SigningDocumentTemplateID.hide();
+               // check Validate
+
+               if ($("input[name='IsEnableELicense']:checked").val()) {
+                   // alert($("input[name='SigningDocumentType']:checked").val());
+                   if ($("input[name='SigningDocumentType']:checked").length === 0) {
+                       $('html,body,section').animate({
+                           scrollTop: 1400
+                       });
+
+                       message_SigningDocumentType.show();
+                       isValidDataTable = false;
+                   }
+                   else {
+
+                   if ($("input[name='SigningDocumentType']:checked").length > 0) {
+                     // alert($('#SigningDocumentTemplateID').val())
+                       //  var txt = $('#SigningDocumentTemplateID').val();
+                       if (($('#SigningDocumentCitizenTemplateID').val() == null || $('#SigningDocumentCitizenTemplateID').val() == '') &&
+                    ( $('#SigningDocumentJuristicTemplateID').val() == null || $('#SigningDocumentJuristicTemplateID').val() == ''))
+                        {
+                    $('html,body,section').animate({
+                        scrollTop: 1600
+                        });
+
+                    message_SigningDocumentTemplateID.show();
+                    isValidDataTable = false;
+                       }
+
+                        }
+
+                   }
+                  // alert($("input[name='SigningType']:checked").val());
+                   if ($("input[name='SigningType']:checked").length === 0) {
+                     $('html,body,section').animate({
+                        scrollTop: 1600
+                        });
+
+                       message_SigningType.show();
+                    isValidDataTable = false;
+                   }
+                    if (($("input[name='SigningType']:checked").val() == '@EDocumentType.OrgByPerson')||($("input[name='SigningType']:checked").val() == '@EDocumentType.Personal')) {
+
+
+
+                //var position = $($(this).attr("href")).offset().top;
+                //alert(position);
+
+                //$("body, html").animate({
+                //    scrollTop: position
+                //} /* speed */);
+
+
+                var tablePositions = $("#SigningPositionsTable").DataTable();
+                var dataPositions = tablePositions
+                    .rows()
+                    .data();
+
+               // alert('The table has ' + dataPositions.length + ' records');
+
+
+                if (parseInt(dataPositions.length) == 0) {
+
+
+                    $('html,body,section').animate({
+                        scrollTop: 1600
+                    });
+
+                    message_Positions.show();
+                    isValidDataTable = false;
+
+
+                }
+
+
+
+
+
+                var tablePersons = $("#SigningPersonsTable").DataTable();
+                var dataPersons = tablePersons
+                    .rows()
+                    .data();
+
+
+                if (parseInt(dataPersons.length) == 0) {
+
+
+                    $('html,body,section').animate({
+                        scrollTop: 1850
+                    });
+                    message_Persons.show();
+                    isValidDataTable = false;
+
+                }
+               // alert('The table has ' + dataPersons.length + ' records');
+
+
+            }
+               }
+
+
+
+
+              return isValidDataTable;
+
+        });
+
+
+        $(document).ready(function () {
+            appsManage.functions.init();
+            initSP();
+            initSPositions();
+            initPaymentExtendData();
+            initPaymentExtendDataJuristic();
+        });
+    </script>
+}

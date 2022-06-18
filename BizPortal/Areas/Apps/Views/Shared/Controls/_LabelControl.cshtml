@@ -1,0 +1,8 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+<span class="form-control form-control-static">
+    @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.Control + "_TEXT", StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), Model.Control + "_TEXT"))
+</span>
+@Html.Hidden(Model.Control, Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.Control + "_TEXT", StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), Model.Control + "_TEXT")))

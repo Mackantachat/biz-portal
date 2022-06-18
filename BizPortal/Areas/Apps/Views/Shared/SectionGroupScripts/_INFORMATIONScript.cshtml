@@ -1,0 +1,443 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+        // Do something specific to each application on information page.
+        // For example, disable or enable some sections for this APP_ELECTRONIC_COMMERCIAL_CANCEL only.
+
+        var allApps = window.singleForm.allApps || [];
+
+        if ((window.singleForm.allApps || []).includes('APP_ELECTRONIC_COMMERCIAL_CANCEL')) {
+            apply_APP_ELECTRONIC_COMMERCIAL_CANCEL();
+        }
+
+        if ((window.singleForm.allApps || []).includes('APP_ELECTRONIC_COMMERCIAL_EDIT')) {
+            apply_APP_ELECTRONIC_COMMERCIAL_EDIT();
+        }
+
+        if ((window.singleForm.allApps || []).includes('APP_LAW_OFFICE')) {
+            $('div[data-control-name="HAVE_JURISTIC_COMMITTEE_IS_LAWYER"]').hide();
+            apply_APP_LAW_OFFICE();
+        }
+
+        if ((window.singleForm.allApps || []).includes('ขอยกเลิกใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ')) {
+            apply_APP_HEALTH_CANCEL();
+        }
+
+        if ((window.singleForm.allApps || []).includes('APP_SECURITIES_BUSINESS_EDIT')) {
+             $("#MODAL_COMMITTEE_INFORMATION").on('show.bs.modal', function () {
+                //setReadOnlyControlAndSumHP();
+                // alert('asdf');
+             });
+
+        }
+        if ((window.singleForm.allApps || []).includes('APP_ORGANIC_PLANT_PRODUCTION_CANCEL')) {
+            apply_APP_ORGANIC_PLANT_PRODUCTION_CANCEL();
+        }
+        if ((window.singleForm.allApps || []).includes('APP_ORGANIC_PLANT_PRODUCTION_RENEW')) {
+            apply_APP_ORGANIC_PLANT_PRODUCTION_RENEW();
+        }
+        if ((window.singleForm.allApps || []).includes('APP_TOURISM_BUSINESS')) {
+            apply_APP_TOURISM_BUSINESS();
+        }
+        if ((window.singleForm.allApps || []).includes('APP_LAW_OFFICE_EDIT')) {
+            apply_APP_LAW_OFFICE_EDIT();
+        }
+        if ((window.singleForm.allApps || []).includes('APP_LAW_OFFICE_CANCEL')) {
+            apply_APP_LAW_OFFICE_CANCEL();
+        }
+
+        @* Updated 2020-03-26: Allow select all provinces.
+        if (allApps.includes('APP_ACCOUNTING_SERVICE')
+           || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_RENEW')
+           || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_RENEW_TYPE_2')
+           || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT')
+           || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2')
+           || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_CANCEL')) {
+            apply_APP_ACCOUNTING_SERVICE_validators(allApps);
+        }
+        *@
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+
+            // Lat/Lng and office code may be reset once data has been loaded, so we need to reload them to controls again.
+            setTimeout(function () {
+                $(data.SectionData).each(function (i, d) {
+                    if (d.SectionName == 'INFORMATION_STORE') {
+                        if (d.FormData.hasOwnProperty("ADDRESS_LAT_INFORMATION_STORE__ADDRESS")) $("input[name='ADDRESS_LAT_INFORMATION_STORE__ADDRESS']").val(d.FormData.ADDRESS_LAT_INFORMATION_STORE__ADDRESS);
+                        if (d.FormData.hasOwnProperty("ADDRESS_LNG_INFORMATION_STORE__ADDRESS")) $("input[name='ADDRESS_LNG_INFORMATION_STORE__ADDRESS']").val(d.FormData.ADDRESS_LNG_INFORMATION_STORE__ADDRESS);
+
+                        if ($("select[name='AJAX_DROPDOWN_INFORMATION_STORE_OFFICE_CODE']").length > 0 && d.FormData.hasOwnProperty("AJAX_DROPDOWN_INFORMATION_STORE_OFFICE_CODE")) {
+                            $("select[name='AJAX_DROPDOWN_INFORMATION_STORE_OFFICE_CODE']").val(d.FormData.AJAX_DROPDOWN_INFORMATION_STORE_OFFICE_CODE).trigger('change');
+                        }
+                    }
+                });
+            }, 500);
+
+            @* [ทุกใบอนุญาต][ทุกกรณี] กรณีประชาชนข้อมูลบุคคลผู้ขออนุญาตในส่วนสัญชาติควรแสดงเป็นไทยเท่านั้น *@
+            @if (ViewBag.IdentityType == UserTypeEnum.Citizen)
+            {
+                <text>
+                if ($("select[name='DROPDOWN_GENERAL_INFORMATION__CITIZEN_NATIONALITY']").length > 0) {
+                    window.singleFormHelpers.form.setSelect2WithDefault($("select[name='DROPDOWN_GENERAL_INFORMATION__CITIZEN_NATIONALITY']"), 'TH', 'ไทย');
+                    window.singleFormHelpers.form.setSelect2Readonly($("select[name='DROPDOWN_GENERAL_INFORMATION__CITIZEN_NATIONALITY']"));
+                }
+                if ($("select[name='DROPDOWN_GENERAL_INFORMATION__CITIZEN_RACE']").length > 0) {
+                    window.singleFormHelpers.form.setSelect2WithDefault($("select[name='DROPDOWN_GENERAL_INFORMATION__CITIZEN_RACE']"), 'TH', 'ไทย');
+                    window.singleFormHelpers.form.setSelect2Readonly($("select[name='DROPDOWN_GENERAL_INFORMATION__CITIZEN_RACE']"));
+                }
+                </text>
+            }
+
+        });
+    });
+
+    function apply_APP_ELECTRONIC_COMMERCIAL_CANCEL() {
+
+        $('section').each(function (i, elm) {
+            if ($(elm).attr('data-section-name') != 'REQUESTOR_INFORMATION__HEADER') {
+                window.singleFormHelpers.form.setReadonly(elm);
+            }
+        });
+
+        // All fields should not required.
+        window.singleFormHelpers.form.ignoreValidations(document);
+
+        $('#btnNextAppSingleForm, #btnSaveDraftSingleForm').removeAttr('disabled');
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            // disable edit button on array of form
+            $(document).find("button[data-toggle='modal']").attr('disabled', 'disabled');
+        });
+    }
+    
+    function apply_APP_ORGANIC_PLANT_PRODUCTION_CANCEL() {
+
+        $('section').each(function (i, elm) {
+            if ($(elm).attr('data-section-name') != 'REQUESTOR_INFORMATION__HEADER') {
+                window.singleFormHelpers.form.setReadonly(elm);
+            }
+        });
+
+        // All fields should not required.
+        window.singleFormHelpers.form.ignoreValidations(document);
+
+        $('#btnNextAppSingleForm, #btnSaveDraftSingleForm').removeAttr('disabled');
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            // disable edit button on array of form
+            $(container).find("button[data-toggle='modal']").attr('disabled', 'disabled');
+        });
+    }
+
+    function apply_APP_ORGANIC_PLANT_PRODUCTION_RENEW() {
+
+        $('section').each(function (i, elm) {
+            if ($(elm).attr('data-section-name') != 'REQUESTOR_INFORMATION__HEADER') {
+                window.singleFormHelpers.form.setReadonly(elm);
+            }
+        });
+
+        $("input[name='ADDRESS_TELEPHONE_JURISTIC_HQ_ADDRESS'], input[name='ADDRESS_TELEPHONE_EXT_JURISTIC_HQ_ADDRESS'], input[name='ADDRESS_FAX_JURISTIC_HQ_ADDRESS'], input[name='ADDRESS_EMAIL_JURISTIC_HQ_ADDRESS']").prop('readonly', true);
+        window.singleFormHelpers.form.setSelectReadonly($("select[name='ADDRESS_POSTCODE_JURISTIC_HQ_ADDRESS']"));
+
+        // All fields should not required.
+        window.singleFormHelpers.form.ignoreValidations(document);
+
+        $('#btnNextAppSingleForm, #btnSaveDraftSingleForm').removeAttr('disabled');
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            // disable edit button on array of form
+            $(container).find("button[data-toggle='modal']").attr('disabled', 'disabled');
+        });
+    }
+
+    function apply_APP_ELECTRONIC_COMMERCIAL_EDIT() {
+
+        @* ยกเลิกการ readonly บน edit checkbox *@
+        $('#CHECKBOX_SHOW_INFORMATION_STORE_ADDRESS').attr('onclick','').unbind('click');
+        $('#CHECKBOX_SHOW_INFORMATION_STORE_NAME').attr('onclick', '').unbind('click');
+        $('#CHECKBOX_SHOW_INFORMATION_STORE_ADDRESS').prop('checked', false);
+        $('#CHECKBOX_SHOW_INFORMATION_STORE_NAME').prop('checked', false);
+
+        if ($("section[data-section-name='GENERAL_INFORMATION']").length > 0)
+            window.singleFormHelpers.form.setReadonly($("section[data-section-name='GENERAL_INFORMATION']"), true);
+        
+        $("input[name='ADDRESS_TELEPHONE_JURISTIC_HQ_ADDRESS'], input[name='ADDRESS_TELEPHONE_EXT_JURISTIC_HQ_ADDRESS'], input[name='ADDRESS_FAX_JURISTIC_HQ_ADDRESS'], input[name='ADDRESS_EMAIL_JURISTIC_HQ_ADDRESS']").prop('readonly', true);
+        window.singleFormHelpers.form.setSelectReadonly($("select[name='ADDRESS_POSTCODE_JURISTIC_HQ_ADDRESS']"));
+
+        @* ถ้า control มี class .restorable-disabled ระบบจะ restore ค่าเก่าตอนดึงจาก api มา replace ก่อนส่งไป save *@
+        $('#CHECKBOX_SHOW_INFORMATION_STORE_NAME').change(function () {
+            var checked = $(this).prop('checked');
+            $('input[name="INFORMATION_STORE_NAME_TH"], input[name="INFORMATION_STORE_NAME_EN"]').prop('disabled', !checked);
+            if (checked) {
+                $('input[name="INFORMATION_STORE_NAME_TH"], input[name="INFORMATION_STORE_NAME_EN"]').removeClass('restorable-disabled');
+            } else {
+                $('input[name="INFORMATION_STORE_NAME_TH"], input[name="INFORMATION_STORE_NAME_EN"]').addClass('restorable-disabled');
+            }
+        });
+
+        $('#CHECKBOX_SHOW_INFORMATION_STORE_ADDRESS').change(function () {
+            var checked = $(this).prop('checked');
+            $('input[name$="_INFORMATION_STORE__ADDRESS"], select[name$="_INFORMATION_STORE__ADDRESS"], button[id$="-INFORMATION_STORE__ADDRESS"]').prop('disabled', !checked);
+            if (checked) {
+                $('input[name$="_INFORMATION_STORE__ADDRESS"], select[name$="_INFORMATION_STORE__ADDRESS"]').removeClass('restorable-disabled');
+            } else {
+                $('input[name$="_INFORMATION_STORE__ADDRESS"], select[name$="_INFORMATION_STORE__ADDRESS"]').addClass('restorable-disabled');
+            }
+        });
+
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+            $('#CHECKBOX_SHOW_INFORMATION_STORE_NAME, #CHECKBOX_SHOW_INFORMATION_STORE_ADDRESS').trigger('change');
+        });
+    }
+
+    function apply_APP_LAW_OFFICE() {
+        $("select[name='DROPDOWN_APP_LAW_OFFICE_GENERAL_MANAGER_NATIONALITY']").change(function (e) {
+            let nationality = "";
+            if ($(this).val() !== "") {
+                if ($(this).val() === "TH") {
+                    nationality = "thai";
+                } else if ($(this).val() !== "TH") {
+                    nationality = "foreigner";
+                }
+            }
+            $('input[type="hidden"][name="APP_LAW_OFFICE_GENERAL_MANAGER_CHECK_NATIONALITY"]').val(nationality).trigger('change');
+        });
+    }
+
+    function apply_APP_HEALTH_CANCEL() {
+
+        $('section').each(function (i, elm) {
+            if ($(elm).attr('data-section-name') != 'X') {
+                 window.singleFormHelpers.form.setReadonly(elm);
+            }
+        });
+        window.singleFormHelpers.form.ignoreValidations(document);
+    }
+
+    function apply_APP_TOURISM_BUSINESS() {
+        var APP_TOURISM_BUSINESS_mappingPairs = [
+                { source: 'ADDRESS_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_MOO_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_MOO_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_ROOMNO_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_ROOMNO_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_SOI_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_SOI_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_BUILDING_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_BUILDING_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_FLOOR_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_FLOOR_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_ROAD_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_ROAD_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_PROVINCE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_AMPHUR_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_TUMBOL_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_POSTCODE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_POSTCODE_INFORMATION_STORE__ADDRESS_EN' },
+        ];
+
+        var provinceEnList = [];
+
+        $(APP_TOURISM_BUSINESS_mappingPairs).each(function (index, pair) {
+            if ($("[name='" + pair.source + "']").length > 0 && $("[name='" + pair.target + "']").length > 0) {
+                window.singleForm.triggerCtrlList.push(pair.source);
+
+                $("[name='" + pair.source + "']").change(function (e) {
+
+                    var srcVal = $(this).val();
+                    if (pair.source == 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS') {
+                        onProvinceChange(pair, provinceEnList);
+                    }
+                    else if (pair.source == 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS') {
+                        onAmphurChange(pair, 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS');
+                    }
+                    else if (pair.source == 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS') {
+                        onTumbolChange(pair, 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS', 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS');
+                    }
+                    else {
+                        $("[name='" + pair.target + "']").val(srcVal);
+                    }
+                });
+            }
+        });
+    
+    };
+
+    function apply_APP_LAW_OFFICE_EDIT() {
+        var APP_LAW_OFFICE_EDIT_mappingPairs = [
+                { source: 'ADDRESS_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_MOO_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_MOO_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_ROOMNO_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_ROOMNO_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_SOI_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_SOI_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_BUILDING_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_BUILDING_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_FLOOR_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_FLOOR_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_ROAD_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_ROAD_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_PROVINCE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_AMPHUR_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_TUMBOL_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_POSTCODE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_POSTCODE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_TELEPHONE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_TELEPHONE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_TELEPHONE_EXT_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_TELEPHONE_EXT_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_FAX_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_FAX_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_MOBILE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_MOBILE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_EMAIL_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_EMAIL_INFORMATION_STORE__ADDRESS_EN' },
+        ];
+
+        var provinceEnList = [];
+
+        $(APP_LAW_OFFICE_EDIT_mappingPairs).each(function (index, pair) {
+            if ($("[name='" + pair.source + "']").length > 0 && $("[name='" + pair.target + "']").length > 0) {
+                window.singleForm.triggerCtrlList.push(pair.source);
+
+                $("[name='" + pair.source + "']").change(function (e) {
+
+                    var srcVal = $(this).val();
+                    if (pair.source == 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS') {
+                        onProvinceChange(pair, provinceEnList);
+                    }
+                    else if (pair.source == 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS') {
+                        onAmphurChange(pair, 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS');
+                    }
+                    else if (pair.source == 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS') {
+                        onTumbolChange(pair, 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS', 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS');
+                    }
+                    else {
+                        $("[name='" + pair.target + "']").val(srcVal);
+                    }
+                });
+            }
+        });
+
+    };
+
+    function apply_APP_LAW_OFFICE_CANCEL() {
+        var APP_LAW_OFFICE_CANCEL_mappingPairs = [
+                { source: 'ADDRESS_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_MOO_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_MOO_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_ROOMNO_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_ROOMNO_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_SOI_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_SOI_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_BUILDING_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_BUILDING_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_FLOOR_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_FLOOR_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_ROAD_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_ROAD_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_PROVINCE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_AMPHUR_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_TUMBOL_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_POSTCODE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_POSTCODE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_TELEPHONE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_TELEPHONE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_TELEPHONE_EXT_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_TELEPHONE_EXT_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_FAX_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_FAX_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_MOBILE_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_MOBILE_INFORMATION_STORE__ADDRESS_EN' },
+                { source: 'ADDRESS_EMAIL_INFORMATION_STORE__ADDRESS', target: 'ADDRESS_EN_EMAIL_INFORMATION_STORE__ADDRESS_EN' },
+        ];
+
+        var provinceEnList = [];
+
+        $(APP_LAW_OFFICE_CANCEL_mappingPairs).each(function (index, pair) {
+            if ($("[name='" + pair.source + "']").length > 0 && $("[name='" + pair.target + "']").length > 0) {
+                window.singleForm.triggerCtrlList.push(pair.source);
+
+                $("[name='" + pair.source + "']").change(function (e) {
+
+                    var srcVal = $(this).val();
+                    if (pair.source == 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS') {
+                        onProvinceChange(pair, provinceEnList);
+                    }
+                    else if (pair.source == 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS') {
+                        onAmphurChange(pair, 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS');
+                    }
+                    else if (pair.source == 'ADDRESS_TUMBOL_INFORMATION_STORE__ADDRESS') {
+                        onTumbolChange(pair, 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS', 'ADDRESS_AMPHUR_INFORMATION_STORE__ADDRESS');
+                    }
+                    else {
+                        $("[name='" + pair.target + "']").val(srcVal);
+                    }
+                });
+            }
+        });
+
+    };
+
+    function apply_APP_ACCOUNTING_SERVICE_validators(allApps) {
+
+        var provinceCtrl = '';
+
+        if (allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE')
+            || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT')
+            || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2')) {
+            provinceCtrl = 'ADDRESS_PROVINCE_INFORMATION_STORE__ADDRESS';
+        } else if (allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_RENEW')
+                    || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_RENEW_TYPE_2')
+                    || allApps.includes('@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_CANCEL')) {
+            provinceCtrl = 'ADDRESS_PROVINCE_INFORMATION_STORE_ADDRESS_PROVINCE_ONLY';
+        }
+
+        if (provinceCtrl) {
+            window.singleForm.sectionGroupValidators.push({
+                sectionGroup: 'INFORMATION_STORE',
+                validate: function () {
+                    var provinceCode = $("select[name='" + provinceCtrl + "']").select2('val');
+                    if (provinceCode != '10') {
+                        var error = 'ขอได้เฉพาะสถานประกอบการในพื้นที่เขตของกรุงเทพมหานครเท่านั้น';
+                        return error;
+                    }
+
+                    return '';
+                }
+            });
+        }
+        
+
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    function fncSetProvinceEN(pCode, target, provinceEnList) {
+        var provinces = provinceEnList;
+        for (var i = 0; i < provinces.length; i++) {
+            if (provinces[i].id == pCode) {
+                window.singleFormHelpers.form.setSelect2WithDefault($(target), provinces[i].id, provinces[i].text);
+                break;
+            }
+        }
+    }
+
+    function onProvinceChange(pair, provinceEnList) {
+
+        var srcVal = $("[name='" + pair.source + "']").val();
+        if (provinceEnList.length > 0) {
+            fncSetProvinceEN(srcVal, "[name='" + pair.target + "']", provinceEnList);
+        } else {
+            $.get("@Url.Content("~/Api/v2/Geo/ProvincesEN")", function (resp) {
+                provinceEnList = resp.results;
+                fncSetProvinceEN(srcVal, "[name='" + pair.target + "']", provinceEnList);
+            });
+        }
+    }
+
+    function onAmphurChange(pair, province) {
+        var srcVal = $("[name='" + pair.source + "']").val();
+        var pcode = $("[name='" + province + "']").val();
+        $.get("@Url.Content("~/Api/v2/Geo/AmphursEN?pCode=")" + pcode, function (resp) {
+            for (var i = 0; i < resp.results.length; i++) {
+                if (resp.results[i].id == srcVal) {
+                    window.singleFormHelpers.form.setSelect2WithDefault("[name='" + pair.target + "']", resp.results[i].id, resp.results[i].text);
+                    break;
+                }
+            }
+        });
+    }
+
+    function onTumbolChange(pair, province, amphur) {
+        var srcVal = $("[name='" + pair.source + "']").val();
+        var pcode = $("[name='" + province + "']").val();
+        var acode = $("[name='" + amphur + "']").val()
+        $.get("@Url.Content("~/Api/v2/Geo/TambolsEN?pCode=")" + pcode + "&aCode=" + acode, function (resp) {
+            for (var i = 0; i < resp.results.length; i++) {
+                if (resp.results[i].id == srcVal) {
+                    window.singleFormHelpers.form.setSelect2WithDefault("[name='" + pair.target + "']", resp.results[i].id, resp.results[i].text);
+                    break;
+                }
+            }
+        });
+    };
+</script>

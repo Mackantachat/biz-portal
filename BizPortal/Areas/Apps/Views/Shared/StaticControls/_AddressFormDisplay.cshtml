@@ -1,0 +1,315 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+    var address = Model.Data as AddressControlData;
+    var rd = Model.DisplayReadonly;
+}
+
+@if (Model.AddressForm_ShowOnlyProvinceControl)
+{
+    if (rd)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <label>จังหวัด :</label>
+                <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.Text : null)" readonly />
+            </div>
+            <div class="col-md-6">
+                <label>อำเภอ/เขต :</label>
+                <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.Text : null)" readonly />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <label>จังหวัด :</label>
+                <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)" disabled>
+                    <option></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>อำเภอ/เขต :</label>
+                <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)" disabled>
+                    <option></option>
+                </select>
+            </div>
+        </div>
+    }
+    if (rd)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <label>ตำบล/แขวง :</label>
+                <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.Text : null)" readonly />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <label>ตำบล/แขวง :</label>
+                <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)" disabled>
+                    <option></option>
+                </select>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="row">
+        @if (Model.AddressForm_ShowAddressIdControl)
+        {
+            <div class="col-md-6">
+                <label>รหัสประจำบ้านตามทะเบียนบ้าน 11 หลัก :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ID", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ID", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+        @* ADDRESS_NO, MOO *@
+        @*@<div class="col-md-4">
+                <label>เลขที่ :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS", Model.DataKey), address != null ? address.Address : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS", Model.ClientID), @readonly = "readonly" })
+            </div>*@
+        @if (Model.AddressForm_ShowNbr)
+        {
+            <div class="col-md-4">
+                <label>เลขที่ :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS", Model.DataKey), address != null ? address.Address : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+        <div class="col-md-2">
+            <label>หมู่ที่ :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_MOO", Model.DataKey), address != null ? address.Moo : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOO", Model.ClientID), @readonly = "readonly" })
+        </div>
+    </div>
+    @* VILLAGE & SOI *@
+    <div class="row">
+        @if (Model.AddressForm_ShowVillageControl)
+        {
+            <div class="col-md-6">
+                <label>หมู่บ้าน :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_VILLAGE", Model.DataKey), address != null ? address.Village : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_VILLAGE", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+
+        @if (Model.AddressForm_ShowYakControl)
+        {
+            <div class="col-md-3">
+                <label>ตรอก/ซอย :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_SOI", Model.DataKey), address != null ? address.Soi : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_SOI", Model.ClientID), @readonly = "readonly" })
+            </div>
+            <div class="col-md-3">
+                <label>แยก :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_YAK", Model.DataKey), address != null ? address.Yak : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_YAK", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6">
+                <label>ตรอก/ซอย :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_SOI", Model.DataKey), address != null ? address.Soi : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_SOI", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+
+        @* BUILDING + FLOOR & ROAD *@
+        @if (Model.AddressForm_ShowBuildingControl)
+        {
+            <div class="col-md-4">
+                <label>อาคาร :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_BUILDING", Model.DataKey), address != null ? address.Building : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_BUILDING", Model.ClientID), @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                <label>ห้องเลขที่ :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ROOMNO", Model.DataKey), address != null ? address.Floor : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROOMNO", Model.ClientID), @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                <label>ชั้น :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_FLOOR", Model.DataKey), address != null ? address.Floor : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_FLOOR", Model.ClientID), @readonly = "readonly" })
+            </div>
+            <div class="col-md-4">
+                <label>ถนน :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ROAD", Model.DataKey), address != null ? address.Road : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROAD", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6">
+                <label>ถนน :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ROAD", Model.DataKey), address != null ? address.Road : string.Empty, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROAD", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+    </div>
+
+    @* PROVINCE & AMPHUR *@
+    if (rd)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <label>จังหวัด :</label>
+                <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.Text : null)" readonly />
+            </div>
+            <div class="col-md-6">
+                <label>อำเภอ/เขต :</label>
+                <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.Text : null)" readonly />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <label>จังหวัด :</label>
+                <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)" disabled>
+                    <option></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>อำเภอ/เขต :</label>
+                <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)" disabled>
+                    <option></option>
+                </select>
+            </div>
+        </div>
+    }
+
+    @* TUMBOL & POSTCODE *@
+    <div class="row">
+        @if (rd)
+        {
+            <div class="col-md-6">
+                <label>ตำบล/แขวง :</label>
+                <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.Text : null)" readonly />
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6">
+                <label>ตำบล/แขวง :</label>
+                <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)" disabled>
+                    <option></option>
+                </select>
+            </div>
+        }
+        @if (Model.AddressForm_ShowPostCodeControl)
+        {
+            <div class="col-md-6">
+                <label>รหัสไปรษณีย์ :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_POSTCODE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_POSTCODE", Model.ClientID), @readonly = "readonly" })
+            </div>
+        }
+    </div>
+    @* TELEPHONE & FAX *@
+    if (Model.AddressForm_ShowTelephoneControl)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <label>โทรศัพท์ :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_TELEPHONE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_TELEPHONE", Model.ClientID), @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                <label>ต่อ :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_TELEPHONE_EXT", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_TELEPHONE_EXT", Model.ClientID), @readonly = "readonly" })
+            </div>
+            <div class="col-md-6">
+                <label>โทรสาร :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_FAX", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_FAX", Model.ClientID), @readonly = "readonly" })
+            </div>
+        </div>
+    }
+    if (Model.AddressForm_ShowEmailControl || Model.AddressForm_ShowMapControl)
+    {
+        <div class="row">
+            @if (Model.AddressForm_ShowMobileControl)
+            {
+                <div class="col-md-6">
+                    <label>มือถือ :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.ClientID), @readonly = "readonly" })
+                </div>
+            }
+            @if (Model.AddressForm_ShowEmailControl)
+            {
+                <div class="col-md-6">
+                    <label>อีเมล :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.ClientID), @readonly = "readonly" })
+                </div>
+            }
+        </div>
+    }
+    if (Model.AddressForm_ShowMapControl)
+    {
+        string latControlId = string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID);
+        string longControlId = string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID);
+
+        <div class="row">
+            <div class="col-md-3">
+                <label>ละติจูด :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_LAT", Model.DataKey), null, new { @class = "form-control", id = latControlId, @readonly = "readonly" })
+            </div>
+            <div class="col-md-3">
+                <label>ลองจิจูด :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_LNG", Model.DataKey), null, new { @class = "form-control", id = longControlId, @readonly = "readonly" })
+            </div>
+        </div>
+        <br />
+        <div class="row @Model.DataKey-google-map-box">
+            <div class="col-md-6">
+                <div id="@Model.DataKey-addressFormGoogleMap" style="width:100%;height:400px"></div>
+            </div>
+        </div>
+
+
+
+        <script type="text/javascript">
+
+            @* Frontis: We must define initMap function and all required variables only once, otherwise it will cause unexpected errors. *@
+            if (!window.initialGoogleMap) {
+                window.initialGoogleMap = function() {
+                    // Do nothing, we will initialize map once application data is loaded.
+                }
+            }
+
+            var fncLoadMap_@Model.DataKey = function (data) {
+                setTimeout(function () {
+                    var latVal = $('#' + '@latControlId').val();
+                    var longVal = $('#' + '@longControlId').val();
+                    var isFoundLatLong = (latVal != '' && longVal != '');
+                    if (isFoundLatLong) {
+                        var myCenter = new google.maps.LatLng(latVal, longVal);
+                        //console.log('lat', { lat: latVal, long: longVal });
+
+                        var mapProp = {
+                            center: myCenter,
+                            zoom: 16,
+                        };
+                        var mapCanvas = document.getElementById("@Model.DataKey-addressFormGoogleMap");
+                        var mapGoogleObj = new google.maps.Map(mapCanvas, mapProp);
+                        var marker = new google.maps.Marker({ position: myCenter });
+                        marker.setMap(mapGoogleObj);
+                    }
+                    else {
+                        $('.@Model.DataKey-google-map-box').remove();
+                    }
+                }, 2000);
+            }
+
+            $(document).ready(function (e) {
+                // This event will be triggred from confirmation page.
+                window.singleFormHelpers.form.onDraftDataBound(function (data) {
+                    fncLoadMap_@Model.DataKey (data);
+                });
+
+                // This event will be trigger from application request view page.
+                window.singleFormHelpers.form.onApplicationRequestDataBound(function (data) {
+                    fncLoadMap_@Model.DataKey (data);
+                });
+            });
+        </script>
+    }
+}

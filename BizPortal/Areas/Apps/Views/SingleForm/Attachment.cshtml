@@ -1,0 +1,914 @@
+﻿@model List<BizPortal.ViewModels.SingleForm.SingleFormAttachmentViewModel>
+@using BizPortal.Utils.Helpers
+@using Resources = BizPortal.Resources
+
+@{
+    ViewBag.Title = ResourceHelper.GetResourceWordWithDefault("PAGE_TITLE_SINGLE_DOC", "Apps_SingleForm", "PAGE_TITLE_SINGLE_DOC");
+    ViewBag.TitleDesc1 = ": เนื่องจากขณะนี้การเชื่อมโยงแลกเปลี่ยนเอกสารที่ทางราชการออกให้ระหว่างหน่วยงานยังไม่เรียบร้อย";
+    ViewBag.TitleDesc2 = "หากท่านมีเอกสารดังกล่าว ขอให้ท่านดำเนินการอัปโหลดเพื่อใช้งานไปพลางก่อน";
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+
+    var identityId = ViewBag.IdentityId;
+    List<string> fileGroups = ViewBag.fileGroups;
+    var trid = ViewBag.trid;
+
+    var confirmationUrl = Url.ServiceAction("Confirmation", "SingleForm", new { area = "Apps", fromDB = ViewBag.FromDB });
+    var predocUrl = Url.BizAction("GetPredoc", "File", new { area = "" });
+    var checkHealthPredocUrl = Url.BizAction("CheckPredocFile", "File", new { area = "" });
+
+}
+@functions {
+    string GetFileLabelText(BizPortal.ViewModels.SingleForm.SingleFormAttachmentViewModel file)
+    {
+        var text = file.FileNameDisplay != null ? file.FileNameDisplay : file.FileName;
+        text = ResourceHelper.GetResourceWordWithDefault(text, "Apps_SingleForm_Filelist", text);
+        if (file.FormatValues != null)
+        {
+            text = string.Format(text, file.FormatValues.ToArray());
+        }
+        return text + (file.Required && file.FileGroup != "FREE_DOC_SECTION" ? " *" : "");
+    }
+
+    string GetFileTypeName(BizPortal.ViewModels.SingleForm.SingleFormAttachmentViewModel file)
+    {
+        var text = file.FileNameDisplay != null ? file.FileNameDisplay : file.FileName;
+        text = ResourceHelper.GetResourceWordWithDefault(text, "Apps_SingleForm_Filelist", text);
+        if (file.FormatValues != null)
+        {
+            text = string.Format(text, file.FormatValues.ToArray());
+        }
+        return text;
+    }
+}
+
+<div class="sw-main sw-theme-circles">
+    <ul class="nav nav-tabs step-anchor">
+        <li class="done"><a>1</a><label>กรอกแบบฟอร์ม</label></li>
+        <li class="active"><a>2</a><label>อัปโหลดเอกสาร</label></li>
+        <li><a>3</a><label>ยืนยันความถูกต้อง</label></li>
+    </ul>
+</div>
+<section>
+    <form id="frmAttachment" method="post" action="@Url.Content("~/Api/V2/SingleForm/Attachments")?language=@ViewBag.CurrentLang">
+        <input type="hidden" name="transaction_id" value="@trid" />
+        <h6>ไฟล์เอกสารที่คุณต้องเตรียม @ViewBag.FileTotal ฉบับ ประกอบไปด้วยเอกสารเหล่านี้...</h6>
+        
+        @{int count = 0;}
+        @foreach (var group in fileGroups)
+        {
+            var files = Model.Where(o => o.FileGroup == group).ToList();
+
+            if (files.Count > 0)
+            {
+                <label>@ResourceHelper.GetResourceWordWithDefault(group, "Apps_SingleForm_Filegroup", group)</label>
+            }
+
+            foreach (var file in files)
+            {
+                if (!file.AddItemButton)
+                {
+                    if (file.DisplaySpecificFileName)
+                    {
+                        <div class="row single-form-app-selection">
+                            <div class="col-md-9 form-group">
+                                <label>@GetFileLabelText(file)</label>
+                                <div class="form-group">
+                                    @foreach (var option in file.SpecificFileNames)
+                                    {
+                                        <div class="radio">
+                                            <label><input type="radio" name="radio-@file.FileName" value="@option" />@ResourceHelper.GetResourceWordWithDefault(option, "Apps_SingleForm_Filelist", option)</label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <div class="invisibility">
+                                    <input type="text" id="document-@file.FileName" name="document-@file.FileName" class="btn btn-default uploader" />
+                                </div>
+                                <div class="invisibility document-display">
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row single-form-app-selection">
+                            <div class="col-md-7 form-group">
+                                <label>@GetFileLabelText(file)</label>
+                                @if (file.FileName.StartsWith("FREE_DOC"))
+                                {
+                                    <br />
+                                    @Html.Label(BizPortal.Resources.Apps_SingleForm_Filelist.FREE_DOC__INPUT_FILE_TYPE)
+                                    <input class="form-control template-file-reason-@file.FileName"
+                                           id="file-reason-@file.FileName"
+                                           type="text"
+                                           name="template_@file.FileName"
+                                           value="@file.FileReason" />
+                                }
+                                @if (!string.IsNullOrEmpty(file.Note))
+                                {
+                                    //<br />
+                                    //<span>*</span><span> @ResourceHelper.GetResourceWordWithDefault(file.Note, "Apps_SingleForm_Filelist", file.Note)</span>
+                                    <div class="row">
+                                        <div class="M-12">@Html.Raw(ResourceHelper.GetResourceWordWithDefault(file.Note, "Apps_SingleForm_Filelist", file.Note))</div>
+                                    </div>
+                                }
+                                @if (!string.IsNullOrEmpty(file.Note_2))
+                                {
+                                    //<br />
+                                    //<span style="margin-right: 1.8px">&nbsp;</span><span> @ResourceHelper.GetResourceWordWithDefault(file.Note_2, "Apps_SingleForm_Filelist", file.Note_2)</span>
+                                    <div class="row">
+                                        <div class="M-12">@Html.Raw(ResourceHelper.GetResourceWordWithDefault(file.Note_2, "Apps_SingleForm_Filelist", file.Note_2))</div>
+                                    </div>
+                                }
+                                @if (!string.IsNullOrEmpty(file.Note_3))
+                                {
+                                    //<br />
+                                    //span style="margin-right: 1.8px">&nbsp;</span><span> @ResourceHelper.GetResourceWordWithDefault(file.Note_3, "Apps_SingleForm_Filelist", file.Note_3)</span>
+                                    <div class="row">
+                                        <div class="M-12">@Html.Raw(ResourceHelper.GetResourceWordWithDefault(file.Note_3, "Apps_SingleForm_Filelist", file.Note_3))</div>
+                                    </div>
+                                }
+                                @if (!string.IsNullOrEmpty(file.DocFormUrl))
+                                {
+                                    var docUrl = file.DocFormUrl;
+                                    if (docUrl.StartsWith("~"))
+                                    {
+                                        docUrl = Url.Content(docUrl);
+                                    }
+                                    <br />
+                                    <a class="btn btn-biz-blue" href="@docUrl" target="_blank">
+                                        <i class="fa fa-download"></i>
+                                        ดาวโหลดแบบฟอร์ม
+                                    </a>
+                                }
+                            </div>
+                            <div class="col-md-5 form-group upload-document-info pull-right">
+                                <div class="invisibility">
+                                    <input type="text"
+                                           id="document-@file.FileName"
+                                           name="document-@file.FileName"
+                                           maxsize="@(file.FileSize != null ? file.FileSize.MaxFileSize : "")"
+                                           filter="@(file.FileFilter != null ? file.FileFilter : "")"
+                                           isEnableUrl= "@(file.FileIsEnableUrl)"
+                                           owners="@(file.FileConsumerKey != null ? string.Join(",", file.FileConsumerKey) : "" )"
+                                           predoc-data-file_name="@file.FileName"
+                                           predoc-error="false"
+                                           class="btn btn-default uploader @((file.AddItemButton || file.IsAddedItem) ? "ignore" : "")" />
+
+                                    <div id="document-@file.FileName-remark" class="upload-doc-remark">@ResourceHelper.GetResourceWordWithDefault("UPLOAD_DOC_REMARK", "Apps_SingleForm_Filelist", "UPLOAD_DOC_REMARK")</div>
+                                </div>
+                                <div class="invisibility document-display">
+
+                                </div>
+                            </div>
+                            @if (file.PreDoc)
+                            {
+                                <span class="col-md-12 predoc-desc" style="text-align: right;font-weight: 600;font-size: 0.8em;margin-top: 10px;"></span>
+                            }
+                        </div>
+                    }
+                }
+
+                if (file.AddItemButton)
+                {
+
+                    <div id="add-item-@file.FileName"></div>
+                    <div class="row single-form-app-selection template-@file.FileName" style="display: none;">
+                        <div class="col-md-7 form-group">
+                            <label>@GetFileLabelText(file)</label>
+                            @if (file.FileName == "FREE_DOC")
+                            {
+                                <br />
+                                @Html.Label(BizPortal.Resources.Apps_SingleForm_Filelist.FREE_DOC__INPUT_FILE_TYPE)
+                                <input class="form-control template-file-reason-@file.FileName" type="text" name="template_@file.FileName" />
+                            }
+
+                            @if (!string.IsNullOrEmpty(file.Note))
+                            {
+                                <br />
+                                <span>*</span><span> @ResourceHelper.GetResourceWordWithDefault(file.Note, "Apps_SingleForm_Filelist", file.Note)</span>
+                            }
+                            @if (!string.IsNullOrEmpty(file.Note_2))
+                            {
+                                <br />
+                                <span style="margin-right: 1.8px">&nbsp;</span><span> @ResourceHelper.GetResourceWordWithDefault(file.Note_2, "Apps_SingleForm_Filelist", file.Note_2)</span>
+                            }
+                            @if (!string.IsNullOrEmpty(file.Note_3))
+                            {
+                                <br />
+                                <span style="margin-right: 1.8px">&nbsp;</span><span> @ResourceHelper.GetResourceWordWithDefault(file.Note_3, "Apps_SingleForm_Filelist", file.Note_3)</span>
+                            }
+                            @if (!string.IsNullOrEmpty(file.DocFormUrl))
+                            {
+                                <br />
+                                <a class="btn btn-biz-blue" href="@file.DocFormUrl" target="_blank">
+                                    <i class="fa fa-download"></i>
+                                    ดาวโหลดแบบฟอร์ม
+                                </a>
+                            }
+                        </div>
+                        <div class="col-md-5 form-group upload-document-info pull-right">
+                            <div class="invisibility">
+                                <input type="text"
+                                       id="template-document-@file.FileName"
+                                       name="template-@file.FileName"
+                                       owners="@(file.FileConsumerKey != null ? string.Join(",", file.FileConsumerKey) : "" )"
+                                       class="btn btn-default template-uploader ignore class-@file.FileName" />
+                                <div class="upload-doc-remark">@ResourceHelper.GetResourceWordWithDefault("UPLOAD_DOC_REMARK", "Apps_SingleForm_Filelist", "UPLOAD_DOC_REMARK")</div>
+                            </div>
+                            <div class="invisibility document-display">
+
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="doc-cnt-@file.FileName" name="doc-cnt-@file.FileName" class="btn btn-default" />
+                    <div class="row" style="margin-bottom: 20px">
+                        @{
+                            var addText = ResourceHelper.GetResourceWordWithDefault(file.AddItemBtnText, "Apps_SingleForm_Filelist", file.AddItemBtnText);
+                            if (addText.Length > 100)
+                            {
+                                if (addText.IndexOf(" เช่น ") > 0)
+                                {
+                                    addText = addText.Split(new string[] { " เช่น " }, StringSplitOptions.RemoveEmptyEntries)[0];
+                                }
+                            }
+                        }
+                        <button type="button"
+                                data-file_name="@file.FileName"
+                                data-max_item="@file.AddItemMax"
+                                data-file_display_name="@GetFileLabelText(file)"
+                                data-maxsize="@(file.FileSize != null ? file.FileSize.MaxFileSize : "")"
+                                data-filter="@(file.FileFilter != null ? file.FileFilter : "")"
+                                data-isEnableUrl= "@(file.FileIsEnableUrl)"
+                                data-owners="@(file.FileConsumerKey != null ? string.Join(",", file.FileConsumerKey) : "" )"
+                                class="btn btn-biz-blue col-md-12 add-file-btn">
+                            เพิ่ม <b>@addText</b>
+                        </button>
+                    </div>
+                                    }
+
+                                }
+
+            //count++;
+
+            //if (count> 2) { break; }
+        }       
+
+        <div class="row">
+            <div class="col-md-12 form-group text-center single-form-footer-btn">
+                <input type="hidden" id="Status" name="Status" value="@ApplicationStatusV2Enum.DRAFT.ToString()" />
+                @if (ViewBag.FromDB)
+                {
+                    <a href="@Url.EncodedAction("Index", "SingleForm", new { area="Apps", trid=trid.ToString(), app = ViewBag.AppStepTotal, fromDB=true })"
+                       class="btn btn-default">@Html.Raw(Resources.Apps_SingleForm.BTN_BACK)</a>
+                }
+                else
+                {
+                    <a href="@Url.EncodedAction("Index", "SingleForm", new { area="Apps", trid=trid.ToString(), app = ViewBag.AppStepTotal })" class="btn btn-default">@Html.Raw(Resources.Apps_SingleForm.BTN_BACK)</a>
+                }
+
+                <button type="submit" id="btnSaveDraftAttachment" class="btn btn-default" onclick="$(uploadControl.controls.formStatus).val('@ApplicationStatusV2Enum.DRAFT.ToString()')">@Html.Raw(Resources.Apps_SingleForm.BTN_SAVE_DRAFT)</button>
+                <button type="submit" id="btnSubmitAttachment" class="btn btn-success" onclick="$(uploadControl.controls.formStatus).val('@ApplicationStatusV2Enum.WAITING.ToString()')">@Html.Raw(Resources.Apps_SingleForm.BTN_SUBMIT_ATTACHMENT)</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<div class="modal fade" id="attachmentReviewModal" tabindex="-1" role="dialog" aria-labelledby="attachmentReviewModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="attachmentReviewModalLabel">ยืนยันเอกสารที่อัปโหลด</h4>
+            </div>
+            <div class="modal-body">
+                @foreach (var group in fileGroups)
+                {
+                    <div id="modal_@group" class="pr15 pl15"></div>
+                }
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <input type="hidden" id="modalValid" name="modalValid" value="false" />
+                        <button class="btn btn-success" data-dismiss="modal" id="btnAttachmentReviewModalOk" onclick="$(uploadControl.controls.modalValid).val('true'); $(uploadControl.controls.form).submit();">@Resources.Apps_SingleForm.BTN_OK</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnAttachmentReviewModalCancel">@Resources.Apps_SingleForm.BTN_CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section PageScripts {
+<script type="text/javascript">
+        var uploadControl = {
+            controls: {
+                form: '#frmAttachment',
+                formStatus: '#Status',
+                modalValid: '#modalValid'
+            },
+            variables: {
+                fileGroupId: {},
+                uploadedFiles: Array(),
+                tid: '@trid',
+                getFileUrl: '@Url.Action("GetV2", "File", new { area = "" })',
+                pdfIconUrl: "@Url.Content("~/img/icons/icons8-pdf 2-48.png")",
+                imgIconUrl: "@Url.Content("~/img/icons/icon-image.png")",
+                docIconUrl: "@Url.Content("~/img/icons/icon-doc.png")",
+                fileCount: {},
+                fileList: [
+                    @foreach (var file in Model)
+                    {
+                            <text>
+                    {
+                        addItemButton: @file.AddItemButton.ToString().ToLower(),
+                        predoc: @file.PreDoc.ToString().ToLower(),
+                        PreDocFileName: '@file.PreDocFileName',
+                        PreDocType: '@file.PreDocType',
+                        PreDocOrg: '@file.PreDocOrg',
+                        fileName: '@file.FileName',
+                        OriginalFileName: '@file.OriginalFileName',
+                        FileNameDisplay: '@GetFileLabelText(file)',
+                        fileTypeName: '@GetFileTypeName(file)',
+                        fileGroup: '@file.FileGroup',
+                        fileTranslation: '@GetFileLabelText(file)',
+                        file: null,
+                        uploader: '#document-@file.FileName',
+                        container: '#modal_@file.FileGroup',
+                        </text>
+                        if (file.Required)
+                        {
+                            <text>
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        },
+                        </text>
+                        }
+                        if (file.DisplaySpecificFileName)
+                        {
+                            <text>
+                        fileTypeCode: [
+                            @foreach (var option in file.SpecificFileNames)
+                            {
+                                <text>
+                            "@option",
+                            </text>
+                            }
+                        ]
+                        </text>
+                        }
+                        <text>
+                    },
+                    </text>
+                    }
+                ]
+            },
+            functions: {
+                init: function () {
+                    @foreach (var file in Model.Where(o => o.DisplaySpecificFileName))
+                    {
+                        <text>
+                    $('input:radio[name=radio-@file.FileName]:first').prop('checked', true);
+                    $('input:radio[name=radio-@file.FileName]').change(uploadControl.functions.fileTypeChanged);
+                    </text>
+                    }
+
+                    $(uploadControl.controls.form + ' button[type=submit]').ladda('bind');
+                    $(uploadControl.controls.form).ajaxForm({
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        clearForm: false,
+                        beforeSubmit: function (data, jqForm, options) {
+                            if ($(uploadControl.controls.formStatus).val() == "@ApplicationStatusV2Enum.DRAFT.ToString()") {
+                                $.ladda('stopAll');
+                                return true;
+                            }
+
+                            var formValid = jqForm.validate().form();
+                            var modalValid = false;
+
+                            if ($(uploadControl.controls.modalValid).val() == "false") {
+                                uploadControl.functions.renderModal();
+                                $.ladda('stopAll');
+                                return false;
+                            } else {
+                                modalValid = true;
+                            }
+
+                            formValid = formValid && modalValid;
+                            return formValid;
+                        },
+                        customData: function (data, jqForm, options) {
+                            var l = $(uploadControl.controls.form + ' button[type=submit]').ladda();
+                            l.ladda('start');
+
+                            uploadControl.variables.uploadedFiles = Array();
+                            var fileCnt = 0;
+                            var fileTotal = 0;
+                            for (var i = 0; i < uploadControl.variables.fileList.length; i++) {
+                                var doc = uploadControl.variables.fileList[i];
+                                var shouldCount = doc.OriginalFileName != 'FREE_DOC';
+
+                                if (shouldCount) {
+                                    fileTotal++;
+                                }
+
+                                if (doc.file || doc.predoc) {
+                                    if (shouldCount) {
+                                        fileCnt++;
+                                    }
+
+                                    var group = $.grep(uploadControl.variables.uploadedFiles, function (e) { return e.Description == doc.fileGroup; });
+
+                                    if (!group.length) {
+                                        group = {
+                                            FileGroupID: uploadControl.variables.fileGroupId[doc.fileGroup],
+                                            Description: doc.fileGroup,
+                                            Files: Array()
+                                        };
+                                        uploadControl.variables.uploadedFiles.push(group);
+                                    } else {
+                                        group = group[0];
+                                    }
+
+                                    if (doc.predoc) {
+                                        doc.file.FileTypeCode = doc.OriginalFileName;
+                                        doc.file.Extras = {
+                                            FILETYPECODE: doc.OriginalFileName,
+                                            FILETYPENAME: doc.fileTypeName,
+                                            DISPLAYNAME: doc.FileNameDisplay,
+                                            OWNERS: $(doc.uploader).attr('owners'),
+                                            PREDOC: true,
+                                        };
+                                    }
+                                    else {
+
+                                        doc.file.FileTypeCode = doc.fileName;
+                                        var displayName = doc.FileNameDisplay;
+
+                                        if (doc.fileName.startsWith("FREE_DOC")) {
+                                            doc.file.FileReason = $("#file-reason-" + doc.fileName).val();
+                                            displayName += ": " + doc.file.FileReason;
+                                        }
+
+                                        doc.file.Extras = {
+                                            FILETYPECODE: $(doc.uploader).data('filetypecode'),
+                                            FILETYPENAME: doc.fileTypeName,
+                                            DISPLAYNAME: displayName,
+                                            OWNERS: $(doc.uploader).attr('owners'),
+                                            PREDOC: false,
+                                        };
+                                    }
+
+                                    group.Files.push(doc.file);
+                                }
+                                else {
+                                    if (shouldCount && (!doc.required || doc.addItemButton)) {
+                                        fileCnt++;
+                                    }
+                                }
+                            }
+
+                            var data = {
+                                transaction_id: '@trid',
+                                fileCnt: fileCnt,
+                                fileTotal: fileTotal,
+                                UploadedFiles: uploadControl.variables.uploadedFiles
+                            };
+
+                            options.data = JSON.stringify(data);
+                        },
+                        error: function (xhr, status, error, $form) {
+                            var data = xhr.responseJSON;
+                            $.ladda('stopAll');
+                            notify2('error', '', data.Message);
+                        },
+                        success: function (responseText, statusText, xhr, $form) {
+                            var data = xhr.responseJSON;
+                            $.ladda('stopAll');
+                            if ($(uploadControl.controls.formStatus).val() == "@ApplicationStatusV2Enum.DRAFT.ToString()") {
+                                if (data.Type == 1) {
+                                    notify2('success', data.Message, '', window.location.href);
+                                }
+                                else {
+                                    notify2('error', '', data.Message);
+                                }
+                            } else {
+                                if (data.Type == 1) {
+                                    notify2('success', 'บันทึกเอกสารแนบเรียบร้อยแล้ว', ' กำลังย้ายไปหน้าตรวจสอบข้อมูล', '@confirmationUrl');
+                                } else {
+                                    notify2('error', '', data.Message);
+                                }
+                            }
+                        }
+                    });
+
+                    for (var i = 0; i < uploadControl.variables.fileList.length; i++) {
+                        var doc = uploadControl.variables.fileList[i];
+                        var uploader = $(doc.uploader);
+
+                        if (doc.fileTypeCode != undefined && doc.fileTypeCode.constructor == Array) {
+                            $('input:radio[name=radio-' + doc.fileName + ']').data('document', doc);
+                            var radioChk = $('input:radio[name=radio-' + doc.fileName + ']:checked').val();
+                            $(uploader).data('filetypecode', radioChk);
+                        } else {
+                            $(uploader).data('filetypecode', doc.fileName);
+                        }
+                    }
+
+                    uploadControl.functions.initUploadButton($('.uploader'));
+                    uploadControl.functions.getFile();
+                    uploadControl.functions.formValidate();
+                    uploadControl.functions.renderUploader();
+                },
+                initUploadButton: function (uploadButtons) {
+
+                    uploadButtons.uploader({
+                        url: {
+                            fileConsumerKey: '@System.Configuration.ConfigurationManager.AppSettings["FileConsumerKey"]',
+                            fileServiceUrl: '@Url.Action("Upload","File", new { Area="", language = ViewBag.CurrentLang })', 
+                            fileSignedInfoUrl: '@Url.Content("~/Api/V2/File/SignedFileInfo")',
+                            fileUploadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceUploadTokenPath"]',
+                            fileDownloadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceDownloadTokenPath"]',
+                            fileOldUploadUrl: '@Url.Content("~/Api/v2/FileExplorer/List")'
+                        },
+                        extras: {
+                            OWNER_IDENT_ID: '@identityId'
+                        },
+                        events: {
+                            onFileSelected: function (data) {
+                                var predocUploader = $('[predoc-data-file_name="' + data.Extras.filetypecode + '"]');
+                                if (data.Extras.filetypecode === predocUploader.attr('predoc-data-file_name')) {
+                                    data.isPredocError = true; //set true because selected file = error
+                                }
+
+                                $.post('@Url.Content("~/Api/V2/SingleForm/RegisterFileMetaData")', data, function(meta) {
+                                    for (var i = 0; i < uploadControl.variables.fileList.length; i++) {
+                                        var doc = uploadControl.variables.fileList[i];
+  
+                                        if ($(doc.uploader).prop('id') == data.UploaderID) {
+                                            doc.file = data;
+                                            doc.isPredocError = false; //for display uploaded file. not uploader
+                                            break;
+                                        }
+                                    }
+                                    uploadControl.functions.renderUploader();
+                                });
+                            }
+                        }
+                    });
+                },
+                printTime: function(myDate) {
+                    var paddy = function paddy(n, p, c) {
+                        var pad_char = typeof c !== 'undefined' ? c : '0';
+                        var pad = new Array(1 + p).join(pad_char);
+                        return (pad + n).slice(-pad.length);
+                    };
+                    return paddy(myDate.getDate(),2) + "/" + paddy((myDate.getMonth() + 1),2) + "/" + (myDate.getFullYear() + 543) + " " +
+                        paddy(myDate.getHours(),2) + ":" + paddy(myDate.getMinutes(),2) + " น.";
+                },
+                showPredocUploader: function (fileName) {
+                    var predocUploader = $('[predoc-data-file_name="' + fileName + '"]');
+                    predocUploader.parent().removeClass('invisibility');
+                },
+                renderPredoc: function (doc, uploader) {
+                    var url = '@checkHealthPredocUrl' + '?docName=' + doc.OriginalFileName;
+                    $.get(url, function () {
+                        //alert("success");
+                    })
+                        .done(function (data) {
+                            doc.isPredocError = false;
+                            var $item = $('<img style="vertical-align: top;" src="' + uploadControl.variables.pdfIconUrl + '" />' +
+                                '<div style="display: inline-block"><label><a href="#">' + doc.PreDocFileName + '</a></label></div>'
+                            );
+
+                            var $del_btn = $('<button type="button" class="btn btn-xs btn-danger">@Html.Raw(Resources.Global.BTN_DELETE)</button>');
+                            $del_btn.data('file', doc.file);
+                            $del_btn.click(function () {
+                                var $this = $(this);
+                                var file = $this.data('file');
+                                uploadControl.functions.removeFile(file.FileID);
+                            });
+
+                            uploader.parent().addClass('invisibility');
+                            uploader.closest('.upload-document-info').find('div.document-display').empty();
+                            uploader.closest('.upload-document-info').find('div.document-display').append($item).removeClass('invisibility');
+                            $('.predoc-desc').html('อัปโหลดอัตโนมัติและได้รับการยืนยันความถูกต้องแล้ว จาก<b>' + doc.PreDocOrg + '</b> (ไม่ต้องอัปโหลดซ้ำ)');
+                            $('.predoc-desc').removeClass('error');
+                        })
+                        .fail(function (error) {
+                            console.log(error);
+                        });
+                },
+                renderUploaderItem: function (doc) {
+                    var uploader = $(doc.uploader);
+
+                    if (typeof uploadControl.variables.fileCount[doc.OriginalFileName] === 'undefined') {
+                        uploadControl.variables.fileCount[doc.OriginalFileName] = 0;
+                    }
+
+                    if ((!doc.file || doc.file == null) && !doc.predoc) {
+                        if (doc.required) {
+                            $(uploader).rules('remove'); // clear rules
+                            $(uploader).rules('add', doc.rules);
+                        }
+                        $(uploader).val('');
+                        uploader.parent().removeClass('invisibility');
+                        uploader.closest('.upload-document-info').find('div.document-display').addClass('invisibility');
+                        uploader.parent().find('.input-url').val('');
+                        uploader.parent().find('.url-container').hide();
+                    }
+                    else {
+                        uploadControl.variables.fileCount[doc.OriginalFileName]++;
+                        if (doc.required) {
+                            $(uploader).rules('remove'); // clear rules
+                        }
+                        if (doc.predoc) {
+                            uploadControl.functions.renderPredoc(doc, uploader);
+                        }
+                        else {
+                            if (doc.isPredocError == true) {
+                                uploadControl.functions.showPredocUploader(doc.fileName);
+                                if (doc.required) {
+                                    $(uploader).rules('remove'); // clear rules
+                                    $(uploader).rules('add', doc.rules);
+                                }
+                            }
+                            else {
+                                var fileIcon = doc.file.ContentType == "application/pdf" ? uploadControl.variables.pdfIconUrl : uploadControl.variables.docIconUrl;
+                                var myDate = typeof doc.file.CreatedDate !== 'undefined' ? new Date(doc.file.CreatedDate) : new Date();
+                                var UploadTime = uploadControl.functions.printTime(myDate);
+                                var $item = $('<img style="vertical-align: top;max-width: 50px;max-height: 50px;padding: 5px;" src="' + fileIcon + '" />' +
+                                    '<div style="display: inline-block"><label style="word-break: break-all;">' + uploadControl.functions.getFilePreviewLink(doc.file) + '</label><br/>' +
+                                    (doc.file.FileSize > 0 ? '<label>ขนาดไฟล์:</label> ' + (doc.file.FileSize / 1024).toFixed(0) + ' KB <br/>' : '')   +
+                                    '<label>อัปโหลดเมื่อ:</label> ' + UploadTime + '</div>');
+                                var $del_btn = $('<button type="button" class="btn btn-xs btn-danger">@Html.Raw(Resources.Global.BTN_DELETE)</button>');
+
+                                $del_btn.data('file', doc.file);
+                                $del_btn.click(function () {
+                                    var $this = $(this);
+                                    var file = $this.data('file');
+                                    uploadControl.functions.removeFile(file.FileID);
+                                });
+
+                                uploader.parent().addClass('invisibility');
+                                uploader.closest('.upload-document-info').find('div.document-display').empty();
+                                uploader.closest('.upload-document-info').find('div.document-display').append($del_btn).append($item).removeClass('invisibility');
+                            }
+                        }
+                    }
+                },
+                renderUploader: function () {
+
+                    uploadControl.variables.fileCount = {};
+
+                    for (var i = 0; i < uploadControl.variables.fileList.length; i++) {
+                        var doc = uploadControl.variables.fileList[i];
+                        uploadControl.functions.renderUploaderItem(doc);
+                    }
+                    for (var name in uploadControl.variables.fileCount) {
+                        $("#doc-cnt-" + name).val(uploadControl.variables.fileCount[name]);
+                    }
+                },
+                fileTypeChanged: function () {
+                    var selected = $(this).val();
+                    var doc = $(this).data('document');
+                    $(doc.uploader).data('filetypecode', selected);
+                },
+                getFilePreviewLink: function (file) {
+                    var fileName = file.FileName;
+
+                    if (file.ContentType == 'file/url') {
+                         return '<a href="' + fileName + '" target="_blank">' + fileName + '</a>';
+                    }
+                    else {
+                         return '<a href="' + uploadControl.variables.getFileUrl + "?tid=@trid&fid=" + file.FileID + '&name=' + fileName + '" target="_blank">' + fileName + '</a>';
+                    }
+                },
+                getFilePreviewLinkLogicPredoc: function (doc) {
+                    var isPredocError = doc.isPredocError;
+                    var file = doc.file;
+                    var fileName = '';
+                    if (file.FileTypeCode === doc.fileName) {
+                        fileName = doc.PreDocFileName
+                        if (isPredocError == true) {
+                            fileName = file.FileName;
+                        }
+
+                        if (doc.PreDocFileName.trim() == '') {
+                            fileName = file.FileName;
+                        }
+                    }
+                    return '<a href="' + uploadControl.variables.getFileUrl +
+                        "?tid=@trid&fid=" + file.FileID + '&name=' + fileName + '" target="_blank">' + fileName + '</a>';
+                },
+                removeFile: function (fileId) {
+                    for (var i = 0; i < uploadControl.variables.fileList.length; i++) {
+                        var doc = uploadControl.variables.fileList[i];
+                        if (doc.file != null && doc.file.FileID == fileId) {
+                            for (var group in uploadControl.variables.fileGroupId) {
+                                if (group == doc.fileGroup) {
+                                    $.ajax({
+                                        url: '@Url.Content("~/Api/V2/SingleForm/Attachments")/@trid/files/' + fileId + '/' + uploadControl.variables.fileGroupId[group],
+                                        type: 'DELETE',
+                                        success: function (res) { }
+                                    });
+                                }
+                            }
+                            doc.file = null;
+                            break;
+                        }
+                    }
+                    uploadControl.functions.renderUploader();
+                },
+                getFile: function () {
+                    // Get File form DB
+                    $.get('@Url.Content("~/Api/V2/SingleForm/File")', function (data) {
+                        if (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                var group = data[i];
+                                uploadControl.variables.fileGroupId[group.Description] = group.FileGroupID;
+
+                                for (var j = 0; j < group.Files.length; j++) {
+                                    var file = group.Files[j];
+                                    var doc = $.grep(uploadControl.variables.fileList, function (e) { return e.fileName == file.FileTypeCode });
+                                    if (doc != null && doc.length == 1) {
+                                        doc[0].file = file;
+                                        if (doc[0].fileTypeCode != null || doc[0].fileTypeCode != undefined) {
+                                            $('input:radio[name=radio-' + doc[0].fileName + '][value=' + file.Extras.FILETYPECODE + ']').prop('checked', true);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        uploadControl.functions.renderUploader();
+                    });
+                },
+                formValidate: function () {
+                    var rules = {};
+                    var messages = {};
+                    @foreach (var file in @Model)
+                    {
+                        if (file.AddItemButton && (file.AddItemMin > 0))
+                        {
+                    <text>
+                    rules['doc-cnt-@file.FileName'] = {
+                        min: @file.AddItemMin,
+                    },
+                    messages['doc-cnt-@file.FileName'] = {
+                        min: 'กรุณาอัปโหลดไฟล์ <b>@ResourceHelper.GetResourceWordWithDefault(file.FileName, "Apps_SingleForm_Filelist", file.FileName)</b> อย่างน้อย 1 เอกสาร',
+                    },
+                    </text>
+
+                        }
+                    }
+
+                    $(uploadControl.controls.form).validate({
+                        ignore: '.ignore',
+                        errorElement: 'span',
+                        errorClass: 'error text-danger attachment-error',
+                        invalidHandler: function (e, validator) {
+                            $.ladda('stopAll');
+                        },
+                        rules: rules,
+                        messages: messages,
+
+                    });
+                },
+                renderModal: function () {
+                    var formValid = $(uploadControl.controls.form).validate().form();
+                    if (formValid) {
+                        $('#attachmentReviewModal .modal-body').find('div.pr15.pl15').empty();
+                        $('#attachmentReviewModal').modal('show');
+
+                        for (var i = 0; i < uploadControl.variables.fileList.length; i++) {
+                            var doc = uploadControl.variables.fileList[i];
+
+                            if (doc.file != null || doc.file != undefined || doc.predoc) {
+                                var $container = $(doc.container);
+
+                                var $row = $('<div class="row single-form-app-selection"></div>');
+                                var $col = $('<div class="col-md-12 form-group"></div>');
+
+                                $row.append($col);
+                                $col.append('<label>' + doc.fileTranslation + '</label>');
+
+                                var fileReasonBox = $("#file-reason-" + doc.fileName);
+                                if (fileReasonBox.length > 0) {
+                                    $col.append('<b>:</b> ' + fileReasonBox.val());
+                                }
+
+                                var $col2 = $('<div class="col-md-12 form-group"></div>');
+
+                                if (doc.predoc) {
+                                    var $item = $('<img style="vertical-align: top;" src="' + uploadControl.variables.pdfIconUrl + '" />' +
+                                        '<div style="display: inline-block"><label><a href="#">' + doc.PreDocFileName + '</a></label><br/>' +
+                                        '<span style="text-align: right;font-weight: 600;font-size: 0.8em;margin-top: 10px;">อัปโหลดอัตโนมัติและได้รับการยืนยันความถูกต้องแล้ว จาก' + doc.PreDocOrg + 'แล้ว (ไม่ต้องอัปโหลดซ้ำ)</span></div>'
+                                    );
+                                }
+                                else {
+                                    var fileIcon = doc.file.ContentType == "application/pdf" ? uploadControl.variables.pdfIconUrl : uploadControl.variables.docIconUrl;
+                                    var myDate = typeof doc.file.CreatedDate !== 'undefined' ? new Date(doc.file.CreatedDate) : new Date();
+                                    var UploadTime = uploadControl.functions.printTime(myDate);
+                                    var $item = $('<img style="vertical-align: top;max-width: 50px;max-height: 50px;padding: 5px;" src="' + fileIcon + '" />' +
+                                        '<div style="display: inline-block"><label>' + uploadControl.functions.getFilePreviewLink(doc.file) + '</label><br/>' +
+                                        (doc.file.FileSize > 0 ? '<label>ขนาดไฟล์:</label> ' + (doc.file.FileSize / 1024).toFixed(0) + ' KB <br/>' : '') +
+                                        '<label>อัปโหลดเมื่อ:</label> ' + UploadTime + '</div>');
+                                }
+
+                                $col2.append($item);
+                                $row.append($col2);
+                                $container.append($row);
+                            }
+                            //else {
+                            //    // register browse url file
+
+                            //}
+                        }
+                    } else {
+                        swal("ไม่สามารถไปยังหน้าตรวจสอบข้อมูลได้", "กรุณาอัปโหลดเอกสารให้ถูกต้องและครบถ้วน", "warning");
+                    }
+                },
+                addFile: function (el) {
+                    var filename = $(el).data("file_name");
+                    var fileOwners = $(el).data("owners");
+                    var fileMaxSize = $(el).data("maxsize");
+                    var fileFilter = $(el).data("filter");
+                    var fileIsEnableUrl = $(el).data("isenableurl");
+                    var newItemFileName = "#document-" + filename;
+                    var index = 0;
+                    while ($(newItemFileName + "-" + index).length > 0) {
+                        // Next
+                        index++;
+                    }
+
+                    var newItem = $(".template-" + filename).clone();
+                    var fileReasonInput = newItem.find(".template-file-reason-" + filename);
+                    fileReasonInput.attr("id", "file-reason-" + filename + '-' + index);
+
+                    var itemInput = newItem.find("#template-document-" + filename);
+                    itemInput.attr("id", "document-" + filename + '-' + index);
+                    itemInput.attr("name", "document-" + filename + '-' + index);
+                    newItem.removeClass("template-" + filename);
+
+                    var newUploader = newItem.find('.template-uploader');
+                    newUploader.removeClass('template-uploader');
+                    newUploader.addClass('uploader');
+                    newUploader.attr('owners', fileOwners);
+                    newUploader.attr('maxsize', fileMaxSize);
+                    newUploader.attr('filter', fileFilter);
+                    newUploader.attr('isenableurl', fileIsEnableUrl);
+
+                    var newFileRemark = newItem.find('.upload-doc-remark');
+                    newFileRemark.attr("id", "document-" + filename + '-' + index + '-remark');
+
+                    $("#add-item-" + filename).append(newItem);
+                    newItem.show();
+                    var templateFile = null;
+                    uploadControl.variables.fileList.forEach(function(file) {
+                        if (file.fileName === filename) {
+                            // Deep clone the file
+                            templateFile = JSON.parse(JSON.stringify(file));
+                        }
+                    });
+                    templateFile.fileName += '-' + index;
+                    templateFile.uploader += '-' + index;
+                    templateFile.required = false;
+                    templateFile.addItemButton = false;
+                    templateFile.file = null;
+                    uploadControl.variables.fileList.push(templateFile);
+                    uploadControl.functions.renderUploaderItem(templateFile);
+                    uploadControl.functions.initUploadButton(newItem.find('.uploader'));
+                },
+            }
+        };
+
+        uploadControl.functions.init();
+
+        $(document).ready(function () {
+            $(".add-file-btn").click(function () {
+
+                var filename = $(this).data("file_name");
+                var fileDisplayName = $(this).data("file_display_name");
+                var fileMax = $(this).data('max_item');
+                if ($('.class-'+filename).length < fileMax) {
+                    uploadControl.functions.addFile(this);
+                }
+                else {
+                    swal("", "ท่านสามารถอัปโหลดได้ไม่เกิน " + fileMax + " ไฟล์", "warning");
+                }
+            });
+        });
+</script>
+}

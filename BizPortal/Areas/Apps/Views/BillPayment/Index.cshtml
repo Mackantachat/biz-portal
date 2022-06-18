@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "BillPayment";
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+}
+
+    <style>
+        .line_height {
+            line-height: 1.5em;
+        }
+
+        .end {
+            height: 125px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .containerbody {
+            margin-bottom: 130px;
+        }
+    </style>
+
+<div class="container containerbody" @*style="width: 80%"*@>
+    <div class="panel line_height">
+        <div class="panel-heading">
+            <form id="dataTablesForm" action="~/th/Apps/billpayment/Downloadfile" method="post">
+                <div class="row">
+                 
+                    <div class="col-md-4">
+                        <button type="submit" id="smtbtn" class="btn btn-biz-blue"><i class="fa fa-search fa-fw"></i> download</button>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

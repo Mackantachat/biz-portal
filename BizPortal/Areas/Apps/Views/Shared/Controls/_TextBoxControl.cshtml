@@ -1,0 +1,202 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var autofillAttr = AutoFillConditionHelper.GetAttributes(Model);
+    var datetimeTriggerAttr = SingleFormDateTimeHelper.GetAttributes(Model);
+    var textAlignment = Model.TextAlignment == TextBoxTextAlignment.Left ? "text-left" : Model.TextAlignment == TextBoxTextAlignment.Right ? "text-right" : "text-center";
+}
+
+@if (Model.DisplayRepeater)
+{
+    <div class="@string.Format("{0}_REPEATER-repeater", Model.DataKey)">
+        <div data-repeater-list="@string.Format("{0}_REPEATER", Model.DataKey)">
+            <div data-repeater-item style="margin-bottom: 1px;">
+                <div class="row">
+                    <div class="col-md-10" style="padding-right: 0px;">
+                        @Html.TextBox(string.Format("{0}_REPEATER", Model.DataKey), null, new { @class = "form-control " + textAlignment })
+                    </div>
+                    <div class="col-md-2" style="padding-left: 0px;">
+                        <button type="button" data-repeater-delete class="btn btn-danger repeater-delbtn"><i class="fa fa-minus-circle"> ลบ</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" data-repeater-create class="btn btn-primary repeater-addbtn"><i class="fa fa-plus-circle"> เพิ่ม</i></button>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $@string.Format("rpt{0}_REPEATER", Model.DataKey) = $(".@string.Format("{0}_REPEATER-repeater", Model.DataKey)").repeater({
+                isFirstItemUndeletable: true,
+                show: function () {
+                    $(this).slideDown();
+                },
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                }
+            });
+        });
+    </script>
+}
+else if (Model.AdvancedTextboxType != null)
+{
+    if (Model.AdvancedTextboxType == AdvancedTextboxType.Currency)
+    {
+        <text>
+            <input class="form-control currency text-right @autofillAttr.Class"
+                   @autofillAttr.Data
+                   @autofillAttr.DataSourceFromDraft
+                   @autofillAttr.DataSourceIsAddressControl
+                   @autofillAttr.DataSourceSection
+                   @autofillAttr.DataSourceControl
+                   data-control-name="@Model.DataKey"
+                   @if (Model.DisplayReadonly) { <text>
+                   readonly
+                   </text> }
+                   id="@Model.ClientID" name="@Model.DataKey" type="text" value="@Model.Data">
+        </text>
+    }
+    else if (Model.AdvancedTextboxType == AdvancedTextboxType.PercentageMax100)
+    {
+        <text>
+            <input class="form-control percentage max100 text-right @autofillAttr.Class"
+                   @autofillAttr.Data
+                   @autofillAttr.DataSourceFromDraft
+                   @autofillAttr.DataSourceIsAddressControl
+                   @autofillAttr.DataSourceSection
+                   @autofillAttr.DataSourceControl
+                   data-control-name="@Model.DataKey"
+                   @if (Model.DisplayReadonly) { <text>
+                   readonly
+                   </text> }
+                   id="@Model.ClientID" name="@Model.DataKey" type="text" value="@Model.Data">
+        </text>
+    }
+    else if (Model.AdvancedTextboxType == AdvancedTextboxType.Percentage)
+    {
+        <text>
+            <input class="form-control percentage text-right @autofillAttr.Class"
+                   @autofillAttr.Data
+                   @autofillAttr.DataSourceFromDraft
+                   @autofillAttr.DataSourceIsAddressControl
+                   @autofillAttr.DataSourceSection
+                   @autofillAttr.DataSourceControl
+                   data-control-name="@Model.DataKey"
+                   @if (Model.DisplayReadonly) { <text>
+                   readonly
+                   </text> }
+                   id="@Model.ClientID" name="@Model.DataKey" type="text" value="@Model.Data">
+        </text>
+    }
+    else if (Model.AdvancedTextboxType == AdvancedTextboxType.Numeric)
+    {
+        <text>
+            <input class="form-control numeric @autofillAttr.Class"
+                   @autofillAttr.Data
+                   @autofillAttr.DataSourceFromDraft
+                   @autofillAttr.DataSourceIsAddressControl
+                   @autofillAttr.DataSourceSection
+                   @autofillAttr.DataSourceControl
+                   data-control-name="@Model.DataKey"
+                   @if (Model.DisplayReadonly) { <text>
+                   readonly
+                   </text> }
+                   id="@Model.ClientID" name="@Model.DataKey" type="text" value="@Model.Data">
+        </text>
+    }
+}
+else
+{
+
+    if (Model.Textbox_Rows > 0)
+    {
+        @Html.TextArea(Model.DataKey, null, new { @class = "form-control", id = Model.ClientID, @rows = Model.Textbox_Rows })
+    }
+    else if (Model.DisplayReadonly == true)
+    {
+        @*@Html.TextBox(Model.DataKey, Model.Data, new { @class = "form-control " + textAlignment, id = Model.ClientID, @readonly = "readonly" })*@
+        <input class="form-control @textAlignment" 
+               @datetimeTriggerAttr.IsTrigger
+               @datetimeTriggerAttr.DataMethod
+               @datetimeTriggerAttr.DataSourceFormat
+               @datetimeTriggerAttr.DataSourceCulture
+               @datetimeTriggerAttr.DataDestinationControl
+               data-control-name="@Model.DataKey" id="@Model.ClientID" name="@Model.DataKey" type="text" value="@Model.Data" readonly />
+    }
+    else
+    {
+        if (Model.TextboxNumberSettings != null)
+        {
+            @Html.TextBox(Model.DataKey, Model.Data, new
+            {
+                @class = "form-control " + textAlignment,
+                type = "number",
+                min = Model.TextboxNumberSettings.Min,
+                max = Model.TextboxNumberSettings.Max,
+                step = Model.TextboxNumberSettings.Step,
+                id = Model.ClientID
+            })
+        }
+        else
+        {
+            @*Html.TextBox(Model.DataKey, Model.Data, new { @class = "form-control", id = Model.ClientID })*@
+            <text>
+                <input class="form-control @textAlignment
+                        @autofillAttr.Class"
+                       @autofillAttr.Data
+                       @autofillAttr.DataSourceFromDraft
+                       @autofillAttr.DataSourceIsAddressControl
+                       @autofillAttr.DataSourceSection
+                       @autofillAttr.DataSourceControl
+                       data-control-name="@Model.DataKey"
+                       id="@Model.ClientID" name="@Model.DataKey" type="text" value="@Model.Data">
+            </text>
+        }
+    }
+}
+
+@if (Model.MaxLength > 0)
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#@Model.ClientID").attr('maxlength','@Model.MaxLength');
+        });
+    </script>
+}
+
+@if (Model.DisplayMaskInput)
+{
+    <script type="text/javascript">
+            $(function () {
+                $("#@Model.ClientID").mask('@Model.MaskInputPattern',
+                    {
+                        clearIfNotMatch: true,
+                        @if (Model.MaskInputReverse)
+                        {
+                            <text>
+                            reverse: true,
+                        </text>
+                        }
+                        @if (Model.MaskInputPatternTranslation != null)
+                        {
+                            <text>
+                            translation: {
+                            </text>
+                            foreach (var k in Model.MaskInputPatternTranslation.Keys)
+                            {
+                                <text>
+                                "@Html.Raw(k)": @Html.Raw(Model.MaskInputPatternTranslation[k]),
+                                </text>
+                            }
+                            <text>
+                            }
+                            </text>
+                        }
+                    });
+            });
+    </script>
+
+}

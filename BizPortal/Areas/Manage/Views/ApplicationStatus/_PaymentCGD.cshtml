@@ -1,0 +1,355 @@
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+
+<style type="text/css">
+    .model-label {
+        display: inline-block;
+        padding-left: 0 !important;
+        max-width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .model-validate {
+        display: none;
+    }
+</style>
+
+<div class="col-md-12">
+    <button type="button" id="btnAddCgdPayment" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#modalCgdPayment" >@Html.Raw(Resources.ApplicationStatusRequests.CGD_MODAL_ADD_TITLE)</button>
+    <table id="tableCgdPayment" class="table table-bordered table-responsive" style="margin-bottom: 10px;">
+        <thead>
+            <tr>
+                <td class="text-center" style="width:35%;">@Resources.ApplicationStatusRequests.CGD_ITEM</td>
+                <td class="text-center" style="width:30%;">@Resources.ApplicationStatusRequests.CGD_HOME_COST_CENTER</td>
+                <td class="text-center" style="width:20%;">@Resources.ApplicationStatusRequests.CGD_AMOUNT</td>
+                <td class="text-center table-action" style="width:15%;">@Resources.ApplicationStatusRequests.CGD_ACTION</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <td colspan=4>@Resources.ApplicationStatusRequests.CGD_ITEM_NOT_FOUND</td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="validate-cgdpayment hide" style="margin-bottom: 10px;"><span style="color:red;">กรุณาระบุรายการค่าธรรมเนียม</span></div>
+</div>
+
+<div class="modal fade" id="modalCgdPayment" role="dialog" aria-labelledby="modalCgdPaymentLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalCgdPaymentLabel">@Html.Raw(Resources.ApplicationStatusRequests.CGD_ADD_ITEM)</h4>
+            </div>
+            <div class="modal-body">
+                <div id="frmCgdPayment">
+                    <div class="form-group">
+                        <label class="model-label">@Resources.ApplicationStatusRequests.CGD_ITEM</label>
+                        <select id="ddlCgdCatalog" class="form-control"></select>
+                        <span class="text-danger model-validate">@Resources.ApplicationStatusRequests.CGD_ITEM_VAL</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="model-label">@Resources.ApplicationStatusRequests.CGD_HOME_COST_CENTER</label>
+                        <select id="ddlCgdHomeCostCenter" class="form-control"></select>
+                        <span class="text-danger model-validate">@Resources.ApplicationStatusRequests.CGD_HOME_COST_CENTER_VAL</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="model-label">@Resources.ApplicationStatusRequests.CGD_AMOUNT</label>
+                        <input type="number" id="txtCgdAmount" class="form-control" placeholder="@Resources.ApplicationStatusRequests.CGD_AMOUNT_VAL" />
+                        <span class="text-danger model-validate">@Resources.ApplicationStatusRequests.CGD_AMOUNT_VAL</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCgdPaymentCancel" class="btn btn-default" data-dismiss="modal">@Resources.Global.BTN_CANCEL</button>
+                <button type="button" id="btnCgdPaymentOK" class="btn btn-primary">@Resources.Global.BTN_OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var feeElement = '@ViewData["FeeElementID"]';
+    var validationElement = '@ViewData["ValidationElementID"]';
+
+    function initCgdPayment() {
+
+        var $modal = $('#modalCgdPayment');
+
+        $('#btnCgdPaymentOK', $modal).on('click', function () {
+
+            if (validateCgdPayment()) {
+                updateCgdPayment($('#modalCgdPayment').attr('row-id'));
+                $modal.modal('hide');
+            }
+        });
+
+         $modal.on('hide.bs.modal', function () {
+             $('#modalCgdPayment').removeAttr('row-id');
+             $('#ddlCgdCatalog', $modal).val(null).trigger('change').empty();
+             $('#ddlCgdHomeCostCenter', $modal).val(null).trigger('change').empty();
+             $('#txtCgdAmount', $modal).val('');
+             $('.model-validate').hide();
+        });
+
+        $('#ddlCgdCatalog', $modal).select2({
+            allowClear: true,
+            placeholder: '@Resources.ApplicationStatusRequests.CGD_ITEM_VAL',
+            dropdownParent: $("#modalCgdPayment"),
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Payment/Catalogs")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        }).on('change', function (e) {
+            validateCgdPayment(this);
+        });
+
+        $('#ddlCgdHomeCostCenter', $modal).select2({
+            allowClear: true,
+            dropdownParent: $("#modalCgdPayment"),
+            placeholder: '@Resources.ApplicationStatusRequests.CGD_HOME_COST_CENTER_VAL',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/Payment/HomeCostCenters")',
+                dropdownParent: $("#modalCgdPayment"),
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        cCode: $('#ddlCgdCatalog').val() ? $('#ddlCgdCatalog').val().substring(0,5) : '',
+                    };
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        }).on('change', function (e) {
+            validateCgdPayment(this);
+        });
+
+        $('#txtCgdAmount').on('change', function (e) {
+            validateCgdPayment(this);
+        });
+    }
+
+    function updateCgdPayment(id) {
+        var $table = $('#tableCgdPayment tbody');
+        var catalog = $('#ddlCgdCatalog').select2('data')[0];
+        var homeCostCenter = $('#ddlCgdHomeCostCenter').select2('data')[0];
+        var amount = $('#txtCgdAmount').val();
+
+        if (id) {
+
+            var $row = $('#' + id, $table);
+
+            $row.attr('catalogcode', catalog.id);
+            $row.attr('catalogname', catalog.text);
+            $row.attr('homecostcentercode', homeCostCenter.id);
+            $row.attr('homecostcentername', homeCostCenter.text);
+            $row.attr('amount', amount);
+            $row.children('td.catalog').html(catalog.text);
+            $row.children('td.homecostcenter').html(homeCostCenter.text);
+            $row.children('td.amount').html(number_format(amount, 2));
+        }
+        else {
+
+            var $row = $('<tr></tr>');
+
+            $row.attr('id', guid());
+            $row.attr('catalogcode', catalog.id);
+            $row.attr('catalogname', catalog.text);
+            $row.attr('homecostcentercode', homeCostCenter.id);
+            $row.attr('homecostcentername', homeCostCenter.text);
+            $row.attr('amount', amount);
+            $row.append('<td class="catalog">' + catalog.text +'</td>');
+            $row.append('<td class="homecostcenter">' + homeCostCenter.text + '</td>');
+            $row.append('<td class="amount text-right">' + number_format(amount, 2) + '</td>');
+            $row.append('<td class="table-action"><button type="button" class="btn btn-sm btn-warning" onClick="editCgdPayment(this)" > @Html.Raw(Resources.Global.BTN_EDIT)</button> <button type="button" class="btn btn-sm btn-danger"  onClick="deleteCgdPayment(this)" > @Html.Raw(Resources.Global.BTN_DELETE)</button></td>');
+            $table.append($row);
+        }
+
+        if ($('#tableCgdPayment tbody').children('tr').length > 0) {
+            var amount = 0;
+
+            $('#tableCgdPayment tbody').children('tr').each(function (i, el) {
+                if ($(el).attr('amount')) {
+                    amount = amount + Number($(el).attr('amount'));
+                }
+            });
+
+            $('#' + feeElement).val(amount);
+            $('#' + validationElement).val(amount);
+            $('#' + validationElement).valid();
+            $('#tableCgdPayment').children('tfoot').hide();
+        }
+        else {
+            $('#' + feeElement).val(0);
+            $('#' + validationElement).val("");
+            $('#' + validationElement).valid();
+            $('#tableCgdPayment').children('tfoot').show();
+        }
+
+        if ($('#tableCgdPayment tbody').children('tr').length >= 5) {
+            $('#btnAddCgdPayment').attr('disabled', true);
+        }
+        else {
+            $('#btnAddCgdPayment').removeAttr('disabled');
+        }
+    }
+
+    function editCgdPayment(el) {
+        var $modal = $('#modalCgdPayment');
+        var $row = $(el).parent('td').parent('tr');
+
+        $modal.attr('row-id', $row.attr('id'));
+        $('#ddlCgdCatalog', $modal).append(new Option($row.attr('catalogname'), $row.attr('catalogcode'), true, true)).trigger('change');
+        $('#ddlCgdHomeCostCenter', $modal).append(new Option($row.attr('homecostcentername'), $row.attr('homecostcentercode'), true, true)).trigger('change');
+        $('#txtCgdAmount', $modal).val($row.attr('amount'));
+
+        $modal.modal('show');
+    }
+
+    function deleteCgdPayment(el) {
+        $(el).parent('td').parent('tr').remove();
+
+        if ($('#tableCgdPayment tbody').children('tr').length > 0) {
+            var amount = 0;
+
+            $('#tableCgdPayment tbody').children('tr').each(function (i, el) {
+                if ($(el).attr('amount')) {
+                    amount = amount + Number($(el).attr('amount'));
+                }
+            });
+
+            $('#' + feeElement).val(amount);
+            $('#' + validationElement).val(amount);
+            $('#' + validationElement).valid();
+            $('#tableCgdPayment').children('tfoot').hide();
+        }
+        else {
+            $('#' + feeElement).val(0);
+            $('#' + validationElement).val("");
+            $('#' + validationElement).valid();
+            $('#tableCgdPayment').children('tfoot').show();
+        }
+
+        if ($('#tableCgdPayment tbody').children('tr').length >= 5) {
+            $('#btnAddCgdPayment').attr('disabled', true);
+        }
+        else {
+            $('#btnAddCgdPayment').removeAttr('disabled');
+        }
+    }
+
+    function validateCgdPayment(el) {
+        var isValid = true;
+
+        if (el) {
+            var val = $(el).val();
+            var $message = $(el).parent('.form-group').children('.model-validate');
+
+            $message.hide();
+
+            if (val == undefined || val == 'undefined' || val == null || val == '' || val == 0 || val == -1) {
+                $message.show();
+                isValid = false;
+            }
+        }
+        else {
+            $('#frmCgdPayment .form-group').each(function (i,e) {
+
+                var $message = $(e).children('.model-validate');
+                $message.hide();
+
+                if ($(e).children('input').length > 0) {
+                    var val = $(e).children('input').val();
+
+                    if (val == undefined || val == 'undefined' || val == null || val == '' || val == 0 || val == -1) {
+                        $message.show();
+                        isValid = false;
+                    }
+                }
+
+                if ($(e).children('select').length > 0) {
+                    var val = $(e).children('select').val();
+
+                    if (val == null || val == '' || val == 0 || val == -1) {
+                        $message.show();
+                        isValid = false;
+                    }
+                }
+            });
+        }
+
+        return isValid;
+    }
+
+    function getCgdPayment() {
+        var catalogs = [];
+
+        $('#tableCgdPayment tbody tr').each(function (i, e) {
+            catalogs.push({
+                homeCostcenterCode: $(e).attr('homecostcentercode'),
+                homeCostCenterName : $(e).attr('homecostcentername'),
+                catalogCode: $(e).attr('catalogcode'),
+                catalogName : $(e).attr('catalogname'),
+                amount: $(e).attr('amount')
+            });
+        });
+
+        return {
+            UserName: "",
+            Password: "",
+            Catalogs : catalogs
+        };
+    }
+
+    function getCdgPaymentHtml() {
+
+         var $table = $('<table class="table table-bordered table-responsive">\
+                            <thead>\
+                                <tr>\
+                                    <td class="text-center" style="width:40%;">@Resources.ApplicationStatusRequests.CGD_ITEM</td>\
+                                    <td class="text-center" style="width:35%;">@Resources.ApplicationStatusRequests.CGD_HOME_COST_CENTER</td>\
+                                    <td class="text-center" style="width:25%;">@Resources.ApplicationStatusRequests.CGD_AMOUNT</td>\
+                                </tr>\
+                            </thead>\
+                            <tbody></tbody>\
+                        </table>');
+
+        var $body = $table.children('tbody');
+        var data = getCgdPayment();
+
+        if (data.Catalogs && data.Catalogs.length > 0) {
+            $.each(data.Catalogs, function (i, e) {
+                var $row = $('<tr></tr>');
+                $row.append('<td class="catalog">' + e.catalogName + '</td>');
+                $row.append('<td class="homecostcenter">' + e.homeCostCenterName + '</td>');
+                $row.append('<td class="amount text-right">' + number_format(e.amount, 2) + '</td>');
+                $body.append($row);
+            });
+
+            return $table.get(0).outerHTML;
+
+        }
+        else {
+            return null;
+        }
+    }
+
+</script>

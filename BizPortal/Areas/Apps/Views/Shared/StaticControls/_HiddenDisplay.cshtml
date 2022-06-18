@@ -1,0 +1,6 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+<input type="hidden" data-control-name="@Model.DataKey" id="@Model.ClientID" name="@Model.DataKey" value="@Model.Data" />

@@ -1,0 +1,145 @@
+﻿@using BizPortal.Utils;
+@using Resource = BizPortal.Resources;
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Porto - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+    <!-- Favicon -->
+    @*<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png">*@
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Web Fonts  -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <style>
+        .boxshadow {
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+    </style>
+
+    <div class="body">
+        <header id="header" class="header-narrow header-full-width" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 0, "stickySetTop": "0"}'>
+            <div class="header-body">
+                <div class="header-container container">
+                    <div class="header-row">
+                        <div class="header-column">
+                            <div class="header-logo">
+                                <a href="@Url.Action("Index","Home", new { area=""})">
+                                    <img alt="Porto" width="139" height="54" data-sticky-width="103" data-sticky-height="40" data-sticky-top="33" src="@Url.Content("~/img/logo.png")">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="header-column">
+                            <div class="header-row">
+                                <div class="header-nav">
+                                    <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                    <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
+                                        <nav>
+                                            <ul class="nav nav-pills" id="mainNav">
+                                                <li>
+                                                    <a href="#">
+                                                        หน้าหลัก
+                                                    </a>
+
+                                                </li>
+                                                @*<li>
+                                                    <a href="#">
+                                                        Shortcodes
+                                                    </a>
+
+                                                </li>*@
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div role="main" class="main">
+            <section class="page-header page-header-light ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>ขึ้นทะเบียนนายจ้าง</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>
+                                นายจ้างที่มีลูกจ้างตั้งแต่ 1 คนขึ้นไป ต้องขึ้นทะเบียนนายจ้างพร้อมกับขึ้นทะเบียนลูกจ้าง เป็นผู้ประกันตน ภายใน 30 วัน และเมื่อมีการรับลูกจ้างใหม่เพิ่มขึ้นต้องแจ้งขึ้นทะเบียนลูกจ้างใหม่ภายใน 30 วัน เช่นกัน
+                            </li>
+                            <li>
+                                ผู้ประกันตน คือ ลูกจ้างที่มีอายุไม่ต่ำกว่า 15 ปีบริบูรณ์ และไม่เกิน 60 ปีบริบูรณ์ในวันเข้าทำงาน  และทำงานอยู่ในสถานประกอบการที่มีลูกจ้างตั้งแต่ 1 คนขึ้นไป
+                            </li>
+                            <li>
+                                เงินสมทบ คือ เงินที่นายจ้าง ลูกจ้างจะต้องนำส่งเข้ากองทุนประกันสังคมทุกเดือน  โดยคำนวณจากค่าจ้างที่ลูกจ้างได้รับ  ซึ่งกำหนดจากฐานค่าจ้างเป็นรายเดือนต่ำสุดเดือนละ 1,650 บาท  สูงสุดเดือนละ 15,000 บาท ทั้งนี้รัฐบาลจะออกเงินสมทบเข้ากองทุนอีกส่วนหนึ่ง
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="panel panel-default" style="margin-top:30px;">
+                            <div class="panel-body">
+                                <h3>ขั้นตอนการขึ้นทะเบียนนายจ้าง</h3>
+                                <ul>
+                                    <li>
+                                        กรอกและยื่นเอกสารแบบฟอร์มขึ้นทะเบียนนายจ้างล่วงหน้า ผ่านระบบอินเตอร์เน็ต <a target="_blank" href="http://www.sso.go.th/sites/default/files/1-01_2.pdf"> [ดาวน์โหลดแบบฟอร์มขึ้นทะเบียนนายจ้าง] </a> <br /> <a target="_blank" href="http://www.sso.go.th/sites/default/files/1-01_2.pdf">[ตัวอย่างการกรอกแบบฟอร์มขึ้นทะเบียนนายจ้าง] </a>
+                                    </li>
+                                    <li>
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <span >อัปโหลดส่งแบบฟอร์มขึ้นทะเบียนนายจ้าง</span>
+                                                <input type="file" class="form-control" /> <button class="btn btn-primary">ส่ง</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        ติดต่อเจ้าหน้าที่สำนักงานประกันสังคม เพื่อทำการสัมภาษณ์ประเมินประเภทธุรกิจ โทร 1506
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")" >
+</script>
+
+<script type="text/javascript">
+
+    // On load.
+    window.singleFormHelpers.form.onDraftDataBound(function () {
+        //setReadOnlyControlAndSumHP();
+        sum();
+    });
+
+    window.APP_FACTORY_TYPE2_validateStartDate = function () {
+        var styear = parseInt($('input[name=APP_FACTORY_TYPE2_ENGINE_YEAR_MODAL]').val());
+        var today = new Date();
+        var Onyear = today.getFullYear() + 543;
+        
+        if (styear <= Onyear) {
+            return true;
+        }
+
+        return false;
+    }
+    
+
+
+    //window.APP_FACTORY_TYPE2_validateTime = function () {
+    //    console.log("Function : APP_FACTORY_TYPE2_validateTime");
+    //    var start = window.singleFormHelpers.form.getSelectedTime($("select[name='DROPDOWN_FACTORY_TYPE2_START_WORKING_TIME_DD']"));
+    //    var end = window.singleFormHelpers.form.getSelectedTime($("select[name='DROPDOWN_FACTORY_TYPE2_END_WORKING_TIME_DD']"));
+    //    console.log(start);
+    //    if (start < end) {
+    //        return true;
+    //    }
+
+    //    return false;
+    //}
+    window.APP_FACTORY_TYPE2_validateTime = function () {
+        const start = $(`[name='DROPDOWN_FACTORY_TYPE2_START_WORKING_TIME_DD']`).val().split(":");
+        const end = $(`[name='DROPDOWN_FACTORY_TYPE2_END_WORKING_TIME_DD']`).val().split(":");
+
+        const startValue = parseInt(start[0]) * 60 + parseInt(start[1]);
+        const endValue = parseInt(end[0]) * 60 + parseInt(end[1]);
+
+        if (startValue >= endValue) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function isDec(obj)
+    {
+        $(obj).val($(obj).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(obj).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57))
+        {
+            event.preventDefault();
+        }
+    }
+
+    function isInt(obj)
+    {
+        $(obj).val($(obj).val().replace(/[^\d].+/, ""));
+        if ((event.which != 46 || $(obj).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57))
+        {
+            event.preventDefault();
+        }
+    }
+
+    function validFormat(parmStr)
+    {
+        try {
+            var str = parmStr;
+            var count = 0;
+            var newStr;
+            var foundDot = str.includes(".");
+
+            for (var i = 0; i < str.length; i++) {
+                if (str.charAt(i) == "0") {
+                    count = count + 1;
+                }
+                else { break; }
+            }
+
+            if (count == 0 && !foundDot) {
+                newStr = str;
+            }
+
+            if (count == 0 && foundDot) {
+                newStr = str;
+                var res = newStr.split(".");
+                var n = res[0].length;
+                if (n == 0) {
+                    newStr = "0." + res[1];
+                }
+            }
+
+            if (count > 0 && !foundDot) {
+                newStr = str.substr(count, str.length);
+            }
+
+            if (count == 1 && foundDot) {
+                var res = str.split(".");
+                var n = res[0];
+                if (n == "0") {
+                    newStr = str;
+                }
+            }
+
+            if (count == 1 && foundDot) {
+                var res = str.split(".");
+                var n = res[0].length;
+                if (n > 1) {
+                    newStr = str.substr(1, str.length);;
+                }
+            }
+
+            if (count > 0 && foundDot) {
+                var res = str.split(".");
+                var n = res[0].length;
+                if (n > 1) {
+                    newStr = str.substr(count, str.length);;
+                }
+                var x = newStr.split(".");
+                var y = x[0].length;
+                if (y == 0) {
+                    newStr = "0." + x[1];
+                }
+            }
+
+            if (foundDot) {
+                var m = newStr.split(".");
+                var mm = m[1].length;
+                if (mm == 0) {
+                    newStr = newStr + "0";
+                }
+            }
+        }
+        catch (er)
+        {
+            alert(er.message);
+        }
+        return newStr;
+    }
+
+    function setReadOnlyControlAndSumHP()
+    {
+        var hpTotal = 0;
+        var hpVal = 0;
+        var nbrEn = parseFloat($('input[name=APP_FACTORY_TYPE2_NUMBER_OF_ENGINE_MODAL]').val());
+        var hp = $('input[name=APP_FACTORY_TYPE2_HP_MODAL]').val();
+        var chp = $('input[name=APP_FACTORY_TYPE2_HP_COMPARE_MODAL]').val();
+
+        if (isNaN(nbrEn))
+        {
+            nbrEn = 0;
+        }
+        if (hp == "" || hp.length == 0 || hp == null)
+        {
+            $('input[name=APP_FACTORY_TYPE2_HP_COMPARE_MODAL]').attr('readonly', false);        
+        }
+        else
+        {
+            $('input[name=APP_FACTORY_TYPE2_HP_COMPARE_MODAL]').attr('readonly', true);
+            hpVal = parseFloat(hp);
+        }
+
+        if (chp == "" || chp.length == 0 || chp == null) {
+            $('input[name=APP_FACTORY_TYPE2_HP_MODAL]').attr('readonly', false);
+        }
+        else
+        {
+            $('input[name=APP_FACTORY_TYPE2_HP_MODAL]').attr('readonly', true);
+            hpVal = parseFloat(chp);
+        }
+
+        hpTotal = parseFloat(hpVal * nbrEn).toFixed(2);
+        $('input[name=APP_FACTORY_TYPE2_TOTAL_HP_COMPARE_MODAL]').val(hpTotal);
+       
+    }
+
+    function checkZero()
+    {
+        try {
+            var str = $('input[name=APP_FACTORY_TYPE2_NUMBER_OF_ENGINE_MODAL]').val();
+            if (str.length == 1) {
+                str = parseFloat(str);
+                if (str == 0) {
+                    $('input[name=APP_FACTORY_TYPE2_NUMBER_OF_ENGINE_MODAL]').val("");
+                }
+            }
+        }
+        catch (ex) {
+            alert(ex.message);
+        }
+    }
+
+    function sum()
+    {
+        try {
+            var sum = 0;
+            var LANDCAPITAL = parseFloat($('input[name=FACTORYP_TYP2_CAPITAL]').val());
+            var CONSTRUCTION = parseFloat($('input[name=FACTORYP_TYP2_CAPITAL_CONSTRUCTION]').val());
+            var ENGINE = parseFloat($('input[name=FACTORYP_TYP2_CAPITAL_ENGINE]').val());
+            var CAPITAL = parseFloat($('input[name=FACTORYP_TYP2_WORKING_CAPITAL]').val());
+
+            if (isNaN(CONSTRUCTION)) {
+                CONSTRUCTION = 0;
+            }
+
+            if (isNaN(ENGINE)) {
+                ENGINE = 0;
+            }
+
+            if (isNaN(CAPITAL)) {
+                CAPITAL = 0;
+            }
+
+            if (isNaN(LANDCAPITAL)) {
+                LANDCAPITAL = 0;
+            }
+
+            sum = parseFloat(CONSTRUCTION + ENGINE + CAPITAL + LANDCAPITAL).toFixed(2);
+            $('input[name=FACTORYP_TYP2_TOTAL_CAPITAL]').val(sum);
+
+            var sumPerson = 0;
+            var ENGINEER_MALE = parseInt($('input[name=FACTORY_TYPE2_NUMBER_OF_ENGINEER_MALE]').val());
+            var ENGINEER_FEMALE = parseInt($('input[name=FACTORY_TYPE2_NUMBER_OF_ENGINEER_FEMALE]').val());
+            var OPERATIONAL_MALE = parseInt($('input[name=FACTORY_TYPE2_NUMBER_OF_OPERATIONAL_MALE]').val());
+            var OPERATIONAL_FEMALE = parseInt($('input[name=FACTORY_TYPE2_NUMBER_OF_OPERATIONAL_FEMALE]').val());
+            var OFFICER_OVERSEA = parseInt($('input[name=FACTORY_TYPE2_NUMBER_OF_TECHNICAL_OFFICER_OVERSEA]').val());
+            var TECHNICAL_DOMESTIC = parseInt($('input[name=FACTORY_TYPE2_NUMBER_OF_TECHNICAL_DOMESTIC]').val());
+            var ACADEMIC_OFFICER_OVERSEA = parseInt($('input[name=FACTORY_TYPE2_NUMBER_OF_ACADEMIC_OFFICER_OVERSEA]').val());
+
+            if (isNaN(ENGINEER_MALE)) {
+                ENGINEER_MALE = 0;
+            }
+
+            if (isNaN(ENGINEER_FEMALE)) {
+                ENGINEER_FEMALE = 0;
+            }
+
+            if (isNaN(OPERATIONAL_MALE)) {
+                OPERATIONAL_MALE = 0;
+            }
+
+            if (isNaN(OPERATIONAL_FEMALE)) {
+                OPERATIONAL_FEMALE = 0;
+            }
+
+            if (isNaN(OFFICER_OVERSEA)) {
+                OFFICER_OVERSEA = 0;
+            }
+
+            if (isNaN(TECHNICAL_DOMESTIC)) {
+                TECHNICAL_DOMESTIC = 0;
+            }
+
+            if (isNaN(ACADEMIC_OFFICER_OVERSEA)) {
+                ACADEMIC_OFFICER_OVERSEA = 0;
+            }
+
+            sumPerson = ENGINEER_MALE + ENGINEER_FEMALE + OPERATIONAL_MALE + OPERATIONAL_FEMALE + OFFICER_OVERSEA + TECHNICAL_DOMESTIC + ACADEMIC_OFFICER_OVERSEA;
+
+            if (!sumPerson == 0) {
+                $('input[name=FACTORY_TYPE2_NUMBER_OF_TOTAL_OFFICER]').val(sumPerson);
+            }
+            else
+            {
+                $('input[name=FACTORY_TYPE2_NUMBER_OF_TOTAL_OFFICER]').val('');
+            }
+            
+        }
+        catch (ex) {
+            alert(ex.message);
+        }
+    }
+
+    // กำลังเครื่องจักร (แรงม้า)
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_ENGINE_HP]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=FACTORY_TYPE2_ENGINE_HP]').change(function () {
+        $(this).val(validFormat($(this).val()));  
+    });
+    // ======================================================================================
+
+    // จำนวนเงินลงทุนค่าที่ดิน (บาท)
+    // ======================================================================================
+    $('input[name=FACTORYP_TYP2_CAPITAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=FACTORYP_TYP2_CAPITAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนเงินลงทุนค่าอาคารและสิ่งก่อสร้าง (บาท)
+    // ======================================================================================
+    $('input[name=FACTORYP_TYP2_CAPITAL_CONSTRUCTION]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=FACTORYP_TYP2_CAPITAL_CONSTRUCTION]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนเงินลงทุนค่าเครื่องจักร (บาท) 
+    // ======================================================================================
+    $('input[name=FACTORYP_TYP2_CAPITAL_ENGINE]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=FACTORYP_TYP2_CAPITAL_ENGINE]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนเงินทุนหมุนเวียน (บาท) 
+    // ======================================================================================
+    $('input[name=FACTORYP_TYP2_WORKING_CAPITAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=FACTORYP_TYP2_WORKING_CAPITAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // Section : [วัตถุดิบ] ปริมาณที่ใช้ต่อปี 
+    // ======================================================================================
+    $('input[name=APP_FACTORY_MATERIAL_DOSE_PER_YEAR_MODAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=APP_FACTORY_MATERIAL_DOSE_PER_YEAR_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // Section : [ผลิตภัณฑ์] ปริมาณที่ใช้ต่อปี 
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_PRODUCT_DOSE_PER_YAER_MODAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=APP_FACTORY_TYPE2_PRODUCT_DOSE_PER_YAER_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // Section : [วัตถุพลอยได้] ปริมาณที่ใช้ต่อปี 
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_BY_PRODUCT_DOSE_PER_YAER_MODAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=APP_FACTORY_TYPE2_BY_PRODUCT_DOSE_PER_YAER_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // Section : [บัญชีเครื่องจักรที่ใช้ตามลำดับขั้นตอนการผลิต] ต้นกำลัง 
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_ENGINE_POWER_MODAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=APP_FACTORY_TYPE2_ENGINE_POWER_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // Section : [บัญชีเครื่องจักรที่ใช้ตามลำดับขั้นตอนการผลิต] แรงม้า 
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_HP_MODAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=APP_FACTORY_TYPE2_HP_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // Section : [บัญชีเครื่องจักรที่ใช้ตามลำดับขั้นตอนการผลิต] แรงม้าเปรียบเทียบ 
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_HP_COMPARE_MODAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=APP_FACTORY_TYPE2_HP_COMPARE_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    $('input[name=APP_FACTORY_TYPE2_HP_MODAL]').change(function () {       
+        setReadOnlyControlAndSumHP();
+    });
+
+    $('input[name=APP_FACTORY_TYPE2_HP_COMPARE_MODAL]').change(function (){
+        setReadOnlyControlAndSumHP();
+    });
+
+    $('input[name=APP_FACTORY_TYPE2_NUMBER_OF_ENGINE_MODAL]').change(function (){      
+        checkZero();
+        setReadOnlyControlAndSumHP();
+    });
+
+    $('input[name=FACTORYP_TYP2_CAPITAL_CONSTRUCTION]').change(function () {
+        sum();
+    });
+    $('input[name=FACTORYP_TYP2_CAPITAL_ENGINE]').change(function (){
+       sum();
+    });
+    $('input[name=FACTORYP_TYP2_WORKING_CAPITAL]').change(function (){
+        sum();
+    });
+
+    // จำนวนช่างฝีมือชาย (คน) 
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_NUMBER_OF_ENGINEER_MALE]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนช่างฝีมือหญิง (คน)  
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_NUMBER_OF_ENGINEER_FEMALE]').change(function (){
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนคนงานชาย (คน)   
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_NUMBER_OF_OPERATIONAL_MALE]').change(function (){
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนคนงานหญิง (คน)  
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_NUMBER_OF_OPERATIONAL_FEMALE]').change(function (){
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนผู้ชำนาญการจากต่างประเทศ   
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_NUMBER_OF_TECHNICAL_OFFICER_OVERSEA]').change(function (){
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนช่างเทคนิคและช่างฝีมือจากต่างประเทศ (คน)    
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_NUMBER_OF_TECHNICAL_DOMESTIC]').change(function (){
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนเจ้าหน้าที่บริหารและวิชาการ (คน)    
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_NUMBER_OF_ACADEMIC_OFFICER_OVERSEA]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // รวมเวลาทำงาน (ชั่วโมง/วัน)     
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_WORK_TIME]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=FACTORY_TYPE2_WORK_TIME]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // จำนวนกะ    
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_NUMBER_OF_SHIFT]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนวันหยุดงาน (วัน)    
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_HOLIDAY]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // จำนวนวันที่ทำงานต่อปี (วัน)    
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_WORKDAY]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+        sum();
+    });
+    // ======================================================================================
+
+    // ลำดับ    
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_ENGINE_ORDER_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // ปี    
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_ENGINE_YEAR_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // ปี    
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_ENGINE_POWER_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // จำนวนเชื้อเพลิง    
+    // ======================================================================================
+    $('input[name=APP_FACTORY_TYPE2_NUMBER_OF_FUEL_MODAL]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=APP_FACTORY_TYPE2_NUMBER_OF_FUEL_MODAL]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // เนื้อที่อาคารโรงงาน (ตารางเมตร)     
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_BUILDING_AREA]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=FACTORY_TYPE2_BUILDING_AREA]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // เนื้อที่บริเวณโรงงานรวมถึงอาคารโรงงาน (ตารางเมตร)     
+    // ======================================================================================
+    $('input[name=FACTORY_TYPE2_BUILDING_AND_PLANT_AREA]').keypress(function () { 
+        isDec(this);
+    });
+
+    $('input[name=FACTORY_TYPE2_BUILDING_AND_PLANT_AREA]').change(function () {
+        $(this).val(validFormat($(this).val()));   
+    });
+    // ======================================================================================
+
+    // Set ReadOnly if textbox have value
+    $("#MODAL_APP_FACTORY_TYPE2_ENGINE_INFORMATION_SECTION").on('show.bs.modal', function () {
+        setReadOnlyControlAndSumHP();
+    });
+    // =======================================================================================
+</script>
+
+
+

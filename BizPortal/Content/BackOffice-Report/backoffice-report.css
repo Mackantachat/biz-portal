@@ -1,0 +1,180 @@
+﻿.chart-divContainer {
+    /*border: 1px solid #b6b2b2;
+    border-radius: 2px;*/
+    padding: 50px;
+}
+
+.select2-results__option .wrap:before {
+    font-family: fontAwesome;
+    color: #999;
+    content: "\f096";
+    width: 25px;
+    height: 25px;
+    padding-right: 10px;
+}
+
+.select2-results__option[aria-selected=true] .wrap:before {
+    content: "\f14a";
+}
+
+.select2-multiple {
+    width: 100%;
+}
+
+.label-box {
+    background-color: gray;
+    width: 100%;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.component-box {
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.query-row {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.statistics-identity-type-img {
+    float: left;
+    width: 10%;
+    height: 10%;
+    margin: 20px;
+}
+
+#overall-statistics > tbody > tr > td, #overall-statistics > thead > tr > th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.statistics-average-operation-days-img {
+    display: inline-block;
+    width: 10%;
+    height: 10%;
+    margin: 20px;
+}
+
+#statistics-average-operation-days > thead > tr > th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td.td-center {
+    text-align: center;
+    vertical-align: middle;
+    color: black;
+}
+
+td.td-header {
+    vertical-align: middle;
+    color: #34a3fe;
+}
+
+.center-inline {
+    text-align: center;
+    margin: 10px;
+}
+
+    .center-inline > div {
+        display: inline-flex;
+    }
+
+        .center-inline > div > * {
+            margin: 5px;
+        }
+
+.isCurrency {
+    text-align: right;
+}
+
+.isNumeric {
+    text-align: right;
+}
+
+.overall-statistics-header {
+    color: #34a3fe;
+}
+
+.overall-statistics-allrequest {
+    background-color: #34a3fe;
+    color: #ffffff;
+}
+
+.overall-statistics-complete-1 {
+    background-color: #c7fbfe;
+    color: #015ba5;
+}
+
+.overall-statistics-complete-2 {
+    background-color: #c7fbfe;
+    color: #bfbfbf;
+}
+
+.overall-statistics-onprocess-1 {
+    background-color: #c7fbfe;
+    color: #015ba5;
+}
+
+.overall-statistics-onprocess-2 {
+    background-color: #c7fbfe;
+    color: #bfbfbf;
+}
+
+.overall-statistics-intime-sla {
+    background-color: #bfbfbf;
+    color: #015ba5;
+}
+
+.overall-statistics-allfee {
+    background-color: #bfbfbf;
+    color: #015ba5;
+}
+
+/** SPINNER CREATION **/
+
+.loader {
+    position: relative;
+    text-align: center;
+    margin: 15px auto 35px auto;
+    z-index: 9999;
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 10px solid rgba(0, 0, 0, .3);
+    border-radius: 50%;
+    border-top-color: #337ab7;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+/** MODAL STYLING **/
+
+.modal-content {
+    border-radius: 0px;
+    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
+}
+
+.modal-backdrop.show {
+    opacity: 0.75;
+}
+
+.loader-txt > p {
+    font-size: 20px;
+    color: #666;
+}

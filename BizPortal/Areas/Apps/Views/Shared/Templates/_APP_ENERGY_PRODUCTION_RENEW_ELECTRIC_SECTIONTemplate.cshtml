@@ -1,0 +1,61 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>เครื่องที่ :</label>
+            {{ARR_IDX}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_TYPE :</label>
+            {{this.AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_TYPE_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_KVA :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_KVA}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_VOLTAGE :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_VOLTAGE}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_AMP :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_AMP}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_PERCENT  :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_PERCENT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_YEAR  :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_YEAR}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_NAME  :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_NAME}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_ENERGY_PRODUCTION_RENEW.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_ID  :</label>
+            {{this.APP_ENERGY_PRODUCTION_RENEW_ELECTRIC_SECTION_ID}}
+        </div>
+
+        <div class="col-md-2 pr5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        <div class="col-md-2 pl5">
+            <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

@@ -1,0 +1,68 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.Select2;
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var firstOpts = new List<Select2Opt>();
+    foreach (var opt in Model.ChainedDropdownOpts)
+    {
+        firstOpts.Add(opt.Select2Opt);
+    }
+}
+
+<div class="row">
+    <div class="col-md-12 mb5">
+        <label>@ResourceHelper.GetResourceWordWithDefault(Model.Control, "Apps_SingleForm", Model.Control) :</label>
+        <select class="form-control" id="@string.Format("{0}_{1}", "dropdown1st", Model.ClientID)" name="@string.Format("{0}_{1}", "DROPDOWN1ST", Model.DataKey)">
+            <option></option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <label>@ResourceHelper.GetResourceWordWithDefault(Model.ChainedLabel, "Apps_SingleForm", Model.ChainedLabel) :</label>
+        <select class="form-control" id="@string.Format("{0}_{1}", "dropdown2nd", Model.ClientID)" name="@string.Format("{0}_{1}", "DROPDOWN2ND", Model.DataKey)">
+            <option></option>
+        </select>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#@string.Format("{0}_{1}", "dropdown1st", Model.ClientID)").select2({
+            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(firstOpts)),
+            allowClear: true,
+            placeholder: '@Model.PlaceholderText',
+            width: '100%'
+        });
+
+        $("#@string.Format("{0}_{1}", "dropdown2nd", Model.ClientID)").select2({
+            allowClear: true,
+            placeholder: '@Model.ChainedPlaceholderText',
+            width: '100%'
+        });
+
+        $("#@string.Format("{0}_{1}", "dropdown1st", Model.ClientID)").change(function () {
+
+            $("#@string.Format("{0}_{1}", "dropdown2nd", Model.ClientID)").val("");
+            $("#@string.Format("{0}_{1}", "dropdown2nd", Model.ClientID)").empty();
+
+            var chainDropdown = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.ChainedDropdownOpts));
+            var firstId = $("#@string.Format("{0}_{1}", "dropdown1st", Model.ClientID)").select2('data')[0].id;
+            var secondSource;
+
+            for (var i = 0; i < chainDropdown.length; i++) {
+                var opt = chainDropdown[i];
+                if (opt.Select2Opt.id == firstId) {
+                    secondSource = opt.ChainedSelect2Opts;
+                }
+            }
+
+            $("#@string.Format("{0}_{1}", "dropdown2nd", Model.ClientID)").select2({
+                data: secondSource
+            });
+        });
+
+    });
+</script>

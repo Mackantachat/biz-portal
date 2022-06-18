@@ -1,0 +1,88 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_SELL_ANIMAL_FOOD_OPERATOR_INFOTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-4">
+            <p class="bold form-control-static">{{this.DROPDOWN_APP_SELL_ANIMAL_FOOD_OPERATOR_TITLE_TEXT}} {{this.APP_SELL_ANIMAL_FOOD_OPERATOR_NAME}} {{this.APP_SELL_ANIMAL_FOOD_OPERATOR_LASTNAME}}</p>
+        </div>
+        <div class="col-md-8">
+            {{#xif " typeof this.APP_SELL_ANIMAL_FOOD_OPERATOR_NATIONALITY_OPTION !== 'undefined' " }}
+            {{#xif " this.APP_SELL_ANIMAL_FOOD_OPERATOR_NATIONALITY_OPTION == 'thai' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_SELL_ANIMAL_FOOD_OPERATOR_NATIONALITY: </label> ไทย <br/>
+            {{#xif " typeof this.APP_SELL_ANIMAL_FOOD_OPERATOR_CITIZEN_ID !== 'undefined' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_SELL_ANIMAL_FOOD_OPERATOR_CITIZEN_ID: </label> {{this.APP_SELL_ANIMAL_FOOD_OPERATOR_CITIZEN_ID}}<br />
+            {{/xif}}
+
+            {{#xif " typeof this.APP_SELL_ANIMAL_FOOD_OPERATOR__CITIZEN_IDCARD_ISSUE_PROVINCE !== 'undefined' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_SELL_ANIMAL_FOOD_OPERATOR__CITIZEN_IDCARD_ISSUE_PROVINCE: </label> {{this.APP_SELL_ANIMAL_FOOD_OPERATOR__CITIZEN_IDCARD_ISSUE_PROVINCE}}<br />
+            {{/xif}}
+
+            {{#xif " typeof this.APP_SELL_ANIMAL_FOOD_OPERATOR__CITIZEN_IDCARD_ISSUE_AMPHUR !== 'undefined' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_SELL_ANIMAL_FOOD_OPERATOR__CITIZEN_IDCARD_ISSUE_AMPHUR: </label> {{this.APP_SELL_ANIMAL_FOOD_OPERATOR__CITIZEN_IDCARD_ISSUE_AMPHUR}}<br />
+            {{/xif}}
+
+
+            {{else}}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_SELL_ANIMAL_FOOD_OPERATOR_NATIONALITY: </label> ต่างด้าว<br />
+            {{#xif " typeof this.APP_SELL_ANIMAL_FOOD_OPERATOR_PASSPORT_NUMBER !== 'undefined' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_SELL_ANIMAL_FOOD_OPERATOR_PASSPORT_NUMBER: </label> {{this.APP_SELL_ANIMAL_FOOD_OPERATOR_PASSPORT_NUMBER}}<br />
+            {{/xif}}
+            {{#xif " typeof this.DROPDOWN_APP_SELL_ANIMAL_FOOD_OPERATOR_NATION_TEXT !== 'undefined' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_SELL_ANIMAL_FOOD_OPERATOR_NATION : </label> {{this.DROPDOWN_APP_SELL_ANIMAL_FOOD_OPERATOR_NATION_TEXT}}<br />
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+
+            
+
+            {{#xif " typeof this.ADDRESS_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS !== 'undefined' " }}
+            <p class="form-control-static">
+            {{#xif " fieldExist(this.ADDRESS_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+            <label>เลขที่: </label> {{this.ADDRESS_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_MOO_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+            <label>หมู่ที่: </label> {{this.ADDRESS_MOO_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}} 
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_VILLAGE_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+            <label>หมู่ที่: </label> {{this.ADDRESS_VILLAGE_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_SOI_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+            <label>ซอย: </label> {{this.ADDRESS_SOI_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROAD_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+            <label>ถนน: </label> {{this.ADDRESS_ROAD_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}}</>
+            {{/xif}}
+            <label>ตำบล/แขวง: </label> {{this.ADDRESS_TUMBOL_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS_TEXT}} 
+            <label>อำเภอ/เขต: </label> {{this.ADDRESS_AMPHUR_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS_TEXT}} 
+            <label>จังหวัด: </label> {{this.ADDRESS_PROVINCE_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS_TEXT}}
+            {{#xif " fieldExist(this.ADDRESS_POSTCODE_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+            <label>รหัสไปรษณีย์: </label> {{this.ADDRESS_POSTCODE_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}}
+            {{/xif}}
+            <nobr>
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+                <label>โทรศัพท์: </label> {{this.ADDRESS_TELEPHONE_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}}</nobr>
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_EXT_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+            <label>ต่อ:</label> {{this.ADDRESS_TELEPHONE_EXT_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}} 
+            {{/xif}}
+            </nobr>
+            {{#xif " fieldExist(this.ADDRESS_FAX_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS) " }}
+                <nobr><label>โทรสาร:</label> {{this.ADDRESS_FAX_APP_SELL_ANIMAL_FOOD_OPERATOR_ADDRESS}}</nobr>
+            {{/xif}}
+            </p>
+            {{/xif}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

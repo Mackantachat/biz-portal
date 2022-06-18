@@ -1,0 +1,43 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_ANIMAL_LICENSE_WORK_TIMETemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_LICENSE_WORK_TIME_DAY :</label>
+            {{this.DROPDOWN_APP_ANIMAL_LICENSE_WORK_TIME_DAY_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_LICENSE_WORK_TIME_START :</label>
+            {{this.DROPDOWN_APP_ANIMAL_LICENSE_WORK_TIME_START_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_ANIMAL_LICENSE_WORK_TIME_END :</label>
+            {{this.DROPDOWN_APP_ANIMAL_LICENSE_WORK_TIME_END_TEXT}}
+        </div>
+
+        <div class="col-md-4">
+            <label>Day :</label>
+            {{this.DROPDOWN_APP_ANIMAL_LICENSE_WORK_TIME_DAY}}
+        </div>
+        <div class="col-md-4">
+            <label>Opening Time :</label>
+            {{this.DROPDOWN_APP_ANIMAL_LICENSE_WORK_TIME_START_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>Closing Time :</label>
+            {{this.DROPDOWN_APP_ANIMAL_LICENSE_WORK_TIME_END_TEXT}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

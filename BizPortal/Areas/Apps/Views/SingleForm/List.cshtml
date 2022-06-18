@@ -1,0 +1,692 @@
+﻿@model BizPortal.ViewModels.SingleForm.SingleForm
+@using BizPortal.Utils.Helpers
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using EGA.Owin.Security.Utils.Extensions;
+
+@{
+
+
+    var backUrl = Url.BizAction("Business", "Quiz", new { area = "" }) + "/" + Model.BusinessID;
+    ViewBag.Title = Resources.PermitSummary.TITLE_PERMIT_SUMMARY;
+    UserTypeEnum identityType = UserTypeEnum.Anonymous;
+    if (ViewBag.IdentityType != null)
+    {
+        identityType = ViewBag.IdentityType;
+    }
+
+    var userType = User.Identity.IsAuthenticated ? User.Identity.GetClaimValueOrDefault(EGA.Owin.Security.EGAOpenID.EGAOpenIDAttributeExchangeType.UserType) : "";
+    var identityProvider = User.Identity.IsAuthenticated ? User.Identity.GetClaimValueOrDefault(BizPortal.Utils.Helpers.OpenIdAttributeExchangeType.LoginProvider) : "";
+    var identityName = User.Identity.IsAuthenticated ? User.Identity.GetClaimValueOrDefault("UserDisplayName", User.Identity.Name) : "";
+
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+
+    var dictionaryApp = new Dictionary<string, string> { { "ขอจดแจ้งรายละเอียดการผลิตเพื่อขายหรือนำเข้าเพื่อขายเครื่องสำอางควบคุม", "FadPermisssionClick()" },
+        { "APP_IMPORT_MEDICAL_EQUIPMENT", "FadPermisssionClick()" },
+        { "APP_FOOD_ADVERTISEMENT", "FadPermisssionClick()"},
+        { "APP_FOOD_CERTIFICATE", "FadPermisssionClick()" }};
+
+    bool packPermit = false;
+}
+
+@section PageStyles {
+    <style>
+        #info-permit-summary {
+            position: relative;
+            text-align: left;
+            padding: 30px;
+            border: 1px solid #DEDEDE;
+            margin-bottom: 20px;
+            background: #FFFFFF;
+        }
+
+        .reason-app-id-20 {
+            color: red;
+            font-weight: bold;
+        }
+
+        .reason-red {
+            color: red;
+        }
+
+        .reason-ul-mt {
+            margin-top: 0;
+        }
+    </style>
+}
+
+@section breadcrumb{
+    <section class="breadcrumb">
+        <div class="container">
+            <h2>@Resources.PermitSummary.TITLE_PERMIT_SUMMARY</h2>
+            <ul>
+                <li>
+                    <a href="@Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                        @Resources.GlobalV2.ONLINE_SERVICES
+                    </a>
+                </li>
+                <li><a>@Resources.PermitSummary.TITLE_PERMIT_SUMMARY</a></li>
+            </ul>
+        </div>
+    </section>
+}
+
+<script id="appFixedItemTemplate" type="text/x-custom-template">
+    <div class="blog-item">
+        <div class="head">
+            <p class="head" style="width:100%;">{0}</p>
+            @*<p>{1}</p>*@
+        </div>
+        <div class="price">
+            <p class="num">{3} @Resources.PermitSummary.TEXT_BAHT</p>
+            <p class="day">{2} @Resources.PermitSummary.TEXT_DAYS</p>
+        </div>
+    </div>
+</script>
+
+<script id="appRangeItemTemplate" type="text/x-custom-template">
+    <div class="blog-item">
+        <div class="head">
+            <p class="head" style="width:100%;">{0}</p>
+            @*<p>{1}</p>*@
+        </div>
+        <div class="price">
+            <p class="num">{3} - {4} @Resources.PermitSummary.TEXT_BAHT</p>
+            <p class="day">{2} @Resources.PermitSummary.TEXT_DAYS</p>
+        </div>
+    </div>
+</script>
+
+<script id="appStartAtItemTemplate" type="text/x-custom-template">
+    <div class="blog-item">
+        <div class="head">
+            <p class="head" style="width:100%;">{0}</p>
+            @*<p>{1}</p>*@
+        </div>
+        <div class="price">
+            <p class="num">@Resources.PermitSummary.TEXT_STARTING_AT {3} @Resources.PermitSummary.TEXT_BAHT</p>
+            <p class="day">{2} @Resources.PermitSummary.TEXT_DAYS</p>
+        </div>
+    </div>
+</script>
+
+<script id="appEmptyItemTemplate" type="text/x-custom-template">
+    <div class="blog-item">
+        <div class="head">
+            <p>@Resources.PermitSummary.TEXT_APP_REQUIRED</p>
+        </div>
+    </div>
+</script>
+
+<section class="banner-form"></section>
+
+@using (Html.BeginForm("SubmitList", "SingleForm", FormMethod.Post, new { id = "frmPermitSummary", @class = "frm-permit-summary" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => Model.BusinessID)
+    <section class="accept-form">
+        <div class="container">
+            <p class="title" data-text-format="@Resources.PermitSummary.HEADING_PERMIT_SUMMARY">
+                @string.Format(Resources.PermitSummary.HEADING_PERMIT_SUMMARY, Model.SingleFormApps.Count)
+                <a href="#" class="form-info" data-target="info-permit-summary" style="color: #5CA1BF;">
+                    <i class="fa fa-info-circle"></i>
+                </a>
+            </p>
+            <div id="info-permit-summary" style="display: none;">
+                <a href="#" class="close"
+                   style="color: #A0A0A0; position: absolute; top: 10px; right: 10px;"
+                   data-target="info-permit-summary"><i class="fa fa-times-circle"></i></a>
+                <div class="row">
+                    <div class="M-12">
+                        <p>รายการใบอนุญาตเหล่านี้ หมายถึง…</p>
+                        <p>
+                            <u>1. กรณีคุณเลือกรายการใบอนุญาตด้วยตนเอง – </u>ใบอนุญาตทั้งหมดที่คุณต้องการขอ<br />
+                            <u>2.  กรณีคุณให้ระบบแนะนำใบอนุญาตจาก Smart Quiz - </u>ใบอนุญาตสำคัญทั้งหมดที่ผู้ประกอบการที่มีเงื่อนไขธุรกิจตามการตอบคำถามใน Smart Quiz จำเป็นต้องขอ
+                        </p>
+
+                        <p>อย่างไรก็ตาม อาจมีใบอนุญาตอื่นๆที่จำเป็นต้องขอเพิ่มเติมตามเงื่อนไขพิเศษที่มีเฉพาะในธุรกิจคุณ (เช่น ขายของมือสอง ยานยนต์ สินค้าเกษตรแปรรูป เป็นต้น) ซึ่งทางเรากำลังพัฒนาเพิ่มเติมให้มีความครบถ้วน</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="D-8 M-12" id="appContainer" data-start-at-text="@Resources.PermitSummary.TEXT_STARTING_AT">
+                    @for (int i = 0; i < Model.SingleFormApps.Count; i++)
+                    {
+                        var app = Model.SingleFormApps[i];
+
+                        if (!packPermit)
+                        {
+                            if (app.AppSysName.Equals("APP_CLINIC_BUSINESS") || app.AppSysName.Equals("APP_CLINIC_OPERATION") || app.AppSysName.Equals("APP_HOSPITAL_BUSINESS") || app.AppSysName.Equals("APP_HOSPITAL_OPERATION"))
+                            {
+                                packPermit = true;
+                            }
+                        }
+
+                        <div style="padding-left: 60px;" class="item-list @(app.OnlineRequestAllowed ? "clickable active" : "") @(app.OperatingCostType.DefaultString("Fixed").ToLower())-cost @(app.OperatingDaysType.DefaultString("Fixed").ToLower())-days">
+                            @if (app.OnlineRequestAllowed)
+                            {
+                                <div class="checkbox"></div>
+                            }
+                            <ins data-index="@i"
+                                 data-appname="@app.AppName"
+                                 data-orgname="@app.OrganizationName"
+                                 data-duration="@app.OperatingDays"
+                                 data-cost="@app.OperatingCost"
+                                 data-cost2="@app.OperatingCost2"
+                                 data-cost-type="@app.OperatingCostType"
+                                 data-appsysname="@app.AppSysName"></ins>
+                            @*<div class="logo">
+                                    <img class="img-responsive" src="@Url.Action("Get", "File", new { area = "", id = app.LogoFileID })" alt="">
+                                </div>*@
+                            <div class="wrap">
+                                <div class="head">
+                                    <p class="head">@app.AppName</p>
+                                    @*<p>@app.OrganizationName</p>*@
+                                </div>
+                                <div class="price">
+                                    <p class="day">
+                                        @if (app.OperatingDaysType == "StartAt")
+                                        {
+                                            @Resources.PermitSummary.TEXT_STARTING_AT
+                                        }
+
+                                        @if (app.OperatingDays.GetValueOrDefault(0) > 0)
+                                        {
+                                            @app.OperatingDays.GetValueOrDefault(0).ToString("#,##0.##")
+                                        }
+                                        else
+                                        {
+                                            @("-")
+                                        }
+
+                                        @if (app.OperatingDaysType == "Range" && @app.OperatingDays2.GetValueOrDefault(0) > 0)
+                                        {
+                                            <text> - @app.OperatingDays2.GetValueOrDefault(0).ToString("#,##0.##")</text>
+                                        }
+                                        @Resources.PermitSummary.TEXT_DAYS
+                                    </p>
+                                    <p class="num">
+                                        @if (app.OperatingCostType == "StartAt")
+                                        {
+                                            @Resources.PermitSummary.TEXT_STARTING_AT
+                                        }
+
+                                        @if (app.OperatingCost.GetValueOrDefault(0) > 0)
+                                        {
+                                            @app.OperatingCost.GetValueOrDefault(0).ToMoneyFormat()
+                                        }
+                                        else
+                                        {
+                                            @("0")
+                                        }
+
+                                        @if (app.OperatingCostType == "Range" && app.OperatingCost2.GetValueOrDefault(0) > 0)
+                                        {
+                                            <text> - @app.OperatingCost2.GetValueOrDefault(0).ToMoneyFormat()</text>
+                                        }
+                                        @Resources.PermitSummary.TEXT_BAHT
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="view">
+                                <a href="@app.HandbookUrl" target="_blank" class="btn button-outline primary"><i class="fa fa-info-circle"></i> @Resources.PermitSummary.TEXT_MORE_DETAIL</a>
+                                @if (app.OnlineRequestAllowed)
+                                {
+                                    <div class="prefer">
+                                        <p>@Resources.PermitSummary.TEXT_CAN_BE_REQUEST_AT </p> <img src="@Url.Content("~/Content/Images/biz-v2/logos/bizportal-logo.png")" alt="">
+                                    </div>
+                                }
+                                else if (!string.IsNullOrEmpty(app.ApplicationUrl))
+                                {
+                                    if (dictionaryApp.Where(x => x.Key == (Model.SingleFormApps[i].AppSysName)).ToList().Count() > 0)
+                                    {
+                                        <a href="#" Onclick="@dictionaryApp.Where(x => x.Key==(Model.SingleFormApps[i].AppSysName)).ToList().Select(a=>a.Value).SingleOrDefault().ToString()" class="btn button-outline primary"><i class="fa fa-external-link"></i> @Resources.PermitSummary.TEXT_ESERVICE_URL</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@app.ApplicationUrl" target="_blank" class="btn button-outline primary"><i class="fa fa-external-link"></i> @Resources.PermitSummary.TEXT_ESERVICE_URL</a>
+                                    }
+
+                                }
+
+                            </div>
+                            @*@if (!app.OnlineRequestAllowed && !app.HideBizPortalSoon)
+                                {
+                                    <div class="view">
+                                        <span>@Resources.PermitSummary.TEXT_OPEN_SOON</span>
+                                    </div>
+                                }*@
+
+                            @if (app.NotAllowedReason != null && app.NotAllowedReason.Length > 0)
+                            {
+                                <div class="reasons reason-red" style="margin-top:10px;">
+                                    <h4 class="text-danger">@Resources.QuizConditionReason.LABEL_WHY_NOT1 @(identityType == UserTypeEnum.Juristic ? Resources.QuizConditionReason.BIZPORTAL : Resources.QuizConditionReason.GOVCHANNEL) @Resources.QuizConditionReason.LABEL_WHY_NOT2</h4>
+                                    <ul class="reason-ul-mt">
+                                        @foreach (var reason in app.NotAllowedReason)
+                                        {
+                                            <li class="text-danger">@reason</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+
+                            @if (app.Warning != null && app.Warning.Length > 0)
+                            {
+                                <div class="reasons">
+                                    <ul>
+                                        @foreach (var warning in app.Warning)
+                                        {
+                                            <li class="text-danger">@ResourceHelper.GetResourceWordWithDefault(warning, "PermitSummary", warning)</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+
+
+                            @if (app.ShowRemark && !string.IsNullOrEmpty(app.Remark))
+                            {
+                                <div class="reasons text-warning fs20 reason-app-id-@app.ApplicationID" style="margin-top: 20px">
+                                    @Html.Raw(app.Remark.Replace(Environment.NewLine, "<br />"))
+                                </div>
+                            }
+
+                            @Html.HiddenFor(model => model.SingleFormApps[i].AppName)
+                            @Html.HiddenFor(model => model.SingleFormApps[i].AppSysName)
+                            @Html.HiddenFor(model => model.SingleFormApps[i].OrganizationName)
+                            @Html.HiddenFor(model => model.SingleFormApps[i].OperatingCostType)
+                            @Html.HiddenFor(model => model.SingleFormApps[i].OperatingCost)
+                            @Html.HiddenFor(model => model.SingleFormApps[i].OperatingCost2)
+                            @Html.HiddenFor(model => model.SingleFormApps[i].OperatingDaysType)
+                            @Html.HiddenFor(model => model.SingleFormApps[i].OperatingDays)
+                            @Html.HiddenFor(model => model.SingleFormApps[i].OperatingDays2)
+                            @if (app.OnlineRequestAllowed)
+                            {
+                                @Html.HiddenFor(model => model.SingleFormApps[i].isChecked)
+                            }
+                        </div>
+                    }
+                    <div class="summary">
+                        <div class="price">
+                            <p class="subject">@Resources.PermitSummary.TEXT_SUMMARY_TOTAL_COST</p><p class="num"><span class="summaryCost">-</span> @Resources.PermitSummary.TEXT_BAHT</p>
+                        </div>
+                        <div class="price">
+                            <p class="subject">@Resources.PermitSummary.TEXT_SUMMARY_TOTAL_DAYS</p><p class="num"><span class="summaryDays">-</span> @Resources.PermitSummary.TEXT_DAYS</p>
+                        </div>
+                        <div class="price">
+                            <p class="ps">(คำนวณจากจำนวนใบอนุญาตทั้งหมดที่ระบบแนะนำ)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="D-4 M-12">
+                    <div class="summary-service">
+                        <div class="head">
+                            <i class="fa fa-shopping-cart"></i>
+                            <p>@Resources.PermitSummary.HEADING_SELECTED_APPS</p>
+                        </div>
+
+                        <div class="blog-service">
+                        </div>
+
+
+                        <div class="blog-summary">
+                            <div class="summary-item">
+                                <div class="head">
+                                    <p>รวม</p>
+                                    <p>รวมวันทำการไม่เกิน</p>
+                                </div>
+                                <div class="price">
+                                    <p class="num"><span id="bizSumCost" class="summaryCost">0</span> @Resources.PermitSummary.TEXT_BAHT</p>
+                                    <p class="day"><span id="bizSumDay" class="summaryDays">0</span> @Resources.PermitSummary.TEXT_DAYS</p>
+                                </div>
+
+                            </div>
+                            <p class="ps">(คำนวณจากจำนวนใบอนุญาตที่จะยื่นขอผ่าน Biz Portal เท่านั้น)</p>
+                            <div class="btn-hold">
+                                @*<button type="submit" class="btn btn-block btn-primary mb10" disabled>@Resources.PermitSummary.BTN_GO_SINGLE_FORM</button>*@
+                                <a href="#" onclick="frmPermitSummary.summit()" id="submit-btn" class="button primary">@Resources.PermitSummary.BTN_GO_SINGLE_FORM</a>
+                                @if (ViewBag.EnableBackButton)
+                                {
+                                    string groupName = ViewBag.QuizGroupName;
+                                    // จำเป็นต้อง Redirect กลับไปที่ Quiz/Business ก่อน ถ้าไม่ใช่จะ Redirect ไปที่ Quiz/Group เอง
+                                    <a class="button-outline primary" href="@Url.BizAction("Business", "Quiz", new { area = "", id=groupName })">@Resources.PermitSummary.BTN_BACK_TO_QUIZ</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.BizAction("Index", "Home", new { area = "" })" class="button-outline primary">@Resources.PermitSummary.BTN_BACK_TO_HOME</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@section PageScripts {
+
+    @Scripts.Render("~/Bundles/AppV2/Script/PermitSummary")
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#submit-btn").click(function (e) {
+                    e.preventDefault();
+                    @if (identityType == UserTypeEnum.Anonymous)
+                    {
+                        <text>
+                    swal({
+                        title: "กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ",
+                        imageUrl: "@Url.Content("~/Content/SingleForm-frontis/lock.png")",
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        showConfirmButton: true,
+                        confirmButtonText: "เข้าสู่ระบบ",
+                        cancelButtonText: "ย้อนกลับ"
+                    }, function () {
+                        window.location.href = '@Url.ServiceAction("ChooseType", "Account", new { ReturnUrl = ViewBag.ReturnUrl })';
+                    }, function () { });
+                    </text>
+                    }
+                    else
+                    {
+                        <text>
+                    $("#frmPermitSummary").submit();
+                    </text>
+                    }
+                });
+                $("#back-btn").click(function (e) {
+                    e.preventDefault();
+                    window.location.href = '@backUrl';
+                });
+
+                $("#frmPermitSummary").submit(function (e) {
+                    swal({
+                        title: "กำลังไปยังหน้าถัดไป",
+                        type: "success",
+                        showConfirmButton: false
+                    });
+                    var self = this;
+                    window.setTimeout(function () {
+                        self.submit();
+                    }, 1500);
+
+                    return false; //is superfluous, but I put it here as a fallback
+                });
+                $(".form-info").unbind("click");
+                $('.form-info').click(function (e) {
+                    e.preventDefault();
+                    var targetID = $(this).data("target");
+                    $('#' + targetID).slideToggle();
+                });
+
+                $(".close").unbind("click");
+                $('.close').click(function (e) {
+                    e.preventDefault();
+                    var targetID = $(this).data("target");
+                    $('#' + targetID).slideUp();
+                });
+            });
+
+
+
+        function swalGoLogin() {
+            swal({
+                    title: "กรุณาเข้าสู่ระบบก่อนใช้งาน",
+                    text:  "ท่านยังไม่ได้เข้าสู่ระบบ",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-info",
+                    confirmButtonText: "เข้าสู่ระบบ",
+                    cancelButtonText: "ยกเลิก",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href = '@Url.ServiceAction("ChooseType", "Account", new { Area="Apps", ReturnUrl = HttpContext.Current.Request.Url.AbsoluteUri })';
+            });
+        }
+
+        function OPECPermisssionClick() {
+                    @{
+                        string OPEC_CITIZEN_SSO_URL = System.Configuration.ConfigurationManager.AppSettings["OPEC_CITIZEN_SSO_URL"];
+                        string OPEC_JURISTIC_SSO_URL = System.Configuration.ConfigurationManager.AppSettings["OPEC_JURISTIC_SSO_URL"];
+
+                    }
+            var SSO_URL = "";
+            if ('@IdentityType' == '@UserTypeEnum.Citizen') {
+                SSO_URL = '@OPEC_CITIZEN_SSO_URL';
+                swal({
+                    title: 'เข้าระบบ e-service หน่วยงานด้วยบัญชีประชาชน',
+                    text: '',
+                    type: "success",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "เข้าสู่ e-service หน่วยงาน",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        window.open(SSO_URL, '_blank');
+                    });
+                    }
+            else if ('@IdentityType' == '@UserTypeEnum.Juristic') {
+                SSO_URL = '@OPEC_JURISTIC_SSO_URL';
+                swal({
+                    title: 'เข้าระบบ e-service หน่วยงานด้วยบัญชีนิติบุคคล',
+                    text: '',
+                    type: "success",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "เข้าสู่ e-service หน่วยงาน",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        window.open(SSO_URL, '_blank');
+                    });
+
+            }
+            else if ('@IdentityType' == '@UserTypeEnum.Anonymous') {
+                swalGoLogin();
+            }
+    }
+
+        function DIWPermisssionClick() {
+                    @{
+                        string DIW_CITIZEN_SSO_URL = System.Configuration.ConfigurationManager.AppSettings["DIW_CITIZEN_SSO_URL"];
+                        string DIW_JURISTIC_SSO_URL = System.Configuration.ConfigurationManager.AppSettings["DIW_JURISTIC_SSO_URL"];
+                    }
+            var SSO_URL = "";
+            if ('@IdentityType' == '@UserTypeEnum.Citizen') {
+                SSO_URL = '@DIW_CITIZEN_SSO_URL';
+                    }
+            else if ('@IdentityType' == '@UserTypeEnum.Juristic') {
+                SSO_URL = '@DIW_JURISTIC_SSO_URL';
+                    }
+            if (SSO_URL != "") {
+                swal({
+                    title: '@IdentityType',
+                    text: '',
+                    type: "success",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "เข้าสู่ e-service หน่วยงาน",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        window.open(SSO_URL, '_blank');
+                    });
+            }
+            else
+            {
+                swalGoLogin();
+            }
+        }
+
+        function FadPermisssionClick() {
+            @{
+                string FAD_URL = System.Configuration.ConfigurationManager.AppSettings["FAD_CITIZEN_SSO_URL"];
+                string tmp_CitizenID = string.Empty;
+                /* เดี๋ยวมาเอาออก TEST FIX */
+                //new { CitiZenID = identityName }
+
+            }
+            if ('@identityName' == '') {
+                    swalGoLogin();
+                }
+                else
+                {
+                    if ('@IdentityType' == '@UserTypeEnum.Citizen') {
+                        swal({
+                        title: 'กรุณารอสักครู่',
+                        text: 'กำลังตรวจสอบสิทธิ์การมอบอำนาจ',
+                        imageUrl: "@Url.Action("img/waitingicon.gif", "../../")",
+                        showCancelButton: false,
+                        showConfirmButton: false
+                        })
+                    $.ajax({
+                        url: '@Url.Action("EncryptByCitizenIDFdaFormat", "../../Api/v2/FDA", new { CitiZenID = identityName })', success: function (result) {
+
+                                // alert(result.Msg);
+                                // alert(result.ResponseDetail);
+
+
+                                var txtcontent = "<strong>คลิ๊กชื่อระบบเพื่อเข้าดำเนินการ</strong>";
+                            $.each(result.ResponseDetail, function (key, data) {
+                                //console.log(key)
+                                $.each(data, function (index, data) {
+
+                                        console.log(index, data);
+
+                                        txtcontent += "<p>"+data+"</p>";
+
+                                    })
+                            })
+
+
+
+
+                            if (result.Code == "200") {
+
+                                    if (result.Success == true) {
+                                        swal({
+                                        html: true,
+                                        title: "บริการที่ได้รับสิทธิ์มอบอำนาจ",
+                                        text: txtcontent,
+                                        type: "success",
+                                        showCancelButton: true,
+                                        showConfirmButton: false,
+                                        //confirmButtonClass: "btn-success",
+                                        //confirmButtonText: "เข้าสู่ e-service หน่วยงาน",
+                                        closeOnConfirm: false
+                                        },
+                                        function () {
+                                            window.open('@FAD_URL', '_blank');
+                                        });
+                                    }
+                                    else
+                                    {
+                                        swal({
+                                        type: 'info',
+                                        title: 'ท่านไม่ได้รับสิทธิ์การมอบอำนาจให้ดำเนินการ ติดต่อสำนักงานคณะกรรมการอาหารและยาเพื่อขอสิทธิ์ 02-5907000',
+                                        text: '',
+
+                                    });
+                                    }
+                                }
+                                else //code 400...
+                                {
+                                    swal({
+                                    type: 'info',
+                                    title: 'เกิดข้อผิดพลาดไม่สามารถตรวจสอบข้อมูลการมอบอำนาจได้',
+                                    text: result.ResponseDetail.DATA
+
+                                });
+                                }
+                            }
+                        });
+                    }
+                    else
+                    {
+                        swal({
+                        type: 'info',
+                        title: 'กรุณาเข้าใช่งานด้วยบัญชีประชาชน บริการนี้สำหรับบัญชีประชาชนที่ได้รับมอบอำนาจจากนิติบุคคลเท่านั้น',
+                        text: '',
+
+                    });
+                    }
+
+                }
+
+        }
+
+    </script>
+
+}
+
+@if (packPermit)
+{
+    <script type="text/javascript">
+
+        $('#appContainer').on('click', '.item-list.clickable', function (e) {
+
+            let idx = $(this).find('ins').attr('data-index');
+            let pnlName = $(this).find('input#SingleFormApps_' + idx + '__AppSysName').val();
+
+            // DGA ทดสอบการขอแยกทีละใบ
+            //if (pnlName === 'APP_CLINIC_BUSINESS') {
+            //    $('.item-list.clickable', $('#appContainer')).each(function (i) {
+            //        if ($(this).find('ins').attr('data-appsysname') === 'APP_CLINIC_OPERATION') {
+            //            if ($(this).hasClass('active')) {
+            //                $(this).removeClass('active');
+            //            }
+            //            else {
+            //                $(this).addClass('active');
+            //            }
+            //        }
+            //    });
+            //    return;
+            //} else if (pnlName === 'APP_CLINIC_OPERATION') {
+            //    $('.item-list.clickable', $('#appContainer')).each(function (i) {
+            //        if ($(this).find('ins').attr('data-appsysname') === 'APP_CLINIC_BUSINESS') {
+            //            if ($(this).hasClass('active')) {
+            //                $(this).removeClass('active');
+            //            }
+            //            else {
+            //                $(this).addClass('active');
+            //            }
+            //        }
+            //    });
+            //    return;
+            //}
+
+            if (pnlName === 'APP_HOSPITAL_BUSINESS') {
+                $('.item-list.clickable', $('#appContainer')).each(function (i) {
+                    if ($(this).find('ins').attr('data-appsysname') === 'APP_HOSPITAL_OPERATION') {
+                        if ($(this).hasClass('active')) {
+                            $(this).removeClass('active');
+                        }
+                        else {
+                            $(this).addClass('active');
+                        }
+                    }
+                });
+                return;
+            } else if (pnlName === 'APP_HOSPITAL_OPERATION') {
+                $('.item-list.clickable', $('#appContainer')).each(function (i) {
+                    if ($(this).find('ins').attr('data-appsysname') === 'APP_HOSPITAL_BUSINESS') {
+                        if ($(this).hasClass('active')) {
+                            $(this).removeClass('active');
+                        }
+                        else {
+                            $(this).addClass('active');
+                        }
+                    }
+                });
+                return;
+            }
+        });
+
+    </script>
+}

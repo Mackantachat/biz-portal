@@ -1,0 +1,1317 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using BizPortal.Utils.Helpers
+@using System.Threading;
+@using BizPortal.DAL.MongoDB;
+
+<style type="text/css">
+    .remove-request-file {
+        display: inline-block;
+        color: #fb6b5b;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .control-label {
+        font-weight: bold;
+    }
+
+    .field-validation-valid {
+        display: none;
+    }
+
+    .field-validation-error {
+        float: none;
+        text-align: unset;
+        display: block;
+    }
+
+    .select2-container *:focus {
+        outline: none;
+    }
+
+    .sweet-alert h2 {
+        font-size: 25px;
+    }
+
+    .sweet-alert p {
+        font-size: 15px;
+    }
+
+    .sweet-alert button {
+        padding: 8px 24px;
+        font-size: 17px;
+    }
+
+    .sweet-alert input {
+        font-size: 15px;
+    }
+
+    .sweet-alert .sa-input-error {
+        top: 23px;
+        right: 10px;
+    }
+
+    .embed-loader {
+        background: url('../../../../Content/Images/loader/load1.gif') 50% 50% no-repeat;
+    }
+</style>
+@Styles.Render("~/Bundles/Style/sweetmodal")
+
+<div class="row">
+    <div class="col-md-6">
+        <strong> @Resources.ApplicationStatusRequests.APPLICATION_STATUS_REQUEST  </strong> :
+        @ResourceHelper.GetResourceWord("STATUS_" + @Model.Status, "ApplicationStatusRequests", Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
+    </div>
+</div>
+
+<br />
+
+<form id="frmRequest" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")">
+    @Html.HiddenFor(o => o.ApplicationID)
+    @Html.HiddenFor(o => o.ApplicationRequestID)
+    @Html.Hidden("CurrentStatus", Model.Status)
+
+    <div class="row">
+        <div class="col-md-7">
+
+            @*Status*@
+            <div id="pnlCheckPaymentStatus" class="form-group pull-right">
+                @if (Model.IsCheckPaymentStatus.HasValue && Model.IsCheckPaymentStatus.Value)
+                {
+                    <button type="button" id="btnCheckPaymentStatus" class="btn btn-xs btn-warning"><i class="fa fa fa-search"></i> @Resources.ApplicationStatusRequests.PAYMENT_CHECK_STATUS</button>
+                }
+            </div>
+
+            <div id="pnlStatus" class="form-group">
+                @Html.Label(Resources.ApplicationStatusRequests.APPLICATION_ACTION_REPLY, new { @class = "control-label" })
+                @Html.CustomDropDownListFor(model => model.Status, (SelectList)ViewBag.ApplicationStatusList, new { @style = "width: 100%;", @required = true })
+                @Html.ValidationMessageFor(model => model.Status, Resources.ApplicationStatusRequests.APPLICATION_ACTION_REPLY, new { @class = "text-danger" })
+            </div>
+
+            <div id="pnlExpectedFinishDate" class="form-group hide">
+                @Html.Label(Resources.ApplicationStatusRequests.EXPECTED_FINISH_DATE, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.ExpectedFinishDate, new { @class = "form-control control-datepicker", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.ExpectedFinishDate, Resources.ApplicationStatusRequests.EXPECTED_FINISH_DATE, new { @class = "text-danger" })
+            </div>
+
+            @*Fee*@
+            <div id="pnlFee" class="hide">
+                <div>
+                    @Html.Label(Resources.ApplicationStatusRequests.FEE, new { @class = "control-label" })
+                    <div class="form-group">
+                        <label class="radio-inline"><input type="radio" name="rdbFee" value="false" checked> @Resources.Global.NOT_HAVE</label>
+                        <label class="radio-inline"><input type="radio" name="rdbFee" value="true"> @Resources.Global.HAVE</label>
+                    </div>
+                </div>
+
+                <div id="pnlPaymentMethod" class="form-group hide">
+                    @Html.Label(Resources.ApplicationStatusRequests.PAYMENT_ENABLED_CHOICE, new { @class = "control-label" })
+                    <div class="form-group">
+                        <label><input type="checkbox" id="cbPaymentMethodAtOwnerOrg" name="cbPaymentMethod" label-show="@Model.OrgNameTH" value="@PaymentMethodValueConst.AT_OWNER_ORG" customrequiredif="{'dependentproperty':'rdbFee', 'targetvalue':'true'}"> @Model.OrgNameTH</label><br />
+                        <label><input type="checkbox" id="cbPaymentMethodBillPayment" name="cbPaymentMethod" label-show="@Resources.ApplicationStatusRequests.PAYMENT_BILL_PAYMENT" value="@PaymentMethodValueConst.BILL_PAYMENT" customrequiredif="{'dependentproperty':'rdbFee', 'targetvalue':'true'}"> @Resources.ApplicationStatusRequests.PAYMENT_BILL_PAYMENT</label>
+                        @Html.ValidationMessage("cbPaymentMethod", Resources.ApplicationStatusRequests.PLEASE_SELECT + Resources.ApplicationStatusRequests.PAYMENT_ENABLED_CHOICE, new { @class = "text-danger" })
+                    </div>
+                    <div id="pnlPaymentMethodBill" class="col-sm-12 hide">
+
+                        @if (Model.IsEnableCGDPayment)
+                        {
+                            <div class="form-group">
+                                <label class="radio-inline"><input type="radio" name="rdbBillPaymentType" value="@BillPaymentTypeValueConst.BILL_PAYMENT_TYPE_OWNER_ORG" checked>@Resources.ApplicationStatusRequests.TEXT_BILL_PAYMENT_TYPE_OWNER_ORG</label>
+                                <label class="radio-inline"><input type="radio" name="rdbBillPaymentType" value="@BillPaymentTypeValueConst.BILL_PAYMENT_TYPE_CGD">@Resources.ApplicationStatusRequests.TEXT_BILL_PAYMENT_TYPE_CGD</label><br />
+                            </div>
+                        }
+
+                        <div id="pnlPaymentMethodOrgBill" class='@Model.IsEnableCGDPayment ? "": "hide"'>
+                            <label>@Resources.ApplicationStatusRequests.UPLOAD_BILL_PAYMENT</label>
+                            <div>
+                                <input type="text" id="fulOrgBill" name="fulOrgBill" customrequiredif="{'dependentproperty':'rdbBillPaymentType', 'targetvalue':'OWNER_ORG'}" />
+                                @Html.ValidationMessage("fulOrgBill", Resources.ApplicationStatusRequests.PLEASE + Resources.ApplicationStatusRequests.UPLOAD_BILL_PAYMENT, new { @class = "text-danger" })
+                            </div>
+                            <br />
+                            <div id="pnlOrgBillTable" class="hide">
+                                <div class="form-group">
+                                    <table id="tbOrgBill" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" style="width: 40px;">#</th>
+                                                <th class="text-center">@Resources.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                                                <th class="text-center" style="width: 100px;">&nbsp;</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (Model.IsEnableCGDPayment)
+                        {
+                            <div id="pnlPaymentMethodCGDBill" class="row hide">
+                                @Html.Partial("~/Areas/Manage/Views/ApplicationStatus/_PaymentCGD.cshtml", new ViewDataDictionary { { "FeeElementID", "Fee" }, { "ValidationElementID", "fulCGDBill" } })
+                                <div class="col-md-12">
+                                    <input type="text" id="fulCGDBill" name="fulCGDBill" customrequiredif="{'dependentproperty':'rdbBillPaymentType', 'targetvalue':'CGD'}" class="invisibility" />
+                                    @Html.ValidationMessage("fulCGDBill", Resources.ApplicationStatusRequests.PLEASE + Resources.ApplicationStatusRequests.CGD_MODAL_ADD_TITLE, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(string.Format("{0} ({1})", @Resources.ApplicationStatusRequests.FEE_OF_APPLICATION, @Resources.ApplicationStatusRequests.BATH), new { @class = "control-label" })
+                        @Html.CustomTextBoxFor(model => model.Fee, new { @type = "number", @class = "form-control", @customrequiredif = "{'dependentproperty':'rdbFee', 'targetvalue':'true'}" })
+                        @Html.ValidationMessageFor(model => model.Fee, Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.FEE_OF_APPLICATION, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(@Resources.ApplicationStatusRequests.DUE_DATE_PAY_FEE, new { @class = "control-label" })
+                        <input placeholder="@Resources.ApplicationStatusRequests.PLEASE_SELECT" type="text" id="DueDateForPayFee" name="DueDateForPayFee" value="@DateTime.Now.AddDays(30).ToString("dd/MM/yyyy", new System.Globalization.CultureInfo(Culture))" data-date-start-date="@DateTime.Now.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo(Culture))" autocomplete="new-date" class="form-control control-datepicker" customrequiredif="{'dependentproperty':'rdbFee', 'targetvalue':'true'}" />
+                        @Html.ValidationMessageFor(model => model.DueDateForPayFee, Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.DUE_DATE_PAY_FEE, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @if (!Model.NoDocument && !Model.IsEnableELicense)
+                {
+                    <div id="pnlDeliveryType" class="form-group">
+                        @Html.Label(Resources.ApplicationStatusRequests.PERMIT_DELIVERY_TYPE_ENABLED_CHOICE, new { @class = "control-label" })
+                        <div>
+                            <label><input type="checkbox" name="cbDeliveryType" label-show="@Model.OrgNameTH.Trim()" value="@PermitDeliveryTypeValueConst.AT_OWNER_ORG" customrequiredif="{'dependentproperty':'Status', 'targetvalue':'@ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE'}"> @Model.OrgNameTH.Trim()</label>
+                            <div id="pnlOrgAddress" class="form-group hide">
+                                @Html.Label(Resources.ApplicationStatusRequests.PERMIT_OWNER_ORG_ADDRESS, new { @class = "control-label" })
+                                @Html.TextAreaFor(model => model.OrgAddress, new { @class = "form-control", @cols = "20", @rows = "5" })
+                                @Html.ValidationMessageFor(model => model.OrgAddress, Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.PERMIT_OWNER_ORG_ADDRESS, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div>
+                            <label><input type="checkbox" name="cbDeliveryType" label-show="@Resources.ApplicationStatusRequests.PDT_BY_MAIL" value="@PermitDeliveryTypeValueConst.BY_MAIL" customrequiredif="{'dependentproperty':'Status', 'targetvalue':'@ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE'}"> @Resources.ApplicationStatusRequests.PDT_BY_MAIL</label>
+                            <div id="pnlDeliveryFeeOwner" class="form-group hide">
+                                @Html.Label(Resources.ApplicationStatusRequests.EMS_FEE_PAYMENT_ENABLED_CHOICE, new { @class = "control-label" })
+                                <div>
+                                    <label class="radio-inline"><input type="radio" name="rdbEMSFee" value="@EMSFeePaymentTypeValueConst.OWNER_ORG" checked>@Resources.ApplicationStatusRequests.EMS_FEE_PAYMENT_BY_OWENR_ORG</label>
+                                </div>
+                                <div>
+                                    <label class="radio-inline"><input type="radio" name="rdbEMSFee" value="@EMSFeePaymentTypeValueConst.USER" disabled>@Resources.ApplicationStatusRequests.EMS_FEE_PAYMENT_BY_USER</label>
+                                </div>
+                            </div>
+                            <div id="pnlDeliveryFee" class="form-group hide">
+                                @Html.Label(string.Format("{0} ({1})", @Resources.ApplicationStatusRequests.EMS_FEE_OF_APPLICATION, @Resources.ApplicationStatusRequests.BATH), new { @class = "control-label" })
+                                @Html.CustomTextBoxFor(model => model.EMSFee, new { @type = "number", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.EMSFee, Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.EMS_FEE_OF_APPLICATION, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @Html.ValidationMessage("cbDeliveryType", Resources.ApplicationStatusRequests.PLEASE_SELECT + Resources.ApplicationStatusRequests.PERMIT_DELIVERY_METHOD, new { @class = "text-danger" })
+                    </div>
+                }
+            </div>
+
+            @*User can get permit*@
+            @if (!Model.NoDocument && !Model.IsEnableELicense)
+            {
+                <div id="pnlUserCanGetPermit" class="form-group hide">
+                    @Html.Label(Resources.ApplicationStatusRequests.USER_CAN_GET_APP_DATE, new { @class = "control-label" })
+                    <div class="input-daterange input-group" style="width:100%;">
+                        <input placeholder="@Resources.ApplicationStatusRequests.PLEASE_SELECT" type="text" id="UserCanGetAppDate" name="UserCanGetAppDate" value="@DateTime.Now.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo(Culture))" autocomplete="new-date" class="form-control" style="text-align:left;" required />
+                        <div class="input-group-addon">@Resources.Global.TO</div>
+                        <input placeholder="@Resources.ApplicationStatusRequests.PLEASE_SELECT" type="text" id="UserCanGetAppDateEnd" name="UserCanGetAppDateEnd" value="@DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy", new System.Globalization.CultureInfo(Culture))" autocomplete="new-date" class="form-control" style="text-align:left;" customrequiredif="{'dependentproperty':'UserCanGetAppDate', 'targetvalue':'not null'}" />
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.UserCanGetAppDate, Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.USER_CAN_GET_APP_DATE, new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.UserCanGetAppDateEnd, Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.USER_CAN_GET_APP_DATE, new { @class = "text-danger" })
+                </div>
+            }
+
+            @*E-License*@
+            @if (Model.Status == ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE && Model.IsEnableELicense)
+            {
+                <div id="pnlDocumentSigning" class="row">
+                    @Html.Partial("~/Areas/Manage/Views/ApplicationStatus/_ELicense.cshtml", Model.ELicenses)
+                </div>
+            }
+
+            <div id="pnlEMSTrackingNumber" class="form-group hide">
+                @Html.Label(Resources.ApplicationStatusRequests.EMS_TRACKING, new { @class = "control-label" })
+                @Html.CustomTextBoxFor(model => model.EMSTrackingNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EMSTrackingNumber, Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.EMS_TRACKING, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-5">
+            @*Remark*@
+            <div class="form-group">
+                @Html.Label(Resources.ApplicationStatusRequests.AGENT_COMMENT_REMARK, new { @class = "control-label" })
+                @if (Model.IsPassStepWaiting.HasValue)
+                {
+                    <label style="display:block">(@Resources.ApplicationStatusRequests.PASS_STEP_WAITING_REMARK_HEADER)</label>
+                }
+                @Html.CustomTextAreaFor(model => model.Remark, new { @class = "form-control", @rows = 7 })
+            </div>
+        </div>
+    </div>
+
+    @*Gov file (เอกสารที่ส่งให้ user)*@
+    <div id="pnlGovFile">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Label(Resources.ApplicationStatusRequests.UPLOAD_FILE_DOC_NAME_HEADER_TEXT, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.CustomTextBoxFor(model => model.GovDocumentName, new { @class = "form-control", @placeholder = @BizPortal.Resources.ApplicationStatusRequests.UPLOAD_FILE_DOC_NAME })
+                    @Html.ValidationMessageFor(model => model.GovDocumentName, Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.DOCUMENT_NAME, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <textarea id="GovDocumentDescription" name="GovDocumentDescription" class="form-control" placeholder="@BizPortal.Resources.ApplicationStatusRequests.UPLOAD_FILE_DOC_DESC" rows="1" style="min-height: 35px;"></textarea>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group upload-gov-box">
+                    <button type="button" id="btnGovDocument" class="btn btn-default" data-style="expand-left" data-spinner-color="#717171"><span class="ladda-label"><i class="fa fa-folder-open-o"></i> @BizPortal.Resources.Global.BROWSE</span></button>
+                    <input type="hidden" id="fulGovDocument" />
+                </div>
+            </div>
+        </div>
+        <div id="pnlGovFileTable" class="row hide">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <table id="govFileTable" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 40px;">#</th>
+                                <th class="text-center" style="width:150px;">@BizPortal.Resources.ApplicationStatusRequests.UPLOAD_FILE_DOC_NAME</th>
+                                <th class="text-center" style="width:150px;">@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                                <th class="text-center" style="width:250px;">@BizPortal.Resources.ApplicationStatusRequests.UPLOAD_FILE_DOC_DESC</th>
+                                <th class="text-center" style="width: 120px;">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Request files (เอกสารที่ขอเพิ่มเติมจาก user)*@
+    <div id="pnlRequestfile" class="hide">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.RequestedFiles, new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" id="txtRequestFileName" name="txtRequestFileName" class="form-control" placeholder="@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_NAME" />
+                    @Html.ValidationMessage("txtRequestFileName", Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.DOCUMENT_NAME, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <textarea id="txtRequestFileReason" name="txtRequestFileReason" class="form-control" placeholder="@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_REASON" rows="1" style="min-height: 35px;"></textarea>
+                    @Html.ValidationMessage("txtRequestFileReason", Resources.ApplicationStatusRequests.PLEASE_FILL + Resources.ApplicationStatusRequests.DOCUMENT_REASON, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group upload-gov-box">
+                    <button type="button" id="btnRequestFile" class="btn btn-default"><i class="fa fa-plus"></i> @BizPortal.Resources.ApplicationStatusRequests.ADD_REQUESTED_FILES</button>
+                    <div>
+                        @Html.ValidationMessage("txtRequestFile", "กรุณาเพิ่มข้อมูลเอกสารเพิ่มเติม", new { @class = "text-danger" })
+                        <input type="text" id="txtRequestFile" name="txtRequestFile" style="width: 1px; height: 1px; visibility: hidden; margin: 0; padding: 0;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="pnlRequestFileTable" class="row hide">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <table id="requestFileTable" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 40px;">#</th>
+                                <th class="text-center" style="width:150px;">@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                <th class="text-center" style="width:250px;">@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_REASON</th>
+                                <th class="text-center" style="width: 120px;">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    @*submit form*@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <button type="button" id="btnFormSummary" class="btn btn-primary" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resources.Global.BTN_SUBMIT)</span></button>
+                <button type="button" id="btnFormEditEdoc" class="btn btn-warning hide" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resources.Global.BTN_EDIT)</span></button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@Scripts.Render("~/Bundles/Scripts/sweetmodal")
+
+<script type="text/javascript">
+
+    var requestManage = {
+        controls: {
+            frmRequest: '#frmRequest',
+            hidApplicationID: '#frmRequest #ApplicationID',
+            hidApplicationRequestID: '#frmRequest #ApplicationRequestID',
+            hidCurrentStatus: '#frmRequest #CurrentStatus',
+            ddlStatus: '#frmRequest #Status',
+            txtRemark: '#frmRequest #Remark',
+            hidExpectedFinishDate: '#frmRequest #ExpectedFinishDate',
+            txtEMSTrackingNumber: '#frmRequest #EMSTrackingNumber',
+            rdbFee: '#frmRequest input[name="rdbFee"]',
+            cbPaymentMethod: '#frmRequest input[name="cbPaymentMethod"]',
+            rdbBillPaymentType: '#frmRequest input[name="rdbBillPaymentType"]',
+            fulOrgBill: '#frmRequest #fulOrgBill',
+            tbOrgBill: '#frmRequest #tbOrgBill',
+            txtFee: '#frmRequest #Fee',
+            txtDueDateForPayFee: '#frmRequest #DueDateForPayFee',
+            cbDeliveryType: '#frmRequest input[name="cbDeliveryType"]',
+            rdbEMSFee: '#frmRequest input[name="rdbEMSFee"]',
+            txtEMSFee: '#frmRequest #EMSFee',
+            txtOrgAddress: '#frmRequest #OrgAddress',
+            dpkUserCanGetAppDate: '#frmRequest #UserCanGetAppDate',
+            dpkUserCanGetAppDateEnd: '#frmRequest #UserCanGetAppDateEnd',
+            btnGovfile: '#frmRequest #btnGovDocument',
+            fulGovFile: '#frmRequest #fulGovDocument',
+            txtGovFileName: '#frmRequest #GovDocumentName',
+            txtGovFileDescription: '#frmRequest #GovDocumentDescription',
+            tbGovFile: '#frmRequest #govFileTable',
+            btnRequestFile: '#frmRequest #btnRequestFile',
+            tbRequestFile: '#frmRequest #requestFileTable',
+            txtRequestFile: '#frmRequest #txtRequestFile',
+            txtRequestFileName: '#frmRequest #txtRequestFileName',
+            txtRequestFileReason: '#frmRequest #txtRequestFileReason',
+            pnlStatus: '#frmRequest #pnlStatus',
+            pnlExpectedFinishDate: '#frmRequest #pnlExpectedFinishDate',
+            pnlFee: '#frmRequest #pnlFee',
+            pnlPaymentMethod: '#frmRequest #pnlPaymentMethod',
+            pnlPaymentMethodBill: '#frmRequest #pnlPaymentMethodBill',
+            pnlPaymentMethodOrgBill: '#frmRequest #pnlPaymentMethodOrgBill',
+            pnlOrgBillTable: '#frmRequest #pnlOrgBillTable',
+            pnlPaymentMethodCGDBill: '#frmRequest #pnlPaymentMethodCGDBill',
+            pnlDeliveryType: '#frmRequest #pnlDeliveryType',
+            pnlDeliveryFeeOwner: '#frmRequest #pnlDeliveryFeeOwner',
+            pnlDeliveryFee: '#frmRequest #pnlDeliveryFee',
+            pnlOrgAddress: '#frmRequest #pnlOrgAddress',
+            pnlUserCanGetPermit: '#frmRequest #pnlUserCanGetPermit',
+            pnlEMSTrackingNumber: '#frmRequest #pnlEMSTrackingNumber',
+            pnlGovFile: '#frmRequest #pnlGovFile',
+            pnlGovFileTable: '#frmRequest #pnlGovFileTable',
+            pnlRequestfile: '#frmRequest #pnlRequestfile',
+            pnlRequestFileTable: '#frmRequest #pnlRequestFileTable',
+            btnFormSummary: '#frmRequest #btnFormSummary',
+            btnFormEditEdoc :  '#frmRequest #btnFormEditEdoc',
+            btnCheckPaymentStatus: '#frmRequest #btnCheckPaymentStatus',
+            pnlCheckPaymentStatus : '#frmRequest #pnlCheckPaymentStatus',
+        },
+        variables: {
+            currentStatus: '@Model.Status',
+            currentStatusOther: '@Model.StatusOther',
+            holidays: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Holidays)),
+            isNoPermit: ('@Model.NoDocument' == 'True'),
+            isEnableELicense: ('@Model.IsEnableELicense' == 'True'),
+            paymentMethod: '@Model.PaymentMethod',
+            permitDeliveryType : '@Model.PermitDeliveryType'
+        },
+        functions: {
+            init: function () {
+                requestManage.functions.initStatus();
+                requestManage.functions.initExpectedDate();
+                requestManage.functions.initGovFile();
+                requestManage.functions.initRequestFile();
+                requestManage.functions.initPaymentMethod();
+                requestManage.functions.initELicense();
+                requestManage.functions.initFormSubmit();
+            },
+            initStatus: function () {
+                $(requestManage.controls.ddlStatus).select2();
+
+                $(requestManage.controls.ddlStatus).val(null).trigger('change');
+
+                $(requestManage.controls.ddlStatus).on('change', function (e) {
+                    var selectedValue = $(this).val()
+
+                    $(requestManage.controls.pnlRequestfile).addClass('hide');
+                    $(requestManage.controls.pnlFee).addClass('hide');
+                    $(requestManage.controls.pnlEMSTrackingNumber).addClass('hide');
+                    $(requestManage.controls.pnlUserCanGetPermit).addClass('hide');
+
+                    requestManage.functions.clearValidation();
+
+                    if (selectedValue == '@ApplicationStatusV2Enum.CHECK' || selectedValue == '@ApplicationStatusV2Enum.PENDING') {
+
+                        if (requestManage.variables.currentStatus == selectedValue) {
+                            // ให้ user ดำเนินการเพิ่มเติม
+                            $(requestManage.controls.pnlRequestfile).removeClass('hide');
+                        }
+                    }
+                    else if (selectedValue == '@ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE' && '@Model.StatusOther' == '@ApplicationStatusOtherValueConst.WAITING_AGENT_PROCESS') {
+                        // ให้ user เลือกช่องทางการชำระเงินและวิธีการรับใบอนุณาต
+                        $(requestManage.controls.pnlFee).removeClass('hide');
+                        $(requestManage.controls.pnlUserCanGetPermit).removeClass('hide');
+                    }
+                    else if (selectedValue == '@ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE') {
+                        if (requestManage.variables.permitDeliveryType == '@PermitDeliveryTypeValueConst.AT_OWNER_ORG') {
+                            // user เลือกรับใบอนุญาตที่สำนักงาน
+                            $(requestManage.controls.pnlUserCanGetPermit).removeClass('hide');
+                        }
+                    }
+                    else if (selectedValue == '@ApplicationStatusV2Enum.COMPLETED') {
+                        if (requestManage.variables.permitDeliveryType == '@PermitDeliveryTypeValueConst.BY_MAIL') {
+                            // user เลือกรับใบอนุญาตทางไปรษณีย์
+                            $(requestManage.controls.pnlEMSTrackingNumber).removeClass('hide');
+                        }
+                    }
+                    else if (selectedValue == '@ApplicationStatusV2Enum.REJECTED') {
+
+                    }
+                    else {
+
+                    }
+                });
+
+                $(requestManage.controls.btnCheckPaymentStatus).on('click', function (e) {
+                    $.ajax({
+                      method: 'POST',
+                      contentType : 'application/json',
+                        url: '@Url.Content("~/Api/v2/Payment/UpdateStatus")',
+                        data: JSON.stringify({
+                            IdentityID: '@Model.IdentityID',
+                            ApplicationRequestID: '@Model.ApplicationRequestID'
+                        })
+                    })
+                        .done(function (res) {
+                            if (res != null && res.length > 0 && res[0].ApplicationRequestId == '@Model.ApplicationRequestID' && res[0].Status == @((int)CGDPaymentStatus.Success)) {
+                            $.sweetModal({
+                                content: '@Html.Raw(Resources.ApplicationStatusRequests.CGD_COMFIRM_PAYMENT)'.replace('{0}', number_format(res[0].Amount, 2)) + new Date(res[0].ConfirmPaidDate).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' }),
+                                icon: $.sweetModal.ICON_SUCCESS
+                            });
+                        }
+                        else {
+                            $.sweetModal({
+                                content: '@Html.Raw(Resources.ApplicationStatusRequests.CGD_PENDING_PAYMENT)',
+                                icon: $.sweetModal.ICON_WARNING
+                            });
+                        }
+                    });
+                });
+            },
+            initExpectedDate: function () {
+
+                if (requestManage.variables.currentStatus == '@ApplicationStatusV2Enum.CHECK' && (requestManage.variables.currentStatusOther == '@ApplicationStatusOtherValueConst.WAITING_AGENT_READ_REQUEST' || requestManage.variables.currentStatusOther == '@ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING')) {
+
+                    var duration = @(Model.Duration ?? 0);
+                    var expectedFinishDate = new Date();
+
+                    var nextHolidayIdx = 0;
+                    var nextHoliday = nextHolidayIdx >= requestManage.variables.holidays.length ? new Date().addDays(-1) : new Date(requestManage.variables.holidays[nextHolidayIdx].Date);
+
+                    while (duration > 0) {
+                        expectedFinishDate = expectedFinishDate.addDays(1);
+                        if (expectedFinishDate - nextHoliday == 0) {
+                            // Holiday
+                            nextHolidayIdx++;
+                            if (nextHolidayIdx < requestManage.variables.holidays.length) {
+                                nextHoliday = new Date(requestManage.variables.holidays[nextHolidayIdx].Date);
+                            }
+                            else {
+                                nextHoliday = new Date(); // No more holiday, just set it to today
+                            }
+                        }
+                        else if (expectedFinishDate.getDay() == 0 || expectedFinishDate.getDay() == 6) {
+                            // Weekend
+                        }
+                        else {
+                            duration--;
+                        }
+                    }
+
+                    $(requestManage.controls.hidExpectedFinishDate).val(expectedFinishDate.getDate() + "/" + (expectedFinishDate.getMonth() + 1) + "/" + (expectedFinishDate.getFullYear() + 543));
+                }
+                else {
+                    $(requestManage.controls.hidExpectedFinishDate).val('@Model.ExpectedFinishDate');
+                }
+            },
+            initGovFile: function () {
+                var govfileBrowsers = $(requestManage.controls.fulGovFile).uploader({
+                    url: {
+                        fileConsumerKey: '@System.Configuration.ConfigurationManager.AppSettings["FileConsumerKey"]',
+                        fileServiceUrl: '@Url.Action("Upload","File", new { Area="", language = ViewBag.CurrentLang })',
+                        fileSignedInfoUrl: '@Url.Content("~/Api/V2/File/SignedFileInfo")',
+                        fileUploadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceUploadTokenPath"]',
+                        fileDownloadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceDownloadTokenPath"]',
+                        fileOldUploadUrl: '@Url.Content("~/Api/v2/FileExplorer/List")'
+                    },
+                    extras: {
+                        OWNER_IDENT_ID: '@Model.IdentityID'
+                    },
+                    class: 'hide'
+                });
+
+                $(govfileBrowsers.fulGovDocument).on('fileselected', function (e, fileMetadata) {
+                    var $fileName = $(requestManage.controls.txtGovFileName);
+                    var $fileDesc = $(requestManage.controls.txtGovFileDescription);
+                    var $fileTablePanel = $(requestManage.controls.pnlGovFileTable);
+                    var $fileTable = $(requestManage.controls.tbGovFile);
+                    var $fileTableBody = $fileTable.children('tbody');
+                    var $row = $('<tr id="' + fileMetadata.FileID + '"></tr>');
+                    var $colFileIndex = $('<td class="col-index">' + ($fileTableBody.children('tr').length + 1) + '</td>');
+                    var $colFileName = $('<td>' + $fileName.val() + '</td>');
+                    var $colFileRealName = $('<td>' + fileMetadata.FileName + '</td>');
+                    var $colFileDesc = $('<td>' + $fileDesc.val() + '</td>');
+                    var $colFileCtrl = $('<td class="text-center"></td>');
+                    var $btnDeletefile = $('<button type="button" class="btn btn-xs btn-danger">@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>').on('click', function (e) {
+                        // remove from file server
+                        requestManage.functions.removeFile('@Model.ApplicationRequestID', 'gov', fileMetadata.FileID, 'dummy', function (data, status, xhr) { console.log(status) });
+
+                        // remove from gov file table
+                        $(this).parent('td').parent('tr').remove();
+
+                        // re table index
+                        $.each($(requestManage.controls.tbGovFile + ' tbody tr td.col-index'), function (i, el) {
+                            $(el).html(i + 1);
+                        });
+
+                        // check gov file table state
+                        if ($(requestManage.controls.tbGovFile + ' tbody tr').length < 1) {
+                            $fileTablePanel.addClass('hide');
+                        }
+                    });
+
+                    fileMetadata.GovDocumentName = $fileName.val();
+                    fileMetadata.GovDocumentDescription = $fileDesc.val();
+
+                    $colFileCtrl.append($btnDeletefile);
+                    $row.append($colFileIndex);
+                    $row.append($colFileName);
+                    $row.append($colFileRealName);
+                    $row.append($colFileDesc);
+                    $row.append($colFileCtrl);
+                    $row.data('filemetadata', fileMetadata);
+                    $fileTableBody.append($row);
+                    $fileTablePanel.removeClass('hide');
+                    $fileName.val('');
+                    $fileDesc.val('');
+                    $.ladda('stopAll');
+                });
+
+                $(govfileBrowsers.fulGovDocument).on('fileadded', function (e) {
+                    var $loading = $(requestManage.controls.btnGovfile).ladda();
+                    $loading.ladda('start');
+                });
+
+                $(requestManage.controls.btnGovfile).on('click', function (e) {
+
+                    var $fileName = $(requestManage.controls.txtGovFileName);
+
+                    $fileName.attr('required', true);
+
+                    if ($fileName.valid()) {
+                        $('#fulGovDocument_browseNew').trigger('click');
+
+                    }
+
+                    $fileName.removeAttr('required');
+                });
+            },
+            initRequestFile: function () {
+                $(requestManage.controls.btnRequestFile).on('click', function (e) {
+                    var $fileRequest = $(requestManage.controls.txtRequestFile);
+                    var $fileName = $(requestManage.controls.txtRequestFileName);
+                    var $fileReason = $(requestManage.controls.txtRequestFileReason);
+
+                    $fileName.attr('required', true);
+                    $fileReason.attr('required', true);
+
+                    if ($fileName.valid() && $fileReason.valid()) {
+                        var $fileTablePanel = $(requestManage.controls.pnlRequestFileTable);
+                        var $fileTable = $(requestManage.controls.tbRequestFile);
+                        var $fileTableBody = $fileTable.children('tbody');
+                        var $row = $('<tr></tr>');
+                        var $colFileIndex = $('<td class="col-index">' + ($fileTableBody.children('tr').length + 1) + '</td>');
+                        var $colFileName = $('<td>' + $fileName.val() + '</td>');
+                        var $colFileReason = $('<td>' + $fileReason.val() + '</td>');
+                        var $colFileCtrl = $('<td class="text-center"></td>');
+                        var $btnDeletefile = $('<button type="button" class="btn btn-xs btn-danger" >@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>').on('click', function (e) {
+
+                            // remove from request file table
+                            $(this).parent('td').parent('tr').remove();
+
+                            // re table index
+                            $.each($(requestManage.controls.tbRequestFile + ' tbody tr td.col-index'), function (i, el) {
+                                $(el).html(i + 1);
+                            });
+
+                            // check request file table state
+                            if ($(requestManage.controls.tbRequestFile + ' tbody tr').length < 1) {
+                                $fileTablePanel.addClass('hide');
+                            }
+                        });
+
+                        $colFileCtrl.append($btnDeletefile);
+                        $row.append($colFileIndex);
+                        $row.append($colFileName);
+                        $row.append($colFileReason);
+                        $row.append($colFileCtrl);
+                        $row.data('filemetadata', { FileName: $fileName.val(), FileReason: $fileReason.val() });
+                        $fileTableBody.append($row);
+                        $fileTablePanel.removeClass('hide');
+                        $fileName.val('');
+                        $fileReason.val('');
+                        $fileRequest.parent('div').children('.field-validation-error').addClass('field-validation-valid').removeClass('field-validation-error');
+                    }
+
+                    $fileName.removeAttr('required');
+                    $fileReason.removeAttr('required');
+                });
+
+            },
+            initPaymentMethod: function () {
+
+                // ค่าธรรมเนียม
+                $(requestManage.controls.rdbFee).on('change', function (e) {
+                    $(requestManage.controls.pnlPaymentMethod).addClass('hide');
+                    $(requestManage.controls.pnlUserCanGetPermit).addClass('hide');
+
+                    $(requestManage.controls.rdbEMSFee + '[value="OWNER_ORG"]').prop('checked', true).trigger('change');
+                    $(requestManage.controls.rdbEMSFee + '[value="USER"]').attr('disabled', true);
+                    $(requestManage.controls.txtEMSFee).val(0);
+
+                    if ($(this).val() == 'true') {
+                        $(requestManage.controls.pnlPaymentMethod).removeClass('hide');
+                        $(requestManage.controls.rdbEMSFee + '[value="USER"]').removeAttr('disabled');
+                    }
+                    else {
+                        $(requestManage.controls.pnlUserCanGetPermit).removeClass('hide');
+                    }
+                });
+
+                // ช่องทางการชำระเงิน
+                $(requestManage.controls.cbPaymentMethod).on('change', function (e) {
+
+                    $(requestManage.controls.pnlPaymentMethodBill).addClass('hide');
+
+                    if ($(requestManage.controls.cbPaymentMethod + '[value="BILL_PAYMENT"]:checked').length > 0) {
+                        $(requestManage.controls.pnlPaymentMethodBill).removeClass('hide');
+                        $(requestManage.controls.rdbBillPaymentType).trigger('change');
+                    }
+                    else
+                    {
+                        $(requestManage.controls.txtFee).removeAttr('disabled');
+                    }
+                });
+
+                // ชนิดของบิล
+                $(requestManage.controls.rdbBillPaymentType).on('change', function (e) {
+                    $(requestManage.controls.pnlPaymentMethodOrgBill).addClass('hide');
+                    $(requestManage.controls.pnlPaymentMethodCGDBill).addClass('hide');
+                    $(requestManage.controls.txtFee).attr('disabled', true);
+
+                    if ($(requestManage.controls.rdbBillPaymentType + '[value="OWNER_ORG"]:checked').length > 0) {
+                        $(requestManage.controls.pnlPaymentMethodOrgBill).removeClass('hide');
+                        $(requestManage.controls.txtFee).removeAttr('disabled');
+                    }
+                    else {
+                        $(requestManage.controls.pnlPaymentMethodCGDBill).removeClass('hide');
+                        requestManage.functions.clearValidation(requestManage.controls.txtFee);
+                    }
+                });
+
+                // บิลหน่วยงาน
+                var orgBillBrowsers = $(requestManage.controls.fulOrgBill).uploader({
+                    url: {
+                        fileConsumerKey: '@System.Configuration.ConfigurationManager.AppSettings["FileConsumerKey"]',
+                        fileServiceUrl: '@Url.Action("Upload","File", new { Area="", language = ViewBag.CurrentLang })',
+                        fileSignedInfoUrl: '@Url.Content("~/Api/V2/File/SignedFileInfo")',
+                        fileUploadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceUploadTokenPath"]',
+                        fileDownloadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceDownloadTokenPath"]',
+                        fileOldUploadUrl: '@Url.Content("~/Api/v2/FileExplorer/List")'
+                    },
+                    extras: {
+                        OWNER_IDENT_ID: '@Model.IdentityID'
+                    },
+                    class: ''
+                });
+
+                $(orgBillBrowsers.fulOrgBill).on('fileselected', function (e, fileMetadata) {
+
+                    var $fileUploadBtn = $(requestManage.controls.fulOrgBill);
+                    var $fileTablePanel = $(requestManage.controls.pnlOrgBillTable);
+                    var $fileTable = $(requestManage.controls.tbOrgBill);
+                    var $fileTableBody = $fileTable.children('tbody');
+
+                    // ลบไฟล์เก่าทิ้งก่อนเพื่อที่จะบังคับให้ upload ได้แค่ไฟล์เดียว
+                    if ($fileTableBody.children('tr').length > 0) {
+                        var $row = $fileTableBody.children('tr');
+
+                        $row.each(function (i, el){
+                            // remove from file server
+                            requestManage.functions.removeFile('@Model.ApplicationRequestID', 'gov', $(el).attr('id'), 'dummy', function (data, status, xhr) { console.log(status) });
+
+                            // remove from gov file table
+                            $(el).remove();
+                        });
+                    }
+
+                    // เพิ่มไฟล์ใหม่
+                    var $row = $('<tr id="' + fileMetadata.FileID + '"></tr>');
+                    var $colFileIndex = $('<td class="col-index">' + ($fileTableBody.children('tr').length + 1) + '</td>');
+                    var $colFileName = $('<td>' + fileMetadata.FileName + '</td>');
+                    var $colFileCtrl = $('<td class="text-center"></td>');
+                    var $btnDeletefile = $('<button type="button" class="btn btn-xs btn-danger">@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>').on('click', function (e) {
+
+                        // remove from file server
+                        requestManage.functions.removeFile('@Model.ApplicationRequestID', 'gov', fileMetadata.FileID, 'dummy', function (data, status, xhr) { console.log(status) });
+
+                        // remove from gov file table
+                        $(this).parent('td').parent('tr').remove();
+
+                        // re table index
+                        $.each($(requestManage.controls.tbOrgBill + ' tbody tr td.col-index'), function (i, el) {
+                            $(el).html(i + 1);
+                        });
+
+                        // check gov file table state
+                        if ($(requestManage.controls.tbOrgBill + ' tbody tr').length < 1) {
+                            $fileTablePanel.addClass('hide');
+                            $fileUploadBtn.val('');
+                        }
+                    });
+
+                    $colFileCtrl.append($btnDeletefile);
+                    $row.append($colFileIndex);
+                    $row.append($colFileName);
+                    $row.append($colFileCtrl);
+                    $row.data('filemetadata', fileMetadata);
+                    $fileTableBody.append($row);
+                    $fileTablePanel.removeClass('hide');
+                    $fileUploadBtn.valid();
+                });
+
+                // บิลกรมบัญชีกลาง
+                if (typeof initCgdPayment === "function") {
+                    initCgdPayment();
+                }
+
+                // การจัดส่งใบอนุญาต
+                $(requestManage.controls.cbDeliveryType).on('change', function (e) {
+                    $(requestManage.controls.pnlOrgAddress).addClass('hide');
+                    $(requestManage.controls.pnlDeliveryFeeOwner).addClass('hide');
+
+                    if ($(requestManage.controls.cbDeliveryType + '[value="AT_OWNER_ORG"]:checked').length > 0) {
+                        $(requestManage.controls.pnlOrgAddress).removeClass('hide');
+                    }
+
+                    if ($(requestManage.controls.cbDeliveryType + '[value="BY_MAIL"]:checked').length > 0) {
+                        $(requestManage.controls.pnlDeliveryFeeOwner).removeClass('hide');
+                    }
+                });
+
+                $(requestManage.controls.rdbEMSFee).on('change', function (e) {
+                    $(requestManage.controls.pnlDeliveryFee).addClass('hide');
+
+                    if ($(requestManage.controls.rdbEMSFee + '[value="USER"]:checked').length > 0) {
+                        $(requestManage.controls.pnlDeliveryFee).removeClass('hide');
+                    }
+                });
+
+            },
+            initELicense: function () {
+                if (typeof initELicense === "function") {
+                    initELicense();
+                }
+            },
+            initFormSubmit: function () {
+
+                // summary data
+                $(requestManage.controls.btnFormSummary).on('click', function (e) {
+
+                    var isFormValid = false;
+                    var $fileRequest = $(requestManage.controls.txtRequestFile);
+                    var $fileName = $(requestManage.controls.txtRequestFileName);
+                    var $fileReason = $(requestManage.controls.txtRequestFileReason);
+
+                    if (($(requestManage.controls.ddlStatus).val() == "CHECK" || ('@Model.Status' == 'PENDING' && $(requestManage.controls.ddlStatus).val() == "PENDING")) && (requestManage.functions.getFileTable(requestManage.controls.tbRequestFile) == " - ")) {
+
+                        // validate เอกสารเพิ่มเติม
+                        $fileRequest.attr('required', true);
+                        $fileName.attr('required', true);
+                        $fileReason.attr('required', true);
+
+                        if (!($fileName.valid() && $fileReason.valid())) {
+                            $fileRequest.valid();
+                        }
+
+                        $(requestManage.controls.frmRequest).valid();
+
+                        $fileRequest.removeAttr('required');
+                        $fileName.removeAttr('required');
+                        $fileReason.removeAttr('required');
+                    }
+                    else {
+                        $fileRequest.parent('div').children('.field-validation-error').addClass('field-validation-valid').removeClass('field-validation-error');
+                        isFormValid = $(requestManage.controls.frmRequest).valid();
+                    }
+
+                    if (isFormValid) {
+
+                        var updateStatus = $(requestManage.controls.ddlStatus).select2('data')[0];
+
+
+                        if (updateStatus.text == "ดำเนินการออกใบอนุญาต" && updateStatus.id == "PAID_FEE_CREATING_LICENSE") {
+                            requestManage.functions.renderELicense(function (res) {
+                                requestManage.functions.summary();
+                            });
+                        }
+                        else {
+                            requestManage.functions.summary();
+                        }
+                    }
+                    else{
+                        $(requestManage.controls.frmRequest).validate().focusInvalid();
+                    }
+                });
+
+                // save data
+                $(requestManage.controls.frmRequest).ajaxForm({
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    clearForm: true,
+                    beforeSubmit: function (arr, $form, options) {
+                        var $loading = $(requestManage.controls.btnFormSummary).ladda();
+                        var $loading2 = $(requestManage.controls.btnFormEditEdoc).ladda();
+                        $loading.ladda('start');
+                        $loading2.ladda('start');
+                    },
+                    customData: function (data, jqForm, options) {
+
+                        var currentStatus = $(requestManage.controls.hidCurrentStatus).val();
+                        var updateStatus = $(requestManage.controls.ddlStatus).val();
+                        var status = updateStatus;
+                        var statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.WAITING_USER_WORKING';
+                        var expectedFinishDate = $(requestManage.controls.hidExpectedFinishDate).val();
+                        var remark = $(requestManage.controls.txtRemark).val();
+                        var govFiles = requestManage.functions.getFileData(requestManage.controls.tbGovFile);
+                        var requestedFiles = requestManage.functions.getFileData(requestManage.controls.tbRequestFile);
+                        var isFee = false;
+                        var fee = 0;
+                        var emsFee = 0;
+                        var emsFeeOwner = '';
+                        var dueDateForPayFee = null;
+                        var paymentMethod = [];
+                        var orgBills = [];
+                        var deliveryMethod = [];
+                        var orgAddress = '';
+                        var billPaymentType = '';
+                        var emsTrackingNumber = $(requestManage.controls.txtEMSTrackingNumber).val();
+                        var userCanGetAppDate = $(requestManage.controls.dpkUserCanGetAppDate).val() || null;
+                        var userCanGetAppDateEnd = $(requestManage.controls.dpkUserCanGetAppDateEnd).val() || null;
+
+
+                        if (updateStatus == '@BizPortal.ApplicationStatusV2Enum.CHECK' || updateStatus == '@BizPortal.ApplicationStatusV2Enum.PENDING') {
+
+                            if (currentStatus == updateStatus) {
+                                // สถานะไม่เปลี่ยน user ต้องดำเนินการ
+                                statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.WAITING_USER_WORKING';
+                            }
+                            else {
+                                // สถานะเปลี่ยน agent ต้องดำเนินการ
+                                statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING';
+                            }
+                        }
+                        else if(updateStatus == '@BizPortal.ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE') {
+
+                            if ('@Model.StatusOther' == 'WAITING_AGENT_WORKING') {
+                                 status = '@BizPortal.ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE';
+                                 statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.WAITING_AGENT_PROCESS';
+                            }
+                            else
+                            {
+                                 if (($(requestManage.controls.rdbFee + '[value="true"]:checked').length > 0)) {
+                                    // มีค่าธรรมเนียม user ต้องดำเนินการ
+                                    statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.WAITING_USER_WORKING';
+                                    isFee = true;
+                                    fee = $(requestManage.controls.txtFee).val();
+                                    emsFee = $(requestManage.controls.txtEMSFee).val();
+                                    emsFeeOwner = $(requestManage.controls.rdbEMSFee + ':checked').val();
+                                    dueDateForPayFee = $(requestManage.controls.txtDueDateForPayFee).val();
+                                    paymentMethod = $(requestManage.controls.cbPaymentMethod + ':checked').map(function (i, el) { return $(el).val(); }).get();
+                                    billPaymentType = $(requestManage.controls.rdbBillPaymentType + ':checked').val();
+                                    orgBills = requestManage.functions.getFileData(requestManage.controls.tbOrgBill)
+                                    deliveryMethod = $(requestManage.controls.cbDeliveryType + ':checked').map(function (i, el) { return $(el).val(); }).get();
+                                    orgAddress = $(requestManage.controls.txtOrgAddress).val();
+                                }
+                                else {
+                                    // ไม่มีค่าธรรมเนียม
+                                    if (requestManage.variables.isNoPermit) {
+                                        // ไม่มีใบอนุญาต agent ต้องดำเนินการ
+                                        status = '@BizPortal.ApplicationStatusV2Enum.COMPLETED';
+                                        statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.DONE';
+                                    }
+                                    else if (requestManage.variables.isEnableELicense) {
+                                        // มีใบอนุญาตเป็น e-license
+                                        status = '@BizPortal.ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE';
+                                        statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING';
+                                    }
+                                    else {
+                                        // มีใบอนุญาต user ต้องดำเนินการเลือกช่องทางการรับใบอนุญาต
+                                        status = '@BizPortal.ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE';
+                                        statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.WAITING_USER_WORKING';
+                                        deliveryMethod = $(requestManage.controls.cbDeliveryType + ':checked').map(function (i, el) { return $(el).val(); }).get();
+                                        orgAddress = $(requestManage.controls.txtOrgAddress).val();
+                                    }
+                                }
+                            }
+                        }
+                        else if(updateStatus == '@BizPortal.ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE'){
+                            if (requestManage.variables.isNoPermit) {
+                                // ไม่มีใบอนุญาต
+                                status = '@BizPortal.ApplicationStatusV2Enum.COMPLETED';
+                                statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.DONE';
+                            }
+                            else {
+                                // มีใบอนุญาต รอเจ้าหน้าที่ออกใบอนุณาต
+                                statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING';
+                            }
+                        }
+                        else if(updateStatus == '@BizPortal.ApplicationStatusV2Enum.COMPLETED'){
+                            // ออกใบอนุญาตเสร็จสิ้น
+                            statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.DONE';
+                        }
+                        else if(updateStatus == '@BizPortal.ApplicationStatusV2Enum.REJECTED'){
+                            // ปฏิเสธการออกใบอนุญาต
+                            statusOther = '@BizPortal.DAL.MongoDB.ApplicationStatusOtherValueConst.REJECT';
+                        }
+
+                        options.data = {
+                            ApplicationID: $(requestManage.controls.hidApplicationID).val(),
+                            ApplicationRequestID: $(requestManage.controls.hidApplicationRequestID).val(),
+                            Status: status,
+                            StatusOther: statusOther,
+                            ExpectedFinishDate: expectedFinishDate,
+                            Remark: remark,
+                            GovFiles: govFiles,
+                            RequestedFiles: requestedFiles,
+                            IsFee : isFee,
+                            Fee: fee,
+                            EMSFee: emsFee,
+                            EMSFeePaymentType: emsFeeOwner,
+                            DueDateForPayFee: dueDateForPayFee,
+                            PaymentMethodEnabledChoice: paymentMethod,
+                            BillPaymentTypeForPaymentMethod : billPaymentType,
+                            BillPaymentFiles: orgBills,
+                            CGDPayment: (isFee ? requestManage.functions.getCgdData() : null),
+                            PermitDeliveryTypeEnabledChoice: deliveryMethod,
+                            OrgAddress: orgAddress,
+                            EMSTrackingNumber: emsTrackingNumber,
+                            UserCanGetAppDate: userCanGetAppDate,
+                            UserCanGetAppDateEnd: userCanGetAppDateEnd,
+                            ELicenses : requestManage.functions.getELicenseData()
+                        };
+
+                        options.data = JSON.stringify(options.data);
+                    },
+                    error: function (xhr, status, error, $form) {
+                        var data = xhr.responseJSON;
+                        $.ladda('stopAll');
+                        notify('error', data.Message);
+                    },
+                    success: function (responseText, statusText, xhr, $form) {
+                        var data = xhr.responseJSON;
+                        $.ladda('stopAll');
+                        swal({ title: '', text: decodeURIComponent(data.Message), type: 'success' }, function (isConfirm) {
+                            location.reload();
+                        });
+                    }
+                });
+            },
+            summary: function () {
+
+                var header = '<p class="text-center">@BizPortal.Resources.ApplicationStatusRequests.MSG_CONFIRM_UPDATE_STATUS</p>';
+                var body = '';
+                var currentStatus = '@ResourceHelper.GetResourceWord("STATUS_" + @Model.Status, "ApplicationStatusRequests", Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)';
+                var updateStatus = $(requestManage.controls.ddlStatus).select2('data')[0].text;
+                var remark = $(requestManage.controls.txtRemark).val() || ' - ';
+                var govFileTable = requestManage.functions.getFileTable(requestManage.controls.tbGovFile);
+                var requestFileTable = requestManage.functions.getFileTable(requestManage.controls.tbRequestFile);
+                var isHasFee = ($(requestManage.controls.rdbFee + '[value="true"]:checked').length > 0);
+                var fee = $(requestManage.controls.txtFee).val();
+                var emsFee = $(requestManage.controls.txtEMSFee).val();
+                var emsFeeOwner = ($(requestManage.controls.rdbEMSFee + ':checked').val() == "USER" ? '@Resources.ApplicationStatusRequests.EMS_FEE_PAYMENT_BY_USER' : '@Resources.ApplicationStatusRequests.EMS_FEE_PAYMENT_BY_OWENR_ORG');
+                var dueDateForPayFee = $(requestManage.controls.txtDueDateForPayFee).val();
+                var paymentMethod = $(requestManage.controls.cbPaymentMethod + ':checked').map(function (i, el) { return $(el).attr('label-show'); }).get().join('<br/>- ');
+                var orgBills = requestManage.functions.getFileTable(requestManage.controls.tbOrgBill);
+                var cgdBills = requestManage.functions.getCgdTable();
+                var deliveryMethod = $(requestManage.controls.cbDeliveryType + ':checked').map(function (i, el) { return $(el).attr('label-show'); }).get().join('<br/>- ');
+                var orgAddress = $(requestManage.controls.txtOrgAddress).val();
+                var emsTrackingNumber = $(requestManage.controls.txtEMSTrackingNumber).val();
+                var userCanGetAppDate = $(requestManage.controls.dpkUserCanGetAppDate).val();
+                var userCanGetAppDateEnd = $(requestManage.controls.dpkUserCanGetAppDateEnd).val();
+                var elicenseData = requestManage.functions.getELicenseData();
+
+                if (updateStatus) {
+                    body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.APPLICATION_ACTION_REPLY', updateStatus );
+                }
+
+                if (elicenseData && elicenseData.length > 0) {
+
+                    for (var i in elicenseData)
+                    {
+                        body = body + requestManage.functions.toSummary('ใบอนุญาต', '<br/><embed class="embed-loader" src="@Url.Action("DownloadEDocument", "File", new { area="", applicationRequestId = Model.ApplicationRequestID })&documentId=' + elicenseData[i].DocumentID + '" frameborder="0" width="100%" height="400px">');
+                    }
+                }
+
+                if ($(requestManage.controls.ddlStatus).val() == '@BizPortal.ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE' && '@Model.StatusOther' == '@ApplicationStatusOtherValueConst.WAITING_AGENT_PROCESS') {
+
+                    if (fee > 0 && isHasFee) {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.FEE_OF_APPLICATION', number_format(fee, 2) + ' @BizPortal.Resources.Global.BATH');
+                    }
+                    else {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.FEE_OF_APPLICATION', '@BizPortal.Resources.Global.NOT_HAVE' );
+                    }
+
+                    if (emsFee > 0 && isHasFee) {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.EMS_FEE_OF_APPLICATION', number_format(emsFee, 2) + ' @BizPortal.Resources.Global.BATH');
+                    }
+
+                    if (emsFeeOwner && isHasFee) {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.EMS_FEE_PAYMENT_ENABLED_CHOICE', emsFeeOwner );
+                    }
+
+                    if (dueDateForPayFee && isHasFee) {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.DUE_DATE_PAY_FEE', dueDateForPayFee );
+                    }
+
+                    if (paymentMethod && isHasFee) {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.PAYMENT_ENABLED_CHOICE', '<br/>- ' + paymentMethod );
+                    }
+
+                    if (isHasFee)
+                    {
+                        if (cgdBills && cgdBills != null) {
+                            body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.BILLPAYMENT_UPLOADED_HEADER @BizPortal.Resources.ApplicationStatusRequests.TEXT_BILL_PAYMENT_TYPE_CGD', cgdBills );
+                        }
+                        else {
+                            body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.BILLPAYMENT_UPLOADED_HEADER', orgBills );
+                        }
+                    }
+
+                    if (deliveryMethod) {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.PERMIT_DELIVERY_METHOD', '<br/>- ' + deliveryMethod );
+                    }
+
+                    if (orgAddress) {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.PERMIT_OWNER_ORG_ADDRESS', orgAddress );
+                    }
+
+                    if (userCanGetAppDate && userCanGetAppDate != '') {
+                        body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.USER_CAN_GET_APP_DATE', userCanGetAppDate + ' ถึง ' + userCanGetAppDateEnd);
+                    }
+                }
+
+                if (emsTrackingNumber && emsTrackingNumber != '') {
+                    body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.EMS_TRACKING', emsTrackingNumber);
+                }
+
+                if (remark) {
+                    body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.AGENT_COMMENT_REMARK', remark );
+                }
+
+                if (govFileTable) {
+                    body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.UPLOAD_FILE_DOC_NAME_HEADER_TEXT', govFileTable );
+                }
+
+                if (requestFileTable && requestFileTable != '@BizPortal.Resources.Global.NOT_HAVE') {
+                    body = body + requestManage.functions.toSummary('@BizPortal.Resources.ApplicationStatusRequests.REQUEST_FILE', requestFileTable );
+                }
+
+                if (updateStatus == 'แก้ไขใบอนุญาต') {
+                    body = body + '<br/> <div class="row text-left m-b-xs text-md text-danger">* ใบอนุญาตเดิมที่มีการลงนามแล้วจะถูกยกเลิก และท่านจะต้องดำเนินการออกใบอนุญาตใหม่อีกครั้ง</div>'
+                }
+
+                $.sweetModal.confirm(header, body, function () {
+
+                    if ($(requestManage.controls.ddlStatus).val() == "APPROVED_WAITING_PAY_FEE" && '@System.Configuration.ConfigurationManager.AppSettings["EnableComfirmOTP"]' == "true") {
+
+                        showLoader(true);
+                        $.post('@Url.Content("~/Api/V2/Applications/SendConfirmSMS")', function (res) {
+
+                            var otp = res.split(",");
+
+                            swal({
+                                title: "ยืนยันการอนุมัติ",
+                                text : "ระบบได้ทำการส่งรหัส OTP ทาง SMS ไปที่หมายเลข " + otp[0] + " กรุณากรอกรหัส OTP ของท่านเพื่อยืนยันการอนุมัติ รหัสอ้างอิง (" + otp[2] + ")",
+                                type: "input",
+                                confirmButtonColor: "#47a447",
+                                confirmButtonText: "ยืนยัน",
+                                cancelButtonText: "ยกเลิก",
+                                inputPlaceholder: "กรุณากรอกรหัส OTP",
+                                showCancelButton: true,
+                                closeOnConfirm: false,
+                            },
+                                function (inputValue) {
+                                    if (inputValue === false) {
+                                        showLoader(false);
+                                        return false;
+                                    }
+
+                                    if (inputValue === otp[1]) {
+                                        setTimeout(function () {
+                                            confirmation.variables.confirmed = true;
+                                            $('.sweet-alert button').prop('disabled', true);
+                                            $(requestManage.controls.frmRequest).submit();
+                                        }, 200);
+                                    }
+                                    else {
+                                        swal.showInputError("กรุณาตรวจสอบรหัส OTP สำหรับยืนยันการทำรายการ");
+                                        return false
+                                    }
+                                });
+                        }).error(function (res) {
+                            showLoader(false);
+                            swal({
+                                type: 'error',
+                                title: '',
+                                text: res.responseJSON.Message
+                            });
+                        });
+                    }
+                    else {
+                        $(requestManage.controls.frmRequest).submit();
+                    }
+                }, function () {
+                    $.ladda('stopAll');
+                });
+            },
+            toSummary: function (name, value) {
+                return '<div class="row text-left m-b-xs"><strong>' + name +' : </strong> ' + value + '</div>';
+            },
+            removeFile: function (id, type, fileId, fileGroupId, success) {
+                $.ajax({
+                    url: '@Url.Content("~/Api/V2/Applications/Requests")/' + id + '/files/' + type + '/' + fileId + '/' + fileGroupId,
+                    method: 'DELETE',
+                    contentType: 'application/json',
+                    error: function (xhr, status, error) {
+                        console.log('removeFile error', xhr, status, error);
+                    },
+                    success: function (data, status, xhr) {
+                        if (success != null) {
+                            success(data, status, xhr);
+                        }
+                    }
+                });
+            },
+            getFileTable: function (el) {
+                var $table = $($(el).outerHtml());
+
+                if ($('tbody tr', $table).length < 1) {
+                    return ' - ';
+                }
+                else {
+                    $.each($('thead tr', $table), function (i, el) { $('th:last', $(el)).remove() });
+                    $.each($('tbody tr', $table), function (i, el) { $('td:last', $(el)).remove() });
+
+                    return $table.outerHtml();
+                }
+            },
+            getFileData: function (el) {
+                var filedata = [];
+                var $rows = $('tbody tr', $(el));
+
+                if ($rows.length > 0) {
+                    $.each($rows, function (i, el) {
+                        filedata.push($(el).data('filemetadata'));
+                    });
+
+                    return filedata;
+                }
+                else {
+                    return null;
+                }
+            },
+            getCgdData: function () {
+                if (typeof getCgdPayment === "function") {
+                    return getCgdPayment();
+                }
+                else {
+                    return null;
+                }
+            },
+            getCgdTable: function () {
+                if (typeof getCdgPaymentHtml === "function") {
+                    return getCdgPaymentHtml();
+                }
+                else {
+                    return null;
+                }
+            },
+            getELicenseData: function () {
+                if (typeof getELicenseData === "function") {
+                    return getELicenseData();
+                }
+                else {
+                    return null;
+                }
+            },
+            renderELicense: function (callback) {
+                if (typeof renderELicense === "function") {
+                    return renderELicense(callback);
+                }
+                else {
+                    return null;
+                }
+            },
+            clearValidation: function (el) {
+                if (el) {
+                    $(el).parent().children('.field-validation-error').removeClass('field-validation-error').addClass('field-validation-valid');
+                    $(el).removeClass('input-validation-error').addClass('input-validation-valid');
+                }
+                else {
+                    $(requestManage.controls.frmRequest + ' .field-validation-error').removeClass('field-validation-error').addClass('field-validation-valid');
+                    $(requestManage.controls.frmRequest + ' .input-validation-error').removeClass('input-validation-error').addClass('input-validation-valid');
+                }
+            }
+        }
+    };
+
+    $(function () {
+        requestManage.functions.init();
+
+        // global init
+        $(".control-datepicker").datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm/yyyy'
+        });
+
+        $('.input-daterange').datepicker({
+            format: "dd/mm/yyyy",
+            startDate : '@DateTime.Now.ToString("dd/MM/yyyy", new System.Globalization.CultureInfo(Culture))',
+            language: "th-th",
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('select.select2-hidden-accessible, input.select2-hidden-accessible').change(function (e) {
+            $(this).valid();
+        });
+
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+        });
+
+        $.sweetModal.defaultSettings.confirm.yes.label = '<i class="fa fa-save"></i> @BizPortal.Resources.Global.BTN_OK';
+        $.sweetModal.defaultSettings.confirm.cancel.label = '@BizPortal.Resources.Global.BTN_CANCEL';
+        $.sweetModal.defaultSettings.confirm.yes.classes = 'btn btn-primary';
+        $.sweetModal.defaultSettings.confirm.cancel.classes = 'btn btn-danger';
+    });
+</script>

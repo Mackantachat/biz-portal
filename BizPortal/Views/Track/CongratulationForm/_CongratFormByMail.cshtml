@@ -1,0 +1,23 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@using System.Threading;
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2>@Resources.ApplicationStatusRequests.CONGRAT_TITLE</h2>
+        @if (Model.LastRequestorUpdateEmail != null)
+        {
+            <p>@Html.Raw(string.Format(Resources.ApplicationStatusRequests.CONGRAT_SENT_BY_MAIL_WITH_EMAIL, Model.LastRequestorUpdateEmail))</p>
+        }
+        else
+        {
+            <p>@string.Format(Resources.ApplicationStatusRequests.CONGRAT_SENT_BY_MAIL_NO_EMAIL)</p>
+        }
+        <p>@Resources.ApplicationStatusRequests.EMS_TRACKING : @Model.EMSTrackingNumber</p>
+        <p>@Html.Raw(Resources.ApplicationStatusRequests.CONGRAT_SENT_BY_MAIL_REMARK)</p>
+        
+    </div>
+</div>
+
+@Html.Partial("~/Views/Track/CongratulationForm/_CongratDescModal.cshtml", Model)

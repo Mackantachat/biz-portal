@@ -1,0 +1,32 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")">
+</script>
+
+<script type="text/javascript">
+
+    
+    window.APP_FACTORY_CLASS2_validateStartDate = function () {
+        var start = window.singleFormHelpers.form.getSelectedDate($("input[name='BOOK_OPINION_DATE']"));
+        var end = window.singleFormHelpers.form.getSelectedDate($("input[name='FACTORY2_DATE']"));
+
+        console.log(start);
+        console.log(end);
+
+        if (start && end) {
+            return start <= end;
+        }
+
+        return false;
+
+        // On load.
+        window.singleFormHelpers.form.onDraftDataBound(function () {
+        });
+
+    }
+</script>
+
+
+

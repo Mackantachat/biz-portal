@@ -1,0 +1,41 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var autofillAttr = AutoFillConditionHelper.GetAttributes(Model);
+}
+
+
+<div class="input-group date">
+    <span class="input-group-addon">
+        <span style="font-size:large">ตั้งแต่</span>
+    </span>
+    <input type="text" id="@string.Format("date_from_{0}", Model.ClientID)" name="@string.Format("DATE_FROM_{0}", Model.DataKey)" value=""
+           class="form-control @autofillAttr.Class"
+           data-control-name="@Model.DataKey"
+           @autofillAttr.Data
+           @autofillAttr.DataSourceFromDraft
+           @autofillAttr.DataSourceSection
+           @autofillAttr.DataSourceControl
+           style="background-color: white;" readonly tabindex="-1" />
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+    <span class="input-group-addon">
+        <span style="font-size:large">ถึง</span>
+    </span>
+    <input type="text" id="@string.Format("date_to_{0}", Model.ClientID)" name="@string.Format("DATE_TO_{0}", Model.DataKey)" value=""
+           class="form-control @autofillAttr.Class"
+           data-control-name="@Model.DataKey"
+           @autofillAttr.Data
+           @autofillAttr.DataSourceFromDraft
+           @autofillAttr.DataSourceSection
+           @autofillAttr.DataSourceControl
+           style="background-color: white;" readonly tabindex="-1" />
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+</div>
+

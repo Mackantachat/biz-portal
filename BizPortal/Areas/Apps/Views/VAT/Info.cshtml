@@ -1,0 +1,42 @@
+﻿@using Resources = BizPortal.Resources
+@{
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/rd-logo.png");
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group" style="min-height: 400px;">
+            @{
+                ViewBag.Title = Resources.Apps_VAT.APPS_TITLE;
+                if (ViewBag.errorType == "VAT_REQUESTED")
+                {
+                    <p class="text-center">ขออภัย ท่านได้ทำการขอจดทะเบียนภาษีมูลค่าเพิ่มแล้ว</p>
+                }
+                else if(ViewBag.errorType == "DBD_ERROR")
+                {
+                    ViewBag.Title = "ข้อผิดพลาด";
+                    <p class="text-center">ขออภัย ไม่สามารถเชื่อมต่อฐานข้อมูลกรมพัฒนาธุรกิจการค้าได้</p>
+                    <div class="form-group text-center">
+                        <a href="@Url.Action("Index", "VAT")" class="btn btn-success btn-sm">ลองอีกครั้ง</a>
+                    </div>
+                }
+                else if (ViewBag.errorType == "RD_ERROR")
+                {
+                    ViewBag.Title = "ข้อผิดพลาด";
+                    <p class="text-center">ขออภัย ไม่สามารถเชื่อมต่อฐานข้อมูลกรมสรรพากรได้</p>
+                    <div class="form-group text-center">
+                        <a href="@Url.Action("Index", "VAT")" class="btn btn-success btn-sm">ลองอีกครั้ง</a>
+                    </div>
+                }
+                else
+                {
+                    ViewBag.Title = Resources.Apps_VAT.APPS_TITLE;
+                    <p class="text-center">ขออภัย ไม่พบข้อมูล</p>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+

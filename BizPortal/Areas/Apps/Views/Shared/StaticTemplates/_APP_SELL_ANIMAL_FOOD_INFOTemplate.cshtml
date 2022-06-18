@@ -1,0 +1,40 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_SELL_ANIMAL_FOOD_INFOTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_FOOD_CATEGORY :</label>
+            {{this.DROPDOWN_SELL_ANIMAL_FOOD_CATEGORY_TEXT}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_FOOD_TYPE_MATERIAL :</label>
+            {{#xif " this.DROPDOWN_SELL_ANIMAL_FOOD_CATEGORY == 'material' " }}
+            {{this.DROPDOWN_SELL_ANIMAL_FOOD_TYPE_MATERIAL_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_SELL_ANIMAL_FOOD_CATEGORY == 'milk' " }}
+            {{this.DROPDOWN_SELL_ANIMAL_FOOD_TYPE_MILK_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_SELL_ANIMAL_FOOD_CATEGORY == 'mixed' " }}
+            {{this.DROPDOWN_SELL_ANIMAL_FOOD_TYPE_MIXED_TEXT}}
+            {{else}}
+            {{this.DROPDOWN_SELL_ANIMAL_FOOD_TYPE_SUPPLEMENT_TEXT}}
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_FOOD_PRODUCER :</label>
+            {{this.SELL_ANIMAL_FOOD_PRODUCER}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลอาหารสัตว์ควบคุมเฉพาะที่จำหน่าย
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

@@ -1,0 +1,56 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_FACTORY_TYPE2_BY_PRODUCT_INFORMATION_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        <div class="row">
+            
+            <div class="col-md-4">
+                <label>ชนิดของวัตถุพลอยได้ :</label>
+                {{ this.APP_FACTORY_TYPE2_BY_PRODUCT_NAME_MODAL }}
+            </div>
+ 
+            <div class="col-md-4">
+                <label>ปริมาณวัตถุพลอยได้ต่อปี :</label>
+                {{ this.APP_FACTORY_TYPE2_BY_PRODUCT_DOSE_PER_YAER_MODAL }}
+            </div>
+
+            <div class="col-md-4">
+                <label>หน่วย :</label>
+                {{ this.DROPDOWN_APP_FACTORY_TYPE2_BY_PRODUCT_UNIT_MODAL_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>แหล่งที่มา :</label>
+                {{ this.DROPDOWN_APP_FACTORY_TYPE2_BY_PRODUCT_COUNTY_LIST_MODAL_TEXT }}
+            </div>
+        </div>
+
+        <div class="col-md-12" style="float: right">
+
+            <div class="col-md-2 pr5" style="float: right;padding-left:0">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+            </div>
+            <div class="col-md-2 pl5" style="float: right">
+                <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

@@ -1,0 +1,365 @@
+﻿@model BizPortal.AppsHook.AppHookRenderViewModel
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+
+@if (Model != null && Model.Hook != null && Model.Data != null)
+{
+    var renderer = Model.Hook.RenderData(Model.Stage, Model.Data);
+    if (renderer != null && renderer.Rows != null)
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading" role="button" data-toggle="collapse" id="headingAppHook" href="#collapseApphook" aria-expanded="true" aria-controls="collapseApphook">
+                <a href="javascript:void(0)">@Resource.ApplicationStatusRequests.APPLICATION_INFORMATION_APPHOOK_HEADER</a>
+                <span class="fa fa-chevron-down pull-right"></span>
+            </div>
+            <div id="collapseApphook" class="panel-collapse collapse in" aria-labelledby="headingAppHook">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @foreach (var row in renderer.Rows)
+                            {
+                                if (row == null)
+                                {
+                                    continue;
+                                }
+
+                                if (row.ColumnsPerRow > 12)
+                                {
+                                    row.ColumnsPerRow = 12;
+                                }
+                                else if (row.ColumnsPerRow < 1)
+                                {
+                                    row.ColumnsPerRow = 1;
+                                }
+                                string cls = string.Format("col-md-{0:0}", (int)12 / row.ColumnsPerRow);
+
+                                if (row.DataGroupDisplays != null)
+                                {
+                                    if (row.FixedColumnNumber)
+                                    {
+                                        <div class="row">
+                                            @for (int i = 0; i < row.ColumnsPerRow; i++)
+                                            {
+                                                var colNumber = i + 1;
+                                                var groups = row.DataGroupDisplays.Where(o => o.ColumnNumber == colNumber);
+
+
+                                                <div class="@cls">
+                                                    @foreach (var group in groups)
+                                                    {
+                                                        if (group == null)
+                                                        {
+                                                            continue;
+                                                        }
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="panel panel-default">
+                                                                    @if (group.GroupCode != BizPortal.AppsHook.RenderAppHookBaseConst.HIDE_HEADER_SECTION)
+                                                                    {
+                                                                        <div class="panel-heading">
+                                                                            @(!string.IsNullOrEmpty(group.GroupDisplayText) ? Html.Raw(group.GroupDisplayText) : Html.Raw(group.GroupCode))
+                                                                        </div>
+                                                                    }
+                                                                    @if (group.Rows != null)
+                                                                    {
+                                                                        <div class="panel-body">
+                                                                            @foreach (var iRow in group.Rows)
+                                                                            {
+                                                                                if (iRow == null)
+                                                                                {
+                                                                                    continue;
+                                                                                }
+
+                                                                                if (iRow.ColumnsPerRow > 12)
+                                                                                {
+                                                                                    iRow.ColumnsPerRow = 12;
+                                                                                }
+                                                                                else if (iRow.ColumnsPerRow < 1)
+                                                                                {
+                                                                                    iRow.ColumnsPerRow = 1;
+                                                                                }
+                                                                                string iCls = string.Format("col-md-{0:0}", (int)12 / iRow.ColumnsPerRow);
+
+                                                                                <div class="row">
+                                                                                    @foreach (var item in iRow.DataGroupDisplays)
+                                                                                    {
+
+                                                                                        if (item == null)
+                                                                                        {
+                                                                                            continue;
+                                                                                        }
+
+                                                                                        <div class="@iCls form-group">
+                                                                                            @if (!item.HideLabel)
+                                                                                            {
+                                                                                                <label>@item.DisplayLabel</label>
+                                                                                            }
+                                                                                            @if (item.Info != null)
+                                                                                            {
+                                                                                                <div class="form-control-info" id="info-SELL_ALCOHOL_CONFIRM-636453194179995982" style="position: relative;text-align: left;padding: 30px;border: 1px solid #DEDEDE;margin-bottom: 20px;">
+                                                                                                    @Html.Raw(ResourceHelper.GetResourceWordWithDefault(item.Info, "Apps_SingleForm", item.Info))
+                                                                                                </div>
+                                                                                            }
+                                                                                            @if (item.DisplayType == BizPortal.AppsHook.DisplayType.Static)
+                                                                                            {
+                                                                                                <input type="text" class="form-control form-control-static" readonly value="@item.Text" />
+                                                                                            }
+                                                                                            else if (item.DisplayType == BizPortal.AppsHook.DisplayType.OrderList)
+                                                                                            {
+                                                                                                if (item.List == null)
+                                                                                                {
+                                                                                                    continue;
+                                                                                                }
+                                                                                                <ol>
+                                                                                                    @foreach (var li in item.List)
+                                                                                                    {
+                                                                                                        <li style="padding-bottom:5px;">@Html.Raw(@li.Text)</li>
+                                                                                                    }
+                                                                                                </ol>
+                                                                                            }
+                                                                                            else if (item.DisplayType == BizPortal.AppsHook.DisplayType.UnOrderList)
+                                                                                            {
+                                                                                                if (item.List == null)
+                                                                                                {
+                                                                                                    continue;
+                                                                                                }
+                                                                                                <ul>
+                                                                                                    @foreach (var li in item.List)
+                                                                                                    {
+                                                                                                        <li>@li.Text</li>
+                                                                                                    }
+                                                                                                </ul>
+                                                                                            }
+                                                                                            else if (item.DisplayType == BizPortal.AppsHook.DisplayType.RadioList)
+                                                                                            {
+                                                                                                if (item.List == null)
+                                                                                                {
+                                                                                                    continue;
+                                                                                                }
+
+                                                                                                foreach (var li in item.List)
+                                                                                                {
+                                                                                                    <div class="radio">
+                                                                                                        <label>
+                                                                                                            <input type="radio" disabled @(li.Checked ? "checked" : "") />
+                                                                                                            @li.Text
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                }
+                                                                                            }
+                                                                                            else if (item.DisplayType == BizPortal.AppsHook.DisplayType.CheckboxList)
+                                                                                            {
+                                                                                                if (item.List == null)
+                                                                                                {
+                                                                                                    continue;
+                                                                                                }
+
+                                                                                                foreach (var li in item.List)
+                                                                                                {
+                                                                                                    <div class="checkbox">
+                                                                                                        <label>
+                                                                                                            <input type="checkbox" disabled @(li.Checked ? "checked" : "") />
+                                                                                                            @li.Text
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                }
+                                                                                            }
+                                                                                            else if (item.DisplayType == BizPortal.AppsHook.DisplayType.Link)
+                                                                                            {
+                                                                                                <a href="@item.Value" target="_blank"><i class="fa fa-link"></i> @item.Text</a>
+                                                                                            }
+                                                                                            else if (item.DisplayType == BizPortal.AppsHook.DisplayType.Checkbox)
+                                                                                            {
+                                                                                                <div class="checkbox">
+                                                                                                    <label for="checkbox-show-@item.DataCode">
+                                                                                                        @if (item.Text == "true")
+                                                                                                        {
+                                                                                                            <input name="checkbox-show-@item.DataCode" disabled="disabled" class="trigger-checkbox" value="@item.Text" checked="@item.Text" type="checkbox" />
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            <input name="checkbox-show-@item.DataCode" disabled="disabled" class="trigger-checkbox" value="@item.Text" type="checkbox" />
+                                                                                                        }
+                                                                                                        @item.DisplayLabel
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                            }
+                                                                                            else if (item.DisplayType == BizPortal.AppsHook.DisplayType.CustomHtml)
+                                                                                            {
+                                                                                                @Html.Raw(item.Text)
+                                                                                            }
+                                                                                        </div>
+                                                                                    }
+                                                                                </div>
+                                                                            }
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    } @* ===== if row.FixedColumnNumber end ===== *@
+                                    else
+                                    {
+                                        <div class="row">
+                                            @foreach (var group in row.DataGroupDisplays)
+                                            {
+                                                if (group == null)
+                                                {
+                                                    continue;
+                                                }
+
+                                                <div class="@cls">
+                                                    <div class="panel panel-default">
+                                                        @if (group.GroupCode != BizPortal.AppsHook.RenderAppHookBaseConst.HIDE_HEADER_SECTION)
+                                                        {
+                                                            <div class="panel-heading">
+                                                                @(!string.IsNullOrEmpty(group.GroupDisplayText) ? Html.Raw(group.GroupDisplayText) : Html.Raw(group.GroupCode))
+                                                            </div>
+                                                        }
+                                                        @if (group.Rows != null)
+                                                        {
+                                                            <div class="panel-body">
+                                                                @foreach (var iRow in group.Rows)
+                                                                {
+                                                                    if (iRow == null)
+                                                                    {
+                                                                        continue;
+                                                                    }
+
+                                                                    if (iRow.ColumnsPerRow > 12)
+                                                                    {
+                                                                        iRow.ColumnsPerRow = 12;
+                                                                    }
+                                                                    else if (iRow.ColumnsPerRow < 1)
+                                                                    {
+                                                                        iRow.ColumnsPerRow = 1;
+                                                                    }
+                                                                    string iCls = string.Format("col-md-{0:0}", (int)12 / iRow.ColumnsPerRow);
+
+                                                                    <div class="row">
+                                                                        @foreach (var item in iRow.DataGroupDisplays)
+                                                                        {
+                                                                            if (item == null)
+                                                                            {
+                                                                                continue;
+                                                                            }
+
+
+                                                                            <div class="@iCls form-group">
+                                                                                @if (!item.HideLabel)
+                                                                                {
+                                                                                    <label>@item.DisplayLabel</label>
+                                                                                }
+                                                                                @if (item.DisplayType == BizPortal.AppsHook.DisplayType.Static)
+                                                                                {
+                                                                                    <input type="text" class="form-control form-control-static" readonly value="@item.Text" />
+                                                                                }
+                                                                                else if (item.DisplayType == BizPortal.AppsHook.DisplayType.OrderList)
+                                                                                {
+                                                                                    if (item.List == null)
+                                                                                    {
+                                                                                        continue;
+                                                                                    }
+                                                                                    <ol>
+                                                                                        @foreach (var li in item.List)
+                                                                                        {
+                                                                                            <li style="padding-bottom:5px;">@Html.Raw(@li.Text)</li>
+                                                                                        }
+                                                                                    </ol>
+                                                                                }
+                                                                                else if (item.DisplayType == BizPortal.AppsHook.DisplayType.UnOrderList)
+                                                                                {
+                                                                                    if (item.List == null)
+                                                                                    {
+                                                                                        continue;
+                                                                                    }
+                                                                                    <ul>
+                                                                                        @foreach (var li in item.List)
+                                                                                        {
+                                                                                            <li>@li.Text</li>
+                                                                                        }
+                                                                                    </ul>
+                                                                                }
+                                                                                else if (item.DisplayType == BizPortal.AppsHook.DisplayType.RadioList)
+                                                                                {
+                                                                                    if (item.List == null)
+                                                                                    {
+                                                                                        continue;
+                                                                                    }
+
+                                                                                    foreach (var li in item.List)
+                                                                                    {
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" disabled @(li.Checked ? "checked" : "") />
+                                                                                                @li.Text
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    }
+                                                                                }
+                                                                                else if (item.DisplayType == BizPortal.AppsHook.DisplayType.CheckboxList)
+                                                                                {
+                                                                                    if (item.List == null)
+                                                                                    {
+                                                                                        continue;
+                                                                                    }
+
+                                                                                    foreach (var li in item.List)
+                                                                                    {
+                                                                                        <div class="checkbox">
+                                                                                            <label>
+                                                                                                <input type="checkbox" disabled @(li.Checked ? "checked" : "") />
+                                                                                                @li.Text
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    }
+                                                                                }
+                                                                                else if (item.DisplayType == BizPortal.AppsHook.DisplayType.Link)
+                                                                                {
+                                                                                    <a href="@item.Value" target="_blank"><i class="fa fa-link"></i> @item.Text</a>
+                                                                                }
+                                                                                else if (item.DisplayType == BizPortal.AppsHook.DisplayType.CustomHtml)
+                                                                                {
+                                                                                    @Html.Raw(item.Text)
+                                                                                }
+                                                                                else if (item.DisplayType == BizPortal.AppsHook.DisplayType.Checkbox)
+                                                                                {
+                                                                                    <div class="checkbox">
+                                                                                        <label for="checkbox-show-@item.DataCode">
+                                                                                            @if (item.Text == "true")
+                                                                                            {
+                                                                                                <input name="checkbox-show-@item.DataCode" disabled="disabled" class="trigger-checkbox" value="@item.Text" checked="@item.Text" type="checkbox" />
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <input name="checkbox-show-@item.DataCode" disabled="disabled" class="trigger-checkbox" value="@item.Text" type="checkbox" />
+                                                                                            }
+                                                                                            @item.DisplayLabel
+                                                                                        </label>
+                                                                                    </div>
+                                                                                }
+                                                                            </div>
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

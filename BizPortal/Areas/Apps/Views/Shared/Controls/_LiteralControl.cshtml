@@ -1,0 +1,8 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@model FormControl
+
+@if (!string.IsNullOrEmpty(Model.LiteralContent))
+{
+    @Html.Raw(Model.LiteralContent)
+}

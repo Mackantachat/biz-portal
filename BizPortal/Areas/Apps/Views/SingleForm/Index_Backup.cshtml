@@ -1,0 +1,366 @@
+﻿@using BizPortal.DAL.MongoDB
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+
+@{
+    ViewBag.Title = "Single Form";
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+
+    Dictionary<string, object> defaults = ViewBag.Defaults;
+    FormSection[] sections = ViewBag.Sections;
+    FormSectionRow[] sectionRows = ViewBag.SectionRows;
+}
+
+<style>
+    .radio input {
+        margin-left: 0 !important;
+    }
+</style>
+
+<form id="frmSingleForm" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")?language=@ViewBag.CurrentLang">
+    <div class="single-form">
+        <div class="row">
+            <div class="col-md-9">
+                @foreach (var sec in sections)
+                {
+                    var secRows = sectionRows.Where(o => o.Section == sec.Section).OrderBy(o => o.RowNumber).ToArray();
+
+                    if (sec.Type == SectionType.Form)
+                    {
+                        <div class="row">
+                            <section data-section-name="@sec.Section" class="col-md-12 mt10">
+                                <h5>@ResourceHelper.GetResourceWordWithDefault(sec.Section, "Apps_SingleForm", sec.Section)</h5>
+                                <hr />
+                                @foreach (var row in secRows)
+                                {
+                                    var cols = row.Controls.Count();
+                                    double maxCols = 12;
+                                    int colLen = (int)Math.Ceiling(maxCols / cols);
+
+                                    <div class="row">
+                                        @foreach (var ctrl in row.Controls)
+                                        {
+                                            ctrl.ClientID = string.Format("{0}-{1}", ctrl.DataKey, DateTime.Now.Ticks);
+                                            ctrl.ValidateNeeded = ctrl.Rules != null && ctrl.Rules.Length > 0;
+                                            if (defaults.ContainsKey(ctrl.DataKey))
+                                            {
+                                                var data = defaults[ctrl.DataKey];
+                                                if (data != null && (data.GetType() != typeof(string) || (data.GetType() == typeof(string) && !string.IsNullOrEmpty(data.ToString()))))
+                                                {
+                                                    ctrl.Data = defaults[ctrl.DataKey];
+                                                }
+                                            }
+
+                                            <div class="col-md-@colLen form-group">
+                                                @if (ctrl.Type != ControlType.AddressForm || (ctrl.Type == ControlType.AddressForm && ctrl.DisplayStaticIfHasData))
+                                                {
+                                                    <label>@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "Apps_SingleForm", ctrl.Control) :</label>
+                                                }
+                                                @if (ctrl.DisplayStaticIfHasData && ctrl.Data != null)
+                                                {
+                                                    ctrl.ValidateNeeded = false; // Already has data, No need to validate
+                                                    Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_StaticControl.cshtml", ctrl);
+                                                }
+                                                else
+                                                {
+                                                    switch (ctrl.Type)
+                                                    {
+                                                        case ControlType.TextBox:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_TextBoxControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.Number:
+                                                            break;
+                                                        case ControlType.DatePicker:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_DatePickerControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.CheckBox:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_CheckBoxControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.Dropdown:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_DropdownControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.RadioGroup:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_RadioGroupControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.CheckBoxWithDropdown:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_CheckBoxWithDropdownControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.AddressForm:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_AddressFormControl.cshtml", ctrl);
+                                                            break;
+                                                        default:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_StaticControl.cshtml", ctrl);
+                                                            break;
+                                                    }
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </section>
+                        </div>
+                    }
+                    else if (sec.Type == SectionType.ArrayOfForms)
+                    {
+                        <div class="row">
+                            <section data-section-name="@sec.Section" class="col-md-12 mt10">
+                                <h5>@ResourceHelper.GetResourceWordWithDefault(sec.Section, "Apps_SingleForm", sec.Section)</h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <div id="insert_@sec.Section"></div>
+                                        @switch (sec.Section)
+                                        {
+                                            case "BRANCH_ADDRESS_INFORMATION":
+                                                Html.RenderPartial("~/Areas/Apps/Views/Shared/Templates/_JuristicBranchTemplate.cshtml");
+                                                break;
+                                            case "COMMITTEE_INFORMATION":
+                                                Html.RenderPartial("~/Areas/Apps/Views/Shared/Templates/_JuristicCommitteeTemplate.cshtml");
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group text-center">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@string.Format("{0}_{1}", "#MODAL", sec.Section)">@ResourceHelper.GetResourceWordWithDefault(sec.AddButtonText, "Apps_SingleForm", sec.AddButtonText)</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col-md-3">
+                Summary
+                <hr />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros risus. Nunc varius purus vel lacus posuere dictum. Suspendisse felis magna, porta ut sapien porttitor, congue tristique risus.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mb20">
+                <input type="hidden" id="Status" name="Status" value="@ApplicationStatusV2Enum.DRAFT.ToString()" />
+                <button type="submit" id="btnSaveDraftUtilityForm" class="btn btn-default">@Html.Raw(Resources.Application.BTN_SAVE_DRAFT)</button>
+                <button type="submit" id="btnSubmitUtilityForm" class="btn btn-success">@Html.Raw(Resources.Application.BTN_SUBMIT_REQUEST)</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@* Modals *@
+@foreach (var sec in sections.Where(o => o.Type == SectionType.ArrayOfForms))
+{
+    var secRows = sectionRows.Where(o => o.Section == sec.Section).OrderBy(o => o.RowNumber).ToArray();
+    <form id="@string.Format("{0}{1}", "frm", sec.Section)" method="post">
+
+        <div class="modal fade" id="@string.Format("{0}_{1}", "MODAL", sec.Section)" tabindex="-1" aria-labelledby="@string.Format("{0}_{1}", "MODAL_LABEL", sec.Section)">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="@string.Format("{0}_{1}", "MODAL_LABEL", sec.Section)">Modal Test</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                @foreach (var row in secRows)
+                                {
+                                    var cols = row.Controls.Count();
+                                    double maxCols = 12;
+                                    int colLen = (int)Math.Ceiling(maxCols / cols);
+
+                                    <div class="row">
+                                        @foreach (var ctrl in row.Controls)
+                                        {
+                                            ctrl.ClientID = string.Format("{0}-{1}", ctrl.DataKey, DateTime.Now.Ticks);
+                                            ctrl.ValidateNeeded = ctrl.Rules != null && ctrl.Rules.Length > 0;
+                                            if (defaults.ContainsKey(ctrl.DataKey))
+                                            {
+                                                var data = defaults[ctrl.DataKey];
+                                                if (data != null && (data.GetType() != typeof(string) || (data.GetType() == typeof(string) && !string.IsNullOrEmpty(data.ToString()))))
+                                                {
+                                                    ctrl.Data = defaults[ctrl.DataKey];
+                                                }
+                                            }
+
+                                            if (ctrl.ColFixed > 0 && ctrl.ColFixed <= 12)
+                                            {
+                                                colLen = ctrl.ColFixed;
+                                            }
+
+                                            <div class="col-md-@colLen form-group">
+                                                @if (ctrl.Type != ControlType.AddressForm || (ctrl.Type == ControlType.AddressForm && ctrl.DisplayStaticIfHasData))
+                                                {
+                                                    <label>@ResourceHelper.GetResourceWordWithDefault(ctrl.Control, "Apps_SingleForm", ctrl.Control) :</label>
+                                                }
+                                                @if (ctrl.DisplayStaticIfHasData && ctrl.Data != null)
+                                                {
+                                                    ctrl.ValidateNeeded = false; // Already has data, No need to validate
+                                                    Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_StaticControl.cshtml", ctrl);
+                                                }
+                                                else
+                                                {
+                                                    switch (ctrl.Type)
+                                                    {
+                                                        case ControlType.TextBox:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_TextBoxControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.Number:
+                                                            break;
+                                                        case ControlType.DatePicker:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_DatePickerControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.CheckBox:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_CheckBoxControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.Dropdown:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_DropdownControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.RadioGroup:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_RadioGroupControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.CheckBoxWithDropdown:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_CheckBoxWithDropdownControl.cshtml", ctrl);
+                                                            break;
+                                                        case ControlType.AddressForm:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_AddressFormControl.cshtml", ctrl);
+                                                            break;
+                                                        default:
+                                                            Html.RenderPartial("~/Areas/Apps/Views/Shared/Controls/_StaticControl.cshtml", ctrl);
+                                                            break;
+                                                    }
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="text-align: center !important;">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 30%;">Close</button>
+                        <button type="submit" class="btn btn-primary" style="width: 30%;">@ResourceHelper.GetResourceWordWithDefault(sec.SubmitButtonText, "Apps_SingleForm", sec.SubmitButtonText)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+}
+
+
+
+@section PageScripts {
+    <script type="text/javascript">
+        var singleForm = {
+            controls: {
+                form: '#frmSingleForm'
+            },
+            functions: {
+                init: function () {
+                    $(singleForm.controls.form).validate({
+                        invalidHandler: function (e, validator) {
+                            $.ladda('stopAll');
+                        }
+                    });
+
+                    @{
+                        var validateCtrls = sectionRows.SelectMany(o => o.Controls).Where(o => o.Rules != null && o.Rules.Length > 0 && o.ValidateNeeded).ToArray();
+                        foreach (var ctrl in validateCtrls)
+                        {
+                            foreach (var rule in ctrl.Rules)
+                            {
+                                switch (rule.Type)
+                                {
+                                    case ValidationType.Required:
+                                        <text>
+                    $('#@ctrl.ClientID').rules('add', { required: true, messages: { required: '@rule.ErrorMessage' } });
+                    </text>
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            //singleForm.functions.init();
+            @{ var idx = 0; }
+
+            @foreach (var sec in sections.Where(o => o.Type == SectionType.ArrayOfForms))
+            {
+                var sectionCase = string.Empty;
+
+            <text>
+
+            var arrTmp_@idx = Array();
+
+            $("#@string.Format("{0}{1}", "frm", sec.Section)").submit(function (e) {
+                e.preventDefault();
+                var tmp = $("#@string.Format("{0}{1}", "frm", sec.Section)").serializeObject(); // serialize data in modal to object
+
+                (arrTmp_@idx).push(tmp); // push serialized data into an array of object
+
+                var data = { data: arrTmp_@idx };
+
+                @* Set SectionID & Add Select2Opt text to object *@
+                @switch (sec.Section)
+                {
+                    case "BRANCH_ADDRESS_INFORMATION":
+                        sectionCase = "juristicBranchTemplate";
+
+                        <text>
+                tmp.ADDRESS_PROVINCE_JURISTIC_BRANCH_ADDRESS_TEXT = $('#@string.Format("{0}{1}", "frm", sec.Section) select[name=ADDRESS_PROVINCE_JURISTIC_BRANCH_ADDRESS]').select2('data')[0].text;
+                tmp.ADDRESS_AMPHUR_JURISTIC_BRANCH_ADDRESS_TEXT = $('#@string.Format("{0}{1}", "frm", sec.Section) select[name=ADDRESS_AMPHUR_JURISTIC_BRANCH_ADDRESS]').select2('data')[0].text;
+                tmp.ADDRESS_TUMBOL_JURISTIC_BRANCH_ADDRESS_TEXT = $('#@string.Format("{0}{1}", "frm", sec.Section) select[name=ADDRESS_TUMBOL_JURISTIC_BRANCH_ADDRESS]').select2('data')[0].text;
+                        </text>
+
+                        break;
+                    case "COMMITTEE_INFORMATION":
+                        sectionCase = "juristicCommitteeTemplate";
+
+                        <text>
+                tmp.DROPDOWN_JURISTIC_COMMITTEE_TITLE_TEXT = $('#@string.Format("{0}{1}", "frm", sec.Section) select[name=DROPDOWN_JURISTIC_COMMITTEE_TITLE]').select2('data')[0].text;
+                tmp.ADDRESS_PROVINCE_JURISTIC_COMMITTEE_ADDRESS_TEXT = $('#@string.Format("{0}{1}", "frm", sec.Section) select[name=ADDRESS_PROVINCE_JURISTIC_COMMITTEE_ADDRESS]').select2('data')[0].text;
+                tmp.ADDRESS_AMPHUR_JURISTIC_COMMITTEE_ADDRESS_TEXT = $('#@string.Format("{0}{1}", "frm", sec.Section) select[name=ADDRESS_AMPHUR_JURISTIC_COMMITTEE_ADDRESS]').select2('data')[0].text;
+                tmp.ADDRESS_TUMBOL_JURISTIC_COMMITTEE_ADDRESS_TEXT = $('#@string.Format("{0}{1}", "frm", sec.Section) select[name=ADDRESS_TUMBOL_JURISTIC_COMMITTEE_ADDRESS]').select2('data')[0].text;
+                        </text>
+
+                        break;
+                    default:
+                        break;
+                }
+
+
+                @if (sectionCase != null && sectionCase.Length > 0)
+                {
+                <text>
+                // Build Handlerbars
+                var source = $("#@sectionCase").html();
+                var template = Handlebars.compile(source);
+                $("#insert_@sec.Section").html(template(data));
+                </text>
+                }
+
+                // Close modal & Clear recently data
+                $("#@string.Format("{0}_{1}", "MODAL", sec.Section)").modal('hide');
+                $("#@string.Format("{0}{1}", "frm", sec.Section)")[0].reset();
+                $("#@string.Format("{0}{1}", "frm", sec.Section) select").val("").trigger("change");
+            });
+            </text>
+
+                idx++;
+            }
+
+        });
+
+    </script>
+}

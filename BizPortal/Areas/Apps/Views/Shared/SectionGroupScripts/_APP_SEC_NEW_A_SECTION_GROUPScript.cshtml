@@ -1,0 +1,53 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")" >
+</script>
+
+<script type="text/javascript">
+
+    // On load.
+    window.singleFormHelpers.form.onDraftDataBound(function () { 
+        LoopCheck();
+    });
+
+    $('[data-control-name=APP_SEC_NEW_A_PAY_PRESENT_SECTION_REQUEST]').click(function () {
+       let i;       
+        for (i = 1; i <= 24; i++) {
+                       
+            if ($('[name=APP_SEC_NEW_A_PAY_PRESENT_SECTION_REQUEST_CHK_' + i + ']').prop('checked'))
+            {
+                $('[name=APP_SEC_NEW_A_PAY_BACK_SECTION_REQUEST_CHK_'+ i +']').attr("disabled", false);
+            }
+            else
+            {
+                if ($('[name=APP_SEC_NEW_A_PAY_BACK_SECTION_REQUEST_CHK_' + i + ']').prop('checked', true))
+                {
+                    $('[name=APP_SEC_NEW_A_PAY_BACK_SECTION_REQUEST_CHK_' + i + ']').prop('checked', false);
+                }
+                $('[name=APP_SEC_NEW_A_PAY_BACK_SECTION_REQUEST_CHK_'+ i +']').attr("disabled", true);
+            }
+        }
+    });
+
+    function LoopCheck() {       
+        debugger;
+        let i;       
+        for (i = 1; i <= 24; i++) {
+                       
+            if ($('[name=APP_SEC_NEW_A_PAY_PRESENT_SECTION_REQUEST_CHK_' + i + ']').prop('checked'))
+            {
+                $('[name=APP_SEC_NEW_A_PAY_BACK_SECTION_REQUEST_CHK_'+ i +']').attr("disabled", false);
+            }
+            else
+            {
+                $('[name=APP_SEC_NEW_A_PAY_BACK_SECTION_REQUEST_CHK_'+ i +']').attr("disabled", true);
+            }
+        }
+    };
+
+</script>
+
+
+

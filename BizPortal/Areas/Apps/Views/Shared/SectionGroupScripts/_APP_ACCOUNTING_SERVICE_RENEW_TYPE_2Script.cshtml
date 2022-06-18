@@ -1,0 +1,39 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+
+        var REQUEST_REGISTRATION_ACCOUNTING_INCOME = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_FISCAL_YEAR_SECTION_INCOME_ACCOUNTING]');
+        var REQUEST_REGISTRATION_AUDIT_INCOME = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_FISCAL_YEAR_SECTION_INCOME_AUDIT]');
+        var REQUEST_REGISTRATION_OTHER_INCOME = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_FISCAL_YEAR_SECTION_INCOME_OTHER]');
+        var REQUEST_REGISTRATION_TOTAL = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_TYPE_2_FISCAL_YEAR_SECTION_TOTAL]');
+
+        function REQUEST_REGISTRATION_CALCULATE() {
+            var REQUEST_REGISTRATION_ACCOUNTING_INCOME_VALUE = parseFloat(REQUEST_REGISTRATION_ACCOUNTING_INCOME.val().replace(/,/g, "") || 0);
+            var REQUEST_REGISTRATION_AUDIT_INCOME_VALUE = parseFloat(REQUEST_REGISTRATION_AUDIT_INCOME.val().replace(/,/g, "") || 0);
+            var REQUEST_REGISTRATION_OTHER_INCOME_VALUE = parseFloat(REQUEST_REGISTRATION_OTHER_INCOME.val().replace(/,/g, "") || 0);
+
+            REQUEST_REGISTRATION_TOTAL.val(REQUEST_REGISTRATION_ACCOUNTING_INCOME_VALUE + REQUEST_REGISTRATION_AUDIT_INCOME_VALUE + REQUEST_REGISTRATION_OTHER_INCOME_VALUE).focus().blur();
+        }
+
+        $(REQUEST_REGISTRATION_ACCOUNTING_INCOME).change(function () {
+            REQUEST_REGISTRATION_CALCULATE();
+        });
+
+        $(REQUEST_REGISTRATION_AUDIT_INCOME).change(function () {
+            REQUEST_REGISTRATION_CALCULATE();
+        });
+
+        $(REQUEST_REGISTRATION_OTHER_INCOME).change(function () {
+            REQUEST_REGISTRATION_CALCULATE();
+        });
+
+    });
+
+</script>
+
+
+

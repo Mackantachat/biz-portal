@@ -1,0 +1,46 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+        $("select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_TYPE']").change(function (e) {
+            var isPhotoVol = $(this).val() == '7';
+            if (isPhotoVol) {
+                var fuelDDL = "select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_FUEL']";
+                if (!$(fuelDDL).val()) {
+                    // default to โซลาร์เซลส์
+                    window.singleFormHelpers.form.setSelect2WithDefault(fuelDDL, '10', 'โซลาร์เซลส์');
+                    window.singleFormHelpers.form.setSelect2Readonly($(fuelDDL), true);
+                } else {
+                    var fuelDDL = "select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_FUEL']";
+                    window.singleFormHelpers.form.setSelect2Readonly($(fuelDDL), false);
+                }
+            }
+
+            $("input[name='APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_HORSEPOWER']").prop('disabled', isPhotoVol); // พิกัดกำลัง(แรงม้า)
+        });
+
+        window.singleForm.triggerCtrlList.push('AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_TYPE');
+        window.singleForm.triggerCtrlList.push('APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_TYPE');
+
+        // Listen on array of form databound event.
+        $(document).on('APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION-databound', function (e, section, datalist) {
+            var hasPhotoVol = false;
+            $(datalist).each(function (index, data) {
+                if (data.hasOwnProperty('AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_TYPE')
+                    && data.AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_TYPE == '7') { // แผงโฟโต้ = id 7
+                    hasPhotoVol = true;
+                }
+            });
+
+            $("input[name='APP_ENERGY_PRODUCTION_CANCEL_INFO_SECTION_MACHINE_CHECK_HAS_PHOTOVOLTEIC']").attr('checked', hasPhotoVol).trigger('change');
+        });
+
+        $(document).on('APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION-modal-databound', function (e, section, data) {
+            $("select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_CANCEL_MACHINE_SECTION_TYPE']").trigger('change');
+        });
+
+    });
+</script>

@@ -1,0 +1,53 @@
+
+using BizPortal.DAL.MongoDB;
+using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace BizPortal.SeedPermit.APP_ELECTRONIC_COMMERCIAL_CANCEL
+{
+    public partial class APP_ELECTRONIC_COMMERCIAL_CANCEL
+    {
+        public static void Init()
+        {
+            var db = MongoFactory.GetFormSectionGroupCollection();
+            List<FormSectionGroup> items = new List<FormSectionGroup>();
+
+            if (db.AsQueryable().Where(x => x.SectionGroup == "APP_ELECTRONIC_COMMERCIAL_CANCEL").Count() == 0)
+            {
+                items.Add(new FormSectionGroup()
+                {
+                    SectionGroup = "APP_ELECTRONIC_COMMERCIAL_CANCEL",
+                    ShowOnSpecificApps = true,
+                    AppSystemNames = new string[] {
+                        AppSystemNameTextConst.APP_ELECTRONIC_COMMERCIAL_CANCEL,
+                    },
+					Ordering = 3704,
+					ResourceName = "PermitResource.RESOURCE_APP_ELECTRONIC_COMMERCIAL_CANCEL"
+                });
+            }
+
+            if (items.Count > 0)
+            {
+                db.InsertMany(items.ToArray());
+            }
+
+            // Init Section
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_INVESTMENT_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_MANAGER_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_START_IN_THAILAND_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_REQUEST_SECTION.Init();
+            //APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_TRANSFER_TYPE_SECTION.Init();
+            //APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_TRANSFER_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_BRANCH_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_WAREHOUSE_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_AGENT_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_PARTNER_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_STOCK_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_STOCK_SECTION_2.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_WEBSITE_SECTION.Init();
+            APP_ELECTRONIC_COMMERCIAL_CANCEL_APP_ELECTRONIC_COMMERCIAL_CANCEL_INFO_SECTION_2.Init();
+        }
+    }
+}

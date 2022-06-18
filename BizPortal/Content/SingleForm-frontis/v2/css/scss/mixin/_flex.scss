@@ -1,0 +1,10 @@
+@mixin flex($direction: row, $align: center, $justify: center) {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: $direction; /* works with row or column */
+  flex-direction: $direction;
+   -webkit-align-items: $align;
+   align-items: $align;
+   -webkit-justify-content: $justify;
+   justify-content: $justify;
+}

@@ -1,0 +1,71 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_COMMERCIAL_DIRECTOR_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-8">
+            <label>ผู้จัดการลำดับที่ {{this.ARR_IDX}}</label>
+        </div>
+        <div class="col-md-2 pr5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        <div class="col-md-2 pl5">
+            <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+        </div>
+        <div class="col-md-12">
+            <label>ชื่อ : {{this.DROPDOWN_APP_COMMERCIAL_DIRECTOR_SECTION_TITLE_TEXT}} {{this.APP_COMMERCIAL_DIRECTOR_SECTION_FIRSTNAME}} {{this.APP_COMMERCIAL_DIRECTOR_SECTION_LASTNAME}}</label>
+            <br />
+            <label>อายุ: </label> {{this.APP_COMMERCIAL_DIRECTOR_SECTION_AGE}}
+            <label>สัญชาติ: </label> {{this.APP_COMMERCIAL_DIRECTOR_SECTION_NATIONALITY}}
+            <br />
+            <div class="col-md-8">
+                {{#xif " typeof this.ADDRESS_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS !== 'undefined' " }}
+                <p class="form-control-static">
+                    {{#xif " fieldExist(this.ADDRESS_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS) " }}
+                    <label>เลขที่: </label> {{this.ADDRESS_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_MOO_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS) " }}
+                    <label>หมู่ที่: </label> {{this.ADDRESS_MOO_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_VILLAGE_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS) " }}
+                    <label>หมู่บ้าน: </label> {{this.ADDRESS_VILLAGE_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_SOI_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS) " }}
+                    <label>ซอย: </label> {{this.ADDRESS_SOI_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS}}
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_ROAD_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS) " }}
+                    <label>ถนน: </label> {{this.ADDRESS_ROAD_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS}}</>
+                    {{/xif}}
+                    <label>ตำบล/แขวง: </label> {{this.ADDRESS_TUMBOL_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS_TEXT}}
+                    <label>อำเภอ/เขต: </label> {{this.ADDRESS_AMPHUR_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS_TEXT}}
+                    <label>จังหวัด: </label> {{this.ADDRESS_PROVINCE_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS_TEXT}}
+                    <nobr>
+                        {{#xif " fieldExist(this.ADDRESS_TELEPHONE_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS) " }}
+                        <label>โทรศัพท์: </label> {{this.ADDRESS_TELEPHONE_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS}}
+                    </nobr>
+                    {{/xif}}
+                    {{#xif " fieldExist(this.ADDRESS_TELEPHONE_EXT_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS) " }}
+                    <label>ต่อ:</label> {{this.ADDRESS_TELEPHONE_EXT_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS}}
+                    {{/xif}}
+                    </nobr>
+                    {{#xif " fieldExist(this.ADDRESS_FAX_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS) " }}
+                    <nobr><label>โทรสาร:</label> {{this.ADDRESS_FAX_APP_COMMERCIAL_DIRECTOR_SECTION_ADDRESS}}</nobr>
+                    {{/xif}}
+                </p>
+                {{/xif}}
+            </div>
+        </div>
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

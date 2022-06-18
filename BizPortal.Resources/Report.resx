@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PermitRequestSummaryByBusiness_ByMonth" xml:space="preserve">
+    <value>เดือน (Month)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_ByQuater" xml:space="preserve">
+    <value>ไตรมาส (Quarter)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption1" xml:space="preserve">
+    <value>มกราคม (JAN)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption10" xml:space="preserve">
+    <value>ตุลาคม (OCT)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption11" xml:space="preserve">
+    <value>พฤศจิกายน (NOV)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption12" xml:space="preserve">
+    <value>ธันวาคม (DEC)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption2" xml:space="preserve">
+    <value>กุมภาพันธ์ (FEB)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption3" xml:space="preserve">
+    <value>มีนาคม (MAR)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption4" xml:space="preserve">
+    <value>เมษายน (APR)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption5" xml:space="preserve">
+    <value>พฤษภาคม (MAY)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption6" xml:space="preserve">
+    <value>มิถุนายน (JUN)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption7" xml:space="preserve">
+    <value>กรกฎาคม (JUL)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption8" xml:space="preserve">
+    <value>สิงหาคม (AUG)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOption9" xml:space="preserve">
+    <value>กันยายน (SEP)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_MonthOrQuaterPlaceHolder" xml:space="preserve">
+    <value>ทั้งหมด (All)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_QuaterOption1" xml:space="preserve">
+    <value>ไตรมาสที่ 1 (Q1)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_QuaterOption2" xml:space="preserve">
+    <value>ไตรมาสที่ 2 (Q2)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_QuaterOption3" xml:space="preserve">
+    <value>ไตรมาสที่ 3 (Q3)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_QuaterOption4" xml:space="preserve">
+    <value>ไตรมาสที่ 4 (Q4)</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_Title" xml:space="preserve">
+    <value>ภาพรวมธุรกิจที่ได้รับความนิยมสูงสุดในการขอใบอนุญาต</value>
+  </data>
+  <data name="PermitRequestSummaryByBusiness_YearPlaceHolder" xml:space="preserve">
+    <value>ทั้งหมด (All)</value>
+  </data>
+  <data name="PermitRequestSummaryByMoment_Title" xml:space="preserve">
+    <value>แนวโน้มการขอใบอนุญาตแบ่งตามช่วงเวลา</value>
+  </data>
+  <data name="PermitRequestSummaryByProvince_Title" xml:space="preserve">
+    <value>แนวโน้มการขอใบอนุญาตแบ่งตามเขตจังหวัด</value>
+  </data>
+  <data name="Statistics_Average_Operation_Days_Average_Operation_Days" xml:space="preserve">
+    <value>วันให้บริการโดยเฉลี่ย (วัน)</value>
+  </data>
+  <data name="Statistics_Average_Operation_Days_Check" xml:space="preserve">
+    <value>ตรวจสอบคำขอเบื้องต้น</value>
+  </data>
+  <data name="Statistics_Average_Operation_Days_Paid_Fee" xml:space="preserve">
+    <value>ชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="Statistics_Average_Operation_Days_Pending" xml:space="preserve">
+    <value>พิจารณา</value>
+  </data>
+  <data name="Statistics_Average_Operation_Days_Publish_License" xml:space="preserve">
+    <value>ออกใบอนุญาต</value>
+  </data>
+  <data name="Statistics_Average_Operation_Days_Rejected_Request" xml:space="preserve">
+    <value>จำนวนคำขอที่ถูกปฏิเสธ ณ ขั้นตอน (คำขอ)</value>
+  </data>
+  <data name="Statistics_Average_Operation_Days_Status" xml:space="preserve">
+    <value>ขั้นตอน</value>
+  </data>
+  <data name="Statistics_Average_Operation_Days_Title" xml:space="preserve">
+    <value>ผลลัพท์การให้บริการ แบ่งตามขั้นตอน</value>
+  </data>
+  <data name="Statistics_Header" xml:space="preserve">
+    <value>สถิติคำขออนุญาต (Request Statistics)</value>
+  </data>
+  <data name="Statistics_Identity_Type_Citizen" xml:space="preserve">
+    <value>บุคคลธรรมดา</value>
+  </data>
+  <data name="Statistics_Identity_Type_Juristic" xml:space="preserve">
+    <value>นิติบุคคล</value>
+  </data>
+  <data name="Statistics_Identity_Type_Request_Organization" xml:space="preserve">
+    <value>แบ่งตามหน่วยงาน</value>
+  </data>
+  <data name="Statistics_Identity_Type_Request_Pencentage" xml:space="preserve">
+    <value>คิดเป็นสัดส่วนระหว่างกลุ่มผู้ใช้ (%)</value>
+  </data>
+  <data name="Statistics_Identity_Type_Request_PermitName" xml:space="preserve">
+    <value>แบ่งตามใบอนุญาต</value>
+  </data>
+  <data name="Statistics_Identity_Type_Request_Total" xml:space="preserve">
+    <value>จำนวนใบอนุญาต (ใบ)</value>
+  </data>
+  <data name="Statistics_Organization_By_Citizen" xml:space="preserve">
+    <value>จำนวนคำขอแบ่งตามหน่วยงาน (บุคคลธรรมดา)</value>
+  </data>
+  <data name="Statistics_Organization_By_Juristic" xml:space="preserve">
+    <value>จำนวนคำขอแบ่งตามหน่วยงาน (นิติบุคคล)</value>
+  </data>
+  <data name="Statistics_Organization_Request_Qty" xml:space="preserve">
+    <value>จำนวนใบอนุญาต (ใบ)</value>
+  </data>
+  <data name="Statistics_Overall_All_Permit" xml:space="preserve">
+    <value>คำขอทั้งหมด (คำขอ)</value>
+  </data>
+  <data name="Statistics_Overall_At_First_Day_Of_Year" xml:space="preserve">
+    <value>ตั้งแต่ 1 ม.ค. ของปีที่เลือก</value>
+  </data>
+  <data name="Statistics_Overall_At_Latest_Month" xml:space="preserve">
+    <value>เดือนล่าสุด</value>
+  </data>
+  <data name="Statistics_Overall_At_Start" xml:space="preserve">
+    <value>ตั้งแต่เปิดศูนย์ฯ</value>
+  </data>
+  <data name="Statistics_Overall_Done" xml:space="preserve">
+    <value>พิจารณาเสร็จสิ้น (คำขอ)</value>
+  </data>
+  <data name="Statistics_Overall_Done_2" xml:space="preserve">
+    <value>คิดเป็น (%)</value>
+  </data>
+  <data name="Statistics_Overall_Fee" xml:space="preserve">
+    <value>ค่าธรรมเนียม (บาท)</value>
+  </data>
+  <data name="Statistics_Overall_header" xml:space="preserve">
+    <value>ภาพรวมสถิติคำขอ</value>
+  </data>
+  <data name="Statistics_Overall_InTime_SLA" xml:space="preserve">
+    <value>คำขอที่พิจารณาทันกำหนด (%)</value>
+  </data>
+  <data name="Statistics_Overall_OnProcess" xml:space="preserve">
+    <value>กำลังดำเนินการ (คำขอ)</value>
+  </data>
+  <data name="Statistics_Overall_OnProcess_2" xml:space="preserve">
+    <value>คิดเป็น (%)</value>
+  </data>
+  <data name="Statistics_Permitname_By_Citizen" xml:space="preserve">
+    <value>จำนวนคำขอแบ่งตามชื่อใบอนุญาต (บุคคลธรรมดา)</value>
+  </data>
+  <data name="Statistics_Permitname_By_Juristic" xml:space="preserve">
+    <value>จำนวนคำขอแบ่งตามชื่อใบอนุญาต (นิติบุคคล)</value>
+  </data>
+  <data name="Statistics_Permitname_Request_Qty" xml:space="preserve">
+    <value>จำนวนใบอนุญาต (ใบ)</value>
+  </data>
+  <data name="Statistics_Query_District" xml:space="preserve">
+    <value>เลือกอำเภอ/เขต</value>
+  </data>
+  <data name="Statistics_Query_Month" xml:space="preserve">
+    <value>เลือกเดือน</value>
+  </data>
+  <data name="Statistics_Query_Organization" xml:space="preserve">
+    <value>เลือกหน่วยงาน</value>
+  </data>
+  <data name="Statistics_Query_Permit" xml:space="preserve">
+    <value>เลือกใบอนุญาต</value>
+  </data>
+  <data name="Statistics_Query_Province" xml:space="preserve">
+    <value>เลือกจังหวัด</value>
+  </data>
+  <data name="Statistics_Query_Requestor_Type" xml:space="preserve">
+    <value>เลือกประเภทผู้ยื่นคำขอ</value>
+  </data>
+  <data name="Statistics_Query_Year" xml:space="preserve">
+    <value>เลือกปี</value>
+  </data>
+  <data name="Statistics_Request_By_Identity_Type_header" xml:space="preserve">
+    <value>จำนวนคำขอ แบ่งตามกลุ่มผู้ใช้</value>
+  </data>
+  <data name="Statistics_SLA_Done_Request_header" xml:space="preserve">
+    <value>คำขอที่พิจารณาเสร็จสิ้น แบ่งตามความเร่งด่วน</value>
+  </data>
+  <data name="Statistics_SLA_Done_Request_InTime" xml:space="preserve">
+    <value>ทันกำหนด</value>
+  </data>
+  <data name="Statistics_SLA_Done_Request_OutTime" xml:space="preserve">
+    <value>ไม่ทันกำหนด</value>
+  </data>
+  <data name="Statistics_SLA_Status_header" xml:space="preserve">
+    <value>จำนวนคำขอแบ่งตามสถานะ SLA</value>
+  </data>
+  <data name="Statistics_SLA_Status_InTime_SLA" xml:space="preserve">
+    <value>ทันกำหนด</value>
+  </data>
+  <data name="Statistics_SLA_Status_Not_Start_SLA" xml:space="preserve">
+    <value>ยังไม่เริ่มนับ SLA</value>
+  </data>
+  <data name="Statistics_SLA_Status_OutTime_SLA" xml:space="preserve">
+    <value>ไม่ทันกำหนด</value>
+  </data>
+  <data name="Statistics_SLA_Status_Title" xml:space="preserve">
+    <value>จำนวนคำขอแบ่งตามสถานะ SLA</value>
+  </data>
+  <data name="onProcessRequestSummary_Header" xml:space="preserve">
+    <value>คำขอที่อยู่ระหว่างดำเนินการ</value>
+  </data>
+</root>

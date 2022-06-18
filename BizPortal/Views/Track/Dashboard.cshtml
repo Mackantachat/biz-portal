@@ -1,0 +1,870 @@
+﻿@*@model BizPortal.ViewModels.SingleForm.SingleForm*@
+@model BizPortal.ViewModels.V2.DashboardViewModel
+@using BizPortal.Utils.Helpers
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using System.Configuration;
+@using BizPortal.DAL.MongoDB;
+
+@{
+    ViewBag.Title = Resources.Breadcrumb.TRACKING;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+
+    var returnUrl = Url.BizAction("Dashboard", "Track", new { area = "" });
+    var vatUrl = ConfigurationManager.AppSettings["VAT_PRINT_PP01"];
+    var thisPageDateFormat = "dd/MM/yyyy";
+
+    Func<ApplicationStatusV2Enum, string, int, string> getProgressCss = (status, statusOther, column) =>
+    {
+        string css = "";
+        if ((column == 1 && status == ApplicationStatusV2Enum.REJECTED) || (column == 0 && status == ApplicationStatusV2Enum.FAILED))
+        {
+            css = "fail"; //reject
+}
+        else if (column == 0 || (column == 1 && status == ApplicationStatusV2Enum.COMPLETED))
+        {
+            css = "success";
+        }
+        else if (column == 2)
+        {
+            if (status == ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE)
+            {
+                css = "active";
+            }
+            else
+            {
+                css = "";
+            }
+        }
+        else if (column == 1 && (statusOther == ApplicationStatusOtherValueConst.WAITING_USER_WORKING))
+        {
+            css = "alert"; //pay fee
+}
+        else
+        {
+            css = "active";
+        }
+        return css;
+    };
+
+    Func<string, int, string> getIconCss = (status, column) =>
+    {
+        string css = "";
+        if ((column != 0 && status == ApplicationStatusV2Enum.REJECTED.ToString()) || (column == 0 && status == ApplicationStatusV2Enum.FAILED.ToString()))
+        {
+            css = "wrong"; //reject
+}
+        else if (column == 0 || (column == 1 && status == ApplicationStatusV2Enum.COMPLETED.ToString())) // This status is already processed
+{
+            css = "right";
+        }
+        else if (column != 0 && status == ApplicationStatusV2Enum.WAITING.ToString())
+        {
+            css = "right";
+        }
+        else if (column != 0 && status == ApplicationStatusV2Enum.CHECK.ToString())
+        {
+            css = "document";
+        }
+        else if (column != 0 && status == ApplicationStatusV2Enum.PENDING.ToString())
+        {
+            css = "document-search";
+        }
+        else if (column != 0 && status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE.ToString())
+        {
+            css = "cash";
+        }
+        else if (column != 0 && status == ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE.ToString())
+        {
+            css = "medal";
+        }
+        return css;
+    };
+
+    Func<string, int, string> getIconChar = (status, column) =>
+    {
+        string ch = "";
+
+        if ((column != 0 && status == ApplicationStatusV2Enum.REJECTED.ToString()) || (column == 0 && status == ApplicationStatusV2Enum.FAILED.ToString()))
+        {
+            ch = "&#xe806;"; //reject
+}
+        else if (column == 0 || (column == 1 && status == ApplicationStatusV2Enum.COMPLETED.ToString())) // This status is already processed
+{
+            ch = "&#xe805;"; //right
+}
+        else if (column != 0 && (status == ApplicationStatusV2Enum.INCOMPLETE.ToString() || status == ApplicationStatusV2Enum.WAITING.ToString()))
+        {
+            ch = "&#xe800;"; //reply
+}
+        else if (column != 0 && status == ApplicationStatusV2Enum.CHECK.ToString())
+        {
+            ch = "&#xe803;"; //document
+}
+        else if (column != 0 && status == ApplicationStatusV2Enum.PENDING.ToString())
+        {
+            ch = "&#xe802;"; //document-search
+}
+        else if (column != 0 && status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE.ToString())
+        {
+            ch = "&#xe801;"; //cash
+}
+        else if (column != 0 && status == ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE.ToString())
+        {
+            ch = "&#xe804;"; //medal
+}
+        return ch;
+    };
+
+    Func<bool?, string> getProgressHiddenPay = (noFee) =>
+    {
+        string css = "";
+        if (noFee == true)
+        {
+            css = "hidden";
+        }
+        return css;
+    };
+
+    Func<bool?, string> getProgressHiddenDoc = (noDoc) =>
+    {
+        string css = "";
+        if (noDoc == true)
+        {
+            css = "hidden";
+        }
+        return css;
+    };
+
+    Func<string, string> getRemarkHidden = (statusOther) =>
+    {
+        string css = "";
+        if (statusOther != ApplicationStatusOtherValueConst.REJECT && statusOther != ApplicationStatusOtherValueConst.CANCEL_COMPLETED)
+        {
+            css = "hidden";
+        }
+        return css;
+    };
+
+    Func<ApplicationStatusV2Enum, int, string, string> getRequestLink = (status, column, appRequestID) =>
+    {
+        string link = "#";
+        if (column == 1 || (column == 2 && status == ApplicationStatusV2Enum.COMPLETED))
+        {
+            link = Url.Action("Detail", "Track", new { id = appRequestID });
+        }
+        return link;
+    };
+
+    Func<string, int, string> getTitleText = (status, column) =>
+    {
+        string text = string.Empty;
+        if (status == ApplicationStatusV2Enum.CHECK.ToString())
+        {
+            text = Resources.ApplicationStatusRequests.STATUS_CHECK;
+        }
+        else if (status == ApplicationStatusV2Enum.PENDING.ToString())
+        {
+            text = Resources.ApplicationStatusRequests.STATUS_PENDING;
+        }
+        else if (status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE.ToString())
+        {
+            text = Resources.ApplicationStatusRequests.STATUS_APPROVED_WAITING_PAY_FEE_2;
+        }
+        else if (status == ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE.ToString())
+        {
+            text = Resources.ApplicationStatusRequests.PAID_FEE_CREATING_LICENSE_2;
+        }
+        else if (status == ApplicationStatusV2Enum.REJECTED.ToString())
+        {
+            text = Resources.ApplicationStatusRequests.STATUS_REJECTED;
+        }
+        return text;
+    };
+}
+
+@section breadcrumb{
+    <div class="container">
+
+    </div>
+}
+
+<style>
+    h2 {
+        margin-left: 10px;
+    }
+
+    .dash-recent {
+        padding: 0 0 50px 0 !important;
+    }
+
+        .dash-recent .row {
+            margin-left: 0 !important;
+        }
+
+    .dash-progress .item {
+        margin: 10px 10px 50px 10px !important;
+    }
+
+    .tabs:not(.active) {
+        display: none;
+    }
+
+    .owneraction a {
+        float: left;
+        display: inline-block;
+        width: calc(50% - 10px);
+        margin: 5px;
+        padding: 2px 0 0;
+        box-shadow: 0 0 0 1px #41A7D3;
+        color: #41A7D3;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .warning {
+        background-color: #E95458;
+    }
+</style>
+
+<section class="dashboard">
+    <div class="dash-information">
+        <div class="container">
+            <div class="profile">
+                <div class="img">
+                    <img src="@Url.Content("~/Content/Images/biz-v2/logos/test-user2.png")" alt="">
+                </div>
+                <div class="detail">
+                    <p class="title" id="comname">@Model.IdentityName</p>
+                    @if (Model.IdentityType == UserTypeEnum.Juristic)
+                    {
+                        <p class="title" id="iden">@Resources.Global.CORPORATE_IDENTIFICATION_NUMBER : @Model.IdentityID</p>
+                        <div class="edit-tab">
+                            <a target="_blank" href="@(Url.BizAction("PermitList", "Business", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))" class="button primary" style="color: white; vertical-align: middle;">ขออนุญาตออนไลน์</a>
+                            @*<a target="_blank"
+                               href="@(System.Configuration.ConfigurationManager.AppSettings["OpenIDUrl"] + ViewBag.CurrentLang + "/")Business/ChangePasswd?site=biz">
+                                @Resources.Global.CHANGE_PASSWORD
+                            </a>*@
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="title" id="iden">@Resources.Global.CITIZEN_IDENTIFICATION_NUMBER : @Model.IdentityID</p>
+                        <div class="edit-tab">
+                            <a target="_blank" href="@(Url.BizAction("PermitList", "Business", new { area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName }))" class="button primary" style="color: white; vertical-align: middle;">ขออนุญาตออนไลน์</a>
+                            <a target="_blank"
+                               href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/Edit?site=biz">
+                                @Resources.Global.EDIT_CITIZEN_PROFILE
+                            </a>
+                            <a target="_blank"
+                               href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Verification/Mobile?site=biz">
+                                @Resources.Global.EDIT_CONTACT_NO
+                            </a>
+                            <a target="_blank"
+                               href="@(System.Configuration.ConfigurationManager.AppSettings["CitizenOpenIDUrl"] + ViewBag.CurrentLang + "/")Citizen/Account/ChangePasswd?site=biz">
+                                @Resources.Global.CHANGE_PASSWORD
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="dash-hold-item">
+                <a href="#draft" class="item" data-tabs="draft">
+                    <i class="fa fa-file-text-o"></i>
+                    <div class="detail">
+                        <p class="num" id="draft">@Model.DraftRequest</p>
+                        <p class="text">@Resources.Global.DRAFT_REQUEST</p>
+                    </div>
+                </a>
+                <a href="#pending" class="item" data-tabs="pending">
+                    <i class="fa fa-file-text-o"></i>
+                    <div class="detail">
+                        <p class="num" id="w8app">@Model.WaitingApproveRequest</p>
+                        <p class="text">@Resources.Global.PENDING_REQUEST</p>
+                    </div>
+                </a>
+                <a href="#done" class="item" data-tabs="done">
+                    <i class="fa fa-file-text-o"></i>
+                    <div class="detail">
+                        <p class="num" id="SUCCESS_REQUEST">@Model.ApproveRequest</p>
+                        <p class="text">@Resources.Global.SUCCESS_REQUEST</p>
+                    </div>
+                </a>
+                @if (BizPortal.Service.DashboardService.IsEnableHoldItemAppApproved())
+                {
+                    <a href="#allow" class="item" data-tabs="allow">
+                        <i class="fa fa-file-text-o"></i>
+                        <div class="detail">
+                            <p class="num" id="ALLOWED">@Model.ApproveRequest</p>
+                            <p class="text">@Resources.Global.ALLOWED</p>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="dash-recent tabs" data-tab="draft">
+        <div class="container">
+            <h2>@Resources.Global.MANAGE_DRAFT_REQUEST</h2>
+
+            @if (Model.DraftRequest != "00")
+            {
+                <hr class="sub">
+                <div class="row">
+                    <div class="D-4 T-6 SM-12">
+                        <div class="item">
+                            <div class="head">
+                                <p id="lastdraft">@Model.LastUpdateTime</p>
+                            </div>
+                            <div class="body">
+                                <p class="list @(Model.DraftRequestStep < BizPortal.DAL.MongoDB.SingleFormTransaction.STEP_DOC ? "disabled" : "")"><i class="fa @(Model.DraftRequestStep < BizPortal.DAL.MongoDB.SingleFormTransaction.STEP_DOC ? "fa-hourglass-3" : "fa-check-circle")"></i> @Resources.Apps_SingleForm.PAGE_TITLE_SINGLE_FORM</p>
+                                <p class="list @(Model.DraftRequestStep < BizPortal.DAL.MongoDB.SingleFormTransaction.STEP_CONFIRM ? "disabled" : "")"><i class="fa @(Model.DraftRequestStep < BizPortal.DAL.MongoDB.SingleFormTransaction.STEP_CONFIRM ? "fa-hourglass-3" : "fa-check-circle")"></i> @Resources.Apps_SingleForm.PAGE_TITLE_SINGLE_DOC</p>
+                                <p class="list disabled"><i class="fa fa-hourglass-3"></i> @Resources.Global.CONFIRM_INFORMATION</p>
+                                <hr>
+                                <div class="row-list select">
+                                    <div class="select">
+                                        <p class="text" id="appnum">@Model.NumApp</p>
+                                        <p class="num"><i class="fa fa-angle-down"></i></p>
+                                    </div>
+                                    <div class="row-content" style="display: none;" id="apps">
+                                        @for (var i = 0; i < Model.AppList.Count; i++)
+                                        {
+                                            <p class="text">@Model.AppList[i]</p>
+                                        }
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row-list">
+                                    <p class="text">@Resources.Global.REQUIRED_INFORMATION</p>
+                                    <p class="num" id="mfill">@Model.AppStep</p>
+                                </div>
+                                <hr>
+                                <div class="row-list">
+                                    <p class="text">@Resources.Global.REQUIRED_ATTACHMENT</p>
+                                    @if (Model.FileTotal < 0)
+                                    {
+                                        <p class="num">0 / 1</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="num">@Math.Max(0, Model.FileCnt) / @Model.FileTotal</p>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="width: 100%; text-align: center;">
+                            <a class="btn"
+                               href="@Url.ServiceAction("Resume", "SingleForm", new { area = "Apps" })"
+                               style="border-radius: 4px;color: #fff;font-size: 24px !important;background-color: #5ca1bf;border: none;margin: 0px 5px;padding: 2px 15px !important;">ดำเนินการต่อ</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <hr class="sub" style="margin: 10px 10px 15px;">
+                <div style="margin: 10px 10px 40px; font-weight:bold;">ไม่พบคำร้อง</div>
+            }
+        </div>
+    </div>
+
+    <div class="dash-progress tabs" data-tab="pending">
+        <div class="container">
+            <h2>@Resources.Global.TRACK_SUBMISSION_STATUS</h2>
+
+            @if (Model.RequestList.Count > 0)
+            {
+                <hr class="sub">
+
+                foreach (var req in Model.RequestList)
+                {
+                    <div class="item">
+                        <div class="head">
+                            <p class="left">@Resources.Global.LAST_UPDATE_DATE : @req.LastUpdateTime : @Resources.Global.PETITION (@req.Requests.Count)</p>
+                            <p class="right">@Resources.ApplicationStatusRequests.SUBMIT_DATE : @req.CreatedDate : @Resources.Global.PETITION (@req.Requests.Count)<i class="fa fa-angle-down"></i></p>
+                        </div>
+
+                        @foreach (var item in req.Requests)
+                        {
+                            var cssDisabled = (item.StatusOther != ApplicationStatusOtherValueConst.REJECT && item.StatusOther != ApplicationStatusOtherValueConst.CANCEL_COMPLETED) ? "" : "disabled";
+                            <div class="body">
+                                <div class="progress @cssDisabled">
+                                    <div class="main-head">
+                                        <p>@item.ApplicationName</p>
+                                        <p>@Resources.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER : @item.RequestNo</p>
+                                    </div>
+                                    <div class="bar">
+                                        <a href="@getRequestLink(item.Status, 0, item.ApplicationRequestID)" class="item-progress @getProgressCss(item.Status, item.StatusOther, 0)">
+                                            <div class="img">
+                                                <i class="demo-icon icon-@getIconCss(item.Status.ToString(), 0)">@Html.Raw(getIconChar(item.Status.ToString(), 0))</i>
+                                            </div>
+                                            <p class="title">@Resources.ApplicationStatusRequests.STATUS_WAITING</p>
+                                            <p class="date">@item.WaitingApproveDateTime</p>
+                                            @if (item.ApplicationID > 2 && item.Status == ApplicationStatusV2Enum.WAITING)
+                                            {
+                                                <p class="date" style="color:red;">@item.RejectText</p>
+                                                if (item.StatusOther == ApplicationStatusOtherValueConst.WAITING_USER_WORKING)
+                                                {
+                                                    <p class="date">คำขอไม่สมบูรณ์</p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="date">ส่งคำขอไม่สำเร็จ</p>
+                                                }
+                                            }
+                                        </a>
+
+                                        @for (int i = 0; i < item.StatusSequence.Count; i++)
+                                        {
+                                            var itemStatusSequence = item.StatusSequence[i];
+                                            var currentStatusIndex = item.StatusSequence.IndexOf(item.Status.ToString());
+                                            int column = 0;
+                                            if (i < currentStatusIndex)
+                                            {
+                                                column = 0;
+                                            }
+                                            else if (i == currentStatusIndex)
+                                            {
+                                                column = 1;
+                                            }
+                                            else
+                                            {
+                                                column = 2;
+                                            }
+
+                                            if (itemStatusSequence != ApplicationStatusV2Enum.COMPLETED.ToString())
+                                            {
+                                                <a href="@getRequestLink(item.Status, column, item.ApplicationRequestID)" class="item-progress @getProgressCss(item.Status, item.StatusOther, column)">
+                                                    <div class="img">
+                                                        <i class="demo-icon icon-@getIconCss(itemStatusSequence, column)">@Html.Raw(getIconChar(itemStatusSequence, column))</i>
+                                                    </div>
+                                                    <p class="title">@Html.Raw(getTitleText(itemStatusSequence, column))</p>
+                                                    <p class="date">@item.CheckApproveDateTime</p>
+                                                    @if (column == 1)
+                                                    {
+                                                        <p class="date" style="color:red;">@item.RejectText</p>
+                                                        if (item.StatusOther == ApplicationStatusOtherValueConst.WAITING_USER_WORKING)
+                                                        {
+                                                            <p class="date">@Resources.ApplicationStatusRequests.PROGRESS_AWAIT_USER</p>
+                                                        }
+                                                    }
+                                                </a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="due">
+                                    @if (item.Status == ApplicationStatusV2Enum.CHECK)
+                                    {
+                                        <p class="@cssDisabled">@Resources.Global.EXPECTED_COMPLETE_DATE</p>
+                                        <p class="date disabled">-</p>
+                                    }
+                                    else if (item.Status == ApplicationStatusV2Enum.PENDING)
+                                    {
+                                        <p class="@cssDisabled">@Resources.Global.EXPECTED_COMPLETE_DATE</p>
+                                        if (item.ExpectedFinishDate.HasValue)
+                                        {
+                                            <p class="date">@item.ExpectedFinishDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH"))</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="date disabled">-</p>
+                                        }
+                                    }
+                                    else if (item.Status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE || item.Status == ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE)
+                                    {
+                                        if (item.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OWNER_ORG && item.UserCanGetAppDate.HasValue)
+                                        {
+                                            <p class="@cssDisabled">@Resources.ApplicationStatusRequests.USER_CAN_GET_APP_DATE</p>
+                                            <p class="date">
+                                                @if (item.UserCanGetAppDateEnd.HasValue)
+                                                {
+                                                    @Html.Raw(string.Format("{0} {1} {2}", item.UserCanGetAppDate.Value.ToString(thisPageDateFormat), Resources.Global.TO, item.UserCanGetAppDateEnd.Value.ToString(thisPageDateFormat)));
+                                                }
+                                                else
+                                                {
+                                                    @Html.Raw(item.UserCanGetAppDate.Value.ToString(thisPageDateFormat));
+                                                }
+                                            </p>
+                                        }
+                                        else if (item.DueDateForPayFee.HasValue)
+                                        {
+                                            <p class="@cssDisabled">@Resources.ApplicationStatusRequests.DUE_DATE_FOR_PAY_FEE</p>
+                                            <p class="date">@item.DueDateForPayFee.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH"))</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="@cssDisabled">@Resources.Global.EXPECTED_COMPLETE_DATE</p>
+                                            if (item.ExpectedFinishDate.HasValue)
+                                            {
+                                                <p class="date">@item.ExpectedFinishDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH"))</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="date disabled">-</p>
+                                            }
+                                        }
+                                    }
+
+                                    @if (item.ApplicationID > 2 && (item.Status == ApplicationStatusV2Enum.INCOMPLETE || item.Status == ApplicationStatusV2Enum.FAILED))
+                                    {
+                                        if (item.Status == ApplicationStatusV2Enum.INCOMPLETE && item.StatusOther == ApplicationStatusOtherValueConst.WAITING_AGENT_READ_REQUEST)
+                                        {
+                                            <a href="@Url.Action("Detail", "Track", new { id = item.ApplicationRequestID })" class="button primary">@Resources.PermitSummary.TEXT_MORE_DETAIL</a>
+                                            <a target="_blank" href="@item.NextStepUrl" class="button primary">@Resources.Tracking.BTN_CONFIRM_REQUEST</a>
+                                        }
+                                        else if (item.Status == ApplicationStatusV2Enum.FAILED && item.StatusOther == ApplicationStatusOtherValueConst.RESENDABLE)
+                                        {
+                                            <a href="#" onclick="resendRequest('@item.ApplicationRequestID', '@item.RequestNo')" class="button primary">@Html.Raw(Resources.Apps_SingleForm.BTN_REQUESTS_RESEND)</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Detail", "Track", new { id = item.ApplicationRequestID })" class="button @(item.LastUpdatedFrom == "AGENT" && item.StatusOther == "WAITING_USER_WORKING" ? "warning" :"primary") ">@Resources.PermitSummary.TEXT_MORE_DETAIL</a>
+
+                                        if (item.LastUpdatedFrom == "AGENT" && item.StatusOther == "WAITING_USER_WORKING")
+                                        {
+                                            <div style="color:red; font-size:initial; margin-top:10px;">ขณะนี้มีการแจ้งกลับจากเจ้าหน้าที่</div>
+                                        }
+
+                                        if (item.Status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE && item.StatusOther == ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING)
+                                        {
+                                            if (item.BillPaymentFile != null && item.PaymentMethod == PaymentMethodValueConst.BILL_PAYMENT)
+                                            {
+                                                <a class="button primary" target="_blank" href="@Url.Action("GetV2", "File", new { id = item.BillPaymentFile.FileID, rid = item.ApplicationRequestID, area = "" })"> @(item.PaymentMethod == "AT_OWNER_ORG" ? @Resources.Global.BTN_DOWNLOAD_BILL_OSS_OWNERORG : @Resources.Global.BTN_DOWNLOAD_BILL_PAYMENT)</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="button primary" target="_blank" href=@Url.Action("DownloadPaymentNote","File", new {appReqId = item.ApplicationRequestID })> @Resources.Global.BTN_DOWNLOAD_BILL_OSS_OWNERORG <span class="fa fa-download"></span></a>
+                                            }
+                                        }
+
+                                        if (item.ReceiptFile != null)
+                                        {
+                                            <a target="_blank" href="@Url.Action("GetV2", "File", new { id = item.ReceiptFile.FileID, rid = item.ApplicationRequestID, area = "" })" class="button primary">ใบเสร็จรับเงิน</a>
+                                        }
+                                    }
+                                    <p class="remark" @getRemarkHidden(item.StatusOther)>*@item.RejectRemarkText</p>
+                                    <div style="margin-top: 10px; text-align: center; width: 290px;">
+                                        @*<p class="date" style="font-size: 16px;">@Resources.Tracking.EXPECTED_DATE_REMARK</p>*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                }
+            }
+            else
+            {
+                <hr class="sub" style="margin: 10px 10px 15px;">
+                <div style="margin: 10px 10px 40px; font-weight:bold;">ไม่พบคำร้อง</div>
+            }
+
+        </div>
+    </div>
+
+    <div class="dash-progress tabs" data-tab="done">
+        <div class="container">
+            <h2>@Resources.Global.TRACK_SUBMISSION_STATUS_APPROVE</h2>
+
+            @if (Model.RequestApproveList.Count > 0)
+            {
+                <hr class="sub">
+
+                foreach (var req in Model.RequestApproveList)
+                {
+                    <div class="item">
+                        <div class="head">
+                            <p class="left">@Resources.Global.LAST_UPDATE_DATE : @req.LastUpdateTime : @Resources.Global.PETITION (@req.Requests.Count)</p>
+                            <p class="right">@Resources.ApplicationStatusRequests.SUBMIT_DATE : @req.CreatedDate : @Resources.Global.PETITION (@req.Requests.Count)<i class="fa fa-angle-down"></i></p>
+                        </div>
+
+                        @foreach (var item in req.Requests)
+                        {
+                            var cssDisabled = (item.StatusOther != ApplicationStatusOtherValueConst.REJECT && item.StatusOther != ApplicationStatusOtherValueConst.CANCEL_COMPLETED) ? "" : "disabled";
+                            <div class="body">
+                                <div class="progress @cssDisabled">
+                                    <div class="main-head">
+                                        <p>@item.ApplicationName</p>
+                                        <p>@Resources.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER : @item.RequestNo</p>
+                                    </div>
+                                    <div class="bar">
+                                        <a href="@getRequestLink(item.Status, 0, item.ApplicationRequestID)" class="item-progress @getProgressCss(item.Status, item.StatusOther, 0)">
+                                            <div class="img">
+                                                <i class="demo-icon icon-@getIconCss(item.Status.ToString(), 0)">@Html.Raw(getIconChar(item.Status.ToString(), 0))</i>
+                                            </div>
+                                            <p class="title">@Resources.ApplicationStatusRequests.STATUS_WAITING</p>
+                                            <p class="date">@item.WaitingApproveDateTime</p>
+                                            @if (item.ApplicationID > 2 && item.Status == ApplicationStatusV2Enum.WAITING)
+                                            {
+                                                <p class="date" style="color:red;">@item.RejectText</p>
+                                                if (item.StatusOther == ApplicationStatusOtherValueConst.WAITING_USER_WORKING)
+                                                {
+                                                    <p class="date">คำขอไม่สมบูรณ์</p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="date">ส่งคำขอไม่สำเร็จ</p>
+                                                }
+                                            }
+                                        </a>
+
+                                        @for (int i = 0; i < item.StatusSequence.Count; i++)
+                                        {
+                                            var itemStatusSequence = item.StatusSequence[i];
+                                            var itemStatus = item.StatusSequence[i];
+                                            int column = 0;
+
+                                            if (item.Status == ApplicationStatusV2Enum.REJECTED)
+                                            {
+                                                var currentStatusIndex = item.StatusSequence.IndexOf(item.StatusBeforeRejected.ToString());
+                                                if (i < currentStatusIndex)
+                                                {
+                                                    column = 0;
+                                                }
+                                                else if (i == currentStatusIndex)
+                                                {
+                                                    column = 1;
+                                                    itemStatus = ApplicationStatusV2Enum.REJECTED.ToString();
+                                                }
+                                                else
+                                                {
+                                                    column = 2;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                var currentStatusIndex = item.StatusSequence.IndexOf(item.Status.ToString());
+                                                if (i < currentStatusIndex)
+                                                {
+                                                    column = 0;
+                                                }
+                                                else if (i == currentStatusIndex)
+                                                {
+                                                    column = 1;
+                                                }
+                                                else
+                                                {
+                                                    column = 2;
+                                                }
+                                            }
+
+                                            if (itemStatusSequence != ApplicationStatusV2Enum.COMPLETED.ToString())
+                                            {
+                                                <a href="@getRequestLink(item.Status, column, item.ApplicationRequestID)" class="item-progress @getProgressCss(item.Status, item.StatusOther, column)">
+                                                    <div class="img">
+                                                        <i class="demo-icon icon-@getIconCss(itemStatus, column)">@Html.Raw(getIconChar(itemStatus, column))</i>
+                                                    </div>
+                                                    <p class="title">@Html.Raw(getTitleText(itemStatus, column))</p>
+                                                    <p class="date">@item.CheckApproveDateTime</p>
+                                                    @if (column == 1)
+                                                    {
+                                                        <p class="date" style="color:red;">@item.RejectText</p>
+                                                        if (item.StatusOther == ApplicationStatusOtherValueConst.WAITING_USER_WORKING)
+                                                        {
+                                                            <p class="date">@Resources.ApplicationStatusRequests.PROGRESS_AWAIT_USER</p>
+                                                        }
+                                                    }
+                                                </a>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="due">
+                                    @if (item.Status == ApplicationStatusV2Enum.COMPLETED)
+                                    {
+                                        <p class="@cssDisabled">ดำเนินการเสร็จสิ้น</p>
+
+                                        if (item.PermitDeliveryType == "BY_MAIL")
+                                        {
+                                            <p class="@cssDisabled">@Resources.ApplicationStatusRequests.EMS_TRACKING</p>
+                                            <p class="cssDisabled">@item.EMSTrackingNumber</p>
+                                        }
+
+                                        <p class="@cssDisabled">@Resources.Global.AGENCY_RESPONSIBLE : @(!string.IsNullOrEmpty(item.PaymentMethodOrgDetail) ? item.PaymentMethodOrgDetail : item.OrgName)</p>
+                                    }
+                                    else
+                                    {
+                                        <p style="color:red;" class="" @getRemarkHidden(item.StatusOther)>@item.RejectRemarkText</p>
+                                    }
+
+                                    @if (item.ExpectedFinishDate.HasValue)
+                                    {
+                                        @*<p class="date">@item.ExpectedFinishDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH"))</p>*@
+                                    }
+                                    else
+                                    {
+                                        @*<p class="date disabled">-</p>*@
+                                    }
+
+                                    @if (item.ApplicationID > 2 && item.Status == ApplicationStatusV2Enum.WAITING)
+                                    {
+                                        if (item.StatusOther == ApplicationStatusOtherValueConst.WAITING_USER_WORKING)
+                                        {
+                                            <a href="@item.NextStepUrl" class="button primary">@Resources.Tracking.BTN_CONFIRM_REQUEST</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#" onclick="resendRequest('@item.ApplicationRequestID')" class="button primary">@Html.Raw(Resources.Apps_SingleForm.BTN_REQUESTS_RESEND)</a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Detail", "Track", new { id = item.ApplicationRequestID })" class="button primary">@Resources.PermitSummary.TEXT_MORE_DETAIL</a>
+                                        if (item.ApplicationID == 9)
+                                        {
+                                            <a href="@string.Format("{0}{1}", vatUrl, IdentityID)" class="button primary">@Resources.Apps_VAT.PRINT</a>
+                                        }
+                                    }
+
+                                    <div style="margin-top: 10px; text-align: center; width: 290px;">
+                                        @*<p class="date" style="font-size: 16px;">@Resources.Tracking.EXPECTED_DATE_REMARK</p>*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                }
+            }
+            else
+            {
+                <hr class="sub" style="margin: 10px 10px 15px;">
+                <div style="margin: 10px 10px 40px; font-weight:bold;">ไม่พบคำร้อง</div>
+            }
+        </div>
+    </div>
+
+    <div class="dash-progress tabs" data-tab="allow">
+        <div class="container">
+            <h2>@Resources.Global.ALLOWED</h2>
+
+            @if (Model.RequestOwnerList.Count > 0)
+            {
+                <hr class="sub">
+
+                foreach (var req in Model.RequestOwnerList)
+                {
+                    <div class="item D-4 T-6 SM-12">
+                        @foreach (var item in req.Requests)
+                        {
+                            var cssDisabled = (item.StatusOther != ApplicationStatusOtherValueConst.REJECT && item.StatusOther != ApplicationStatusOtherValueConst.CANCEL_COMPLETED) ? "" : "disabled";
+
+                            <div class="head" style="margin:0 -10px;">
+                                @item.ApplicationName<br />
+                                @Resources.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER : @item.RequestNo
+                            </div>
+                            <div class="body">
+                                <div class="D-12" style="padding-top:10px;">
+                                    <p class="@cssDisabled">@Resources.Global.EXPECTED_COMPLETE_DATE</p>
+                                    @if (item.ExpectedFinishDate.HasValue)
+                                    {
+                                        <p class="date">@item.ExpectedFinishDate.Value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH"))</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="date disabled">-</p>
+                                    }
+
+                                    <p class="remark" @getRemarkHidden(item.StatusOther)>*@item.RejectRemarkText</p>
+                                    <div style="margin-top: 10px; text-align: center; width: 100%;">
+                                        <p class="date" style="font-size: 16px;">@Resources.Tracking.EXPECTED_DATE_REMARK</p>
+                                        <p class="date" style="font-size: 16px;">@Resources.Global.LAST_UPDATE_DATE : @req.LastUpdateTime : @Resources.Global.PETITION (@req.Requests.Count)</p>
+                                        <p class="date" style="font-size: 16px;">@Resources.ApplicationStatusRequests.SUBMIT_DATE : @req.CreatedDate : @Resources.Global.PETITION (@req.Requests.Count)<i class="fa fa-angle-down"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owneraction">
+                                <a href="#" title="" class="btn btn-sm">ขอใบอนุญาตใหม่</a>
+                                <a href="#" title="">ขอแก้ไขใบอนุญาต</a>
+                                <a href="#" title="">ขอต่อใบอนุญาต</a>
+                                <a href="#" title="">ขอยกเลิกใบอนุญาต</a>
+                            </div>
+                        }
+
+                    </div>
+                }
+            }
+            else
+            {
+                <hr class="sub" style="margin: 10px 10px 15px;">
+                <div style="margin: 10px 10px 40px; font-weight:bold;">ไม่พบคำร้อง</div>
+            }
+
+        </div>
+    </div>
+
+</section>
+@section PageScripts{
+    <script type="text/javascript">
+
+        function resendRequest(id, requestNo) {
+            swal({
+                title: "ยืนยันการส่งข้อมูล",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "ส่งข้อมูล",
+                closeOnConfirm: false,
+                cancelButtonText: "ยกเลิก"
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal.disableButtons();
+                    $.ajax({
+                        url: '@Url.Content("~/Api/V2/Applications/RequestsResend")?language=@ViewBag.CurrentLang',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify(id),
+                        success: function (data, status, xhr) {
+                            if (data.Type == "1") {
+                                if ("TOT" in data.ApplicationRequestData) {
+                                    notify('success', "ส่งข้อมูลสำเร็จ", true, data.ApplicationRequestData["TOT"]);
+                                } else if ("VAT" in data.ApplicationRequestData) {
+                                    notifyPrint('success', data.Message, '@returnUrl', data.ApplicationRequestData["VAT"], 'OK', '@Resources.Apps_VAT.PRINT');
+                                } else {
+                                    swal({ title: "ส่งข้อมูลสำเร็จ", type: "success" });
+                                }
+                            } else {
+                                swal({ title: "[" + requestNo + "] เกิดข้อผิดพลาด กรุณาบันทึกภาพหน้าจอนี้แล้วส่งมาที่ contact@dga.or.th", text: data.Message, type: "error" }, function (isConfirm) {
+                                    if (isConfirm) {
+                                        location.reload();
+                                    }
+                                });
+                            }
+
+                        },
+                        error: function (xhr, status, error) {
+                            swal({ title: "[" + requestNo + "] เกิดข้อผิดพลาด กรุณาบันทึกภาพหน้าจอนี้แล้วส่งมาที่ contact@dga.or.th", text: "", type: "error" });
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        }
+
+        $(function () {
+
+            var tabid = 'draft';
+
+            if (window.location.hash) {
+                var tabid = window.location.hash.substring(1);
+            }
+
+            $('.tabs').removeClass('active');
+            $('.tabs[data-tab="' + tabid + '"]').addClass('active');
+        });
+
+        $('.dash-hold-item a.item').click(function ()
+        {
+            let tabsid = $(this).data('tabs');
+            $('.tabs').removeClass('active');
+            $('.tabs[data-tab="' + tabsid + '"]').addClass('active');
+        });
+    </script>
+}

@@ -1,0 +1,40 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CORPARATE_BONDS_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>ลำดับที่ :</label>
+            {{ARR_IDX}}
+        </div>
+        <div class="col-md-6">
+            <label>ผู้ออกพันธบัตรองค์กรหรือรัฐวิสาหกิจ :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CORPARATE_BONDS_SECTION_ISSUER}}
+        </div>
+        <div class="col-md-6">
+            <label>เลขที่ :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CORPARATE_BONDS_SECTION_NUMBER}}
+        </div>
+        <div class="col-md-6">
+            <label>วันที่ :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CORPARATE_BONDS_SECTION_DATE}}
+        </div>
+        <div class="col-md-6">
+            <label>วันที่ครบกำหนด :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CORPARATE_BONDS_SECTION_DUE_DATE}}
+        </div>
+        <div class="col-md-6">
+            <label>จำนวนเงิน (บาท) :</label>
+            {{this.APP_ACCOUNTING_SERVICE_EDIT_TYPE_2_CORPARATE_BONDS_SECTION_AMOUNT}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

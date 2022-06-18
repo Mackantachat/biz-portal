@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ABOUTUS" xml:space="preserve">
+    <value>เกี่ยวกับเรา</value>
+  </data>
+  <data name="BUTTON_HOME" xml:space="preserve">
+    <value>เริ่มต้นธุรกิจ</value>
+  </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>คำถามที่พบบ่อย</value>
+  </data>
+  <data name="HELP" xml:space="preserve">
+    <value>ช่วยเหลือ</value>
+  </data>
+  <data name="INFORMATION" xml:space="preserve">
+    <value>หาข้อมูล</value>
+  </data>
+  <data name="LOGIN" xml:space="preserve">
+    <value>เข้าสู่ระบบ</value>
+  </data>
+  <data name="LOGOUT" xml:space="preserve">
+    <value>ออกจากระบบ</value>
+  </data>
+  <data name="MANUALS" xml:space="preserve">
+    <value>คู่มือการใช้งานระบบ</value>
+  </data>
+  <data name="MENU_ANNUAL_BUDGET" xml:space="preserve">
+    <value>การส่งงบการเงินประจำปี</value>
+  </data>
+  <data name="MENU_BANKRUPT_SOLVING" xml:space="preserve">
+    <value>การแก้ไขปัญหาล้มละลาย</value>
+  </data>
+  <data name="MENU_BUSINESS_STATISTIC" xml:space="preserve">
+    <value>สถิติเพื่อวางแผนธุรกิจ</value>
+  </data>
+  <data name="MENU_COMPULSARY_ENFORCEMENT" xml:space="preserve">
+    <value>การบังคับให้เป็นไปตามข้อตกลง</value>
+  </data>
+  <data name="MENU_CONSTRUCTION_AND_UTILITIES_OVERVIEW" xml:space="preserve">
+    <value>ภาพรวมการก่อสร้างและสาธารณูปโภค</value>
+  </data>
+  <data name="MENU_CONSTRUCTION_REQUEST" xml:space="preserve">
+    <value>การก่อสร้างอาคาร</value>
+  </data>
+  <data name="MENU_COPYRIGHT" xml:space="preserve">
+    <value>ลิขสิทธิ์</value>
+  </data>
+  <data name="MENU_EDIT_SUPPORTED_PROJECT" xml:space="preserve">
+    <value>การแก้ไขเปลี่ยนแปลงโครงการที่ได้รับการส่งเสริมการลงทุนแล้ว</value>
+  </data>
+  <data name="MENU_ENVIRONMENT_IMPACT_ANALYSIS" xml:space="preserve">
+    <value>การวิเคราะห์ผลกระทบต่อสิ่งแวดล้อม</value>
+  </data>
+  <data name="MENU_EXPORT" xml:space="preserve">
+    <value>ส่งออก</value>
+  </data>
+  <data name="MENU_EXPORT_PROMOTING" xml:space="preserve">
+    <value>การขอเข้าร่วมกิจกรรมส่งเสริมการส่งออก</value>
+  </data>
+  <data name="MENU_FACTORY_REQUEST" xml:space="preserve">
+    <value>การประกอบกิจการโรงงาน</value>
+  </data>
+  <data name="MENU_FOREIGN_WORKER_SUPPLYING" xml:space="preserve">
+    <value>การจัดหาแรงงานต่างด้าว</value>
+  </data>
+  <data name="MENU_HEADER_BUSINESS_CLOSED" xml:space="preserve">
+    <value>ปิดกิจการ</value>
+  </data>
+  <data name="MENU_HEADER_BUSINESS_PLANNING" xml:space="preserve">
+    <value>วางแผนธุรกิจ</value>
+  </data>
+  <data name="MENU_HEADER_BUSINESS_TAX" xml:space="preserve">
+    <value>ภาษีธุรกิจ</value>
+  </data>
+  <data name="MENU_HEADER_CONSTRUCTION_AND_UTILITIES" xml:space="preserve">
+    <value>ก่อสร้างและสาธารณูปโภค</value>
+  </data>
+  <data name="MENU_HEADER_IMPORT_AND_EXPORT" xml:space="preserve">
+    <value>การนำเข้า-ส่งออก</value>
+  </data>
+  <data name="MENU_HEADER_INTELLECTUAL_PROPERTY" xml:space="preserve">
+    <value>ทรัพย์สินทางปัญญา</value>
+  </data>
+  <data name="MENU_HEADER_INVESTMENT" xml:space="preserve">
+    <value>การสนับสนุนการลงทุน</value>
+  </data>
+  <data name="MENU_HEADER_LABOUR" xml:space="preserve">
+    <value>แรงงาน</value>
+  </data>
+  <data name="MENU_HEADER_STARTING_BUSINESS" xml:space="preserve">
+    <value>เริ่มต้นธุรกิจ</value>
+  </data>
+  <data name="MENU_HEADER_THAILAND_INFORMATION" xml:space="preserve">
+    <value>ภาพรวมประเทศไทย</value>
+  </data>
+  <data name="MENU_IMPORT" xml:space="preserve">
+    <value>นำเข้า</value>
+  </data>
+  <data name="MENU_INTERNATIONAL_AGREEMENT" xml:space="preserve">
+    <value>ข้อตกลงระหว่างประเทศ</value>
+  </data>
+  <data name="MENU_INVESTMENT_PROTECTION" xml:space="preserve">
+    <value>การคุ้มครองนักลงทุน</value>
+  </data>
+  <data name="MENU_JURISTIC_REGISTRATION" xml:space="preserve">
+    <value>จดทะเบียนนิติบุคคล</value>
+  </data>
+  <data name="MENU_KNOWLEDGEBASE" xml:space="preserve">
+    <value>คลังความรู้ที่น่าสนใจ</value>
+  </data>
+  <data name="MENU_OTOP" xml:space="preserve">
+    <value>OTOP</value>
+  </data>
+  <data name="MENU_OUT_OF_BUSINESS" xml:space="preserve">
+    <value>การเลิกกิจการ</value>
+  </data>
+  <data name="MENU_PATENT" xml:space="preserve">
+    <value>สิทธิบัตร / อนุสิทธิบัตร</value>
+  </data>
+  <data name="MENU_PERMITLIST" xml:space="preserve">
+    <value>ขอใบอนุญาต/งานบริการใหม่</value>
+  </data>
+  <data name="MENU_PERMITLIST_CANCEL" xml:space="preserve">
+    <value>ยกเลิกใบอนุญาต/งานบริการ</value>
+  </data>
+  <data name="MENU_PERMITLIST_EDIT" xml:space="preserve">
+    <value>แก้ไข-เปลี่ยนแปลงใบอนุญาต/งานบริการ</value>
+  </data>
+  <data name="MENU_PERMITLIST_RENEW" xml:space="preserve">
+    <value>ต่ออายุ ชำระค่าธรรมเนียมรายปีใบอนุญาต/งานบริการ</value>
+  </data>
+  <data name="MENU_PRIVILEGE" xml:space="preserve">
+    <value>ข้อมูลสิทธิประโยชน์</value>
+  </data>
+  <data name="MENU_PUBLIC_UTILITIES_REQUEST" xml:space="preserve">
+    <value>การขอติดตั้งสาธารณูปโภค</value>
+  </data>
+  <data name="MENU_REGISTRATION_EDIT" xml:space="preserve">
+    <value>ขอแก้ไขเปลี่ยนแปลงการจดทะเบียน</value>
+  </data>
+  <data name="MENU_SME" xml:space="preserve">
+    <value>ข้อมูลเพื่อ SMEs</value>
+  </data>
+  <data name="MENU_SPECIFIC_TAX" xml:space="preserve">
+    <value>การจดทะเบียนภาษีธุรกิจเฉพาะ</value>
+  </data>
+  <data name="MENU_SSO_EMPLOYEE_REGISTRATION" xml:space="preserve">
+    <value>ขึ้นทะเบียนลูกจ้าง</value>
+  </data>
+  <data name="MENU_SSO_EMPLOYER_REGISTRATION" xml:space="preserve">
+    <value>ขึ้นทะเบียนนายจ้าง</value>
+  </data>
+  <data name="MENU_SSO_REGISTRATION" xml:space="preserve">
+    <value>ขึ้นทะเบียนนายจ้าง-ลูกจ้าง</value>
+  </data>
+  <data name="MENU_SSO_SUPPORTING_MONEY" xml:space="preserve">
+    <value>การนำเงินสมทบประกันสังคม</value>
+  </data>
+  <data name="MENU_STARTING_BUSINESS_OVERVIEW" xml:space="preserve">
+    <value>ภาพรวมการเริ่มต้นธุรกิจ</value>
+  </data>
+  <data name="MENU_TAX_PAYMENT_AND_REFUND" xml:space="preserve">
+    <value>การชำระและขอคืนภาษี</value>
+  </data>
+  <data name="MENU_THAILAND_INFO_ECONOMIC_INDICATORS" xml:space="preserve">
+    <value>เครื่องชี้ภาวะเศรษฐกิจ</value>
+  </data>
+  <data name="MENU_THAILAND_TRUST_MARK" xml:space="preserve">
+    <value>Thailand Trust Mark</value>
+  </data>
+  <data name="MENU_TRADEMARK" xml:space="preserve">
+    <value>การจดเครื่องหมายการค้า</value>
+  </data>
+  <data name="MENU_VAT_REGISTRATION" xml:space="preserve">
+    <value>การจดทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="ONLINE_SERVICES" xml:space="preserve">
+    <value>ขออนุญาตออนไลน์</value>
+  </data>
+  <data name="PERMIT_BY_BUSINESS" xml:space="preserve">
+    <value>ขอใบอนุญาตตามประเภทธุรกิจ</value>
+  </data>
+  <data name="PERMIT_BY_BUSINESS_COFFEE_SHOP" xml:space="preserve">
+    <value>ธุรกิจร้านกาแฟ &amp; Co-working space</value>
+  </data>
+  <data name="PERMIT_BY_BUSINESS_HOTEL" xml:space="preserve">
+    <value>ธุรกิจโรงแรมและรีสอร์ทขนาดเล็ก</value>
+  </data>
+  <data name="PERMIT_BY_BUSINESS_RESTAURANT" xml:space="preserve">
+    <value>ธุรกิจร้านอาหาร</value>
+  </data>
+  <data name="PERMIT_BY_BUSINESS_RETAIL" xml:space="preserve">
+    <value>ธุรกิจร้านค้าปลีก</value>
+  </data>
+  <data name="PLACEHOLDER_SEARCH" xml:space="preserve">
+    <value>ใส่คำค้นหาที่ต้องการ</value>
+  </data>
+  <data name="PRIVACY" xml:space="preserve">
+    <value>นโยบายความเป็นส่วนตัว</value>
+  </data>
+  <data name="READMORE" xml:space="preserve">
+    <value>อ่านเพิ่มเติม</value>
+  </data>
+  <data name="REGISTER" xml:space="preserve">
+    <value>ลงทะเบียน</value>
+  </data>
+  <data name="SHOWLESS" xml:space="preserve">
+    <value>ย่อลง</value>
+  </data>
+  <data name="SITEMAP" xml:space="preserve">
+    <value>แผนผังเว็บไซต์</value>
+  </data>
+  <data name="SUPERVISION" xml:space="preserve">
+    <value>เว็บไซต์นี้อยู่ภายใต้การกำกับดูแลของสำนักนายกรัฐมนตรี</value>
+  </data>
+  <data name="TITLE_PAGE_BUSINESS_INFO" xml:space="preserve">
+    <value>หาข้อมูลธุรกิจ</value>
+  </data>
+  <data name="TITLE_PAGE_BUSINESS_INFO_COFFEE_SHOP" xml:space="preserve">
+    <value>ธุรกิจ Co-Working Space</value>
+  </data>
+  <data name="TITLE_PAGE_BUSINESS_INFO_HOTEL" xml:space="preserve">
+    <value>ธุรกิจโรงแรมและรีสอร์ตขนาดเล็ก</value>
+  </data>
+  <data name="TITLE_PAGE_BUSINESS_INFO_RESTAURANT" xml:space="preserve">
+    <value>ธุรกิจร้านอาหารและเครื่องดื่ม</value>
+  </data>
+  <data name="TITLE_PAGE_BUSINESS_INFO_RETAIL" xml:space="preserve">
+    <value>ธุรกิจร้านค้าปลีก</value>
+  </data>
+  <data name="TITLE_PAGE_BUSINESS_UTILITIES" xml:space="preserve">
+    <value>แบบสอบถามการขอติดตั้งสาธารณูปโภค</value>
+  </data>
+  <data name="TOU" xml:space="preserve">
+    <value>เงื่อนไข</value>
+  </data>
+  <data name="USER_MENU" xml:space="preserve">
+    <value>เมนูส่วนตัว</value>
+  </data>
+</root>

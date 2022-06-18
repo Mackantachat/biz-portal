@@ -1,0 +1,72 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+
+@model FormControl
+
+@foreach (var radioBtn in Model.RadioGroupWithDropdown.RadioButtons)
+{
+    if (radioBtn.RadioWithDropdown)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-inline">
+                    <div class="form-group">
+                        @Html.RadioButton(Model.RadioGroupWithDropdown.RadioGroupName, radioBtn.RadioButtonValue, new { id = string.Format("{0}-{1}", Model.RadioGroupWithDropdown.RadioGroupName, radioBtn.RadioButtonValue), disabled = "disabled" })
+                        @if (!radioBtn.NoRadioButtonText)
+                        {
+                            <label for="@string.Format("{0}-{1}", Model.RadioGroupWithDropdown.RadioGroupName, radioBtn.RadioButtonValue)" class="control-label">@ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText)</label>
+                        }
+                    </div>
+                    @foreach (var dropdown in radioBtn.DropdownOpt)
+                    {
+                        <div class="form-group">
+                            <select class="form-control" id="@string.Format("dropdown_{0}_{1}", dropdown.DropdownName, Model.ClientID)" name="@string.Format("DROPDOWN_{0}_{1}_{2}", dropdown.DropdownName, radioBtn.RadioButtonValue, Model.DataKey)" disabled>
+                                <option></option>
+                            </select>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-inline">
+            <div class="form-group">
+                @Html.RadioButton(Model.RadioGroupWithDropdown.RadioGroupName, "OTHER", new { id = string.Format("{0}-OTHER", Model.RadioGroupWithDropdown.RadioGroupName), disabled = "disabled" })
+                <label for="@string.Format("{0}-OTHER", Model.RadioGroupWithDropdown.RadioGroupName)" class="control-label">@ResourceHelper.GetResourceWordWithDefault("OTHER", "Apps_SingleForm", "OTHER")</label>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" id="@string.Format("{0}-OTHER", Model.RadioGroupWithDropdown.RadioGroupName)" name="@string.Format("{0}-OTHER_TEXT", Model.RadioGroupWithDropdown.RadioGroupName)" disabled>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        @foreach (var radioBtn in Model.RadioGroupWithDropdown.RadioButtons)
+        {
+            if (radioBtn.RadioWithDropdown)
+            {
+                foreach (var dropdown in radioBtn.DropdownOpt)
+                {
+                <text>
+        $("#@string.Format("dropdown_{0}_{1}", dropdown.DropdownName, Model.ClientID)").select2({
+            data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(dropdown.Select2Opt)),
+            allowClear: true,
+            width: '100%'
+        });
+        </text>
+                }
+            }
+        }
+        @if (Model.DisplayDisabled)
+        {
+            <text>
+        $("input[type=radio][name=@Model.RadioGroupWithDropdown.RadioGroupName]").prop('disabled', true);
+    </text>
+        }
+    });
+</script>

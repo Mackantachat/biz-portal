@@ -1,0 +1,41 @@
+﻿@using BizPortal.DAL.MongoDB
+@model FormControl
+
+@if (Model.Control == "MEA_BRANCH")
+{
+    <span class="form-control form-control-static" id="MEA_BRANCH_DISPLAY">@Model.Data.ToString()</span>
+}
+else if (Model.Control == "MWA_BRANCH")
+{
+    <span class="form-control form-control-static" id="MWA_BRANCH_DISPLAY">@Model.Data.ToString()</span>
+}
+else if (Model.Control == "TOT_BRANCH")
+{
+    var data = (List<string>)Model.Data;
+    <div class="row">
+        <div class="col-md-12 mb5">
+            <label>สาขาเขตรับผิดชอบหลัก :</label>
+            <span class="form-control form-control-static" id="TOT_1ST_BRANCH_DISPLAY">@data[0]</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>สาขาเขตรับผิดชอบรอง :</label>
+            <span class="form-control form-control-static" id="TOT_2ND_BRANCH_DISPLAY">@data[1]</span>
+        </div>
+    </div>
+}
+else if (Model.Control == "PWA_BRANCH")
+{
+    var text = string.Empty;
+    if (Model.Data.GetType() == typeof(BizPortal.ViewModels.Select2.Select2Opt[]))
+    {
+        var data = (BizPortal.ViewModels.Select2.Select2Opt[])Model.Data;
+        text = data[0].Text;
+    }
+    else
+    {
+        text = Model.Data.DefaultString();
+    }
+    <span class="form-control form-control-static" id="PWA_BRANCH_DISPLAY">@text</span>
+}

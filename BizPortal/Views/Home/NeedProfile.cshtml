@@ -1,0 +1,125 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+
+@{
+    ViewBag.Title = @Resource.Global.PAGE_TITLE_HOME;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@section PageStyles {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC85LX9fy6pv1cEHFSxmFZU0G81nwwHKIM"></script>
+}
+
+<section class="cover">
+    <div class="wrap-table">
+        <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/thai.png")" alt="">
+        <div class="title">ศูนย์กลางข้อมูลให้ธุรกิจติดต่อราชการแบบเบ็ดเสร็จ ครบวงจร<span class="under-400"> ณ จุดเดียว</span></div>
+        <div class="subtitle">บริการฉับไว เว็บเดียวจบ ครบทุกเรื่อง</div>
+        <div class="group-button">
+            <a href="@ViewBag.CitizenOpenIDUrl" class="button primary large" style="margin-right: 0;">คลิ๊กเพื่อเพิ่มข้อมูล Email และ เบอร์ติดต่อ</a>
+            <a href="@Url.BizAction("Index", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="button primary large">เข้าสู่ระบบ</a>          
+        </div>
+    </div>
+</section>
+
+
+<section class="footer">
+    <div class="header"><h2>หน่วยงานที่ร่วมกับ  <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/logo-white.png")" alt=""></h2></div>
+    <div class="subtitle"><p>คุณสามารถขออนุญาตออนไลน์กับหน่วยงานรัฐได้หลายแห่ง</p></div>
+    <div class="container">
+        <!-- <div class="row"> -->
+        <div class="company-slider">
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company-gov.png")" alt=""></div>
+                <div class="des"><p>สำนักนายกรัฐมนตรี ​</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company_opdc4.png")" alt=""></div>
+                <div class="des"><p>สำนักงานคณะกรรมการ<br />พัฒนาระบบราชการ ​</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img style="background: white;border-radius: 50%;opacity: 0.85; width: 95px;margin-bottom: 10px;margin-top: 5px;" src="@Url.Content("~/Content/SingleForm-frontis/v2/images/DE.png")" alt=""></div>
+                <div class="des"><p>กระทรวงดิจิทัล<br />เพื่อเศรษฐกิจและสังคม </p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/dga.png")" alt=""></div>
+                <div class="des"><p>สำนักงานพัฒนารัฐบาลดิจิทัล<br />(องค์การมหาชน)</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company12.png")" alt=""></div>
+                <div class="des"><p>สำนักงานคณะกรรมการคุ้มครองผู้บริโภค</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company3.png")" alt=""></div>
+                <div class="des"><p>กรมสรรพสามิต</p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company2.png")" alt=""></div>
+                <div class="des"><p>กรมสรรพากร </p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company7.png")" alt=""></div>
+                <div class="des"><p>กรมปศุสัตว์</p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company6.png")" alt=""></div>
+                <div class="des"><p>กรมวิชาการเกษตร</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company1.png")" alt=""></div>
+                <div class="des"><p>กรมพัฒนาธุรกิจการค้า </p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company4.png")" alt=""></div>
+                <div class="des"><p>สำนักงานประกันสังคม​</p></div>
+            </div>
+
+            <!--
+                    <div class="company-item">
+                      <div class="icon"><img src="images/company5.png" alt=""></div>
+                      <div class="des"><p>กรมสวัสดิการและคุ้มครองแรงงาน ​</p></div>
+                    </div> -->
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company9.png")" alt=""></div>
+                <div class="des"><p>กรมส่งเสริมวัฒนธรรม ​</p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company8.png")" alt=""></div>
+                <div class="des"><p>สำนักงานคณะกรรมการอาหารและยา</p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company10.png")" alt=""></div>
+                <div class="des"><p>กองบัญชาการตำรวจนครบาล</p></div>
+            </div>
+
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company11.png")" alt=""></div>
+                <div class="des"><p>กรุงเทพมหานคร</p></div>
+            </div>
+
+        </div>
+        <div class="carousel-arrows-company"></div>
+        <!-- </div> -->
+    </div>
+</section>
+
+@section PageScripts
+{
+
+    <script type="text/javascript" defer="defer">
+    var userImage = document.getElementById('chat-up');
+    userImage.onclick = function(e) {
+      e.preventDefault();
+      $zopim.livechat.window.show();
+    };
+    </script>
+
+}

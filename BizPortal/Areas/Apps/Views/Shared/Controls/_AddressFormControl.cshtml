@@ -1,0 +1,978 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var address = Model.Data as AddressControlData;
+    var rd = Model.DisplayReadonly;
+    var autofillAttr = AutoFillConditionHelper.GetAttributes(Model);
+    bool isRequired = (Model.Rules != null) && Model.Rules.Any(o => o.Type == ValidationType.Required);
+
+    var addrNo = "เลขที่ : " + (isRequired ? "*" : "");
+    if (Model.AddressForm_IgnoreAddressControl)
+    {
+        addrNo = "เลขที่ :";
+    }
+}
+<div data-control-name="@Model.Control"
+     class="@autofillAttr.Class"
+     @autofillAttr.Data
+     @autofillAttr.DataSourceFromDraft
+     @autofillAttr.DataSourceIsAddressControl
+     @autofillAttr.DataSourceSection
+     @autofillAttr.DataSourceControl>
+
+    @if (Model.AddressForm_ShowOnlyProvinceControl)
+    {
+        if (rd)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    *
+                    <label>จังหวัด : @(isRequired ? "*" : "")</label>
+                    <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.ID : null)" />
+                    <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.Text : null)" readonly />
+                </div>
+                <div class="col-md-6">
+                    <label>อำเภอ/เขต : @(isRequired ? "*" : "")</label>
+                    <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.ID : null)" />
+                    <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.Text : null)" readonly />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label>จังหวัด : @(isRequired ? "*" : "")</label>
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>อำเภอ/เขต : @(isRequired ? "*" : "")</label>
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        }
+
+        if (!Model.AddressForm_HideTumbol)
+        {
+            <div class="row">
+                @if (rd)
+                {
+                    <div class="col-md-6">
+                        <label>ตำบล/แขวง : @(isRequired ? "*" : "")</label>
+                        <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.ID : null)" />
+                        <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.Text : null)" readonly />
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-6">
+                        <label>ตำบล/แขวง : @(isRequired ? "*" : "")</label>
+                        <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)">
+                            <option></option>
+                        </select>
+                    </div>
+                }
+            </div>
+        }
+    }
+    else
+    {
+
+        if (Model.AddressForm_ShowSearchControl)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <label>ค้นหาที่อยู่ :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_SEARCH", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_SEARCH", Model.ClientID) })
+                </div>
+            </div>
+        }
+        @* ADDRESS_NO, MOO *@
+        @*<div class="row">
+                @if (Model.AddressForm_ShowAddressIdControl)
+                {
+                    <div class="col-md-6">
+                        <label>รหัสประจำบ้านตามทะเบียนบ้าน 11 หลัก : *</label>
+                        @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ID", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ID", Model.ClientID), @maxlength = "11" })
+                    </div>
+                }
+                <div class="col-md-4">
+                    <label>@addrNo</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS", Model.DataKey), address != null ? address.Address : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS", Model.ClientID) })
+                </div>
+                @if (Model.AddressForm_ShowDeed)
+                {
+                    <div class="col-md-4">
+                        <label>เลขที่โฉนดที่ดิน :</label>
+                        @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_DEED", Model.DataKey), address != null ? address.Deed : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_DEED", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_DEED", Model.ClientID) })
+                    </div>
+                }
+                <div class="col-md-2">
+                    <label>หมู่ที่ :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_MOO", Model.DataKey), address != null ? address.Moo : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOO", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOO", Model.ClientID) })
+                </div>
+            </div>*@
+        <div class="row">
+            @if (Model.AddressForm_ShowAddressIdControl)
+            {
+                <div class="col-md-6">
+                    <label>รหัสประจำบ้านตามทะเบียนบ้าน 11 หลัก : *</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ID", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ID", Model.ClientID), @maxlength = "11" })
+                </div>
+            }
+
+            @if (Model.AddressForm_ShowNbr)
+            {
+                <div class="col-md-4">
+                    <label>@addrNo</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS", Model.DataKey), address != null ? address.Address : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS", Model.ClientID) })
+                </div>
+            }
+
+            @if (Model.AddressForm_ShowDeed)
+            {
+                <div class="col-md-4">
+                    <label>เลขที่โฉนดที่ดิน :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_DEED", Model.DataKey), address != null ? address.Deed : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_DEED", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_DEED", Model.ClientID) })
+                </div>
+            }
+            <div class="col-md-2">
+                <label>หมู่ที่ :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_MOO", Model.DataKey), address != null ? address.Moo : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOO", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOO", Model.ClientID) })
+            </div>
+        </div>
+        @* VILLAGE & SOI *@
+        <div class="row">
+            @if (Model.AddressForm_ShowVillageControl)
+            {
+                <div class="col-md-6">
+                    <label>หมู่บ้าน :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_VILLAGE", Model.DataKey), address != null ? address.Village : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_VILLAGE", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_VILLAGE", Model.ClientID) })
+                </div>
+            }
+
+            @if (Model.AddressForm_ShowYakControl)
+            {
+                <div class="col-md-3">
+                    <label>ตรอก/ซอย :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_SOI", Model.DataKey), address != null ? address.Soi : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_SOI", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_SOI", Model.ClientID) })
+                </div>
+                <div class="col-md-3">
+                    <label>แยก :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_YAK", Model.DataKey), address != null ? address.Yak : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_YAK", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_YAK", Model.ClientID) })
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6">
+                    <label>ตรอก/ซอย :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_SOI", Model.DataKey), address != null ? address.Soi : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_SOI", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_SOI", Model.ClientID) })
+                </div>
+            }
+
+
+            @* BUILDING + FLOOR & ROAD *@
+            @if (Model.AddressForm_ShowBuildingControl)
+            {
+                <div class="col-md-4">
+                    <label>อาคาร :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_BUILDING", Model.DataKey), address != null ? address.Building : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_BUILDING", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_BUILDING", Model.ClientID) })
+                </div>
+                <div class="col-md-2">
+                    <label>ห้องเลขที่ :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ROOMNO", Model.DataKey), address != null ? address.Floor : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROOMNO", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROOMNO", Model.ClientID) })
+                </div>
+                <div class="col-md-2">
+                    <label>ชั้น :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_FLOOR", Model.DataKey), address != null ? address.Floor : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_FLOOR", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_FLOOR", Model.ClientID) })
+                </div>
+                <div class="col-md-4">
+                    <label>ถนน :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ROAD", Model.DataKey), address != null ? address.Road : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROAD", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROAD", Model.ClientID) })
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6">
+                    <label>ถนน :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_ROAD", Model.DataKey), address != null ? address.Road : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROAD", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_ROAD", Model.ClientID) })
+                </div>
+            }
+
+        </div>
+
+        @* PROVINCE & AMPHUR *@
+        if (rd)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label>จังหวัด : @(isRequired ? "*" : "")</label>
+                    <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.ID : null)" />
+                    <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.Text : null)" readonly />
+                </div>
+                <div class="col-md-6">
+                    <label>อำเภอ/เขต : @(isRequired ? "*" : "")</label>
+                    <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.ID : null)" />
+                    <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.Text : null)" readonly />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label>จังหวัด : @(isRequired ? "*" : "")</label>
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>อำเภอ/เขต : @(isRequired ? "*" : "")</label>
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        }
+
+        @* TUMBOL & POSTCODE *@
+        <div class="row">
+            @if (rd)
+            {
+                <div class="col-md-6">
+                    <label>ตำบล/แขวง : @(isRequired ? "*" : "")</label>
+                    <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.ID : null)" />
+                    <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.Text : null)" readonly />
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6">
+                    <label>ตำบล/แขวง : @(isRequired ? "*" : "")</label>
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)">
+                        <option></option>
+                    </select>
+                </div>
+            }
+
+            @if (Model.AddressForm_ShowPostCodeControl)
+            {
+                <div class="col-md-6">
+                    <label>รหัสไปรษณีย์ : @(isRequired ? "*" : "")</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_POSTCODE", Model.DataKey), null, new { @class = "form-control", id = string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID), @maxlength = "5" })
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_POSTCODE", Model.DataKey)" id="@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)" disabled style="display:none;">
+                        <option></option>
+                    </select>
+                </div>
+            }
+        </div>
+        @* TELEPHONE & FAX *@
+        if (Model.AddressForm_ShowTelephoneControl)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <label>โทรศัพท์ : @(isRequired ? "*" : "")</label>
+                    @if (isRequired)
+                    {
+                        <div class="form-control-info" id="info-@Model.DataKey-telephone" style="top: -5px; padding: 10px; margin-bottom: 0px;">
+                            <a href="#" class="form-control-info-close" data-target="info-@Model.DataKey-telephone"><i class="fa fa-times-circle"></i></a>
+                            <div class="row">
+                                <div class="M-12">@Html.Raw(ResourceHelper.GetResourceWordWithDefault("ถ้าไม่มีให้ใส่ \"-\"", "Apps_SingleForm", "ถ้าไม่มีให้ใส่ \"-\""))</div>
+                            </div>
+                        </div>
+                    }
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_TELEPHONE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_TELEPHONE", Model.ClientID) })
+                </div>
+                <div class="col-md-2">
+                    <label>ต่อ :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_TELEPHONE_EXT", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_TELEPHONE_EXT", Model.ClientID) })
+                </div>
+                <div class="col-md-6">
+                    <label>โทรสาร :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_FAX", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_FAX", Model.ClientID) })
+                </div>
+            </div>
+            <script type="text/javascript">
+                    $(function () {
+                        @*$("#@string.Format("{0}_{1}", "ADDRESS_TELEPHONE", Model.ClientID)").mask('ZZZZZZZZZZZZZZZZZZZZ', {
+                            translation: {
+                                'Z': {
+                                    pattern: /[0-9\-\(\)]/, optional: true
+                                }
+                            }
+                        });*@
+                        $("#@string.Format("{0}_{1}", "ADDRESS_TELEPHONE", Model.ClientID)").mask('0 0000 0000');
+                        $("#@string.Format("{0}_{1}", "ADDRESS_TELEPHONE_EXT", Model.ClientID)").mask('0000000000');
+                        $("#@string.Format("{0}_{1}", "ADDRESS_FAX", Model.ClientID)").mask('0 0000 0000');
+                    });
+            </script>
+        }
+        @* MOBILE && EMAIL *@
+        if (Model.AddressForm_ShowEmailControl || Model.AddressForm_ShowMapControl)
+        {
+            <div class="row">
+                @if (Model.AddressForm_ShowMobileControl)
+                {
+                    <div class="col-md-6">
+                        <label>มือถือ :</label>
+                        @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.ClientID) })
+                        @*@Html.TextBox(string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.DataKey), address != null ? address.Mobile : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.ClientID) })*@
+                    </div>
+                    <script type="text/javascript">
+                            $(function () {
+                                $("#@string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.ClientID)").mask('ZZZ-ZZZ-ZZZZ', {
+                                    translation: {
+                                        'Z': {
+                                            pattern: /[0-9\-\(\)]/, optional: true
+                                        }
+                                    }
+                                });
+                            });
+                    </script>
+                }
+                @if (Model.AddressForm_ShowEmailControl)
+                {
+                    <div class="col-md-6">
+                        <label>อีเมล : @((isRequired && ViewBag.IdentityType == UserTypeEnum.Juristic) ? "*" : "")</label>
+                        @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.ClientID) })
+                        @*@Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.DataKey), address != null ? address.Email : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.ClientID) })*@
+                    </div>
+                    <script type="text/javascript">
+                            $(function () {
+                                $("#@string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.ClientID)").mask('A', {
+                                    translation: {
+                                        'A': {
+                                            pattern: /[\w@@\-.+]/, optional: true, recursive: true
+                                        }
+                                    }
+                                });
+                            });
+                    </script>
+                }
+            </div>
+        }
+        if (Model.AddressForm_ShowMapControl)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <label>ละติจูด *:</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_LAT", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID), @readonly = "readonly" })
+                </div>
+                <div class="col-md-3">
+                    <label>ลองจิจูด *:</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_LNG", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID), @readonly = "readonly" })
+                </div>
+                @if (!Model.DisplayReadonly)
+                {
+                    <div class="col-md-4">
+                        <label>แผนที่ :</label>
+                        <button type="button" id="btn-showmap-@Model.Control" style="display: block;" class="btn btn-primary" onclick='javascript: $("#@string.Format("MAP_{0}_MODAL", Model.DataKey)").modal("show")'><i class="fa fa-map-marker"></i> ใช้แผนที่เพื่อกำหนดตำแหน่งที่ตั้ง</button>
+                    </div>
+                }
+
+            </div>
+
+            <div class="modal fade" id="@string.Format("MAP_{0}_MODAL", Model.DataKey)" tabindex="-1" role="dialog" aria-labelledby="@string.Format("MAP_{0}_LABEL", Model.DataKey)">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" onclick="javascript: $('#@string.Format("MAP_{0}_MODAL", Model.DataKey)').modal('toggle');" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="@string.Format("MAP_{0}_LABEL", Model.DataKey)">เลือกตำแหน่งของสถานที่ตั้ง</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h6>กรุณาลากหมุดเพื่อกำหนดพิกัดของสถานที่ตั้ง</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input id="@string.Format("pac-input_{0}", Model.DataKey)" name="SEARCH_TEXT_GOOGLE_MAP" class="controls pac-custom" type="text" placeholder="Search Box">
+                                <div class="col-md-12 br-n" id="@string.Format("MAP_{0}", Model.DataKey)" style="height: 350px;"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn btn-success" id="@string.Format("BTN_MAP_{0}_OK", Model.DataKey)" style="width: 20% !important;">ตกลง</button>
+                                    <button type="button" class="btn btn-danger" onclick="javascript: $('#@string.Format("MAP_{0}_MODAL", Model.DataKey)').modal('toggle');" id="@string.Format("BTN_MAP_{0}_CANCEL", Model.DataKey)" style="width: 20% !important;">ยกเลิก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@if (!rd)
+{
+<script type="text/javascript">
+        $(function () {
+            $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'จังหวัด',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        var isMetro = '';
+                        @if (Model.Data != null)
+                        {
+                            if ((string)Model.Data == ProvinceType.Metro.ToString())
+                            {
+                                <text>
+                        isMetro = '@ProvinceType.Metro.ToString()';
+                        </text>
+                            }
+                            else if ((string)Model.Data == ProvinceType.Provin.ToString())
+                            {
+                                <text>
+                        isMetro = '@ProvinceType.Provin.ToString()';
+                        </text>
+                            }
+                            else if ((string)Model.Data == ProvinceType.BKK.ToString())
+                            {
+                                <text>
+                        isMetro = '@ProvinceType.BKK.ToString()';
+                        </text>
+                            }
+                            else if ((string)Model.Data == ProvinceType.NotBKK.ToString())
+                            {
+                                <text>
+                        isMetro = '@ProvinceType.NotBKK.ToString()';
+                        </text>
+                            }
+                        }
+                        else if (Model.AddressForm_ProvinceType == ProvinceType.Metro)
+                        {
+                            <text>
+                            isMetro = '@ProvinceType.Metro.ToString()';
+                            </text>
+                        }
+                        else if (Model.AddressForm_ProvinceType == ProvinceType.Provin)
+                        {
+                            <text>
+                            isMetro = '@ProvinceType.Provin.ToString()';
+                            </text>
+                        }
+                        else if (Model.AddressForm_ProvinceType == ProvinceType.BKK)
+                        {
+                            <text>
+                            isMetro = '@ProvinceType.BKK.ToString()';
+                            </text>
+                        }
+                        else if (Model.AddressForm_ProvinceType == ProvinceType.BKK)
+                        {
+                            <text>
+                            isMetro = '@ProvinceType.NotBKK.ToString()';
+                            </text>
+                        }
+
+                        return {
+                            isMetro: isMetro,
+                            query: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'อำเภอ/เขต',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'ตำบล/แขวง',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val(),
+                            aCode: $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            // ปรับ เพื่อไม่ให้ Clone ได้ ถ้าหา Address Set ไว้ว่า ให้เลือกได้แต่ กรุงเทพ
+            @if (Model.AddressForm_ProvinceType == ProvinceType.BKK) {
+                <text>
+            $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").change(function () {
+                    if ($(this).val() !== '10' & $(this).val() !=='') {
+                            $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID) option[value]").remove();
+                        }
+                        $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").val("").trigger("change");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID) option[value]").remove();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID)").val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID)").val("");
+                    });
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").change(function () {
+
+                        if ($("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() !== '10') {
+                            $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID) option[value]").remove();
+                        }
+
+                        $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").val("").trigger("change");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID) option[value]").remove();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID)").val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID)").val("");
+                    });
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").change(function () {
+
+                        if ($("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() !== '10') {
+                            $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID) option[value]").remove();
+                        }
+
+                        var geoCode = $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() +
+                            $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").val() +
+                            $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").val();
+
+                        if (geoCode.length == 6) {
+                            $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + geoCode, function (data) {
+                                if (data.length < 1) {
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                                } else {
+                                    console.log(data.length);
+                                    if (data.length == 1) {
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: data[0], text: data[0], selected: data[0] == $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').val(data[0]).trigger("change");
+                                    } else if (data.length > 1) {
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                                        $.each(data, function (key, value) {
+                                            $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: value, text: value, selected: value == $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                                        });
+                                        @if (Model.Control.Equals("INFORMATION_STORE__ADDRESS") && Model.AutoFillConditions.Any(x => x.TriggerAutoFillOnSpecificValue.Equals("INFORMATION_STORE__USE_CITIZEN_ADDRESS__TRUE")))
+                                        {
+                                            <text>
+                                                $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').val($('select[name=ADDRESS_POSTCODE_CITIZEN_ADDRESS]').val());
+                                            </text>
+                                        }
+                                    }
+
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').removeData('init');
+                                }
+                            });
+                        }
+                    });
+                </text>
+            }
+            else {
+                <text>
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").change(function () {
+                        $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").val("").trigger("change");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID) option[value]").remove();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID)").val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID)").val("");
+                    });
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").change(function () {
+                        $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").val("").trigger("change");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID) option[value]").remove();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID)").val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID)").val("");
+                    });
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").change(function () {
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID)").val("");
+                        $("#@string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID)").val("");
+
+                        var geoCode = $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() +
+                            $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").val() +
+                            $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").val();
+
+                        if (geoCode.length == 6) {
+                            $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + geoCode, function (data) {
+                                if (data.length < 1) {
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                                } else {
+                                    if (data.length == 1) {
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: data[0], text: data[0], selected: data[0] == $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').val(data[0]).trigger("change");
+                                    } else if (data.length > 1) {
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                                        $.each(data, function (key, value) {
+                                            $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: value, text: value, selected: value == $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                                        });
+
+                                        @if (Model.Control.Equals("INFORMATION_STORE__ADDRESS") && Model.AutoFillConditions.Any(x => x.TriggerAutoFillOnSpecificValue.Equals("INFORMATION_STORE__USE_CITIZEN_ADDRESS__TRUE")))
+                                        {
+                                            <text>
+                                                $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').val($('select[name=ADDRESS_POSTCODE_CITIZEN_ADDRESS]').val());
+                                            </text>
+                                        }
+
+                                    }
+
+                                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').removeData('init');
+                                }
+                            });
+                        }
+                    });
+                </text>
+            }
+
+            @if (address != null)
+            {
+                <text>
+            setAddressFromWS();
+
+            function setAddressFromWS() {
+                $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)")
+                    .prepend("<option value='" + @address.Province.ID + "'>@address.Province.Text</option>")
+                    .val(@address.Province.ID);
+                $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)")
+                        .prepend("<option value='" + @address.Amphur.ID + "'>@address.Amphur.Text</option>")
+                        .val(@address.Amphur.ID);
+                $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)")
+                    .prepend("<option value='" + @address.Tumbol.ID + "'>@address.Tumbol.Text</option>")
+                            .val(@address.Tumbol.ID);
+            }
+            </text>
+            }
+
+            @if (Model.Control == "UTILITY_ADDRESS" && Model.Data != null)
+        {
+            if ((string)Model.Data == ProvinceType.Metro.ToString())
+            {
+                <text>
+            $(window).on('load', function () {
+                if ($("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() != "10" &&
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() != "11" &&
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() != "12") {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID) option[value]").remove();
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID) option[value]").remove();
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID) option[value]").remove();
+
+                    // Remove existed Postcode
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                }
+            });
+            </text>
+        }
+        else if ((string)Model.Data == ProvinceType.Provin.ToString())
+        {
+            <text>
+            $(window).on('load', function () {
+                if ($("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() == "10" ||
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() == "11" ||
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() == "12") {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID) option[value]").remove();
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID) option[value]").remove();
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID) option[value]").remove();
+
+                    // Remove existed Postcode
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                }
+            });
+            </text>
+        }
+        }
+
+        });
+</script>
+
+    if (Model.AddressForm_ProvinceType == ProvinceType.BKK)
+    {
+
+        @* Include a SectionGroup script if available. *@
+        <script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/form-helper.js")">
+        </script>
+
+        <script type="text/javascript">
+
+            window.singleFormHelpers.form.onDraftDataBound(function () {
+                ValidateDDProvinceTypeBKKOnly($("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)"));
+            });
+
+            // Validate Province type prefill
+            // Value 10 is equal BKK
+            function ValidateDDProvinceTypeBKKOnly(ddlObj)
+            {
+                let $ddl = $(ddlObj);
+                if ($ddl.val() !== '10') {
+                    $("#" + $ddl.attr('id') + " option[value]").remove();
+                    $("#" + $ddl.attr('id')).trigger('change');
+                }
+            }
+
+        </script>
+
+    }
+
+}
+else
+{
+    <script type="text/javascript">
+        $(function () {
+            var geoCode = $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID)").val() +
+            $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID)").val() +
+            $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID)").val();
+
+            $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + geoCode, function (data) {
+                if (data.length < 1) {
+                    @{ }
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                } else {
+                    if (data.length == 1) {
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: data[0], text: data[0], selected: data[0] == $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').val(data[0]).trigger("change");
+                    } else if (data.length > 1) {
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                        $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                        $.each(data, function (key, value) {
+                            $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: value, text: value, selected: value == $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                        });
+                    }
+
+                    $('#@string.Format("ADDRESS_POSTCODE_{0}_SELECT", Model.ClientID)').removeData('init');
+                }
+            });
+        });
+    </script>
+}
+
+@if (Model.AddressForm_ShowMapControl)
+{
+    <script>
+
+        @* Frontis: We must define initMap function and all required variables only once, otherwise it will cause unexpected errors. *@
+        if (!window.initMap) {
+            window.initMap = function () {
+                // GOOGLE MAPS
+                window.initLatLng = new google.maps.LatLng(13.7537900, 100.5204650);
+                window.mapOptions = {
+                    zoom: 15,
+                    center: initLatLng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                window.marker;
+                window.currentCenter;
+                window.searchBox;
+            }
+        }
+
+        $(document).ready(function () {
+
+            var input = document.getElementById('@string.Format("pac-input_{0}", Model.DataKey)');
+
+            $('#@string.Format("MAP_{0}_MODAL", Model.DataKey)').on('shown.bs.modal', function () {
+                var map = new google.maps.Map(document.getElementById('@string.Format("MAP_{0}", Model.DataKey)'), mapOptions);
+                //console.log('#@string.Format("MAP_{0}_MODAL", Model.DataKey) shown.bs.modal', new Date());
+                // Initiate Marker
+                if ($("#@string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID)").val().length > 0 && $("#@string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID)").val().length > 0) {
+                    $(input).val($("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID) option:selected").text() + " " +
+                    $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID) option:selected").text() + " " +
+                    $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID) option:selected").text());
+                    var currentLatLng = new google.maps.LatLng(parseFloat($("#@string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID)").val()), parseFloat($("#@string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID)").val()));
+                    marker = new google.maps.Marker({
+                        position: currentLatLng,
+                        map: map
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                } else {
+                    if ($("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID) option:selected").text().length > 0 &&
+                    $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID) option:selected").text().length > 0 &&
+                    $("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID) option:selected").text().length > 0) {
+                        $(input).val($("#@string.Format("{0}_{1}", "ADDRESS_TUMBOL", Model.ClientID) option:selected").text() + " " +
+                        $("#@string.Format("{0}_{1}", "ADDRESS_AMPHUR", Model.ClientID) option:selected").text() + " " +
+                        $("#@string.Format("{0}_{1}", "ADDRESS_PROVINCE", Model.ClientID) option:selected").text());
+                        marker = new google.maps.Marker({
+                            position: initLatLng,
+                            map: map
+                        });
+                        marker.setMap(map);
+                        setTimeout(function () {
+                            google.maps.event.trigger(input, 'focus');
+                            google.maps.event.trigger(input, 'keydown', {
+                                keyCode: 13
+                            });
+                        }, 500);
+                    } else {
+                        marker = new google.maps.Marker({
+                            position: initLatLng,
+                            map: map
+                        });
+                        currentCenter = marker.getPosition();
+                        map.setCenter(currentCenter);
+                        marker.setMap(map);
+                    }
+                }
+
+                // Map Search
+                searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                searchBox.addListener('places_changed', searchPlace);
+                function searchPlace() {
+                    var places = searchBox.getPlaces();
+                    if (places.length == 0) {
+                        return;
+                    } else {
+                        var place = places[0];
+                    }
+
+                    marker.setMap(null);
+                    if (!place.geometry) {
+                        return;
+                    }
+                    marker = new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                };
+
+                google.maps.event.addListener(map, 'click', function (e) {
+                    placeMarker(e.latLng);
+                });
+
+                function placeMarker(location) {
+                    marker.setMap(null);
+                    marker = new google.maps.Marker({
+                        map: map,
+                        position: location
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                }
+                google.maps.event.trigger(map, "resize");
+            });
+
+            $('#@string.Format("MAP_{0}_MODAL", Model.DataKey)').on('hidden.bs.modal', function () {
+
+
+                // Scroll back to edited item
+                setTimeout(function(){
+                    var offTop = $('#btn-showmap-@Model.Control').offset().top;
+                    $('html,body').scrollTop(offTop-250);
+                }, 300);
+
+                return false;
+            });
+
+            $("#@string.Format("BTN_MAP_{0}_OK", Model.DataKey)").click(function () {
+                var currentPosition = marker.getPosition().toString();
+                var latlng = currentPosition.match(/\((-?[0-9\.]+), (-?[0-9\.]+)\)/);
+                var lat = parseFloat(latlng[1]).toFixed(7);
+                var lng = parseFloat(latlng[2]).toFixed(7);
+                $('#@string.Format("{0}_{1}", "ADDRESS_LAT", Model.ClientID)').val(lat);
+                $('#@string.Format("{0}_{1}", "ADDRESS_LNG", Model.ClientID)').val(lng);
+
+
+                //$("#@string.Format("MAP_{0}_MODAL", Model.DataKey)").modal("hide");
+                $("#@string.Format("MAP_{0}_MODAL", Model.DataKey)").modal('toggle');
+            });
+
+        });
+
+    </script>
+}

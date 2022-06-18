@@ -1,0 +1,258 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+
+@{
+    ViewBag.Title = @Resource.Global.PAGE_TITLE_HOME;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@section PageStyles {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC85LX9fy6pv1cEHFSxmFZU0G81nwwHKIM"></script>
+}
+
+<section class="cover">
+    <div class="wrap-table">
+        <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/thai.png")" alt="">
+        <div class="title">ศูนย์กลางข้อมูลให้ธุรกิจติดต่อราชการแบบเบ็ดเสร็จ ครบวงจร<span class="under-400"> ณ จุดเดียว</span></div>
+        <div class="subtitle">บริการฉับไว เว็บเดียวจบ ครบทุกเรื่อง</div>
+        <div class="group-button">
+            <a href="@Url.BizAction("Article", "Home", new { Area = "", id = 2197, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="button primary large" style="margin-right: 0;">ภาพรวมประเทศไทย</a>
+            <a href="@Url.BizAction("Index", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="button primary large">ค้นหาข้อมูลธุรกิจ</a>
+            <a href="@Url.ServiceAction("Agreement", "BusinessSecured", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="button primary large">ค้นหาข้อมูลหลักประกัน</a>
+            @*<a href="@Url.BizAction("PermitList", "Business", new { area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="button primary large">ขออนุญาตออนไลน์</a>*@
+        </div>
+    </div>
+</section>
+
+<section class="owner magic">
+    <div class="container">
+        <div class="row">
+            <div class="D-6 T-12">
+                <h4>...หรือสามารถติดต่อด้วยตนเองที่ศูนย์รับคำขออนุญาต</h4>
+                <p class="sub" style="font-size: 30px;">เพื่อขอใบอนุญาตจากหลายหน่วยงานได้ครบวงจร ณ จุดเดียว</p>
+            </div>
+            <div class="D-6 T-12">
+                <div class="item">
+                    <div class="img">
+                        <div id="map"></div>
+                    </div>
+                    <div class="content">
+                        <h5>ศูนย์รับคำขออนุญาต (ONE STOP SERVICE) สำนักงานคณะกรรมการพัฒนาระบบราชการ</h5>
+                        <div class="contact">
+                            <i class="fa fa-map-marker"></i>
+                            <p>59/1 ถนนพิษณุโลก แขวงดุสิต เขตดุสิต กรุงเทพฯ 10300</p>
+                        </div>
+                        <div class="contact">
+                            <i class="fa fa-phone"></i>
+                            <p>02 281 8099</p>
+                        </div>
+                        <div class="btn-holder">
+                            <a href="" class="button primary large" id="chat-up">แชทกับเจ้าหน้าที่ <i class="fa fa-comments-o"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="start magic">
+    <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/logo.png")" alt="">
+    <div class="header"><h2>ทำให้การเริ่มต้นธุรกิจง่ายขึ้นอย่างไร?</h2></div>
+    <div class="container">
+        <div class="row">
+            <div class="D-3 M-6 SM-12">
+                <div class="product-item">
+                    <div class="title"><h5>ค้นหาข้อมูล</h5></div>
+                    <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/start1.png")" alt=""></div>
+                    <div class="des"><p>ค้นหาข้อมูลการติดต่อราชการได้ครบทุกหน่วยงาน ทุกขั้นตอน</p></div>
+                </div>
+            </div>
+            <div class="D-3 M-6 SM-12">
+                <div class="product-item">
+                    <div class="title"><h5>ขออนุญาตออนไลน์</h5></div>
+                    <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/start2.png")" alt=""></div>
+                    <div class="des"><p>ยื่นคำขอให้หลายหน่วยงาน โดยไม่ต้องกรอกข้อมูลและส่งเอกสารซ้ำซ้อน</p></div>
+                </div>
+            </div>
+            <div class="D-3 M-6 SM-12">
+                <div class="product-item">
+                    <div class="title"><h5>ตรวจสอบสถานะ</h5></div>
+                    <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/start3.png")" alt=""></div>
+                    <div class="des"><p>ติดตามสถานะการขออนุญาตได้สะดวกรวดเร็ว</p></div>
+                </div>
+            </div>
+            <div class="D-3 M-6 SM-12">
+                <div class="product-item">
+                    <div class="title"><h5>รับใบอนุญาต</h5></div>
+                    <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/start4.png")" alt=""></div>
+                    <div class="des"><p>รับใบอนุญาตโดยไม่ต้องติดต่อด้วยตัวเอง</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="easy magic">
+    <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/easy.png")" alt="">
+    <div class="header"><h2>ทำให้ธุรกรรมที่ซับซ้อนเป็นเรื่องง่าย</h2></div>
+    <div class="subtitle"><p>ขออนุญาตเริ่มต้นธุรกิจ และทำธุรกรรมออนไลน์ผ่านอุปกรณ์อิเล็กทรอนิกส์ของคุณ</p></div>
+</section>
+<section class="security magic">
+    <div class="header"><h2>ปลอดภัยในทุกขั้นตอนการทำธุรกรรม</h2></div>
+    <div class="subtitle"><p>รักษาความปลอดภัยของข้อมูลส่วนบุคคลในทุกขั้นตอนการทำธุรกรรม</p></div>
+    <div class="container">
+        <div class="row">
+            <div class="D-6 SM-12">
+                <div class="security-item">
+                    <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/security1.png")" alt=""></div>
+                    <div class="text">
+                        <div class="title">
+                            <h5>นโยบายความเป็นส่วนตัว</h5>
+                        </div>
+                        <div class="des">
+                            <p>เก็บรักษาข้อมูลส่วนบุคคลเป็นความลับ มั่นใจได้ว่าข้อมูลสำคัญจะไม่ถูกเปิดเผยหากไม่ได้รับความยินยอม</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="D-6 SM-12">
+                <div class="security-item">
+                    <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/security2.png")" alt=""></div>
+                    <div class="text">
+                        <div class="title">
+                            <h5>มาตรฐานความปลอดภัยระดับสากล</h5>
+                        </div>
+                        <div class="des">
+                            <p>ผ่านการทดสอบความปลอดภัยในทุกขั้นตอนการทำธุรกรรมออนไลน์ ตามมาตรฐานสากล</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="D-6 SM-12">
+                <div class="security-item">
+                    <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/security3.png")" alt=""></div>
+                    <div class="text">
+                        <div class="title">
+                            <h5>ป้องกันการโจรกรรมข้อมูล</h5>
+                        </div>
+                        <div class="des">
+                            <p>เข้ารหัสข้อมูลอย่างแน่นหนา ป้องกันการโจรกรรมระหว่างการรับ-ส่งข้อมูลสำคัญทางราชการ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="D-6 SM-12">
+                <div class="security-item">
+                    <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/security4.png")" alt=""></div>
+                    <div class="text">
+                        <div class="title">
+                            <h5>ระวังและติดตามสถานะของข้อมูล</h5>
+                        </div>
+                        <div class="des">
+                            <p>ดำเนินงานตลอด 24 ชั่วโมงเพื่อติดตามสถานะของการทำงานในทุกๆ ขั้นตอน</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="footer">
+    <div class="header"><h2>หน่วยงานที่ร่วมกับ  <img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/logo-white.png")" alt=""></h2></div>
+    <div class="subtitle"><p>คุณสามารถขออนุญาตออนไลน์กับหน่วยงานรัฐได้หลายแห่ง</p></div>
+    <div class="container">
+        <!-- <div class="row"> -->
+        <div class="company-slider">
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company-gov.png")" alt=""></div>
+                <div class="des"><p>สำนักนายกรัฐมนตรี ​</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company_opdc4.png")" alt=""></div>
+                <div class="des"><p>สำนักงานคณะกรรมการ<br/>พัฒนาระบบราชการ ​</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon" ><img style="background: white;border-radius: 50%;opacity: 0.85; width: 95px;margin-bottom: 10px;margin-top: 5px;" src="@Url.Content("~/Content/SingleForm-frontis/v2/images/DE.png")" alt=""></div>
+                <div class="des"><p>กระทรวงดิจิทัล<br />เพื่อเศรษฐกิจและสังคม </p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/dga.png")" alt=""></div>
+                <div class="des"><p>สำนักงานพัฒนารัฐบาลดิจิทัล<br />(องค์การมหาชน)</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company12.png")" alt=""></div>
+                <div class="des"><p>สำนักงานคณะกรรมการคุ้มครองผู้บริโภค</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company3.png")" alt=""></div>
+                <div class="des"><p>กรมสรรพสามิต</p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company2.png")" alt=""></div>
+                <div class="des"><p>กรมสรรพากร </p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company7.png")" alt=""></div>
+                <div class="des"><p>กรมปศุสัตว์</p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company6.png")" alt=""></div>
+                <div class="des"><p>กรมวิชาการเกษตร</p></div>
+            </div>
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company1.png")" alt=""></div>
+                <div class="des"><p>กรมพัฒนาธุรกิจการค้า </p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company4.png")" alt=""></div>
+                <div class="des"><p>สำนักงานประกันสังคม​</p></div>
+            </div>
+
+            <!--
+                    <div class="company-item">
+                      <div class="icon"><img src="images/company5.png" alt=""></div>
+                      <div class="des"><p>กรมสวัสดิการและคุ้มครองแรงงาน ​</p></div>
+                    </div> -->
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company9.png")" alt=""></div>
+                <div class="des"><p>กรมส่งเสริมวัฒนธรรม ​</p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company8.png")" alt=""></div>
+                <div class="des"><p>สำนักงานคณะกรรมการอาหารและยา</p></div>
+            </div>
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company10.png")" alt=""></div>
+                <div class="des"><p>กองบัญชาการตำรวจนครบาล</p></div>
+            </div>
+
+
+            <div class="company-item">
+                <div class="icon"><img src="@Url.Content("~/Content/SingleForm-frontis/v2/images/company11.png")" alt=""></div>
+                <div class="des"><p>กรุงเทพมหานคร</p></div>
+            </div>
+
+        </div>
+        <div class="carousel-arrows-company"></div>
+        <!-- </div> -->
+    </div>
+</section>
+
+@section PageScripts
+{
+
+    <script type="text/javascript" defer="defer">
+    var userImage = document.getElementById('chat-up');
+    userImage.onclick = function(e) {
+      e.preventDefault();
+      $zopim.livechat.window.show();
+    };
+    </script>
+    
+}

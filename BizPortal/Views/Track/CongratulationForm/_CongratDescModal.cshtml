@@ -1,0 +1,94 @@
+﻿@using Resources = BizPortal.Resources
+@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using BizPortal.DAL.MongoDB;
+@using BizPortal.Utils.Helpers
+@using BizPortal.ViewModels.Constant;
+
+@if (Model.PermitDeliveryType != PermitDeliveryTypeValueConst.BY_MAIL && !Model.PermitDeliverOnPayment_OK)
+{
+    string ossAddress = System.Configuration.ConfigurationManager.AppSettings["OSSAddress"];
+<div class="row">
+    <div class="col-md-12 text-center">
+        <button data-backdrop="static" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCongratDesc" data-style="expand-left">
+            <span class="ladda-label">@Html.Raw(Resources.Global.BTN_VIEW_DESCRIPTION)</span>
+        </button>
+    </div>
+</div>
+
+        <div class="modal fade" id="modalCongratDesc" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">@Resources.ApplicationStatusRequests.CONGRAT_DESC_HEADER</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p><b>@Resources.ApplicationStatusRequests.NAME_IN_MODAL:</b> @BizPortal.Service.TrackService.GetDisPlayIdentityName(Model.IdentityType, BizPortal.Service.TrackService.GetStoreName(Model.Data), Model.IdentityName)</p>
+                    </div>
+                </div>
+
+                <p><b><u>@Resources.ApplicationStatusRequests.SUMMARY_LOCATION_GOT_APP_HEADER</u></b></p>
+                @{
+                    string pdtText = Resources.ApplicationStatusRequests.PDT_BY_MAIL;
+                    if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OSS)
+                    {
+                        pdtText = Resources.ApplicationStatusRequests.PDT_AT_OSS;
+                    }
+                    else if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OWNER_ORG)
+                    {
+                        pdtText = (string)ViewData[ViewDataDictConst.ORG_NAME_TH];
+                    }
+                }
+                <p><b>@Resources.ApplicationStatusRequests.RECEIVE_APP_CHANNEL:</b> <span>@pdtText</span></p>
+
+                @{
+                    var locationGotAppText = Model.PermitDeliveryAddress;
+                    if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OSS)
+                    {
+                        locationGotAppText = ossAddress;
+                    }
+                    else if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OWNER_ORG)
+                    {
+                        locationGotAppText = (string)ViewData[ViewDataDictConst.ORG_ADDRESS_TEXT];
+                    }
+                }
+                <p>
+                    <b>@Resources.ApplicationStatusRequests.PERMIT_OWNER_ORG_ADDRESS:</b>
+                    <span>
+                        @ResourceHelper.GetResourceWordWithDefault(locationGotAppText,
+      "ApplicationStatusRequests",
+      locationGotAppText, System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
+                    </span>
+                </p>
+
+                @{
+                    string userCanGetAppDateText = !string.IsNullOrEmpty(Model.UserCanGetAppDate) ? Convert.ToDateTime(Model.UserCanGetAppDate).ToLocalTime().ToString("dd/MM/yyyy") : "-";
+                    string cfGotAppWhen = "";
+                    if (Model.PermitCanBeDeliveredOnPayment == true)
+                    {
+                        cfGotAppWhen = Resources.ApplicationStatusRequests.PERMIT_CAN_BE_DERIVERED_ON_PAYMENT;
+                    }
+                    else
+                    {
+                        cfGotAppWhen = userCanGetAppDateText;
+                    }
+                }
+                <p><b>@Resources.ApplicationStatusRequests.USER_CAN_GET_APP_DATE:</b> <span>@cfGotAppWhen</span></p>
+                <p>@Resources.ApplicationStatusRequests.ASK_AGENT_TEL</p>
+                
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button style="width:100px;" type="button" class="btn btn-default" data-dismiss="modal">@Resources.Global.BTN_CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+                    }

@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ADDRESS_AMPUR" xml:space="preserve">
+    <value>เขต/อำเภอ</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_BUILDING" xml:space="preserve">
+    <value>ชื่ออาคาร</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_FLOOR" xml:space="preserve">
+    <value>ชั้นที่</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_HOUSE_ID_NUMBER" xml:space="preserve">
+    <value>เลขรหัสประจำบ้าน</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_MOO" xml:space="preserve">
+    <value>หมู่ที่</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_NO" xml:space="preserve">
+    <value>บ้านเลขที่</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_PHONE" xml:space="preserve">
+    <value>เบอร์โทรศัพท์</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_PROVINCE" xml:space="preserve">
+    <value>จังหวัด</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_ROAD" xml:space="preserve">
+    <value>ถนน</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_ROOM_NO" xml:space="preserve">
+    <value>ห้องเลขที่</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_SOI" xml:space="preserve">
+    <value>ซอย/แยก</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_TUMBOL" xml:space="preserve">
+    <value>แขวง/ตำบล</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_VILLAGE" xml:space="preserve">
+    <value>หมู่บ้าน</value>
+    <comment>/</comment>
+  </data>
+  <data name="ADDRESS_ZIPCODE" xml:space="preserve">
+    <value>รหัสไปรษณีย์</value>
+    <comment>/</comment>
+  </data>
+  <data name="AGREEMENT" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    	&lt;meta charset="utf-8" /&gt;
+    	&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;
+	&lt;center&gt;ข้อตกลง&lt;br/&gt;การยื่นคำขอจดทะเบียนภาษีมูลค่าเพิ่มผ่านทางระบบเครือข่ายอินเทอร์เน็ต&lt;/center&gt;
+	&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="AGREEMENT_DESC" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    	&lt;meta charset="utf-8" /&gt;
+    	&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    	&lt;p&gt;
+	ด้วยข้าพเจ้า &lt;strong&gt;{0} {1}&lt;/strong&gt; ต่อไปจะเรียกว่า “ผู้ยื่นคำขอ” ได้ยื่นคำขอจดทะเบียนภาษีมูลค่าเพิ่มผ่านเครือข่ายอินเทอร์เน็ต และตกลงที่จะผูกพันและปฏิบัติตามเงื่อนไขดังต่อไปนี้&lt;br/&gt;&lt;br/&gt;
+	1.   ผู้ยื่นคำขอยินยอมให้เจ้าพนักงานสรรพากรเข้าตรวจสถานประกอบการของผู้ยื่นคำขอตามที่แจ้งในคำขอจดทะเบียนภาษีมูลค่าเพิ่ม&lt;br/&gt;&lt;br/&gt;
+	2.   กรณีผู้ยื่นคำขอใช้สถานที่อยู่อาศัยของบุคคลอื่นเป็นสถานประกอบการ หรือใช้สถานประกอบการของบุคคลอื่นเป็นสถานประกอบการ หรือตั้งอยู่ในอาคารชุด ต้องมีสัญญาเช่าอสังหาริมทรัพย์ หรือหนังสือยินยอมให้ใช้เป็นที่ตั้งสถานประกอบการ หรือหนังสือรับรองของผู้จัดการนิติบุคคลอาคารชุด &lt;br/&gt;&lt;br/&gt;
+	3.   ผู้ยื่นคำขอตกลงและยอมรับว่า หากผลการตรวจของเจ้าพนักงานพบว่า แสดงรายการในคำขอเป็นเท็จ ไม่มีสถานประกอบการจริง เป็นตัวแทนเชิด หรือไม่ได้ประกอบการจริง จะถือว่าผู้ยื่นคำขอมิได้เป็นผู้ประกอบการจดทะเบียนตั้งแต่วันที่ยื่นคำขอ หรือถูกเพิกถอนใบทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.20) ในภายหลัง&lt;br/&gt;&lt;br/&gt;
+	4.   ผู้ยื่นคำขอมิได้เป็นผู้ประกอบการจดทะเบียนย่อมไม่มีสิทธิออกใบกำกับภาษี หากผู้ยื่นคำขอได้ออกใบกำกับภาษีไปแล้ว ต้องรับผิดเสียภาษีมูลค่าเพิ่ม เบี้ยปรับและเงินเพิ่ม ตามมาตรา 88/1 แห่งประมวลรัษฎากร&lt;br/&gt;&lt;br/&gt;
+	5.   ผู้ยื่นคำขอต้องรับผิดชอบต่อผลเสียหายที่เกิดขึ้นต่อผู้ประกอบการที่นำใบกำกับภาษีซื้อต้องห้ามของผู้ยื่นคำขอไปใช้&lt;br/&gt;&lt;br/&gt;
+	6.   กรมสรรพากรจะไม่รับผิดชอบต่อความเสียหาย ความสูญเสียหรือค่าใช้จ่ายที่เกิดขึ้นไม่ว่าทางตรงหรือทางอ้อม อันเป็นผลสืบเนื่องมาจากการที่ผู้ยื่นคำขอได้จดทะเบียนภาษีมูลค่าเพิ่มผ่านระบบเครือข่ายอินเทอร์เน็ต หรือเกิดจากความล้มเหลวในการใช้งาน ความผิดพลาด การหยุดชะงัก ความไม่สมบูรณ์ของระบบคอมพิวเตอร์ รวมถึงการเรียกร้องค่าเสียหายหรือค่าใช้จ่าย หรือการกระทำใดๆ อันส่งผลต่อบุคคลภายนอกในความเสียหายทางตรงหรือทางอ้อม&lt;br/&gt;&lt;br/&gt;
+	7.   กรมสรรพากรขอสงวนสิทธิในการปรับปรุง เปลี่ยนแปลง แก้ไข ยกเลิกหรือระงับการอนุมัติการเป็นผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่มแก่ผู้ยื่นคำขอ และในกรณีที่มีการเปลี่ยนแปลงใด ๆ ในระบบ       ให้ถือว่าผู้ยื่นคำขอได้ยอมรับการเปลี่ยนแปลงดังกล่าวแล้ว &lt;br/&gt;&lt;br/&gt;
+	8.   ผู้ยื่นคำขอได้อ่านข้อตกลงในการจดทะเบียนภาษีมูลค่าเพิ่มทางระบบเครือข่ายอินเทอร์เน็ต ข้างต้นแล้ว และยอมรับที่จะปฏิบัติตามที่กฎหมายกำหนด&lt;br/&gt;&lt;br/&gt;
+	&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="APPLICANT" xml:space="preserve">
+    <value>ผู้มีสิทธิยื่นคำขอจดทะเบียน</value>
+  </data>
+  <data name="APPS_TITLE" xml:space="preserve">
+    <value>แบบฟอร์มเพิ่มภาษีมูลค่าเพิ่ม</value>
+    <comment>/</comment>
+  </data>
+  <data name="APP_1_1" xml:space="preserve">
+    <value>ผู้ประกอบการซึ่งประกอบกิจการขายสินค้าหรือให้บริการที่มีรายรับเกิน 1,800,000 บาทต่อปี</value>
+  </data>
+  <data name="APP_1_2" xml:space="preserve">
+    <value>ผู้ประกอบการซึ่งมีแผนงานที่สามารถพิสูจน์ได้ว่าได้เตรียมการเพื่อประกอบกิจการขายสินค้าหรือให้บริการ ที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม อันเป็นเหตุให้ต้องมีการซื้อสินค้าหรือรับบริการที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม เช่น ก่อสร้างโรงงาน ติดตั้งเครื่องจักร</value>
+  </data>
+  <data name="APP_2" xml:space="preserve">
+    <value>ผู้ประกอบการที่ได้รับการยกเว้น ภาษีมูลค่าเพิ่มตามที่กำหนดในมาตรา 81/3 แห่งประมวลรัษฎากร และประสงค์ขอจดทะเบียนภาษีมูลค่าเพิ่ม ได้แก่</value>
+  </data>
+  <data name="APP_2_1" xml:space="preserve">
+    <value>ผู้ประกอบการขายสินค้าตามมาตรา 81(1) (ก) ถึง (ฉ)</value>
+  </data>
+  <data name="APP_2_2" xml:space="preserve">
+    <value>ผู้ประกอบการที่มีรายรับไม่เกิน 1,800,000 บาทต่อปี</value>
+  </data>
+  <data name="APP_FORM_USE" xml:space="preserve">
+    <value>แบบฯ ที่ใช้ </value>
+    <comment>//</comment>
+  </data>
+  <data name="APP_TITLE" xml:space="preserve">
+    <value>เงื่อนไขการให้บริการ</value>
+  </data>
+  <data name="APP_USE_FORM_PP01" xml:space="preserve">
+    <value>ได้แก่ แบบ ภ.พ.01 คำขอจดทะเบียนภาษีมูลค่าเพิ่มตามประมวลรัษฎากร</value>
+    <comment>//</comment>
+  </data>
+  <data name="BTN_CONFIRM" xml:space="preserve">
+    <value>ยืนยันข้อมูล</value>
+  </data>
+  <data name="BTN_EDIT" xml:space="preserve">
+    <value>แก้ไขข้อมูล</value>
+  </data>
+  <data name="BUSINESS_TYPE_CHOOSE" xml:space="preserve">
+    <value>เลือกรายการ</value>
+    <comment>/</comment>
+  </data>
+  <data name="BUSINESS_TYPE_EXPORT" xml:space="preserve">
+    <value>ส่งออก</value>
+    <comment>/</comment>
+  </data>
+  <data name="BUSINESS_TYPE_PRODUCE" xml:space="preserve">
+    <value>ผลิต</value>
+    <comment>/</comment>
+  </data>
+  <data name="BUSINESS_TYPE_RETAIL" xml:space="preserve">
+    <value>ขายปลีก</value>
+    <comment>/</comment>
+  </data>
+  <data name="BUSINESS_TYPE_SERVICE" xml:space="preserve">
+    <value>ให้บริการ</value>
+    <comment>/</comment>
+  </data>
+  <data name="BUSINESS_TYPE_WHOLESELL" xml:space="preserve">
+    <value>ขายส่ง</value>
+    <comment>/</comment>
+  </data>
+  <data name="CHECKLIST" xml:space="preserve">
+    <value>ผู้ยื่นขอจดทะเบียนขอรับรองว่าข้อมูลต่อไปนี้เป็นจริงทุกประการ</value>
+  </data>
+  <data name="CHEKCLIST_1" xml:space="preserve">
+    <value>ไม่ได้ประกอบกิจการที่ได้รับยกเว้นภาษีมูลค่าเพิ่ม ตาม</value>
+  </data>
+  <data name="CHEKCLIST_1_LINK" xml:space="preserve">
+    <value>มาตรา 81 (1) (ช) ถึง (น) แห่งประมวลรัษฎากร</value>
+  </data>
+  <data name="CHEKCLIST_2" xml:space="preserve">
+    <value>ไม่ได้เป็นตัวแทนเชิดของเจ้าของกิจการที่แท้จริง</value>
+  </data>
+  <data name="CHEKCLIST_3" xml:space="preserve">
+    <value>ไม่ได้ใช้สำนักงานกฎหมาย หรือสำนักงานบัญชีของบุคคลอื่นเป็นสถานประกอบการ</value>
+  </data>
+  <data name="CHEKCLIST_4" xml:space="preserve">
+    <value>ไม่ได้เป็นผู้ออกใบกำกับภาษีปลอม หรือเป็นผู้ใช้ใบกำกับภาษีปลอม</value>
+  </data>
+  <data name="CHEKCLIST_5" xml:space="preserve">
+    <value>ไม่ได้กระทำการหลีกเลี่ยงการเสียภาษีอากร โดยแสดงรายจ่ายอันเป็นเท็จต่อกรมสรรพากร</value>
+  </data>
+  <data name="CLOSE" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="COMMITTEE" xml:space="preserve">
+    <value>กรรมการ</value>
+  </data>
+  <data name="COMMITTEE_BIRTHDATE" xml:space="preserve">
+    <value>วันเดือนปีเกิด</value>
+  </data>
+  <data name="COMMITTEE_CITIZEN_ID" xml:space="preserve">
+    <value>เลขบัตรประจำตัวประชาชน</value>
+  </data>
+  <data name="COMMITTEE_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อกรรมการ</value>
+  </data>
+  <data name="COMMITTEE_INFORMATION" xml:space="preserve">
+    <value>ข้อมูลกรรมการ</value>
+  </data>
+  <data name="COMMITTEE_LASTNAME" xml:space="preserve">
+    <value>นามสกุลกรรมการ</value>
+  </data>
+  <data name="COMMITTEE_NATIONALITY" xml:space="preserve">
+    <value>สัญชาติ</value>
+  </data>
+  <data name="COMMITTEE_SEQUENCE" xml:space="preserve">
+    <value>ลำดับของกรรมการ</value>
+  </data>
+  <data name="COMMITTEE_TITLE" xml:space="preserve">
+    <value>คำนำหน้า</value>
+    <comment>///</comment>
+  </data>
+  <data name="ERROR_BUILDING_OR_ADDRNO" xml:space="preserve">
+    <value>ต้องมีชื่ออาคารหรือบ้านเลขที่</value>
+  </data>
+  <data name="ERROR_BUS_REQ_REG_DATE" xml:space="preserve">
+    <value>ต้องเป็นวันหลังจากวันที่ยื่นแบบ ภ.พ.01 อย่างน้อย 15 วัน แต่ไม่เกิน 30 วัน</value>
+  </data>
+  <data name="ERROR_BUS_TYPE" xml:space="preserve">
+    <value>เลือกประเภทกิจการและระบุประเภทสินค้าและบริการ อย่างน้อย 1 ลำดับ</value>
+  </data>
+  <data name="ERROR_REQUIRED" xml:space="preserve">
+    <value>กรุณากรอกข้อมูล</value>
+  </data>
+  <data name="ERROR_SOI_OR_ROAD" xml:space="preserve">
+    <value>ต้องมีตรอก/ซอย หรือถนน</value>
+  </data>
+  <data name="ERR_MOO_OR_ROAD" xml:space="preserve">
+    <value>ต้องมีหมู่ที่ หรือถนน</value>
+  </data>
+  <data name="HTML_FORMAT" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8" /&gt;
+	&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;
+		{0}
+	&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="INFORM_DESC" xml:space="preserve">
+    <value>&lt;center&gt;กรณีผู้ประกอบการฯ ที่เป็นรายแปรสภาพกิจการ ขอให้ยื่น ภ.พ.09&lt;br/&gt;แทนการยื่นคำขอจดทะเบียนทางอินเทอร์เน็ต&lt;/center&gt;</value>
+  </data>
+  <data name="LOGOUT" xml:space="preserve">
+    <value>ออกจากระบบ</value>
+  </data>
+  <data name="NAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>///</comment>
+  </data>
+  <data name="NAME_EN" xml:space="preserve">
+    <value>ชื่อภาษาอังกฤษ (ถ้ามี)</value>
+    <comment>/</comment>
+  </data>
+  <data name="NEXT" xml:space="preserve">
+    <value>ดำเนินการต่อ</value>
+  </data>
+  <data name="PLACEHOLDER_AMPUR_SELECT" xml:space="preserve">
+    <value>กรุณาเลือกเขต/อำเภอ</value>
+  </data>
+  <data name="PLACEHOLDER_NAT_SELECT" xml:space="preserve">
+    <value>กรุณาเลือกสัญชาติ</value>
+  </data>
+  <data name="PLACEHOLDER_PROVINCE_SELECT" xml:space="preserve">
+    <value>กรุณาเลือกจังหวัด</value>
+  </data>
+  <data name="PLACEHOLDER_TITLE_SELECT" xml:space="preserve">
+    <value>กรุณาเลือกคำนำหน้า</value>
+  </data>
+  <data name="PLACEHOLDER_TUMBOL_SELECT" xml:space="preserve">
+    <value>กรุณาเลือกแขวง/ตำบล</value>
+  </data>
+  <data name="PP01_ACCOUNTING_DATE" xml:space="preserve">
+    <value>รอบระยะเวลาบัญชี</value>
+    <comment>/</comment>
+  </data>
+  <data name="PP01_JURISTIC" xml:space="preserve">
+    <value>นิติบุคคล</value>
+    <comment>/</comment>
+  </data>
+  <data name="PP01_NOT_JURISTIC" xml:space="preserve">
+    <value>เป็นบุคคลธรรมดา/คณะบุคคลที่ไม่ใช่นิติบุคคล</value>
+    <comment>/</comment>
+  </data>
+  <data name="PP01_OWNER_NAME" xml:space="preserve">
+    <value>ชื่อผู้ประกอบการ</value>
+    <comment>//</comment>
+  </data>
+  <data name="PP01_RECTOR" xml:space="preserve">
+    <value>อธิบดีกรมสรรพากร</value>
+    <comment>/</comment>
+  </data>
+  <data name="PP01_REG_DATE" xml:space="preserve">
+    <value>วันเดือนปีที่จดทะเบียน</value>
+    <comment>/</comment>
+  </data>
+  <data name="PP01_SEND_TO" xml:space="preserve">
+    <value>ยื่นต่อ</value>
+    <comment>/</comment>
+  </data>
+  <data name="PRINT" xml:space="preserve">
+    <value>พิมพ์แบบ</value>
+  </data>
+  <data name="PRINT_TITLE" xml:space="preserve">
+    <value>พิมพ์แบบคำขอจดทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="READ_MORE" xml:space="preserve">
+    <value>คลิกอ่านเพิ่มเติม</value>
+  </data>
+  <data name="READ_MORE_TITLE" xml:space="preserve">
+    <value>ท่านเป็นกิจการที่ได้รับการยกเว้น หรือมีรายได้ไม่ถึงเกณฑ์ต้องจดทะเบียน (รายได้ไม่ถึง ๑,๘๐๐,๐๐๐ บาทต่อปี) 
+แต่ประสงค์จะจดทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="REG_EXCEPT_FORM_PP011" xml:space="preserve">
+    <value>แบบ ภ.พ.01.1 คำขอแจ้งใช้สิทธิ์เพื่อขอจดทะเบียนภาษีมูลค่าเพิ่มตามประมวลรัษฎากร</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION1" xml:space="preserve">
+    <value>1. ผู้ประกอบการฯ ที่ได้รับยกเว้นตามมาตรา 81(1) (ก)ถึง(ฉ) ได้แก่</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION1_1" xml:space="preserve">
+    <value>1.1  การขายสินค้าที่มิใช่การส่งออกหรือให้บริการ ดังนี้</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION1_1_1" xml:space="preserve">
+    <value>ขายพืชผลทางการเกษตร ตามมาตรา 81(1)(ก) แห่งประมวลรัษฎากร</value>
+    <comment>//</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION1_1_2" xml:space="preserve">
+    <value>ขายสัตว์ ตามมาตรา 81(1) (ข) แห่งประมวลรัษฎากร</value>
+    <comment>//</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION1_1_3" xml:space="preserve">
+    <value>ขายปุ๋ย ตามมาตรา 81(1) (ค) แห่งประมวลรัษฎากร</value>
+    <comment>//</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION1_1_4" xml:space="preserve">
+    <value>ขายปลาป่น อาหารสัตว์ ตามมาตรา 81(1) (ง) แห่งประมวลรัษฎากร</value>
+    <comment>//</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION1_1_5" xml:space="preserve">
+    <value>ขายยาหรือเคมีภัณฑ์ที่ใช้สำหรับพืชหรือสัตว์ฯ ตามมาตรา 81(1) (จ) แห่งประมวลรัษฎากร</value>
+    <comment>//</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION1_1_6" xml:space="preserve">
+    <value>ขายหนังสือพิมพ์ นิตยสาร หรือตำราเรียน ตามมาตรา 81(1) (ฉ) แห่งประมวลรัษฎากร</value>
+    <comment>//</comment>
+  </data>
+  <data name="REG_EXCEPT_OPTION2" xml:space="preserve">
+    <value>2. ประกอบกิจการโดยมีมูลค่าของฐานภาษีไม่เกินมูลค่าของฐานภาษีของกิจการขนาดย่อม ตามที่กำหนดโดยพระราชกฤษฎีกา (รายรับไม่เกิน 1,800,000 บาท)</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_EXCEPT_PP01_DESC1" xml:space="preserve">
+    <value>สามารถยื่นจดทะเบียนได้ในวันเดียวกันกับวันที่ยื่นแบบภ.พ.01.1</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_EXCEPT_PP01_DESC2" xml:space="preserve">
+    <value>ยื่นภายใน 30 วัน นับแต่วันที่ได้ยื่น ภ.พ.01.1</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_EXCEPT_TITLE" xml:space="preserve">
+    <value>การจดทะเบียนภาษีมูลค่าเพิ่ม กิจการที่ได้รับยกเว้น</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_OPTION_1" xml:space="preserve">
+    <value>1. ผู้ประกอบการซึ่งประกอบกิจการขายสินค้าหรือให้บริการที่มีรายรับเกิน 1,800,000 บาทต่อปี</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_OPTION_2" xml:space="preserve">
+    <value>2. ผู้ประกอบการซึ่งมีแผนงานที่สามารถพิสูจน์ได้ว่าได้เตรียมการเพื่อประกอบกิจการขายสินค้าหรือให้บริการ ที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม อันเป็นเหตุให้ต้องมีการซื้อสินค้าหรือรับบริการที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม เช่น ก่อสร้างโรงงาน ติดตั้งเครื่องจักร (ประกาศฉบับ 159)</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_OPTION_CHOOSE" xml:space="preserve">
+    <value>โปรดเลือกข้อ 1 หรือ 2 ก่อนที่จะทำการจดทะเบียน</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_OPTION_DESC" xml:space="preserve">
+    <value>ผู้ประกอบการฯ ที่มีหน้าที่เสียภาษีมูลค่าเพิ่ม ได้แก่</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_OPTION_PP01_DESC1" xml:space="preserve">
+    <value>ต้องระบุวันที่ประสงค์จะเป็นผู้ประกอบการจดทะเบียนภาษีมูลค่าเพิ่มในคำขอ</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_OPTION_PP01_DESC2" xml:space="preserve">
+    <value>ยื่นคำขอก่อนวันประสงค์จะเป็นผู้ประกอบการจดทะเบียนล่วงหน้าไม่น้อยกว่า 15 วัน แต่ไม่เกิน 30 วัน นับตั้งแต่วันถัดจากวันที่ยื่นคำขอ</value>
+    <comment>/</comment>
+  </data>
+  <data name="REG_OPTION_TITLE" xml:space="preserve">
+    <value>การจดทะเบียนภาษีมูลค่าเพิ่ม กิจการที่ต้องเสียภาษีมูลค่าเพิ่ม</value>
+    <comment>/</comment>
+  </data>
+  <data name="REQUIRED_CONTACT" xml:space="preserve">
+    <value>โปรดติดต่อ EGA Contact Center หมายเลขโทรศัพท์ 02 612 6060 หรือ contact@ega.or.th</value>
+  </data>
+  <data name="REQUIRED_DATA_TITLE" xml:space="preserve">
+    <value>ท่านไม่สามารถยื่นคำขอจดทะเบียนภาษีมูลค่าเพิ่มได้ เนื่องจากข้อมูลผู้ประกอบการ  ยื่นคำขอไม่ครบถ้วน  ตามรายการด้านล่าง</value>
+  </data>
+  <data name="REQUIRED_LIST" xml:space="preserve">
+    <value>รายการข้อมูล</value>
+  </data>
+  <data name="REVIEW_ADDRESS" xml:space="preserve">
+    <value>ตั้งอยู่ :</value>
+  </data>
+  <data name="REVIEW_TITLE" xml:space="preserve">
+    <value>ตัวอย่างใบทะเบียนภาษีมูลค่าเพิ่ม</value>
+  </data>
+  <data name="REVIEW_VAT_DATE" xml:space="preserve">
+    <value>วันที่ให้เป็นผู้ประกอบการจดทะเบียน</value>
+  </data>
+  <data name="SERVICE" xml:space="preserve">
+    <value>การให้บริการ</value>
+  </data>
+  <data name="SERVICE_1" xml:space="preserve">
+    <value>ยื่นคำขอจดทะเบียนภาษีมูลค่าเพิ่มได้ทุกวัน ตลอด 24 ชั่วโมง</value>
+  </data>
+  <data name="SERVICE_2" xml:space="preserve">
+    <value>ยื่นคำขอในเวลาที่กฏหมายกำหนด โดยไม่ต้องแนบเอกสารหลักฐาน</value>
+  </data>
+  <data name="SERVICE_3" xml:space="preserve">
+    <value>ต้องมีเลขประจำตัวผู้เสียภาษีอากร โดย นิติบุคคลที่ตั้งขึ้นตามกฏหมายไทย (ไม่รวมนิติบุคคลที่เกิดจากการควบกิจการ) ที่ยังไม่มีเลขประจำตัวผู้เสียภาษีอากร ให้ใช้เลขทะเบียนนิติบุคคลจากกรมพัฒนาธุรกิจการค้าเพื่อยื่นคำขอจดทะเบียน</value>
+  </data>
+  <data name="SERVICE_4" xml:space="preserve">
+    <value>กรมสรรพากรจะแจ้งผลการพิจารณาให้ทราบทางไปรษณีย์อิเล็กทรอนิกส์ (e-mail) และทางอินเทอร์เน็ต และจะได้เป็นผู้ประกอบการจดทะเบียนตั้งแต่วันที่ยื่นจดทะเบียนคำขอ</value>
+  </data>
+  <data name="THEREIS" xml:space="preserve">
+    <value>ได้แก่</value>
+  </data>
+  <data name="VAT_AIR_LOGISTIC" xml:space="preserve">
+    <value>2.2 ให้บริการขนส่งในราชอาณาจักรโดยอากาศยาน</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_ANNOUNCE_DATE" xml:space="preserve">
+    <value>กรณีขอจดทะเบียนก่อนวันเริ่มประกอบกิจการตามข้อ 1 ของประกาศอธิบดีกรมสรรพากรเกี่ยวกับภาษีมูลค่าเพิ่ม(ฉบับที่ 159)</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BISSINESS_FIRST_REQ_DATE" xml:space="preserve">
+    <value>วันที่แจ้งต่ออธิบดีเพื่อขอจดทะเบียนภาษีมูลค่าเพิ่ม (กรณีได้รับการยกเว้น) </value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BRANCH_AMOUNT" xml:space="preserve">
+    <value>จำนวนสาขาทั้งสิ้น (หากไม่มีสาขาให้ระบุ 0)</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BRANCH_AMOUNT_NOTE" xml:space="preserve">
+    <value>ถ้าท่านมีสาขามากกว่า 5 สาขา ณ วันที่ขอจดทะเบียน จะถือว่าสาขานั้นๆ เป็นผู้ประกอบการจดทะเบียนพร้อมสำนักงานใหญ่ และให้ติดต่อสำนักงานสรรพากรพื้นที่ เพื่อส่งข้อมูลสาขาต่อไป</value>
+  </data>
+  <data name="VAT_BRANCH_NAME" xml:space="preserve">
+    <value>ชื่อสถานประกอบการ</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BRANCH_NAME_AND_PLACE" xml:space="preserve">
+    <value>ชื่อสถานประกอบการและที่ตั้ง</value>
+    <comment>//</comment>
+  </data>
+  <data name="VAT_BRANCH_NO" xml:space="preserve">
+    <value>เลขที่สาขา</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BRANCH_TITLE" xml:space="preserve">
+    <value>คำนำหน้าชื่อสถานประกอบการ</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BUSINESS_NAME_AND_PLACE" xml:space="preserve">
+    <value>ที่ตั้งผู้ประกอบการ</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BUSINESS_TYPE" xml:space="preserve">
+    <value>ประเภทของการประกอบกิจการ</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BUSSINESS_CAPITAL_AMOUNT" xml:space="preserve">
+    <value>เงินทุนจดทะเบียน (บาท)</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BUSSINESS_INCOME_DATE" xml:space="preserve">
+    <value>วันเดือนปีที่รายรับถึงเกณฑ์</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BUSSINESS_REQ_REG_DATE" xml:space="preserve">
+    <value>วันที่ประสงค์จะเป็นผู้ประกอบการจดทะเบียน</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_BUSSINESS_TYPE_DESC" xml:space="preserve">
+    <value>2. ประกอบกิจการที่ได้รับการยกเว้นภาษีมูลค่าเพิ่มและมีความประสงค์ที่จะขอจดทะเบียนภาษีมูลค่าเพิ่ม ดังนี้</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_EMAIL" xml:space="preserve">
+    <value>อีเมล (เพื่อประโยชน์ในการแจ้งผลพิจารณา)</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_EST_INCOME_AMOUNT" xml:space="preserve">
+    <value>รายรับประมาณเดือนละ (บาท)</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_EXPORT" xml:space="preserve">
+    <value>2.3 ส่งออกโดยเป็นผู้ประกอบการในเขตอุตสาหกรรมส่งออก ตามกฎหมายว่าด้วยการนิคมอุตสาหกรรมแห่งประเทศไทย</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_FUEL" xml:space="preserve">
+    <value>2.4 ให้บริการขนส่งน้ำมันเชื้อเพลิงทางท่อในราชอาณาจักร</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_GOODS_DESC" xml:space="preserve">
+    <value>2.1 การขายสินค้าที่มิใช่การส่งออกหรือให้บริการ ดังนี้</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_GOODS_SPECIFY" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_INCOME_DAY_REQ" xml:space="preserve">
+    <value>ในวันยื่นคำขอจดทะเบียนภาษีมูลค่าเพิ่มมี</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_INCOME_NOT_REACH" xml:space="preserve">
+    <value>ท่านเป็นกิจการที่ได้รับการยกเว้น หรือ มีรายได้ไม่ถึงเกณฑ์ต้องจดทะเบียน (รายได้ไม่ถึง 1,800,000 บาทต่อปี) แต่ประสงค์จะจดทะเบียนภาษีมูลค่าเพิ่ม</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_INCOME_REACH_TRESHOLD" xml:space="preserve">
+    <value>ท่านมีรายได้ถึงเกณฑ์ต้องจดทะเบียน 1,800,000 บาทต่อปี</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_IS" xml:space="preserve">
+    <value>เป็น</value>
+  </data>
+  <data name="VAT_IS_BRANCH_NO" xml:space="preserve">
+    <value>สาขาที่</value>
+  </data>
+  <data name="VAT_IS_MAIN_BRANCH" xml:space="preserve">
+    <value>สำนักงานใหญ่</value>
+  </data>
+  <data name="VAT_MAIN_BRANCH" xml:space="preserve">
+    <value>ชื่อและที่ตั้งสำนักงานใหญ่</value>
+    <comment>//</comment>
+  </data>
+  <data name="VAT_NOT_REACH_DETAIL" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8" /&gt;
+	&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;
+(๑) กิจการขายสินค้าที่ได้รับการยกเว้นตามที่ระบุไว้ในมาตรา ๘๑ (๑) (ก) ถึง (ฉ) แห่งประมวลรัษฎากร&lt;br/&gt;
+     &amp;emsp; (๑.๑) การขายพืชผลทางการเกษตร ตามมาตรา ๘๑ (๑) (ก) &lt;br/&gt;
+     &amp;emsp; (๑.๒) การขายสัตว์ ไม่ว่าจะมีชีวิตหรือไม่มีชีวิต ตามมาตรา ๘๑ (๑) (ข) &lt;br/&gt;
+     &amp;emsp; (๑.๓) การขายปุ๋ย ตามมาตรา ๘๑ (๒) (ค) &lt;br/&gt;
+     &amp;emsp; (๑.๔) การขายปลาป่น อาหารสัตว ์ตามมาตรา ๘๑ (๑) (ง) &lt;br/&gt;
+     &amp;emsp; (๑.๕) การขายยาหรือเคมีภัณฑ์ที่ใช้สำหรับพืชหรือสัตว์ ตามมาตรา ๘๑ (๑) (จ) &lt;br/&gt;
+     &amp;emsp; (๑.๖) การขายหนังสือพิมพ์ นิตยสาร หรือตำราเรียน ตามมาตรา ๘๑ (๑) (ฉ) &lt;br/&gt;&lt;br/&gt;
+(๒)  การขายสินค้าหรือให้บริการที่อยู่ในบังคับต้องเสียภาษีมูลค่าเพิ่ม ที่มีมูลค่าไม่เกิน ๑,๘๐๐,๐๐๐ บาทต่อปี ตามมาตรา ๘๑/๑ แห่งประมวลรัษฎากร &lt;br/&gt;&lt;br/&gt;
+(๓)  กิจการที่ได้รับการยกเว้นตามพระราชกฤษฎีกาออกตามความในประมวลรัษฎากร ว่าด้วยการกำหนดกิจการที่ได้รับการยกเว้นภาษีมูลค่าเพิ่ม (ฉบับที่ ๒๔๑) พ.ศ.๒๕๓๔  &lt;br/&gt;
+     &amp;emsp; (๓.๑) การให้บริการขนส่งในราชอาณาจักรโดยอากาศยาน &lt;br/&gt;
+     &amp;emsp; (๓.๒) การส่งออกของผู้ประกอบการในเขตอุตสาหกรรมส่งออกตามกฎหมายว่าด้วยการนิคมอุตสาหกรรมแห่งประเทศไทย &lt;br/&gt;
+     &amp;emsp; (๓.๓) การให้บริการขนส่งน้ำมันเชื้อเพลิงทางท่อในราชอาณาจักร &lt;br/&gt;
+     &amp;emsp; (๓.๔) การให้บริการขนส่งในราชอาณาจักร สำหรับการให้บริการขนส่งทางทะเลโดยเรือเดินทะเล ทั้งนี้ ให้รวมถึง การให้บริการขนส่งระหว่างทะเลกับแม่น้ำในราชอาณาจักรโดยเรือเดินทะเลด้วย &lt;br/&gt;
+
+	&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="VAT_ORDER" xml:space="preserve">
+    <value>ลำดับที่ </value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_PP011_TITLE" xml:space="preserve">
+    <value>แจ้งขอใช้สิทธิ์เพื่อขอจดทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.01.1)</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_PP01_TITLE" xml:space="preserve">
+    <value>จดทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.01)</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_REGISTER" xml:space="preserve">
+    <value>จดทะเบียนภาษีมูลค่าเพิ่ม</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_SMALL_BUS" xml:space="preserve">
+    <value>2.5 ประกอบกิจการโดยมีมูลค่าของฐานภาษีไม่เกินมูลค่าของฐานภาษีของกิจการขนาดย่อม ตามที่กำหนดโดยพระราชกฤษฎีกา</value>
+    <comment>/</comment>
+  </data>
+  <data name="VAT_TIN" xml:space="preserve">
+    <value>เลขประจำตัวผู้เสียภาษีอากร</value>
+  </data>
+  <data name="WARNING" xml:space="preserve">
+    <value>คำเตือน</value>
+  </data>
+  <data name="WARNING_1" xml:space="preserve">
+    <value>การยื่นรายการจดทะเบียนภาษีมูลค่าเพิ่มเป็นเท็จ ท่านจะต้องรับผิดทั้งทางแพ่งและอาญา</value>
+  </data>
+  <data name="WARNING_2" xml:space="preserve">
+    <value>ผู้ที่จดทะเบียนภาษีมูลค่าเพิ่ม มีภาระและหน้าที่ในการยื่นแบบแสดงรายการภาษีมูลค่าเพิ่ม ตามกฎหมาย</value>
+  </data>
+  <data name="WARNING_3" xml:space="preserve">
+    <value>เพื่อประโยชน์ในการพิจารณาอนุมัติให้เป็นผู้ประกอบการจดทะเบียน ท่านควรอ่านคำแนะนำการจดทะเบียน และเลือกระบุประเภทการประกอบการฯ ที่ตรงกับความต้องการจดทะเบียนของท่านให้ถูกต้อง</value>
+  </data>
+</root>

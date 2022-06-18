@@ -1,0 +1,7 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@model FormControl
+
+<select class="form-control" id="@string.Format("ajax_dropdown_{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN_{0}", Model.DataKey)" disabled>
+    <option></option>
+</select>

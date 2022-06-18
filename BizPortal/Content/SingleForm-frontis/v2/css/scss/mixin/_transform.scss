@@ -1,0 +1,92 @@
+/**
+ * Transtate
+ */
+@mixin transformOrigin($x, $y){
+    -ms-transform-origin: $x $y; /* IE 9 */
+    -webkit-transform-origin: $x $y; /* Chrome, Safari, Opera */
+    transform-origin: $x $y;
+}
+
+
+@mixin resetTransform(){
+    -webkit-transform: none; /* Safari and Chrome */
+   -moz-transform: none; /* Firefox */
+    -ms-transform: none; /* IE 9 */
+     -o-transform: none; /* Opera */
+        transform: none;
+}
+
+ 
+@mixin translateX($position){
+    -webkit-transform: translateX($position);
+    -moz-transform: translateX($position);
+    transform: translateX($position);
+    will-change: transform;
+}
+
+@mixin translateY($position){
+    -webkit-transform: translateY($position);
+    -moz-transform: translateY($position);
+    transform: translateY($position);
+    will-change: transform;
+}
+
+@mixin translate3d($x: 0, $y: 0, $z: 0){
+    -webkit-transform: translate3d($x, $y, $z);
+    -moz-transform: translate3d($x, $y, $z);
+    transform: translate3d($x, $y, $z);
+    will-change: transform;
+}
+
+/**
+ * Scale
+ */
+
+ @mixin scale($scale){
+    -webkit-transform: scale($scale);
+     -moz-transform: scale($scale);
+     transform: scale($scale);
+     will-change: transform;
+} 
+
+@mixin scaleX($scale){
+    -webkit-transform: scaleX($scale);
+     -moz-transform: scaleX($scale);
+     transform: scaleX($scale);
+     will-change: transform;
+} 
+
+@mixin scaleY($scale){
+    -webkit-transform: scaleY($scale);
+     -moz-transform: scaleY($scale);
+     transform: scaleY($scale);
+     will-change: transform;
+}
+
+/**
+ * Rotate
+ */
+ @mixin rotate($deg){
+    -webkit-transform: rotate($deg);
+    -moz-transform: rotate($deg);
+    transform: rotate($deg);
+    will-change: transform;
+}
+ @mixin rotateX($deg){
+    -webkit-transform: rotateX($deg);
+     -moz-transform: rotateX($deg);
+     transform: rotateX($deg);
+     will-change: transform;
+ }
+ @mixin rotateY($deg){
+   -webkit-transform: rotateY($deg);
+     -moz-transform: rotateY($deg);
+     transform: rotateY($deg);
+     will-change: transform;
+ }
+@mixin rotate3d($x: 0, $y: 0, $z: 0){
+    -webkit-transform: rotate3d($x, $y, $z);
+    -moz-transform: rotate3d($x, $y, $z);
+    transform: rotate3d($x, $y, $z);
+    will-change: transform;
+}

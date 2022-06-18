@@ -1,0 +1,197 @@
+﻿@using BizPortal.Utils.Helpers
+@model BizPortal.DAL.MongoDB.FormSection
+<script id="@(Model.Section)Template" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    @*<div class="row">
+            <div class="col-md-3">
+                <label>@BizPortal.Resources.Apps_SingleForm.MANAGER_TITLE_PREFIX :</label>
+            </div>
+            <div class="col-md-2">
+                <label>@BizPortal.Resources.Apps_SingleForm.MANAGER_FIRSTNAME :</label>
+            </div>
+            <div class="col-md-3">
+                <label>@BizPortal.Resources.Apps_SingleForm.MANAGER_LASTNAME :</label>
+            </div>
+        </div>*@
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-8">
+            <span class="bold form-control-static">ลำดับที่ {{ARR_IDX}}:</span>
+        </div>
+        <div class="col-md-2 pr5">
+            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>*@
+        </div>
+        <div class="col-md-2 pl5">
+            @*<button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>*@
+        </div>
+
+        <div class="row" style="margin-top:50px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <span class="bold form-control-static">วันที่จำหน่ายซอฟต์แวร์:</span>
+                <span class="form-control-static">{{this.SOFTWARE_PUBLISH_DATE}}</span>
+            </div>
+            <div class="col-md-5">
+                <span class="bold form-control-static">เลขลำดับที่ของซอฟต์แวร์ที่จำหน่าย:</span>
+                <span class="form-control-static">{{this.SOFTWARE_PUBLISH_ORDERING_NO}}</span>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        @*{{#if this.TAX_PAYER_NO}}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <span class="bold form-control-static">เลขประจำตัวผู้เสียภาษีอากร:</span>
+                <span class="form-control-static">{{this.TAX_PAYER_NO}}</span>
+            </div>
+        </div>
+        {{/if}}*@
+
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <span class="bold form-control-static">ชื่อ (ผู้ซื้อ/ผู้ใช้ซอฟต์แวร์):</span>
+                {{#xif "this.KIND_OF_CUSTOMER_OPTION__RADIO_TEXT == 'บุคคลธรรมดา'" }}
+                <span class="form-control-static">{{this.DROPDOWN_BUYER_TITLE_TEXT}} {{this.BUYER_FIRSTNAME}} {{this.BUYER_LASTNAME}}</span>
+                {{else}}
+                <span class="form-control-static">{{this.BUYER_JURISTICT_NAME}}</span>
+                {{/xif}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                @*<span class="bold form-control-static">ที่อยู่ (ผู้ซื้อ/ผู้ใช้ซอฟต์แวร์):</span>*@
+                <span class="bold form-control-static">เลขที่</span>
+                <span class="form-control-static">{{this.ADDRESS_BUYER_ADDRESS}}</span>
+
+                {{#if this.ADDRESS_MOO_BUYER_ADDRESS}}
+                <span class="bold form-control-static">หมู่ที่</span>
+                <span class="form-control-static">{{this.ADDRESS_MOO_BUYER_ADDRESS}}</span>
+                {{/if}}
+
+                {{#if this.ADDRESS_SOI_BUYER_ADDRESS}}
+                <span class="bold form-control-static">ตรอก/ซอย</span>
+                <span class="form-control-static">{{this.ADDRESS_SOI_BUYER_ADDRESS}}</span>
+                {{/if}}
+
+
+                {{#if this.ADDRESS_BUILDING_BUYER_ADDRESS}}
+                <span class="bold form-control-static">อาคาร</span>
+                <span class="form-control-static">{{this.ADDRESS_BUILDING_BUYER_ADDRESS}}</span>
+                {{/if}}
+
+                {{#if this.ADDRESS_ROOMNO_BUYER_ADDRESS}}
+                <span class="bold form-control-static">ห้องเลขที่</span>
+                <span class="form-control-static">{{this.ADDRESS_ROOMNO_BUYER_ADDRESS}}</span>
+                {{/if}}
+
+
+                {{#if this.ADDRESS_FLOOR_BUYER_ADDRESS}}
+                <span class="bold form-control-static">ชั้น</span>
+                <span class="form-control-static">{{this.ADDRESS_FLOOR_BUYER_ADDRESS}}</span>
+                {{/if}}
+
+
+                {{#if this.ADDRESS_ROAD_BUYER_ADDRESS}}
+                <span class="bold form-control-static">ถนน</span>
+                <span class="form-control-static">{{this.ADDRESS_ROAD_BUYER_ADDRESS}}</span>
+                {{/if}}
+
+                <span class="bold form-control-static">ตำบล/แขวง</span>
+                <span class="form-control-static">{{this.ADDRESS_TUMBOL_BUYER_ADDRESS_TEXT}}</span>
+
+                <span class="bold form-control-static">อำเภอ/เขต</span>
+                <span class="form-control-static">{{this.ADDRESS_AMPHUR_BUYER_ADDRESS_TEXT}}</span>
+
+                <span class="bold form-control-static">จังหวัด</span>
+                <span class="form-control-static">{{this.ADDRESS_PROVINCE_BUYER_ADDRESS_TEXT}}</span>
+
+                <span class="bold form-control-static">รหัสไปรษณีย์</span>
+                <sapn class="form-control-static">{{this.ADDRESS_POSTCODE_BUYER_ADDRESS}}</sapn>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <div>
+                    <span class="bold form-control-static">โทรศัพท์:</span>
+                    <span class="form-control-static">{{this.ADDRESS_TELEPHONE_BUYER_ADDRESS}}</span>
+
+                    {{#if this.ADDRESS_TELEPHONE_EXT_BUYER_ADDRESS}}
+                    <span class=" bold form-control-static">ต่อ:</span>
+                    <span class="form-control-static">{{this.ADDRESS_TELEPHONE_EXT_BUYER_ADDRESS}}</span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+        {{#if this.ADDRESS_FAX_BUYER_ADDRESS}}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <span class="bold form-control-static">โทรสาร:</span>
+                <sapn class="form-control-static">{{this.ADDRESS_FAX_BUYER_ADDRESS}}</sapn>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if this.ADDRESS_EMAIL_BUYER_ADDRESS}}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <span class="bold form-control-static">อีเมล:</span>
+                <span class="form-control-static">{{this.ADDRESS_EMAIL_BUYER_ADDRESS}}</span>
+            </div>
+        </div>
+        {{/if}}
+
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <span class="bold form-control-static">ชื่อซอฟต์แวร์ที่จำหน่าย:</span>
+                <span class="form-control-static">{{this.SOLD_SOFTWARE_NAME}}</span>
+            </div>
+            <div class="col-md-5">
+                <span class="bold form-control-static">ชนิดของซอฟต์แวร์:</span>
+                <span class="form-control-static">{{this.DROPDOWN_SOLD_SOFTWARE_TYPE_TEXT}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <span class="bold form-control-static">ชื่อระบบงานของซอฟต์แวร์:</span>
+                <span class="form-control-static">{{this.SOLD_SOFTWARE_SYSTEM_NAME}}</span>
+            </div>
+        </div>
+
+        @*{{#if this.SOLD_SOFTWARE_REMARK}}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <span class="bold form-control-static">หมายเหตุ:</span>
+                <span class="form-control-static">{{this.SOLD_SOFTWARE_REMARK}}</span>
+            </div>
+        </div>
+        {{/if}}*@
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลรายละเอียดการจำหน่ายซอฟต์แวร์
+            @*@Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))*@
+        </div>
+    </div>
+    {{/xif}}
+
+</script>
+
+
+

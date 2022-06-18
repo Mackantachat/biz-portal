@@ -1,0 +1,74 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+<div data-checkbox-group="@Model.DataKey">
+    @*@foreach (var opt in Model.CheckboxWithText)
+        {
+            <div class="row pb5">
+                <div class="col-md-12">
+                    @if (opt.IsText)
+                    {
+                        <div class="form-inline">
+                            <input type="checkbox" name="@string.Format("{0}_{1}", Model.DataKey, opt.CheckboxWithTextOptValue)" id="@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)" value="true" />
+                            <label for="@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)">@ResourceHelper.GetResourceWordWithDefault(opt.CheckboxWithTextOptName, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), opt.CheckboxWithTextOptName)</label>
+                            <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", Model.DataKey, opt.CheckboxWithTextOptValue)" id="@string.Format("{0}-{1}_TEXT", opt.CheckboxWithTextOptValue, Model.ClientID)" style="width:50%;" disabled />
+                        </div>
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="@string.Format("{0}_{1}", Model.DataKey, opt.CheckboxWithTextOptValue)" id="@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)" value="true" />
+                        <label for="@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)">@ResourceHelper.GetResourceWordWithDefault(opt.CheckboxWithTextOptName, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), opt.CheckboxWithTextOptName)</label>
+                    }
+                </div>
+            </div>
+        }*@
+    <div class="row">
+        @foreach (var opt in Model.CheckboxWithText)
+        {
+            var col = (opt.ColFixed <= 0 || opt.ColFixed > 12) ? 12 : opt.ColFixed;
+            <div class="col-md-@col">
+                @if (opt.IsText)
+                {
+                    <div class="form-inline">
+                        <input type="checkbox" name="@string.Format("{0}_{1}", Model.DataKey, opt.CheckboxWithTextOptValue)" id="@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)" value="true" />
+                        <label for="@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)">@ResourceHelper.GetResourceWordWithDefault(opt.CheckboxWithTextOptName, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), opt.CheckboxWithTextOptName)</label>
+                        <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", Model.DataKey, opt.CheckboxWithTextOptValue)" id="@string.Format("{0}-{1}_TEXT", opt.CheckboxWithTextOptValue, Model.ClientID)" style="width:50%;" disabled />
+                    </div>
+                }
+                else
+                {
+                    <input type="checkbox" name="@string.Format("{0}_{1}", Model.DataKey, opt.CheckboxWithTextOptValue)" id="@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)" value="true" />
+                    <label for="@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)">@ResourceHelper.GetResourceWordWithDefault(opt.CheckboxWithTextOptName, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), opt.CheckboxWithTextOptName)</label>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        @foreach (var opt in Model.CheckboxWithText)
+        {
+            <text>
+        $("#@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)").on('change', function () {
+            if (document.getElementById("@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)").checked) {
+                $("#@string.Format("{0}-{1}_TEXT", opt.CheckboxWithTextOptValue, Model.ClientID)").prop("disabled", false);
+            } else {
+                $("#@string.Format("{0}-{1}_TEXT", opt.CheckboxWithTextOptValue, Model.ClientID)").prop("disabled", true);
+                $("#@string.Format("{0}-{1}_TEXT", opt.CheckboxWithTextOptValue, Model.ClientID)").val("");
+            }
+        });
+        </text>
+
+            if (opt.IsText)
+            {
+                <text>
+        singleForm.customRules['@string.Format("{0}_{1}_TEXT", Model.DataKey, opt.CheckboxWithTextOptValue)'] = {
+            required: function (e) { return document.getElementById("@string.Format("{0}-{1}", opt.CheckboxWithTextOptValue, Model.ClientID)").checked }, messages: { required: 'กรุณาระบุ' }
+        };
+        </text>
+            }
+        }
+    });
+</script>

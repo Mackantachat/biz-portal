@@ -1,0 +1,1559 @@
+﻿@using Resource = BizPortal.Resources;
+
+@{
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+    string currentLang = ViewBag.CurrentLanguage;
+}
+
+@Styles.Render("~/Bundles/Backend/Chart/Style")
+
+<div name="PermitRequestSummary">
+    <div class="row">
+        <div class="chart-divContainer">
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="year-seaching-bybusiness" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="quater-seaching-bybusiness" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="month-seaching-bybusiness" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button id="btn-search-bybusiness" type="button" class="btn btn-secondary">ค้นหา</button>
+                    <button id="btn-order-bybusiness" type="button" class="btn btn-light">เรียงลำดับภายในกราฟ</button>
+                    <input type="hidden" id="order-state-bybusiness" value="false" />
+                </div>
+            </div>
+            <canvas id="PermitRequestSummaryByBusiness"></canvas>
+            <div class="center-inline">
+                <div>
+                    <button type="button" id="prev-bybusiness" class="btn btn-secondary">ย้อนกลับ</button>
+                    <select class="form-control" id="pagination-ddl-bybusiness">
+                    </select>
+                    <button type="button" id="next-bybusiness" class="btn btn-secondary">ถัดไป</button>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:right; margin:15px;">
+            <p>*ภาพรวมธุรกิจนับจากวันที่การขออนุญาตถูกสร้าง</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="chart-divContainer">
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="year-seaching-bymoment" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="quater-seaching-bymoment" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="month-seaching-bymoment" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button id="btn-search-bymoment" type="button" class="btn btn-secondary">ค้นหา</button>
+                    <button id="btn-order-bymoment" type="button" class="btn btn-light">เรียงลำดับภายในกราฟ</button>
+                    <input type="hidden" id="order-state-bymoment" value="false" />
+                </div>
+            </div>
+            <canvas id="PermitRequestSummaryByMoment"></canvas>
+            <div class="center-inline">
+                <div>
+                    <button type="button" id="prev-bymoment" class="btn btn-secondary">ย้อนกลับ</button>
+                    <select class="form-control" id="pagination-ddl-bymoment">
+                    </select>
+                    <button type="button" id="next-bymoment" class="btn btn-secondary">ถัดไป</button>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:right; margin:15px;">
+            <p>*แนวโน้มการขอใบอนุญาตนับจากวันที่การขออนุญาตถูกสร้าง</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="chart-divContainer">
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="year-seaching-byprovince" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="quater-seaching-byprovince" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control select2-multiple" id="month-seaching-byprovince" multiple="multiple">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button id="btn-search-byprovince" type="button" class="btn btn-secondary">ค้นหา</button>
+                    <button id="btn-order-byprovince" type="button" class="btn btn-light">เรียงลำดับภายในกราฟ</button>
+                    <input type="hidden" id="order-state-byprovince" value="false" />
+                </div>
+            </div>
+            <canvas id="PermitRequestSummaryByProvince"></canvas>
+            <div class="center-inline">
+                <div>
+                    <button type="button" id="prev-byprovince" class="btn btn-secondary">ย้อนกลับ</button>
+                    <select class="form-control" id="pagination-ddl-byprovince">
+                    </select>
+                    <button type="button" id="next-byprovince" class="btn btn-secondary">ถัดไป</button>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:right; margin:15px;">
+            <p>*แนวโน้มการขอใบอนุญาตนับจากวันที่การขออนุญาตถูกสร้าง</p>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/Bundles/Backend/Chart/Script")
+
+<script type="text/javascript">
+    var reportPage1 = {
+        ddlQueryData: {
+            quaterDDL: [
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_QuaterOption1', value: "q1" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_QuaterOption2', value: "q2" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_QuaterOption3', value: "q3" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_QuaterOption4', value: "q4" },
+            ],
+            monthDDL: [
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption1', value: "Jan" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption2', value: "Feb" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption3', value: "Mar" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption4', value: "Apr" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption5', value: "May" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption6', value: "Jun" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption7', value: "Jul" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption8', value: "Aug" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption9', value: "Sep" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption10', value: "Oct" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption11', value: "Nov" },
+                { text: '@Resource.Report.PermitRequestSummaryByBusiness_MonthOption12', value: "Dec" },
+            ]
+        },
+        permitRequestSummaryByBusinessChart: {
+            isLoading: false,
+            currentPage: -1,
+            rawDataset: [],
+            datasetChunk: [],
+            yAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultPermitRequestSummaryByBusinessLabels: [],
+            defaultPermitRequestSummaryByBusinessDatasets: [],
+            chartElem: document.getElementById('PermitRequestSummaryByBusiness').getContext('2d'),
+            chartObj: new Chart(document.getElementById('PermitRequestSummaryByBusiness').getContext('2d'), {
+                type: 'horizontalBar',
+                data: {
+                    datasets: []
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 2,
+                    barValueSpacing: 20,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                            },
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            },
+                        }],
+                        yAxes: [{
+                            display: true,
+                            maxBarThickness: 100,
+                            ticks: {
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgba(51, 51, 51, 1)',
+                            fontSize: 16
+                        },
+                        onClick: function (e, legendItem) {
+                            var index = legendItem.datasetIndex;
+                            var ci = this.chart;
+                            var meta = ci.getDatasetMeta(index);
+
+                            // See controller.isDatasetVisible comment
+                            meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+                            // We hid a dataset ... rerender the chart
+                            ci.update();
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.PermitRequestSummaryByBusiness_Title',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    layout: {
+                        padding: {
+                            left: 100,
+                            right: 100,
+                        }
+                    },
+                    tooltips: {
+                        mode: 'nearest',
+                        intersect: false,
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodyFontSize: 14,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                        callbacks: {
+                            title: function (tooltipItems) {
+                                var tooltipItem = tooltipItems[0];
+                                var title = [tooltipItem.yLabel[0]];
+                                if (tooltipItem.yLabel.length == 2) {
+                                    title.push(tooltipItem.yLabel[1]);
+                                }
+                                return title;
+                            },
+                            label: function (tooltipItem, chartData) {
+                                let label = chartData.datasets[tooltipItem.datasetIndex].label || '';
+                                return label + ": " + tooltipItem.value + " คำขอ"
+                            },
+                            footer: function (tooltipItems, chartData) {
+                                var footerLabels = [];
+                                var quaterLabels = reportPage1.ddlQueryData.quaterDDL;
+                                var monthLabels = reportPage1.ddlQueryData.monthDDL;
+                                if (reportPage1.permitRequestSummaryByBusinessChart.datasetChunk.length > 0) {
+                                    tooltipItems.forEach(function (tooltipItem) {
+                                        var rawDataItem = reportPage1.permitRequestSummaryByBusinessChart.datasetChunk[tooltipItem.datasetIndex][reportPage1.permitRequestSummaryByBusinessChart.currentPage][tooltipItem.index];
+                                        if (rawDataItem.QtyPermitInThisYear != null || 
+                                            rawDataItem.QtyPermitEachQuaterIfQuery != null ||
+                                            rawDataItem.QtyPermitEachMonthIfQuery != null) {
+                                            footerLabels.push("");
+                                        }
+                                        if (rawDataItem.QtyPermitInThisYear != null) {
+                                            footerLabels.push("จำนวนการขออนุญาตทั้งปี: " + rawDataItem.QtyPermitInThisYear + " คำขอ");
+                                        }
+
+                                        if (rawDataItem.QtyPermitEachQuaterIfQuery != null) {
+                                            if (!rawDataItem.QtyPermitEachQuaterIfQuery.every(element => element === null)) {
+                                                footerLabels.push("--------------------");
+                                            }
+                                            rawDataItem.QtyPermitEachQuaterIfQuery.forEach(function (quaterData, idx) {
+                                                if (quaterData != null) {
+                                                    footerLabels.push("จำนวนการขออนุญาตใน" + quaterLabels[idx].text + ": " + quaterData + " คำขอ");
+                                                }
+                                            });
+                                        }
+
+                                        if (rawDataItem.QtyPermitEachMonthIfQuery != null) {
+                                            if (!rawDataItem.QtyPermitEachMonthIfQuery.every(element => element === null)) {
+                                                footerLabels.push("--------------------");
+                                            }
+                                            rawDataItem.QtyPermitEachMonthIfQuery.forEach(function (monthData, idx) {
+                                                if (monthData != null) {
+                                                    footerLabels.push("จำนวนการอนุญาตในเดือน" + monthLabels[idx].text + ": " + monthData + " คำขอ");
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                                return footerLabels;
+                            }
+                        },
+                        //borderColor: 'rgba(32, 188, 66, 1)',
+                        borderWidth: 2
+                    }
+                },
+            }),
+        },
+        permitRequestSummaryByMomentChart: {
+            isLoading: false,
+            currentPage: -1,
+            rawDataset: [],
+            datasetChunk: [],
+            yAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultPermitRequestSummaryByMomentLabels: [],
+            defaultPermitRequestSummaryByMomentDatasets: [],
+            chartElem: document.getElementById('PermitRequestSummaryByMoment').getContext('2d'),
+            chartObj: new Chart(document.getElementById('PermitRequestSummaryByMoment').getContext('2d'), {
+                type: 'horizontalBar',
+                data: {
+                    datasets: []
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 2,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                            },
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            },
+                        }],
+                        yAxes: [{
+                            display: true,
+                            maxBarThickness: 100,
+                            ticks: {
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgba(51, 51, 51, 1)',
+                            fontSize: 16
+                        },
+                        onClick: function (e, legendItem) {
+                            var index = legendItem.datasetIndex;
+                            var ci = this.chart;
+                            var meta = ci.getDatasetMeta(index);
+
+                            // See controller.isDatasetVisible comment
+                            meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+                            // We hid a dataset ... rerender the chart
+                            ci.update();
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.PermitRequestSummaryByMoment_Title',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    layout: {
+                        padding: {
+                            left: 150,
+                            right: 150,
+                        }
+                    },
+                    tooltips: {
+                        mode: 'nearest',
+                        intersect: false,
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                        callbacks: {
+                            label: function (tooltipItem, chartData) {
+                                let label = chartData.datasets[tooltipItem.datasetIndex].label || '';
+                                return label + ": " + tooltipItem.value + " คำขอ"
+                            },
+                            footer: function (tooltipItems, chartData) {
+                                var footerLabels = [];
+                                var quaterLabels = reportPage1.ddlQueryData.quaterDDL;
+                                var monthLabels = reportPage1.ddlQueryData.monthDDL;
+                                if (reportPage1.permitRequestSummaryByMomentChart.datasetChunk.length > 0) {
+                                    tooltipItems.forEach(function (tooltipItem) {
+                                        var rawDataItem = reportPage1.permitRequestSummaryByMomentChart.datasetChunk[tooltipItem.datasetIndex][reportPage1.permitRequestSummaryByMomentChart.currentPage][tooltipItem.index];
+                                        if (rawDataItem.QtyPermitInThisYear != null || 
+                                            rawDataItem.QtyPermitEachQuaterIfQuery != null ||
+                                            rawDataItem.QtyPermitEachMonthIfQuery != null) {
+                                            footerLabels.push("");
+                                        }
+                                        if (rawDataItem.QtyPermitInThisYear != null) {
+                                            footerLabels.push("จำนวนการขออนุญาตทั้งปี: " + rawDataItem.QtyPermitInThisYear + " คำขอ");
+                                        }
+
+                                        if (rawDataItem.QtyPermitEachQuaterIfQuery != null) {
+                                            if (!rawDataItem.QtyPermitEachQuaterIfQuery.every(element => element === null)) {
+                                                footerLabels.push("--------------------");
+                                            }
+                                            rawDataItem.QtyPermitEachQuaterIfQuery.forEach(function (quaterData, idx) {
+                                                if (quaterData != null) {
+                                                    footerLabels.push("จำนวนการขออนุญาตใน" + quaterLabels[idx].text + ": " + quaterData + " คำขอ");
+                                                }
+                                            });
+                                        }
+
+                                        if (rawDataItem.QtyPermitEachMonthIfQuery != null) {
+                                            if (!rawDataItem.QtyPermitEachMonthIfQuery.every(element => element === null)) {
+                                                footerLabels.push("--------------------");
+                                            }
+                                            rawDataItem.QtyPermitEachMonthIfQuery.forEach(function (monthData, idx) {
+                                                if (monthData != null) {
+                                                    footerLabels.push("จำนวนการอนุญาตในเดือน" + monthLabels[idx].text + ": " + monthData + " คำขอ");
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                                return footerLabels;
+                            }
+                        },
+                        //borderColor: 'rgba(32, 188, 66, 1)',
+                        borderWidth: 2
+                    }
+                },
+            }),
+        },
+        permitRequestSummaryByProvinceChart: {
+            isLoading: false,
+            currentPage: -1,
+            rawDataset: [],
+            datasetChunk: [],
+            xAxesBaseLabelsColor: ["rgba(51, 51, 51, 1)", "rgba(27, 64, 157, 1)"],
+            defaultPermitRequestSummaryByProvinceLabels: [],
+            defaultPermitRequestSummaryByProvinceDatasets: [],
+            chartElem: document.getElementById('PermitRequestSummaryByProvince').getContext('2d'),
+            chartObj: new Chart(document.getElementById('PermitRequestSummaryByProvince').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    datasets: []
+                },
+                options: {
+                    responsive: true,
+                    aspectRatio: 2,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                            },
+                            maxBarThickness: 100,
+                            ticks: {
+                                callback: function (tickValue, index, ticks) {
+                                    return tickValue;
+                                }
+                            },
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true   // minimum value will be 0.
+                            },
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgba(51, 51, 51, 1)',
+                            fontSize: 16
+                        },
+                        onClick: function (e, legendItem) {
+                            var index = legendItem.datasetIndex;
+                            var ci = this.chart;
+                            var meta = ci.getDatasetMeta(index);
+
+                            // See controller.isDatasetVisible comment
+                            meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+                            // We hid a dataset ... rerender the chart
+                            ci.update();
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '@Resource.Report.PermitRequestSummaryByProvince_Title',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        padding: 20
+                    },
+                    layout: {
+                        padding: {
+                            left: 150,
+                            right: 150,
+                        }
+                    },
+                    tooltips: {
+                        intersect: false,
+                        titleFontSize: 16,
+                        titleSpacing: 3,
+                        titleMarginBottom: 10,
+                        bodySpacing: 3,
+                        footerSpacing: 3,
+                        footerMarginTop: 10,
+                        footerFontStyle: 'normal',
+                        callbacks: {
+                            label: function (tooltipItem, chartData) {
+                                let label = chartData.datasets[tooltipItem.datasetIndex].label || '';
+                                return label + ": " + tooltipItem.value + " คำขอ"
+                            },
+                            footer: function (tooltipItems, chartData) {
+                                var footerLabels = [];
+                                var quaterLabels = reportPage1.ddlQueryData.quaterDDL;
+                                var monthLabels = reportPage1.ddlQueryData.monthDDL;
+                                if (reportPage1.permitRequestSummaryByProvinceChart.datasetChunk.length > 0) {
+                                    tooltipItems.forEach(function (tooltipItem) {
+                                        var rawDataItem = reportPage1.permitRequestSummaryByProvinceChart.datasetChunk[tooltipItem.datasetIndex][reportPage1.permitRequestSummaryByProvinceChart.currentPage][tooltipItem.index];
+                                        if (rawDataItem.QtyPermitInThisYear != null || 
+                                            rawDataItem.QtyPermitEachQuaterIfQuery != null ||
+                                            rawDataItem.QtyPermitEachMonthIfQuery != null) {
+                                            footerLabels.push("");
+                                        }
+
+                                        if (rawDataItem.QtyPermitInThisYear != null) {
+                                            footerLabels.push("จำนวนการขออนุญาตทั้งปี: " + rawDataItem.QtyPermitInThisYear + " คำขอ");
+                                        }
+
+                                        if (rawDataItem.QtyPermitEachQuaterIfQuery != null) {
+                                            if (!rawDataItem.QtyPermitEachQuaterIfQuery.every(element => element === null)) {
+                                                footerLabels.push("--------------------");
+                                            }
+                                            rawDataItem.QtyPermitEachQuaterIfQuery.forEach(function (quaterData, idx) {
+                                                if (quaterData != null) {
+                                                    footerLabels.push("จำนวนการขออนุญาตใน" + quaterLabels[idx].text + ": " + quaterData + " คำขอ");
+                                                }
+                                            });
+                                        }
+
+                                        if (rawDataItem.QtyPermitEachMonthIfQuery != null) {
+                                            if (!rawDataItem.QtyPermitEachMonthIfQuery.every(element => element === null)) {
+                                                footerLabels.push("--------------------");
+                                            }
+                                            rawDataItem.QtyPermitEachMonthIfQuery.forEach(function (monthData, idx) {
+                                                if (monthData != null) {
+                                                    footerLabels.push("จำนวนการอนุญาตในเดือน" + monthLabels[idx].text + ": " + monthData + " คำขอ");
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                                return footerLabels;
+                            }
+                        },
+                        //borderColor: 'rgba(32, 188, 66, 1)',
+                        borderWidth: 2
+                    }
+                },
+            }),
+        },
+    }
+
+    $(document).ready(function () {
+        initPermitRequestSummaryByBusiness();
+        initPermitRequestSummaryByMoment();
+        initPermitRequestSummaryByProvince();
+    });
+
+    function initPermitRequestSummaryByBusiness() {
+        $("#year-seaching-bybusiness").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var yearSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    yearSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        yearSelected += (Number(selectedItem) + 543).toString() + " ";
+                    });
+                    yearSelected = yearSelected.trim().replace(/ /g, ', ');
+                }
+                return "ปีที่เลือก: " + yearSelected;
+            }
+        });
+
+        $("#quater-seaching-bybusiness").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var quaterSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    quaterSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        quaterSelected += selectedItem + " ";
+                    });
+                    quaterSelected = quaterSelected.trim().replace(/ /g, ', ');
+                }
+                return "ไตรมาสที่เลือก: " + quaterSelected;
+            }
+        });
+
+        $("#month-seaching-bybusiness").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var monthSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    monthSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        monthSelected += selectedItem + " ";
+                    });
+                    monthSelected = monthSelected.trim().replace(/ /g, ', ');
+                }
+                return "เดือนที่เลือก: " + monthSelected;
+            }
+        });
+
+        $("#pagination-ddl-bybusiness").select2({
+            allowClear: false,
+        });
+
+        $("#pagination-ddl-bybusiness").change(function () {
+            let pageSelected = $("#pagination-ddl-bybusiness").val();
+            pageSelectedInt = parseInt(pageSelected);
+            onBusinessPaginationChange(pageSelectedInt);
+            orderPermitRequestSummaryByBusinessChart($("#order-state-bybusiness").val() == "true");
+            
+        });
+
+        $("#prev-bybusiness").click(function () {
+            let pageSelected = $("#pagination-ddl-bybusiness").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt -= 1;
+            $("#pagination-ddl-bybusiness").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        $("#next-bybusiness").click(function () {
+            let pageSelected = $("#pagination-ddl-bybusiness").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt += 1;
+            $("#pagination-ddl-bybusiness").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        if ($("#btn-search-bybusiness").length > 0) {
+            $("#btn-search-bybusiness").click(function () {
+                getSummaryRequestByBusiness();
+            });
+        }
+
+        if ($("#btn-order-bybusiness").length > 0) {
+            $("#btn-order-bybusiness").click(function () {
+                if ($("#order-state-bybusiness").val() == "true") {
+                    $("#order-state-bybusiness").val("false");
+                    $("#btn-order-bybusiness").removeClass("btn-dark");
+                    $("#btn-order-bybusiness").addClass("btn-light");
+                }
+                else {
+                    $("#order-state-bybusiness").val("true");
+                    $("#btn-order-bybusiness").removeClass("btn-light");
+                    $("#btn-order-bybusiness").addClass("btn-dark");
+                }
+                $("#order-state-bybusiness").trigger('change');
+            });
+        }
+
+        if ($("#order-state-bybusiness").length > 0) {
+            $("#order-state-bybusiness").change(function () {
+                orderPermitRequestSummaryByBusinessChart($("#order-state-bybusiness").val() == "true");
+            });
+        }
+        initByBusinessSubQuery();
+        getSummaryRequestByBusiness();
+
+        function initByBusinessSubQuery() {
+            $("#quater-seaching-bybusiness option").each(function() {
+                $(this).remove();
+            });
+            reportPage1.ddlQueryData.quaterDDL.forEach(function (item) {
+                $("#quater-seaching-bybusiness").append(new Option(item.text, item.value));
+            });
+            $("#month-seaching-bybusiness option").each(function() {
+                $(this).remove();
+            });
+            reportPage1.ddlQueryData.monthDDL.forEach(function (item) {
+                $("#month-seaching-bybusiness").append(new Option(item.text, item.value));
+            });
+        }
+    }
+
+    function initPermitRequestSummaryByMoment() {
+        $("#year-seaching-bymoment").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var yearSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    yearSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        yearSelected += (Number(selectedItem) + 543).toString() + " ";
+                    });
+                    yearSelected = yearSelected.trim().replace(/ /g, ', ');
+                }
+                return "ปีที่เลือก: " + yearSelected;
+            }
+        });
+
+        $("#quater-seaching-bymoment").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var quaterSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    quaterSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        quaterSelected += selectedItem + " ";
+                    });
+                    quaterSelected = quaterSelected.trim().replace(/ /g, ', ');
+                }
+                return "ไตรมาสที่เลือก: " + quaterSelected;
+            }
+        });
+
+        $("#month-seaching-bymoment").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var monthSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    monthSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        monthSelected += selectedItem + " ";
+                    });
+                    monthSelected = monthSelected.trim().replace(/ /g, ', ');
+                }
+                return "เดือนที่เลือก: " + monthSelected;
+            }
+        });
+
+        $("#pagination-ddl-bymoment").select2({
+            allowClear: false,
+        });
+
+        $("#pagination-ddl-bymoment").change(function () {
+            let pageSelected = $("#pagination-ddl-bymoment").val();
+            pageSelectedInt = parseInt(pageSelected);
+            onMomentPaginationChange(pageSelectedInt);
+            orderPermitRequestSummaryByMomentChart($("#order-state-bymoment").val() == "true");
+        });
+
+        $("#prev-bymoment").click(function () {
+            let pageSelected = $("#pagination-ddl-bymoment").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt -= 1;
+            $("#pagination-ddl-bymoment").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        $("#next-bymoment").click(function () {
+            let pageSelected = $("#pagination-ddl-bymoment").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt += 1;
+            $("#pagination-ddl-bymoment").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        if ($("#btn-search-bymoment").length > 0) {
+            $("#btn-search-bymoment").click(function () {
+                getSummaryRequestByMoment();
+            });
+        }
+
+        if ($("#btn-order-bymoment").length > 0) {
+            $("#btn-order-bymoment").click(function () {
+                if ($("#order-state-bymoment").val() == "true") {
+                    $("#order-state-bymoment").val("false");
+                    $("#btn-order-bymoment").removeClass("btn-dark");
+                    $("#btn-order-bymoment").addClass("btn-light");
+                }
+                else {
+                    $("#order-state-bymoment").val("true");
+                    $("#btn-order-bymoment").removeClass("btn-light");
+                    $("#btn-order-bymoment").addClass("btn-dark");
+                }
+                $("#order-state-bymoment").trigger('change');
+            });
+        }
+
+        if ($("#order-state-bymoment").length > 0) {
+            $("#order-state-bymoment").change(function () {
+                orderPermitRequestSummaryByMomentChart($("#order-state-bymoment").val() == "true");
+            });
+        }
+        initByMomentSubQuery();
+        getSummaryRequestByMoment();
+
+        function initByMomentSubQuery() {
+            $("#quater-seaching-bymoment option").each(function() {
+                $(this).remove();
+            });
+            reportPage1.ddlQueryData.quaterDDL.forEach(function (item) {
+                $("#quater-seaching-bymoment").append(new Option(item.text, item.value));
+            });
+            $("#month-seaching-bymoment option").each(function() {
+                $(this).remove();
+            });
+            reportPage1.ddlQueryData.monthDDL.forEach(function (item) {
+                $("#month-seaching-bymoment").append(new Option(item.text, item.value));
+            });
+        }
+    }
+
+    function initPermitRequestSummaryByProvince() {
+        $("#year-seaching-byprovince").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var yearSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    yearSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        yearSelected += (Number(selectedItem) + 543).toString() + " ";
+                    });
+                    yearSelected = yearSelected.trim().replace(/ /g, ', ');
+                }
+                return "ปีที่เลือก: " + yearSelected;
+            }
+        });
+
+        $("#quater-seaching-byprovince").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var quaterSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    quaterSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        quaterSelected += selectedItem + " ";
+                    });
+                    quaterSelected = quaterSelected.trim().replace(/ /g, ', ');
+                }
+                return "ไตรมาสที่เลือก: " + quaterSelected;
+            }
+        });
+
+        $("#month-seaching-byprovince").select2MultiCheckboxes({
+            allowClear: true,
+            width: '100%',
+            templateSelection: function (selected, total) {
+                var monthSelected = "ทั้งหมด";
+                if (selected.length > 0) {
+                    monthSelected = "";
+                    selected.forEach(function (selectedItem) {
+                        monthSelected += selectedItem + " ";
+                    });
+                    monthSelected = monthSelected.trim().replace(/ /g, ', ');
+                }
+                return "เดือนที่เลือก: " + monthSelected;
+            }
+        });
+
+        $("#pagination-ddl-byprovince").select2({
+            allowClear: false,
+        });
+
+        $("#pagination-ddl-byprovince").change(function () {
+            let pageSelected = $("#pagination-ddl-byprovince").val();
+            pageSelectedInt = parseInt(pageSelected);
+            onProvincePaginationChange(pageSelectedInt);
+            orderPermitRequestSummaryByProvinceChart($("#order-state-byprovince").val() == "true");
+        });
+
+        $("#prev-byprovince").click(function () {
+            let pageSelected = $("#pagination-ddl-byprovince").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt -= 1;
+            $("#pagination-ddl-byprovince").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        $("#next-byprovince").click(function () {
+            let pageSelected = $("#pagination-ddl-byprovince").val();
+            pageSelectedInt = parseInt(pageSelected);
+            pageSelectedInt += 1;
+            $("#pagination-ddl-byprovince").val(pageSelectedInt.toString()).trigger('change');
+        });
+
+        if ($("#btn-search-byprovince").length > 0) {
+            $("#btn-search-byprovince").click(function () {
+                getSummaryRequestByProvince();
+            });
+        }
+
+        if ($("#btn-order-byprovince").length > 0) {
+            $("#btn-order-byprovince").click(function () {
+                if ($("#order-state-byprovince").val() == "true") {
+                    $("#order-state-byprovince").val("false");
+                    $("#btn-order-byprovince").removeClass("btn-dark");
+                    $("#btn-order-byprovince").addClass("btn-light");
+                }
+                else {
+                    $("#order-state-byprovince").val("true");
+                    $("#btn-order-byprovince").removeClass("btn-light");
+                    $("#btn-order-byprovince").addClass("btn-dark");
+                }
+                $("#order-state-byprovince").trigger('change');
+            });
+        }
+
+        if ($("#order-state-byprovince").length > 0) {
+            $("#order-state-byprovince").change(function () {
+                orderPermitRequestSummaryByProvinceChart($("#order-state-byprovince").val() == "true");
+            });
+        }
+        initByProvinceSubQuery();
+        getSummaryRequestByProvince();
+
+        function initByProvinceSubQuery() {
+            $("#quater-seaching-byprovince option").each(function() {
+                $(this).remove();
+            });
+            reportPage1.ddlQueryData.quaterDDL.forEach(function (item) {
+                $("#quater-seaching-byprovince").append(new Option(item.text, item.value));
+            });
+            $("#month-seaching-byprovince option").each(function() {
+                $(this).remove();
+            });
+            reportPage1.ddlQueryData.monthDDL.forEach(function (item) {
+                $("#month-seaching-byprovince").append(new Option(item.text, item.value));
+            });
+        }
+    }
+
+    function updateSelect2Option(data, selector) {
+        let selected = $("#" + selector).select2("val");
+        $("#" + selector + " option").each(function() {
+            $(this).remove();
+        });
+        data.forEach(function (item) {
+            $("#" + selector).append(new Option(item.text, item.id));
+        });
+        $("#" + selector).val(selected);
+    }
+
+    function orderPermitRequestSummaryByBusinessChart(state) {
+        let datasets = [];
+        if (!state) {
+            reportPage1.permitRequestSummaryByBusinessChart.rawDataset.forEach(function (dataYear, idx) {
+                var i, datasetIndex, chunk = 10;
+                let arrayData = [];
+                for (i = 0, datasetIndex = 0; i < dataYear.length; i += chunk, datasetIndex++) {
+                    arrayData.push(dataYear.slice(i, i + chunk));
+                }
+                datasets.push(arrayData);
+            });
+        }
+        else {
+            let tempValue = [];
+            let labelsID = [];
+            if (reportPage1.permitRequestSummaryByBusinessChart.rawDataset.length > 0) {
+                let rawData = reportPage1.permitRequestSummaryByBusinessChart.rawDataset.slice();
+                rawData[0].forEach(function (item) {
+                    tempValue.push(0);
+                    labelsID.push(item.BusinessID);
+                });
+
+                for (let i = 0; i < rawData.length; i++) {
+                    rawData[i].forEach(function (itemm, idx) {
+                        tempValue[idx] += itemm.DisplayValue;
+                    });
+                }
+
+                let tempIndex = labelsID.slice();
+                let arrayOfObj = labelsID.map(function(id, i) {
+                    return {
+                        data: tempValue[i] || 0,
+                        id: id
+                    };
+                });
+
+                let sortedArrayOfObj = arrayOfObj.sort(function(a, b) {
+                    return b.data - a.data;
+                });
+
+                let sortedArrayLabelID = [];
+                sortedArrayOfObj.forEach(function(d) {
+                    sortedArrayLabelID.push(d.id);
+                });
+
+                rawData.forEach(function (dataYear) {
+                    let dataArray = [];
+                    for (let i = 0; i < dataYear.length; i++) {
+                        dataArray[i] = dataYear[tempIndex.indexOf(sortedArrayLabelID[i])];
+                    }
+                    
+                    var i, datasetIndex, chunk = 10;
+                    let arrayData = [];
+                    for (i = 0, datasetIndex = 0; i < dataArray.length; i += chunk, datasetIndex++) {
+                        arrayData.push(dataArray.slice(i, i + chunk));
+                    }
+                    datasets.push(arrayData);
+                });
+            }
+        }
+        reportPage1.permitRequestSummaryByBusinessChart.datasetChunk = datasets;
+        onBusinessPaginationChange(reportPage1.permitRequestSummaryByBusinessChart.currentPage);
+    }
+
+    function orderPermitRequestSummaryByMomentChart(state) {
+        let datasets = [];
+        if (!state) {
+            reportPage1.permitRequestSummaryByMomentChart.rawDataset.forEach(function (dataYear, idx) {
+                var i, datasetIndex, chunk = 10;
+                let arrayData = [];
+                for (i = 0, datasetIndex = 0; i < dataYear.length; i += chunk, datasetIndex++) {
+                    arrayData.push(dataYear.slice(i, i + chunk));
+                }
+                datasets.push(arrayData);
+            });
+        }
+        else {
+            let tempValue = [];
+            let labelsID = [];
+            if (reportPage1.permitRequestSummaryByMomentChart.rawDataset.length > 0) {
+                let rawData = reportPage1.permitRequestSummaryByMomentChart.rawDataset.slice();
+                rawData[0].forEach(function (item) {
+                    tempValue.push(0);
+                    labelsID.push(item.ApplicationID);
+                });
+
+                for (let i = 0; i < rawData.length; i++) {
+                    rawData[i].forEach(function (itemm, idx) {
+                        tempValue[idx] += itemm.DisplayValue;
+                    });
+                }
+
+                let tempIndex = labelsID.slice();
+                let arrayOfObj = labelsID.map(function(id, i) {
+                    return {
+                        data: tempValue[i] || 0,
+                        id: id
+                    };
+                });
+
+                let sortedArrayOfObj = arrayOfObj.sort(function(a, b) {
+                    return b.data - a.data;
+                });
+
+                let sortedArrayLabelID = [];
+                sortedArrayOfObj.forEach(function(d) {
+                    sortedArrayLabelID.push(d.id);
+                });
+
+                rawData.forEach(function (dataYear) {
+                    let dataArray = [];
+                    for (let i = 0; i < dataYear.length; i++) {
+                        dataArray[i] = dataYear[tempIndex.indexOf(sortedArrayLabelID[i])];
+                    }
+                    
+                    var i, datasetIndex, chunk = 10;
+                    let arrayData = [];
+                    for (i = 0, datasetIndex = 0; i < dataArray.length; i += chunk, datasetIndex++) {
+                        arrayData.push(dataArray.slice(i, i + chunk));
+                    }
+                    datasets.push(arrayData);
+                });
+            }
+        }
+        reportPage1.permitRequestSummaryByMomentChart.datasetChunk = datasets;
+        onMomentPaginationChange(reportPage1.permitRequestSummaryByMomentChart.currentPage);
+    }
+
+    function orderPermitRequestSummaryByProvinceChart(state) {
+        let datasets = [];
+        if (!state) {
+            reportPage1.permitRequestSummaryByProvinceChart.rawDataset.forEach(function (dataYear, idx) {
+                var i, datasetIndex, chunk = 10;
+                let arrayData = [];
+                for (i = 0, datasetIndex = 0; i < dataYear.length; i += chunk, datasetIndex++) {
+                    arrayData.push(dataYear.slice(i, i + chunk));
+                }
+                datasets.push(arrayData);
+            });
+        }
+        else {
+            let tempValue = [];
+            let labelsID = [];
+            if (reportPage1.permitRequestSummaryByProvinceChart.rawDataset.length > 0) {
+                let rawData = reportPage1.permitRequestSummaryByProvinceChart.rawDataset.slice();
+                rawData[0].forEach(function (item) {
+                    tempValue.push(0);
+                    labelsID.push(item.ProvinceID);
+                });
+
+                for (let i = 0; i < rawData.length; i++) {
+                    rawData[i].forEach(function (itemm, idx) {
+                        tempValue[idx] += itemm.DisplayValue;
+                    });
+                }
+
+                let tempIndex = labelsID.slice();
+                let arrayOfObj = labelsID.map(function(id, i) {
+                    return {
+                        data: tempValue[i] || 0,
+                        id: id
+                    };
+                });
+
+                let sortedArrayOfObj = arrayOfObj.sort(function(a, b) {
+                    return b.data - a.data;
+                });
+
+                let sortedArrayLabelID = [];
+                sortedArrayOfObj.forEach(function(d) {
+                    sortedArrayLabelID.push(d.id);
+                });
+
+                rawData.forEach(function (dataYear) {
+                    let dataArray = [];
+                    for (let i = 0; i < dataYear.length; i++) {
+                        dataArray[i] = dataYear[tempIndex.indexOf(sortedArrayLabelID[i])];
+                    }
+                    
+                    var i, datasetIndex, chunk = 10;
+                    let arrayData = [];
+                    for (i = 0, datasetIndex = 0; i < dataArray.length; i += chunk, datasetIndex++) {
+                        arrayData.push(dataArray.slice(i, i + chunk));
+                    }
+                    datasets.push(arrayData);
+                });
+            }
+        }
+        reportPage1.permitRequestSummaryByProvinceChart.datasetChunk = datasets;
+        onProvincePaginationChange(reportPage1.permitRequestSummaryByProvinceChart.currentPage);
+    }
+
+    function getSummaryRequestByBusiness() {
+        var requestParam = {
+            Year: $("#year-seaching-bybusiness").select2("val"),
+            Quater: $("#quater-seaching-bybusiness").select2("val"),
+            Month: $("#month-seaching-bybusiness").select2("val")
+        }
+        reportPage1.permitRequestSummaryByBusinessChart.isLoading = true;
+        showReportLoading(true, "กำลังโหลด...");
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/Api/V2/Report/SummaryPermitByBusinessGroup")',
+            data: JSON.stringify(requestParam),
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (result) {
+                reportPage1.permitRequestSummaryByBusinessChart.rawDataset = result.dataset;
+                updateSummaryRequestByBusinessChart(result.dataset);
+                updateSelect2Option(result.yearSearch, "year-seaching-bybusiness");
+                $("#order-state-bybusiness").val("true").trigger('change');
+                $("#btn-order-bybusiness").removeClass("btn-light");
+                $("#btn-order-bybusiness").addClass("btn-dark");
+                reportPage1.permitRequestSummaryByBusinessChart.isLoading = false;
+                showReportLoading(false);
+            },
+            error: function (xhr, status, error) {
+                let err = eval("(" + xhr.responseText + ")");
+                console.log(err.Message);
+                reportPage1.permitRequestSummaryByBusinessChart.isLoading = false;
+                showReportLoading(reportPage1.permitRequestSummaryByBusinessChart.isLoading ||
+                    reportPage1.permitRequestSummaryByMomentChart.isLoading ||
+                    reportPage1.permitRequestSummaryByProvinceChart.isLoading);
+                $("#pagination-ddl-bybusiness").trigger('change');
+            }
+        });
+    }
+
+    function getSummaryRequestByMoment() {
+        var requestParam = {
+            Year: $("#year-seaching-bymoment").select2("val"),
+            Quater: $("#quater-seaching-bymoment").select2("val"),
+            Month: $("#month-seaching-bymoment").select2("val")
+        }
+        reportPage1.permitRequestSummaryByMomentChart.isLoading = true;
+        showReportLoading(true, "กำลังโหลด...");
+        
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/Api/v2/Report/SummaryPermitByMomentGroup")',
+            data: JSON.stringify(requestParam),
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (result) {
+                reportPage1.permitRequestSummaryByMomentChart.rawDataset = result.dataset;
+                updateSummaryRequestByMomentChart(result.dataset);
+                updateSelect2Option(result.yearSearch, "year-seaching-bymoment");
+                $("#order-state-bymoment").val("true").trigger('change');
+                $("#btn-order-bymoment").removeClass("btn-light");
+                $("#btn-order-bymoment").addClass("btn-dark");
+                reportPage1.permitRequestSummaryByMomentChart.isLoading = false;
+                showReportLoading(false);
+            },
+            error: function (xhr, status, error) {
+                let err = eval("(" + xhr.responseText + ")");
+                console.log(err.Message);
+                reportPage1.permitRequestSummaryByMomentChart.isLoading = false;
+                showReportLoading(reportPage1.permitRequestSummaryByBusinessChart.isLoading ||
+                    reportPage1.permitRequestSummaryByMomentChart.isLoading ||
+                    reportPage1.permitRequestSummaryByProvinceChart.isLoading);
+                $("#pagination-ddl-bymoment").trigger('change');
+            }
+        });
+    }
+
+    function getSummaryRequestByProvince() {
+        var requestParam = {
+            Year: $("#year-seaching-byprovince").select2("val"),
+            Quater: $("#quater-seaching-byprovince").select2("val"),
+            Month: $("#month-seaching-byprovince").select2("val")
+        }
+        reportPage1.permitRequestSummaryByProvinceChart.isLoading = true;
+        showReportLoading(true, "กำลังโหลด...");
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/Api/v2/Report/SummaryPermitByProvinceGroup")',
+            data: JSON.stringify(requestParam),
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (result) {
+                reportPage1.permitRequestSummaryByProvinceChart.rawDataset = result.dataset;
+                updateSummaryRequestByProvinceChart(result.dataset);
+                updateSelect2Option(result.yearSearch, "year-seaching-byprovince");
+                $("#order-state-byprovince").val("true").trigger('change');
+                $("#btn-order-byprovince").removeClass("btn-light");
+                $("#btn-order-byprovince").addClass("btn-dark");
+                reportPage1.permitRequestSummaryByProvinceChart.isLoading = false;
+                showReportLoading(false);
+            },
+            error: function (xhr, status, error) {
+                let err = eval("(" + xhr.responseText + ")");
+                console.log(err.Message);
+                reportPage1.permitRequestSummaryByProvinceChart.isLoading = false;
+                showReportLoading(reportPage1.permitRequestSummaryByBusinessChart.isLoading ||
+                    reportPage1.permitRequestSummaryByMomentChart.isLoading ||
+                    reportPage1.permitRequestSummaryByProvinceChart.isLoading);
+                $("#pagination-ddl-byprovince").trigger('change');
+            }
+        });
+    }
+
+    function updateSummaryRequestByBusinessChart(dataset) {
+        // chunk dataset
+        reportPage1.permitRequestSummaryByBusinessChart.datasetChunk = [];
+        dataset.forEach(function (chartDataset) {
+            var i, datasetIndex, chunk = 10;
+            let arrayData = [];
+            for (i = 0, datasetIndex = 0; i < chartDataset.length; i += chunk, datasetIndex++) {
+                arrayData.push(chartDataset.slice(i, i + chunk));
+            }
+            reportPage1.permitRequestSummaryByBusinessChart.datasetChunk.push(arrayData);
+        });
+        if (reportPage1.permitRequestSummaryByBusinessChart.datasetChunk.length > 0) {
+            let paginationDDL = [];
+            reportPage1.permitRequestSummaryByBusinessChart.datasetChunk[0].forEach(function (elem, idx) {
+                paginationDDL.push(
+                    {
+                        id: idx,
+                        text: idx + 1
+                    });
+            });
+            updateSelect2Option(paginationDDL, "pagination-ddl-bybusiness");
+        }
+
+        let barColor = [];
+        reportPage1.permitRequestSummaryByBusinessChart.chartObj.data.datasets = [];
+        reportPage1.permitRequestSummaryByBusinessChart.datasetChunk.forEach(function (item, index) {
+            let dynamicColors = function () {
+                let r = Math.floor(Math.random() * 255);
+                let g = Math.floor(Math.random() * 255);
+                let b = Math.floor(Math.random() * 255);
+                return "rgba(" + r + ", " + g + ", " + b;
+            };
+            let color = dynamicColors();
+            while (barColor.includes(color)) {
+                color = dynamicColors();
+            }
+            barColor.push(color);
+            let dataArray = [];
+            item[0].forEach(function (dataItem, idx) {
+                let value = dataItem.DisplayValue == null ? 0 : parseInt(dataItem.DisplayValue);
+                dataArray.push(value);
+            });
+            let datasetData = {
+                label: "พ.ศ." + Number(item[0][0].Year + 543).toString(),
+                backgroundColor: color + ", 0.2)",
+                borderColor: color + ", 1)",
+                borderWidth: 1,
+                data: dataArray
+            }
+            reportPage1.permitRequestSummaryByBusinessChart.chartObj.data.datasets.push(datasetData);
+        });
+        $("#pagination-ddl-bybusiness").val('0').trigger('change');
+    }
+
+    function updateSummaryRequestByMomentChart(dataset) {
+        // chunk dataset
+        reportPage1.permitRequestSummaryByMomentChart.datasetChunk = [];
+        dataset.forEach(function (chartDataset) {
+            var i, datasetIndex, chunk = 10;
+            let arrayData = [];
+            for (i = 0, datasetIndex = 0; i < chartDataset.length; i += chunk, datasetIndex++) {
+                arrayData.push(chartDataset.slice(i, i + chunk));
+            }
+            reportPage1.permitRequestSummaryByMomentChart.datasetChunk.push(arrayData);
+        });
+        if (reportPage1.permitRequestSummaryByMomentChart.datasetChunk.length > 0) {
+            let paginationDDL = [];
+            reportPage1.permitRequestSummaryByMomentChart.datasetChunk[0].forEach(function (elem, idx) {
+                paginationDDL.push(
+                    {
+                        id: idx,
+                        text: idx + 1
+                    });
+            });
+            updateSelect2Option(paginationDDL, "pagination-ddl-bymoment");
+        }
+
+        let barColor = [];
+        reportPage1.permitRequestSummaryByMomentChart.chartObj.data.datasets = [];
+        reportPage1.permitRequestSummaryByMomentChart.datasetChunk.forEach(function (item, index) {
+            let dynamicColors = function () {
+                let r = Math.floor(Math.random() * 255);
+                let g = Math.floor(Math.random() * 255);
+                let b = Math.floor(Math.random() * 255);
+                return "rgba(" + r + ", " + g + ", " + b;
+            };
+            let color = dynamicColors();
+            while (barColor.includes(color)) {
+                color = dynamicColors();
+            }
+            barColor.push(color);
+            let dataArray = [];
+            item[0].forEach(function (dataItem, idx) {
+                let value = dataItem.DisplayValue == null ? 0 : parseInt(dataItem.DisplayValue);
+                dataArray.push(value);
+            });
+            let datasetData = {
+                label: "พ.ศ." + Number(item[0][0].Year + 543).toString(),
+                backgroundColor: color + ", 0.2)",
+                borderColor: color + ", 1)",
+                borderWidth: 1,
+                data: dataArray
+            }
+            reportPage1.permitRequestSummaryByMomentChart.chartObj.data.datasets.push(datasetData);
+        });
+        $("#pagination-ddl-bymoment").val('0').trigger('change');
+    }
+
+    function updateSummaryRequestByProvinceChart(dataset) {
+        // chunk dataset
+        reportPage1.permitRequestSummaryByProvinceChart.datasetChunk = [];
+        dataset.forEach(function (chartDataset) {
+            var i, datasetIndex, chunk = 10;
+            let arrayData = [];
+            for (i = 0, datasetIndex = 0; i < chartDataset.length; i += chunk, datasetIndex++) {
+                arrayData.push(chartDataset.slice(i, i + chunk));
+            }
+            reportPage1.permitRequestSummaryByProvinceChart.datasetChunk.push(arrayData);
+        });
+        if (reportPage1.permitRequestSummaryByProvinceChart.datasetChunk.length > 0) {
+            let paginationDDL = [];
+            reportPage1.permitRequestSummaryByProvinceChart.datasetChunk[0].forEach(function (elem, idx) {
+                paginationDDL.push(
+                    {
+                        id: idx,
+                        text: idx + 1
+                    });
+            });
+            updateSelect2Option(paginationDDL, "pagination-ddl-byprovince");
+        }
+
+        let barColor = [];
+        reportPage1.permitRequestSummaryByProvinceChart.chartObj.data.datasets = [];
+        reportPage1.permitRequestSummaryByProvinceChart.datasetChunk.forEach(function (item, index) {
+            let dynamicColors = function () {
+                let r = Math.floor(Math.random() * 255);
+                let g = Math.floor(Math.random() * 255);
+                let b = Math.floor(Math.random() * 255);
+                return "rgba(" + r + ", " + g + ", " + b;
+            };
+            let color = dynamicColors();
+            while (barColor.includes(color)) {
+                color = dynamicColors();
+            }
+            barColor.push(color);
+            let dataArray = [];
+            item[0].forEach(function (dataItem, idx) {
+                let value = dataItem.DisplayValue == null ? 0 : parseInt(dataItem.DisplayValue);
+                dataArray.push(value);
+            });
+            let datasetData = {
+                label: "พ.ศ." + Number(item[0][0].Year + 543).toString(),
+                backgroundColor: color + ", 0.2)",
+                borderColor: color + ", 1)",
+                borderWidth: 1,
+                data: dataArray
+            }
+            reportPage1.permitRequestSummaryByProvinceChart.chartObj.data.datasets.push(datasetData);
+        });
+        $("#pagination-ddl-byprovince").val('0').trigger('change');
+    }
+
+    function onBusinessPaginationChange(page) {
+        if (isNumber(page)) {
+            reportPage1.permitRequestSummaryByBusinessChart.currentPage = page;
+            let labelsArray = [];
+            let labelsColor = [];
+            let maxXAxesHeight = 0;
+            if (reportPage1.permitRequestSummaryByBusinessChart.chartObj.data.datasets.length > 0) {
+                reportPage1.permitRequestSummaryByBusinessChart.datasetChunk.forEach(function (item, index) {
+                    let dataArray = [];
+                    item[page].forEach(function (dataItem, idx) {
+                        let value = dataItem.DisplayValue == null ? 0 : parseInt(dataItem.DisplayValue);
+                        dataArray.push(value);
+                        if (value > maxXAxesHeight) {
+                            maxXAxesHeight = value;
+                        }
+                    });
+
+                    reportPage1.permitRequestSummaryByBusinessChart.chartObj.data.datasets[index].data = dataArray;
+                });
+                if (reportPage1.permitRequestSummaryByBusinessChart.datasetChunk.length > 0) {
+                    reportPage1.permitRequestSummaryByBusinessChart.datasetChunk[0][page].forEach(function (item, index) {
+                        labelsArray.push([item.BusinessNameTH, item.BusinessNameEN]);
+                        labelsColor.push(reportPage1.permitRequestSummaryByBusinessChart.yAxesBaseLabelsColor[index % reportPage1.permitRequestSummaryByBusinessChart.yAxesBaseLabelsColor.length]);
+                    });
+                    reportPage1.permitRequestSummaryByBusinessChart.chartObj.options.scales.xAxes[0].ticks.suggestedMax = maxXAxesHeight + 10;
+                }
+                reportPage1.permitRequestSummaryByBusinessChart.chartObj.data.labels = labelsArray;
+                reportPage1.permitRequestSummaryByBusinessChart.defaultPermitRequestSummaryByBusinessLabels = labelsArray.slice();
+                reportPage1.permitRequestSummaryByBusinessChart.defaultPermitRequestSummaryByBusinessDatasets = reportPage1.permitRequestSummaryByBusinessChart.chartObj.data.datasets.slice();
+                reportPage1.permitRequestSummaryByBusinessChart.chartObj.options.scales.yAxes[0].ticks.fontColor = labelsColor;
+                reportPage1.permitRequestSummaryByBusinessChart.chartObj.update();
+            }
+        }
+
+        let paginationDDLLength = $('#pagination-ddl-bybusiness > option').length;
+        if (paginationDDLLength == 0) {
+            $('#pagination-ddl-bybusiness').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pagination-ddl-bybusiness').removeAttr('disabled');
+        }
+
+        if (reportPage1.permitRequestSummaryByBusinessChart.currentPage <= 0) {
+            $("#prev-bybusiness").attr('disabled', 'disabled');
+        }
+        else {
+            $("#prev-bybusiness").removeAttr('disabled');
+        }
+
+        if (reportPage1.permitRequestSummaryByBusinessChart.currentPage >= paginationDDLLength - 1) {
+            $("#next-bybusiness").attr('disabled', 'disabled');
+        }
+        else {
+            $("#next-bybusiness").removeAttr('disabled');
+        }
+        
+    }
+
+    function onMomentPaginationChange(page) {
+        if (isNumber(page)) {
+            reportPage1.permitRequestSummaryByMomentChart.currentPage = page;
+            let labelsArray = [];
+            let labelsColor = [];
+            let maxXAxesHeight = 0;
+            if (reportPage1.permitRequestSummaryByMomentChart.chartObj.data.datasets.length > 0) {
+                reportPage1.permitRequestSummaryByMomentChart.datasetChunk.forEach(function (item, index) {
+                    let dataArray = [];
+                    item[page].forEach(function (dataItem, idx) {
+                        let value = dataItem.DisplayValue == null ? 0 : parseInt(dataItem.DisplayValue);
+                        dataArray.push(value);
+                        if (value > maxXAxesHeight) {
+                            maxXAxesHeight = value;
+                        }
+                    });
+
+                    reportPage1.permitRequestSummaryByMomentChart.chartObj.data.datasets[index].data = dataArray;
+                });
+                if (reportPage1.permitRequestSummaryByMomentChart.datasetChunk.length > 0) {
+                    reportPage1.permitRequestSummaryByMomentChart.datasetChunk[0][page].forEach(function (item, index) {
+                        labelsArray.push(item.ApplicationName);
+                        labelsColor.push(reportPage1.permitRequestSummaryByMomentChart.yAxesBaseLabelsColor[index % reportPage1.permitRequestSummaryByMomentChart.yAxesBaseLabelsColor.length]);
+                    });
+                    reportPage1.permitRequestSummaryByMomentChart.chartObj.options.scales.xAxes[0].ticks.suggestedMax = maxXAxesHeight + 10;
+                }
+                reportPage1.permitRequestSummaryByMomentChart.chartObj.data.labels = labelsArray;
+                reportPage1.permitRequestSummaryByMomentChart.defaultPermitRequestSummaryByMomentLabels = labelsArray.slice();
+                reportPage1.permitRequestSummaryByMomentChart.defaultPermitRequestSummaryByMomentDatasets = reportPage1.permitRequestSummaryByMomentChart.chartObj.data.datasets.slice();
+                reportPage1.permitRequestSummaryByMomentChart.chartObj.options.scales.yAxes[0].ticks.fontColor = labelsColor;
+                reportPage1.permitRequestSummaryByMomentChart.chartObj.update();
+            }
+        }
+        let paginationDDLLength = $('#pagination-ddl-bymoment > option').length;
+        if (paginationDDLLength == 0) {
+            $('#pagination-ddl-bymoment').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pagination-ddl-bymoment').removeAttr('disabled');
+        }
+
+        if (reportPage1.permitRequestSummaryByMomentChart.currentPage <= 0) {
+            $("#prev-bymoment").attr('disabled', 'disabled');
+        }
+        else {
+            $("#prev-bymoment").removeAttr('disabled');
+        }
+
+        if (reportPage1.permitRequestSummaryByMomentChart.currentPage >= paginationDDLLength - 1) {
+            $("#next-bymoment").attr('disabled', 'disabled');
+        }
+        else {
+            $("#next-bymoment").removeAttr('disabled');
+        }
+    }
+
+    function onProvincePaginationChange(page) {
+        if (isNumber(page)) {
+            reportPage1.permitRequestSummaryByProvinceChart.currentPage = page;
+            let labelsArray = [];
+            let labelsColor = [];
+            let maxYAxesHeight = 0;
+            if (reportPage1.permitRequestSummaryByProvinceChart.chartObj.data.datasets.length > 0) {
+                reportPage1.permitRequestSummaryByProvinceChart.datasetChunk.forEach(function (item, index) {
+                    let dataArray = [];
+                    item[page].forEach(function (dataItem, idx) {
+                        let value = dataItem.DisplayValue == null ? 0 : parseInt(dataItem.DisplayValue);
+                        dataArray.push(value);
+                        if (value > maxYAxesHeight) {
+                            maxYAxesHeight = value;
+                        }
+                    });
+                    reportPage1.permitRequestSummaryByProvinceChart.chartObj.data.datasets[index].data = dataArray;
+                });
+                if (reportPage1.permitRequestSummaryByProvinceChart.datasetChunk.length > 0) {
+                    reportPage1.permitRequestSummaryByProvinceChart.datasetChunk[0][page].forEach(function (item, index) {
+                        labelsArray.push(item.ProvinceName);
+                        labelsColor.push(reportPage1.permitRequestSummaryByProvinceChart.xAxesBaseLabelsColor[index % reportPage1.permitRequestSummaryByProvinceChart.xAxesBaseLabelsColor.length]);
+                    });
+                    reportPage1.permitRequestSummaryByProvinceChart.chartObj.options.scales.yAxes[0].ticks.suggestedMax = maxYAxesHeight + 10;
+                }
+                reportPage1.permitRequestSummaryByProvinceChart.chartObj.data.labels = labelsArray;
+                reportPage1.permitRequestSummaryByProvinceChart.defaultPermitRequestSummaryByProvinceLabels = labelsArray.slice();
+                reportPage1.permitRequestSummaryByProvinceChart.defaultPermitRequestSummaryByProvinceDatasets = reportPage1.permitRequestSummaryByProvinceChart.chartObj.data.datasets.slice();
+                reportPage1.permitRequestSummaryByProvinceChart.chartObj.options.scales.xAxes[0].ticks.fontColor = labelsColor;
+                reportPage1.permitRequestSummaryByProvinceChart.chartObj.update();
+            }
+        }
+        let paginationDDLLength = $('#pagination-ddl-byprovince > option').length;
+        if (paginationDDLLength == 0) {
+            $('#pagination-ddl-byprovince').attr('disabled', 'disabled');
+        }
+        else {
+            $('#pagination-ddl-byprovince').removeAttr('disabled');
+        }
+        if (reportPage1.permitRequestSummaryByProvinceChart.currentPage <= 0) {
+            $("#prev-byprovince").attr('disabled', 'disabled');
+        }
+        else {
+            $("#prev-byprovince").removeAttr('disabled');
+        }
+
+        if (reportPage1.permitRequestSummaryByProvinceChart.currentPage >= paginationDDLLength - 1) {
+            $("#next-byprovince").attr('disabled', 'disabled');
+        }
+        else {
+            $("#next-byprovince").removeAttr('disabled');
+        }
+    }
+</script>
+

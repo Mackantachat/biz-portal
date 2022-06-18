@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQuiz.cshtml";
+}
+
+<div class="container">
+
+    <div class="wrap-form">
+        <p class="title">1. ร้านอาหารของคุณขายเครื่องดื่มแอลกอฮอลหรือไม่ เช่น เบียร์ ไวน์ เหล้า</p>
+        <div class="form">
+            <!-- <input type="checkbox" class="biz-checkbox" id="checkbox-1-1" class="ui-checkbox" checked/><label for="checkbox-1-1">ก่อสร้าง</label> -->
+            <input type="radio" class="biz-radio" id="s1-1" name="s1" value="1"><label for="s1-1">ใช่ ร้านของฉันขายเครื่องดื่มแอลกอฮอล์</label>
+            <input type="radio" class="biz-radio" id="s1-2" name="s1" value="2"><label for="s1-2">ไม่ใช่ ร้านของฉันไม่ขายเครื่องดื่มแอลกอฮอล์</label>
+        </div>
+    </div>
+
+    <div class="wrap-form">
+        <p class="title">2. ร้านอาหารของคุณมีบริการเหล่านี้หรือไม่ (เลือกได้มากกว่า 1 ข้อ)</p>
+        <div class="form">
+            <input type="checkbox" class="biz-checkbox" id="s2-11"><label for="s2-11">มีการแสดงดนตรีสดก่อนเที่ยงคืน</label>
+            <input type="checkbox" class="biz-checkbox" id="s2-12"><label for="s2-12">มีการแสดงดนตรีสดหลังเที่ยงคืน</label>
+            <input type="checkbox" class="biz-checkbox" id="s2-13"><label for="s2-13">มีการเต้น เช่น เต้นบริเวณโต๊ะ หรือ เต้นบนเวที </label>
+            <input type="checkbox" class="biz-checkbox" id="s2-14"><label for="s2-14">มีฟลอร์สำหรับเต้นหรือเต้นรำ</label>
+            <input type="checkbox" class="biz-checkbox" id="s2-15"><label for="s2-15">มีการให้พนักงานนั่งบริการลูกค้าโดยเฉพาะ เช่น ปรนนิบัติ นั่งเป็นเพื่อน หรือร้องเพลงด้วย</label>
+        </div>
+    </div>
+
+    <div class="wrap-form">
+        <p class="title">3. ร้านอาหารของคุณมีการใช้พื้นที่ที่เป็นทางสาธารณะหรือไม่ เช่น ฟุตบาท ทางเท้า <a href="#" class="form-info"><i class="fa fa-info-circle"></i></a></p>
+        <div class="form">
+            <input type="radio" class="biz-radio" id="m3-1" name="m3" value=""><label for="m3-1">ใช่ ร้านของฉันใช้พื้นที่ที่เป็นทางสาธารณะ</label>
+            <input type="radio" class="biz-radio" id="m3-2" name="m3" value=""><label for="m3-2">ไม่ใช่ ร้านของฉันไม่ใช่พื้นที่ที่เป็นทางสาธารณะ</label>
+        </div>
+    </div>
+
+    <div class="wrap-form">
+        <p class="title">4. ร้านอาหารของคุณมีพื้นที่ใช้สอยเท่าใด (ไม่รวมที่จอดรถ)</p>
+        <div class="form">
+            <input type="radio" class="biz-radio" id="s4-1" name="s4" value=""><label for="s4-1">มีพื้นที่ (ไม่รวมที่จอดรถ) น้อยกว่า 200 ตารางเมตร</label>
+            <input type="radio" class="biz-radio" id="s4-2" name="s4" value=""><label for="s4-2">มีพื้นที่ (ไม่รวมที่จอดรถ) ตั้งแต่ 200 ตารางเมตรขึ้นไป</label>
+        </div>
+    </div>
+
+    <div class="wrap-form">
+        <p class="title">
+            5. ร้านอาหารของคุณมีการผลิต สะสม หรือแบ่งบรรจุอาหาร/เครื่องดื่มเพื่อขายเป็นผลิตภัณฑ์ให้ลูกค้าซื้อกลับบ้าน โดยมีการทำในปริมาณมาก
+            จนก่อให้เกิดมลภาวะที่เป็นอันตรายต่อสุขภาพ เช่น มีเสียงดัง หรือกลิ่นรุนแรงหรือไม่  (ตัวอย่างเช่น ผลิตน้ำปลาหรือปลาร้าเพื่อขาย)
+        </p>
+        <div class="form">
+            <input type="radio" class="biz-radio" id="s5-1" name="s5" value=""><label for="s5-1">ใช่ ร้านของฉันมีกิจกรรมดังกล่าวในปริมาณมาก อาจก่อให้เกิดมลภาวะที่เป็นอันตรายต่อสุขภาพ</label>
+            <input type="radio" class="biz-radio" id="s5-2" name="s5" value=""><label for="s5-2">ไม่ใช่ ร้านของฉันไม่มีกิจกรรมที่อาจก่อให้เกิดมลภาวะที่เป็นอันตรายต่อสุขภาพ</label>
+        </div>
+    </div>
+
+    <div class="wrap-form tab">
+        <p class="title">
+            ร้านอาหารของคุณมีการผลิต สะสม หรือแบ่ง <a href="#" class="form-info">บรรจุอาหาร/เครื่องดื่มเหล่านี้ <i class="fa fa-info-circle"></i></a><br>
+            เพื่อขายเป็นผลิตภัณฑ์ให้ลูกค้าซื้อกลับบ้านหรือไม่
+        </p>
+        <div class="wrap-form info">
+            <a href="" class="close"><i class="fa fa-times-circle"></i></a>
+            <div class="row">
+                <div class="D-6 M-12">
+                    <p class="info">- น้ําพริกแกง น้ําพริกปรุงสําเร็จ เต้าเจี้ยว ซีอิ๊ว น้ําจิ้ม หรือซอสปรุงรสชนิดต่าง ๆ</p>
+                    <p class="info">
+                        - อาหารหมัก ดอง จากสัตว์ ได้แก่ ปลาร้า
+                        ปลาเจ่า กุ้งเจ่า ปลาส้ม ปลาจ่อม แหนม หม่ํา ไส้กรอก กะปิ น้ําปลา หอยดอง น้ําเคย น้ําบูดู ไตปลา หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน
+                    </p>
+                    <p class="info">- อาหารหมัก ดอง แช่อิ่ม จากผัก ผลไม้ หรือพืชอย่างอื่น</p>
+                    <p class="info">- อาหารจากพืชหรือสัตว์โดยตาก บด นึ่ง ต้ม ตุ๋น เคี่ยว กวน ฉาบ ทอด อบ รมควัน ปิ้ง ย่าง เผา หรือวิธีอื่นใด</p>
+                    <p class="info">- ลูกชิ้น</p>
+                    <p class="info">- เส้นหมี่ ขนมจีน ก๋วยเตี๋ยว เต้าฮวย เต้าหู้ วุ้นเส้น เกี้ยมอี๋ เนื้อสัตว์เทียม หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน</p>
+                    <p class="info">- บะหมี่ มักกะโรนี สปาเกตตี้ พาสตา หรือผลิตภัณฑ์อื่น ๆ ที่คล้ายคลึงกัน (เฉพาะผลิตเท่านั้น ไม่รวมเก็บสะสม แบ่งบรรจุ)</p>
+                    <p class="info">- ขนมปังสด ขนมปังแห้ง จันอับ ขนมเปี๊ยะ ขนมอบอื่น ๆ</p>
+                </div>
+                <div class="D-6 M-12">
+                    <p class="info">- น้ํานม หรือผลิตภัณฑ์จากน้ํานมสัตว์</p>
+                    <p class="info">- เนย เนยเทียม เนยผสม ผลิตภัณฑ์เนย ผลิตภัณฑ์เนยเทียม และผลิตภัณฑ์เนยผสม</p>
+                    <p class="info">- ไอศกรีม (เฉพาะผลิตเท่านั้น ไม่รวมเก็บสะสม แบ่งบรรจุ)</p>
+                    <p class="info">- กาแฟ (คั่ว เก็บสะสม หรือบรรจุ)</p>
+                    <p class="info">- ใบชาแห้ง ชาผง หรือเครื่องดื่มชนิดผงอื่น ๆ</p>
+                    <p class="info">- เอทิลแอลกอฮอล์ สุรา เบียร์ ไวน์ น้ําส้มสายชู ข้าวหมาก น้ําตาลเมา</p>
+                    <p class="info">- น้ํากลั่น น้ําบริโภค น้ําดื่มจากเครื่องจําหน่ายอัตโนมัติ </p>
+                    <p class="info">- น้ําแข็ง (รวมถึงการขนส่ง)</p>
+                    <p class="info">- น้ําอัดลม น้ําหวาน น้ําโซดา น้ําจากพืชผัก ผลไม้ เครื่องดื่มชนิดต่าง ๆ บรรจุกระป๋อง ขวดหรือภาชนะอื่นใด</p>
+                    <p class="info">- ผงชูรส หรือสารปรุงแต่งอาหาร</p>
+                    <p class="info">- น้ําตาล น้ําเชื่อม</p>
+                    <p class="info">- แบะแซ (น้ำเชื่อมข้าวโพด)</p>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <input type="radio" class="biz-radio" id="s6-1" name="s6" value=""><label for="s6-1">ใช่ ร้านของฉันมีกิจกรรมดังกล่าวในปริมาณมาก อาจก่อให้เกิดมลภาวะที่เป็นอันตรายต่อสุขภาพ</label>
+            <input type="radio" class="biz-radio" id="s6-2" name="s6" value=""><label for="s6-2">ไม่ใช่ ร้านของฉันไม่มีกิจกรรมที่อาจก่อให้เกิดมลภาวะที่เป็นอันตรายต่อสุขภาพ</label>
+        </div>
+    </div>
+
+</div>
+

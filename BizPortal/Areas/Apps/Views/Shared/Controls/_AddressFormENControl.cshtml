@@ -1,0 +1,722 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var address = Model.Data as AddressControlData;
+    var rd = Model.DisplayReadonly;
+    var autofillAttr = AutoFillConditionHelper.GetAttributes(Model);
+    bool isRequired = (Model.Rules != null) && Model.Rules.Any(o => o.Type == ValidationType.Required);
+
+    var addrNo = "Address No : " + (isRequired ? "*" : "");
+    if (Model.AddressForm_IgnoreAddressControl)
+    {
+        addrNo = "Address No :";
+    }
+}
+    <div data-control-name="@Model.Control"
+         class="@autofillAttr.Class"
+         @autofillAttr.Data
+         @autofillAttr.DataSourceFromDraft
+         @autofillAttr.DataSourceIsAddressControl
+         @autofillAttr.DataSourceSection
+         @autofillAttr.DataSourceControl>
+
+        @* ADDRESS_NO, MOO *@
+        <div class="row">
+            <div class="col-md-4">
+                <label>@addrNo :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN", Model.DataKey), address != null ? address.Address : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN", Model.ClientID) })
+            </div>
+            <script type="text/javascript">
+            $(function () {
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN", Model.ClientID)").mask('A', {
+                    translation: {
+                        'A': {
+                            pattern: /[\d\/]/, optional: true, recursive: true
+                        }
+                    }
+                });
+            });
+            </script>
+            <div class="col-md-2">
+                <label>Moo :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_MOO", Model.DataKey), address != null ? address.Moo : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_MOO", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_MOO", Model.ClientID) })
+            </div>
+            <script type="text/javascript">
+            $(function () {
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_MOO", Model.ClientID)").mask('A', {
+                    translation: {
+                        'A': {
+                            pattern: /\d/, optional: true, recursive: true
+                        }
+                    }
+                });
+            });
+            </script>
+            @if (Model.AddressFormEN_ShowVillageControl)
+            {
+                <div class="col-md-6">
+                    <label>Muban :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_MUBAN_EN", Model.DataKey), address != null ? address.Address : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MUBAN_EN", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MUBAN_EN", Model.ClientID) })
+                </div>
+                <script type="text/javascript">
+                $(function () {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_MUBAN_EN", Model.ClientID)").mask('A', {
+                        translation: {
+                            'A': {
+                                pattern: /[\w\s\/]/, optional: true, recursive: true
+                            }
+                        }
+                    });
+                });
+                </script>
+            }
+        </div>
+        @* VILLAGE & SOI *@
+    <div class="row">
+        @*<div class="col-md-6">
+            <label>Village :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_VILLAGE", Model.DataKey), address != null ? address.Village : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_VILLAGE", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_VILLAGE", Model.ClientID) })
+        </div>*@
+        <div class="col-md-6">
+            <label>Trok/Soi :</label>
+            @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_SOI", Model.DataKey), address != null ? address.Soi : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_SOI", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_SOI", Model.ClientID) })
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_SOI", Model.ClientID)").mask('A', {
+                    translation: {
+                        'A': {
+                            pattern: /[\w\s\/]/, optional: true, recursive: true
+                        }
+                    }
+                });
+            });
+        </script>
+        @* BUILDING + FLOOR & ROAD *@
+        @if (Model.AddressFormEN_ShowBuildingControl)
+        {
+            <div class="col-md-4">
+                <label>Building :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_BUILDING", Model.DataKey), address != null ? address.Building : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_BUILDING", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_BUILDING", Model.ClientID) })
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_BUILDING", Model.ClientID)").mask('A', {
+                        translation: {
+                            'A': {
+                                pattern: /[\w\s\/@@#&()-:,\.\+]/, optional: true, recursive: true
+                            }
+                        }
+                    });
+                });
+            </script>
+            <div class="col-md-2">
+                <label>Room :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_ROOMNO", Model.DataKey), address != null ? address.Floor : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROOMNO", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROOMNO", Model.ClientID) })
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_ROOMNO", Model.ClientID)").mask('A', {
+                        translation: {
+                            'A': {
+                                pattern: /[\d\/\-]/, optional: true, recursive: true
+                            }
+                        }
+                    });
+                });
+            </script>
+            <div class="col-md-2">
+                <label>Floor :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_FLOOR", Model.DataKey), address != null ? address.Floor : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_FLOOR", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_FLOOR", Model.ClientID) })
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_FLOOR", Model.ClientID)").mask('A', {
+                        translation: {
+                            'A': {
+                                pattern: /\w/, optional: true, recursive: true
+                            }
+                        }
+                    });
+                });
+            </script>
+        }
+        @if (Model.AddressFormEN_ShowBuildingControl)
+        {
+            <div class="col-md-4">
+                <label>Road :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.DataKey), address != null ? address.Road : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.ClientID) })
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.ClientID)").mask('A', {
+                        translation: {
+                            'A': {
+                            pattern: /[\w\s\/]/, optional: true, recursive: true
+                            }
+                        }
+                    });
+                });
+            </script>          
+        }
+        else
+        {
+            <div class="col-md-6">
+                <label>Road :</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.DataKey), address != null ? address.Road : string.Empty, rd ? (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.ClientID), @readonly = "readonly" } : (object)new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.ClientID) })
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_ROAD", Model.ClientID)").mask('A', {
+                        translation: {
+                            'A': {
+                            pattern: /[\w\s\/]/, optional: true, recursive: true
+                            }
+                        }
+                    });
+                });
+            </script>
+        }
+    </div>
+
+        @* PROVINCE & AMPHUR *@
+        @if (rd)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Province : @(isRequired ? "*" : "")</label>
+                    <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.ID : null)" />
+                    <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_PROVINCE", Model.ClientID)" value="@(address != null ? address.Province.Text : null)" readonly />
+                </div>
+                <div class="col-md-6">
+                    <label>District/Amphur : @(isRequired ? "*" : "")</label>
+                    <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.ID : null)" />
+                    <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_AMPHUR", Model.ClientID)" value="@(address != null ? address.Amphur.Text : null)" readonly />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Province : @(isRequired ? "*" : "")</label>
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>District/Amphur : @(isRequired ? "*" : "")</label>
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        }
+
+        @* TUMBOL & POSTCODE *@
+        <div class="row">
+            @if (rd)
+            {
+                <div class="col-md-6">
+                    <label>Sub-District/Tumbol : @(isRequired ? "*" : "")</label>
+                    <input type="hidden" name="@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.ID : null)" />
+                    <input type="text" class="form-control" name="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}_TEXT", "ADDRESS_EN_TUMBOL", Model.ClientID)" value="@(address != null ? address.Tumbol.Text : null)" readonly />
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6">
+                    <label>Sub-District/Tumbol : @(isRequired ? "*" : "")</label>
+                    <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.DataKey)" id="@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)">
+                        <option></option>
+                    </select>
+                </div>
+            }
+
+            <div class="col-md-6">
+                <label>Postcode : @(isRequired ? "*" : "")</label>
+                @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_POSTCODE", Model.DataKey), null, new { @class = "form-control", id = string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID), @maxlength = "5" })
+                <select class="form-control" name="@string.Format("{0}_{1}", "ADDRESS_EN_POSTCODE", Model.DataKey)" id="@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)" disabled style="display:none;">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        @* TELEPHONE & FAX *@
+        @if (Model.AddressForm_ShowTelephoneControl)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Tel : @(isRequired ? "*" : "")</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE", Model.ClientID) })
+                </div>
+                <div class="col-md-2">
+                    <label>Ext. :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE_EXT", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE_EXT", Model.ClientID) })
+                </div>
+                <div class="col-md-6">
+                    <label>Fax :</label>
+                    @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_FAX", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EN_FAX", Model.ClientID) })
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE", Model.ClientID)").mask('ZZZZZZZZZZZZZZZZZZZZ', {
+                        translation: {
+                            'Z': {
+                                pattern: /[0-9\-\(\)]/, optional: true
+                            }
+                        }
+                    });
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_TELEPHONE_EXT", Model.ClientID)").mask('0000000000');
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_FAX", Model.ClientID)").mask('ZZZZZZZZZZZZZZZZZZZZ', {
+                        translation: {
+                            'Z': {
+                                pattern: /[0-9\-\(\)]/, optional: true
+                            }
+                        }
+                    });
+                });
+            </script>
+        }
+        @* MOBILE && EMAIL *@
+        @if (Model.AddressForm_ShowEmailControl || Model.AddressForm_ShowMapControl)
+        {
+            <div class="row">
+                @if (Model.AddressForm_ShowMobileControl)
+                {
+                    <div class="col-md-6">
+                        <label>Mobile :</label>
+                        @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_MOBILE", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_MOBILE", Model.ClientID) })
+                    </div>
+                    <script type="text/javascript">
+                    $(function () {
+                        $("#@string.Format("{0}_{1}", "ADDRESS_EN_MOBILE", Model.ClientID)").mask('ZZZ-ZZZ-ZZZZ', {
+                            translation: {
+                                'Z': {
+                                    pattern: /[0-9\-\(\)]/, optional: true
+                                }
+                            }
+                        });
+                    });
+                    </script>
+                }
+                @if (Model.AddressForm_ShowEmailControl)
+                {
+                    <div class="col-md-6">
+                        <label>Email : @((isRequired && ViewBag.IdentityType == UserTypeEnum.Juristic) ? "*" : "")</label>
+                        @Html.TextBox(string.Format("{0}_{1}", "ADDRESS_EN_EMAIL", Model.DataKey), null, new { @class = "form-control", id = string.Format("{0}_{1}", "ADDRESS_EMAIL", Model.ClientID) })
+                    </div>
+                    <script type="text/javascript">
+                    $(function () {
+                        $("#@string.Format("{0}_{1}", "ADDRESS_EN_EMAIL", Model.ClientID)").mask('A', {
+                            translation: {
+                                'A': {
+                                    pattern: /[\w@@\-.+]/, optional: true, recursive: true
+                                }
+                            }
+                        });
+                    });
+                    </script>
+                }
+            </div>
+        }
+    </div>
+
+@if (!rd)
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'Province',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/ProvincesEN")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        var isMetro = '';
+                        @if (Model.Data != null)
+                        {
+                            if ((string)Model.Data == ProvinceType.Metro.ToString())
+                            {
+                                <text>
+                        isMetro = '@ProvinceType.Metro.ToString()';
+                        </text>
+                            }
+                            else if ((string)Model.Data == ProvinceType.Provin.ToString())
+                            {
+                                <text>
+                        isMetro = '@ProvinceType.Provin.ToString()';
+                        </text>
+                            }
+                            else if ((string)Model.Data == ProvinceType.BKK.ToString())
+                            {
+                                <text>
+                        isMetro = '@ProvinceType.BKK.ToString()';
+                        </text>
+                            }
+                            else if ((string)Model.Data == ProvinceType.NotBKK.ToString())
+                            {
+                                <text>
+                        isMetro = '@ProvinceType.NotBKK.ToString()';
+                        </text>
+                            }
+                        }
+
+                        return {
+                            isMetro: isMetro,
+                            query: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'District/Amphur',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/AmphursEN")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'Sub-District/Tumbol',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/TambolsEN")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val(),
+                            aCode: $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").change(function () {
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)").val("").trigger("change");
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID) option[value]").remove();
+                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').val("");
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_LAT", Model.ClientID)").val("");
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_LNG", Model.ClientID)").val("");
+            });
+
+            $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)").change(function () {
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)").val("").trigger("change");
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID) option[value]").remove();
+                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').val("");
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_LAT", Model.ClientID)").val("");
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_LNG", Model.ClientID)").val("");
+            });
+
+            $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)").change(function () {
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_LAT", Model.ClientID)").val("");
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_LNG", Model.ClientID)").val("");
+
+                var geoCode = $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val() +
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)").val() +
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)").val();
+
+                if (geoCode.length == 6) {
+                    $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + geoCode, function (data) {
+                        if (data.length < 1) {
+                            $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                            $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                            $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                            $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                        } else {
+                            if (data.length == 1) {
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: data[0], text: data[0], selected: data[0] == $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').val(data[0]).trigger("change");
+                            } else if (data.length > 1) {
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                                $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                                $.each(data, function (key, value) {
+                                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: value, text: value, selected: value == $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                                });
+                            }
+
+                            $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').removeData('init');
+                        }
+                    });
+                }
+            });
+
+
+            @if (address != null)
+            {
+                <text>
+            setAddressFromWS();
+
+            function setAddressFromWS() {
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)")
+                    .prepend("<option value='" + @address.Province.ID + "'>@address.Province.Text</option>")
+                    .val(@address.Province.ID);
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)")
+                        .prepend("<option value='" + @address.Amphur.ID + "'>@address.Amphur.Text</option>")
+                        .val(@address.Amphur.ID);
+                $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)")
+                    .prepend("<option value='" + @address.Tumbol.ID + "'>@address.Tumbol.Text</option>")
+                            .val(@address.Tumbol.ID);
+            }
+            </text>
+            }
+
+            @if (Model.Control == "UTILITY_ADDRESS_EN" && Model.Data != null)
+        {
+            if ((string)Model.Data == ProvinceType.Metro.ToString())
+            {
+                <text>
+            $(window).on('load', function () {
+                if ($("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val() != "10" &&
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val() != "11" &&
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val() != "12") {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID) option[value]").remove();
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID) option[value]").remove();
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID) option[value]").remove();
+
+                    // Remove existed Postcode
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                }
+            });
+            </text>
+        }
+        else if ((string)Model.Data == ProvinceType.Provin.ToString())
+        {
+            <text>
+            $(window).on('load', function () {
+                if ($("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val() == "10" ||
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val() == "11" ||
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val() == "12") {
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID) option[value]").remove();
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID) option[value]").remove();
+
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)").val("").trigger("change");
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID) option[value]").remove();
+
+                    // Remove existed Postcode
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                }
+            });
+            </text>
+        }
+        }
+
+        });
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        $(function () {
+            var geoCode = $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID)").val() +
+            $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID)").val() +
+            $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID)").val();
+
+            $.get('@Url.Content("~/Api/v2/Geo/PostalCodes")?geocode=' + geoCode, function (data) {
+                if (data.length < 1) {
+                    @{ }
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').hide();
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', true);
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').show();
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', false);
+                } else {
+                    if (data.length == 1) {
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: data[0], text: data[0], selected: data[0] == $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').val(data[0]).trigger("change");
+                    } else if (data.length > 1) {
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').show();
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').prop('disabled', false);
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').hide();
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_INPUT", Model.ClientID)').prop('disabled', true);
+
+                        $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').find('option').remove();
+                        $.each(data, function (key, value) {
+                            $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').append($('<option>', { value: value, text: value, selected: value == $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').data('init') }));
+                        });
+                    }
+
+                    $('#@string.Format("ADDRESS_EN_POSTCODE_{0}_SELECT", Model.ClientID)').removeData('init');
+                }
+            });
+        });
+    </script>
+}
+
+@if (Model.AddressForm_ShowMapControl)
+{
+    <script>
+        var searchBox;
+
+        function initMap() {
+            // GOOGLE MAPS
+            var initLatLng = new google.maps.LatLng(13.7537900, 100.5204650);
+            var mapOptions = {
+                zoom: 15,
+                center: initLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var marker;
+            var currentCenter;
+            var input = document.getElementById('@string.Format("pac-input_{0}", Model.DataKey)');
+
+            $('#@string.Format("MAP_{0}_MODAL", Model.DataKey)').on('shown.bs.modal', function () {
+                var map = new google.maps.Map(document.getElementById('@string.Format("MAP_{0}", Model.DataKey)'), mapOptions);
+
+                // Initiate Marker
+                if ($("#@string.Format("{0}_{1}", "ADDRESS_EN_LAT", Model.ClientID)").val().length > 0 && $("#@string.Format("{0}_{1}", "ADDRESS_EN_LNG", Model.ClientID)").val().length > 0) {
+                    $(input).val($("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID) option:selected").text() + " " +
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID) option:selected").text() + " " +
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID) option:selected").text());
+                    var currentLatLng = new google.maps.LatLng(parseFloat($("#@string.Format("{0}_{1}", "ADDRESS_EN_LAT", Model.ClientID)").val()), parseFloat($("#@string.Format("{0}_{1}", "ADDRESS_EN_LNG", Model.ClientID)").val()));
+                    marker = new google.maps.Marker({
+                        position: currentLatLng,
+                        map: map
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                } else {
+                    if ($("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID) option:selected").text().length > 0 &&
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID) option:selected").text().length > 0 &&
+                    $("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID) option:selected").text().length > 0) {
+                        $(input).val($("#@string.Format("{0}_{1}", "ADDRESS_EN_TUMBOL", Model.ClientID) option:selected").text() + " " +
+                        $("#@string.Format("{0}_{1}", "ADDRESS_EN_AMPHUR", Model.ClientID) option:selected").text() + " " +
+                        $("#@string.Format("{0}_{1}", "ADDRESS_EN_PROVINCE", Model.ClientID) option:selected").text());
+                        marker = new google.maps.Marker({
+                            position: initLatLng,
+                            map: map
+                        });
+                        marker.setMap(map);
+                        setTimeout(function () {
+                            google.maps.event.trigger(input, 'focus');
+                            google.maps.event.trigger(input, 'keydown', {
+                                keyCode: 13
+                            });
+                        }, 500);
+                    } else {
+                        marker = new google.maps.Marker({
+                            position: initLatLng,
+                            map: map
+                        });
+                        currentCenter = marker.getPosition();
+                        map.setCenter(currentCenter);
+                        marker.setMap(map);
+                    }
+                }
+
+                // Map Search
+                searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                searchBox.addListener('places_changed', searchPlace);
+                function searchPlace() {
+                    var places = searchBox.getPlaces();
+                    if (places.length == 0) {
+                        return;
+                    } else {
+                        var place = places[0];
+                    }
+
+                    marker.setMap(null);
+                    if (!place.geometry) {
+                        return;
+                    }
+                    marker = new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                };
+
+                google.maps.event.addListener(map, 'click', function (e) {
+                    placeMarker(e.latLng);
+                });
+
+                function placeMarker(location) {
+                    marker.setMap(null);
+                    marker = new google.maps.Marker({
+                        map: map,
+                        position: location
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                }
+                google.maps.event.trigger(map, "resize");
+            });
+
+                $("#@string.Format("BTN_MAP_{0}_OK", Model.DataKey)").click(function () {
+                    var currentPosition = marker.getPosition().toString();
+                    var latlng = currentPosition.match(/\((-?[0-9\.]+), (-?[0-9\.]+)\)/);
+                    var lat = parseFloat(latlng[1]).toFixed(7);
+                    var lng = parseFloat(latlng[2]).toFixed(7);
+                    $('#@string.Format("{0}_{1}", "ADDRESS_EN_LAT", Model.ClientID)').val(lat);
+                    $('#@string.Format("{0}_{1}", "ADDRESS_EN_LNG", Model.ClientID)').val(lng);
+                });
+            }
+    </script>
+}

@@ -1,0 +1,28 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+        $("select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_EDIT_MACHINE_SECTION_TYPE']").change(function (e) {
+            var isPhotoVol = $(this).val() == '7';
+            if (isPhotoVol) {
+                var fuelDDL = "select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_EDIT_MACHINE_SECTION_FUEL']";
+                // default to โซลาร์เซลส์
+                window.singleFormHelpers.form.setSelect2WithDefault($(fuelDDL), '10', 'โซลาร์เซลส์');
+                window.singleFormHelpers.form.setSelect2Readonly($(fuelDDL), true);
+            } else {
+                var fuelDDL = "select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_EDIT_MACHINE_SECTION_FUEL']";
+                window.singleFormHelpers.form.setSelect2Readonly($(fuelDDL), false);
+            }
+
+            $("input[name='APP_ENERGY_PRODUCTION_EDIT_MACHINE_SECTION_HORSEPOWER']").prop('disabled', isPhotoVol); // พิกัดกำลัง(แรงม้า)
+        });
+        
+        $(document).on('APP_ENERGY_PRODUCTION_EDIT_MACHINE_SECTION-modal-databound', function (e, section, data) {
+            $("select[name='AJAX_DROPDOWN_APP_ENERGY_PRODUCTION_EDIT_MACHINE_SECTION_TYPE']").trigger('change');
+        });
+
+    });
+</script>

@@ -1,0 +1,67 @@
+﻿@using Resource = BizPortal.Resources
+
+@{
+    string id = ViewData["id"].ToString();
+    string type = ViewData["type"].ToString();
+    string actionUrl = ViewData["actionUrl"].ToString();
+}
+
+<div id="@id" style="width:350px;"> @*<p>@Resource.Application.MSG_BROWSER_NOT_SUPPORT_PLUPLOAD</p>*@</div>
+<div class="form-group">
+    <input type="text" id="txt_@id" class="invisibility" required data-msg-required="@Resource.Application.MSG_VALIDATE_FILE_TYPE" />
+</div>
+
+
+@Html.PartialScripts(
+    @<script type="text/javascript">
+        $(function () {
+            $("#@id").plupload({
+                runtimes: 'html5,flash,silverlight,html4',
+                flash_swf_url: '@Url.Content("~/Script/plupload/Moxie.swf")',
+                silverlight_xap_url: '@Url.Content("~/Script/plupload/Moxie.xap")',
+                url: '@actionUrl',
+                max_file_size: '5mb',
+                chunk_size: '1mb',
+                filters: [
+                    { title: "Image files", extensions: "jpg,gif,png" },
+                    { title: "PDF files", extensions: "pdf" }
+                ],
+                rename: false,
+                sortable: false,
+                dragdrop: false,
+                views: {
+                    list: true,
+                    thumbs: false, // Show thumbs
+                    active: 'list'
+                },
+                buttons: {
+                    browse: true,
+                    start: false,
+                    stop: false
+                },
+                init:{
+                    QueueChanged: function (up) {
+                        if (up.files.length > 0) {
+                            $('#txt_@id').val('true');
+                        }
+                        else {
+                            $('#txt_@id').val(null);
+                        }
+                    },
+                    BeforeUpload: function (up, file) {
+                        var jurasticRequestId = $('#juristicRequestId').val();
+                        if(jurasticRequestId){
+                            up.settings.multipart_params = { juristicRequestId: juristicRequestId, type: '@type' };
+                        }
+                        else{
+                            alert('ไม่พบ request Id')
+                            return false;
+                        }    
+                    },
+                    Error: function (up, err) {
+                        alert('error');
+                    }
+                }  
+            });
+        });
+    </script>)

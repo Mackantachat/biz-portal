@@ -1,0 +1,21 @@
+﻿
+.header-right {
+    display: none;
+}
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    .header-right {
+        display: block;
+        position: fixed; 
+        top: 0px; 
+        right: 0px;
+        background: white !important;
+        border-width: 1px;
+        border: solid;
+        padding: 5px;
+    }
+}

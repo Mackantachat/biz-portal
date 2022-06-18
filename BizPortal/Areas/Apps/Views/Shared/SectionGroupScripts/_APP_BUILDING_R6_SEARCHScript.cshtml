@@ -1,0 +1,82 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")" >
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+        
+        var groupContainer = $("section[data-section-name='APP_BUILDING_R6_SEARCH_SECTION']");
+        var txtOrgCode = $("#ajax_dropdown_APP_BUILDING_R6_AREA_SEARCH_RESPONSIBLE_AREA");
+        var txtLicenseId = $(groupContainer).find("input[name='APP_BUILDING_R6_SEARCH_SECTION_LICENSE_ID']");
+        var txtReleasedDate = $(groupContainer).find("input[name='APP_BUILDING_R6_SEARCH_SECTION_RELEASED_DATE']");
+        var searchBtn = $(groupContainer).find("button[name='APP_BUILDING_R6_SEARCH_SECTION_SEARCH']");
+
+        // Register event to target controls
+        $(searchBtn).click(function (e) {
+            var formValid = $(singleForm.controls.form).valid();
+            var orgCode = $(txtOrgCode).val();
+            var licenseId = $(txtLicenseId).val().trim();
+            var releasedDate = $(txtReleasedDate).val();
+
+            if (formValid) {
+                checkA1License(orgCode, licenseId, releasedDate, this, function (data) {
+                    $('#btnNextAppSingleForm').trigger('click');
+                });
+            } else {
+
+                swal('', "กรุณากรอกข้อมูลพื้นที่ก่อสร้าง และข้อมูลใบอนุญาต (อ.1)", "warning");
+                
+
+            }
+        });
+
+        function checkA1License (orgCode, licenseId, releasedDate, btnCheck, callback) {
+            if (!licenseId || !releasedDate) {
+                swal('', "กรุณาระบุเลขที่ใบอนุญาต (อ.1) และวันที่ออกใบอนุญาต (อ.1)", "warning");
+                return;
+            }
+
+            var l = $(btnCheck).ladda();
+            l.ladda('start');
+
+            var date = datepickerBEtoCE(releasedDate);
+
+            $.ajax({
+                url: "@Url.Content("~/Api/v2/DPT/A1License")?orgCode=" + orgCode + "&licenseNo=" + licenseId + "&releasedDate=" + date,
+                type: "GET",
+                contentType: "application/json",
+                timeout: 30000,
+                success: function (data) {
+                    $.ladda('stopAll');
+                    if (data.Success) {
+                        if (callback) callback(data);
+                    } else {
+                        swal('', "ไม่พบข้อมูลใบอนุญาตก่อสร้างฯ(อ.1) ที่ต้องขอใบรับรองฯ(ข.6)", "warning");
+                    }
+                },
+                error: function (err) {
+                    console.log('error', err);
+                    swal('', "เกิดความผิดพลาดขณะเชื่อมต่อกับฐานข้อมูล", "error");
+                    $.ladda('stopAll');
+                }
+            });
+        }
+
+        singleForm.customRules['APP_BUILDING_R6_SEARCH_SECTION_LICENSE_ID'] = {
+                required: true, messages: { required: 'กรุณาระบุเลขที่ใบอนุญาต (อ.1)' }
+        };
+        singleForm.customRules['APP_BUILDING_R6_SEARCH_SECTION_RELEASED_DATE'] = {
+            required: true, messages: { required: 'กรุณาระบุวันที่ออกใบอนุญาต (อ.1)' }
+        };
+    });
+
+    // Hide next and save draft button. The form submission will be trigger once data is valid.
+    $('#btnSaveDraftSingleForm, #btnNextAppSingleForm').css('display', 'none');
+</script>
+
+
+

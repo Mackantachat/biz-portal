@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APPS_ALLOWED_EXTENSIONS" xml:space="preserve">
+    <value>Support only documents in pdf, png, jpg and file sizes must not over 5 MB</value>
+  </data>
+  <data name="APPS_DOC_Passport" xml:space="preserve">
+    <value>Copy of passport/ Copy of certificate of alien registration</value>
+  </data>
+  <data name="APPS_DOC_Passport_DESC" xml:space="preserve">
+    <value>Copy of passport/ Copy of certificate of alien registration</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm102" xml:space="preserve">
+    <value>The delivered book of registration of the insured form Sor Por Sor 1-03 / Sor Por Sor 1-03 / 1 (Sor Por Sor 1-02)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm102_DESC" xml:space="preserve">
+    <value>The delivered book of registration of the insured form Sor Por Sor 1-03 / Sor Por Sor 1-03 / 1 (Sor Por Sor 1-02)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm103" xml:space="preserve">
+    <value>Registration form of the insured (Sor Por Sor 1-03)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm103_DESC" xml:space="preserve">
+    <value>Registration form of the insured (Sor Por Sor 1-03)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm607" xml:space="preserve">
+    <value>Sor Por Sor 6-07</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm607_DESC" xml:space="preserve">
+    <value>Sor Por Sor 6-07</value>
+  </data>
+  <data name="APPS_DOC_WorkPermit" xml:space="preserve">
+    <value>Copy of work permit for foreigner in Thailand</value>
+  </data>
+  <data name="APPS_DOC_WorkPermit_DESC" xml:space="preserve">
+    <value>Copy of work permit for foreigner in Thailand</value>
+  </data>
+  <data name="APPS_FILES_ERROR_EXTENSION" xml:space="preserve">
+    <value>Support only documents in pdf, png, jpg.</value>
+  </data>
+  <data name="APPS_FILES_ERROR_SIZE" xml:space="preserve">
+    <value>File sizes must not over 5 MB.</value>
+  </data>
+  <data name="APPS_FILES_ERROR_UPLOAD_FAILED" xml:space="preserve">
+    <value>Failed to upload documents.</value>
+  </data>
+  <data name="APPS_INTRO" xml:space="preserve">
+    <value>The employer will notify the insurer up to the Social Security office within 30 days from the date of employment. Otherwise, the employer must be punished with imprisonment not exceeding 6 months or fined not exceeding 20,000 baht or both. The employer is responsible for compiling a registration of the insured person (Sor Por Sor 1-03) by submitting Sor Por Sor 1-02 to the Social Security Office.</value>
+  </data>
+  <data name="APPS_NAME" xml:space="preserve">
+    <value>Registration of insurer (Sor Por Sor 1-03)</value>
+  </data>
+  <data name="APPS_SELECT_AND_WAIT" xml:space="preserve">
+    <value>Please select a document or waiting for file uploading.</value>
+  </data>
+  <data name="APPS_STEP" xml:space="preserve">
+    <value>The procedures of registration of the insured (Sor Por Sor 1-03)</value>
+  </data>
+  <data name="APPS_STEP_1" xml:space="preserve">
+    <value>Fill out a registration of the insured person Sor Por Sor 1-03
+                                &lt;br /&gt;
+                               Complete documentation
+                                &lt;a target="_blank" href="{0}"&gt; [download Sor Por Sor 1-03 form (1 insured per 1 set)] &lt;/a&gt; &amp;nbsp; &lt;a target="_blank" href="{1}"&gt;[sample form Sor Por Sor 1-03] &lt;/a&gt;</value>
+  </data>
+  <data name="APPS_STEP_1_ARE_YOU_THAI" xml:space="preserve">
+    <value>Are you Thai?</value>
+  </data>
+  <data name="APPS_STEP_1_CHOOSE_DOCUMENT" xml:space="preserve">
+    <value>Select the document</value>
+  </data>
+  <data name="APPS_STEP_1_CITIZEN_ID" xml:space="preserve">
+    <value>Identity Card Number</value>
+  </data>
+  <data name="APPS_STEP_1_CITIZEN_ID_INVALID" xml:space="preserve">
+    <value>Identity Card Number is invalid.</value>
+  </data>
+  <data name="APPS_STEP_1_CITIZEN_ID_REQUIRED" xml:space="preserve">
+    <value>Identity Card Number is required.</value>
+  </data>
+  <data name="APPS_STEP_1_NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="APPS_STEP_1_PASSPORT_NUMBER" xml:space="preserve">
+    <value>Passport Number</value>
+  </data>
+  <data name="APPS_STEP_1_PASSPORT_NUMBER_IS_REQUIRED" xml:space="preserve">
+    <value>Passport Number is required.</value>
+  </data>
+  <data name="APPS_STEP_1_REMARK" xml:space="preserve">
+    <value>&lt;strong&gt;Noted:&lt;/strong&gt; * Document is required.</value>
+  </data>
+  <data name="APPS_STEP_1_YES" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="APPS_STEP_2_INTRO" xml:space="preserve">
+    <value>The employers fill in the company’s name with the account number and branch number as well as the location of the company and post in the delivered book of Sor Por Sor 1-02 together with specifying the number of Sor Por Sor 1-03. In the case of the branch office, Sor Por Sor 1-03 has to be sorted by the number of the branch together with creating the delivered book (Sor Por Sor 1-02). &lt;br /&gt;
+                            &lt;span class="font-size-sm"&gt;*Noted the insured person who signs in the delivered book of registration of the insured form is a person who is authorized to bind the company or mandatory.&lt;/span&gt;
+                            &lt;br /&gt;
+                           Fill in the form
+                            &lt;a target="_blank" href="{0}"&gt;[Download Sor Por Sor 1-02 Form (1 Juristic Person/Branch : 1 Document)] &lt;/a&gt; &amp;nbsp; &lt;a target="_blank" href="{1}"&gt;[Example of filling in Sor Por Sor 1-02 Form] &lt;/a&gt;
+                            &lt;br /&gt;
+                            and Sor Por Sor 6-07 &lt;a target="_blang" href="{2}"&gt;[Download PDF file] &lt;/a&gt; or &lt;a target="_blang" href="{3}"&gt;[Download MS WORD file]&lt;/a&gt;</value>
+  </data>
+  <data name="APPS_STEP_2_SELECT_PAPERS" xml:space="preserve">
+    <value>Selected papers</value>
+  </data>
+  <data name="APPS_STEP_3_CHECK_DOCUMENT" xml:space="preserve">
+    <value>Check the documents</value>
+  </data>
+  <data name="APPS_STEP_3_INTRO" xml:space="preserve">
+    <value>Check the complete validity of the documents</value>
+  </data>
+  <data name="APPS_TRACKING_YOUR_REQUEST" xml:space="preserve">
+    <value>Tracking your request</value>
+  </data>
+  <data name="ATTACHED_FILE" xml:space="preserve">
+    <value>Attached File</value>
+  </data>
+  <data name="BACK_TO_EMPLOYEE_APP" xml:space="preserve">
+    <value>กลับไปยังหน้าจอขึ้นทะเบียนผู้ประกันตน (สปส 1-03)</value>
+  </data>
+  <data name="CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CLOSE" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="DELETE" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DOWNLOAD_SSO_102" xml:space="preserve">
+    <value>Download Sor Por Sor 1-02 form</value>
+  </data>
+  <data name="DOWNLOAD_SSO_103" xml:space="preserve">
+    <value>Download Sor Por Sor 1-03 form</value>
+  </data>
+  <data name="MSG_COMPLETED_REQ" xml:space="preserve">
+    <value>Your request was approved.</value>
+  </data>
+  <data name="MSG_PENDING_REQ" xml:space="preserve">
+    <value>Your request has been submitted. Your request will be reviewed by agent as soon as possible.</value>
+  </data>
+  <data name="MSG_UNKNOWN_STATUS" xml:space="preserve">
+    <value>You cannot enter this application. Please try again.</value>
+  </data>
+  <data name="PLEASE_UPLOAD_DOC_IN_STEP_1_2" xml:space="preserve">
+    <value>Please upload documents in step 1 and 2.</value>
+  </data>
+  <data name="REGISTRATION_FORM" xml:space="preserve">
+    <value>Registration Form</value>
+  </data>
+  <data name="SAVE_DRAFT" xml:space="preserve">
+    <value>Save Draft</value>
+  </data>
+  <data name="SUBMIT_EMAIL" xml:space="preserve">
+    <value>Submit Email</value>
+  </data>
+  <data name="SUBMIT_REQUEST" xml:space="preserve">
+    <value>Submit Request</value>
+  </data>
+</root>

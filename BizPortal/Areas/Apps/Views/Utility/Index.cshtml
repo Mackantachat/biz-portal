@@ -1,0 +1,3280 @@
+﻿@model UtilityForm
+@using Resources = BizPortal.Resources
+@using BizPortal.ViewModels.Apps
+@using System.Configuration
+@{
+    int appID = int.Parse(ConfigurationManager.AppSettings["MEA_MWA_EFORM_APPID"]);
+    int contentID = int.Parse(ConfigurationManager.AppSettings["MEA_MWA_CONTENTID"]);
+
+    ViewBag.Title = Resources.Apps_Utility.APPS_FORM_UTILITY;
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/logo.png");
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+
+    UserTypeEnum type = ViewBag.IdentityType;
+    JuristicProfile juristic = ViewBag.Juristic;
+    var currentLang = ViewBag.CurrentLang;
+    var modelNull = ViewBag.ModelNull;
+    var citizenBd = ViewBag.CitizenBd;
+    var trackingUrl = Url.BizAction("Index", "Track", new { area = "", language = ViewBag.CurrentLang });
+
+    if (type == UserTypeEnum.Citizen)
+    {
+        bool applyDomainRoute = ViewBag.ApplyDomainRoute;
+        if (applyDomainRoute)
+        {
+            ViewBag.LogoutReturnUrl = ViewBag.ServicesDomain + Url.Action("View", "Content", new { area = "Landing", id = contentID });
+        }
+        else
+        {
+            ViewBag.LogoutReturnUrl = Url.Action("View", "Content", new { area = "Landing", id = contentID });
+        }
+
+        trackingUrl = Url.ServiceAction("Index", "Track", new { area = "", language = ViewBag.CurrentLang });
+    }
+
+    List<SelectListItem> mwaBranches = new List<SelectListItem>()
+    {
+        new SelectListItem () { Value = "", Text = Resources.Apps_Utility.MWA_BRANCH_REQUIRED },
+        new SelectListItem () { Value = "01", Text = "บางกอกน้อย" },
+        new SelectListItem () { Value = "02", Text = "ตากสิน" },
+        new SelectListItem () { Value = "03", Text = "พญาไท" },
+        new SelectListItem () { Value = "04", Text = "นนทบุรี" },
+        new SelectListItem () { Value = "05", Text = "ทุ่งมหาเมฆ" },
+        new SelectListItem () { Value = "06", Text = "แม้นศรี" },
+        new SelectListItem () { Value = "07", Text = "สุขุมวิท" },
+        new SelectListItem () { Value = "09", Text = "ราชการ" },
+        new SelectListItem () { Value = "11", Text = "ภาษีเจริญ" },
+        new SelectListItem () { Value = "12", Text = "ลาดพร้าว" },
+        new SelectListItem () { Value = "13", Text = "พระโขนง" },
+        new SelectListItem () { Value = "14", Text = "สุขสวัสดิ์" },
+        new SelectListItem () { Value = "15", Text = "ประชาชื่น" },
+        new SelectListItem () { Value = "16", Text = "บางเขน" },
+        new SelectListItem () { Value = "17", Text = "สมุทรปราการ" },
+        new SelectListItem () { Value = "53", Text = "มีนบุรี" },
+        new SelectListItem () { Value = "54", Text = "บางบัวทอง" },
+        new SelectListItem () { Value = "55", Text = "สุวรรณภูมิ" },
+        new SelectListItem () { Value = "56", Text = "มหาสวัสดิ์" },
+        new SelectListItem () { Value = "91", Text = "กองการเงิน" },
+        new SelectListItem () { Value = "92", Text = "ฝ่ายมาตรวัดน้ำ" }
+    };
+
+    List<SelectListItem> meaJuristicOSS = new List<SelectListItem>()
+    {
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T515A230V1P2W, Text = Resources.Apps_Utility_MEAOSS.T515A230V1P2W },
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T1545A230V1P2W, Text = Resources.Apps_Utility_MEAOSS.T1545A230V1P2W },
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T30100A230V1P2W, Text = Resources.Apps_Utility_MEAOSS.T30100A230V1P2W },
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T50150A230V1P2W, Text = Resources.Apps_Utility_MEAOSS.T50150A230V1P2W },
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T1545A230400V3P4W, Text = Resources.Apps_Utility_MEAOSS.T1545A230400V3P4W },
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T30100A230400V3P4W, Text = Resources.Apps_Utility_MEAOSS.T30100A230400V3P4W },
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T50150A230400V3P4W, Text = Resources.Apps_Utility_MEAOSS.T50150A230400V3P4W },
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T200A230400V3P4W, Text = Resources.Apps_Utility_MEAOSS.T200A230400V3P4W },
+        new SelectListItem () { Value = Resources.Apps_Utility_MEAOSS.T400A230400V3P4W, Text = Resources.Apps_Utility_MEAOSS.T400A230400V3P4W }
+    };
+
+    List<SelectListItem> meaCitizenOSS = new List<SelectListItem>()
+    {
+        new SelectListItem () { Value = "WM01010", Text = Resources.Apps_Utility_MEAOSS.WM01010 },
+        new SelectListItem () { Value = "WM01020", Text = Resources.Apps_Utility_MEAOSS.WM01020 },
+        new SelectListItem () { Value = "WM01030", Text = Resources.Apps_Utility_MEAOSS.WM01030 },
+        new SelectListItem () { Value = "WM01040", Text = Resources.Apps_Utility_MEAOSS.WM01040 },
+        new SelectListItem () { Value = "WM02010", Text = Resources.Apps_Utility_MEAOSS.WM02010 },
+        new SelectListItem () { Value = "WM02020", Text = Resources.Apps_Utility_MEAOSS.WM02020 },
+        new SelectListItem () { Value = "WM02030", Text = Resources.Apps_Utility_MEAOSS.WM02030 },
+        new SelectListItem () { Value = "WM02040", Text = Resources.Apps_Utility_MEAOSS.WM02040 },
+        new SelectListItem () { Value = "WM02050", Text = Resources.Apps_Utility_MEAOSS.WM02050 },
+        new SelectListItem () { Value = "WM03030", Text = Resources.Apps_Utility_MEAOSS.WM03030 },
+        new SelectListItem () { Value = "WM03040", Text = Resources.Apps_Utility_MEAOSS.WM03040 },
+        new SelectListItem () { Value = "WM03050", Text = Resources.Apps_Utility_MEAOSS.WM03050 },
+        new SelectListItem () { Value = "WM03060", Text = Resources.Apps_Utility_MEAOSS.WM03060 },
+        new SelectListItem () { Value = "WM03070", Text = Resources.Apps_Utility_MEAOSS.WM03070 },
+        new SelectListItem () { Value = "WM03080", Text = Resources.Apps_Utility_MEAOSS.WM03080 },
+        new SelectListItem () { Value = "WM03090", Text = Resources.Apps_Utility_MEAOSS.WM03090 },
+        new SelectListItem () { Value = "WM03100", Text = Resources.Apps_Utility_MEAOSS.WM03100 },
+        new SelectListItem () { Value = "WM03110", Text = Resources.Apps_Utility_MEAOSS.WM03110 },
+        new SelectListItem () { Value = "WM03120", Text = Resources.Apps_Utility_MEAOSS.WM03120 },
+        new SelectListItem () { Value = "WM03130", Text = Resources.Apps_Utility_MEAOSS.WM03130 },
+        new SelectListItem () { Value = "WM03140", Text = Resources.Apps_Utility_MEAOSS.WM03140 },
+        new SelectListItem () { Value = "WM03150", Text = Resources.Apps_Utility_MEAOSS.WM03150 },
+        new SelectListItem () { Value = "WM03160", Text = Resources.Apps_Utility_MEAOSS.WM03160 },
+        new SelectListItem () { Value = "WM03170", Text = Resources.Apps_Utility_MEAOSS.WM03170 },
+        new SelectListItem () { Value = "WM03180", Text = Resources.Apps_Utility_MEAOSS.WM03180 },
+        new SelectListItem () { Value = "WM03190", Text = Resources.Apps_Utility_MEAOSS.WM03190 },
+        new SelectListItem () { Value = "WM03200", Text = Resources.Apps_Utility_MEAOSS.WM03200 },
+        new SelectListItem () { Value = "WM03210", Text = Resources.Apps_Utility_MEAOSS.WM03210 },
+        new SelectListItem () { Value = "WM03220", Text = Resources.Apps_Utility_MEAOSS.WM03220 },
+        new SelectListItem () { Value = "WM03230", Text = Resources.Apps_Utility_MEAOSS.WM03230 },
+        new SelectListItem () { Value = "WM03240", Text = Resources.Apps_Utility_MEAOSS.WM03240 },
+        new SelectListItem () { Value = "WM03250", Text = Resources.Apps_Utility_MEAOSS.WM03250 },
+        new SelectListItem () { Value = "WM03260", Text = Resources.Apps_Utility_MEAOSS.WM03260 },
+        new SelectListItem () { Value = "WM03270", Text = Resources.Apps_Utility_MEAOSS.WM03270 },
+        new SelectListItem () { Value = "WM03280", Text = Resources.Apps_Utility_MEAOSS.WM03280 },
+        new SelectListItem () { Value = "WM03290", Text = Resources.Apps_Utility_MEAOSS.WM03290 },
+        new SelectListItem () { Value = "WM03300", Text = Resources.Apps_Utility_MEAOSS.WM03300 },
+        new SelectListItem () { Value = "WM03310", Text = Resources.Apps_Utility_MEAOSS.WM03310 },
+        new SelectListItem () { Value = "WM03320", Text = Resources.Apps_Utility_MEAOSS.WM03320 },
+        new SelectListItem () { Value = "WM03330", Text = Resources.Apps_Utility_MEAOSS.WM03330 },
+        new SelectListItem () { Value = "WM03340", Text = Resources.Apps_Utility_MEAOSS.WM03340 },
+        new SelectListItem () { Value = "WM03350", Text = Resources.Apps_Utility_MEAOSS.WM03350 },
+        new SelectListItem () { Value = "WM03360", Text = Resources.Apps_Utility_MEAOSS.WM03360 },
+        new SelectListItem () { Value = "WM03370", Text = Resources.Apps_Utility_MEAOSS.WM03370 },
+        new SelectListItem () { Value = "WM04020", Text = Resources.Apps_Utility_MEAOSS.WM04020 },
+        new SelectListItem () { Value = "WM04030", Text = Resources.Apps_Utility_MEAOSS.WM04030 },
+        new SelectListItem () { Value = "WM04040", Text = Resources.Apps_Utility_MEAOSS.WM04040 },
+        new SelectListItem () { Value = "WM04050", Text = Resources.Apps_Utility_MEAOSS.WM04050 },
+        new SelectListItem () { Value = "WM04060", Text = Resources.Apps_Utility_MEAOSS.WM04060 },
+        new SelectListItem () { Value = "WM04070", Text = Resources.Apps_Utility_MEAOSS.WM04070 },
+        new SelectListItem () { Value = "WM04080", Text = Resources.Apps_Utility_MEAOSS.WM04080 },
+        new SelectListItem () { Value = "WM04090", Text = Resources.Apps_Utility_MEAOSS.WM04090 },
+        new SelectListItem () { Value = "WM04100", Text = Resources.Apps_Utility_MEAOSS.WM04100 },
+        new SelectListItem () { Value = "WM04110", Text = Resources.Apps_Utility_MEAOSS.WM04110 },
+        new SelectListItem () { Value = "WM04120", Text = Resources.Apps_Utility_MEAOSS.WM04120 },
+        new SelectListItem () { Value = "WM04130", Text = Resources.Apps_Utility_MEAOSS.WM04130 },
+        new SelectListItem () { Value = "WM04140", Text = Resources.Apps_Utility_MEAOSS.WM04140 },
+        new SelectListItem () { Value = "WM04150", Text = Resources.Apps_Utility_MEAOSS.WM04150 },
+        new SelectListItem () { Value = "WM04160", Text = Resources.Apps_Utility_MEAOSS.WM04160 },
+        new SelectListItem () { Value = "WM04170", Text = Resources.Apps_Utility_MEAOSS.WM04170 },
+        new SelectListItem () { Value = "WM04180", Text = Resources.Apps_Utility_MEAOSS.WM04180 },
+        new SelectListItem () { Value = "WM04190", Text = Resources.Apps_Utility_MEAOSS.WM04190 },
+        new SelectListItem () { Value = "WM04200", Text = Resources.Apps_Utility_MEAOSS.WM04200 },
+        new SelectListItem () { Value = "WM04210", Text = Resources.Apps_Utility_MEAOSS.WM04210 },
+        new SelectListItem () { Value = "WM04220", Text = Resources.Apps_Utility_MEAOSS.WM04220 },
+        new SelectListItem () { Value = "WM04230", Text = Resources.Apps_Utility_MEAOSS.WM04230 },
+        new SelectListItem () { Value = "WM04240", Text = Resources.Apps_Utility_MEAOSS.WM04240 },
+        new SelectListItem () { Value = "WM04250", Text = Resources.Apps_Utility_MEAOSS.WM04250 },
+        new SelectListItem () { Value = "WM04260", Text = Resources.Apps_Utility_MEAOSS.WM04260 },
+        new SelectListItem () { Value = "WM04270", Text = Resources.Apps_Utility_MEAOSS.WM04270 },
+        new SelectListItem () { Value = "WM04280", Text = Resources.Apps_Utility_MEAOSS.WM04280 },
+        new SelectListItem () { Value = "WM04290", Text = Resources.Apps_Utility_MEAOSS.WM04290 },
+        new SelectListItem () { Value = "WM04300", Text = Resources.Apps_Utility_MEAOSS.WM04300 },
+        new SelectListItem () { Value = "WM04310", Text = Resources.Apps_Utility_MEAOSS.WM04310 },
+        new SelectListItem () { Value = "WM04320", Text = Resources.Apps_Utility_MEAOSS.WM04320 },
+        new SelectListItem () { Value = "WM04330", Text = Resources.Apps_Utility_MEAOSS.WM04330 },
+        new SelectListItem () { Value = "WM04340", Text = Resources.Apps_Utility_MEAOSS.WM04340 },
+        new SelectListItem () { Value = "WM04350", Text = Resources.Apps_Utility_MEAOSS.WM04350 },
+        new SelectListItem () { Value = "WM04360", Text = Resources.Apps_Utility_MEAOSS.WM04360 }
+    };
+
+}
+<form id="frmUtility" method="post" action="@Url.Content("~/Api/V2/Applications/Requests/Utility")?language=@ViewBag.CurrentLang">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_CHOOSE_REQUEST</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="checkbox" id="serviceBox">
+                                @if (type == UserTypeEnum.Juristic)
+                                {
+                                    <div class="col-md-6 form-group">
+                                        <label for="chkMEA">
+                                            <input type="checkbox" id="chkMEA" />@Resources.Apps_Utility.APPS_CHOOSE_MEA
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 form-group hidden">
+                                        <label for="chkMWA">
+                                            <input type="checkbox" id="chkMWA" />@Resources.Apps_Utility.APPS_CHOOSE_MWA
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 form-group hidden">
+                                        <label for="chkPEA">
+                                            <input type="checkbox" id="chkPEA" />@Resources.Apps_Utility.APPS_CHOOSE_PEA
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 form-group hidden">
+                                        <label for="chkPWA">
+                                            <input type="checkbox" id="chkPWA" />@Resources.Apps_Utility.APPS_CHOOSE_PWA
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="chkTOT">
+                                            <input type="checkbox" id="chkTOT" />@Resources.Apps_Utility.APPS_CHOOSE_TOT
+                                        </label>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-6 form-group">
+                                        <label for="chkMEA">
+                                            <input type="checkbox" id="chkMEA" />@Resources.Apps_Utility.APPS_CHOOSE_MEA
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 form-group hidden">
+                                        <label for="chkMWA">
+                                            <input type="checkbox" id="chkMWA" />@Resources.Apps_Utility.APPS_CHOOSE_MWA
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 form-group hidden">
+                                        <label for="chkPEA">
+                                            <input type="checkbox" id="chkPEA" />@Resources.Apps_Utility.APPS_CHOOSE_PEA
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 form-group hidden">
+                                        <label for="chkPWA">
+                                            <input type="checkbox" id="chkPWA" />@Resources.Apps_Utility.APPS_CHOOSE_PWA
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="chkTOT">
+                                            <input type="checkbox" id="chkTOT" />@Resources.Apps_Utility.APPS_CHOOSE_TOT
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.BIZ_APPLICANT_INFOMATION</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.BIZ_TAX_ID <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.IdentityID, new { @class = "form-control", @id = "bizTaxId", Name = "bizTaxId", maxlength = "13" })
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Juristic)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_REG_ID <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.IdentityID, new { @class = "form-control", @readonly = true, @id = "bizRegId", maxlength = "13" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_TYPE <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(x => juristic.JuristicType, new { @class = "form-control", @readonly = true, @id = "bizType" })
+                                </div>
+                            </div>
+                        }
+                        @if (modelNull == true)
+                        {
+                            if (type == UserTypeEnum.Citizen)
+                            {
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label>@Resources.Apps_Utility.CITIZEN_ID <span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.IdentityID, new { @class = "form-control", @id = "bizCitizenId", Name = "bizCitizenId", maxlength = "13" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 form-group">
+                                        <label>@Resources.Apps_Utility.CITIZEN_PREFIX <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="modelNull_CitizenPrefix" name="modelNull_CitizenPrefix">
+                                            <option value="00">@Resources.Apps_Utility.PREFIX_MR</option>
+                                            <option value="01">@Resources.Apps_Utility.PREFIX_MS</option>
+                                            <option value="02">@Resources.Apps_Utility.PREFIX_MRS</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>@Resources.Apps_Utility.CITIZEN_NAME <span class="text-danger">*</span></label>
+                                        <input type="text" id="modelNull_CitizenName" name="modelNull_CitizenName" value="" class="form-control" />
+                                    </div>
+                                    <div class="col-md-5 form-group">
+                                        <label>@Resources.Apps_Utility.CITIZEN_LASTNAME <span class="text-danger">*</span></label>
+                                        <input type="text" id="modelNull_CitizenLastname" name="modelNull_CitizenLastname" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            }
+                            else if (type == UserTypeEnum.Juristic)
+                            {
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label>@Resources.Apps_Utility.BIZ_NAME <span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.IdentityName, new { @class = "form-control", @id = "bizName", maxlength = "100" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            if (type == UserTypeEnum.Citizen)
+                            {
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label>@Resources.Apps_Utility.CITIZEN_ID <span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.IdentityID, new { @class = "form-control", @readonly = true, @id = "bizCitizenId", maxlength = "13" })
+                                    </div>
+                                </div>
+                                <div class="row" hidden>
+                                    <div class="col-md-2 form-group">
+                                        <input type="hidden" id="hiddenPrefixTH" value="@ViewBag.PrefixTH" class="form-control" />
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="hidden" id="hiddenNameTH" value="@ViewBag.NameTH" class="form-control" />
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <input type="hidden" id="hiddenLastnameTH" value="@ViewBag.LastnameTH" class="form-control" />
+                                    </div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_NAME <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.IdentityName, new { @class = "form-control", @readonly = true, @id = "bizName", maxlength = "100" })
+                                </div>
+                            </div>
+                        }
+                        @if (type == UserTypeEnum.Juristic)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_BRANCH <span class="text-danger">*</span></label>
+                                    <input type="text" id="bizBranch" name="bizBranch" value="00000" class="form-control" , maxlength="5" />
+                                </div>
+                            </div>
+                        }
+                        @if (type == UserTypeEnum.Citizen)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.CITIZEN_BIRTH_DATE <span class="text-danger">*</span></label>
+                                    <div class="input-group date">
+                                        <input type="text" id="citizenBd" name="citizenBd" value="@Model.BirthDate" class="form-control" readonly />
+                                        <span class="input-group-addon" aria-labelledby="citizenBd">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @if (type == UserTypeEnum.Citizen && modelNull == true)
+                        {
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_NUMBER <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @id = "readonlyAddress", Name = "readonlyAddress", maxlength = "50" })
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_MOO</label>
+                                    @Html.TextBoxFor(model => model.Moo, new { @class = "form-control", @id = "readonlyMoo", Name = "readonlyMoo", maxlength = "3" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_FLOOR</label>
+                                    <input type="text" id="readonlyFloor" name="readonlyFloor" value="" class="form-control" maxlength="50" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_BUILDING_VILLAGE</label>
+                                    @Html.TextBoxFor(model => model.BuildingVillage, new { @class = "form-control", @id = "readonlyBuildingVillage", Name = "readonlyBuildingVillage", maxlength = "50" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_SOI</label>
+                                    @Html.TextBoxFor(model => model.Soi, new { @class = "form-control", @id = "readonlySoi", Name = "readonlySoi", maxlength = "50" })
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_STREET</label>
+                                    @Html.TextBoxFor(model => model.Road, new { @class = "form-control", @id = "readonlyStreet", Name = "readonlyStreet", maxlength = "50" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_PROVINCE <span class="text-danger">*</span></label>
+                                    <select id="readonlyProvince" name="readonlyProvince" style="width: 100%;">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_AMPHUR <span class="text-danger">*</span></label>
+                                    <select id="readonlyAmphur" name="readonlyAmphur" style="width: 100%;">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_TAMBOL <span class="text-danger">*</span></label>
+                                    <select id="readonlyTambol" name="readonlyTambol" style="width: 100%;">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_ZIP_CODE <span class="text-danger">*</span></label>
+                                    <input type="text" id="bizZipCode" name="bizZipCode" value="" class="form-control" maxlength="5" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_TEL <span class="text-danger">*</span></label>
+                                    <input type="text" id="bizTel" name="bizTel" value="" class="form-control" maxlength="50" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_NUMBER</label>
+                                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @id = "readonlyAddress", Name = "readonlyAddress", @readonly = true, maxlength = "50" })
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_MOO</label>
+                                    @Html.TextBoxFor(model => model.Moo, new { @class = "form-control", @id = "readonlyMoo", Name = "readonlyMoo", @readonly = true, maxlength = "3" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_FLOOR</label>
+                                    @if (type == UserTypeEnum.Juristic)
+                                    {
+                                        @Html.TextBoxFor(model => model.Floor, new { @class = "form-control", @id = "readonlyFloor", Name = "readonlyFloor", @readonly = true, maxlength = "50" })
+                                    }
+                                    else
+                                    {
+                                        <input type="text" id="readonlyFloor" name="readonlyFloor" value="" class="form-control" readonly maxlength="50" />
+                                    }
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_BUILDING_VILLAGE</label>
+                                    @Html.TextBoxFor(model => model.BuildingVillage, new { @class = "form-control", @id = "readonlyBuildingVillage", Name = "readonlyBuildingVillage", @readonly = true, maxlength = "50" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_SOI</label>
+                                    @Html.TextBoxFor(model => model.Soi, new { @class = "form-control", @id = "readonlySoi", Name = "readonlySoi", @readonly = true, maxlength = "50" })
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_STREET</label>
+                                    @Html.TextBoxFor(model => model.Road, new { @class = "form-control", @id = "readonlyStreet", Name = "readonlyStreet", @readonly = true, maxlength = "50" })
+                                </div>
+                            </div>
+                            <div class="row" hidden>
+                                <div class="col-md-12 form-group">
+                                    <input type="hidden" id="TMBCode" value="" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_PROVINCE</label>
+                                    @Html.TextBoxFor(model => model.Province, new { @class = "form-control", @id = "readonlyProvince", Name = "readonlyProvince", @readonly = true, maxlength = "50" })
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_AMPHUR</label>
+                                    @Html.TextBoxFor(model => model.Amphur, new { @class = "form-control", @id = "readonlyAmphur", Name = "readonlyAmphur", @readonly = true, maxlength = "50" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_TAMBOL</label>
+                                    @Html.TextBoxFor(model => model.Tumbol, new { @class = "form-control", @id = "readonlyTambol", Name = "readonlyTambol", @readonly = true, maxlength = "50" })
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_ZIP_CODE <span class="text-danger">*</span></label>
+                                    <input type="text" id="bizZipCode" name="bizZipCode" value="" class="form-control" maxlength="5" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_TEL <span class="text-danger">*</span></label>
+                                    <input type="text" id="bizTel" name="bizTel" value="" class="form-control" maxlength="50" />
+                                </div>
+                            </div>
+                        }
+
+                        @if (type == UserTypeEnum.Juristic && juristic != null && juristic.CommitteeInformations != null)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 form-group" id="commiteeBox">
+                                    <label>@Resources.Apps_Utility.BIZ_COMMITTEES <span class="text-danger">*</span></label>
+                                    @{
+                                        var committeeIdx = 0;
+                                        foreach (var committee in juristic.CommitteeInformations)
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="checkbox">
+                                                        <label for="chkboxCommittee_@committeeIdx">
+                                                            <input type="checkbox" id="chkboxCommittee_@committeeIdx" name="chkboxCommittee_@committeeIdx" onchange="uploadControl.functions.committeeUploadFiles(@committeeIdx)" />@committee.Title@committee.FirstName @committee.LastName.Replace("/", "")
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @if (committee.CitizenID != null)
+                                                    {
+                                                        <input type="text" id="committeeCitizenId_@committeeIdx" name="committeeCitizenId_@committeeIdx" value="@committee.CitizenID" class="form-control" readonly maxlength="13" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" id="committeeCitizenId_@committeeIdx" name="committeeCitizenId_@committeeIdx" value="" class="form-control" placeholder="@Resources.Apps_Utility.CITIZEN_ID" maxlength="13" />
+                                                    }
+                                                </div>
+                                                <div id="committee-@(committeeIdx)-container" class="col-md-12">
+                                                </div>
+                                            </div>
+                                            committeeIdx++;
+                                        }
+                                        <span class="text-danger">@Resources.Apps_Utility.BIZ_COMMITTEE_NOTE</span>
+                                        foreach (var desc in juristic.AuthorizeDescriptions)
+                                        {
+                                            <span class="help-block fs20">@desc.Description.Replace("/", "")</span>
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+                                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.CONTACT_INFORMATION</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_FIRSTNAME <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.ContactFirstName, new { @class = "form-control", @id = "contactFirstName", maxlength = "50" })
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_LASTNAME <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.ContactLastName, new { @class = "form-control", @id = "contactLastName", maxlength = "50" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_ID <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.ContactIdentityID, new { @class = "form-control", @id = "contactId", maxlength = "13" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_TEL <span class="text-danger">*</span></label>
+                                <input type="text" id="contactTel" name="contactTel" value="" class="form-control" maxlength="50" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_EMAIL <span class="text-danger">*</span></label>
+                                <input type="text" id="contactEmail" name="contactEmail" value="" class="form-control" maxlength="50" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.ADDRESS_INFORMATION</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_HOUSE_REG_ID <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.AddressID, new { @class = "form-control", @id = "AddressHouseRegId", maxlength = "11" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_NUMBER <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.Address, new { @class = "form-control", maxlength = "50" })
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_MOO</label>
+                                @Html.TextBoxFor(model => model.Moo, new { @class = "form-control", maxlength = "3" })
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Citizen)
+                        {
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_FLOOR</label>
+                                    <input type="text" id="Floor" name="Floor" value="" class="form-control" maxlength="50" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>@Resources.Apps_Utility.ADDRESS_BUILDING_VILLAGE</label>
+                                    @Html.TextBoxFor(model => model.BuildingVillage, new { @class = "form-control", maxlength = "50" })
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_SOI</label>
+                                @Html.TextBoxFor(model => model.Soi, new { @class = "form-control", maxlength = "50" })
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_STREET</label>
+                                @Html.TextBoxFor(model => model.Road, new { @class = "form-control", maxlength = "50" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_PROVINCE <span class="text-danger">*</span></label>
+                                <select id="reqProvince" name="reqProvince" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_AMPHUR <span class="text-danger">*</span></label>
+                                <select id="reqAmphur" name="reqAmphur" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_TAMBOL <span class="text-danger">*</span></label>
+                                <select id="reqTambol" name="reqTambol" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_ZIP_CODE <span class="text-danger">*</span></label>
+                                <input type="text" id="AddressZipCode" name="AddressZipCode" value="" class="form-control" maxlength="5" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mapModal"><i class="fa fa-map-marker"></i> @Resources.Apps_Utility.BTN_GMAPS</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_LAT <span class="text-danger">*</span></label>
+                                <input type="text" value="" name="currentLat" id="currentLat" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_LNG <span class="text-danger">*</span></label>
+                                <input type="text" value="" name="currentLng" id="currentLng" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12" id="MEAControl" hidden>
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_MEA_DETAIL</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group btn-group radio">
+                                <label for="meaOwnerOption">
+                                    <input type="radio" id="meaOwnerOption" name="meaAddressOption" value="Owner" checked />
+                                    @Resources.Apps_Utility.MEA_OPTION_OWNER
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group btn-group radio">
+                                <label for="meaResidentOption">
+                                    <input type="radio" id="meaResidentOption" name="meaAddressOption" value="Resident" />
+                                    @Resources.Apps_Utility.MEA_OPTION_RESIDENT
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group btn-group radio">
+                                <label for="meaRentOption">
+                                    <input type="radio" id="meaRentOption" name="meaAddressOption" value="Rent" />
+                                    @Resources.Apps_Utility.MEA_OPTION_RENT
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group btn-group radio">
+                                <label for="meaOperatorOption">
+                                    <input type="radio" id="meaOperatorOption" name="meaAddressOption" value="Operator" />
+                                    @Resources.Apps_Utility.MEA_OPTION_OPERATOR
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.APPS_MEA_BRANCH</label>
+                                @if (currentLang == "th")
+                                {
+                                    <input type="text" id="meaBranchTh" name="meaBranchTh" value="" class="form-control" readonly />
+                                    <input type="hidden" id="meaBranchEn" name="meaBranchEn" value="" class="form-control" />
+                                }
+                                else
+                                {
+                                    <input type="text" id="meaBranchEn" name="meaBranchEn" value="" class="form-control" readonly />
+                                    <input type="hidden" id="meaBranchTh" name="meaBranchTh" value="" class="form-control" />
+                                }
+
+                                <input type="hidden" id="meaBranchCode" name="meaBranchCode" value="" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.APPS_MEA_SERVICE_TYPE <span class="text-danger">*</span></label>
+                                <select class="form-control" id="meaApplicationType">
+                                    <option value="01">@Resources.Apps_Utility.APPS_MEA_NEW_APPLICATION</option>
+                                </select>
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Juristic)
+                        {
+                            <div class="row hidden">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.APPS_MEA_BIZ_TYPE <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="meaBizType">
+                                        <option value="01">@Resources.Apps_Utility.APPS_MEA_WAREHOUSE</option>
+                                    </select>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.APPS_MEA_LOCATION_TYPE <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="meaBizType">
+                                        <option value="01">@Resources.Apps_Utility.APPS_MEA_LOCATION_HOUSE</option>
+                                        <option value="02">@Resources.Apps_Utility.APPS_MEA_LOCATION_BIZ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.APPS_MEA_MEASUREMENT <span class="text-danger">*</span></label>
+                                @if (type == UserTypeEnum.Juristic)
+                                {
+                                    @Html.DropDownList("meaMeasurementOption", new SelectList(meaJuristicOSS, "Value", "Text"), new { @class = "form-control", @id = "meaMeasurementOption" })
+                                }
+                                else
+                                {
+                                    @Html.DropDownList("meaMeasurementOption", new SelectList(meaCitizenOSS, "Value", "Text"), new { @class = "form-control", @id = "meaMeasurementOption" })
+                                }
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Citizen)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="text-mute">ท่านสามารถตรวจสอบค่าใช้จ่ายเบื้องต้นได้ <a href="http://www.mea.or.th/m_upload/m_download/info/file_df9272531a5376a9c5d271208dc3ad3a.pdf" target="_blank">ที่นี่</a></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" id="MWAControl" hidden>
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_MWA_DETAIL</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6 form-group btn-group">
+                                <div class="radio">
+                                    <label for="addressOwnerOption">
+                                        <input type="radio" id="addressOwnerOption" name="mwaAddressOption" value="Owner" checked />
+                                        @Resources.Apps_Utility.MWA_OPTION_OWNER
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group btn-group">
+                                <div class="radio">
+                                    <label for="addressRentOption">
+                                        <input type="radio" id="addressRentOption" name="mwaAddressOption" value="Rent" />
+                                        @Resources.Apps_Utility.MWA_OPTION_RENT
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.APPS_MWA_BRANCH <span class="text-danger">*</span></label>
+                                @Html.DropDownList("mwaBranches", new SelectList(mwaBranches, "Value", "Text"), new { @class = "form-control", @readonly = true })
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Citizen)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="text-mute">ท่านสามารถตรวจสอบค่าใช้จ่ายเบื้องต้นได้ <a href="https://www.mwa.co.th/ewt_news.php?nid=301" target="_blank">ที่นี่</a></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="PEAControl" class="col-md-12" hidden>
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_PEA_DETAIL</div>
+                    <div class="panel-body">
+                        @if (type == UserTypeEnum.Juristic)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 checkbox">
+                                    <label>
+                                        <input type="checkbox" id="isVAT" /> จดทะเบียนภาษีมูลค่าเพิ่ม
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>@Resources.Apps_Utility.PEA_TSIC <span class="text-danger">*</span></label>
+                                <div class="form-group">
+                                    <select class="form-control" style="width: 100%;" id="peaTSIC" name="peaTSIC">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.PEA_METER_TYPE <span class="text-danger">*</span></label>
+                                <select class="form-control" id="peaMeterType">
+                                    <option value="M010">@Resources.Apps_Utility_PEAMeter.M010</option>
+                                    <option value="M030">@Resources.Apps_Utility_PEAMeter.M030</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.PEA_METER_SIZE <span class="text-danger">*</span></label>
+                                <select class="form-control" id="peaMeterSize">
+                                    <option value="M0100020">@Resources.Apps_Utility_PEAMeter.M0100020</option>
+                                    <option value="M0100040">@Resources.Apps_Utility_PEAMeter.M0100040</option>
+                                    <option value="M0100070">@Resources.Apps_Utility_PEAMeter.M0100070</option>
+                                </select>
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Citizen)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="text-mute">ท่านสามารถตรวจสอบค่าใช้จ่ายเบื้องต้นได้ <a href="https://www.pea.co.th/portals/0/Document/attachment/ratePEA.pdf" target="_blank">ที่นี่</a></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="PWAControl" class="col-md-12" hidden>
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_PWA_DETAIL</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility_PWA.PWA_BRANCH <span class="text-danger">*</span></label>
+                                <select class="form-control" style="width: 100%;" id="pwaBranch" name="pwaBranch">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility_PWA.INSTALL_TYPE <span class="text-danger">*</span></label>
+                                <select class="form-control" id="pwaInstallType" name="pwaInstallType">
+                                    <option value="1">@Resources.Apps_Utility_PWA.INSTALL_TYPE_FIXED</option>
+                                    <option value="2">@Resources.Apps_Utility_PWA.INSTALL_TYPE_TEMP</option>
+                                </select>
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Citizen)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="text-mute">ท่านสามารถตรวจสอบค่าใช้จ่ายเบื้องต้นได้ <a href="http://www.pwa.co.th/contents/service/customer-guide#4" target="_blank">ที่นี่</a></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" id="TOTControl" hidden>
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_TOT_DETAIL</div>
+                    <div class="panel-body">
+                        @if (type == UserTypeEnum.Juristic)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>@Resources.Apps_Utility.APPS_TOT_SERVICE_TYPE <span class="text-danger">*</span></label>
+                                    <div class="form-group">
+                                        <select class="form-control" style="width: 100%;" id="totApplicationType">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>@Resources.Apps_Utility_TOT.PRIMARY_BRANCH <span class="text-danger">*</span></label>
+                                <div class="form-group">
+                                    <span class="form-control" id="totPrimaryBranchText"></span>
+                                    <input type="text" class="hide-input-allow-validate" id="totPrimaryBranchValue" name="totPrimaryBranchValue" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>@Resources.Apps_Utility_TOT.SECONDARY_BRANCH <span class="text-danger">*</span></label>
+                                <div class="form-group">
+                                    <span class="form-control" id="totSecondaryBranchText"></span>
+                                    <input type="text" class="hide-input-allow-validate" id="totSecondaryBranchValue" name="totSecondaryBranchValue" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="text-mute">@Resources.Apps_Utility_TOT.HINT_BRANCH</span>
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Citizen)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="text-mute">และสามารถตรวจสอบค่าใช้จ่ายเบื้องต้นได้ <a href="http://www.tot.co.th/Share/file/product/Installation_reviewNov13.pdf" target="_blank">ที่นี่</a></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            @if (type == UserTypeEnum.Juristic)
+            {
+                <div class="col-md-12" id="attachBox">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Resources.Apps_Utility.APPS_ATTACH_FILES</div>
+                        <div class="panel-body">
+                            <div id="uploaderContainer">
+                                <div id="attachRemark" hidden><p><span class="text-danger">@Resources.Apps_Utility.APPS_ATTACH_REMARK</span></p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <table id="uploadedFileTables" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="width: 30px;">#</th>
+                                                    <th class="text-center">@Resources.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                    <th class="text-center" style="width:100px;">@Resources.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                                                    <th class="text-center" style="width:80px;">@Resources.ApplicationStatusRequests.DOCUMENT_SIZE</th>
+                                                    <th class="text-center" style="width: 80px;">@Resources.Global.TABLE_ACTION_HEADING</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center mb20">
+            <div class="checkbox">
+                <label class="block text-center">
+                    <input type="checkbox" id="chkSubmit" />
+                    @Resources.Apps_Utility.STRING_BEFOR_SUBMIT_1<a data-toggle="modal" data-target="#termsModal">@Resources.Apps_Utility.STRING_BEFOR_SUBMIT_2</a>@Resources.Apps_Utility.STRING_BEFOR_SUBMIT_3
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mb20">
+            <input type="hidden" id="Status" name="Status" value="@ApplicationStatusV2Enum.DRAFT.ToString()" />
+            <button type="submit" id="btnSaveDraftUtilityForm" class="btn btn-default" onclick="$(uploadControl.controls.formStatus).val('@ApplicationStatusV2Enum.DRAFT.ToString()')">@Html.Raw(Resources.Application.BTN_SAVE_DRAFT)</button>
+            <button type="submit" id="btnSubmitUtilityForm" class="btn btn-success" onclick="$(uploadControl.controls.formStatus).val('@ApplicationStatusV2Enum.WAITING.ToString()')">@Html.Raw(Resources.Application.BTN_SUBMIT_REQUEST)</button>
+        </div>
+        <div class="col-md-12 text-center mb20">
+            <img class="img-responsive img-center" src="@Url.Content("~/Content/Images/logo/mea_mwa.png")" />
+        </div>
+    </div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mapModalLabel">@Resources.Apps_Utility.ADDRESS_INFORMATION</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6>@Resources.Apps_Utility.MAP_MODAL_HOWTO</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                    <div class="col-md-12 br-n" id="map" style="height: 350px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnMapModalOk">@Resources.Apps_Utility.BTN_OK</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnMapModalCancel">@Resources.Apps_Utility.BTN_CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="termsModalLabel">@Resources.Apps_Utility.APPS_TERM_OF_USE</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>@Html.Raw(Resources.Apps_Utility.APPS_TERMS_AND_CONDITIONS)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnTermsModalAccept">@Resources.Apps_Utility.BTN_ACCEPT</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnTermsModalDecline">@Resources.Apps_Utility.BTN_DECLINE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageStyles {
+    <style>
+        label.error {
+            margin-top: 5px !important;
+        }
+
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            margin-top: 15px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 300px;
+        }
+
+            #pac-input:focus {
+                border-color: #4d90fe;
+            }
+
+        .pac-container {
+            background-color: #FFF;
+            z-index: 1051 !important;
+            position: fixed;
+            display: inline-block;
+            float: left;
+        }
+    </style>
+}
+@section PageScripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/arcgis-3.17.js")"></script>
+    <script language="javascript">
+        $(function () {
+            uploadControl.functions.init();
+
+            @if (type == UserTypeEnum.Juristic && modelNull == true)
+            {
+            <text>
+            swal({
+                title: "@Resources.Apps_Utility.DBD_ERROR_TITLE",
+                text: "@Resources.Apps_Utility.DBD_ERROR_TEXT",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "@Resources.Apps_Utility.DBD_ERROR_RELOAD",
+                cancelButtonText: "@Resources.Apps_Utility.DBD_ERROR_BACK",
+                allowEscapeKey: false
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    location.reload();
+                } else {
+                    history.back();
+                }
+            });
+            </text>
+            }
+
+            $("#chkMEA").change(function () {
+                if ($(this).prop('checked')) {
+                    $("#MEAControl").show();
+                }
+                else {
+                    $("#MEAControl").hide();
+                }
+
+                disMetroProvin();
+                if ($("#reqProvince").val() != "10" && $("#reqProvince").val() != "11" && $("#reqProvince").val() != "12") {
+                    $("#reqProvince").val("").trigger("change");
+                }
+                uploadControl.functions.renderUploaders();
+                if ($('#currentLat').val() && $('#currentLng').val() && document.getElementById("chkMEA").checked) {
+                    getBranch();
+                }
+            });
+
+            $("#chkMWA").change(function () {
+                if ($(this).prop('checked')) {
+                    $("#MWAControl").show();
+                }
+                else {
+                    $("#MWAControl").hide();
+                }
+
+                disMetroProvin();
+                if ($("#reqProvince").val() != "10" && $("#reqProvince").val() != "11" && $("#reqProvince").val() != "12") {
+                    $("#reqProvince").val("").trigger("change");
+                }
+                uploadControl.functions.renderUploaders();
+                if (document.getElementById("chkMWA").checked) {
+                    getBranch();
+                }
+            });
+
+            $("#chkPEA").change(function () {
+                if ($(this).prop('checked')) {
+                    $("#PEAControl").show();
+                }
+                else {
+                    $("#PEAControl").hide();
+                }
+
+                disMetroProvin();
+                if ($("#reqProvince").val() == "10" || $("#reqProvince").val() == "11" || $("#reqProvince").val() == "12") {
+                    $("#reqProvince").val("").trigger("change");
+                }
+            });
+
+            $("#chkPWA").change(function () {
+                if ($(this).prop('checked')) {
+                    $("#PWAControl").show();
+                }
+                else {
+                    $("#PWAControl").hide();
+                }
+
+                disMetroProvin();
+                if ($("#reqProvince").val() == "10" || $("#reqProvince").val() == "11" || $("#reqProvince").val() == "12") {
+                    $("#reqProvince").val("").trigger("change");
+                }
+
+                if (document.getElementById("chkPWA").checked) {
+                    getBranch();
+                }
+            });
+
+            $("#chkTOT").change(function () {
+                if ($(this).prop('checked')) {
+                    $("#TOTControl").show();
+                }
+                else {
+                    $("#TOTControl").hide();
+                }
+
+                uploadControl.functions.renderUploaders();
+                if ($('#currentLat').val() && $('#currentLng').val() && document.getElementById("chkTOT").checked) {
+                    getBranch();
+                }
+            });
+
+            function disMetroProvin() {
+                if (!document.getElementById("chkMEA").checked && !document.getElementById("chkMWA").checked &&
+                    !document.getElementById("chkPEA").checked && !document.getElementById("chkPWA").checked) {
+                    $("#chkMEA").attr("disabled", false);
+                    $("#chkMWA").attr("disabled", false);
+                    $("#chkPEA").attr("disabled", false);
+                    $("#chkPWA").attr("disabled", false);
+                } else if (document.getElementById("chkMEA").checked || document.getElementById("chkMWA").checked) {
+                    $("#chkPEA").attr("disabled", true);
+                    $("#chkPWA").attr("disabled", true);
+                } else if (document.getElementById("chkPEA").checked || document.getElementById("chkPWA").checked) {
+                    $("#chkMEA").attr("disabled", true);
+                    $("#chkMWA").attr("disabled", true);
+                }
+            }
+
+            $("#peaMeterType").change(function () {
+                if ($("#peaMeterType").val() == "M010") {
+                    $("#peaMeterSize").val("");
+                    $("#peaMeterSize").empty();
+                    $("#peaMeterSize").append('<option value="M0100020">@Resources.Apps_Utility_PEAMeter.M0100020</option>');
+                    $("#peaMeterSize").append('<option value="M0100040">@Resources.Apps_Utility_PEAMeter.M0100040</option>');
+                    $("#peaMeterSize").append('<option value="M0100070">@Resources.Apps_Utility_PEAMeter.M0100070</option>');
+
+                } else {
+                    $("#peaMeterSize").val("");
+                    $("#peaMeterSize").empty();
+                    $("#peaMeterSize").append('<option value="M0300030">@Resources.Apps_Utility_PEAMeter.M0300030</option>');
+                    $("#peaMeterSize").append('<option value="M0300060">@Resources.Apps_Utility_PEAMeter.M0300060</option>');
+                }
+            });
+
+            $('input[name=mwaAddressOption]').change(function () {
+                uploadControl.functions.renderUploaders();
+            });
+
+            $('input[name=meaAddressOption]').change(function () {
+                uploadControl.functions.renderUploaders();
+            });
+
+            $("#btnTermsModalAccept").click(function (e) {
+                document.getElementById("chkSubmit").checked = true;
+            });
+
+            $("#btnTermsModalDecline").click(function (e) {
+                document.getElementById("chkSubmit").checked = false;
+            });
+
+            $("#peaTSIC").select2({
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/PEA/TSIC")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term
+                        }
+                    },
+                    processResults: function(data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.PEA_TSIC'
+            });
+
+            $("#pwaBranch").select2({
+                minimumResultsForSearch: -1,
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/PWA/Branches")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            pid: $('#reqProvince').val()
+                        }
+                    },
+                    processResults: function(data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.PEA_TSIC'
+            });
+
+            $('#reqProvince').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_PROVINCE',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        var isMetro = '';
+                        if (document.getElementById("chkMWA").checked || document.getElementById("chkMEA").checked) {
+                            isMetro = 'Metro';
+                        }
+                        else if (document.getElementById("chkPEA").checked || document.getElementById("chkPWA").checked) {
+                            isMetro = 'Provin';
+                        }
+
+                        return {
+                            isMetro: isMetro,
+                            query: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#reqAmphur').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_AMPHUR',
+                language: {
+                    noResults: function (params) {
+                        return "กรุณาเลือกจังหวัด เพื่อแสดงรายชื่ออำเภอ/เขต";
+                    }
+                },
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $('#reqProvince').val()
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#reqTambol').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_TAMBOL',
+                language: {
+                    noResults: function (params) {
+                        return "กรุณาเลือกอำเภอ/เขต เพื่อแสดงรายชื่อตำบล/แขวง";
+                    }
+                },
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $('#reqProvince').val(),
+                            aCode: $('#reqAmphur').val()
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#reqProvince').change(function () {
+                $("#reqAmphur").val("").trigger("change");
+                $("#currentLat").val("");
+                $("#currentLng").val("");
+                $('#reqAmphur option[value]').remove();
+                $("#mwaBranches, #pwaBranch").val("").trigger("change");
+                $('#totPrimaryBranchText, #totSecondaryBranchText').text('');
+                $('#totPrimaryBranchValue, #totSecondaryBranchValue, #meaBranchTh, #meaBranchEn, #meaBranchCode').val('');
+            });
+
+            $('#reqAmphur').change(function () {
+                $("#reqTambol").val("").trigger("change");
+                $("#currentLat").val("");
+                $("#currentLng").val("");
+                $('#reqTambol option[value]').remove();
+                $("#mwaBranches, #pwaBranch").val("").trigger("change");
+                $('#totPrimaryBranchText, #totSecondaryBranchText').text('');
+                $('#totPrimaryBranchValue, #totSecondaryBranchValue, #meaBranchTh, #meaBranchEn, #meaBranchCode').val('');
+            });
+
+            $('#reqTambol').change(function () {
+                $("#currentLat").val("");
+                $("#currentLng").val("");
+                $("#mwaBranches, #pwaBranch").val("").trigger("change");
+                $('#totPrimaryBranchText, #totSecondaryBranchText').text('');
+                $('#totPrimaryBranchValue, #totSecondaryBranchValue, #meaBranchTh, #meaBranchEn, #meaBranchCode').val('');
+                getBranch();
+            });
+
+            @if (modelNull == true)
+            {
+                <text>
+            $('#readonlyProvince').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_PROVINCE',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#readonlyAmphur').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_AMPHUR',
+                language: {
+                    noResults: function (params) {
+                        return "กรุณาเลือกจังหวัด เพื่อแสดงรายชื่ออำเภอ/เขต";
+                    }
+                },
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $('#readonlyProvince').val()
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#readonlyTambol').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_TAMBOL',
+                language: {
+                    noResults: function (params) {
+                        return "กรุณาเลือกอำเภอ/เขต เพื่อแสดงรายชื่อตำบล/แขวง";
+                    }
+                },
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $('#readonlyProvince').val(),
+                            aCode: $('#readonlyAmphur').val()
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#readonlyProvince').change(function () {
+                $("#readonlyAmphur").val("").trigger("change");
+                $('#readonlyAmphur option[value]').remove();
+            });
+
+            $('#readonlyAmphur').change(function () {
+                $("#readonlyTambol").val("").trigger("change");
+                $('#readonlyTambol option[value]').remove();
+            });
+            </text>
+            }
+
+        });
+
+        @if (modelNull || !citizenBd)
+        {
+            <text>
+        $(function () {
+            $('#citizenBd').datepicker({
+                autoclose: true,
+                language: "th-th",
+                format: 'dd/mm/yyyy'
+            });
+        });
+        </text>
+        }
+
+
+
+        $(document).on("focusin", "#mwaBranches", function (e) {
+            $(this).prop("disabled", true);
+        });
+        $(document).on("focusout", "#mwaBranches", function (e) {
+            $(this).prop("disabled", false);
+        });
+
+        $(window).load(function(){
+            showLoader(false);
+        });
+
+        var uploadControl = {
+            controls: {
+                uploaderContainer: '#uploaderContainer',
+                uploadedFileTables: '#uploadedFileTables',
+                form: '#frmUtility',
+                formBizTaxId: '#frmUtility #bizTaxId',
+                formBizType: '#frmUtility #bizType',
+                formBizRegId: '#frmUtility #bizRegId',
+                formBizCitizenId: '#frmUtility #bizCitizenId',
+                formBizName: '#frmUtility #bizName',
+                formBizCitizenBd: '#frmUtility #citizenBd',
+                formBizAddress: '#frmUtility #readonlyAddress',
+                formBizFloor: '#frmUtility #readonlyFloor',
+                formBizBuildingVillage: '#frmUtility #readonlyBuildingVillage',
+                formBizMoo: '#frmUtility #readonlyMoo',
+                formBizSoi: '#frmUtility #readonlySoi',
+                formBizStreet: '#frmUtility #readonlyStreet',
+                formBizProvince: '#frmUtility #readonlyProvince',
+                formBizAmphur: '#frmUtility #readonlyAmphur',
+                formBizTambol: '#frmUtility #readonlyTambol',
+                formBizZipCode: '#frmUtility #bizZipCode',
+                formBizBranch: '#frmUtility #bizBranch',
+                formBizTel: '#frmUtility #bizTel',
+                formContactFirstName: '#frmUtility #contactFirstName',
+                formContactLastName: '#frmUtility #contactLastName',
+                formContactId: '#frmUtility #contactId',
+                formContactTel: '#frmUtility #contactTel',
+                formContactEmail: '#frmUtility #contactEmail',
+                formAddressHouseRegId: '#frmUtility #AddressHouseRegId',
+                formAddressNumber: '#frmUtility #Address',
+                formAddressFloor: '#frmUtility #Floor',
+                formAddressBuildingVillage: '#frmUtility #BuildingVillage',
+                formAddressMoo: '#frmUtility #Moo',
+                formAddressSoi: '#frmUtility #Soi',
+                formAddressRoad: '#frmUtility #Road',
+                formAddressProvince: '#frmUtility #reqProvince',
+                formAddressAmphur: '#frmUtility #reqAmphur',
+                formAddressTambol: '#frmUtility #reqTambol',
+                formAddressZipCode: '#frmUtility #AddressZipCode',
+                formStatus: '#frmUtility #Status',
+                formTOTApplicationType: '#frmUtility #totApplicationType',
+                formTOTPrimaryBranchText: '#frmUtility #totPrimaryBranchText',
+                formTOTPrimaryBranchValue: '#frmUtility #totPrimaryBranchValue',
+                formTOTSecondaryBranchText: '#frmUtility #totSecondaryBranchText',
+                formTOTSecondaryBranchValue: '#frmUtility #totSecondaryBranchValue',
+            },
+            variables: {
+                confirmed: false,
+                uploader: Array(),
+                uploadedFiles: Array(),
+                fileGroupId: {},
+                appRequestId: String,
+                formDocuments: [
+                    {
+                        supportServices: [ 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Juristic' ],
+                        supportMwaTypesOfAddress: [ 'Owner', 'Rent' ],
+                        supportMeaTypesOfAddress: [],
+                        fileTypeCode: 'CERTIFICATION_OF_COMPANY_REGISTRATION_COPY',
+                        fileTypeName: '@Resources.Apps_Utility.CERTIFICATION_OF_COMPANY_REGISTRATION_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    {
+                        supportServices: [ 'TOT' ],
+                        supportTypes: [ '@UserTypeEnum.Juristic' ],
+                        fileTypeCode: 'VAT_REGISTRATION',
+                        fileTypeName: '@Resources.Apps_Utility.VAT_REGISTRATION_OPTIONAL',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: false
+                    },
+                    @*{
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Citizen' ],
+                        supportMwaTypesOfAddress: [ 'Owner', 'Rent' ],
+                        supportMeaTypesOfAddress: [ 'Owner', 'Resident', 'Rent', 'Operator' ],
+                        fileTypeCode: [
+                            {
+                                Text: '@Resources.Apps_Utility.THAI_IDENTITY_COPY',
+                                Value: 'THAI_IDENTITY_COPY'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.FOREIGNER_PASSPORT_COPY',
+                                Value: 'FOREIGNER_PASSPORT_COPY'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.FOREIGNER_IDENTITY_COPY',
+                                Value: 'FOREIGNER_IDENTITY_COPY'
+                            }
+                        ],
+                        fileTypeName: '@Resources.Apps_Utility.IDENTITY_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },*@
+                    {
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Juristic' ], @*'@UserTypeEnum.Citizen'*@
+                        supportMwaTypesOfAddress: [ 'Owner', 'Rent' ],
+                        supportMeaTypesOfAddress: [ 'Resident' ],
+                        fileTypeCode: 'HOUSEHOLD_REGISTRATION_COPY',
+                        fileTypeName: '@Resources.Apps_Utility.HOUSEHOLD_REGISTRATION_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    {
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Juristic' ], @*'@UserTypeEnum.Citizen'*@
+                        supportMwaTypesOfAddress: [ 'Rent' ],
+                        supportMeaTypesOfAddress: [ 'Rent' ],
+                        fileTypeCode: [
+                            {
+                                Text: '@Resources.Apps_Utility.RENTAL_AGREEMENT_DOCUMENT',
+                                Value: 'RENTAL_AGREEMENT_DOCUMENT'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.LANDWITHBUILDING_RENTAL_AGREEMENT',
+                                Value: 'LANDWITHBUILDING_RENTAL_AGREEMENT'
+                            }
+                        ],
+                        fileTypeName: '@Resources.Apps_Utility.RENTAL_AGREEMENT_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    {
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Juristic' ], @*'@UserTypeEnum.Citizen'*@
+                        supportMwaTypesOfAddress: [ 'Owner' ],
+                        supportMeaTypesOfAddress: [ 'Owner' ],
+                        fileTypeCode: [
+                            {
+                                Text: '@Resources.Apps_Utility.HOUSE_OWNER_REG_COPY',
+                                Value: 'HOUSE_OWNER_REG_COPY'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.HOUSE_ID_DOC_COPY',
+                                Value: 'HOUSE_ID_DOC_COPY'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.LANDWITHBUILDING_CONTRACT_AGREEMENT',
+                                Value: 'LANDWITHBUILDING_CONTRACT_AGREEMENT'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.CONTRACT_AGREEMENT',
+                                Value: 'CONTRACT_AGREEMENT'
+                            }
+                        ],
+                        fileTypeName: '@Resources.Apps_Utility.HOUSE_OWNER_DOCUMENT_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    @*{
+                        supportServices: [ 'MEA' ],
+                        supportTypes: [ '@UserTypeEnum.Citizen' ],
+                        supportMwaTypesOfAddress: [],
+                        supportMeaTypesOfAddress: [ 'Owner', 'Resident', 'Rent', 'Operator' ],
+                        fileTypeCode: 'HOUSEHOLD_REGISTRATION_OF_APPLICANT_COPY',
+                        fileTypeName: '@Resources.Apps_Utility.MEA_HOUSEHOLD_REGISTRATION_OF_APPLICANT_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },*@
+                    {
+                        supportServices: [ 'MEA' ],
+                        supportTypes: [ '@UserTypeEnum.Juristic' ], @*'@UserTypeEnum.Citizen'*@
+                        supportMwaTypesOfAddress: [],
+                        supportMeaTypesOfAddress: [ 'Operator' ],
+                        fileTypeCode: [
+                            {
+                                Text: '@Resources.Apps_Utility.VAT_REGISTRATION',
+                                Value: 'VAT_REGISTRATION'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.CERTIFICATION_OF_SPECIFIED_BUSINESS',
+                                Value: 'CERTIFICATION_OF_SPECIFIED_BUSINESS'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.COMMERCIAL_REGISTRATION',
+                                Value: 'COMMERCIAL_REGISTRATION'
+                            },
+                            {
+                                Text: '@Resources.Apps_Utility.INDIVIDUAL_TAXPAYER_COPY',
+                                Value: 'INDIVIDUAL_TAXPAYER_COPY'
+                            }
+                        ],
+                        fileTypeName: '@Resources.Apps_Utility.MEA_CERTIFICATION_OF_OPERATOR_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    @if (type == UserTypeEnum.Juristic && juristic != null && juristic.CommitteeInformations != null)
+                    {
+                        for (int i = 0; i < juristic.CommitteeInformations.Length; i++)
+                        {
+                            var committee = juristic.CommitteeInformations[i];
+                            <text>
+                            {
+                                committeeIdx: @i,
+                                supportTypes: [ '@UserTypeEnum.Juristic' ],
+                                fileTypeCode: 'IDENTITY_COPY',
+                                fileTypeName: '@Resources.Apps_Utility.APPS_ATTACH_COPY_OF_CITIZEN_CARD @committee.Title@committee.FirstName @committee.LastName.Replace("/", "")',
+                                fileGroup: 'COMMITTEES',
+                                extras: {
+                                    'COMMITTEE_TITLE': '@committee.Title',
+                                    'COMMITTEE_NAME': '@committee.FirstName',
+                                    'COMMITTEE_LASTNAME': '@committee.LastName.Replace("/", "")'
+                                },
+                                file: null,
+                                uploader: null,
+                                container: '#committee-@(i)-container',
+                                required: true,
+                                rules: {
+                                    customrequiredif: {
+                                        dependentproperty: 'Status',
+                                        targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                    },
+                                    messages: {
+                                        customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                                    }
+                                }
+                            },
+                            </text>
+                        }
+                    }
+                ]
+            },
+            functions: {
+                init: function () {
+                    showLoader(true);
+
+                    $(uploadControl.controls.formTOTApplicationType).select2({
+                        ajax: {
+                            url: '@Url.Content("~/Api/v2/TOT/Services")?language=@ViewBag.CurrentLang',
+                            dataType: 'json',
+                            processResults: function(data, params) {
+                                return data;
+                            },
+                            cache: true
+                        },
+                        allowClear: true,
+                        placeholder: '@Resources.Apps_Utility.APPS_TOT_SERVICE_TYPE',
+                        minimumResultsForSearch: -1
+                    });
+
+                    $(uploadControl.controls.form + ' button[type=submit]').ladda('bind');
+                    $(uploadControl.controls.form).ajaxForm({
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        clearForm: false,
+                        beforeSubmit: function (data, jqForm, options) {
+                            if ($(uploadControl.controls.formStatus).val() == '@ApplicationStatusV2Enum.DRAFT.ToString()') {
+                                $.ladda('stopAll');
+                                return true;
+                            }
+
+                            var accepted = jqForm.validate().form();
+
+                            if ($("#serviceBox").find('input:checkbox:checked').length < 1) {
+                                $("#serviceBox-error").remove();
+                                $("#serviceBox").after('<span id="serviceBox-error" class="text-danger bold" for="serviceBox" style="display: inline-block; font-size: 0.9em; padding-left: 15px;">กรุณาเลือกบริการอย่างน้อย 1 บริการ</span>');
+                                $.ladda('stopAll');
+                                accepted = false;
+                            } else {
+                                $("#serviceBox-error").remove();
+                            }
+
+                            if (!accepted) {
+                                swal("@Resources.Apps_Utility.APPS_VALIDATE_FALSE_TITLE", "@(type == UserTypeEnum.Juristic ? Resources.Apps_Utility.APPS_VALIDATE_FALSE_TEXT : Resources.Apps_Utility.APPS_VALIDATE_FALSE_TEXT_CITIZEN)", "warning");
+                            }
+
+                            // check terms & conditions
+                            if (accepted && !document.getElementById('chkSubmit').checked) {
+                                $("#termsModal").modal('show');
+                                $.ladda('stopAll');
+                                accepted = false;
+                            }
+
+                            if (accepted && !uploadControl.variables.confirmed) {
+                                swal({
+                                    title: "@Resources.Apps_Utility.ALERT_CONFIRM_TITLE",
+                                    text: "@Resources.Apps_Utility.ALERT_CONFIRM_DESC",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#47a447",
+                                    confirmButtonText: "@Resources.Apps_Utility.ALERT_CONFIRM_BTN",
+                                    cancelButtonText: "@Resources.Apps_Utility.ALERT_CANCEL_BTN",
+                                    closeOnConfirm: false
+                                },
+                                function() {
+                                    setTimeout(function () {
+                                        uploadControl.variables.confirmed = true;
+                                        $('.sweet-alert button').prop('disabled', true);
+                                        $(uploadControl.controls.form).submit();
+                                    }, 200);
+                                });
+                                $.ladda('stopAll');
+                                accepted = false;
+                            }
+
+                            return accepted;
+                        },
+                        customData: function (data, jqForm, options) {
+                            var l = $(uploadControl.controls.form + ' button[type=submit]').ladda();
+                            l.ladda('start');
+
+                            var committeeData = {};
+                            committeeData['COMMITTEE_TOTAL'] =  @(juristic != null ? juristic.NumberOfCommittee : 0);
+                            for (var i = 0; i < committeeData['COMMITTEE_TOTAL']; i++) {
+                                committeeData['COMMITTEE_' + i + '_SELECTED'] = document.getElementById("chkboxCommittee_" + i).checked;
+                                committeeData['COMMITTEE_' + i + '_ID'] = $("#committeeCitizenId_" + i).val();
+                                committeeData['COMMITTEE_' + i + '_NAME'] = $('#chkboxCommittee_' + i).parent().text().trim();
+                            }
+
+                            uploadControl.variables.uploadedFiles = Array();
+                            for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                                var doc = uploadControl.variables.formDocuments[i];
+                                if (doc.file) {
+                                    var group = $.grep(uploadControl.variables.uploadedFiles, function (obj) { return obj.Description == doc.fileGroup; });
+                                    if (!group.length) {
+                                        group = {
+                                            FileGroupID: uploadControl.variables.fileGroupId[doc.fileGroup],
+                                            Description: doc.fileGroup,
+                                            Files: Array()
+                                        };
+                                        uploadControl.variables.uploadedFiles.push(group);
+                                    }
+                                    else {
+                                        group = group[0];
+                                    }
+
+                                    doc.file.Extras = {
+                                        FILETYPECODE: doc.uploader.data('filetypecode'),
+                                        FILETYPENAME: doc.uploader.data('filetypename')
+                                    };
+                                    doc.file.FileTypeCode = doc.uploader.data('filetypecode');
+                                    doc.file.FileTypeName = doc.uploader.data('filetypename');
+                                    group.Files.push(doc.file);
+                                }
+                            }
+
+                            var data = {
+                                ApplicationID: @appID,
+                                Status: $(uploadControl.controls.formStatus).val(),
+                                Data: {
+                                    APPLICATION_REQUEST: {
+                                        GroupName: "APPLICATION_REQUEST",
+                                        Data: {
+                                            REQUEST_MEA: document.getElementById("chkMEA").checked,
+                                            REQUEST_MWA: document.getElementById("chkMWA").checked,
+                                            REQUEST_PEA: document.getElementById("chkPEA").checked,
+                                            REQUEST_PWA: document.getElementById("chkPWA").checked,
+                                            REQUEST_TOT: document.getElementById("chkTOT").checked
+                                        }
+                                    },
+                                    APPLICANT_INFORMATION: {
+                                        GroupName: "APPLICANT_INFORMATION",
+                                        Data: {
+                                            BIZ_TAX_ID: $(uploadControl.controls.formBizTaxId).val(),
+                                            BIZ_TYPE: $(uploadControl.controls.formBizType).val(),
+                                            BIZ_REGISTRATION_ID: $(uploadControl.controls.formBizRegId).val(),
+                                            BIZ_CITIZEN_ID: $(uploadControl.controls.formBizCitizenId).val(),
+                                            BIZ_NAME: $(uploadControl.controls.formBizName).val(),
+                                            BIZ_CITIZEN_BIRTH_DATE: $(uploadControl.controls.formBizCitizenBd).val(),
+                                            BIZ_BRANCH: $(uploadControl.controls.formBizBranch).val(),
+                                            BIZ_ADDRESS: $(uploadControl.controls.formBizAddress).val(),
+                                            BIZ_MOO: $(uploadControl.controls.formBizMoo).val(),
+                                            BIZ_FLOOR: $(uploadControl.controls.formBizFloor).val(),
+                                            BIZ_BUILDING_VILLAGE: $(uploadControl.controls.formBizBuildingVillage).val(),
+                                            BIZ_SOI: $(uploadControl.controls.formBizSoi).val(),
+                                            BIZ_STREET: $(uploadControl.controls.formBizStreet).val(),
+
+                                            @if (modelNull == true)
+                                            {
+                                                if (type == UserTypeEnum.Citizen)
+                                                {
+                                                    <text>
+                                            BIZ_CITIZEN_PREFIX_ID: $("#modelNull_CitizenPrefix").val(),
+                                            BIZ_CITIZEN_PREFIX: $("#modelNull_CitizenPrefix option:selected").text(),
+                                            BIZ_CITIZEN_NAME: $("#modelNull_CitizenName").val(),
+                                            BIZ_CITIZEN_LASTNAME: $("#modelNull_CitizenLastname").val(),
+                                            </text>
+                                                }
+                                                <text>
+                                            BIZ_PROVINCE: $("#readonlyProvince option:selected").text(),
+                                            BIZ_PROVINCE_ID: $("#readonlyProvince").val(),
+                                            BIZ_AMPHUR: $("#readonlyAmphur option:selected").text(),
+                                            BIZ_AMPHUR_ID: $("#readonlyAmphur").val(),
+                                            BIZ_TAMBOL: $("#readonlyTambol option:selected").text(),
+                                            BIZ_TAMBOL_ID: $("#readonlyTambol").val(),
+                                            BIZ_TAMBOL_CODE: $("#readonlyProvince").val() + $("#readonlyAmphur").val() + $("#readonlyTambol").val(),
+                                            </text>
+                                            }
+                                            else
+                                            {
+                                                if (type == UserTypeEnum.Citizen)
+                                                {
+                                                    <text>
+                                            BIZ_CITIZEN_PREFIX: $("#hiddenPrefixTH").val(),
+                                            BIZ_CITIZEN_NAME: $("#hiddenNameTH").val(),
+                                            BIZ_CITIZEN_LASTNAME: $("#hiddenLastnameTH").val(),
+                                            </text>
+                                                }
+                                                <text>
+                                            BIZ_PROVINCE: $("#readonlyProvince").val(),
+                                            BIZ_AMPHUR: $("#readonlyAmphur").val(),
+                                            BIZ_TAMBOL: $("#readonlyTambol").val(),
+                                            BIZ_TAMBOL_CODE: $("#TMBCode").val(),
+                                            </text>
+                                            }
+
+                                            BIZ_ZIP_CODE: $(uploadControl.controls.formBizZipCode).val(),
+                                            BIZ_TEL: $(uploadControl.controls.formBizTel).val()
+                                        }
+                                    },
+                                    CONTACT_INFORMATION: {
+                                        GroupName: "CONTACT_INFORMATION",
+                                        Data: {
+                                            CONTACT_FIRSTNAME: $(uploadControl.controls.formContactFirstName).val(),
+                                            CONTACT_LASTNAME: $(uploadControl.controls.formContactLastName).val(),
+                                            CONTACT_ID: $(uploadControl.controls.formContactId).val(),
+                                            CONTACT_TEL: $(uploadControl.controls.formContactTel).val(),
+                                            CONTACT_EMAIL: $(uploadControl.controls.formContactEmail).val()
+                                        }
+                                    },
+                                    ADDRESS_INFORMATION: {
+                                        GroupName: "ADDRESS_INFORMATION",
+                                        Data: {
+                                            ADDRESS_LAT: $("#currentLat").val(),
+                                            ADDRESS_LNG: $("#currentLng").val(),
+                                            ADDRESS_HOUSE_REGISTRATION_ID: $(uploadControl.controls.formAddressHouseRegId).val(),
+                                            ADDRESS_NUMBER: $(uploadControl.controls.formAddressNumber).val(),
+                                            ADDRESS_MOO: $(uploadControl.controls.formAddressMoo).val(),
+                                            ADDRESS_FLOOR: $(uploadControl.controls.formAddressFloor).val(),
+                                            ADDRESS_BUILDING_VILLAGE: $(uploadControl.controls.formAddressBuildingVillage).val(),
+                                            ADDRESS_SOI: $(uploadControl.controls.formAddressSoi).val(),
+                                            ADDRESS_ROAD: $(uploadControl.controls.formAddressRoad).val(),
+                                            ADDRESS_PROVINCE: $("#reqProvince option:selected").text(),
+                                            ADDRESS_PROVINCE_ID: $("#reqProvince").val(),
+                                            ADDRESS_AMPHUR: $("#reqAmphur option:selected").text(),
+                                            ADDRESS_AMPHUR_ID: $("#reqAmphur").val(),
+                                            ADDRESS_TAMBOL: $("#reqTambol option:selected").text(),
+                                            ADDRESS_TAMBOL_ID: $("#reqTambol").val(),
+                                            ADDRESS_ZIP_CODE: $(uploadControl.controls.formAddressZipCode).val(),
+                                            MWA_ADDRESS_OPTION: $('input[name="mwaAddressOption"]:checked').val(),
+                                            MEA_ADDRESS_OPTION: $('input[name="meaAddressOption"]:checked').val()
+                                        }
+                                    },
+                                    @if (type == UserTypeEnum.Juristic)
+                                    {
+                                        <text>
+                                    COMMITTEE_INFORMATION: {
+                                        GroupName: "COMMITTEE_INFORMATION",
+                                        Data: committeeData
+                                    }
+                                    </text>
+                                    }
+                                },
+                                UploadedFiles: uploadControl.variables.uploadedFiles
+                            };
+
+                            if (document.getElementById("chkMEA").checked) {
+                                data.Data.MEA_INFORMATION = {
+                                    GroupName: 'MEA_INFORMATION',
+                                    Data: {
+                                        BRANCH_ID: $('#meaBranchCode').val(),
+                                        BRANCH_TH: $('#meaBranchTh').val(),
+                                        BRANCH_EN: $('#meaBranchEn').val(),
+                                        APPLICATION_TYPE: $('#meaApplicationType option:selected').text(),
+                                        APPLICATION_TYPE_ID: $('#meaApplicationType').val(),
+                                        BUSINESS_TYPE: $('#meaBizType option:selected').text(),
+                                        BUSINESS_TYPE_ID: $('#meaBizType').val(),
+                                        MEASUREMENT_OPTION: $('#meaMeasurementOption option:selected').text(),
+                                        MEASUREMENT_OPTION_ID: $('#meaMeasurementOption').val()
+                                    }
+                                };
+                            }
+
+                            if (document.getElementById("chkMWA").checked) {
+                                data.Data.MWA_INFORMATION = {
+                                    GroupName: 'MWA_INFORMATION',
+                                    Data: {
+                                        BRANCH_ID: $('#mwaBranches').val(),
+                                        BRANCH: $('#mwaBranches option:selected').text()
+                                    }
+                                };
+                            }
+
+                            if (document.getElementById("chkPWA").checked) {
+                                data.Data.PWA_INFORMATION = {
+                                    GroupName: 'PWA_INFORMATION',
+                                    Data: {
+                                        BRANCH_ID: $('#pwaBranch').val(),
+                                        BRANCH: $('#pwaBranch option:selected').text(),
+                                        INSTALL_TYPE_ID: $('#pwaInstallType').val(),
+                                        INSTALL_TYPE: $('#pwaInstallType option:selected').text(),
+                                    }
+                                };
+                            }
+
+                            if (document.getElementById("chkPEA").checked) {
+                                data.Data.PEA_INFORMATION = {
+                                    GroupName: 'PEA_INFORMATION',
+                                    Data: {
+                                        TSIC_CODE: $('#peaTSIC').val(),
+                                        TSIC_NAME: $('#peaTSIC option:selected').text(),
+                                        METER_TYPE: $('#peaMeterType').val(),
+                                        METER_TYPE_TEXT: $('#peaMeterType option:selected').text(),
+                                        METER_SIZE: $('#peaMeterSize').val(),
+                                        METER_SIZE_TEXT: $('#peaMeterSize option:selected').text(),
+                                        @if (type == UserTypeEnum.Juristic) {
+                                            <text>
+                                        ISVAT: document.getElementById("isVAT").checked,
+                                        </text>
+                                        }
+                                        LOCATION_TMB_CODE : $('#reqProvince').val() + $('#reqAmphur').val() + $('#reqTambol').val()
+                                    }
+                                }
+                            }
+
+                            if (document.getElementById("chkTOT").checked) {
+                                data.Data.TOT_INFORMATION = {
+                                    GroupName: 'TOT_INFORMATION',
+                                    Data: {
+                                        @if (type == UserTypeEnum.Juristic) {
+                                            <text>
+                                        APPLICATION_TYPE: $(uploadControl.controls.formTOTApplicationType + ' option:selected').text(),
+                                        APPLICATION_TYPE_ID: $(uploadControl.controls.formTOTApplicationType).val(),
+                                        </text>
+                                        }
+                                        PRIMARY_BRANCH_TEXT: $(uploadControl.controls.formTOTPrimaryBranchText).text(),
+                                        PRIMARY_BRANCH_VALUE: $(uploadControl.controls.formTOTPrimaryBranchValue).val(),
+                                        SECONDARY_BRANCH_TEXT: $(uploadControl.controls.formTOTSecondaryBranchText).text(),
+                                        SECONDARY_BRANCH_VALUE: $(uploadControl.controls.formTOTSecondaryBranchValue).val(),
+                                    }
+                                }
+                            }
+
+                            options.data = JSON.stringify(data);
+                        },
+                        error: function (xhr, status, error, $form) {
+                            var data = xhr.responseJSON;
+                            $.ladda('stopAll');
+                            uploadControl.variables.confirmed = false;
+                            notify('error', data.Message);
+                        },
+                        success: function (responseText, statusText, xhr, $form) {
+                            var data = xhr.responseJSON;
+                            uploadControl.functions.renderUploadTable();
+                            $('.multi_container').not(':eq(0)').remove();
+                            $('.multi_container a.remove-request-file').hide();
+
+                            $.ladda('stopAll');
+                            uploadControl.variables.confirmed = false;
+
+                            if ($(uploadControl.controls.formStatus).val() == '@ApplicationStatusV2Enum.WAITING.ToString()') {
+                                if (data.ApplicationRequestData && data.ApplicationRequestData.TOT_RESPONSE_DATA
+                                    && data.ApplicationRequestData.TOT_RESPONSE_DATA.Data.RESPONSE_CODE == '0000'
+                                    && data.ApplicationRequestData.TOT_RESPONSE_DATA.Data.RESULT_URL) {
+                                    //window.open(data.ApplicationRequestData.TOT_RESPONSE_DATA.Data.RESULT_URL,'_blank');
+                                    notify(data.Type == 1 ? 'success' : 'error', data.Message, true, data.ApplicationRequestData.TOT_RESPONSE_DATA.Data.RESULT_URL);
+                                }
+                                else {
+                                    notify(data.Type == 1 ? 'success' : 'error', data.Message, true, '@trackingUrl');
+                                }
+                            }
+                            else {
+                                notify(data.Type == 1 ? 'success' : 'error', data.Message);
+                            }
+                        }
+                    });
+
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        var $container = $(doc.container);
+
+                        var $row = $('<div class="row invisibility"></div>');
+                        var $col = $('<div class="col-md-12 form-group"></div>');
+
+                        $row.append($col);
+
+                        var label = doc.fileTypeName;
+
+                        var fileTypeCode = '';
+                        var fileTypeName = '';
+                        if (doc.fileTypeCode.constructor == Array) {
+                            fileTypeCode = doc.fileTypeCode.length > 0 ? doc.fileTypeCode[0].Value : '';
+                            fileTypeName = doc.fileTypeCode.length > 0 ? doc.fileTypeCode[0].Text : '';
+                        } else {
+                            fileTypeCode = doc.fileTypeCode;
+                        }
+
+                        if (doc.required) {
+                            $col.append('<label>' + label + ' <span class="text-danger">*</span></label>');
+                        }
+                        else {
+                            $col.append('<label>' + label + '</label>');
+                        }
+                        var $input = $('<input type="text" id="form-document-' + i + '" name="form-document-' + i + '" class="btn btn-default" />');
+                        $input.data('filetypecode', fileTypeCode);
+                        if (doc.fileTypeCode.constructor == Array) {
+                            $input.data('filetypename', fileTypeName);
+                        } else {
+                            $input.data('filetypename', label);
+                        }
+                        if (doc.extras) {
+                            for (var key in doc.extras) {
+                                var extra = doc.extras[key];
+                                $input.data(key, extra);
+                            }
+                        }
+                        $col.append($input);
+                        $col.append('<div class="mt10"><span class="text-danger">@Resources.Apps_Utility.APPS_ATTACH_FILE_TYPE_SUPPORTED</span></div>');
+                        $container.append($row);
+
+                        if (doc.fileTypeCode.constructor == Array) {
+                            var $optionRow = $('<div class="row"></div>');
+                            var $optionCol = $('<div class="col-md-12 form-group"></div>');
+                            var $optionLabel = $('<label>@Resources.Apps_Utility.TYPE_OF_DOCUMENT</label>');
+                            var $optionSelect = $('<select id="filetype-select-' + i + '" class="form-control"></select>');
+                            $optionSelect.data('document', doc);
+                            $optionSelect.change(uploadControl.functions.fileTypeChanged);
+                            $optionRow.append($optionCol);
+                            $optionCol.append($optionLabel);
+
+                            for (var j = 0; j < doc.fileTypeCode.length; j++) {
+                                var code = doc.fileTypeCode[j];
+                                $optionSelect.append('<option value="' + code.Value + '">' + code.Text + '</option>');
+                            }
+
+                            $optionCol.append($optionSelect);
+                            $optionRow.insertAfter($col.find('label'));
+                        }
+
+                        doc.uploader = $input;
+                        doc.uploader.uploader({
+                            url: {
+                                fileConsumerKey: '@System.Configuration.ConfigurationManager.AppSettings["FileConsumerKey"]',
+                                fileServiceUrl: '@Url.Action("Upload","File", new { Area="", language = ViewBag.CurrentLang })', 
+                                fileSignedInfoUrl: '@Url.Content("~/Api/V2/File/SignedFileInfo")',
+                                fileUploadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceUploadTokenPath"]',
+                                fileDownloadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceDownloadTokenPath"]',
+                                fileOldUploadUrl: '@Url.Content("~/Api/v2/FileExplorer/List")'
+                            },
+                            events: {
+                                onFileSelected: uploadControl.functions.onFileSelected
+                            }
+                        });
+                    }
+                    uploadControl.functions.getDraft();
+                    uploadControl.functions.formValidate();
+                    uploadControl.functions.renderUploaders();
+                    uploadControl.functions.renderUploadTable();
+                },
+                renderUploaders: function () {
+                    var currentServices = Array();
+                    var mwaTypeOfAddress = $('input[name=mwaAddressOption]:checked').val();
+                    var meaTypeOfAddress = $('input[name=meaAddressOption]:checked').val();
+                    if ($('#chkMEA').prop('checked'))
+                        currentServices.push('MEA');
+                    if ($('#chkMWA').prop('checked'))
+                        currentServices.push('MWA');
+                    if ($('#chkTOT').length > 0 && $('#chkTOT').prop('checked')) {
+                        currentServices.push('TOT');
+                    }
+
+                    if ($('#chkMEA').prop('checked') && $('#chkMWA').prop('checked')) {
+                        $('#attachRemark').show();
+                    } else {
+                        $('#attachRemark').hide();
+                    }
+
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        var uploader = $(doc.uploader);
+
+                        // Support Services
+                        var serviceSupported = true;
+                        if (doc.supportServices) {
+                            serviceSupported = $.grep(currentServices, function (obj) { return doc.supportServices.indexOf(obj) >= 0; }).length > 0;
+                        }
+                        var typeSupported = true;
+                        if (doc.supportTypes) {
+                            typeSupported = $.grep(doc.supportTypes, function (obj) { return obj == '@type.ToString()'; } ).length > 0;
+                        }
+                        var mwaTypeOfAddressSupported = true;
+                        if (doc.supportMwaTypesOfAddress) {
+                            mwaTypeOfAddressSupported = $.grep(doc.supportMwaTypesOfAddress, function (obj) { return obj == mwaTypeOfAddress; } ).length > 0;
+                        }
+                        mwaTypeOfAddressSupported = $('#chkMWA').prop('checked') && mwaTypeOfAddressSupported;
+                        var meaTypeOfAddressSupported = true;
+                        if (doc.supportMeaTypesOfAddress) {
+                            meaTypeOfAddressSupported = $.grep(doc.supportMeaTypesOfAddress, function (obj) { return obj == meaTypeOfAddress; } ).length > 0;
+                        }
+                        meaTypeOfAddressSupported = $('#chkMEA').prop('checked') && meaTypeOfAddressSupported;
+                        var committeeSupport = true;
+                        if (doc.committeeIdx != null && doc.committeeIdx >= 0) {
+                            var $chk = $('#chkboxCommittee_' + doc.committeeIdx);
+                            committeeSupport = $chk.prop('checked');
+                        }
+                        var totSupported = true;
+                        if ($('#chkTOT').length > 0) {
+                            totSupported = $('#chkTOT').prop('checked');
+                        }
+
+                        if (!doc.file && serviceSupported && typeSupported && (mwaTypeOfAddressSupported || meaTypeOfAddressSupported || totSupported) && committeeSupport) {
+
+                            //if (doc.fileTypeName.constructor == Array) {
+                            //    var label = '';
+                            //    for (var j = 0; j < doc.fileTypeName.length; j++) {
+                            //        var name = doc.fileTypeName[j];
+                            //        var labelSupported = false;
+
+                            //        if (name.supportServices) {
+                            //            labelSupported = $.grep(currentServices, function (obj) { return name.supportServices.indexOf(obj) >= 0; }).length > 0;
+                            //        }
+
+                            //        if (labelSupported) {
+                            //            label = name.Display;
+                            //            break;
+                            //        }
+                            //    }
+                            //    uploader.data('filetypename', label);
+                            //    uploader.parent().find('label[class!=error]').text(label);
+                            //    if (doc.required) {
+                            //        uploader.parent().find('label[class!=error]').append(' <span class="text-danger">*</span>');
+                            //    }
+                            //}
+
+                            if (doc.required) {
+                                uploader.rules('remove'); // clear rules
+                                uploader.rules('add', doc.rules);
+                            }
+                            uploader.closest('.row').removeClass('invisibility');
+                        }
+                        else {
+                            if (doc.required) {
+                                uploader.rules('remove'); // clear rules
+                            }
+                            uploader.closest('.row').addClass('invisibility');
+                        }
+                    }
+                },
+                renderUploadTable: function () {
+                    var $body = $(uploadControl.controls.uploadedFileTables + ' > tbody');
+                    $body.html(''); // clear table
+                    var numberOfDoc = 0;
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        var file = doc.file;
+
+                        if (file != null) {
+                            numberOfDoc++;
+                            var $tr = $('<tr />');
+                            // row number column
+                            $tr.append('<td class="text-center">' + numberOfDoc + '</td>');
+                            var $td = $('<td />');
+                            // file column
+                            var $aFile = $('<a href="javascript:void(0)" class="file-link">' + file.FileName + '</a>');
+                            $aFile.data('file', file);
+                            $td.append($aFile);
+                            $tr.append($td);
+                            // file type column
+                            if (doc.uploader.data('filetypename')) {
+                                $td = $('<td class="text-center">' + doc.uploader.data('filetypename') + '</td>');
+                            } else {
+                                $td = $('<td class="text-center">' + file.Extras.FILETYPENAME + '</td>');
+                            }
+                            //$td = $('<td class="text-center" />');
+                            $tr.append($td); // empty type
+                            // file size column
+                            $td = $('<td class="text-center">' + plupload.formatSize(file.FileSize) + '</td>');
+                            $tr.append($td);
+                            // actions column
+                            $td = $('<td class="text-center"></td>');
+                            var $del_btn = $('<button type="button" class="btn btn-xs btn-danger">@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>');
+                            $del_btn.data('file', file);
+                            $del_btn.click(function () {
+                                var $this = $(this);
+                                var file = $this.data('file');
+                                uploadControl.functions.removeFile(file.FileID);
+                            });
+                            $td.append($del_btn);
+                            $tr.append($td);
+
+                            $body.append($tr);
+                        }
+                    }
+                },
+                onFileSelected: function (data) {
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        if ($(doc.uploader).prop('id') == data.UploaderID) {
+                            doc.file = data;
+                            break;
+                        }
+                    }
+                    //uploadControl.variables.uploadedFiles.push(data);
+                    uploadControl.functions.renderUploaders();
+                    uploadControl.functions.renderUploadTable();
+                },
+                fileTypeChanged: function () {
+                    var selected = $(this).val();
+                    var text = $('option:selected', this).text();
+                    var doc = $(this).data('document');
+                    doc.uploader.data('filetypecode', selected);
+                    doc.uploader.data('filetypename', text);
+                },
+                removeFile: function (fileId) {
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        if (doc.file != null && doc.file.FileID == fileId) {
+                            for (var group in uploadControl.variables.fileGroupId) {
+                                if (group == doc.fileGroup) {
+                                    $.ajax({
+                                        url: '@Url.Content("~/Api/V2/Applications/Requests")/' + uploadControl.variables.appRequestId + "/files/uploaded/" + fileId + "/" + uploadControl.variables.fileGroupId[group],
+                                        type: 'DELETE',
+                                        success: function (res) { }
+                                    });
+                                }
+                            }
+                            $(doc.uploader).val('');
+                            doc.file = null;
+                            break;
+                        }
+                    }
+                    uploadControl.functions.renderUploaders();
+                    uploadControl.functions.renderUploadTable();
+                },
+                getDraft: function () {
+                    $.get('@Url.Content("~/Api/V2/ApplicationRequests/" + appID + "/Draft")', function (data) {
+                        if (data) {
+                            uploadControl.variables.appRequestId = data.ApplicationRequestID;
+
+                            if (data.Data.APPLICATION_REQUEST.Data.REQUEST_MEA == "true") {
+                                $('#chkMEA').prop('checked', true).trigger('change');
+                                $('#meaBranchCode').val(data.Data.MEA_INFORMATION.Data.BRANCH_ID);
+                                $('#meaBranchTh').val(data.Data.MEA_INFORMATION.Data.BRANCH_TH);
+                                $('#meaBranchEn').val(data.Data.MEA_INFORMATION.Data.BRANCH_EN);
+                                $('#meaApplicationType').val(data.Data.MEA_INFORMATION.Data.APPLICATION_TYPE_ID).trigger('change');
+                                $('#meaBizType').val(data.Data.MEA_INFORMATION.Data.BUSINESS_TYPE_ID).trigger('change');
+                                $('#meaMeasurementOption').val(data.Data.MEA_INFORMATION.Data.MEASUREMENT_OPTION_ID).trigger('change');
+                            }
+
+                            if (data.Data.APPLICATION_REQUEST.Data.REQUEST_MWA == "true") {
+                                $('#chkMWA').prop('checked', true).trigger('change');
+                                $('#mwaBranches').val(data.Data.MWA_INFORMATION.Data.BRANCH_ID).trigger('change');
+                            }
+
+                            if (data.Data.APPLICATION_REQUEST.Data.REQUEST_PEA == "true") {
+                                $('#chkPEA').prop('checked', true).trigger('change');
+                                $('#peaTSIC').append('<option value="' + data.Data.PEA_INFORMATION.Data.TSIC_CODE + '">' + data.Data.PEA_INFORMATION.Data.TSIC_NAME + '</option>')
+                                    .val(data.Data.PEA_INFORMATION.Data.TSIC_CODE).trigger('change');
+                                $('#peaMeterType').val(data.Data.PEA_INFORMATION.Data.METER_TYPE).trigger('change');
+                                $('#peaMeterSize').val(data.Data.PEA_INFORMATION.Data.METER_SIZE).trigger('change');
+                                if (data.Data.PEA_INFORMATION.Data.ISVAT == "true") {
+                                    $('#isVAT').prop('checked', true).trigger('change');
+                                }
+                            }
+
+                            if (data.Data.APPLICATION_REQUEST.Data.REQUEST_PWA == "true") {
+                                $('#chkPWA').prop('checked', true).trigger('change');
+                                $('#pwaBranch').append('<option value="' + data.Data.PWA_INFORMATION.Data.BRANCH_ID + '">' + data.Data.PWA_INFORMATION.Data.BRANCH + '</option>')
+                                    .val(data.Data.PWA_INFORMATION.Data.BRANCH_ID).trigger('change');
+                                $('#pwaInstallType').val(data.Data.PWA_INFORMATION.Data.INSTALL_TYPE_ID).trigger('change');
+                            }
+
+                            if (data.Data.APPLICATION_REQUEST.Data.REQUEST_PWA == "true") {
+                                $('#chkPWA').prop('checked', true).trigger('change');
+                            }
+
+                            if (data.Data.APPLICATION_REQUEST.Data.REQUEST_TOT == "true") {
+                                $('#chkTOT').prop('checked', true).trigger('change');
+                                $(uploadControl.controls.formTOTApplicationType).append('<option value="' + data.Data.TOT_INFORMATION.Data.APPLICATION_TYPE_ID + '">' + data.Data.TOT_INFORMATION.Data.APPLICATION_TYPE + '</option>')
+                                    .val(data.Data.TOT_INFORMATION.Data.APPLICATION_TYPE_ID).trigger('change');
+                                $(uploadControl.controls.formTOTPrimaryBranchText).text(data.Data.TOT_INFORMATION.Data.PRIMARY_BRANCH_TEXT);
+                                $(uploadControl.controls.formTOTPrimaryBranchValue).val(data.Data.TOT_INFORMATION.Data.PRIMARY_BRANCH_VALUE);
+                                $(uploadControl.controls.formTOTSecondaryBranchText).text(data.Data.TOT_INFORMATION.Data.SECONDARY_BRANCH_TEXT);
+                                $(uploadControl.controls.formTOTSecondaryBranchValue).val(data.Data.TOT_INFORMATION.Data.SECONDARY_BRANCH_VALUE);
+                            }
+
+                            $('#bizTaxId').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_TAX_ID);
+                            $('#bizZipCode').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_ZIP_CODE);
+                            $('#citizenBd').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_CITIZEN_BIRTH_DATE);
+                            $('#bizBranch').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_BRANCH);
+                            $('#bizTel').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_TEL);
+                            $("TMBCode").val(data.Data.APPLICANT_INFORMATION.Data.BIZ_TAMBOL_CODE);
+
+
+                            @if (modelNull == true)
+                            {
+                            <text>
+                            $('#bizCitizenId').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_CITIZEN_ID);
+                            $('#bizName').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_NAME);
+                            $("#modelNull_CitizenPrefix").val(data.Data.APPLICANT_INFORMATION.Data.BIZ_CITIZEN_PREFIX_ID);
+                            $("#modelNull_CitizenName").val(data.Data.APPLICANT_INFORMATION.Data.BIZ_CITIZEN_NAME);
+                            $("#modelNull_CitizenLastname").val(data.Data.APPLICANT_INFORMATION.Data.BIZ_CITIZEN_LASTNAME);
+                            $('#readonlyAddress').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_ADDRESS);
+                            $('#readonlyMoo').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_MOO);
+                            $('#readonlyFloor').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_FLOOR);
+                            $('#readonlyBuildingVillage').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_BUILDING_VILLAGE);
+                            $('#readonlySoi').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_SOI);
+                            $('#readonlyStreet').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_STREET);
+
+                            $('#readonlyProvince')
+                                .prepend("<option value='" + data.Data.APPLICANT_INFORMATION.Data.BIZ_PROVINCE_ID + "'>" + data.Data.APPLICANT_INFORMATION.Data.BIZ_PROVINCE + "</option>")
+                                .val(data.Data.APPLICANT_INFORMATION.Data.BIZ_PROVINCE_ID);
+                            $('#readonlyAmphur')
+                                .prepend("<option value='" + data.Data.APPLICANT_INFORMATION.Data.BIZ_AMPHUR_ID + "'>" + data.Data.APPLICANT_INFORMATION.Data.BIZ_AMPHUR + "</option>")
+                                .val(data.Data.APPLICANT_INFORMATION.Data.BIZ_AMPHUR_ID);
+                            $('#readonlyTambol')
+                                .prepend("<option value='" + data.Data.APPLICANT_INFORMATION.Data.BIZ_TAMBOL_ID + "'>" + data.Data.APPLICANT_INFORMATION.Data.BIZ_TAMBOL + "</option>")
+                                .val(data.Data.APPLICANT_INFORMATION.Data.BIZ_TAMBOL_ID);
+                            </text>
+                            }
+
+                            $('#contactFirstName').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_FIRSTNAME);
+                            $('#contactLastName').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_LASTNAME);
+                            $('#contactId').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_ID);
+                            $('#contactTel').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_TEL);
+                            $('#contactEmail').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_EMAIL);
+
+                            $('#currentLat').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_LAT);
+                            $('#currentLng').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_LNG);
+                            $('#AddressHouseRegId').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_HOUSE_REGISTRATION_ID);
+                            $('#Address').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_NUMBER);
+                            $('#Moo').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_MOO);
+                            $('#Floor').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_FLOOR);
+                            $('#BuildingVillage').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_BUILDING_VILLAGE);
+                            $('#Soi').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_SOI);
+                            $('#Road').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_ROAD);
+
+                            $('#reqProvince')
+                                .prepend("<option value='" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_PROVINCE_ID + "'>" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_PROVINCE + "</option>")
+                                .val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_PROVINCE_ID);
+                            $('#reqAmphur')
+                                .prepend("<option value='" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_AMPHUR_ID + "'>" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_AMPHUR + "</option>")
+                                .val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_AMPHUR_ID);
+                            $('#reqTambol')
+                                .prepend("<option value='" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_TAMBOL_ID + "'>" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_TAMBOL + "</option>")
+                                .val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_TAMBOL_ID);
+                            $('#AddressZipCode').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_ZIP_CODE);
+                            $("input[name=meaAddressOption][value=" + data.Data.ADDRESS_INFORMATION.Data.MEA_ADDRESS_OPTION + "]").prop('checked', true).trigger('change');
+                            $("input[name=mwaAddressOption][value=" + data.Data.ADDRESS_INFORMATION.Data.MWA_ADDRESS_OPTION + "]").prop('checked', true).trigger('change');
+
+                            @if (type == UserTypeEnum.Juristic)
+                            {
+                            <text>
+                            var numberOfCommittee = data.Data.COMMITTEE_INFORMATION.Data["COMMITTEE_TOTAL"];
+
+                            for (var i = 0; i < numberOfCommittee; i++)
+                            {
+                                var strSelected = data.Data.COMMITTEE_INFORMATION.Data["COMMITTEE_" + i + "_SELECTED"];
+                                var strID = data.Data.COMMITTEE_INFORMATION.Data["COMMITTEE_" + i + "_ID"];
+                                var strName = data.Data.COMMITTEE_INFORMATION.Data["COMMITTEE_" + i + "_NAME"];
+
+                                if (strSelected == "true")
+                                {
+                                    document.getElementById("chkboxCommittee_" + i).checked = true;
+                                }
+                                $("#committeeCitizenId_" + i).val(strID);
+                            }
+                            </text>
+                            }
+
+                            if (data.UploadedFiles != null && data.UploadedFiles.length > 0) {
+                                for (var i = 0; i < data.UploadedFiles.length; i++) {
+                                    var group = data.UploadedFiles[i];
+                                    if (group.Description == "ATTACHMENTS") {
+                                        uploadControl.variables.fileGroupId[group.Description] = group.FileGroupID;
+                                        for (var j = 0; j < group.Files.length; j++) {
+                                            var file = group.Files[j];
+                                            for (var k = 0; k < uploadControl.variables.formDocuments.length; k++) {
+                                                var doc = uploadControl.variables.formDocuments[k];
+                                                if (doc.fileTypeCode.constructor == Array) {
+                                                    for (var l = 0; l < doc.fileTypeCode.length; l++) {
+                                                        var code = doc.fileTypeCode[l];
+                                                        if (code.Value == file.FileTypeCode) {
+                                                            doc.file = file;
+                                                            break;
+                                                        }
+                                                    }
+                                                } else {
+                                                    if (doc.fileTypeCode == file.FileTypeCode) {
+                                                        doc.file = file;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        uploadControl.variables.fileGroupId[group.Description] = group.FileGroupID;
+                                        for (var j = 0; j < group.Files.length; j++) {
+                                            var file = group.Files[j];
+                                            for (var k = 0; k < uploadControl.variables.formDocuments.length; k++) {
+                                                var doc = uploadControl.variables.formDocuments[k];
+                                                if (doc.fileTypeCode == file.FileTypeCode &&
+                                                    doc.fileTypeName == file.Extras.FILETYPENAME) {
+                                                    doc.file = file;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            uploadControl.functions.renderUploaders();
+                            uploadControl.functions.renderUploadTable();
+                        } else {
+                            @if (modelNull == false)
+                            {
+                            <text>
+                            uploadControl.functions.setAddressFromWS();
+                            </text>
+                            }
+                        }
+                    });
+                },
+                formValidate: function () {
+                    $(uploadControl.controls.form).validate({
+                        invalidHandler: function (e, validator) {
+                            $.ladda('stopAll');
+                        },
+                        errorPlacement: function (error, element) { 
+                            if (element.parent('div.input-group.date').length > 0) {
+                                error.appendTo(element.parent('div.input-group.date').parent());
+                            } else {
+                                error.insertAfter(element); // default setting
+                            }
+                        },
+                        rules: {
+                            @if (modelNull == true)
+                            {
+                                <text>
+                            modelNull_CitizenPrefix: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            modelNull_CitizenName: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            modelNull_CitizenLastname: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            readonlyAddress: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            readonlyProvince: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            readonlyAmphur: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            readonlyTambol: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            </text>
+                            }
+                            bizTaxId: {
+                                regex: '[0-9]{13}',
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            bizRegId: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            bizCitizenId: {
+                                regex: '[0-9]{13}',
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            IdentityName: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            bizBranch: {
+                                regex: '[0-9]{5}',
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            bizZipCode: {
+                                regex: '[0-9]{5}',
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            bizTel: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            ContactFirstName: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            ContactLastName: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            ContactIdentityID: {
+                                regex: '[0-9]{13}',
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            contactTel: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            contactEmail: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            currentLat: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            currentLng: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            AddressID: {
+                                regex: '[0-9]{11}',
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            Address: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            reqProvince: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            reqAmphur: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            reqTambol: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            AddressZipCode: {
+                                regex: '[0-9]{5}',
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            citizenBd: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            meaBranchTh: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            meaBranchEn: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            meaMeasurementOption: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            mwaBranches: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            peaTSIC: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            totPrimaryBranchValue: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            totSecondaryBranchValue: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            pwaBranch: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            pwaInstallType: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            }
+                        },
+                        messages: {
+                            @if (modelNull == true)
+                                {
+                                    <text>
+                            modelNull_CitizenPrefix: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CITIZEN_PREFIX@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            modelNull_CitizenName: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CITIZEN_NAME@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            modelNull_CitizenLastname: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CITIZEN_LASTNAME@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            readonlyAddress: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.ADDRESS_NUMBER@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            readonlyProvince: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_PROVINCE'
+                            },
+                            readonlyAmphur: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_AMPHUR'
+                            },
+                            readonlyTambol: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_TAMBOL'
+                            },
+                            </text>
+                                }
+                            bizTaxId: {
+                                regex: '@Resources.Apps_Utility.FIELD_REQUIRED_TAX_ID',
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.BIZ_TAX_ID@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            bizRegId: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.BIZ_REG_ID@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            bizCitizenId: {
+                                regex: '@Resources.Apps_Utility.FIELD_REQUIRED_CITIZEN_ID',
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CITIZEN_ID@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            IdentityName: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.BIZ_NAME@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            bizBranch: {
+                                regex: '@Resources.Apps_Utility.FIELD_REQUIRED_BIZ_BRANCH',
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.BIZ_BRANCH@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            bizZipCode: {
+                                regex: '@Resources.Apps_Utility.FIELD_REQUIRED_ZIP_CODE',
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.ADDRESS_ZIP_CODE@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            bizTel: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.BIZ_TEL@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            ContactFirstName: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_FIRSTNAME@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            ContactLastName: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_LASTNAME@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            ContactIdentityID: {
+                                regex: '@Resources.Apps_Utility.FIELD_REQUIRED_CITIZEN_ID',
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_ID@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            contactTel: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_TEL@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            contactEmail: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_EMAIL@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            currentLat: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_LATLNG'
+                            },
+                            currentLng: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_LATLNG'
+                            },
+                            AddressID: {
+                                regex: '@Resources.Apps_Utility.FIELD_REQUIRED_ADDRESS_ID',
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.ADDRESS_HOUSE_REG_ID@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            Address: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.ADDRESS_NUMBER@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            reqProvince: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_PROVINCE'
+                            },
+                            reqAmphur: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_AMPHUR'
+                            },
+                            reqTambol: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_TAMBOL'
+                            },
+                            AddressZipCode: {
+                                regex: '@Resources.Apps_Utility.FIELD_REQUIRED_ZIP_CODE',
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.ADDRESS_ZIP_CODE@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            citizenBd: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.CITIZEN_BIRTH_DATE'
+                            },
+                            meaBranchTh: {
+                                customrequiredif: '@Resources.Apps_Utility.MEA_BRANCH_REQUIRED'
+                            },
+                            meaBranchEn: {
+                                customrequiredif: '@Resources.Apps_Utility.MEA_BRANCH_REQUIRED'
+                            },
+                            meaMeasurementOption: {
+                                customrequiredif: '@Resources.Apps_Utility.MEA_OSS_TYPE_REQUIRED'
+                            },
+                            mwaBranches: {
+                                customrequiredif: '@Resources.Apps_Utility.MWA_BRANCH_REQUIRED'
+                            },
+                            peaTSIC: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.PEA_TSIC'
+                            },
+                            totPrimaryBranchValue: {
+                                customrequiredif: '@Resources.Apps_Utility_TOT.MSG_REQUIRED_BRANCHE'
+                            },
+                            totSecondaryBranchValue: {
+                                customrequiredif: '@Resources.Apps_Utility_TOT.MSG_REQUIRED_BRANCHE'
+                            },
+                            pwaBranch: {
+                                customrequiredif: '@Resources.Apps_Utility_PWA.MSG_REQUIRED_BRANCH'
+                            },
+                            pwaInstallType: {
+                                customrequiredif: '@Resources.Apps_Utility_PWA.MSG_REQUIRED_INSTALL_TYPE'
+                            }
+                        }
+                    });
+                },
+                setAddressFromWS: function() {
+                    var pCode, aCode;
+                    @if (modelNull == false)
+                    {
+                    <text>
+                    $.ajax({
+                        url: '@Url.Content("~/Api/v2/Geo/GetProvinceId")',
+                        dataType: 'json',
+                        data:
+                        {
+                            query: '@Model.Province'
+                        },
+                        success: function(pData) {
+                            pCode = pData.results;
+                            $.ajax({
+                                url: '@Url.Content("~/Api/v2/Geo/GetAmphurId")?pCode=' + pCode + '&query=@HttpUtility.UrlEncode(Model.Amphur)',
+                                dataType: 'json',
+                                success: function(aData) {
+                                    aCode = aData.results;
+                                    $.ajax({
+                                        url: '@Url.Content("~/Api/v2/Geo/GetTambolId")?pCode=' + pCode + '&aCode=' + aCode + '&query=@HttpUtility.UrlEncode(Model.Tumbol)',
+                                        dataType: 'json',
+                                        success: function(tData) {
+                                            $("#TMBCode").val(pCode + aCode + tData.results);
+                                            return $("#reqTambol")
+                                                .prepend("<option value='" + tData.results + "'>@Model.Tumbol</option>")
+                                                .val(tData.results);
+                                        }
+                                    });
+                                    return $("#reqAmphur")
+                                        .prepend("<option value='" + aCode + "'>@Model.Amphur</option>")
+                                        .val(aCode);
+                                }
+                            });
+                            return $("#reqProvince")
+                                .prepend("<option value='" + pCode + "'>@Model.Province</option>")
+                                .val(pCode);
+                        }
+                    });
+                    </text>
+                    }
+                }
+                @if (type == UserTypeEnum.Juristic)
+                {
+                    <text>
+                ,committeeUploadFiles: function (idx) {
+                    if (document.getElementById("chkboxCommittee_" + idx).checked == false) {
+                        for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                            var doc = uploadControl.variables.formDocuments[i];
+                            if (doc.committeeIdx == idx && doc.file != null) {
+                                uploadControl.functions.removeFile(doc.file.FileID);
+                                break;
+                            }
+                        }
+                    }
+                    uploadControl.functions.renderUploaders();
+                }
+                </text>
+                }
+            }
+        };
+    </script>
+    <script>
+        var searchBox;
+
+        function initMap() {
+            // GOOGLE MAPS
+            var initLatLng = new google.maps.LatLng(13.7537900, 100.5204650);
+            var mapOptions = {
+                zoom: 15,
+                center: initLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var marker;
+            var currentCenter;
+            var input = document.getElementById('pac-input');
+
+            $('#mapModal').on('shown.bs.modal', function () {
+                var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+                // Initiate Marker
+                if ($("#currentLat").val().length > 0 && $("#currentLng").val().length > 0) {
+                    $(input).val($("#reqTambol option:selected").text() + " " +
+                            $("#reqAmphur option:selected").text() + " " +
+                            $("#reqProvince option:selected").text());
+                    var currentLatLng = new google.maps.LatLng(parseFloat($("#currentLat").val()), parseFloat($("#currentLng").val()));
+                    marker = new google.maps.Marker({
+                        position: currentLatLng,
+                        map: map
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                } else {
+                    if ($("#reqProvince option:selected").text().length > 0 &&
+                    $("#reqAmphur option:selected").text().length > 0 &&
+                    $("#reqTambol option:selected").text().length > 0) {
+                        $(input).val($("#reqTambol option:selected").text() + " " +
+                            $("#reqAmphur option:selected").text() + " " +
+                            $("#reqProvince option:selected").text());
+                        marker = new google.maps.Marker({
+                            position: initLatLng,
+                            map: map
+                        });
+                        marker.setMap(map);
+                        setTimeout(function () {
+                            google.maps.event.trigger(input, 'focus');
+                            google.maps.event.trigger(input, 'keydown', {
+                                keyCode: 13
+                            });
+                        }, 200);
+                    } else {
+                        marker = new google.maps.Marker({
+                            position: initLatLng,
+                            map: map
+                        });
+                        currentCenter = marker.getPosition();
+                        map.setCenter(currentCenter);
+                        marker.setMap(map);
+                    }
+                }
+
+                // Map Search
+                searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                searchBox.addListener('places_changed', searchPlace);
+                function searchPlace() {
+                    var places = searchBox.getPlaces();
+                    if (places.length == 0) {
+                        return;
+                    } else {
+                        var place = places[0];
+                    }
+
+                    marker.setMap(null);
+                    if (!place.geometry) {
+                        return;
+                    }
+                    marker = new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                };
+
+                google.maps.event.addListener(map, 'click', function (e) {
+                    placeMarker(e.latLng);
+                });
+
+                function placeMarker(location) {
+                    marker.setMap(null);
+                    marker = new google.maps.Marker({
+                        map: map,
+                        position: location
+                    });
+                    currentCenter = marker.getPosition();
+                    map.setCenter(currentCenter);
+                    marker.setMap(map);
+                }
+                google.maps.event.trigger(map, "resize");
+            });
+
+            $("#btnMapModalOk").click(function () {
+                var currentPosition = marker.getPosition().toString();
+                var latlng = currentPosition.match(/\((-?[0-9\.]+), (-?[0-9\.]+)\)/);
+                var lat = parseFloat(latlng[1]).toFixed(7);
+                var lng = parseFloat(latlng[2]).toFixed(7);
+                $('#currentLat').val(lat);
+                $('#currentLng').val(lng);
+                getBranch();
+            });
+        }
+
+        function getBranch() {
+            var lat = $('#currentLat').val();
+            var lng = $('#currentLng').val();
+
+            // Get MEA Branch
+            if (document.getElementById("chkMEA").checked && lat && lng) {
+                // MEA API
+                require(["esri/geometry/webMercatorUtils"], function ( WebMercatorUtils ) {
+                    var mkUtils = WebMercatorUtils;
+                    var coordinateXY = mkUtils.lngLatToXY(lng, lat);
+                    var geom = {
+                        x: coordinateXY[0],
+                        y: coordinateXY[1],
+                        spatialReference: {
+                            wkid: 102100
+                        }
+                    };
+                    geom = JSON.stringify(geom);
+
+                    $.ajax({
+                        url: 'https://gisadaptor.mea.or.th/mapstd/rest/services/general/MEAWMS_Cache/MapServer/12/query',
+                        data: {
+                            f: 'json',
+                            where: '',
+                            returnGeometry: 'false',
+                            spatialRel: 'esriSpatialRelIntersects',
+                            geometry: geom,
+                            geometryType: 'esriGeometryPoint',
+                            inSR: 102100,
+                            outFields: 'NAME_E,NAME_T,ID_CODE',
+                            outSR: 102100
+                        },
+                        timeout: 30000,
+                        success: function (data) {
+                            var featureAttributes = JSON.parse(data);
+                            if (featureAttributes.features != null && featureAttributes.features.length > 0) {
+                                $('#meaBranchTh').val(featureAttributes.features[0].attributes.NAME_T);
+                                $('#meaBranchEn').val(featureAttributes.features[0].attributes.NAME_E);
+                                $('#meaBranchCode').val(featureAttributes.features[0].attributes.ID_CODE);
+                            } else {
+                                $('#meaBranchTh').val("");
+                                $('#meaBranchEn').val("");
+                                $('#meaBranchCode').val("");
+                            }
+                        },
+                        error: function () {
+                            swal("@Resources.Apps_Utility.APPS_GETBRANCH_TIMEOUT", "@Resources.Apps_Utility.APPS_GETBRANCH_MEA @Resources.Apps_Utility.APPS_GETBRANCH_INFO", "error");
+                        }
+                    });
+                });
+            }
+
+            // Get MWA Branch
+            if (document.getElementById("chkMWA").checked && $("#reqProvince").val() != ""
+                && $("#reqAmphur").val() != "" && $("#reqTambol").val() != "") {
+                var pcode = $("#reqProvince").val();
+                var acode = $("#reqAmphur").val();
+                var tcode = $("#reqTambol").val();
+                $.ajax({
+                    url: '@Url.Content("~/Api/v2/MWA/GetBranch")',
+                    data:{
+                        lat: lat,
+                        lng: lng,
+                        pcode: pcode,
+                        acode: acode,
+                        tcode: tcode
+                    },
+                    timeout: 30000,
+                    success: function (data) {
+                        $('#mwaBranches').val(data.id).trigger('change');
+                    },
+                    error: function () {
+                        swal("@Resources.Apps_Utility.APPS_GETBRANCH_TIMEOUT", "@Resources.Apps_Utility.APPS_GETBRANCH_MWA @Resources.Apps_Utility.APPS_GETBRANCH_INFO", "error");
+                    }
+                });
+            }
+
+            // Get TOT Branch
+            if (document.getElementById("chkTOT").checked && lat && lng) {
+                $.ajax({
+                    url: '@Url.Content("~/Api/v2/TOT/Branches")',
+                    data:{
+                        latitude: lat,
+                        longitude: lng
+                    },
+                    success: function (data) {
+                        if (data && data[0]) {
+                            // primary branch
+                            $(uploadControl.controls.formTOTPrimaryBranchText).text(data[0].service_center);
+                            $(uploadControl.controls.formTOTPrimaryBranchValue).val(data[0].location_code);
+                        }
+                        if (data && data[1]) {
+                            // secondary branch
+                            $(uploadControl.controls.formTOTSecondaryBranchText).text(data[1].service_center);
+                            $(uploadControl.controls.formTOTSecondaryBranchValue).val(data[1].location_code);
+                        }
+                    },
+                    error: function () {
+                        swal("@Resources.Apps_Utility.APPS_GETBRANCH_TIMEOUT", "@Resources.Apps_Utility_TOT.MSG_ERROR_GET_BRANCHES @Resources.Apps_Utility.APPS_GETBRANCH_INFO", "error");
+                    }
+                });
+            }
+
+            if (document.getElementById("chkPWA").checked && $("#reqProvince").val() != "") {
+                $.get('@Url.Content("~/Api/v2/PWA/Branches")?pid=' + $("#reqProvince").val(), function (data) {
+                    $('#pwaBranch').html('');
+                    if (data && data.results) {
+                        if (data.results.length == 1) {
+                            var branch = data.results[0];
+                            $('#pwaBranch').append('<option value="' + branch.id + '">' + branch.text + '</option>')
+                                    .val(branch.id).trigger('change');
+                        }
+                        else {
+                            $('#pwaBranch').append('<option value="0000">ไม่แน่ใจ</option>')
+                                    .val('0000').trigger('change');
+                        }
+                    }
+                    else {
+                        $('#pwaBranch').append('<option value="0000">ไม่แน่ใจ</option>')
+                                    .val('0000').trigger('change');
+                    }
+                });
+            }
+        }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC85LX9fy6pv1cEHFSxmFZU0G81nwwHKIM&libraries=places&callback=initMap"></script>
+}
+

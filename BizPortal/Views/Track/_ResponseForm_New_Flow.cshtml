@@ -1,0 +1,350 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using BizPortal.AppsHook
+@using BizPortal.Service
+@using BizPortal.DAL.MongoDB;
+@{
+    IAppsHook hook = ViewBag.Hook as IAppsHook;
+    Dictionary<string, string> appTranslates = null;
+
+    if (hook != null)
+    {
+        appTranslates = hook.TranslateKeyValue(Model);
+    }
+
+    if (Model != null)
+    {
+        Model.Remark = string.Empty; // Clear Data
+    }
+
+    var app = Model.ApplicationID;
+}
+
+<form id="frmResponse" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")">
+    @Html.HiddenFor(o => o.ApplicationID)
+    @Html.HiddenFor(o => o.ApplicationRequestID)
+
+    @if (Model.RequestedFiles != null && Model.RequestedFiles.Length > 0)
+    {
+        <span class="block">
+            <br><strong>@Resource.ApplicationStatusRequests.REQUEST_FILE_LIST</strong>
+        </span>
+
+        int uploaderIdx = 0;
+        foreach (var file in Model.RequestedFiles)
+        {
+            uploaderIdx++;
+
+            <div class="row">
+                <div class="col-md-12 send-doc-box">
+                    <strong>@Resource.ApplicationStatusRequests.PLEASE_SEND_REQUEST_DOC : </strong>
+                    @Html.Raw(file.GetFileDisplayName(appTranslates))
+                </div>
+                <div class="col-md-12 send-doc-box">
+                    <strong>@Resource.ApplicationStatusRequests.DOCUMENT_REASON : </strong>
+                    @file.FileReason
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" id="UploadedFiles_@uploaderIdx" name="UploadedFiles_@uploaderIdx" class="uploader" data-filetypecode="@file.FileTypeCode" data-filetypename="@file.FileName" required data-msg-required="@Resource.Apps_Utility.FIELD_REQUIRED_ATTACHFILES" owners="@ViewBag.FileOwners" 
+                               @if (file.Extras != null) { foreach (var extra in file.Extras) { <text>
+                               data-@(extra.Key)="@extra.Value"
+                               </text> } } 
+                               isenableurl="true" /> @*@file.FileIsEnableUrl*@
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <table id="uploadedFileTables" class="table table-bordered table-striped" style="display:none;">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">#</th>
+                            <th class="text-center" style="width:150px;">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                            <th class="text-center" style="width:150px;">@Resource.ApplicationStatusRequests.DOCUMENT_FILE_NAME</th>
+                            <th class="text-center" style="width:200px;">@Resource.ApplicationStatusRequests.UPLOAD_FILE_DOC_EXPLANATION</th>
+                            <th class="text-center" style="width: 120px;">@Resource.Global.TABLE_ACTION_HEADING</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @if (app != 9)
+    {
+        if (hook != null && hook.IsEnabledChat())
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>@Resource.ApplicationStatusRequests.USER_COMMENT_REMARK</label>
+                        <textarea id="Remark" name="Remark" class="form-control" data-msg-required="กรุณากรอกข้อความ" @(Model.RequestedFiles != null && Model.RequestedFiles.Count() > 0 ? "" : "required")></textarea>
+                        @Html.CustomValidationMessageFor(model => model.Remark)
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button type="button" id="btnSubmit" class="btn btn-primary"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_SUBMIT)</span></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalConfirm" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ยืนยันการส่งข้อมูล</h4>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-md-12 requestedFiles-box">
+                        <label style="font-weight:bold;">@Resource.ApplicationStatusRequests.SENT_UPLOAD_FILE_TO_AGENT : </label>
+                        <div class="file-box"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <label>ข้อความถึงเจ้าหน้าที่ : </label>
+                        <span class="remark"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-6 text-right">
+                        <button style="width:100px;" type="button" class="btn btn-default" data-dismiss="modal">@Html.Raw(Resource.Global.BTN_CLOSE)</button>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        <button style="width:100px;" type="submit" class="btn btn-primary" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var requestManage = {
+        controls: {
+            uploadedFileTables: '#uploadedFileTables',
+            form: '#frmResponse',
+            formApplicationID: '#frmResponse #ApplicationID',
+            formApplicationRequestID: '#frmResponse #ApplicationRequestID',
+            btnSubmit: '#frmResponse #btnSubmit',
+            modalConfirm : '#frmResponse #modalConfirm'
+            @if (app != 9)
+            {
+                <text>
+                , formRemark: '#frmResponse #Remark'
+                </text>
+            }
+        },
+        variables: {
+            uploader: Array(),
+            uploadedFiles: Array()
+        },
+        functions: {
+            init: function () {
+                requestManage.functions.bindingModalItem();
+                $(requestManage.controls.form).data('validator', null).validate();
+                $(requestManage.controls.formStatus).select2();
+                $(requestManage.controls.form + ' button[type=submit]').ladda('bind');
+                $(requestManage.controls.btnSubmit).on('click', function (e) {
+
+                    if ($(requestManage.controls.form).valid()) {
+                        $(requestManage.controls.modalConfirm).modal({backdrop : 'static'});
+                    }
+                });
+
+                $(requestManage.controls.form).ajaxForm({
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    clearForm: true,
+                    customData: function (data, jqForm, options) {
+                        var l = $(requestManage.controls.form + ' button[type=submit]').ladda();
+                        l.ladda('start');
+
+                        options.data = JSON.stringify({
+                            ApplicationID: $(requestManage.controls.formApplicationID).val(),
+                            ApplicationRequestID: $(requestManage.controls.formApplicationRequestID).val(),
+                            Status: '@Model.Status',
+                            StatusOther: '@ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING',
+                            @if (app != 9)
+	                        {
+                            <text>
+                                Remark: $(requestManage.controls.formRemark).val(),
+                            </text>
+	                        }
+                            UploadedFiles: [
+		                        {
+		                            Description: "REQUESTED_FILE",
+		                            Files: requestManage.variables.uploadedFiles
+		                        }
+                            ]
+                        });
+                    },
+                    error: function (xhr, status, error, $form) {
+                        var data = xhr.responseJSON;
+                        $('#modalConfirm').modal('hide');
+                        $.ladda('stopAll');
+                        notify('error', data.Message);
+                    },
+                    success: function (responseText, statusText, xhr, $form) {
+                        var data = xhr.responseJSON;
+                        requestManage.variables.uploadedFiles = Array();
+                        requestManage.functions.renderUploadTable();
+                        $('.multi_container').not(':eq(0)').remove()
+                        $('.multi_container a.remove-request-file').hide();
+                        $('#modalConfirm').modal('hide');
+
+                        $.ladda('stopAll');
+
+                        swal({
+                            title: decodeURIComponent(data.Message),
+                            text: '',
+                            type: 'success',
+                        }, function (isConfirm) {
+                            location.reload();
+                        });
+                        $("div.sa-confirm-button-container button.confirm").text("ตกลง");
+                    }
+                });
+
+                @if (Model.RequestedFiles != null && Model.RequestedFiles.Length > 0)
+                    {
+                    <text>
+                requestManage.variables.uploader = $('.uploader').uploader({
+                    url: {
+                        fileConsumerKey: '@System.Configuration.ConfigurationManager.AppSettings["FileConsumerKey"]',
+                        fileServiceUrl: '@Url.Action("Upload","File", new { Area="", language = ViewBag.CurrentLang })', 
+                        fileSignedInfoUrl: '@Url.Content("~/Api/V2/File/SignedFileInfo")',
+                        fileUploadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceUploadTokenPath"]',
+                        fileDownloadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceDownloadTokenPath"]',
+                        fileOldUploadUrl: '@Url.Content("~/Api/v2/FileExplorer/List")'
+                    },
+                    events: {
+                        onFileSelected: requestManage.functions.onFileSelected
+                    }
+                });
+                </text>
+                    }
+                requestManage.functions.renderUploadTable();
+            },
+            renderUploadTable: function () {
+                if (requestManage.variables.uploadedFiles && requestManage.variables.uploadedFiles.length > 0) {
+                    var $body = $(requestManage.controls.uploadedFileTables + ' > tbody');
+                    $body.html(''); // clear table
+                    for (var i = 0; i < requestManage.variables.uploadedFiles.length; i++) {
+                        var file = requestManage.variables.uploadedFiles[i];
+                        if (file != null) {
+
+                            var $tr = $('<tr />');
+                            // row number column
+                            $tr.append('<td class="text-center">' + (i + 1) + '</td>');
+                            var $td = $('<td />');
+                            $td.addClass("text-left");
+
+                            $tr.append('<td class="text-left">' +  (file.Extras.filetypedesc || file.Extras.filetypename) + '</td>');
+                            // file column
+
+                            console.log(file);
+
+                            var fileUrl = '@Url.Action("GetByMetadata", "File", new { area = "" })/' + file.FileID + '?fileName=' + encodeURIComponent(file.FileName) + '&contentType=' + encodeURIComponent(file.ContentType) + '&fileUrl=' + file.FileURL;
+                            var $aFile = $('<a href="' + fileUrl + '" target="_blank" class="file-link">' + file.FileName + '</a>');
+                            $aFile.data('file', file);
+                            $td.append($aFile);
+                            $tr.append($td);
+                            // file type column
+                            $td = $('<td class="text-left">' + file.Extras.request_file_reason + '</td>');
+                            $tr.append($td);
+                            // actions column
+                            $td = $('<td class="text-center"></td>');
+                            var $del_btn = $('<button type="button" class="btn btn-xs btn-danger">@Html.Raw(Resource.Global.BTN_DELETE)</button>');
+                            $del_btn.data('file', file);
+                            $del_btn.click(function () {
+                                var $this = $(this);
+                                var file = $this.data('file');
+                                requestManage.functions.removeFile(file.FileID, file.UploaderID);
+                            });
+                            $td.append($del_btn);
+                            $tr.append($td);
+
+                            $body.append($tr);
+                        }
+                    }
+                    $(requestManage.controls.uploadedFileTables).show();
+                } else {
+                    $(requestManage.controls.uploadedFileTables).hide();
+                }
+            },
+            onFileSelected: function (data) {
+                data.FileTypeCode = data.Extras.filetypecode;
+                requestManage.variables.uploadedFiles.push(data);
+                requestManage.functions.renderUploadTable();
+                requestManage.functions.hideUploader();
+            },
+            removeFile: function (fileId, uploadId) {
+                if (requestManage.variables.uploadedFiles != null && requestManage.variables.uploadedFiles.length > 0) {
+                    requestManage.variables.uploadedFiles = $.grep(requestManage.variables.uploadedFiles, function (e) {
+                        var matched = e.FileID == fileId;
+                        if (matched) {
+                            $('#' + e.UploaderID).closest('div.row').show();
+                        }
+                        return !matched;
+                    });
+                    requestManage.functions.renderUploadTable();
+                    $('#'+ uploadId).val('');
+                }
+            },
+            hideUploader: function () {
+                if (requestManage.variables.uploadedFiles != null && requestManage.variables.uploadedFiles.length > 0) {
+                    for (var i = 0; i < requestManage.variables.uploadedFiles.length; i++) {
+                        var file = requestManage.variables.uploadedFiles[i];
+                        $('#' + file.UploaderID).closest('div.row').hide();
+                    }
+                }
+            },
+            bindingModalItem: function () {
+                $('#modalConfirm').on('show.bs.modal', function (e) {
+                    $('#modalConfirm .requestedFiles-box').hide();
+                    $('#modalConfirm .file-box').empty();
+                    $('#modalConfirm .remark').html($(requestManage.controls.formRemark).val() || '-')
+
+                    if (requestManage.variables.uploadedFiles != null && requestManage.variables.uploadedFiles.length > 0) {
+                        $('#modalConfirm .file-box').html(requestManage.functions.getFileTable('#uploadedFileTables'));
+                        $('#modalConfirm .requestedFiles-box').show();
+                    }
+                });
+            },
+            getFileTable: function (el) {
+                var $table = $($(el).outerHtml());
+
+                if ($('tbody tr', $table).length < 1) {
+                    return ' - ';
+                }
+                else {
+                    $.each($('thead tr', $table), function (i, el) { $('th:last', $(el)).remove() });
+                    $.each($('tbody tr', $table), function (i, el) { $('td:last', $(el)).remove() });
+
+                    return $table.outerHtml();
+                }
+            },
+        }
+    };
+
+    $(document).ready(function () {
+        requestManage.functions.init();
+    });
+</script>

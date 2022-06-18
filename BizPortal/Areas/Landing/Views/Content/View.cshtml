@@ -1,0 +1,93 @@
+﻿@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using BizPortal.ViewModels
+@model ArticleViewModel
+@{
+    ViewBag.Title = ViewBag.Title == null ? Resource.Global.PAGE_TITLE_ATICLE : ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+
+    bool applyDomainRoute = ViewBag.ApplyDomainRoute;
+    if (applyDomainRoute)
+    {
+        ViewBag.ReturnUrl = ViewBag.ServicesDomain + Request.Url.AbsolutePath;
+    }
+    else
+    {
+        ViewBag.ReturnUrl = Request.Url.AbsolutePath;
+    }
+}
+
+<div class="container article-container">
+    <div class="row">
+        <div class="appear-animation-visible appear-animation fadeInLeft">
+            <div class="D-2">
+                <img class="img-responsive img-thumbnail img-category-thumbnail" src="@Url.Action("GetThumbnail", "File", new { id = Model.ThumbnailID, area = "", cid = Model.CategoryID })" />
+            </div>
+            <div class="D-10">
+                <div class="group-container">
+                    <h2 class="detail-header">@Model.ArticleName.ToString()</h2>
+                    <hr class="dashed" style="margin:0; margin-bottom:10px;" />
+                    <div class="body">
+                        @Html.Raw(Model.ArticleBody)
+                    </div>
+                    @if (!string.IsNullOrEmpty(ViewBag.Tags))
+                    {
+                        <div class="footer p-none">
+
+                            <ul class="tag-labels">
+                                @foreach (string tag in ViewBag.Tags.Split(','))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Category", "Home", new { area = "", tag = tag })" class="tag-label">@tag</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="D-10 D-offset-2">
+            <nav class="pager">
+                @{ var displayLabel = (Model.PreviousArticleID.HasValue && Model.PreviousArticleName.Length > 50) || (Model.NextArticleID.HasValue && Model.NextArticleName.Length > 50);}
+                <div class="M-6 text-center">
+                    @if (Model.PreviousArticleID.HasValue)
+                    {
+                        if (displayLabel)
+                        {
+                            <div><a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Model.PreviousArticleName.ShortDetailText(50)</a></div>
+                        }
+                        else if (Model.PreviousArticleName.Length > 40)
+                        {
+                            <div><a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Resource.Global.PREVIOUS_ARTICLE : @Model.PreviousArticleName.ShortDetailText()</a></div>
+                        }
+                        else
+                        {
+                            <div> <a title="@Model.PreviousArticleName" href="@Url.Action("Article", "Home", new { id = Model.PreviousArticleID })"><span aria-hidden="true">&larr;</span>  @Resource.Global.PREVIOUS_ARTICLE : @Model.PreviousArticleName.ToString()</a></div>
+                        }
+                    }
+                </div>
+                <div class="M-6 text-center">
+                    @if (Model.NextArticleID.HasValue)
+                    {
+                        if (displayLabel)
+                        {
+                            <div><a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })">  @Model.NextArticleName.ShortDetailText(50) <span aria-hidden="true">&rarr;</span></a> </div>
+                        }
+                        else if (Model.NextArticleName.Length > 40)
+                        {
+                            <div><a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })">  @Resource.Global.NEXT_ARTICLE : @Model.NextArticleName.ShortDetailText() <span aria-hidden="true">&rarr;</span></a></div>
+                        }
+                        else
+                        {
+                            <div> <a title="@Model.NextArticleName" href="@Url.Action("Article", "Home", new { id = Model.NextArticleID })">  @Resource.Global.NEXT_ARTICLE : @Model.NextArticleName.ToString() <span aria-hidden="true">&rarr;</span></a></div>
+                        }
+                    }
+                </div>
+
+            </nav>
+        </div>
+    </div>
+</div>

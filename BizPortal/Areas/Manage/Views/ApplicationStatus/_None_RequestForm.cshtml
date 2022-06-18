@@ -1,0 +1,67 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using BizPortal.Utils.Helpers
+@using System.Threading;
+
+<style>
+    .btn-biz-blue {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #fff !important;
+        font-size: 17px !important;
+        background-color: #5ca1bf;
+        border-color: #5ca1bf;
+        margin: 0px 5px;
+        padding: 5px 15px !important;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        @if (Model.Status == ApplicationStatusV2Enum.COMPLETED)
+        {
+            <h2>@ResourceHelper.GetResourceWord("STATUS_" + @Model.Status, "ApplicationStatusRequests", Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)</h2>
+
+            if ( Model.ELicenses != null &&  Model.ELicenses.Count > 0)
+            {
+                <div class="text-center">
+                    <br />
+
+                     @foreach (var el in Model.ELicenses) 
+                     {
+                        <a class="btn btn-biz-blue" href="@Url.Action("DownloadEDocument", "File", new { area="", applicationRequestId = el.ApplicationRequestID, documentId = el.DocumentID })" target="_blank">ดาวน์โหลดใบอนุญาต @el.Name</a>
+                     }
+
+                    <br />
+                    <br />
+                </div>
+            }
+        }
+        else
+        {
+            if (Model.StatusOther == "WAITING_USER_WORKING")
+            {
+                <span>@Model.StatusOtherText</span>
+            }
+            else
+            {
+                <h2>@Model.StatusOtherText</h2>
+            }
+        }
+
+    </div>
+</div>

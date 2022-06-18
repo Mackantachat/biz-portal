@@ -1,0 +1,52 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")" >
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+        
+        var groupContainer = $("section[data-section-name='APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_SEARCH_SECTION']");
+        @if (this.IdentityType == UserTypeEnum.Citizen)
+        {
+            <Text>
+            var txtIdentity = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_SEARCH_SECTION_CITIZEN_ID']");
+            </Text>
+        }
+        else
+        {
+            <Text>
+            var txtIdentity = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_SEARCH_SECTION_JURISTIC_ID']");
+            </Text>
+        }
+
+        var txtRegisNo = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_SEARCH_SECTION_NUMBER']");
+        var btnGetList = $(groupContainer).find("button[name='APP_ELECTRONIC_COMMERCIAL_EDIT_SEARCH_SEARCH_SECTION_SEARCH']");
+
+        $(txtIdentity).val('@ViewBag.IdentityID');  // Default to current IdentityID
+
+        // Register event to target controls
+        $(btnGetList).click(function (e) {
+
+            var identityId = $(txtIdentity).val();
+            var regisNo = $(txtRegisNo).val();
+
+            window.singleFormHelpers.DBD.checkCommerceById('@Model.SectionGroup', identityId, regisNo, this, function (data) {
+                $('#btnNextAppSingleForm').trigger('click');
+            });
+        });
+    });
+
+    // Hide next and save draft button. The form submission will be trigger once data is valid.
+    $('#btnSaveDraftSingleForm, #btnNextAppSingleForm').css('display', 'none');
+
+    //TODO: ที่หน้า Inquiry จะเป็นการตรวจสอบว่า  "เลขที่คำขอจัดตั้ง"  กับ "ใบอนุญาตที่ต้องการแก้ไข" มีข้อมูลอยู่จริงหรือไม่ ระบบจะจัดเก็บ แค่ตัวเลข 2 ค่านี้  
+    // อาจต้องไปเขียน code ใน AppHook เพื่อดึง data จาก DBD อีกครั้งตอน render หน้าข้อมูลเฉพาะ
+    
+</script>
+
+
+

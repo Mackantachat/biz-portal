@@ -1,0 +1,333 @@
+﻿@model BizPortal.DAL.MongoDB.SmartQuiz
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions;
+@using System.Text.RegularExpressions;
+@{
+    ViewBag.Title = Resources.Apps_SmartQuiz.TITLE_SMART_QUIZ;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+@helper MakeQuestionBox(int qIndex, BizPortal.DAL.MongoDB.SmartQuiz.Question q)
+    {
+        bool isSubQuestion = (qIndex == 0);
+        string qIndexText = isSubQuestion ? "" : (qIndex + ".");
+        <div class="wrap-form with-img @(isSubQuestion ? "tab" : "")"
+             id="@q.QuestionID"
+             style="@(isSubQuestion ? "display: none" : "")">
+
+            @if (q.Icon != null)
+            {
+                <div class="img-left">
+                    <object data="@Url.Content(q.Icon)"></object>
+                </div>
+            }
+
+            <div class="content-right">
+                <p class="title">@MakeQuestionText(qIndexText, q)</p>
+                @if (q.Info != null)
+                {
+                    <div class="wrap-form info smart-quiz-info" id="info-@q.QuestionID" style="@(q.DefaultShowInfo ? "" : "display: none;")">
+                        <a href="#" class="close" data-target="info-@q.QuestionID"><i class="fa fa-times-circle"></i></a>
+                        <div class="row" style="letter-spacing: 0em;">
+                            @Html.Raw(BizPortal.Resources.Apps_SmartQuiz.ResourceManager.GetString(q.Info))
+                        </div>
+                    </div>
+                }
+					<div class="form">
+						@{ int cIndex = 0; }
+						@foreach (var c in q.Choices)
+						{
+							cIndex++;
+							var cID = qIndex + "-" + cIndex;
+							if (q.AllowMultipleAnswer)
+							{
+								<input type="checkbox" class="biz-checkbox choice-ui"
+									   id="@c.ChoiceID"
+									   name="@(q.SystemName)_@c.SystemName"
+									   data-questionid="@q.QuestionID"
+									   data-choiceid="@c.ChoiceID"
+									   @(q.SelectedChoices.Contains(c.ChoiceID) ? "checked" : "") />
+
+
+								@MakeChoiceLabel(cID, c)
+								if (c.Info != null)
+								{
+									<div class="wrap-form info smart-quiz-info" id="info-@c.ChoiceID" style="display: none">
+										<a href="#" class="close" data-target="info-@c.ChoiceID"><i class="fa fa-times-circle"></i></a>
+										<div class="row">
+											@Html.Raw(BizPortal.Resources.Apps_SmartQuiz.ResourceManager.GetString(c.Info))
+										</div>
+									</div>
+								}
+							}
+							else
+							{
+								<input type="radio" class="biz-radio choice-ui"
+									   id="@c.ChoiceID"
+									   name="@q.SystemName"
+									   value="@c.SystemName"
+									   data-questionid="@q.QuestionID"
+									   data-choiceid="@c.ChoiceID"
+									   @(q.SelectedChoices.Contains(c.ChoiceID) ? "checked" : "") />
+								@MakeChoiceLabel(cID, c)
+								if (c.Info != null)
+								{
+									<div class="wrap-form info smart-quiz-info" id="info-@c.ChoiceID" style="display: none">
+										<a href="#" class="close" data-target="info-@c.ChoiceID"><i class="fa fa-times-circle"></i></a>
+										<div class="row">
+											@Html.Raw(BizPortal.Resources.Apps_SmartQuiz.ResourceManager.GetString(c.Info))
+										</div>
+									</div>
+								}
+							}
+							if (c.ForbiddenInfo != null)
+							{
+								<div class="wrap-form forbid-info" id="forbid-info-@c.ChoiceID" style="border-color: red; color: red; display: none;">
+									<div class="row">
+										@Html.Raw(BizPortal.Resources.Apps_SmartQuiz.ResourceManager.GetString(c.ForbiddenInfo))
+									</div>
+								</div>
+							}
+						}
+					</div>
+            </div>
+        </div>
+        if (q.SubQuestions != null)
+        {
+            foreach (var sq in q.SubQuestions)
+            {
+                @MakeQuestionBox(0, sq)
+            }
+        }
+}
+
+@helper MakeChoiceForbiddenIcon(string cID, BizPortal.DAL.MongoDB.SmartQuiz.Choice c)
+    {
+        if (c.ForbiddenInfo != null)
+        {
+            <i class="fa fa-exclamation-circle danger" id="forbid-@c.ChoiceID" style="color: red; display: none;"></i>
+        }
+}
+
+@helper MakeChoiceLabel(string cID, BizPortal.DAL.MongoDB.SmartQuiz.Choice c)
+    {
+        string cText = BizPortal.Resources.Apps_SmartQuiz.ResourceManager.GetString(c.Text);
+        if (c.Info != null)
+        {
+            Regex r = new Regex(@"\<info\>(.*)\<\/info\>");
+            if (r.IsMatch(cText))
+            {
+                cText = r.Replace(cText, "<a href=\"#\" class=\"form-info\" data-target=\"info-" + c.ChoiceID + "\">$1 <i class=\"fa fa-info-circle\"></i></a>");
+                <label for="@c.ChoiceID">
+                    @Html.Raw(cText)
+                    @MakeChoiceForbiddenIcon(cID, c)
+                </label>
+            }
+            else
+            {
+                <label for="@c.ChoiceID">
+                    @Html.Raw(cText)
+                    <a href="#" class="form-info" data-target="info-@c.ChoiceID">
+                        <i class="fa fa-info-circle"></i>
+                    </a>
+                    @MakeChoiceForbiddenIcon(cID, c)
+                </label>
+            }
+        }
+        else
+        {
+            <label for="@c.ChoiceID">
+                @Html.Raw(cText)
+                @MakeChoiceForbiddenIcon(cID, c)
+            </label>
+        }
+}
+
+@helper MakeQuestionText(string qIndexText, BizPortal.DAL.MongoDB.SmartQuiz.Question q)
+    {
+        string qText = BizPortal.Resources.Apps_SmartQuiz.ResourceManager.GetString(q.Text);
+        if (q.Info != null)
+        {
+            Regex r = new Regex(@"\<info\>(.*)\<\/info\>");
+            if (r.IsMatch(qText))
+            {
+                qText = r.Replace(qText, "<a href=\"#\" class=\"form-info\" data-target=\"info-" + q.QuestionID + "\">$1 <i class=\"fa fa-info-circle\"></i></a>");
+                <p class="title">@qIndexText @Html.Raw(qText)</p>
+            }
+            else
+            {
+                <p class="title">
+                    @qIndexText @Html.Raw(qText)
+                    <a href="#" class="form-info" data-target="info-@q.QuestionID">
+                        <i class="fa fa-info-circle"></i>
+                    </a>
+                </p>
+            }
+        }
+        else
+        {
+            <p class="title">@qIndexText @Html.Raw(qText)</p>
+        }
+
+
+}
+
+@{
+    string formAction = Url.ServiceAction("List", "SingleForm", new { area = "Apps", language = ViewBag.CurrentLang });
+    if (ViewBag.IdentityType == null)
+    {
+        formAction = Url.Action("AnonymousQuizAnswerSubmit", "Quiz", new { language = ViewBag.CurrentLang }) + "/" + Model.BusinessType;
+    }
+}
+
+@section breadcrumb{
+    <section class="breadcrumb">
+        <div class="container">
+            <h2>@Resources.Apps_SmartQuiz.TITLE_SMART_QUIZ</h2>
+            <ul>
+                <li class="active">@Resources.Apps_SmartQuiz.TITLE_SMART_QUIZ</li>
+            </ul>
+        </div>
+    </section>
+}
+
+<section class="form">
+    <form id="frmSingleForm" method="post" action="@formAction" class="frm-single-form">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Group" value="@Model.BusinessType" />
+        <input type="hidden" name="id" value="@Model.BusinessType" />
+        <input type="hidden" name="qaID" value="@Guid.NewGuid()" />
+        <div class="container">
+            <h2 class="text-left">กรุณาตอบคำถามให้ครบถ้วนเพื่อให้ระบบแนะนำใบอนุญาตที่ต้องขอ</h2>
+            @{
+                int qIndex = 0;
+            }
+            @foreach (var q in Model.Questions)
+            {
+                qIndex++;
+                @MakeQuestionBox(qIndex, q);
+            }
+        </div>
+        <button class="button primary" type="submit" id="smart-quiz-submit1">ดูใบอนุญาตที่คุณต้องขอ</button>
+    </form>
+</section>
+
+@section PageScripts
+{
+    <script>
+        var SmartQuizFillData = @Html.Raw(Json.Encode(Model));
+        var SmartQuizSubmitUrl = "@Url.ServiceAction("List", "SingleForm", new { area = "Apps", language = ViewBag.CurrentLang })";
+    </script>
+
+    @Scripts.Render("~/bundles/SmartQuiz")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#smart-quiz-submit1").click(function (e) {
+                e.preventDefault();
+                var data = $("#frmSingleForm").serializeObject();
+                var suggests = getQuizSuggestions(data);
+
+                if (suggests && suggests.length > 0) {
+                    var msg = '';
+                    $(suggests).each(function (i, o) {
+                        msg += '<li>' + o + '</li>';
+                    });
+
+                    $.sweetModal({
+                        content: '<ul style="font-size: larger;">' + msg + '</ul>',
+                        title: 'คำแนะนำเพิ่มเติม',
+                        showCloseButton: false,
+                        blocking: true,
+                        buttons: {
+                            rework: {
+			                    label: 'กลับไปทำแบบสอบถามอีกครั้ง',
+			                    classes: 'secondaryB bordered',
+			                    action: function() {
+                                    return null;
+			                    }
+		                    },
+
+		                    continue: {
+			                    label: 'ดำเนินการต่อ',
+			                    classes: '',
+			                    action: function() {
+				                    return doSubmitQuiz();
+			                    }
+		                    },
+                        }
+                    });
+
+                } else {
+                    doSubmitQuiz();
+                }
+            });
+        });
+
+        function doSubmitQuiz() {
+            swal({
+                title: "กำลังไปยังหน้าถัดไป",
+                type: "success",
+                showConfirmButton: false
+            });
+
+            window.setTimeout(function () {
+                $(".frm-single-form").submit();
+            }, 1500);
+        }
+
+        function getQuizSuggestions(data) {
+
+            var suggestions = [];
+            @if (Model.Suggestions != null)
+            {
+                <text>
+                suggestions = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Suggestions));
+                </text>
+            }
+
+            var matchedMessages = [];
+
+            $(suggestions).each(function (index, suggest) {
+                var isMatched = true;
+                for (var i = 0; i < (suggest.Conditions || []).length; i++) {
+                    var cond = suggest.Conditions[i];
+                    var matchedCond = false;
+
+                    if (cond.JSExpression) {
+                        var evalFnc = "function validate() { " + cond.JSExpression + " }";
+                        matchedCond = eval("(" + evalFnc + ")()");
+                    } else if (cond.ExpectedValues && cond.ExpectedValues.includes("" + data[cond.DataKey])) {
+                        matchedCond = true;
+                    } else {
+                        matchedCond = false;
+                    }
+
+                    // Required at leat one matched condition
+                    if (matchedCond && !suggest.RequireAllCondition) {
+                        isMatched = true;
+                        break;
+                    }
+
+                    isMatched &= matchedCond;
+                }
+
+                if (isMatched) matchedMessages.push(suggest.Message);
+            });
+
+            return matchedMessages;
+
+        }
+    </script>
+}
+
+<link rel="stylesheet" href="@Url.Content("~/Scripts/sweetmodal/jquery.sweet-modal.min.css")" />
+<script src="@Url.Content("~/Scripts/sweetmodal/jquery.sweet-modal.min.js")"></script>
+
+@* Override sweet-modal-overlay background color *@
+<style type="text/css">
+    .sweet-modal-overlay {
+        background: rgba(0, 0, 0, 0.4);
+    }
+</style>

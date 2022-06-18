@@ -1,0 +1,292 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="SSO_EMPLOYEE_INFORMATIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        <label>เลขบัตรประจำตัวประชาชน 13 หลัก: </label> {{this.SSO_EMPLOYEE_CITIZEN_ID}}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " fieldExist(this.SSO_EMPLOYEE_REG_STATUS) && this.SSO_EMPLOYEE_REG_STATUS != 'null' " }}
+                        <label>ชื่อ: </label>
+                        {{#xif "this.SSO_EMPLOYEE_REG_STATUS == 'true'" }}
+                        {{this.SSO_EMPLOYEE_TITLE_TRUE_TEXT}} {{this.SSO_EMPLOYEE_NAME_TRUE}} {{this.SSO_EMPLOYEE_LASTNAME_TRUE}}
+                        {{else}}
+                        {{this.SSO_EMPLOYEE_TITLE_FALSE_TEXT}} {{this.SSO_EMPLOYEE_NAME_FALSE}} {{this.SSO_EMPLOYEE_LASTNAME_FALSE}}
+                        {{/xif}}
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 collapse" id="ssoCollapse{{@@index}}">
+            {{#xif " fieldExist(this.SSO_EMPLOYEE_REG_STATUS) && this.SSO_EMPLOYEE_REG_STATUS != 'null' " }}
+            {{#xif "this.SSO_EMPLOYEE_REG_STATUS == 'true'" }}
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE_TEXT !== 'undefined' " }}
+                        <label>สาขาหรือสถานที่ทำงานของลูกจ้าง : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE_TEXT}}
+                        {{/xif}}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE !== 'undefined' " }}
+                        <label>วันที่ผู้ประกันตนเข้าทำงาน : </label> {{this.SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE}}
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYMENT_TYPE_TRUE !== 'undefined' " }}
+                        {{#xif " this.SSO_EMPLOYMENT_TYPE_TRUE == 'DAILY' "}}
+                        <label>ประเภทการจ้าง : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_DAILY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_DAILY")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYMENT_TYPE_TRUE == 'MONTHLY' "}}
+                        <label>ประเภทการจ้าง : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_MONTHLY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_MONTHLY")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYMENT_TYPE_TRUE == 'HOURLY' "}}
+                        <label>ประเภทการจ้าง : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_HOURLY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_HOURLY")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYMENT_TYPE_TRUE == 'ETC' "}}
+                        <label>ประเภทการจ้าง : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_ETC", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_ETC") ({{this.SSO_EMPLOYMENT_TYPE_ETC_TRUE_TEXT}})
+                        {{/xif}}
+                        {{/xif}}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYEE_WAGE_TRUE !== 'undefined' " }}
+                        <label>จำนวนเงินค่าจ้าง (บาท) : </label> {{this.SSO_EMPLOYEE_WAGE_TRUE}}
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_1 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_2 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_3 !== 'undefined' " }}
+                        <label>สถานพยาบาลที่ประสงค์จะใช้สิทธิ</label> <br />
+                        <label>ลำดับที่ 1 : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_1_TEXT}}<br />
+                        <label>ลำดับที่ 2 : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_2_TEXT}}<br />
+                        <label>ลำดับที่ 3 : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_3_TEXT}}<br />
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_1 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_2 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_3 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_4 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_5 !== 'undefined' " }}
+                        <label>รายละเอียดประเภทกิจการ</label> <br />
+                        <label>หมวดใหญ่ : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_1_TEXT}}<br />
+                        <label>หมวดย่อย : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_2_TEXT}}<br />
+                        <label>หมู่ใหญ่ : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_3_TEXT}}<br />
+                        <label>หมู่ย่อย : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_4_TEXT}}<br />
+                        <label>ประเภทอุตสาหกรรม : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_5_TEXT}}<br />
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+            {{else}}
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE_TEXT !== 'undefined' " }}
+                        <label>สาขาหรือสถานที่ทำงานของลูกจ้าง : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE_TEXT}}
+                        {{/xif}}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE !== 'undefined' " }}
+                        <label>วันที่ผู้ประกันตนเข้าทำงาน : </label> {{this.SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE}}
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYMENT_TYPE_FALSE !== 'undefined' " }}
+                        {{#xif " this.SSO_EMPLOYMENT_TYPE_FALSE == 'DAILY' "}}
+                        <label>ประเภทการจ้าง : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_DAILY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_DAILY")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYMENT_TYPE_FALSE == 'MONTHLY' "}}
+                        <label>ประเภทการจ้าง : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_MONTHLY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_MONTHLY")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYMENT_TYPE_FALSE == 'HOURLY' "}}
+                        <label>ประเภทการจ้าง : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_HOURLY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_HOURLY")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYMENT_TYPE_FALSE == 'ETC' "}}
+                        <label>ประเภทการจ้าง : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_ETC", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_ETC") ({{this.SSO_EMPLOYMENT_TYPE_ETC_FALSE_TEXT}})
+                        {{/xif}}
+                        {{/xif}}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYEE_WAGE_FALSE !== 'undefined' " }}
+                        <label>จำนวนเงินค่าจ้าง (บาท) : </label> {{this.SSO_EMPLOYEE_WAGE_FALSE}}
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+
+            {{#xif " typeof this.SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE !== 'undefined' && this.SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE == 'true' " }}
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        <label>ทำงานกับนายจ้างหลายแห่ง : </label> {{this.SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE_TEXT}}
+                    </p>
+                </div>
+            </div>
+            {{/xif}}
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYEE_FAMILY_STATUS_FALSE !== 'undefined' " }}
+                        {{#xif " this.SSO_EMPLOYEE_FAMILY_STATUS_FALSE == 'SINGLE' "}}
+                        <label>สถานภาพครอบครัว : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_SINGLE", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_SINGLE")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYEE_FAMILY_STATUS_FALSE == 'MARRIED' "}}
+                        <label>สถานภาพครอบครัว : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_MARRIED", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_MARRIED")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYEE_FAMILY_STATUS_FALSE == 'WIDOW' "}}
+                        <label>สถานภาพครอบครัว : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_WIDOW", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_WIDOW")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYEE_FAMILY_STATUS_FALSE == 'DIVORCE' "}}
+                        <label>สถานภาพครอบครัว : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_DIVORCE", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_DIVORCE")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYEE_FAMILY_STATUS_FALSE == 'SEPARATED' "}}
+                        <label>สถานภาพครอบครัว : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_SEPARATED", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_SEPARATED")
+                        {{/xif}}
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYEE_HAS_KID !== 'undefined' " }}
+                        {{#xif " this.SSO_EMPLOYEE_HAS_KID == 'false' "}}
+                        <label>บุตร : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_HAS_KID_FALSE", "Apps_SingleForm", "SSO_EMPLOYEE_HAS_KID_FALSE")
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYEE_HAS_KID == 'true' "}}
+                        <label>บุตร : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_HAS_KID_TRUE", "Apps_SingleForm", "SSO_EMPLOYEE_HAS_KID_TRUE")
+                        {{/xif}}
+                        {{/xif}}
+                    </p>
+                </div>
+                {{#xif " this.SSO_EMPLOYEE_HAS_KID == 'true' "}}
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#each this.SSO_EMPLOYEE_HAS_KID_6Y_REPEATER}}
+                        <label>บุตรคนที่ {{idxinc @@index}}</label> เกิดวันที่ {{this.SSO_EMPLOYEE_HAS_KID_6Y_REPEATER}}<br />
+                        {{/each}}
+                    </p>
+                </div>
+                {{/xif}}
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.SSO_EMPLOYEE_BODY_CONDITION_FALSE !== 'undefined' " }}
+                        {{#xif " this.SSO_EMPLOYEE_BODY_CONDITION_FALSE == 'NORMAL' "}}
+                        <label>สภาพร่างกาย : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_BODY_CONDITION_NORMAL", "Apps_SingleForm", "SSO_EMPLOYEE_BODY_CONDITION_NORMAL")<br />
+                        {{/xif}}
+                        {{#xif " this.SSO_EMPLOYEE_BODY_CONDITION_FALSE == 'DISABILITY' "}}
+                        <label>สภาพร่างกาย : </label> @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_BODY_CONDITION_DISABILITY", "Apps_SingleForm", "SSO_EMPLOYEE_BODY_CONDITION_DISABILITY")<br />
+                        {{/xif}}
+                        {{/xif}}
+                    </p>
+                </div>
+                {{#xif " this.SSO_EMPLOYEE_BODY_CONDITION_FALSE == 'DISABILITY' "}}
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                        {{#each this.SSO_EMPLOYEE_DISABILITY_CHECKBOXES}}
+                        <label>{{idxinc @@index}}.</label>
+                        {{#xif " this == 'VISUAL_DISABILITY' " }}
+                        @ResourceHelper.GetResourceWordWithDefault("VISUAL_DISABILITY", "Apps_SingleForm", "VISUAL_DISABILITY")
+                        {{/xif}}
+                        {{#xif " this == 'HEARING_DISABILITY' " }}
+                        @ResourceHelper.GetResourceWordWithDefault("HEARING_DISABILITY", "Apps_SingleForm", "HEARING_DISABILITY")
+                        {{/xif}}
+                        {{#xif " this == 'PHYSICAL_DISABILITY' " }}
+                        @ResourceHelper.GetResourceWordWithDefault("PHYSICAL_DISABILITY", "Apps_SingleForm", "PHYSICAL_DISABILITY")
+                        {{/xif}}
+                        {{#xif " this == 'MENTALHEALTH_DISABILITY' " }}
+                        @ResourceHelper.GetResourceWordWithDefault("MENTALHEALTH_DISABILITY", "Apps_SingleForm", "MENTALHEALTH_DISABILITY")
+                        {{/xif}}
+                        {{#xif " this == 'INTELLECTUAL_DISABILITY' " }}
+                        @ResourceHelper.GetResourceWordWithDefault("INTELLECTUAL_DISABILITY", "Apps_SingleForm", "INTELLECTUAL_DISABILITY")
+                        {{/xif}}
+                        {{#xif " this == 'LEARNING_DISABILITY' " }}
+                        @ResourceHelper.GetResourceWordWithDefault("LEARNING_DISABILITY", "Apps_SingleForm", "LEARNING_DISABILITY")
+                        {{/xif}}
+                        {{#xif " this == 'AUTISM_DISABILITY' " }}
+                        @ResourceHelper.GetResourceWordWithDefault("AUTISM_DISABILITY", "Apps_SingleForm", "AUTISM_DISABILITY")
+                        {{/xif}}
+                        <br />
+                        {{/each}}
+                    </p>
+                </div>
+                {{/xif}}
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_1 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_2 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_3 !== 'undefined' " }}
+                        <label>สถานพยาบาลที่ประสงค์จะใช้สิทธิ</label> <br />
+                        <label>ลำดับที่ 1 : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_1_TEXT}}<br />
+                        <label>ลำดับที่ 2 : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_2_TEXT}}<br />
+                        <label>ลำดับที่ 3 : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_3_TEXT}}<br />
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="form-control-static">
+                        {{#xif " typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_1 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_2 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_3 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_4 !== 'undefined' && typeof this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_5 !== 'undefined' " }}
+                        <label>รายละเอียดประเภทกิจการ</label> <br />
+                        <label>หมวดใหญ่ : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_1_TEXT}}<br />
+                        <label>หมวดย่อย : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_2_TEXT}}<br />
+                        <label>หมู่ใหญ่ : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_3_TEXT}}<br />
+                        <label>หมู่ย่อย : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_4_TEXT}}<br />
+                        <label>ประเภทอุตสาหกรรม : </label> {{this.AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_5_TEXT}}<br />
+                        {{/xif}}
+                    </p>
+                </div>
+            </div>
+
+            {{/xif}}
+
+            {{/xif}}
+        </div>
+        <div class="col-md-12">
+            <a href="#ssoCollapse{{@@index}}" class="collapse-text" data-toggle="collapse" style="float:right;">ข้อมูลเพิ่มเติม</a>
+        </div>
+    </div>
+
+    {{/each}}
+
+    {{else}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลลูกจ้าง
+        </div>
+    </div>
+
+    {{/xif}}
+</script>

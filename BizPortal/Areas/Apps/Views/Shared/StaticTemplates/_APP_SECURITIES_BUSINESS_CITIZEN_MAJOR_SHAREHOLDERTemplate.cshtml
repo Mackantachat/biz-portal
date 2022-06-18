@@ -1,0 +1,68 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDERTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>ประเภทผู้ถือหุ้น :</label>
+            {{this.DROPDOWN_APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_TYPE_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>คำนำหน้าชื่อ ภาษาไทย :</label>
+            {{this.DROPDOWN_APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_TITLE_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>ชื่อ ภาษาไทย :</label>
+            {{this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_NAME}}
+        </div>
+        <div class="col-md-4">
+            <label>นามสกุล ภาษาไทย :</label>
+            {{this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_LASTNAME}}
+        </div>
+        <div class="col-md-4">
+            <label>คำนำหน้าชื่อ ภาษาอังกฤษ :</label>
+            {{this.DROPDOWN_APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_TITLE_EN_TEXT}}
+        </div>
+        <div class="col-md-4">
+            <label>ชื่อ ภาษาอังกฤษ :</label>
+            {{this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_NAME_EN}}
+        </div>
+        <div class="col-md-4">
+            <label>นามสกุล ภาษาอังกฤษ :</label>
+            {{this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_LASTNAME_EN}}
+        </div>
+        <div class="col-md-8">
+            <label>สัญชาติ :</label>
+            {{this.DROPDOWN_APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_NATIONALITY_TEXT}}
+        </div>
+        <div class="col-md-12">
+            {{#xif " fieldExist(this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_IDENTITY_ID) " }}
+            <label>เลขบัตรประจำตัวประชาชน 13 หลัก :</label> {{this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_IDENTITY_ID}}
+            {{/xif}}
+        </div>
+        <div class="col-md-12">
+            {{#xif " fieldExist(this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_IDENTITY_PASSPORT) " }}
+            <label>เลขที่หนังสือเดินทาง :</label>
+            {{this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_IDENTITY_PASSPORT}}
+            {{/xif}}
+        </div>
+        <div class="col-md-8">
+            <label>จำนวนหุ้นที่ถือ :</label>
+            {{this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_SHARE_TOTAL}}
+        </div>
+        <div class="col-md-8">
+            <label>ร้อยละของสิทธิออกเสียงทั้งหมด (%) :</label>
+            {{this.APP_SECURITIES_BUSINESS_CITIZEN_MAJOR_SHAREHOLDER_AUTHORITY_VOTE_PERCENTAGE}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

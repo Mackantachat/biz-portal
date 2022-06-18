@@ -1,0 +1,163 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_FACTORY_TYPE2_LOCATION_INFORMATION_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>เลขที่ :</label>
+                {{ this.ADDRESS_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+
+            <div class="col-md-6">
+                <label>หมู่ที่ :</label>
+                {{ this.ADDRESS_MOO_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>ตรอก/ซอย :</label>
+                {{ this.ADDRESS_SOI_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+            
+            <div class="col-md-6">
+                <label>จังหวัด :</label>
+                {{ this.ADDRESS_PROVINCE_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>อำเภอ/เขต :</label>
+                {{ this.ADDRESS_AMPHUR_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL_TEXT }}
+            </div>
+
+            <div class="col-md-6">
+                <label>ตำบล/แขวง :</label>
+                {{ this.ADDRESS_TUMBOL_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>รหัสไปรษณีย์ :</label>
+                {{ this.ADDRESS_POSTCODE_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label>โทรศัพท์ :</label>
+                {{ this.ADDRESS_TELEPHONE_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+
+            <div class="col-md-2">
+                <label>ต่อ :</label>
+                {{ this.ADDRESS_TELEPHONE_EXT_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+
+            <div class="col-md-6">
+                <label>โทรสาร :</label>
+                {{ this.ADDRESS_FAX_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>ละติจูด :</label>
+                {{ this.ADDRESS_LAT_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+
+            <div class="col-md-6">
+                <label>ลองจิจูด :</label>
+                {{ this.ADDRESS_LNG_APP_FACTORY_TYPE2_LOCATION_INFORMATION_CONTROL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>องค์กรปกครองส่วนท้องถิน :</label>
+                {{ this.APP_FACTORY_TYPE2_LOCAL_GOVERNMENT_ORGANIZATION_MODAL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>คลอง :</label>
+                {{ this.APP_FACTORY_TYPE2_WATERWAY_MODAL }}
+            </div>
+
+            <div class="col-md-6">
+                <label>แม่น้ำ :</label>
+                {{ this.APP_FACTORY_TYPE2_RIVER_MODAL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <label>ชื่อ-นามสกุลบุคคลหรือนิติบุคคลเจ้าของที่ดิน :</label>
+                {{ this.APP_FACTORY_TYPE2_LAND_OWNER_MODAL }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <label>ที่ดินที่คุณใช้สำหรับตั้งโรงงานมีลักษณะกรรมสิทธิ์ตามข้อใด</label>
+                {{ this.FACTORY_TYPE2_INFORMATION_BUILDING_TYPE_MODAL__RADIO_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <label>โปรดระบุประเภทของผู้ให้เช่า/ให้ใช้ที่ดิน :</label>
+                {{ this.FACTORY_TYPE2_INFORMATION_BUILDING_RENT_MODAL__RADIO_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="col-md-12" style="float: right">
+
+            <div class="col-md-2 pr5" style="float: right;padding-left:0">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+            </div>
+            <div class="col-md-2 pl5" style="float: right">
+                <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>

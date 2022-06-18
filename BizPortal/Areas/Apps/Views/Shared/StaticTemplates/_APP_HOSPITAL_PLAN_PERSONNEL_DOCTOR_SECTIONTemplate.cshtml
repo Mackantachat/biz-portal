@@ -1,0 +1,43 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-8">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PLAN.APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION  :</label>
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION == 'APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_OWNER' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION == 'APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_DIRECTOR' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION == 'APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_NURSE' " }}
+            {{this.DROPDOWN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_TEXT}}
+            {{else}}
+            {{#xif " this.DROPDOWN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION == 'APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_POSITION_OTHER' " }}
+            {{this.APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_OTHER}}
+            {{else}}
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+            <br />
+            <label>ชื่อ : </label>
+            {{ this.DROPDOWN_APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_TITLE_TEXT }} {{ this.APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_FIRSTNAME }} {{ this.APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_LASTNAME }}
+            <br />
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PLAN.APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_ID_CARD :</label>
+            {{ this.APP_HOSPITAL_PLAN_PERSONNEL_DOCTOR_SECTION_ID_CARD }}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลผู้ดำเนินการ
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

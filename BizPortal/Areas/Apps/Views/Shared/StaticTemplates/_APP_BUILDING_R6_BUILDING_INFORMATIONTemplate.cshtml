@@ -1,0 +1,187 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_BUILDING_R6_BUILDING_INFORMATIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>อาคารลำดับที่ {{this.ARR_IDX}}</label>
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_BUILDING_G1_BUILDING_TYPE :</label>
+            {{this.APP_BUILDING_R6_BUILDING_TYPE}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_BUILDING_G1_BUILDING_AMOUNT :</label>
+            {{this.APP_BUILDING_R6_BUILDING_AMOUNT}} {{this.APP_BUILDING_R6_BUILDING_AMOUNT_TYPE}}
+        </div>
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_BUILDING_G1_BUILDING_FOR :</label>
+            <div class="row">
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_1 == 'true' "}}
+                <div class="col-md-3">
+                    - พักอาศัย
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_2 == 'true' "}}
+                <div class="col-md-3">
+                    - อยู่อาศัยรวม
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_3 == 'true' "}}
+                <div class="col-md-3">
+                    - พาณิชยกรรม
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_4 == 'true' "}}
+                <div class="col-md-3">
+                    - อาคารชุด
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_5 == 'true' "}}
+                <div class="col-md-3">
+                    - สำนักงาน
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_6 == 'true' "}}
+                <div class="col-md-3">
+                    - หอพัก
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_7 == 'true' "}}
+                <div class="col-md-3">
+                    - โรงแรม
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_8 == 'true' "}}
+                <div class="col-md-3">
+                    - โรงงาน
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_9 == 'true' "}}
+                <div class="col-md-3">
+                    - คลังสินค้า
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_10 == 'true' "}}
+                <div class="col-md-3">
+                    - ค้าปลีกค้าส่ง
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_11 == 'true' "}}
+                <div class="col-md-3">
+                    - ชุมนุมคน
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_12 == 'true' "}}
+                <div class="col-md-3">
+                    - โรงมหรสพ
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_13 == 'true' "}}
+                <div class="col-md-3">
+                    - ป้ายโฆษณา
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_14 == 'true' "}}
+                <div class="col-md-3">
+                    - สถานศึกษา
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_15 == 'true' "}}
+                <div class="col-md-3">
+                    - สถานพยาบาล
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_16 == 'true' "}}
+                <div class="col-md-3">
+                    - อุตสาหกรรม
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_17 == 'true' "}}
+                <div class="col-md-3">
+                    - ที่จอดรถยนต์
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_18 == 'true' "}}
+                <div class="col-md-3">
+                    - สถานบริการ
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_19 == 'true' "}}
+                <div class="col-md-3">
+                    - หอประชุม
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_20 == 'true' "}}
+                <div class="col-md-3">
+                    - เครื่องเล่น
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_21 == 'true' "}}
+                <div class="col-md-3">
+                    - เพื่อการศาสนา
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_22 == 'true' "}}
+                <div class="col-md-3">
+                    - เก็บวัตถุอันตราย
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_23 == 'true' "}}
+                <div class="col-md-3">
+                    - เลี้ยงสัตว์
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_24 == 'true' "}}
+                <div class="col-md-3">
+                    - รั้ว กำแพง
+                </div>
+                {{/xif}}
+                {{#xif " this.APP_BUILDING_R6_BUILDING_FOR_25 == 'true' "}}
+                <div class="col-md-3">
+                    - อื่นๆ: {{this.APP_BUILDING_R6_BUILDING_FOR_25_TEXT}}
+                </div>
+                {{/xif}}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_BUILDING_G1_BUILDING_AREA :</label>
+            {{this.APP_BUILDING_R6_BUILDING_AREA}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_BUILDING_G1_BUILDING_PARKING :</label>
+            {{this.APP_BUILDING_R6_BUILDING_PARKING}}
+        </div>
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_BUILDING_G1_BUILDING_PARKINGAREA :</label>
+            {{this.APP_BUILDING_R6_BUILDING_PARKINGAREA}}
+        </div>
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_BUILDING_R6_BUILDING_CONFIRMOPEN :</label>
+            {{#xif " this.APP_BUILDING_R6_BUILDING_CONFIRMOPEN == 'ALL' "}}
+            <span class="text-success bold">เปิดใช้ทั้งอาคาร</span>
+            {{else }}
+            {{#xif " this.APP_BUILDING_R6_BUILDING_CONFIRMOPEN == 'PARTIAL' "}}
+            <span class="text-success bold">เปิดใช้งานบางส่วน ({{this.APP_BUILDING_R6_BUILDING_CONFIRMOPEN_PARTIAL_TEXT}})</span>
+            {{else }}
+            {{#xif " this.APP_BUILDING_R6_BUILDING_CONFIRMOPEN == 'OFF' "}}
+            <span class="text-danger bold">ยังไม่ขอเปิดใช้ หรือเป็นอาคารที่ไม่ต้องขออนุญาต</span>
+            {{else }}
+            -- กรุณาเลือก --
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

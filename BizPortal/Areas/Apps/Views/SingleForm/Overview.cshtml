@@ -1,0 +1,48 @@
+﻿@model SingleForm
+@using BizPortal.Utils.Helpers
+@using BizPortal.ViewModels.SingleForm
+@using Resources = BizPortal.Resources
+
+@{
+    ViewBag.Title = "Overview";
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+
+    Guid trid = ViewBag.trid;
+}
+
+@using (Html.BeginForm("Index", "SingleForm", new { trid = trid }, FormMethod.Post))
+{
+    <section>
+        <h6>ใบอนุญาตที่ทำการขอผ่าน Biz Portal ทั้งหมด @Model.SingleFormApps.Count รายการ</h6>
+        @for (int i = 0; i < Model.SingleFormApps.Count; i++)
+        {
+        <div class="row single-form-app-selection">
+            <div class="col-md-1 form-group text-center">
+                <i class="fa fa-check-square" aria-hidden="true" style="color: #5ca1bf;"></i>
+            </div>
+            <div class="col-md-3 form-group">
+                <div>ใบอนุญาต</div>
+                <label>@ResourceHelper.GetResourceWordWithDefault(Model.SingleFormApps[i].AppName, "Apps_SingleForm", Model.SingleFormApps[i].AppName)</label>
+            </div>
+            <div class="col-md-3 form-group">
+                <div>หน่วยงาน</div>
+                <label>@Model.SingleFormApps[i].OrganizationName</label>
+            </div>
+            <div class="col-md-2 form-group">
+                <div>ระยะเวลาดำเนินการ</div>
+                <label>XXX วัน</label>
+            </div>
+            <div class="col-md-3 form-group text-center">
+                <label>ไม่มีค่าใช้จ่าย <i class="fa fa-exclamation-circle" aria-hidden="true" style="color: #5ca1bf;"></i></label>
+            </div>
+        </div>
+        }
+    </section>
+    
+    <div class="row">
+        <div class="col-md-12 form-group text-center single-form-footer-btn">
+            <button type="button" class="btn btn-default" id="btnBackOverview" onclick="history.back()">@Html.Raw(Resources.Apps_SingleForm.BTN_BACK)</button>
+            <button type="submit" class="btn btn-primary" id="btnSubmitOverview">@Html.Raw(Resources.Apps_SingleForm.BTN_NEXT)</button>
+        </div>
+    </div>
+}

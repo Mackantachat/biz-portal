@@ -1,0 +1,68 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    window.APP_CLINIC_LICENSE_DETAIL_SECTION_vaildateWorkingTimeSlot = function () {
+        const start = $(`[name='DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_START_TIME']`).val().split(":");
+        const end = $(`[name='DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_TIME_OUT']`).val().split(":");
+
+        const startValue = parseInt(start[0]) * 60 + parseInt(start[1]);
+        const endValue = parseInt(end[0]) * 60 + parseInt(end[1]);
+
+        if (startValue >= endValue) {
+            return false;
+        }
+
+        return true;
+    }
+    
+    window.APP_CLINIC_LICENSE_DETAIL_SECTION_vaildateWorkingTimeOverlaping = function () {
+
+        // If time slot invalid, just skip overlapping validation.
+        if (!window.APP_CLINIC_LICENSE_DETAIL_SECTION_vaildateWorkingTimeSlot()) return true;
+
+        const idx = parseInt($("#MODAL_APP_CLINIC_LICENSE_DETAIL_SECTION").find("[name='ARR_IDX']").val());
+        const day = $(`[name='DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_DAY']`).val();
+        const start = $(`[name='DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_START_TIME']`).val().split(":");
+        const end = $(`[name='DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_TIME_OUT']`).val().split(":");
+
+        const startValue = parseInt(start[0]) * 60 + parseInt(start[1]);
+        const endValue = parseInt(end[0]) * 60 + parseInt(end[1]);
+    
+        var duplicated = false;
+        $(window.singleForm.variables['arrObjAPP_CLINIC_LICENSE_DETAIL_SECTION'].data || []).each(function (index, data) {
+
+            if (idx == index + 1) return;   // do not compare with itself
+
+            const itemDay = data['DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_DAY'];
+            const itemStart = data['DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_START_TIME'].split(":");
+            const itemEnd = data['DROPDOWN_APP_CLINIC_LICENSE_DETAIL_SECTION_TIME_OUT'].split(":");
+
+            const itemStartValue = parseInt(itemStart[0]) * 60 + parseInt(itemStart[1]);
+            const itemEndValue = parseInt(itemEnd[0]) * 60 + parseInt(itemEnd[1]);
+
+            if (itemDay == day) {
+                @*
+                    Validate agains these patterns
+                    |====== (existing slot)
+	                |       == (existing slot)
+	                |    -------- (editing slot)
+		            |          ==== (existing slot)
+                    *@
+                if ((itemStartValue < startValue  && startValue < itemEndValue) ||
+                    (startValue <= itemStartValue && itemEndValue <= endValue) ||
+                    (itemStartValue < endValue && endValue <= itemEndValue)) {
+
+                    duplicated = true;
+                }
+            }
+        });
+    
+        return !duplicated;
+    }
+	
+</script>
+

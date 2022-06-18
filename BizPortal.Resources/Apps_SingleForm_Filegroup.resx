@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ADDRESS_INFORMATION" xml:space="preserve">
+    <value>ที่ตั้งสถานประกอบการหรือที่อยู่อาศัย</value>
+  </data>
+  <data name="CITIZEN_INFORMATION" xml:space="preserve">
+    <value>บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="JURISTIC_INFORMATION" xml:space="preserve">
+    <value>นิติบุคคล</value>
+  </data>
+  <data name="DANGER_FOOD_FILE_SECTION" xml:space="preserve">
+    <value>การประกอบกิจการที่เป็นอันตรายต่อสุขภาพ</value>
+  </data>
+  <data name="DIRECT_SELL_FILE_SECTION" xml:space="preserve">
+    <value>การขอจดทะเบียนประกอบธุรกิจขายตรง/ตลาดแบบตรง</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_FILE_SECTION" xml:space="preserve">
+    <value>การขอจดทะเบียนประกอบธุรกิจขายตรง</value>
+  </data>
+  <data name="EMPLOYEE_INFORMATION" xml:space="preserve">
+    <value>ลูกจ้าง</value>
+  </data>
+  <data name="SSO_EMPLOYEE" xml:space="preserve">
+    <value>เอกสารสำหรับลูกจ้าง</value>
+  </data>
+  <data name="EMPLOYER_INFORMATION" xml:space="preserve">
+    <value>ผู้ประกอบการ</value>
+  </data>
+  <data name="ETC" xml:space="preserve">
+    <value>อื่น ๆ</value>
+  </data>
+  <data name="FREE_DOC_SECTION" xml:space="preserve">
+    <value>เอกสารเพิ่มเติม</value>
+  </data>
+  <data name="INFORMATION_STORE_FILE_SECTION" xml:space="preserve">
+    <value>อาคาร/สถานที่ของร้าน</value>
+  </data>
+  <data name="INFORMATION_STORE_CHANGE_OFFICE_FILE_SECTION" xml:space="preserve">
+    <value>อาคาร/สถานที่ของร้าน (กรณี แก้ไขเปลี่ยนแปลง สถานที่ติดต่อ ที่ตั้ง สำนักงานใหญ่)</value>
+  </data>
+  <data name="INFORMATION_STORE_ADD_OR_CANCEL_FILE_SECTION" xml:space="preserve">
+    <value>อาคาร/สถานที่ของร้าน (กรณี ยกเลิก หรือเพิ่มเติม สำนักงานสาขา ของผู้ประกอบธุรกิจขายตรง)</value>
+  </data>
+  <data name="JURISTIC_AUTHORIZATION_FILE_SECTION" xml:space="preserve">
+    <value>มอบอำนาจ</value>
+  </data>
+  <data name="JURISTIC_COMMITTEE_FILE_SECTION" xml:space="preserve">
+    <value>กรรมการผู้มีอำนาจลงนามฯ</value>
+  </data>
+  <data name="OTHER_DOC" xml:space="preserve">
+    <value>อื่นๆ</value>
+  </data>
+  <data name="REQUESTED_FILE" xml:space="preserve">
+    <value>ส่งไฟล์เอกสารที่เจ้าหน้าที่ขอเพิ่มเติม</value>
+  </data>
+  <data name="SELL_ANIMAL_FILE_SECTION" xml:space="preserve">
+    <value>การจำหน่ายอาหารสัตว์ควบคุมเฉพาะ</value>
+  </data>
+  <data name="SELL_FOOD_FILE_SECTION" xml:space="preserve">
+    <value>การจำหน่ายหรือสะสมอาหาร</value>
+  </data>
+  <data name="SELL_FOOD_ON_PUBLIC_AREA" xml:space="preserve">
+    <value>การจำหน่ายสินค้าในที่หรือทางสาธารณะ</value>
+  </data>
+  <data name="SELL_TOBACCO_FILE_SECTION" xml:space="preserve">
+    <value>การจำหน่ายยาสูบ</value>
+  </data>
+  <data name="SSO_EMPLOYER" xml:space="preserve">
+    <value>เอกสารสำหรับผู้ประกอบการ</value>
+  </data>
+  <data name="SELL_CARD_SECTION" xml:space="preserve">
+    <value>อนุญาตขายไพ่</value>
+  </data>
+  <data name="DIRECT_MARKETING_FILE_SECTION" xml:space="preserve">
+    <value>การขอจดทะเบียนประกอบธุรกิจขายตรง/ตลาดแบบตรง</value>
+  </data>
+  <data name="BUILDING_FILE_SECTION" xml:space="preserve">
+    <value>การขออนุญาตก่อสร้างอาคาร</value>
+  </data>
+  <data name="HOTEL_FILE_SECTION" xml:space="preserve">
+    <value>การขออนุญาตประกอบธุรกิจโรงแรม</value>
+  </data>
+  <data name="COMMERCIAL_FILE_SECTION" xml:space="preserve">
+    <value>การยื่นจดทะเบียนพาณิชย์</value>
+  </data>
+  <data name="TAX_FILE_SECTION" xml:space="preserve">
+    <value>การยื่นเสียภาษีป้าย</value>
+  </data>
+  <data name="RADIO_FILE_SECTION" xml:space="preserve">
+    <value>การประกอบกิจการเกี่ยวกับเครื่องวิทยุคมนาคม</value>
+  </data>
+  <data name="HOTEL_RENEW_FILE_SECTION" xml:space="preserve">
+    <value>การขออนุุญาตประกอบธุรกิจโรงแรม</value>
+  </data>
+  <data name="ANIMAL_MED_SECTION" xml:space="preserve">
+    <value>การขอจัดตั้งสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="ANIMAL_LICENSE_SECTION" xml:space="preserve">
+    <value>การขอเป็นผู้ดำเนินการสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="ANIMAL_BUILD_SECTION" xml:space="preserve">
+    <value>การขออนุมัติแผนงานจัดตั้งสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="HEALTH_CARE_FILE_SECTION" xml:space="preserve">
+    <value>การขออนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ</value>
+  </data>
+  <data name="MOVIE_FILE_SECTION" xml:space="preserve">
+    <value>การประกอบกิจการให้เช่า แลกเปลี่ยน หรือจำหน่ายภาพยนตร์/วีดิทัศน์</value>
+  </data>
+  <data name="APP_ANIMAL_BUILD_RENEW_SECTION" xml:space="preserve">
+    <value>การขอขยายระยะเวลาแผนงานจัดตั้งสถานพยาบาลสัตว์</value>
+  </data>
+  <data name="DIRECT_MARKETING_CANCEL" xml:space="preserve">
+    <value>การขอจดทะเบียนประกอบธุรกิจตลาดแบบตรง</value>
+  </data>
+  <data name="DIRECT_MARKETING_EDIT" xml:space="preserve">
+    <value>การขอจดทะเบียนประกอบธุรกิจตลาดแบบตรง</value>
+  </data>
+  <data name="DIRECT_SELL_CANCEL" xml:space="preserve">
+    <value>การขอจดทะเบียนประกอบธุรกิจขายตรง</value>
+  </data>
+  <data name="FORM_SECTION" xml:space="preserve">
+    <value>แบบฟอร์มคำขอ</value>
+  </data>
+  <data name="MARKETING_CANCEL_SECTION" xml:space="preserve">
+    <value>การขอจดทะเบียนประกอบธุรกิจขายตรง/ตลาดแบบตรง</value>
+  </data>
+  <data name="ALCOHOL_FILE_SECTION" xml:space="preserve">
+    <value>การจำหน่ายสุรา</value>
+  </data>
+  <data name="ANIMAL_MED_RENEW_SECTION" xml:space="preserve">
+    <value>การขอต่ออายุใบอนุญาต</value>
+  </data>
+  <data name="ANIMAL_MED_EDIT_SECTION" xml:space="preserve">
+    <value>การขอแก้ไขใบอนุญาต</value>
+  </data>
+  <data name="DIRECT_SELL_EDIT_FILE_GROUP" xml:space="preserve">
+    <value>การขอจดทะเบียนประกอบธุรกิจขายตรง</value>
+  </data>
+  <data name="HOSPITAL_FILE_GROUP" xml:space="preserve">
+    <value>ขออนุมัติแผนงานการจัดตั้งสถานพยาบาล ประเภทที่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>
+  <data name="CONSTRUCTION_SITE_INFORMATION" xml:space="preserve">
+    <value>การขออนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร</value>
+  </data>
+  <data name="LAW_OFFICE_FILE_GROUP" xml:space="preserve">
+    <value>การยื่นคำขอขึ้นทะเบียนสำนักงานทนายความ</value>
+  </data>
+  <data name="APP_LAW_OFFICE_EDIT_FILE_GROUP" xml:space="preserve">
+    <value>การยื่นคำขอเปลี่ยนแปลงข้อมูลสำนักงานทนายความ</value>
+  </data>
+  <data name="LAW_OFFICE_CANCEL_FILE_GROUP" xml:space="preserve">
+    <value>การขอยกเลิกสำนักงานทนายความ</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_FILE_SECTION" xml:space="preserve">
+    <value>การประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_FILE_SECTION_EDIT" xml:space="preserve">
+    <value>การแก้ไขใบอนุญาตประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="SECURITIES_BUSINESS_FILE_SECTION_CANCEL" xml:space="preserve">
+    <value>การยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_FILE_SECTION" xml:space="preserve">
+    <value>การขอใบอนุญาตให้ผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_EDIT_SECTION" xml:space="preserve">
+    <value>การแก้ไขทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</value>
+  </data>
+  <data name="APP_ELECTONIC_COMMERCIAL_CANCEL_SECTION" xml:space="preserve">
+    <value>การเลิกทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</value>
+  </data>
+  <data name="ACCOUTING_SERVICE_FILE_GROUP" xml:space="preserve">
+    <value>การขอหนังสือแสดงการจดทะเบียนนิติบุคคลเพื่อประกอบวิชาชีพบัญชี</value>
+  </data>
+  <data name="FRT_001_DOC_GROUP" xml:space="preserve">
+    <value>การประกอบกิจการที่เป็นอันตรายต่อสุขภาพ-ยา เครื่องสำอาง</value>
+  </data>
+  <data name="APP_TOURISM_BUSINESS_SECTION" xml:space="preserve">
+    <value>การขอใบอนุญาตประกอบธุรกิจนำเที่ยว</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_MAINTENANCE_INFORMATION_FILE_SECTION" xml:space="preserve">
+    <value>สถานที่เก็บ ซ่อม และบำรุงรักษารถ</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_RENEW_MAINTENANCE_INFORMATION_FILE_SECTION" xml:space="preserve">
+    <value>สถานที่เก็บ ซ่อม และบำรุงรักษารถ</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_REQUEST_INFORMATION_FILE_SECTION" xml:space="preserve">
+    <value>การยื่นขอใบอนุญาตหรือต่ออายุใบอนุญาตขนส่งไม่ประจำทาง</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_EDIT_FILE_SECTION" xml:space="preserve">
+    <value>การยื่นแก้ไขใบอนุญาตขนส่งไม่ประจำทาง</value>
+  </data>
+  <data name="APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL_FILE_SECTION" xml:space="preserve">
+    <value>การยื่นยกเลิกใบอนุญาตขนส่งไม่ประจำทาง</value>
+  </data>
+  <data name="ENERGY_NOT_PERMIT_FILE_SECTION" xml:space="preserve">
+    <value>การแจ้งการประกอบกิจการพลังงาที่ได้รับการยกเว้นไม่ต้องขออนุญาต</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_DOC" xml:space="preserve">
+    <value>การยื่นคำขอมีเลขประจำตัวซอฟต์แวร์เฮ้าส์</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_REQUEST_SECTION" xml:space="preserve">
+    <value>บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_PERSON_AUTHORIZE_SECTION" xml:space="preserve">
+    <value>มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_JURISTICT_SECTION" xml:space="preserve">
+    <value>นิติบุคคล	</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_BOARD_SECTION" xml:space="preserve">
+    <value>กรรมการผู้มีอำนาจลงนามฯ	</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_NEW_DOC_AUTHORIZE_JURISTICT_SECTION" xml:space="preserve">
+    <value>มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_REQUEST_SECTION" xml:space="preserve">
+    <value>บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PERSON_AUTHORIZE_SECTION" xml:space="preserve">
+    <value>มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PLANT_LOCATION_SECTION" xml:space="preserve">
+    <value>สถานที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_NOTIFY_SECTION" xml:space="preserve">
+    <value>การแจ้งเลิกประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_JURISTICT_SECTION" xml:space="preserve">
+    <value>นิติบุคคล</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_BOARD_SECTION" xml:space="preserve">
+    <value>กรรมการผู้มีอำนาจลงนามฯ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_PLANT_LOCATION_JURISTICT_SECTION" xml:space="preserve">
+    <value>สถานที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_NOTIFY_JURISTICT_SECTION" xml:space="preserve">
+    <value>การแจ้งเลิกประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_LOCATION_SECTION" xml:space="preserve">
+    <value>สถานที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_AUTHORIZE_JURISTICT" xml:space="preserve">
+    <value>มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_BOARD" xml:space="preserve">
+    <value>กรรมการผู้มีอำนาจลงนามฯ</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_CITIZEN_INFORMATION_SECTION" xml:space="preserve">
+    <value>ข้อมูลการแจ้งการประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_JURISTICT" xml:space="preserve">
+    <value>นิติบุคคล</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_JURISTICT_PLANT_LOCATION_SECTION" xml:space="preserve">
+    <value>สถานที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_TYPE2_CITIZEN_INFORMATION_SECTION_JURISTICT" xml:space="preserve">
+    <value>ข้อมูลการแจ้งการประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขออนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_DOC_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลหนังสือแสดงความจำนงเป็นผู้ปฎิบัติงานในสถานพยาบาลของผู้ประกอบวิชาชีพ</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_RECEIVE_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขอรับใบอนุญาตให้ดำเนินสถานพยาบาล</value>
+  </data>
+  <data name="CLINIC_DOC" xml:space="preserve">
+    <value>ข้อมูลเกี่ยวกับใบอนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="CLINIC_DOC_CON" xml:space="preserve">
+    <value>ข้อมูลเกี่ยวกับใบอนุญาตให้ดำเนินการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_DOC" xml:space="preserve">
+    <value>ข้อมูลเกี่ยวกับใบอนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="HOSPITAL_PERMISSION_DOC_CON" xml:space="preserve">
+    <value>ข้อมูลเกี่ยวกับใบอนุญาตให้ดำเนินการสถานพยาบาล ประเภทที่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_REQUEST_SECTION" xml:space="preserve">
+    <value>บุคคลผู้ขออนุญาต</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_AUTHORIZE_SECTION" xml:space="preserve">
+    <value>มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PLANT_LOCATION_SECTION" xml:space="preserve">
+    <value>สถานที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_NOTIFY_JURISTICT_SECTION" xml:space="preserve">
+    <value>การแก้ไขใบแจ้งเริ่มประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_CANCEL_DOC_BOARD_SECTION_JURISTICT" xml:space="preserve">
+    <value>กรรมการผู้มีอำนาจลงนามฯ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_NOTIFY_JURISTICT_SECTION_JURISTICT" xml:space="preserve">
+    <value>การแก้ไขใบแจ้งเริ่มประกอบกิจการโรงงานจำพวกที่ 2</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_AUTHORIZE_SECTION_JURISTICT" xml:space="preserve">
+    <value>มอบอำนาจ</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PERSON_REQUEST_SECTION_JURISTICT" xml:space="preserve">
+    <value>นิติบุคคล</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_PLANT_LOCATION_SECTION_JURISTICT" xml:space="preserve">
+    <value>สถานที่ตั้งโรงงาน</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_JUSRISTICT" xml:space="preserve">
+    <value>การขอใบรับรองแหล่งผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_CITIZEN" xml:space="preserve">
+    <value>การขอใบรับรองแหล่งผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_HEALTH_RENEW" xml:space="preserve">
+    <value>คำขอต่อายุใบอนุญาตให้ประกอบกิจการสถานประกอบการเพื่อสุขภาพ</value>
+  </data>
+  <data name="APP_HEALTH_EDIT" xml:space="preserve">
+    <value>คำขอเปลี่ยนแปลงการประกอบกิจการสถานประกอบการเพื่อสุขภาพ</value>
+  </data>
+  <data name="HEALTH_CARE_FILE_SECTION_RENEW" xml:space="preserve">
+    <value>การขออนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ</value>
+  </data>
+  <data name="JURISTIC_ALL_COMMITTEE_FILE_SECTION" xml:space="preserve">
+    <value>กรรมการ</value>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_EDIT_SECTION" xml:space="preserve">
+    <value>การขอแก้ไขหนังสือแสดงการจดทะเบียนนิติบุคคลเพื่อประกอบวิชาชีพบัญชี</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_CANCEL_FILE_SECTION" xml:space="preserve">
+    <value>การขอยกเลิกใบอนุญาตให้ผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_EDIT_FILE_SECTION" xml:space="preserve">
+    <value>การขอแก้ไขใบอนุญาตผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="ENERGY_PRODUCTION_RENEW_FILE_SECTION" xml:space="preserve">
+    <value>การขอต่ออายุใบอนุญาตผลิตพลังงานควบคุม</value>
+  </data>
+  <data name="APP_ORGANIC_RENEW_FILE_SECTION" xml:space="preserve">
+    <value>การขอต่ออายุใบรับรองแหล่งผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_EDIT_FILE_SECTION" xml:space="preserve">
+    <value>การขอแก้ไขใบรับรองแหล่งผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_ORGANIC_CANCEL_FILE_SECTION" xml:space="preserve">
+    <value>การขอยกเลิกใบรับรองแหล่งผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="APP_CLINIC_CANCEL_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขอยกเลิกใบอนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_OWNED_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขอรับใบอนุญาตให้ดำเนินสถานพยาบาล</value>
+  </data>
+  <data name="APP_CLINIC_LICENSE_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขออนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขออนุมัติแผนงานการจัดตั้งสถานพยาบาลประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_PERMISSION_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลหนังสือแสดงความจำนงเป็นผู้ปฎิบัติงานในสถานพยาบาลของผู้ประกอบวิชาชีพ</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_EMPLOYEE_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตให้ดำเนินการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_RENEW_OPARETION_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_EDIT_FILE_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขอแก้ไขใบอนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_EDIT_OPARETION_SECTION" xml:space="preserve">
+    <value>ข้อมูลคำขอเปลี่ยนตัวผู้ดำเนินการสถานพยาบาล ประเภทที่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="SOFTWARE_HOUSE_DOC_EDIT" xml:space="preserve">
+    <value>การขอเปลี่ยนแปลงเลขประจำตัวซอฟต์แวร์เฮ้าส์</value>
+  </data>
+  <data name="APP_FACTORY_CLASS_2_EDIT_DOC_OFFICE_LOCATION_SECTION" xml:space="preserve">
+    <value>สถานที่ตั้งสำนักงานใหญ่</value>
+  </data>
+  <data name="APP_ORGANIC_PLANT_PRODUCTION_NEW_ATTACH" xml:space="preserve">
+    <value>การขอใบรับรองแหล่งผลิตพืชอินทรีย์</value>
+  </data>
+  <data name="SPA_PERMIT" xml:space="preserve">
+    <value>ใบอนุญาต</value>
+  </data>
+  <data name="CLINIC_DETAIL" xml:space="preserve">
+    <value>ข้อมูลสถานพยาบาล</value>
+  </data>
+  <data name="CLINIC_DETAIL_OVER_NIGHT" xml:space="preserve">
+    <value>รายงานประจำปี</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS" xml:space="preserve">
+    <value>ข้อมูลคำขออนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION" xml:space="preserve">
+    <value>ข้อมูลคำขอรับใบอนุญาตให้ดำเนินสถานพยาบาล</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS" xml:space="preserve">
+    <value>ข้อมูลหนังสือแสดงความจำนงเป็นผู้ปฎิบัติงานในสถานพยาบาลของผู้ประกอบวิชาชีพ</value>
+  </data>
+  <data name="APP_CLINIC_BUSINESS_RENEW" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_CLINIC_OPERATION_RENEW" xml:space="preserve">
+    <value>ข้อมูลเกี่ยวกับใบอนุญาตให้ดำเนินการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_RENEW" xml:space="preserve">
+    <value>ข้อมูลเกี่ยวกับใบอนุญาตให้ประกอบกิจการสถานพยาบาล ประเภทที่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW" xml:space="preserve">
+    <value>ข้อมูลเกี่ยวกับใบอนุญาตให้ดำเนินการสถานพยาบาล ประเภทที่รับผู้ป่วยค้างคืน</value>
+  </data>
+  <data name="APP_HOSPITAL_BUSINESS_EDIT" xml:space="preserve">
+    <value>ข้อมูลคำขอแก้ไขใบอนุญาตการประกอบกิจการสถานพยาบาล ประเภทที่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>  
+  <data name="APP_CLINIC_BUSINESS_EDIT" xml:space="preserve">
+    <value>ข้อมูลคำขอแก้ไขใบอนุญาตการประกอบกิจการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+  </data> 
+  <data name="APP_CLINIC_OPERATION_RENEW_GROUP" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตการประกอบกิจการสถานพยาบาล ประเภทที่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>
+  <data name="APP_HOSPITAL_OPERATION_RENEW_GROUP" xml:space="preserve">
+    <value>ข้อมูลคำขอต่ออายุใบอนุญาตให้ดำเนินการสถานพยาบาล ประเภทที่รับผู้ป่วยไว้ค้างคืน</value>
+  </data>
+<data name="APP_CLINIC_OPERATION_EDIT" xml:space="preserve">
+<value>ข้อมูลคำขอเปลี่ยนผู้ดำเนินการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT" xml:space="preserve">
+<value>ข้อมูลคำขอเปลี่ยนผู้ดำเนินการสถานพยาบาล ประเภทที่รับผู้ป่วยไว้ค้างคืน</value>
+</data>
+<data name="APP_CLINIC_OPERATION_EDIT_B" xml:space="preserve">
+<value>ข้อมูลคำขอแก้ไขใบอนุญาตดำเนินการสถานพยาบาล ประเภทที่ไม่รับผู้ป่วยไว้ค้างคืน</value>
+</data>
+<data name="APP_HOSPITAL_OPERATION_EDIT_B" xml:space="preserve">
+<value>ข้อมูลคำขอแก้ไขใบอนุญาตให้ดำเนินการสถานพยาบาล ประเภทที่รับผู้ป่วยไว้ค้างคืน</value>
+</data>
+</root>

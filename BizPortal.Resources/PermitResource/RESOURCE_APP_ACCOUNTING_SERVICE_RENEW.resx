@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW" xml:space="preserve">
+    <value>ข้อมูลการแจ้งรายละเอียดเกี่ยวกับหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สาม ตามมาตรา 11 แห่งพระราชบัญญัติวิชาชีพบัญชี พ.ศ. 2547</value>
+    <comment>SectionGroup: APP_ACCOUNTING_SERVICE_RENEW</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION" xml:space="preserve">
+    <value>ข้อมูลรายละเอียดเกี่ยวกับหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สาม</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION_LABEL" xml:space="preserve">
+    <value>กรณีที่ขอแจ้งรายละเอียดเกี่ยวกับหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สาม</value>
+    <comment>FieldID: F43_02_13</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION_LABEL_TEXT" xml:space="preserve">
+    <value>กรณีผู้ประกอบวิชาชีพบัญชีที่จดทะเบียนอยู่ก่อนแล้ว</value>
+    <comment>FieldID: F43_02_13</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION" xml:space="preserve">
+    <value>ข้อมูลรายละเอียดการคำนวณการจัดให้มีหลักประกัน</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_FINANCIAL" xml:space="preserve">
+    <value>ข้อมูลงบการเงินปีล่าสุด</value>
+    <comment>FieldID: F43_02_14</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_FINANCIAL_AUDIT" xml:space="preserve">
+    <value>ตัวเลขจากงบการเงินที่ตรวจสอบและแสดงความเห็น โดยผู้สอบบัญชีแล้ว</value>
+    <comment>FieldID: F43_02_14</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_FINANCIAL_UNAUDIT" xml:space="preserve">
+    <value>ตัวเลขคาดการณ์ ในกรณีที่งบการเงินล่าสุดยังไม่ได้ตรวจสอบและแสดงความเห็น โดยผู้สอบบัญชี</value>
+    <comment>FieldID: F43_02_14</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_HEADING_CAPITAL" xml:space="preserve">
+    <value>(1) ทุน</value>
+    <comment>FieldID: F43_02_15</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_HEADING_CAPITAL_INFO" xml:space="preserve">
+    <value>ทุน หมายความว่า ทุนจดทะเบียนของบริษัทจำกัด ทุนชำระแล้วของบริษัทมหาชนจำกัด ส่วนลงหุ้นของผู้เป็นหุ้นส่วนทุกคนในห้างหุ้นส่วนจดทะเบียนหรือห้างหุ้นส่วนจำกัด หรือเงินที่ผู้เป็นหุ้นส่วนหรือสมาชิกนำมาลงหุ้นในนิติบุคคลอื่น (กรณีที่นิติบุคคลจดทะเบียนครั้งแรก ให้กรอกเฉพาะทุน)</value>
+    <comment>FieldID: F43_02_15</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_CAPITAL" xml:space="preserve">
+    <value>จำนวนเงินทุน (บาท)</value>
+    <comment>FieldID: F43_02_16</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_HEADEING_INCOME" xml:space="preserve">
+    <value>(2) รายได้รวมสำหรับที่ต้องจัดให้มีหลักประกัน</value>
+    <comment>FieldID: F43_02_17</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_HEADEING_INCOME_INFO" xml:space="preserve">
+    <value>รายได้ หมายความว่า รายได้ที่เกิดจากการประกอบกิจการให้บริการด้านทำบัญชี หรือด้านการสอบบัญชี หรือให้บริการวิชาชีพบัญชีด้านอื่นตามที่กำหนดโดยพระราชกฤษฎีกาตามมาตรา 9</value>
+    <comment>FieldID: F43_02_17</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_HEADING_ACCOUNTING_REGISTERED" xml:space="preserve">
+    <value>ทำบัญชี : ลูกค้าประเภทบริษัทจดทะเบียน</value>
+    <comment>FieldID: F43_02_18</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_AMOUNT_ACCOUNTING_REGISTERED" xml:space="preserve">
+    <value>จำนวนราย</value>
+    <comment>FieldID: F43_02_19</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_INCOME_ACCOUNTING_REGISTERED" xml:space="preserve">
+    <value>รายได้ (บาท)</value>
+    <comment>FieldID: F43_02_20</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_HEADING_ACCOUNTING_UNREGISTERED" xml:space="preserve">
+    <value>ทำบัญชี : ลูกค้าประเภทไม่ใช่บริษัทจดทะเบียน</value>
+    <comment>FieldID: F43_02_21</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_AMOUNT_ACCOUNTING_UNREGISTERED" xml:space="preserve">
+    <value>จำนวนราย</value>
+    <comment>FieldID: F43_02_22</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_INCOME_ACCOUNTING_UNREGISTERED" xml:space="preserve">
+    <value>รายได้ (บาท)</value>
+    <comment>FieldID: F43_02_23</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_ACCOUNTING" xml:space="preserve">
+    <value>ทำบัญชีรายได้รวม (บาท)</value>
+    <comment>FieldID: F43_02_24</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_HEADING_AUDIT_REGISTERED" xml:space="preserve">
+    <value>สอบบัญชี : ลูกค้าประเภทบริษัทจดทะเบียน</value>
+    <comment>FieldID: F43_02_25</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_AMOUNT_AUDIT_REGISTERED" xml:space="preserve">
+    <value>จำนวนราย</value>
+    <comment>FieldID: F43_02_26</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_INCOME_AUDIT_REGISTERED" xml:space="preserve">
+    <value>รายได้ (บาท)</value>
+    <comment>FieldID: F43_02_27</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_HEADING_AUDIT_UNREGISTERED" xml:space="preserve">
+    <value>สอบบัญชี : ลูกค้าประเภทไม่ใช่บริษัทจดทะเบียน</value>
+    <comment>FieldID: F43_02_28</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_AMOUNT_AUDIT_UNREGISTERED" xml:space="preserve">
+    <value>จำนวนราย</value>
+    <comment>FieldID: F43_02_29</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_INCOME_AUDIT_UNREGISTERED" xml:space="preserve">
+    <value>รายได้ (บาท)</value>
+    <comment>FieldID: F43_02_30</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_AUDIT" xml:space="preserve">
+    <value>สอบบัญชีรายได้รวม (บาท)</value>
+    <comment>FieldID: F43_02_31</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_ACCOUNTING_AUDIT" xml:space="preserve">
+    <value>รายได้รวมสำหรับทำบัญชี และสอบบัญชี (บาท)</value>
+    <comment>FieldID: F43_02_32</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_GUARANTEE" xml:space="preserve">
+    <value>ข้าพเจ้าได้ดำเนินการจัดให้มีหลักประกันเพื่อประกันความรับผิดชอบต่อบุคคลที่สามแล้วตามกฎกระทรวงฯ เป็นจำนวนไม่น้อยกว่าร้อยละ 3 และในการแจ้งหลักประกันครั้งนี้ จำนวนที่มากกว่าในการคิดคำนวณหลักประกัน คือ</value>
+    <comment>FieldID: F43_02_33</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_GUARANTEE_CAPITAL" xml:space="preserve">
+    <value>ของทุน ณ วันที่ยื่นจดทะเบียนต่อสภาวิชาชีพบัญชี ในพระบรมราชูปถัมภ์/วันสิ้นรอบปีบัญชี</value>
+    <comment>FieldID: F43_02_33</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_GUARANTEE_FISCAL_YEAR" xml:space="preserve">
+    <value>ของรายได้ ณ วันสิ้นสุดรอบปีบัญชี</value>
+    <comment>FieldID: F43_02_33</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_INCOME_POLICY_DATE" xml:space="preserve">
+    <value>รายได้รวมสำหรับค่าบริการที่ต้องจัดให้มีหลักประกัน สิ้นรอบปีวันที่</value>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_SUM_TOTAL" xml:space="preserve">
+    <value>รายได้รวมสำหรับที่ต้องจัดให้มีหลักประกัน (บาท)</value>
+    <comment>FieldID: F43_02_34</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_PROVIDING_SECTION" xml:space="preserve">
+    <value>ข้อมูลรายละเอียดการจัดให้มีหลักประกัน</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_PROVIDING_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_PROVIDING_SECTION_PROVIDING_TYPE" xml:space="preserve">
+    <value>ประเภทหลักประกัน</value>
+    <comment>FieldID: F43_02_35</comment>
+  </data>
+  <data name="DEPOSIT" xml:space="preserve">
+    <value>บัญชีเงินฝากประจำ</value>
+    <comment>FieldID: F43_02_35</comment>
+  </data>
+  <data name="DEPOSIT_CARD" xml:space="preserve">
+    <value>บัตรเงินฝาก</value>
+    <comment>FieldID: F43_02_35</comment>
+  </data>
+  <data name="THAI_BONDS" xml:space="preserve">
+    <value>พันธบัตรรัฐบาลไทย </value>
+    <comment>FieldID: F43_02_35</comment>
+  </data>
+  <data name="CORPARATE_BONDS" xml:space="preserve">
+    <value>พันธบัตรองค์กรหรือรัฐวิสาหกิจ</value>
+    <comment>FieldID: F43_02_35</comment>
+  </data>
+  <data name="POLICY" xml:space="preserve">
+    <value>กรมธรรม์ประกันภัย</value>
+    <comment>FieldID: F43_02_35</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_INCOME_POLICY_VAILDATE_EXCEED" xml:space="preserve">
+    <value>จำนวนเงินที่ใช้เป็นหลักประกันต้องไม่น้อยกว่า “รายได้รวมสำหรับที่ต้องให้มีหลักประกัน”</value>
+    <comment>FieldID: F43_02_35</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION" xml:space="preserve">
+    <value>ข้อมูลบัญชีเงินฝากประจำ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลบัญชีเงินฝากประจำ ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลบัญชีเงินฝากประจำ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลบัญชีเงินฝากประจำ"&lt;/div&gt;</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลบัญชีเงินฝากประจำ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลบัญชีเงินฝากประจำ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_DEPOSIT_TIME" xml:space="preserve">
+    <value>ระยะเวลาการฝากประจำ (ปี)</value>
+    <comment>FieldID: F43_02_36</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_DEPOSIT_TIME_MONTH" xml:space="preserve">
+    <value>ระยะเวลาการฝากประจำ (เดือน)</value>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_BANK_NAME" xml:space="preserve">
+    <value>ชื่อธนาคาร</value>
+    <comment>FieldID: F43_02_37</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_BRANCH" xml:space="preserve">
+    <value>สาขา</value>
+    <comment>FieldID: F43_02_38</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_ACCOUNT_NAME" xml:space="preserve">
+    <value>ชื่อบัญชี</value>
+    <comment>FieldID: F43_02_39</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_ACCOUNT_ID" xml:space="preserve">
+    <value>เลขที่บัญชี</value>
+    <comment>FieldID: F43_02_40</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_DUE_DATE" xml:space="preserve">
+    <value>วันที่ครบกำหนด</value>
+    <comment>FieldID: F43_02_41</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนเงิน (บาท)</value>
+    <comment>FieldID: F43_02_42</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION" xml:space="preserve">
+    <value>ข้อมูลบัตรเงินฝาก</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลบัตรเงินฝาก ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลบัตรเงินฝาก&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลบัตรเงินฝาก"&lt;/div&gt;</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลบัตรเงินฝาก</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลบัตรเงินฝาก</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_BANK_NAME" xml:space="preserve">
+    <value>ชื่อธนาคาร</value>
+    <comment>FieldID: F43_02_43</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_BRANCH" xml:space="preserve">
+    <value>สาขา</value>
+    <comment>FieldID: F43_02_44</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_ACCOUNT_NAME" xml:space="preserve">
+    <value>ชื่อบัญชี</value>
+    <comment>FieldID: F43_02_45</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_ACCOUNT_ID" xml:space="preserve">
+    <value>เลขที่บัญชี</value>
+    <comment>FieldID: F43_02_46</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_DUE_DATE" xml:space="preserve">
+    <value>วันที่ครบกำหนด</value>
+    <comment>FieldID: F43_02_47</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนเงิน (บาท)</value>
+    <comment>FieldID: F43_02_48</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION" xml:space="preserve">
+    <value>พันธบัตรรัฐบาลไทย</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล พันธบัตรรัฐบาลไทย ในขณะนี้ คุณสามารถเพิ่มข้อมูลพันธบัตรรัฐบาลไทย&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มพันธบัตรรัฐบาลไทย"&lt;/div&gt;</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มพันธบัตรรัฐบาลไทย</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มพันธบัตรรัฐบาลไทย</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION_NUMBER" xml:space="preserve">
+    <value>เลขที่</value>
+    <comment>FieldID: F43_02_49</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION_DATE" xml:space="preserve">
+    <value>วันที่ออกพันธบัตร</value>
+    <comment>FieldID: F43_02_50</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION_DUE_DATE" xml:space="preserve">
+    <value>วันที่ครบกำหนด</value>
+    <comment>FieldID: F43_02_51</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนเงิน (บาท)</value>
+    <comment>FieldID: F43_02_52</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION" xml:space="preserve">
+    <value>พันธบัตรองค์กรหรือรัฐวิสาหกิจ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล พันธบัตรองค์กรหรือรัฐวิสาหกิจ ในขณะนี้ คุณสามารถเพิ่มข้อมูลพันธบัตรองค์กรหรือรัฐวิสาหกิจ&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มพันธบัตรองค์กรหรือรัฐวิสาหกิจ"&lt;/div&gt;</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มพันธบัตรองค์กรหรือรัฐวิสาหกิจ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มพันธบัตรองค์กรหรือรัฐวิสาหกิจ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_ISSUER" xml:space="preserve">
+    <value>ผู้ออกพันธบัตรองค์กรหรือรัฐวิสาหกิจ</value>
+    <comment>FieldID: F43_02_53</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_NUMBER" xml:space="preserve">
+    <value>เลขที่</value>
+    <comment>FieldID: F43_02_54</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_DATE" xml:space="preserve">
+    <value>วันที่ออกพันธบัตร</value>
+    <comment>FieldID: F43_02_55</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_DUE_DATE" xml:space="preserve">
+    <value>วันที่ครบกำหนด</value>
+    <comment>FieldID: F43_02_56</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนเงิน (บาท)</value>
+    <comment>FieldID: F43_02_57</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION" xml:space="preserve">
+    <value>กรมธรรม์ประกันภัย</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล กรมธรรม์ประกันภัย ในขณะนี้ คุณสามารถเพิ่มข้อมูลกรมธรรม์ประกันภัย&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มกรมธรรม์ประกันภัย"&lt;/div&gt;</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มกรมธรรม์ประกันภัย</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มกรมธรรม์ประกันภัย</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION_NAME" xml:space="preserve">
+    <value>ชื่อบริษัทกรมธรรมภ์ประกันภัย</value>
+    <comment>FieldID: F43_02_58</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION_NUMBER" xml:space="preserve">
+    <value>เลขที่</value>
+    <comment>FieldID: F43_02_59</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION_DUE_DATE" xml:space="preserve">
+    <value>วันที่ครบกำหนด</value>
+    <comment>FieldID: F43_02_60</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION_AMOUNT" xml:space="preserve">
+    <value>จำนวนเงิน (บาท)</value>
+    <comment>FieldID: F43_02_61</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION_2" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION_2</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION_2_GUARANTEE_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F43_02_62</comment>
+  </data>
+  <data name="APP_ACCOUNTING_SERVICE_RENEW_GUARANTEE_SECTION_2_GUARANTEE_CONFIRM_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+    &lt;div class="col-xs-12"&gt;1. ข้าพเจ้าจะดำรงหลักประกันดังกล่าวให้เป็นไปตามกฎกระทรวงข้อ 5&lt;/div&gt;
+    &lt;div class="col-xs-12"&gt;2. ในกรณีมีการเปลี่ยนแปลงประเภทของหลักประกันในระหว่างรอบปีบัญชี ข้าพเจ้าตกลงแจ้งต่อสภาวิชาชีพบัญชี ในพระบรมราชูปถัมภ์ภายในสิบห้าวันนับแต่วันที่มีการเปลี่ยนแปลงตามกฎกระทรวงข้อ 6 วรรคสอง&lt;/div&gt;
+    &lt;div class="col-xs-12"&gt;3. ข้าพเจ้าได้จัดให้มีการเปิดเผยข้อมูลเกี่ยวกับจำนวนเงิน ทรัพย์สินที่ใช้เป็นหลักประกัน และการดำรงหลักประกันเพื่อประกันความรับผิดต่อบุคคลที่สามตลอดระยะเวลาที่ประกอบกิจการในหมายเหตุประกอบงบการเงิน โดยถูกต้องครบถ้วน&lt;/div&gt;
+    &lt;div class="col-xs-12"&gt;4. หลักฐานการแจ้งรายละเอียดเกี่ยวกับหลักประกันฯ (พร้อมรับรองสำเนาถูกต้อง)&lt;/div&gt;
+    &lt;div class="col-xs-12 col-xs-offset-1"&gt;๐ สำเนาหนังสือรับรองการจดทะเบียนนิติบุคคล ไม่เกิน 3 เดือน&lt;/div&gt;
+    &lt;div class="col-xs-12 col-xs-offset-1"&gt;๐ สำเนาหลักประกัน&lt;/div&gt;
+    &lt;div class="col-xs-12 col-xs-offset-1"&gt;๐ สำเนางบการเงินของปีก่อน (กรณีที่งบการเงินล่าสุดยังไม่ได้ตรวจสอบและแสดงความเห็น โดยผู้สอบบัญชี) &lt;/div&gt;
+    &lt;div class="col-xs-12 col-xs-offset-1"&gt;๐ หนังสือมอบอำนาจให้กระทำการแทนนิติบุคคล (ถ้ามี)&lt;/div&gt;
+    &lt;div class="col-xs-12 col-xs-offset-1"&gt;๐ อื่น ๆ&lt;/div&gt;
+    &lt;div class="col-xs-12"&gt;&lt;b&gt;&lt;u&gt;หมายเหตุ&lt;/u&gt;&lt;/b&gt; ภายในหกสิบวันนับแต่วันสิ้นรอบบัญชีทุกปี ข้าพเจ้าจะจัดให้มีหลักประกันเป็นจำนวนไม่น้อยกว่าร้อยละสามของทุน ณ วันสิ้นรอบปีบัญชีที่ผ่านมา หรือของรายได้รอบปีบัญชีที่ผ่านมา แล้วแต่จำนวนใดจะมากกว่า และแจ้งรายละเอียดเกี่ยวกับหลักประกันต่อสภาวิชาชีพบัญชี ในพระบรมราชูปถัมภ์&lt;/div&gt;
+    &lt;div class="col-xs-12"&gt;&lt;b&gt;&lt;u&gt;คำเตือน&lt;/u&gt;&lt;/b&gt; ตามพระราชบัญญัติวิชาชีพบัญชี พ.ศ. 2547  มาตรา 66  นิติบุคคลใดฝ่าฝืนหรือไม่ปฏิบัติตามมาตร 11 ต้องระวางโทษปรับไม่เกินสามแสนบาทและปรับอีกไม่เกินวันละหนึ่งหมื่นบาทจนกว่าจะได้ปฏิบัติให้ถูกต้อง&lt;/div&gt;
+&lt;/div&gt;</value>
+    <comment>FieldID: F43_02_62</comment>
+  </data>
+  <data name="GUARANTEE_CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าข้อมูลต่างๆ ที่ได้ยื่นต่อสภาวิชาชีพบัญชี ในพระบรมราชูปถัมภ์เป็นข้อมูลที่ถูกต้องครบถ้วน และข้าพเจ้ายินดีที่จะแสดงหลักฐานและข้อมูลอื่นใดที่เกี่ยวข้องกับการปฎิบัติงานของผู้สอบบัญชีในสังกัด รวมทั้งระบบควบคุมคุณภาพสำนักงาน และยินยอมให้ผู้ที่ได้รับมอบหมายจากสภาวิชาชีพบัญชี ในพระบรมราชูปถัมภ์ เข้าเยี่ยมและตรวจสอบระบบควบคุมคุณภาพสำนักงาน ตลอดจนเรียกข้าพเจ้ามาให้ถ้อยคำ หรือชี้แจง หรือ ทำคำชี้แจงเป็นหนังสือ หรือ ส่งมอบเอกสารหลักฐานอื่นใดที่เกี่ยวข้องกับการปฎิบัติงานสอบบัญชีของผู้สอบบัญชีในสังกัด และระบบควบคุมคุณภาพสำนักงาน เพื่อประโยชน์ในการกำกับดูแลการปฎิบัติงานให้เป็นไปตามมาตราฐานการสอบบัญชีและมาตราฐานการควบคุมคุณภาพฉบับที่ 1</value>
+    <comment>FieldID: F43_02_62</comment>
+  </data>
+</root>

@@ -1,0 +1,168 @@
+﻿@model PoliceTicketViewModel
+
+@using BizPortal.ViewModels.Apps.PoliceTicket;
+@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+@using System.Globalization;
+
+
+@{
+    ViewBag.Title = "รายการใบสั่ง";
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayoutV2.cshtml";
+
+    Func<TicketStatusEnum, string> getStatusStyle = (status) =>
+    {
+        var style = "default";
+        switch (status)
+        {
+            case TicketStatusEnum.New:
+                style = "warning";
+                break;
+            case TicketStatusEnum.Warning:
+                style = "danger";
+                break;
+            case TicketStatusEnum.Paid:
+            case TicketStatusEnum.Caution:
+            case TicketStatusEnum.Cancel:
+            case TicketStatusEnum.Expired:
+            case TicketStatusEnum.Damaged:
+            default:
+                style = "default";
+                break;
+        }
+
+        return style;
+    };
+}
+
+<style>
+    .ticket {
+        line-height: 1.5em;
+    }
+
+    .accordion {
+        text-decoration: none !important;
+    }
+
+        .accordion::after {
+            content: "\f107";
+            font-family: "FontAwesome";
+        }
+
+        .accordion[aria-expanded="true"]::after {
+            content: "\f106";
+        }
+</style>
+
+@if (Model.Result)
+{
+    foreach (var item in Model.Tickets.OrderBy(e => e.TicketStatus).ThenByDescending(e => e.OccurDate))
+    {
+        var headingId = string.Format("headingPanel{0}", item.TicketID);
+        var collapseId = string.Format("collapsePanel{0}", item.TicketID);
+        <div class="panel panel-@getStatusStyle(item.TicketStatus) ticket">
+            <div class="panel-heading text-@getStatusStyle(item.TicketStatus)" id="@headingId">
+                <div class="row">
+                    <div class="col-md-4">เลขที่ใบสั่ง: @item.TicketID</div>
+                    <div class="col-md-4">วันที่ออกใบสั่ง: @item.TicketDate.ToString("dd/MM/yyyy HH:mm", new CultureInfo("th"))น.</div>
+                    <div class="col-md-4">สถานะใบสั่ง: @item.TicketStatus.GetEnumStringValue()</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">ชื่อ: @item.Fullname</div>
+                    <div class="col-md-4">หมายเลขทะเบียนรถ: @item.Plate</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">ข้อหา: @item.Accuse1Code</div>
+                </div>
+                <div class="row text-right">
+                    <div class="col-md-12" >
+                        <button type="button" class="btn btn-danger" onclick="showPaymentModal('@item.QrCode','@item.FineAmount.ToString("0.00")', '@item.FineDueDate.ToString("dd/MM/yyyy", new CultureInfo("th"))')" >ชำระค่าปรับ</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a href="#@collapseId" class="accordion text-@getStatusStyle(item.TicketStatus)" role="button" data-toggle="collapse" aria-controls="@collapseId">
+                            รายละเอียดใบสั่ง
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="@collapseId" class="panel-collapse collapse" aria-labelledby="@headingId">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">วันที่เกิดเหตุ: @item.OccurDate.ToString("dd/MM/yyyy HH:mm", new CultureInfo("th"))น.</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">สถานที่เกิดเหตุ: @item.OccurPlace</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">จำนวนค่าปรับ: @item.FineAmount บาท</div>
+                        <div class="col-md-4">กำหนดวันชำระ: @item.FineDueDate.ToString("dd/MM/yyyy", new CultureInfo("th"))</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">ออกใบสั่งโดย: @item.OrgAbbr</div>
+                        <div class="col-md-4">โทร: @item.Tel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <span class="vertical-middle">@Model.Message</span>
+        </div>
+    </div>
+}
+
+<!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">ชำระเงินผ่าน QR Code</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img id="paymentQrCode" src="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <br/>
+                    <div class="col-md-12">จำนวนค่าปรับ: <span id="paymentAmount"></span> บาท</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">วันที่กำหนดชำระ: <span id="paymentDate"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-danger">
+                        <br/>
+                        * หมายเหตุ ท่านสามารถชำระเงินได้ผ่านทาง NEXT Application ของธนาคารกรุงไทย
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function showPaymentModal(qrCode, amount, date) {
+        $('#paymentModal #paymentQrCode').attr('src', 'data:image/png;base64, ' + qrCode);
+        $('#paymentModal #paymentAmount').text(amount);
+        $('#paymentModal #paymentDate').text(date);
+        $('#paymentModal').modal();
+    }
+
+
+</script>

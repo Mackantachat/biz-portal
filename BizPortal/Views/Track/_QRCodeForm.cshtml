@@ -1,0 +1,62 @@
+﻿@model BizPortal.DAL.MongoDB.ApplicationRequestEntity
+@using Resources = BizPortal.Resources
+@using BizPortal.DAL.MongoDB;
+
+@{ 
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+    ViewBag.Title = "QR Code";
+
+    int ems = Model.EMSFee.HasValue ? Convert.ToInt16(Model.EMSFee.Value) : 0;
+    decimal? fee = Model.Fee.HasValue ? Model.Fee : 0;
+    decimal? total = fee;
+    if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.BY_MAIL)
+    {
+        total = total + ems;
+    }
+    string dueDateText = Convert.ToDateTime(Model.DueDateForPayFee).ToLocalTime().ToString("dd/MM/yyyy");
+}
+
+<link href="@Url.Content("~/Content/Theme/biz-v2/css/custom-qrcode.css")" rel="stylesheet" type="text/css" />
+
+    <div>
+        <span>@Resources.ApplicationStatusRequests.QR_CODE_HEADER_TEXT1</span> <img src="@Url.Content("~/img/avatar.jpg")" /> <span>@Resources.ApplicationStatusRequests.QR_CODE_HEADER_TEXT2</span>
+    </div>
+
+    <table class="table table-bordered table-striped tb-qrcode">
+
+            <tbody>
+                <tr>
+                    <td class="text-left head-tb-qr-code" colspan="4">@Resources.ApplicationStatusRequests.QR_CODE_TABLE_HEADER</td>
+                </tr>
+                <tr>
+                    <td class="text-center qr-col-image" rowspan="5">
+                        <img class="img-qrcode" src="@Url.Content("~/img/kbank_qrcode.png")" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left qr-col-header-text">@Resources.ApplicationStatusRequests.QR_CODE_ACC_NAME</td>
+                    <td class="text-left qr-col-semicolon">:</td>
+                    <td class="text-left qr-col-desc-text">@Resources.ApplicationStatusRequests.QR_CODE_ACC_NAME_TEXT</td>
+                </tr>
+                <tr>
+                    <td class="text-left">@Resources.ApplicationStatusRequests.QR_CODE_PROMNTPAY_NUMBER</td>
+                    <td class="text-left qr-col-semicolon" style="width:10px;">:</td>
+                    <td class="text-left qr-col-desc-text">@System.Configuration.ConfigurationManager.AppSettings["PromtPayNumber"]</td>
+
+                </tr>
+
+                <tr>
+                    <td class="text-left qr-col-header-text">@Resources.ApplicationStatusRequests.TOTAL_PAY_FEE</td>
+                    <td class="text-left qr-col-semicolon" style="width:10px;">:</td>
+                    <td class="text-left qr-col-desc-text qrcode-total">@total.Value.ToString("#,##0.00") @Resources.ApplicationStatusRequests.BATH</td>
+                </tr>
+                <tr>
+                    <td class="text-left qr-col-header-text">@Resources.ApplicationStatusRequests.DUE_DATE_PAY_FEE</td>
+                    <td class="text-left qr-col-semicolon" style="width:10px;">:</td>
+                    <td class="text-left qr-col-desc-text">@dueDateText</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-left qr-col-header-text">@Resources.ApplicationStatusRequests.ASK_AGENT_TEL</td>
+                </tr>
+            </tbody>
+        </table>

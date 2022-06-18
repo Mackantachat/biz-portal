@@ -1,0 +1,49 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_SELL_ANIMAL_INFOTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-6">
+            <p class="bold form-control-static">
+                {{#xif " this.DROPDOWN_SELL_ANIMAL_ANIMAL == 'other' " }}
+                {{this.SELL_ANIMAL_ANIMAL_OTHER}}
+                {{else}}
+                {{this.DROPDOWN_SELL_ANIMAL_ANIMAL_TEXT}}
+                {{/xif}}
+            </p>
+        </div>
+        <div class="col-md-6">
+            {{#xif " this.SELL_ANIMAL_PURPOSE_SELL_ANIMAL_PURPOSE_DOMESTIC == 'true' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_PURPOSE_DOMESTIC: </label>
+            {{#xif " this.SELL_ANIMAL_PURPOSE_DETAIL_DOMESTIC_OPTION == 'more_than_1_province' " }}
+            @BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_PURPOSE_DETAIL_DOMESTIC_OPTION_MORE_THAN_ONE_PROVINCE<br />
+            {{else}}
+            @BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_PURPOSE_DETAIL_DOMESTIC_OPTION_ONE_PROVINCE<br />
+            {{/xif}}
+            {{/xif}}
+            {{#xif " this.SELL_ANIMAL_PURPOSE_SELL_ANIMAL_PURPOSE_INTERNATIONAL == 'true' " }}
+            <label>@BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_PURPOSE_INTERNATIONAL: </label>
+            {{#xif " this.SELL_ANIMAL_PURPOSE_DETAIL_INTERNATIONAL_OPTION == 'import' " }}
+            @BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_PURPOSE_DETAIL_INTERNATIONAL_IMPORT<br />
+            {{else}}
+            {{#xif " this.SELL_ANIMAL_PURPOSE_DETAIL_INTERNATIONAL_OPTION == 'export' " }}
+            @BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_PURPOSE_DETAIL_INTERNATIONAL_EXPORT<br />
+            {{else}}
+            @BizPortal.Resources.Apps_SingleForm.SELL_ANIMAL_PURPOSE_DETAIL_INTERNATIONAL_IMPORT_EXPORT<br />
+            {{/xif}}
+            {{/xif}}
+            {{/xif}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลชนิดสัตว์ที่จำหน่าย
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

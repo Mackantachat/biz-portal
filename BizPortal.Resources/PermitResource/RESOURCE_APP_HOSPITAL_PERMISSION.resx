@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_HOSPITAL_PERMISSION" xml:space="preserve">
+    <value>ข้อมูลคำขออนุญาตให้ประกอบกิจการสถานพยาบาล (ส.พ.5)</value>
+    <comment>SectionGroup: APP_HOSPITAL_PERMISSION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_HOSPITAL_PERMISSION_INFO_SECTION</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HEADER_TYPE" xml:space="preserve">
+    <value>ขอรับใบอนุญาตให้ประกอบกิจการสถานพยาบาลประเภทที่</value>
+    <comment>FieldID: F47_01_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HEADER_TYPE_TEXT" xml:space="preserve">
+    <value>รับผู้ป่วยไว้ค้างคืน</value>
+    <comment>FieldID: F47_01_01</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_BED_AMOUNT" xml:space="preserve">
+    <value>จำนวน (เตียง)</value>
+    <comment>FieldID: F47_01_02</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL" xml:space="preserve">
+    <value>สถานพยาบาลมีลักษณะเป็น</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_GENERAL_HOSPITAL" xml:space="preserve">
+    <value>โรงพยาบาลทั่วไป</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_DENTAL_HOSPITAL" xml:space="preserve">
+    <value>โรงพยาบาลทันตกรรม</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_MIDWIFERY_HOSPITAL" xml:space="preserve">
+    <value>โรงพยาบาลการพยาบาลและการผดุงครรภ์</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_PHYSICAL_THERAPY" xml:space="preserve">
+    <value>โรงพยาบาลกายภาพบำบัด</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_THAI_TRADITIONAL" xml:space="preserve">
+    <value>โรงพยาบาลการแพทย์แผนไทย</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_THAI_TRADITIONAL_APPLIED" xml:space="preserve">
+    <value>โรงพยาบาลการแพทย์แผนไทยประยุกต์</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_SPECIALIZED_EAR" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะทาง หู คอ จมูก</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_SPECIALIZED_HEART_DISEASE" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะทาง โรคหัวใจ</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_SPECIALIZED_CANCER" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะทางโรคมะเร็ง</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_SPECIFIC_PATIENT" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะประเภทผู้ป่วย</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_DETAIL_SPECIALIZED_OTHER" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะทางอื่นๆ</value>
+    <comment>FieldID: F47_01_03</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_CHOICE" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_CHOICE_CHRONIC_PATIENTS" xml:space="preserve">
+    <value>โรงพยาบาลผู้ป่วยเรื้อรัง</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_CHOICE_PSYCHIATRIC" xml:space="preserve">
+    <value>โรงพยาบาลผู้ป่วยจิตเวช</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_CHOICE_ELDERLY" xml:space="preserve">
+    <value>โรงพยาบาลผู้สูงอายุ</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_CHOICE_MOTHER_CHILD" xml:space="preserve">
+    <value>โรงพยาบาลแม่และเด็ก</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_CHOICE_DRUG_TREATMENT" xml:space="preserve">
+    <value>โรงพยาบาลบำบัดยาเสพติด</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_CHOICE_SPECIFIC_PATIENT" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะประเภทผู้ป่วย</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_CHOICE_OTHER_PATIENTS" xml:space="preserve">
+    <value>โรงพยาบาลเฉพาะประเภทผู้ป่วยอื่นๆ</value>
+    <comment>FieldID: F47_01_04</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HOSPITAL_OTHER" xml:space="preserve">
+    <value>ระบุ</value>
+    <comment>FieldID: F47_01_05</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_ONLINE_SERVICE" xml:space="preserve">
+    <value>บริการที่จัดให้มีเพิ่มเติม</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="INTERNAL_MEDICINE" xml:space="preserve">
+    <value>อายุรกรรม</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="SURGERY" xml:space="preserve">
+    <value>ศัลยกรรม</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="OBSTETRICS" xml:space="preserve">
+    <value>สูตินรีเวชกรรม</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="PEDIATRICS" xml:space="preserve">
+    <value>กุมารเวชกรรม</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="MEDICAL_TECHNOLOGY" xml:space="preserve">
+    <value>แผนกเทคนิคการแพทย์</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="ORTHOPEDIC_DEPARTMENT" xml:space="preserve">
+    <value>แผนกออร์โธปิดิกส์</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="DERMATOLOGY_DEPARTMENT" xml:space="preserve">
+    <value>แผนกโรคผิวหนัง</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="ARTIFICIAL_INSEMINATION" xml:space="preserve">
+    <value>แผนกการผสมเทียม</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="PHYSICAL_THERAPY" xml:space="preserve">
+    <value>แผนกกายภาพบำบัด</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="THAI_TRADITIONAL_MEDICINE" xml:space="preserve">
+    <value>แผนกการแพทย์แผนไทย</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="NUTRITION_DEPARTMENT" xml:space="preserve">
+    <value>แผนกโภชนาการ</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="LAUNDRY_DEPARTMENT" xml:space="preserve">
+    <value>แผนกซักฟอก</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="INTENSIVE_CARE_UNIT" xml:space="preserve">
+    <value>หอผู้ป่วยหนัก</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="INTERNAL_EXAMINATION" xml:space="preserve">
+    <value>ห้องตรวจภายในและขูดมดลูก</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="SMALL_OPERATING_ROOM" xml:space="preserve">
+    <value>ห้องผ่าตัดเล็ก</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="TREATMENT_ROOM" xml:space="preserve">
+    <value>ห้องให้การรักษา</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="AFTER_BIRTH" xml:space="preserve">
+    <value>ห้องทารกหลังคลอด</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="ORGAN_TRANSPLANT" xml:space="preserve">
+    <value>การผ่าตัดเปลี่ยนอวัยวะ</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="HEMODIALYSIS_ROOM" xml:space="preserve">
+    <value>ห้องไตเทียม</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="DENTAL_ROOM" xml:space="preserve">
+    <value>ห้องทันตกรรม</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="DIAGNOSTIC_RADIATION" xml:space="preserve">
+    <value>รังสีวินิจฉัยด้วยคอมพิวเตอร์</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="OPEN_HEART_SURGERY" xml:space="preserve">
+    <value>การผ่าตัดเปิดหัวใจ</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="CARDIAC_CATHETERIZATION" xml:space="preserve">
+    <value>การสวนหัวใจ</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="RADIATION_THERAPY" xml:space="preserve">
+    <value>รังสีบำบัด</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="EXAMINATION_MAGNETIC_FIELD" xml:space="preserve">
+    <value>การตรวจอวัยวะภายในชนิดสนามแม่เหล็กไฟ้ฟ้า</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="BREAKDOWN" xml:space="preserve">
+    <value>การสลายนิ่วด้วยเครื่องมือ</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="MORGUE" xml:space="preserve">
+    <value>ห้องเก็บศพ</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="THAI_TRADITIONAL_MEDICINE_APPLIED" xml:space="preserve">
+    <value>แผนกการแพทย์แผนไทยประยุกต์</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="MASSAGE_DEPARTMENT" xml:space="preserve">
+    <value>แผนกการนวด</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="CHINESE_MEDICINE" xml:space="preserve">
+    <value>แผนกการแพทย์แผนจีน</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="OTHER" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F47_01_06</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_ONLINE_SERVICE_OTHER_TEXT" xml:space="preserve">
+    <value>อื่นๆ</value>
+    <comment>FieldID: F47_01_07</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HEADER" xml:space="preserve">
+    <value>รายละเอียดวัน/เวลาที่ขออนุญาตประกอบกิจการ</value>
+    <comment>FieldID: F47_01_08</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_HEADER_TEXT" xml:space="preserve">
+    <value>วันจันทร์-อาทิตย์ 24 ชั่วโมง</value>
+    <comment>FieldID: F47_01_08</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F47_01_09</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_INFO_SECTION_CONFIRM_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+&lt;div class="col-xs-1 center"&gt;1.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ไม่เคยได้รับโทษจำคุกโดยคำพิพากษาถึงที่สุดหรือคำสั่งที่ชอบด้วยกฎหมายถึงที่สุดให้จำคุก เว้นแต่เป็นโทษสำหรับความผิดที่กระทำโดยประมาทหรือความผิดลหุโทษ&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;2.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ไม่เป็นโรคตามที่รัฐมนตรีประกาศกำหนดโดยประกาศในราชกิจจานุเบกษา&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;3.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ไม่เป็นบุคคลล้มละลาย&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;4.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ไม่เป็นบุคคลวิกลจริต คนไร้ความสามารถ หรือคนเสมือนไร้ความสามารถ&lt;/div&gt;
+&lt;div class="col-xs-12"&gt;&lt;br&gt;&lt;/div&gt;
+&lt;div class="col-xs-12"&gt;พร้อมกับคำขอนี้ข้าพเจ้าได้แนบเอกสารหลักฐานต่างๆมาด้วย คือ&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;1.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาบัตรประจำตัว&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;2.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาทะเบียนบ้านผู้ขออนุญาต&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;3.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาทะเบียนบ้านของที่ตั้งสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;4.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;ใบรับรองแพทย์&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;5.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาวุฒิบัตร หรือหนังสืออนุมัติ (ถ้ามี)&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;6.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาหนังสือรับรองการจดทะเบียน วัตถุประสงค์ และผู้มีอำนาจลงชื่อแทนนิติบุคคล (กรณีผู้ยื่นคำขอเป็นนิติบุคคล)&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;7.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;หนังสือแสดงความจำนงเป็นผู้ปฎิบัติงานตามแบบ ส.พ. 6 พร้อมสำเนาใบอนุญาตประกอบวิชาชีพ สำเนาทะเบียนบ้านและสำเนาบัตรประจำตัว ของผู้ประกอบวิชาชีพ&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;8.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;สำเนาเอกสารแสดงกรรมสิทธิ์ในสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;9.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;หนังสืออนุมัติแผนงานการจัดตั้งสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;10.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;แผนที่แสดงที่ตั้งสถานพยาบาลและสิ่งปลูกสร้างในบริเวณใกล้เคียง&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;11.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;เอกสารแสดงลักษณะของสถานพยาบาล โดยมีรายการ ดังต่อไปนี้&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● แบบผังหลักของพื้นที่ที่ตั้งอาคารสถานพยาบาล&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● แบบแสดงภาพอาคารภายนอกสถานพยาบาลอย่างน้อยด้านหน้าและด้านข้าง&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● แบบแสดงการแบ่งพื้นที่ใช้สอยพร้อมระบุชื่อให้แสดงทุกชั้น ทุกอาคาร&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● ผังแสดงการติดตั้งอุปกรณ์เครื่องมือพิเศษที่สำคัญในแต่ละส่วนอาคาร&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● ผังการสัญจรของผู้ใช้สอยแต่ละประเภทในอาคาร&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● เส้นทางหนีไฟและอุปกรณ์ดับเพลิงภายในอาคาร&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● ระบบการระบายน้ำและบำบัดน้ำเสีย&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;12.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;กรณีสถานพยาบาลประเภทที่รับผู้ป่วยไว้ค้างคืน จะต้องมีเอกสารเพิ่มเติมดังนี้&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● แบบแปลนสถานพยาบาลพร้อมแผนงานการจัดตั้งสถานพยาบาลที่ได้รับอนุมัติ&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● ใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือ รื้อถอนอาคาร&lt;/div&gt;
+&lt;div class="col-xs-11 col-xs-offset-1"&gt;● หนังสือแสดงความเห็นชอบรายงานผลกระทบสิ่งแวดล้อมตามกฎหมายว่าด้วยการส่งเสริมและรักษาคุณภาพสิ่งแวดล้อม&lt;/div&gt;
+&lt;div class="col-xs-1 center"&gt;13.&lt;/div&gt;
+&lt;div class="col-xs-11"&gt;อื่นๆ (ถ้ามี)&lt;/div&gt;
+&lt;/div&gt;</value>
+    <comment>FieldID: F47_01_09</comment>
+  </data>
+  <data name="TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่าเอกสารและข้อความข้างต้นเป็นความจริงทุกประการ</value>
+    <comment>FieldID: F47_01_09</comment>
+  </data>
+  <data name="APP_HOSPITAL_PERMISSION_OLD_INFO_SECTION_HEADER_TYPE" xml:space="preserve">
+    <value>ใบอนุญาตเดิมเลขที่</value>
+  </data>
+</root>

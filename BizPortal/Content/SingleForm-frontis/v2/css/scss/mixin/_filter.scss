@@ -1,0 +1,15 @@
+@mixin blur($pixel){
+    -webkit-filter: blur($pixel);
+    -moz-filter: blur($pixel);
+    -o-filter: blur($pixel);
+    -ms-filter: blur($pixel);
+    filter: blur($pixel);
+}
+
+@mixin opacity($percent){
+    -webkit-filter: opacity($percent);
+    -moz-filter: opacity($percent);
+    -o-filter: opacity($percent);
+    -ms-filter: opacity($percent);
+    filter: opacity($percent);
+}

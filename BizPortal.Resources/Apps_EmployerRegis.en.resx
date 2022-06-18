@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APPS_ALLOWED_EXTENSIONS" xml:space="preserve">
+    <value>Support only documents in pdf, png, jpg and file sizes must not over 5 MB</value>
+  </data>
+  <data name="APPS_DESCRIPTION" xml:space="preserve">
+    <value>&lt;ul&gt;
+                    &lt;li&gt;
+                        Employer with at least 1 or more employees must register the employer registration and employee registration as insured person within 30 days. When employer increases more employees, must register new employee within 30 days as well.
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        Insured Person is employees at least 15 years old and not over 60 years old (in the first date of work) and work in place of business that have at least 1 employee.
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                       Contribution fund is money that employer and employee must send to social security fund every month calculating from wage that employee earns. This wage is set from monthly wage which is minimum 1650 baht and maximum 15,000 baht. Government also gives some contribution money to social security fund.
+                    &lt;/li&gt;
+                &lt;/ul&gt;</value>
+  </data>
+  <data name="APPS_DOC_CitizenCard" xml:space="preserve">
+    <value>สําเนาหรือภาพถ๋ายบัตรประจําตัวประชาชน (คนต่างด้าวใช้สําเนาหนังสือเดินทางหรือใบสําคัญประจำตัวคนต่างด้าว)</value>
+  </data>
+  <data name="APPS_DOC_CitizenCard_DESC" xml:space="preserve">
+    <value>สําเนาหรือภาพถ๋ายบัตรประจําตัวประชาชน (คนต่างด้าวใช้สําเนาหนังสือเดินทางหรือใบสําคัญประจำตัวคนต่างด้าว)</value>
+  </data>
+  <data name="APPS_DOC_Contract" xml:space="preserve">
+    <value>Copy of rental agreement</value>
+  </data>
+  <data name="APPS_DOC_Contract_DESC" xml:space="preserve">
+    <value>Copy of rental agreement or approval letter of the use of place together with a copy of identification card and a copy of house registration of the lessor or retail lease agreement or evidences for indicating lock number and the location of market or department store.</value>
+  </data>
+  <data name="APPS_DOC_EmployerDoc" xml:space="preserve">
+    <value>The evidences to indicate the self of employer</value>
+  </data>
+  <data name="APPS_DOC_EmployerDoc_DESC" xml:space="preserve">
+    <value>The evidences to indicate the self of employer as a copy of identification card or a copy of house registration of employer or the committee who has authority to sign (in the case that the committee is foreigner, passport or work permit or visa has to be provided) (for an alien, a copy of passport or a copy of certificate of alien has to be provided) or a copy certificate of residence or an evidence of a non-immigrant status according to immigration act.</value>
+  </data>
+  <data name="APPS_DOC_Map" xml:space="preserve">
+    <value>Location map and photograph of the company</value>
+  </data>
+  <data name="APPS_DOC_Map_DESC" xml:space="preserve">
+    <value>Location map and photograph of the company.</value>
+  </data>
+  <data name="APPS_DOC_PowerOfAttorney" xml:space="preserve">
+    <value>Letter of power of attorney</value>
+  </data>
+  <data name="APPS_DOC_PowerOfAttorney_DESC" xml:space="preserve">
+    <value>Letter of power of attorney (in the case that providing power of attorney to the entrusted person and has to attach stamp duty which is revenue code) with the copies of identification card of the grantor and the entrusted persons.</value>
+  </data>
+  <data name="APPS_DOC_RegistrationBook" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายทะเบียนบ้าน</value>
+  </data>
+  <data name="APPS_DOC_RegistrationBook_DESC" xml:space="preserve">
+    <value>สําเนาหรือภาพถ่ายทะเบียนบ้าน</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm" xml:space="preserve">
+    <value>Employer registration form (Sor.Por.Sor. 1-01)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationForm_DESC" xml:space="preserve">
+    <value>Employer registration form (Sor.Por.Sor. 1-01) &lt;br/&gt; (In the case that there is not enough space in the forms number 2, number 3.2 and number 6, the other papers should be used to complete all the information. Then, save the file and upload the document.)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationJuristic" xml:space="preserve">
+    <value>Copy of certificate of juristic person registration with objective</value>
+  </data>
+  <data name="APPS_DOC_RegistrationJuristic_DESC" xml:space="preserve">
+    <value>Copy of certificate of juristic person registration with objective or copy of commercial registration certificate or certificate in accordance with the foreign business act, B.E.2542 (1999) or copy of joint venture agreement or copy of certificate or evidence of juristic person status that indicates the list about name, fund, objective, committee names who have authority to bind the entity as well as the notice of appointment of representatives which is appointed by the authorized person to bind the entity of employer registration to be responsible for operating business in Thailand or business licenses that issued in accordance with other laws.</value>
+  </data>
+  <data name="APPS_DOC_RegistrationPersonalVat" xml:space="preserve">
+    <value>สำเนาหรือภาพถ่าย บัตรประจำตัวผู้เสียภาษีอากร/ร.ง. 4/ภ.พ.20/ภ.ธ. 20</value>
+  </data>
+  <data name="APPS_DOC_RegistrationPersonalVat_DESC" xml:space="preserve">
+    <value>สําเนาบัตรประจำตัวผู้เสียภาษีอากร หรือสําเนาภาพถ่ายใบอนุญาตประกอบกิจการโรงงาน (ร.ง. 4) หรือสําเนาหรือภาพถ่ายใบทะเบียนภาษีมูลคาเพิ่ม (ภ.พ.20) หรือสําเนาภาพถ่ายภาษีธุรกิจเฉพาะ (ภ.ธ. 20)</value>
+  </data>
+  <data name="APPS_DOC_RegistrationVat" xml:space="preserve">
+    <value>Copy of the taxpayer identification number</value>
+  </data>
+  <data name="APPS_DOC_RegistrationVat_DESC" xml:space="preserve">
+    <value>Copy of the taxpayer identification number or copy of value added tax registration (Por. Por. 01) or copy of special business tax registration (Por Tor 20) or foreign business license.</value>
+  </data>
+  <data name="APPS_FILES_ERROR_EXTENSION" xml:space="preserve">
+    <value>Support only documents in pdf, png, jpg.</value>
+  </data>
+  <data name="APPS_FILES_ERROR_SIZE" xml:space="preserve">
+    <value>File sizes must not over 5 MB.</value>
+  </data>
+  <data name="APPS_FILES_ERROR_UPLOAD_FAILED" xml:space="preserve">
+    <value>Failed to upload documents.</value>
+  </data>
+  <data name="APPS_MSG_CANCEL" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="APPS_MSG_DRAFT_ERROR_TRY_AGAIN" xml:space="preserve">
+    <value>Failed to save draft. Please try again.</value>
+  </data>
+  <data name="APPS_MSG_DRAFT_TITLE" xml:space="preserve">
+    <value>Save draft</value>
+  </data>
+  <data name="APPS_MSG_ENTER_EMAIL" xml:space="preserve">
+    <value>Enter Email</value>
+  </data>
+  <data name="APPS_MSG_ERROR_TRY_AGAIN" xml:space="preserve">
+    <value>Failed to submit your request. Please try again.</value>
+  </data>
+  <data name="APPS_MSG_FILES_REQUIRED" xml:space="preserve">
+    <value>There are some documents missing. Please upload required document.</value>
+  </data>
+  <data name="APPS_MSG_TITLE" xml:space="preserve">
+    <value>Submit Request</value>
+  </data>
+  <data name="APPS_NAME" xml:space="preserve">
+    <value>Employer Registration</value>
+  </data>
+  <data name="APPS_SELECT_AND_WAIT" xml:space="preserve">
+    <value>Please select a document or waiting for file uploading.</value>
+  </data>
+  <data name="APPS_STEPS" xml:space="preserve">
+    <value>Employer registration procedures</value>
+  </data>
+  <data name="APPS_STEP_1" xml:space="preserve">
+    <value>Fill in and send advance employer registration form via internet</value>
+  </data>
+  <data name="APPS_STEP_1_DL" xml:space="preserve">
+    <value>[download employer registration form]</value>
+  </data>
+  <data name="APPS_STEP_1_DL_EX" xml:space="preserve">
+    <value>[example of filling in employer registration form]</value>
+  </data>
+  <data name="APPS_STEP_2" xml:space="preserve">
+    <value>Upload employer registration and related document</value>
+  </data>
+  <data name="APPS_STEP_2_PANEL_HEADER" xml:space="preserve">
+    <value>Upload employer registration form and other related documents</value>
+  </data>
+  <data name="APPS_STEP_2_REMARK" xml:space="preserve">
+    <value>&lt;strong&gt;Noted:&lt;/strong&gt; * Document is required.</value>
+  </data>
+  <data name="APPS_STEP_3" xml:space="preserve">
+    <value>Check for the completion of document</value>
+  </data>
+  <data name="APPS_STEP_3_PANEL_HEADER" xml:space="preserve">
+    <value>Check the document</value>
+  </data>
+  <data name="APPS_STEP_3_REMARK" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;Noted:&lt;/strong&gt; After receiving an approval, the account number has to be informed when contacting the Social Security Office. The further information is as follow:&lt;/p&gt;
+                &lt;ol&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;
+                           Compensation Fund: provide to an employee who is injured, sick or dead because of work. The employer has to pay the subsidy once a year. Employee compensation form (Kor Tor 26 Kor) will be sent to the registered email after receiving an approval or see on &lt;a target="_blank" href="{0}"&gt; [tracking]&lt;/a&gt;.  The payment should be made via Krungthai Bank, Krungsri Bank, Thanachart Bank and counter services within 30 days. If the payment is made after the due date, the payment will be multiplied by 3 percent per month. For the other years, the payment should be made within January.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;
+                            Social Security Fund:  provide to an insured person who is injured, sick or dead not because of work, childbirth, child welfare, senescence and unemployed. The employer has to deduct five percent of an employee’s wage which is defined from the wage base, not less than 1,650 Baht and not over 15,000 Baht. The employer has to subsidy the money which is equal to total amount of the deduction from the employee as follows:
+                        &lt;/p&gt;
+                        &lt;ol style="list-style-type:disc;"&gt;
+                            &lt;li&gt;
+                                &lt;p&gt;
+									Submit social security contribution return form (Sor Por Sor 1-10 Part 1 and Part 2) &lt;a target="_blank" href="http://www.sso.go.th/wpr/uploads/uploadImages/file/sps1-10-041055(3)(1).pdf "&gt; [download form Sor Por Sor 1-10 Part 1 and Part 2]&lt;/a&gt;
+                                    and the report of submission of contributions in the case that the employer delivers the contribution with the branches (Sor Por Sor 1-10/1) &lt;a target="_blank" href="http://www.sso.go.th/sites/default/files/12_2.pdf"&gt; [download form Sor Por Sor 1-10/1]&lt;/a&gt; within 15 days of the next month.
+                                &lt;/p&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;
+                                &lt;p&gt;
+                                    Deliver the contribution via e-service &lt;a target="_blank" href="http://www.sso.go.th/eservices/home.do"&gt; [e-service]&lt;/a&gt;
+                                &lt;/p&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;
+                                &lt;p&gt;
+                                    •	Deliver the contribution via Krungthai Bank, Krungsri Bank, Thanachart Bank or via e-payment of Krungsri Bank, Citibank, Mizuho Bank, Sumitomo Mitsui Banking Corporation, The Siam Commercial Bank, Krungthai Bank and Kasikorn Bank. If the contribution is delivered after the due date, the payment will be multiplied by 2 percent per month. &lt;a target="_blank" href="http://www.sso.go.th/wpr/content.jsp?lang=th&amp;cat=970&amp;id=4468"&gt; [Channels of delivering Social Contribution Fund]&lt;/a&gt;
+                                &lt;/p&gt;
+                            &lt;/li&gt;
+                        &lt;/ol&gt;
+
+                    &lt;/li&gt;
+                &lt;/ol&gt;
+                &lt;p&gt;
+                   For contacting Social Security Office, please contact at
+                    &lt;a target="_blank" href="http://www.sso.go.th/wpr/category.jsp?lang=th&amp;cat=860 "&gt;[contact Social Security Office]&lt;/a&gt;
+                &lt;/p&gt;</value>
+  </data>
+  <data name="APPS_TRACKING_YOUR_REQUEST" xml:space="preserve">
+    <value>Tracking your request</value>
+  </data>
+  <data name="ATTACHED_FILE" xml:space="preserve">
+    <value>Attached File</value>
+  </data>
+  <data name="BACK_TO_EMPLOYER_REGIS_APP" xml:space="preserve">
+    <value>Back to the employer registration page</value>
+  </data>
+  <data name="DELETE" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DOWNLOAD_EMPLOYER_REGIS_FORM" xml:space="preserve">
+    <value>Download employer registration form</value>
+  </data>
+  <data name="MSG_COMPLETED_REQ" xml:space="preserve">
+    <value>Your request was approved.</value>
+  </data>
+  <data name="MSG_PENDING_REQ" xml:space="preserve">
+    <value>Your request has been submitted. Your request will be reviewed by agent as soon as possible.</value>
+  </data>
+  <data name="MSG_UNKNOWN_STATUS" xml:space="preserve">
+    <value>You cannot enter this application. Please try again.</value>
+  </data>
+  <data name="REGISTRATION_FORM" xml:space="preserve">
+    <value>Registration Form</value>
+  </data>
+</root>

@@ -1,0 +1,653 @@
+﻿@model BizPortal.DAL.MongoDB.ApplicationRequestEntity
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@using System.Configuration
+@using BizPortal.ViewModels.V2
+@using BizPortal.AppsHook
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Extensions
+@{
+    ViewBag.Title = string.Format(Resource.Tracking.TRACKING_TITLE, Model.ApplicationRequestNumber);
+    ViewBag.LayoutSearch = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    bool citizen = IdentityType == UserTypeEnum.Citizen;
+
+    int[] oldAppIDs = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+    ApplicationRequestViewModel viewModel = new ApplicationRequestViewModel();
+    Mapster.TypeAdapter.Adapt<ApplicationRequestEntity, ApplicationRequestViewModel>(Model, viewModel);
+    IAppsHook hook = null;
+    Dictionary<string, string> appTranslates = null;
+    if (!string.IsNullOrEmpty(ViewBag.AppsHookClassName))
+    {
+        hook = (IAppsHook)Activator.CreateInstance("BizPortal.AppsHook", ViewBag.AppsHookClassName).Unwrap();
+        appTranslates = hook.TranslateKeyValue(viewModel);
+    }
+    ViewBag.Hook = hook;
+
+    Func<string, string> fileNameByCodeFunc = (code) =>
+    {
+        string fileName = string.Empty;
+
+        if (!string.IsNullOrEmpty(code))
+        {
+            if (appTranslates != null && appTranslates.ContainsKey(code))
+            {
+                fileName = appTranslates[code];
+            }
+            else
+            {
+                fileName = ResourceHelper.GetResourceWordWithDefault(code.ToUpper(), "Apps_SingleForm_Filelist", code);
+                if (fileName == code)
+                {
+                    fileName = ResourceHelper.GetResourceWordWithDefault(code.ToUpper(), "FileType", code);
+                }
+            }
+        }
+
+        return fileName;
+    };
+
+    Func<FileMetadataEntity, string> fileNameFunc = (file) =>
+    {
+        string fileName = fileNameByCodeFunc(file.FileTypeCode ?? file.Extras.TryGetString("FILETYPECODE"));
+
+        if (string.IsNullOrEmpty(fileName) || (fileName == file.FileTypeCode && !string.IsNullOrEmpty(file.Extras.TryGetString("DISPLAYNAME"))))
+        {
+            if (fileName == file.FileTypeCode && !string.IsNullOrEmpty(file.Extras.TryGetString("DISPLAYNAME")))
+            {
+                fileName = file.Extras.TryGetString("DISPLAYNAME");
+            }
+            else if (string.IsNullOrEmpty(fileName) && string.IsNullOrEmpty(file.FileTypeCode) && !string.IsNullOrEmpty(file.Extras.TryGetString("REQUEST_FILE_NAME")))
+            {
+                fileName = file.Extras.TryGetString("REQUEST_FILE_NAME");
+            }
+            else if (string.IsNullOrEmpty(fileName) && string.IsNullOrEmpty(file.FileTypeCode) && !string.IsNullOrEmpty(file.Extras.TryGetString("FILETYPEDESC")))
+            {
+                fileName = file.Extras.TryGetString("FILETYPEDESC");
+            }
+            else
+            {
+                fileName = file.FileTypeCode;
+            }
+        }
+
+        return fileName;
+    };
+
+
+    var lastestRemark = "";
+
+    if (Model.Transactions != null)
+    {
+        lastestRemark = Model.Transactions.Where(e => e.ReplyFromOrg == false && !string.IsNullOrEmpty(e.Remark)).Select(e => e.Remark).LastOrDefault();
+    }
+}
+
+@if (!citizen)
+{
+    @section breadcrumb{
+        <div class="container">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { language = ViewBag.CurrentLang })">@Resource.Breadcrumb.HOME</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Track", new { area = "", language = ViewBag.CurrentLang })">@Resource.Breadcrumb.TRACKING</a>
+                </li>
+                <li class="active">@Resource.Breadcrumb.TRACKING_DETAIL </li>
+            </ul>
+        </div>
+    }
+}
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="button" data-toggle="collapse" id="headingFirst" href="#collapseFirst" aria-expanded="true" aria-controls="collapseFirst">
+            <strong>@Resource.ApplicationStatusRequests.REQUEST_BY</strong> :
+            @Model.IdentityName (@Model.IdentityID)
+            <span class="glyphicon glyphicon-menu-down pull-right"></span>
+        </div>
+        <div id="collapseFirst" class="panel-collapse collapse in" aria-labelledby="headingFirst">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <div class="col-md-12">
+                            <strong>@Resource.ApplicationStatusRequests.APPLICATION_NAME</strong>
+                            @Model.ApplicationName
+                        </div>
+                        <div class="col-md-12">
+                            <strong>@Resource.ApplicationStatusRequests.SUBMIT_DATE</strong>
+                            @Model.CreatedDate.ToLocalTime().ToString("dd MMM yyyy HH:mm")
+                        </div>
+                        <div class="col-md-12">
+                            <strong>@Resource.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER</strong>
+                            @Model.ApplicationRequestNumber
+                        </div>
+                        <div class="col-md-12">
+                            <strong>@Resource.ApplicationStatusRequests.APPLICATION_STATUS_REQUEST</strong>
+                            @Model.StatusName
+                            @if (!string.IsNullOrEmpty(Model.StatusOther) && !oldAppIDs.Contains(Model.ApplicationID))
+                            {
+                                <text>( @Model.StatusOther )</text>
+                            }
+                        </div>
+                        <div class="col-md-12">
+                            <strong>@Resource.ApplicationStatusRequests.APPLICATION_REQUEST_LATEST_REMARK</strong>
+                            <br />
+
+
+                            @(!string.IsNullOrEmpty(lastestRemark) ? lastestRemark : "-")
+                        </div>
+                        @*@if (Model.Status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE)
+                            {
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <p></p>
+                                    <button type="button" class="btn btn-primary" data-style="expand-left" onclick="window.open('@Url.Action("DownloadBillPayment", "File", new { appReqId = Model.ApplicationRequestID })','_blank');">
+                                        <span class="ladda-label">@Html.Raw(Resource.Global.BTN_PRINT_BILL_PAYMENT)</span>
+                                    </button>
+                                </div>
+                            </div>
+                            }*@
+                        @{
+                            int rows = 1;
+                            bool firstRow = true;
+                            var recentReplyFromOrg = Model.Transactions.Where(s => s.IdentityType == UserTypeEnum.GovernmentAgent).OrderByDescending(o => o.CreatedDate).FirstOrDefault();
+                            if (recentReplyFromOrg != null)
+                            {
+                                <div class="col-md-12">
+                                    @if (!string.IsNullOrEmpty(recentReplyFromOrg.Remark))
+                                    {
+                                        <strong>@Resource.ApplicationStatusRequests.REMARK</strong>
+                                        <p>@recentReplyFromOrg.Remark</p>
+                                    }
+
+                                    @*@if (recentReplyFromOrg.Data != null)
+                                        {
+                                            foreach (var group in recentReplyFromOrg.Data)
+                                            {
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        @group.Key
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <span class="block">
+                                                            @group.Value.GroupDescription
+                                                        </span>
+                                                        @foreach (var data in group.Value.Data)
+                                                        {
+                                                                <span class="block">
+                                                                    <strong>@data.Key</strong> @data.Value
+                                                                </span>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+                                        }*@
+                                    @if (Model.RequestedFiles != null && Model.RequestedFiles.Count > 0)
+                                    {
+                                        rows = 1;
+                                        <span class="block">
+                                            <strong>@Resource.ApplicationStatusRequests.REQUEST_FILE</strong>
+                                        </span>
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="width: 40px;">#</th>
+                                                    <th>@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var file in Model.RequestedFiles)
+                                                {
+                                                    <tr>
+                                                        <td class="text-center">@rows</td>
+                                                        <td>@fileNameFunc(file)</td>
+                                                    </tr>
+                                                    rows += 1;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    @if ((recentReplyFromOrg.UploadedFiles != null && recentReplyFromOrg.UploadedFiles.Count > 0) ||
+(recentReplyFromOrg.GovFiles != null && recentReplyFromOrg.GovFiles.Count > 0))
+                                    {
+                                        <span class="block">
+                                            <br /><strong>@Resource.ApplicationStatusRequests.ATTACH_DOCUMENT</strong>
+                                        </span>
+                                        if (recentReplyFromOrg.IdentityType == UserTypeEnum.GovernmentAgent && recentReplyFromOrg.GovFiles != null && recentReplyFromOrg.GovFiles.Count > 0)
+                                        {
+                                            rows = 1;
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" style="width: 40px;">#</th>
+                                                        <th class="text-center">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                        <th class="text-center" style="width: 150px;">@Resource.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                                                        <th class="text-center" style="width: 120px;">@Resource.ApplicationStatusRequests.DOCUMENT_SIZE</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var file in recentReplyFromOrg.GovFiles)
+                                                    {
+                                                        <tr>
+                                                            <td class="text-center">@rows</td>
+                                                            <td>
+                                                                <a href="@Url.Action("GetV2","File", new { id = file.FileID, rid= file.ApplicationRequestID})" target="_blank" class="file-link">@file.FileName</a>
+                                                            </td>
+                                                            <td class="text-center">@fileNameFunc(file)</td>
+                                                            <td class="text-center file-size">@file.FileSize</td>
+                                                        </tr>
+                                                        rows += 1;
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        }
+                                        if (recentReplyFromOrg.UploadedFiles != null && recentReplyFromOrg.UploadedFiles.Count > 0)
+                                        {
+                                            firstRow = true;
+                                            foreach (var group in recentReplyFromOrg.UploadedFiles)
+                                            {
+                                                if (!firstRow)
+                                                {
+                                                    <div class="line pull-in"></div>
+                                                }
+                                                firstRow = false;
+
+                                                <article class="media">
+                                                    <div class="media-body">
+                                                        @if (!string.IsNullOrEmpty(group.Description))
+                                                        {
+                                                            <div>
+                                                                <span>@group.Description</span>
+                                                            </div>
+                                                        }
+                                                        @if (group.Extras != null && group.Extras.Count > 0)
+                                                        {
+                                                            <div>
+                                                                @foreach (var extra in group.Extras)
+                                                                {
+                                                                    <span class="block">
+                                                                        <strong>@ResourceHelper.GetResourceWordWithDefault(extra.Key, "ExtraKey", extra.Key)</strong> @extra.Value
+                                                                    </span>
+                                                                }
+                                                            </div>
+                                                        }
+                                                        @if (group.Files != null && group.Files.Count > 0)
+                                                        {
+                                                            rows = 1;
+                                                            <table class="table table-bordered table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center" style="width: 40px;">#</th>
+                                                                        <th class="text-center">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                                        <th class="text-center" style="width: 150px;">@Resource.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                                                                        <th class="text-center" style="width: 120px;">@Resource.ApplicationStatusRequests.DOCUMENT_SIZE</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var file in group.Files)
+                                                                    {
+                                                                        <tr>
+                                                                            <td class="text-center">@rows</td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)" class="file-link">@file.FileName</a>
+                                                                            </td>
+                                                                            <td class="text-center">@fileNameFunc(file)</td>
+                                                                            <td class="text-center file-size">@file.FileSize</td>
+                                                                        </tr>
+                                                                        rows += 1;
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        }
+                                                    </div>
+                                                </article>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                    @if (viewModel.Status != ApplicationStatusV2Enum.INCOMPLETE && viewModel.Status != ApplicationStatusV2Enum.COMPLETED && viewModel.Status != ApplicationStatusV2Enum.REJECTED)
+                    {
+                        <div class="col-md-6 form-group">
+                            <div class="col-md-12">
+                                @Html.Partial("~/Views/Track/_ResponseForm.cshtml", viewModel)
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (hook != null)
+                        {
+                            AppHookRenderViewModel hookModel = new AppHookRenderViewModel(hook, RenderStage.UserTracking, new BizPortal.ViewModels.V2.ApplicationRequestViewModel());
+                            Mapster.TypeAdapter.Adapt<BizPortal.DAL.MongoDB.ApplicationRequestEntity, BizPortal.ViewModels.V2.ApplicationRequestViewModel>(Model, hookModel.Data);
+                            Html.RenderPartial("~/Views/Shared/AppRequest/_AppHookRenderer2.cshtml", hookModel);
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="button" data-toggle="collapse" id="headingAttachFiles" href="#collapseAttachFiles" aria-expanded="false" aria-controls="collapseAttachFiles">
+            <a href="javascript:void(0)">@Resource.ApplicationStatusRequests.ATTACH_DOCUMENT</a>
+            <span class="glyphicon glyphicon-menu-down pull-right"></span>
+        </div>
+        <div id="collapseAttachFiles" class="panel-collapse collapse" aria-labelledby="headingAttachFiles">
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">#</th>
+                            <th class="text-center">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                            <th class="text-center" style="width: 150px;">@Resource.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                            <th class="text-center" style="width: 120px;">@Resource.ApplicationStatusRequests.DOCUMENT_SIZE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var group in Model.UploadedFiles)
+                            {
+                                if (group.Files != null && group.Files.Count > 0)
+                                {
+                                    foreach (var file in group.Files)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@rows</td>
+                                            <td>
+                                                <a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a>
+                                            </td>
+                                            <td class="text-center">@fileNameFunc(file)</td>
+                                            <td class="text-center file-size">@file.FileSize</td>
+                                        </tr>
+                                        rows += 1;
+                                    }
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="button" data-toggle="collapse" id="headingGovFiles" href="#collapseGovFiles" aria-expanded="false" aria-controls="collapseGovFiles">
+            <a href="javascript:void(0)">@Resource.ApplicationStatusRequests.GOV_FILES</a>
+            <span class="glyphicon glyphicon-menu-down pull-right"></span>
+        </div>
+        <div id="collapseGovFiles" class="panel-collapse collapse" aria-labelledby="headingGovFiles">
+            <div class="panel-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 40px;">#</th>
+                            <th class="text-center">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                            <th class="text-center" style="width: 150px;">@Resource.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                            <th class="text-center" style="width: 120px;">@Resource.ApplicationStatusRequests.DOCUMENT_SIZE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            rows = 1;
+                            if (Model.GovFiles != null)
+                            {
+                                foreach (var file in Model.GovFiles)
+                                {
+                                    <tr>
+                                        <td class="text-center">@rows</td>
+                                        <td>
+                                            <a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a>
+                                        </td>
+                                        <td class="text-center">@fileNameFunc(file)</td>
+                                        <td class="text-center">@file.FileSize</td>
+                                    </tr>
+                                    rows += 1;
+                                }
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="button" data-toggle="collapse" id="headingHistories" href="#collapseHistories" aria-expanded="false" aria-controls="collapseHistories">
+            <a href="javascript:void(0)">@Resource.ApplicationStatusRequests.APPROVE_STAGE_HISTORY</a>
+            <span class="glyphicon glyphicon-menu-down pull-right"></span>
+        </div>
+        <div id="collapseHistories" class="panel-collapse collapse" aria-labelledby="headingHistories">
+            <div class="panel-body">
+                @*<section class="comment-list block">
+                        <article id="comment-id-1" class="comment-item">
+                            <section class="comment-body panel panel-default">
+                                <header class="panel-heading bg-white">
+                                    <a href="javascript:void(0)">@Model.IdentityName</a>
+                                    <label class="label bg-primary m-l-xs">@ResourceHelper.GetResourceWord(UserTypeEnum.Juristic.ToString().ToUpper(), "Global")</label>
+                                </header>
+                                <div class="panel-body">
+                                    @{
+                                        List<BizPortal.ViewModels.V2.FileMetadata> requestedFiles = null;
+                                        if (Model.RequestedFiles != null && Model.RequestedFiles.Count > 0)
+                                        {
+                                            requestedFiles = new List<BizPortal.ViewModels.V2.FileMetadata>();
+                                            foreach (var file in Model.RequestedFiles)
+                                            {
+                                                var fileModel = new BizPortal.ViewModels.V2.FileMetadata();
+                                                Mapster.TypeAdapter.Adapt<BizPortal.DAL.MongoDB.FileMetadataEntity, BizPortal.ViewModels.V2.FileMetadata>(file, fileModel);
+                                                requestedFiles.Add(fileModel);
+                                            }
+                                        }
+                                    }
+                                    @Html.Partial("~/Views/Track/_ResponseForm.cshtml", new BizPortal.ViewModels.V2.ApplicationRequestViewModel()
+                               {
+                                   ApplicationRequestID = Model.ApplicationRequestID,
+                                   ApplicationID = Model.ApplicationID,
+                                   RequestedFiles = requestedFiles.ToArray()
+                               })
+                                </div>
+                            </section>
+                        </article>
+                    </section>*@
+
+                @foreach (var trans in Model.Transactions.Where(o => o.Status != ApplicationStatusV2Enum.DRAFT).OrderByDescending(o => o.CreatedDate))
+                {
+                    firstRow = true;
+
+                    <section class="comment-list block">
+                        <article id="comment-id-1" class="comment-item">
+                            <section class="comment-body panel panel-default">
+                                <div class="panel-heading bg-white">
+                                    @if (trans.ReplyFromOrg)
+                                    {
+                                        <a href="javascript:void(0)">@ResourceHelper.GetResourceWord(UserTypeEnum.GovernmentAgent.ToString().ToUpper(), "Global")</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="javascript:void(0)">@trans.IdentityName</a>
+                                        <label class="label bg-primary m-l-xs">@ResourceHelper.GetResourceWord(trans.IdentityType.ToString().ToUpper(), "Global")</label>
+                                    }
+                                    <span class="text-muted m-l-sm pull-right">
+                                        <i class="fa fa-clock-o"></i>
+                                        @trans.UpdatedDate.ToLocalTime().ToString("dd MMM yyyy HH:mm")
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+                                    <span class="block">
+                                        <strong>@Resource.ApplicationStatusRequests.STATUS</strong> @ResourceHelper.GetResourceWord("STATUS_" + @trans.Status.ToString().ToUpper(), "ApplicationStatusRequests")
+                                        @if (!string.IsNullOrEmpty(trans.StatusOther) && !oldAppIDs.Contains(Model.ApplicationID))
+                                        {
+                                            <text>( @trans.StatusOther )</text>
+                                        }
+                                    </span>
+                                    @if (!string.IsNullOrEmpty(trans.Remark))
+                                    {
+                                        <p>@trans.Remark</p>
+                                    }
+                                    @*@if (trans.Data != null)
+                                        {
+                                            foreach (var group in trans.Data)
+                                            {
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        @group.Key
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <span class="block">
+                                                            @group.Value.GroupDescription
+                                                        </span>
+                                                        @foreach (var data in group.Value.Data)
+                                                        {
+                                                            <span class="block">
+                                                                <strong>@data.Key</strong> @data.Value
+                                                            </span>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+                                        }*@
+
+                                    @if (trans.RequestedFiles != null && trans.RequestedFiles.Count > 0)
+                                    {
+                                        rows = 1;
+                                        <span class="block">
+                                            <strong>@Resource.ApplicationStatusRequests.REQUEST_FILE</strong>
+                                        </span>
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="width: 40px;">#</th>
+                                                    <th class="text-center">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var file in trans.RequestedFiles)
+                                                {
+                                                    <tr>
+                                                        <td class="text-center">@rows</td>
+                                                        <td>@fileNameFunc(file)</td>
+                                                    </tr>
+                                                    rows += 1;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    @if ((trans.UploadedFiles != null && trans.UploadedFiles.Count > 0 && trans.UploadedFiles.SelectMany(o => o.Files).Any()) ||
+(trans.IdentityType == UserTypeEnum.GovernmentAgent && trans.GovFiles != null && trans.GovFiles.Count > 0))
+                                    {
+                                        <span class="block">
+                                            <br /><strong>@Resource.ApplicationStatusRequests.ATTACH_DOCUMENT</strong>
+                                        </span>
+
+                                        if (trans.IdentityType == UserTypeEnum.GovernmentAgent && trans.GovFiles != null && trans.GovFiles.Count > 0)
+                                        {
+                                            rows = 1;
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" style="width: 40px;">#</th>
+                                                        <th class="text-center">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                        <th class="text-center" style="width: 150px;">@Resource.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                                                        <th class="text-center" style="width: 120px;">@Resource.ApplicationStatusRequests.DOCUMENT_SIZE</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var file in trans.GovFiles)
+                                                    {
+                                                        <tr>
+                                                            <td class="text-center">@rows</td>
+                                                            <td>
+                                                                <a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a>
+                                                            </td>
+                                                            <td class="text-center">@fileNameFunc(file)</td>
+                                                            <td class="text-center file-size">@file.FileSize</td>
+                                                        </tr>
+                                                        rows += 1;
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        }
+                                        if (trans.UploadedFiles != null && trans.UploadedFiles.Count > 0)
+                                        {
+                                            firstRow = true;
+                                            foreach (var group in trans.UploadedFiles)
+                                            {
+                                                if (!firstRow)
+                                                {
+                                                    <div class="line pull-in"></div>
+                                                }
+                                                firstRow = false;
+
+                                                <article class="media">
+                                                    <div class="media-body">
+                                                        @if (group.Files != null && group.Files.Count > 0)
+                                                        {
+                                                            if (group.Extras != null && group.Extras.Count > 0)
+                                                            {
+                                                                <div class="row">
+                                                                    @foreach (var extra in group.Extras.Where(o => o.Key != "UPLOADERID"))
+                                                                    {
+                                                                        <div class="col-md-4">
+                                                                            <strong>@ResourceHelper.GetResourceWordWithDefault(extra.Key, "ExtraKey", extra.Key)</strong> @fileNameByCodeFunc(extra.Value.ToString())
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            rows = 1;
+                                                            <table class="table table-bordered table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center" style="width: 40px;">#</th>
+                                                                        <th class="text-center">@Resource.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                                        <th class="text-center" style="width: 150px;">@Resource.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                                                                        <th class="text-center" style="width: 120px;">@Resource.ApplicationStatusRequests.DOCUMENT_SIZE</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var file in group.Files)
+                                                                    {
+                                                                        <tr>
+                                                                            <td class="text-center">@rows</td>
+                                                                            <td>
+                                                                                <a target="_blank" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" class="file-link">@file.FileName</a>
+                                                                            </td>
+                                                                            <td class="text-center">@fileNameFunc(file)</td>
+                                                                            <td class="text-center file-size">@file.FileSize</td>
+                                                                        </tr>
+                                                                        rows += 1;
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        }
+                                                    </div>
+                                                </article>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </section>
+                        </article>
+                    </section>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.file-size').each(function () {
+            var size = parseFloat($(this).text());
+            $(this).text(plupload.formatSize(size));
+        });
+    });
+</script>

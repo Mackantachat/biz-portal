@@ -1,0 +1,442 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <!-- START : กรอกข้อมูลสำหรับ -->
+        <div class="col-md-8">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DETAIL :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DETAIL_OPTION__RADIO_TEXT}}
+        </div>
+        <!-- END : กรอกข้อมูลสำหรับ -->
+        <!-- -->
+        <!-- START : ปุ่มแก้ไขและลบ -->
+        <div>
+            <div class="col-md-2 pr5">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+            </div>
+            <div class="col-md-2 pl5">
+                <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+            </div>
+        </div>
+        <!-- END : ปุ่มแก้ไขและลบ -->
+        <!-- -->
+        <!-- START : ชื่อ-นามสกุล -->
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_FIRSTNAME :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_TITLE_TEXT}} {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_FIRSTNAME}} {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_LASTNAME}}
+        </div>
+        <!-- END : ชื่อ-นามสกุล -->
+        <!-- -->
+        <!-- START : อายุ -->
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_AGE :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_AGE}}
+        </div>
+        <!-- END : อายุ -->
+        <!-- -->
+        <!-- START : สัญชาติ -->
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_NATIONALITY :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_NATIONALITY_TEXT}}
+        </div>
+        <!-- END : สัญชาติ -->
+        <!-- -->
+        <!-- START : เลขบัตรประชาชนหรือหนังสือเดินทาง -->
+        <div class="col-md-6">
+            {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_NATIONALITY == 'TH'" }}
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_ID :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_ID}}
+            {{else}}
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_PASSPORT :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_PASSPORT}}
+            {{/xif}}
+        </div>
+        <!-- END : เลขบัตรประชาชนหรือหนังสือเดินทาง -->
+        <!-- -->
+        <!-- START : ที่อยู่ -->
+        <div class="col-md-8">
+            {{#xif " fieldExist(this.ADDRESS_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>เลขที่: </label> {{this.ADDRESS_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_MOO_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>หมู่ที่: </label> {{this.ADDRESS_MOO_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_VILLAGE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>หมู่บ้าน: </label> {{this.ADDRESS_VILLAGE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_SOI_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>ซอย: </label> {{this.ADDRESS_SOI_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_BUILDING_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>อาคาร: </label> {{this.ADDRESS_BUILDING_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROOMNO_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>ห้องเลขที่: </label> {{this.ADDRESS_ROOMNO_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_FLOOR_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>ชั้น: </label> {{this.ADDRESS_FLOOR_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROAD_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>ถนน: </label> {{this.ADDRESS_ROAD_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}</>
+            {{/xif}}
+            <label>ตำบล/แขวง: </label> {{this.ADDRESS_TUMBOL_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS_TEXT}}
+            <label>อำเภอ/เขต: </label> {{this.ADDRESS_AMPHUR_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS_TEXT}}
+            <label>จังหวัด: </label> {{this.ADDRESS_PROVINCE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS_TEXT}}
+            {{#xif " fieldExist(this.ADDRESS_POSTCODE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>รหัสไปรษณีย์: </label> {{this.ADDRESS_POSTCODE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>โทรศัพท์: </label> {{this.ADDRESS_TELEPHONE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_EXT_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <label>ต่อ:</label> {{this.ADDRESS_TELEPHONE_EXT_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_FAX_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS) " }}
+            <nobr><label>โทรสาร:</label> {{this.ADDRESS_FAX_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OWNER_ADDRESS}}</nobr>
+            {{/xif}}
+        </div>
+        <!-- END : ที่อยู่ -->
+        <!-- -->
+        <!-- START : อีเมล -->
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMAIL :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMAIL}}
+        </div>
+        <!-- END : อีเมล -->
+        <!-- -->
+        <!-- START : เป็นผู้ประกอบวิชาชีพ -->
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_TYPE :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_TYPE_TEXT}}
+        </div>
+        <!-- END : เป็นผู้ประกอบวิชาชีพ -->
+        <!-- -->
+        <!-- START : สาขา -->
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH_TEXT}}
+        </div>
+        <!-- END : สาขา -->
+        <!-- -->
+        <!-- START : เลขที่ใบอนุญาตประกอบวิชาชีพหรือใบอนุญาตประกอบโรคศิลปะ -->
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_LICENSE_NUMBER :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_LICENSE_NUMBER}}
+        </div>
+        <!-- END : เลขที่ใบอนุญาตประกอบวิชาชีพหรือใบอนุญาตประกอบโรคศิลปะ -->
+        <!-- -->
+        <!-- START : วันที่ออกใบอนุญาต -->
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_LICENSING_DATE :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_LICENSING_DATE}}
+        </div>
+        <!-- END : วันที่ออกใบอนุญาต -->
+        <!-- -->
+        <!-- START : วุฒิบัตร/หนังสืออนุมัติ/หนังสือรับรอง -->
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH == 'SPECIALIZED_MEDICINE' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH == 'ONLY_DENTAL' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH == 'SPECIALIZED_MIDWIFERY' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH == 'ONLY_EAR_NOSE_THROAT' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH == 'ONLY_HEART_DISEASE' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH == 'ONLY_CANCER' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_BRANCH == 'ONLY_OTHER'" }}
+        {{#xif " this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DIPLOMA != '[]' " }}
+        <div class="col-md-12 DIPLOMA-{{ARR_IDX}}" style="margin: 0 0 15px 0 !important; padding-left: 10px;">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0px 10px 0px 10px; margin-top: 10px;">
+                    <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DIPLOMA</label>
+                </div>
+            </div>
+            <div class="row" style="padding: 0px 10px 0px 10px;">
+                <div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">
+                    <label>@BizPortal.Resources.Apps_SingleForm.TYPE</label>
+                    {{"APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DIPLOMA.0.DIPLOMA_TEXT"}}
+                </div>
+                <div class="col-md-3" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">
+                    <label>@BizPortal.Resources.Apps_SingleForm.BRANCH</label>
+                </div>
+                <div class="col-md-3" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE;">
+                    <label>@BizPortal.Resources.Apps_SingleForm.NUMBER</label>
+                </div>
+                <div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE;">
+                    <label>@BizPortal.Resources.Apps_SingleForm.ISSUE_DATE</label>
+                </div>
+                <div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE;">
+                    <label>@BizPortal.Resources.Apps_SingleForm.DUE_DATE</label>
+                </div>
+            </div>
+        </div>
+        {{/xif}}
+        {{/xif}}
+        <!-- END : วุฒิบัตร/หนังสืออนุมัติ/หนังสือรับรอง -->
+        <!-- -->
+        <!-- START : สถานะการดำเนินการในปัจจุบันของคุณเป็นอย่างไร -->
+        <div class="col-md-12">
+            {{#xif "this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DETAIL_OPTION == 'OPARETOR'"}}
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS_TEXT}}
+            {{else}}
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS_TEXT}}
+            {{/xif}}
+        </div>
+        <!-- END : สถานะการดำเนินการในปัจจุบันของคุณเป็นอย่างไร -->
+        <!-- -->
+        <!-- START IF : กรณีไม่ได้ทำงาน -->
+        {{#xif "!(this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DETAIL_OPTION == 'EMPLOYEE' && (this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_1' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_2'))"}}
+        <!-- -->
+        <!-- START : ชื่อสถานพยาบาลที่ทำงานอยู่ในปัจจุบัน -->
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_3' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_4' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_5' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_1' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_2'"}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_WOKING_PLACE_NAME :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_WOKING_PLACE_NAME}}
+        </div>
+        {{/xif}}
+        <!-- END : ชื่อสถานพยาบาลที่ทำงานอยู่ในปัจจุบัน -->
+        <!-- -->
+        <!-- START : เลขที่ใบอนุญาตให้ดำเนินการสถานพยาบาล -->
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_4' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_1'"}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_WOKING_LICENSE_NUMBER :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_WOKING_LICENSE_NUMBER}}
+        </div>
+        {{/xif}}
+        <!-- END : เลขที่ใบอนุญาตให้ดำเนินการสถานพยาบาล -->
+        <!-- -->
+        <!-- START : ประเภทสถานพยาบาลที่ทำงานอยู่ในปัจจุบัน -->
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_3' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_4' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_5' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_1' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_2'"}}
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_TYPE :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_TYPE_OPTION__RADIO_TEXT}}
+        </div>
+        {{/xif}}
+        <!-- END : ประเภทสถานพยาบาลที่ทำงานอยู่ในปัจจุบัน -->
+        <!-- -->
+        <!-- START : สถานพยาบาลมีลักษณะเป็น -->
+        {{#xif "this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_TYPE_OPTION == 'CLINIC'"}}
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CLINIC_DETAIL :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CLINIC_DETAIL_TEXT}}
+        </div>
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CLINIC_DETAIL == 'MEDICINE_CLINIC'"}}
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CLINIC_TYPE == 'OTHER'"}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CLINIC_OTHER :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CLINIC_OTHER}}
+        </div>
+        {{else}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CLINIC_TYPE :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CLINIC_TYPE_TEXT}}
+        </div>
+        {{/xif}}
+        {{/xif}}
+        {{else}}
+        {{#xif "this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_TYPE_OPTION == 'HOSPITAL'"}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_DETAIL :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_DETAIL_TEXT}}
+        </div>
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_BED : </label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_BED}}
+        </div>
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_DETAIL == 'SPECIFIC_PATIENT' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_DETAIL == 'SPECIALIZED_OTHER'"}}
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_DETAIL == 'SPECIFIC_PATIENT'"}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_CHOICE :</label>
+            {{this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_CHOICE_TEXT}}
+        </div>
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_CHOICE == 'OTHER_PATIENTS'"}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_OTHER :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_OTHER}}
+        </div>
+        {{else}}
+        {{/xif}}
+        {{else}}
+        <div class="col-md-6">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_OTHER :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_HOSPITAL_OTHER}}
+        </div>
+        {{/xif}}
+        {{/xif}}
+        {{/xif}}
+        {{/xif}}
+        <!-- END : สถานพยาบาลมีลักษณะเป็น -->
+        <!-- -->
+        <!-- START : ที่อยู่สถานพยาบาล -->
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_3' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_4' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_5' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_1' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_2'"}}
+        <div class="col-md-12">
+            {{#xif " fieldExist(this.ADDRESS_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>เลขที่: </label> {{this.ADDRESS_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_MOO_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>หมู่ที่: </label> {{this.ADDRESS_MOO_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_VILLAGE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>หมู่บ้าน: </label> {{this.ADDRESS_VILLAGE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_SOI_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>ซอย: </label> {{this.ADDRESS_SOI_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_BUILDING_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>อาคาร: </label> {{this.ADDRESS_BUILDING_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROOMNO_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>ห้องเลขที่: </label> {{this.ADDRESS_ROOMNO_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_FLOOR_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>ชั้น: </label> {{this.ADDRESS_FLOOR_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_ROAD_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>ถนน: </label> {{this.ADDRESS_ROAD_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}</>
+            {{/xif}}
+            <label>ตำบล/แขวง: </label> {{this.ADDRESS_TUMBOL_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS_TEXT}}
+            <label>อำเภอ/เขต: </label> {{this.ADDRESS_AMPHUR_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS_TEXT}}
+            <label>จังหวัด: </label> {{this.ADDRESS_PROVINCE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS_TEXT}}
+            {{#xif " fieldExist(this.ADDRESS_POSTCODE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>รหัสไปรษณีย์: </label> {{this.ADDRESS_POSTCODE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>โทรศัพท์: </label> {{this.ADDRESS_TELEPHONE_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_TELEPHONE_EXT_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <label>ต่อ:</label> {{this.ADDRESS_TELEPHONE_EXT_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}
+            {{/xif}}
+            {{#xif " fieldExist(this.ADDRESS_FAX_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS) " }}
+            <nobr><label>โทรสาร:</label> {{this.ADDRESS_FAX_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_MEDICAL_CENTER_ADDRESS}}</nobr>
+            {{/xif}}
+        </div>
+        {{/xif}}
+        <!-- END : ที่อยู่สถานพยาบาล -->
+        <!-- -->
+        <!-- START : วันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน -->
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_3' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_4' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_5' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_1' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_2'"}}
+        {{#xif " this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DAY_TIME_WOKING != '[]' " }}
+        <div class="col-md-12 CURRENT_WORKING-{{ARR_IDX}}" style="margin: 0 0 15px 0 !important; padding-left: 10px;">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0px 10px 0px 10px; margin-top: 10px;">
+                    <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DAY_TIME_WOKING</label>
+                </div>
+            </div>
+            <div class="row" style="padding: 0px 10px 0px 10px;">
+                <div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">
+                    <label>@BizPortal.Resources.Apps_SingleForm.START_WORKING_DAY_DD</label>
+                </div>
+                <div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">
+                    <label>@BizPortal.Resources.Apps_SingleForm.START_WORKING_TIME_DD</label>
+                </div>
+                <div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE;">
+                    <label>@BizPortal.Resources.Apps_SingleForm.END_WORKING_TIME_DD</label>
+                </div>
+            </div>
+        </div>
+        {{/xif}}
+        {{/xif}}
+        <!-- END : วันและเวลาปฏิบัติงานของที่ทำงานปัจจุบัน -->
+        <!-- -->
+        <!-- START : ได้เลิกเป็นผู้ประกอบวิชาชีพ ณ สถานพยาบาลดังกล่าวตั้งแต่วันที่ -->
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_3'"}}
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_QUIT_WOKING_DATE :</label>
+            {{this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_QUIT_WOKING_DATE}}
+        </div>
+        {{/xif}}
+        <!-- END : ได้เลิกเป็นผู้ประกอบวิชาชีพ ณ สถานพยาบาลดังกล่าวตั้งแต่วันที่ -->
+        <!-- -->
+        <!-- START : ข้าพเจ้ายินดีที่จะปฎิบัติงานในสถานพยาบาลนี้ โดยปฏิบัติงานตามวัน/เวลา ดังต่อไปนี้ -->
+        {{#xif "this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_3' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_4' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_EMPLOYEE_STATUS == 'TYPE_5' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_1' || this.DROPDOWN_APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_OPARETOR_STATUS == 'TYPE_2'"}}
+        {{#xif " this.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CONFIRM_WOKING != '[]' " }}
+        <div class="col-md-12 CONFIRM_WORKING-{{ARR_IDX}}" style="margin: 0 0 15px 0 !important; padding-left: 10px;">
+            <div class="row">
+                <div class="col-md-12" style="padding: 0px 10px 0px 10px; margin-top: 10px;">
+                    <label>@BizPortal.Resources.PermitResource.RESOURCE_APP_HOSPITAL_PERMISSION_OWNER.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CONFIRM_WOKING</label>
+                </div>
+            </div>
+            <div class="row" style="padding: 0px 10px 0px 10px;">
+                <div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">
+                    <label>@BizPortal.Resources.Apps_SingleForm.START_WORKING_DAY_DD</label>
+                </div>
+                <div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">
+                    <label>@BizPortal.Resources.Apps_SingleForm.START_WORKING_TIME_DD</label>
+                </div>
+                <div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE;">
+                    <label>@BizPortal.Resources.Apps_SingleForm.END_WORKING_TIME_DD</label>
+                </div>
+            </div>
+        </div>
+        {{/xif}}
+        {{/xif}}
+        <!-- END : ข้าพเจ้ายินดีที่จะปฎิบัติงานในสถานพยาบาลนี้ โดยปฏิบัติงานตามวัน/เวลา ดังต่อไปนี้ -->
+        {{/xif}}
+        <!-- END IF : กรณีไม่ได้ทำงาน -->
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm_Template"), Model.EmptyDataMessage))
+        </div>
+    </div>
+    {{/xif}}
+</script>
+
+<script type="text/javascript">
+
+    $(document).on('APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION-databound', function (e, section, datalist) {
+
+        $(datalist).each(function (index, data) {
+            if (data.hasOwnProperty('APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DIPLOMA')
+                && data.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DIPLOMA.length !== 0) {
+
+                var container = $('div.DIPLOMA-' + (index + 1));
+                $(container).find("div.row:gt(1)").remove();
+                var json = JSON.parse(data.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DIPLOMA);
+                for (var i = 0; i < json.length; i++) {
+                    $(container).append('<div class="row" style="padding: 0px 10px 0px 10px;">'
+                        + '<div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].DIPLOMA_TEXT + '</div>'
+                        + '<div class="col-md-3" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].BRANCH + '</div>'
+                        + '<div class="col-md-3" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].NUMBER + '</div>'
+                        + '<div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].ISSUE_DATE + '</div>'
+                        + '<div class="col-md-2" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].DUE_DATE + '</div>'
+                        + '</div>');
+                }
+            }
+        });
+
+        $(datalist).each(function (index, data) {
+            if (data.hasOwnProperty('APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DAY_TIME_WOKING')
+                && data.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DAY_TIME_WOKING.length !== 0) {
+
+                var container = $('div.CURRENT_WORKING-' + (index + 1));
+                $(container).find("div.row:gt(1)").remove();
+                var json = JSON.parse(data.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_DAY_TIME_WOKING);
+                for (var i = 0; i < json.length; i++) {
+                    $(container).append('<div class="row" style="padding: 0px 10px 0px 10px;">'
+                        + '<div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].DATE_TEXT + '</div>'
+                        + '<div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].START_TIME_TEXT + '</div>'
+                        + '<div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].TIME_OUT_TEXT + '</div>'
+                        + '</div>');
+                }
+            }
+        });
+
+        $(datalist).each(function (index, data) {
+            if (data.hasOwnProperty('APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CONFIRM_WOKING')
+                && data.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CONFIRM_WOKING.length !== 0) {
+
+                var container = $('div.CONFIRM_WORKING-' + (index + 1));
+                $(container).find("div.row:gt(1)").remove();
+                var json = JSON.parse(data.APP_HOSPITAL_PERMISSION_OWNER_OPARETOR_SECTION_CONFIRM_WOKING);
+                for (var i = 0; i < json.length; i++) {
+                    $(container).append('<div class="row" style="padding: 0px 10px 0px 10px;">'
+                        + '<div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].DATE_TEXT + '</div>'
+                        + '<div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].START_TIME_TEXT + '</div>'
+                        + '<div class="col-md-4" style="padding-right: 0px; border-bottom: 1px solid #DEDEDE; ">' + json[i].TIME_OUT_TEXT + '</div>'
+                        + '</div>');
+                }
+            }
+        });
+
+    });
+
+</script>

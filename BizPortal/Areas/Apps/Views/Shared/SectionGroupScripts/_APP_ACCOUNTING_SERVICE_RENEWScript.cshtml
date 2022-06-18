@@ -1,0 +1,133 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+
+        var REQUEST_GUARANTEE_CAPITAL = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_CAPITAL]');
+        var REQUEST_GUARANTEE_ACCOUNTING_REGISTERED_INCOME = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_INCOME_ACCOUNTING_REGISTERED]');
+        var REQUEST_GUARANTEE_ACCOUNTING_UNREGISTERED_INCOME = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_INCOME_ACCOUNTING_UNREGISTERED]');
+        var REQUEST_GUARANTEE_ACCOUNTING_TOTAL = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_ACCOUNTING]');
+        var REQUEST_GUARANTEE_AUDIT_REGISTERED_INCOME = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_INCOME_AUDIT_REGISTERED]');
+        var REQUEST_GUARANTEE_AUDIT_UNREGISTERED_INCOME = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_INCOME_AUDIT_UNREGISTERED]');
+        var REQUEST_GUARANTEE_AUDIT_TOTAL = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_AUDIT]');
+        var REQUEST_GUARANTEE_ACCOUNTING_AUDIT_TOTAL = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_ACCOUNTING_AUDIT]');
+        var RADIO_REQUEST_GUARANTEE_GUARANTEE = $(document).find('input[type="radio"][name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_GUARANTEE_OPTION]');
+        var REQUEST_GUARANTEE_SUM_TOTAL = $(document).find('input[name=APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_SUM_TOTAL]');
+
+        RADIO_REQUEST_GUARANTEE_GUARANTEE.click(function (e) {
+            return false;
+        });
+
+        function REQUEST_GUARANTEE_ACCOUNTING_CALCULATE() {
+            var REQUEST_GUARANTEE_ACCOUNTING_REGISTERED_INCOME_VALUE = parseFloat(REQUEST_GUARANTEE_ACCOUNTING_REGISTERED_INCOME.val().replace(/,/g, "") || 0);
+            var REQUEST_GUARANTEE_ACCOUNTING_UNREGISTERED_INCOME_VALUE = parseFloat(REQUEST_GUARANTEE_ACCOUNTING_UNREGISTERED_INCOME.val().replace(/,/g, "") || 0);
+
+            REQUEST_GUARANTEE_ACCOUNTING_TOTAL.val(REQUEST_GUARANTEE_ACCOUNTING_REGISTERED_INCOME_VALUE + REQUEST_GUARANTEE_ACCOUNTING_UNREGISTERED_INCOME_VALUE).blur().trigger('change');
+        }
+
+        $(REQUEST_GUARANTEE_ACCOUNTING_REGISTERED_INCOME).change(function () {
+            REQUEST_GUARANTEE_ACCOUNTING_CALCULATE();
+        });
+
+        $(REQUEST_GUARANTEE_ACCOUNTING_UNREGISTERED_INCOME).change(function () {
+            REQUEST_GUARANTEE_ACCOUNTING_CALCULATE();
+        });
+
+        function REQUEST_GUARANTEE_AUDIT_CALCULATE() {
+            var REQUEST_GUARANTEE_AUDIT_REGISTERED_INCOME_VALUE = parseFloat(REQUEST_GUARANTEE_AUDIT_REGISTERED_INCOME.val().replace(/,/g, "") || 0);
+            var REQUEST_GUARANTEE_AUDIT_UNREGISTERED_VALUE = parseFloat(REQUEST_GUARANTEE_AUDIT_UNREGISTERED_INCOME.val().replace(/,/g, "") || 0);
+
+            REQUEST_GUARANTEE_AUDIT_TOTAL.val(REQUEST_GUARANTEE_AUDIT_REGISTERED_INCOME_VALUE + REQUEST_GUARANTEE_AUDIT_UNREGISTERED_VALUE).blur().trigger('change');
+        }
+
+        $(REQUEST_GUARANTEE_AUDIT_REGISTERED_INCOME).change(function () {
+            REQUEST_GUARANTEE_AUDIT_CALCULATE();
+        });
+
+        $(REQUEST_GUARANTEE_AUDIT_UNREGISTERED_INCOME).change(function () {
+            REQUEST_GUARANTEE_AUDIT_CALCULATE();
+        });
+
+        function REQUEST_GUARANTEE_ACCOUNTING_AUDIT_CALCULATE() {
+            var REQUEST_GUARANTEE_ACCOUNTING_TOTAL_VALUE = parseFloat(REQUEST_GUARANTEE_ACCOUNTING_TOTAL.val().replace(/,/g, "") || 0);
+            var REQUEST_GUARANTEE_AUDIT_TOTAL_VALUE = parseFloat(REQUEST_GUARANTEE_AUDIT_TOTAL.val().replace(/,/g, "") || 0);
+
+            REQUEST_GUARANTEE_ACCOUNTING_AUDIT_TOTAL.val(REQUEST_GUARANTEE_ACCOUNTING_TOTAL_VALUE + REQUEST_GUARANTEE_AUDIT_TOTAL_VALUE).blur().trigger('change');
+        }
+
+        $(REQUEST_GUARANTEE_ACCOUNTING_TOTAL).change(function () {
+            REQUEST_GUARANTEE_ACCOUNTING_AUDIT_CALCULATE();
+        });
+
+        $(REQUEST_GUARANTEE_AUDIT_TOTAL).change(function () {
+            REQUEST_GUARANTEE_ACCOUNTING_AUDIT_CALCULATE();
+        });
+
+        function GET_THREE_PERCENT(number) {
+            return (number * 3) / 100;
+        }
+
+        function REQUEST_GUARANTEE_CHANGE_RADIO_AND_SUM_TOTAL_CALCULATE() {
+            var REQUEST_GUARANTEE_CAPITAL_VALUE = parseFloat(REQUEST_GUARANTEE_CAPITAL.val().replace(/,/g, "") || 0);
+            var REQUEST_GUARANTEE_ACCOUNTING_AUDIT_TOTAL_VALUE = parseFloat(REQUEST_GUARANTEE_ACCOUNTING_AUDIT_TOTAL.val().replace(/,/g, "") || 0);
+
+            var RADIO_OPTION = REQUEST_GUARANTEE_CAPITAL_VALUE >= REQUEST_GUARANTEE_ACCOUNTING_AUDIT_TOTAL_VALUE ? "CAPITAL" : "FISCAL_YEAR";
+
+            RADIO_REQUEST_GUARANTEE_GUARANTEE.val([RADIO_OPTION]).trigger('change');
+
+            if (REQUEST_GUARANTEE_CAPITAL_VALUE >= REQUEST_GUARANTEE_ACCOUNTING_AUDIT_TOTAL_VALUE) {
+                REQUEST_GUARANTEE_SUM_TOTAL.val(GET_THREE_PERCENT(REQUEST_GUARANTEE_CAPITAL_VALUE)).blur().trigger('change');
+            } else {
+                REQUEST_GUARANTEE_SUM_TOTAL.val(GET_THREE_PERCENT(REQUEST_GUARANTEE_ACCOUNTING_AUDIT_TOTAL_VALUE)).blur().trigger('change');
+            }
+        }
+
+        $(REQUEST_GUARANTEE_CAPITAL).change(function () {
+            REQUEST_GUARANTEE_CHANGE_RADIO_AND_SUM_TOTAL_CALCULATE();
+        });
+
+        $(REQUEST_GUARANTEE_ACCOUNTING_AUDIT_TOTAL).change(function () {
+            REQUEST_GUARANTEE_CHANGE_RADIO_AND_SUM_TOTAL_CALCULATE();
+        });
+
+        window.APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_TOTAL_INCOME_POLICY_VAILDATE = function () {
+            const checked = $("input[name='APP_ACCOUNTING_SERVICE_RENEW_PROVIDING_SECTION_PROVIDING_TYPE_OPTION']:checked").val();
+            const income_policy = parseFloat($("input[name='APP_ACCOUNTING_SERVICE_RENEW_CALCULATION_SECTION_SUM_TOTAL']").val().replace(/,/g, "") || 0);
+
+            let policy = 0;
+
+            if (checked == "DEPOSIT") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            } else if (checked == "DEPOSIT_CARD") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_SERVICE_RENEW_DEPOSIT_CARD_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            } else if (checked == "THAI_BONDS") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_SERVICE_RENEW_THAI_BONDS_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            } else if (checked == "CORPARATE_BONDS") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_SERVICE_RENEW_CORPARATE_BONDS_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            } else if (checked == "POLICY") {
+                $(window.singleForm.variables['arrObjAPP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION'].data || []).each(function (index, data) {
+                    policy += parseFloat((data.APP_ACCOUNTING_SERVICE_RENEW_POLICY_SECTION_AMOUNT).replace(/,/g, "") || 0);
+                });
+            }
+
+            return policy >= income_policy;
+        }
+
+    });
+
+</script>
+
+
+

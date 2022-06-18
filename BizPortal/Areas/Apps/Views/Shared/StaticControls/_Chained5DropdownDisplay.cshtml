@@ -1,0 +1,60 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.Select2;
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+<div class="row pb5">
+    <div class="form-group">
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown1-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN1_{0}", Model.DataKey)" disabled >
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown2-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN2_{0}", Model.DataKey)" disabled >
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown3-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN3_{0}", Model.DataKey)" disabled >
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown4-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN4_{0}", Model.DataKey)" disabled >
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown5-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN5_{0}", Model.DataKey)" disabled >
+                <option></option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#@string.Format("DROPDOWN1-{0}", Model.ClientID)").select2({
+            //data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+            allowClear: true
+        });
+        $("#@string.Format("DROPDOWN2-{0}", Model.ClientID)").select2({
+            //data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+            allowClear: true
+        });
+        $("#@string.Format("DROPDOWN3-{0}", Model.ClientID)").select2({
+            //data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+            allowClear: true
+        });
+        $("#@string.Format("DROPDOWN4-{0}", Model.ClientID)").select2({
+            //data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+            allowClear: true
+        });
+        $("#@string.Format("DROPDOWN5-{0}", Model.ClientID)").select2({
+            //data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+            allowClear: true
+        });
+
+    });
+</script>

@@ -1,0 +1,222 @@
+﻿@using Resources = BizPortal.Resources;
+@{
+    ViewBag.Title = "แบบฟอร์มขอใช้น้ำประปา";
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/mwa_full_logo.png");
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">รายละเอียดผู้ขอใช้น้ำประปา</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>เลขประจำตัวผู้เสียภาษี 13 หลัก <span class="text-danger">*</span></label>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>ขอใช้น้ำประปาในนาม <span class="text-danger">*</span></label>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>ดำเนินการโดย <span class="text-danger">*</span></label>
+                            <div class="checkbox">
+                                <label for="chkbox1">
+                                    <input type="checkbox" id="chkbox1">
+                                    กรรมการท่านที่ 1
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="chkbox2">
+                                    <input type="checkbox" id="chkbox2">
+                                    กรรมการท่านที่ 2
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="chkbox3">
+                                    <input type="checkbox" id="chkbox3">
+                                    กรรมการท่านที่ 3
+                                </label>
+                            </div>
+                            <span id="helpBlock" class="help-block fs12">กรุณาเลือกรายชื่อกรรมการตามจำนวนที่ระบุไว้ภายในเอกสารหนังสือรับรองบริษัท</span>
+                        </div>
+                        <div class="col-md-12">
+                            <label>โทรศัพท์</label>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>โทรศัพท์มือถือ</label>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>โทรสาร</label>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>อีเมล</label>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>สถานที่ใกล้เคียง</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">รายละเอียดคำขอใช้น้ำประปา</div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#mapModal"><i class="fa fa-map-marker"></i> ใช้ GOOGLEMAPS ช่วยเลือกสาขา</button>
+                    </div>
+                    <div class="col-md-12">
+                        <label>สาขาที่ผู้ใช้น้ำต้องการติดตั้ง <span class="text-danger">*</span></label>
+                        <select class="form-control">
+                            <option>พญาไท</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label>ขนาดมาตร <span class="text-danger">*</span></label>
+                        <select class="form-control">
+                            <option>1/2"</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label>ค่าใช้จ่ายโดยประมาณ</label>
+                        <span class="form-control-static">0.00 บาท</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">สถานที่ใช้น้ำประปา</div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" /> อ้างอิงจากข้อมูลผู้ใช้น้ำ
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label>รหัสประจำบ้านตามทะเบียนบ้าน 11 หลัก</label>
+                        <input type="text" value="" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>บ้านเลขที่ <span class="text-danger">*</span></label>
+                        <input type="text" value="" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>หมู่</label>
+                        <input type="text" value="" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>ซอย</label>
+                        <input type="text" value="" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>ถนน</label>
+                        <input type="text" value="" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>จังหวัด <span class="text-danger">*</span></label>
+                        <select class="form-control">
+                            <option>กรุงเทพมหานคร</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>อำเภอ/เขต <span class="text-danger">*</span></label>
+                        <select class="form-control">
+                            <option>ราชเทวี</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>ตำบล/แขวง <span class="text-danger">*</span></label>
+                        <select class="form-control">
+                            <option>ถนนพญาไท</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>รหัสไปรษณีย์ <span class="text-danger">*</span></label>
+                        <input type="text" value="" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center mb20">
+        <div class="checkbox checkbox-inline">
+            <label>
+                <input type="checkbox" /> คลิกเพื่อยอมรับ<a data-toggle="modal" data-target="#termsModal">เงื่อนไขการให้บริการ</a>การการดำเนินการทุกครั้ง
+            </label>
+        </div>
+    </div>
+    <div class="col-md-12 text-center mb20">
+        <button type="button" id="btnSaveDraft102Form" class="btn btn-default">@Html.Raw(Resources.Application.BTN_SAVE_DRAFT)</button>
+        <button type="button" id="btnSubmit102Form" class="btn btn-success">@Html.Raw(Resources.Application.BTN_SUBMIT_FILE)</button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mapModalLabel">เลือกสถานที่ใช้น้ำประปา</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <iframe class="col-md-12 br-n" style="height: 500px;" src="https://www.google.com/maps/embed/v1/place?q=Bangkok,Thailand&zoom=10&key=AIzaSyA-T0v5XWWL9vzxTLGGINWLICUqbR2rqOs"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="termsModalLabel">เงื่อนไขการให้บริการ</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            เงื่อนไขบริการ
+                        </p>
+                        <p>
+                            ข้อ 1 xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx
+                            <br />
+                            ช้อ 2 xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx
+                            <br />
+                            ข้อ 3 xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx
+                        </p>
+                        <p>
+                            ผู้ใช้บริการตกลงยอมรับว่ากรณีที่ผู้ใช้บริการสมัครหรือยื่นคำขอใช้บริการอื่นใดที่
+                            เกี่ยวเนื่องกับการใช้บริการ xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx หรือบริการอื่นใดที่ผู้ให้บริการจะเปิดให้บริการในอนาคต ผู้ใช้บริการยังต้องปฏิบัติตาม
+                            ข้อตกลงและเงื่อนไขการใช้บริการที่ฉบับนี้ทุกประการ
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal">ยอมรับ</button>
+                        <button class="btn btn-danger" data-dismiss="modal">ไม่ยอมรับ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

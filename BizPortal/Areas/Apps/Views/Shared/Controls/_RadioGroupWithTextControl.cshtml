@@ -1,0 +1,57 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+
+@model FormControl
+@{ 
+    var placeholder = !string.IsNullOrEmpty(Model.PlaceholderText) ? Model.PlaceholderText : string.Empty;
+}
+
+@foreach (var radioBtn in Model.RadioGroupWithText.RadioButtons)
+{
+    if (radioBtn.RadioWithText)
+    {
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="@string.Format("{0}-{1}", Model.RadioGroupWithText.RadioGroupName, radioBtn.RadioButtonValue)">@Html.RadioButton(Model.RadioGroupWithText.RadioGroupName, radioBtn.RadioButtonValue, new { id = string.Format("{0}-{1}", Model.RadioGroupWithText.RadioGroupName, radioBtn.RadioButtonValue) }) @ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText)</label>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control mt10 mb10" name="@string.Format("{0}_{1}_TEXT", Model.RadioGroupWithText.RadioGroupName, radioBtn.RadioButtonValue)" id="@string.Format("{0}-{1}_TEXT", Model.RadioGroupWithText.RadioGroupName, radioBtn.RadioButtonValue)" placeholder="@placeholder" disabled />
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="radio">
+                    <label for="@string.Format("{0}-{1}", Model.RadioGroupWithText.RadioGroupName, radioBtn.RadioButtonValue)">@Html.RadioButton(Model.RadioGroupWithText.RadioGroupName, radioBtn.RadioButtonValue, new { id = string.Format("{0}-{1}", Model.RadioGroupWithText.RadioGroupName, radioBtn.RadioButtonValue) }) @ResourceHelper.GetResourceWordWithDefault(radioBtn.RadioButtonText, "Apps_SingleForm", radioBtn.RadioButtonText)</label>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("input[type=radio][name=@Model.RadioGroupWithText.RadioGroupName]").on('change', function () {
+            var value = $("input[type=radio][name=@Model.RadioGroupWithText.RadioGroupName]:checked").val();
+            $("input[type=text][name*=@Model.RadioGroupWithText.RadioGroupName]").val("");
+            $("input[type=text][name*=@Model.RadioGroupWithText.RadioGroupName]").prop('disabled', true);
+            $("input[type=text][name=@Model.RadioGroupWithText.RadioGroupName" + "_" + value + "_TEXT]").prop('disabled', false);
+
+            var disabled = $("input[type=text][name=@Model.RadioGroupWithText.RadioGroupName" + "_" + value + "_TEXT]").prop('disabled');
+            @*singleForm.customRules['@Model.RadioGroupWithText.RadioGroupName' + '_' + value + '_TEXT'] = {
+                required: function (e) { return !disabled }, messages: { required: 'กรุณากรอกข้อมูล' }
+            };*@
+            $("input[type=text][name=@Model.RadioGroupWithText.RadioGroupName" + "_" + value + "_TEXT]").rules('add', { required: function (e) { return !disabled }, messages: { required: 'กรุณากรอกข้อมูล' }});
+        });
+
+        
+    });
+</script>

@@ -1,0 +1,67 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+@{
+    var cols = Model.DataTableColumns.Length;
+    double maxCols = 12;
+    int colLen = (int)Math.Floor(maxCols / cols);
+
+    // container id of this repeater
+    string datatableId = string.Format("{0}_DATATABLE", Model.DataKey);
+}
+<input type="hidden" id="@Model.DataKey" role="DATATABLE_VALUE" name="@Model.DataKey" value="@Model.Data" />
+<div id="@datatableId" style="margin: 0 0 15px 0 !important; border-radius: 4px; border: 1px solid #DEDEDE; padding-left: 10px;">
+    @if (Model.DataTableColumns.Any(o => !string.IsNullOrEmpty(o.Title)))
+    {
+        @* Show header when needed. *@
+        <text> <div class="row" style="padding-bottom: 5px;"></text>
+        foreach (var column in Model.DataTableColumns)
+        {
+            <div class="col-md-@colLen" style="padding-right: 0px;">
+                <label>@ResourceHelper.GetResourceWordWithDefault(column.Title, Model.ResourceName, column.Title)</label>
+            </div>
+        }
+        <text>@Html.Raw("</div>")</text>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // This event sould only be fired once data loaded from server.
+        $('input#@Model.DataKey').change(function (e) {
+            
+            if (!$(this).val()) $(this).val('[]');
+
+            $('#@datatableId').find('div.datatable-row').remove();
+            var data = JSON.parse($(this).val());
+            $(data).each(function (i, el) {
+                var row = "<div class='row datatable-row' style='padding-bottom: 5px; border-top: #eee 1px dashed; margin-right: 0px;' >";
+                @foreach (var col in Model.DataTableColumns)
+                {
+                <text> 
+                row += "<div class='col-md-@colLen' style='padding-right: 0px; padding-top: 5px;'>";
+                if (el.hasOwnProperty('@(col.Name)_TEXT')) {
+                    // Try to show text before value
+                    row += '<span>' + el['@(col.Name)_TEXT'] +'</span>';
+                } else if (el.hasOwnProperty('@col.Name')) {
+                    row += '<span>' + el['@col.Name'] +'</span>';
+                }
+                row += '@Html.Raw("</div>")';
+                </text>
+                }
+                
+                row += '</div>';
+
+                $('#@datatableId').append(row);
+            });
+        });
+
+        $('input#@Model.DataKey').trigger('change');
+    });
+
+</script>
+
+

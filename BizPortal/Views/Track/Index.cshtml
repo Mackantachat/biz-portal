@@ -1,0 +1,181 @@
+﻿@using Resource = BizPortal.Resources
+@using System.Configuration
+
+@{
+    ViewBag.Title = Resource.Breadcrumb.TRACKING;
+    ViewBag.LayoutSearch = false;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+
+    bool citizen = IdentityType == UserTypeEnum.Citizen;
+}
+
+@if (!citizen)
+{
+    @section breadcrumb{
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index", "Home", new { language = ViewBag.CurrentLang })">@Resource.Breadcrumb.HOME</a></li>
+                <li class="active">@Resource.Breadcrumb.TRACKING</li>
+            </ul>
+        </div>
+    }
+}
+
+<div class="container">
+    <form id="frmSearch">
+        <div class="row form-group">
+            <div class="col-md-2">
+                @Html.Label(Resource.ApplicationStatusRequests.APPLICATION_STATUS_REQUEST + " : ")
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownList("ApplicationStatusID", (SelectList)ViewBag.ApplicationStatusList, new { @style = "width: 100%;", @class = "form-control" })
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <button id="btnSubmit" type="submit" class="btn btn-s-md btn-primary"><i class="fa fa-search"></i> @Resource.Global.SEARCH</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 15px;">
+            <table id="dataTable" class="table table-striped table-bordered" data-ride="datatables" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">
+                            @Resource.ApplicationStatusRequests.APPLICATION_REQUEST_NUMBER
+                        </th>
+                        <th class="text-center">
+                            @Resource.Tracking.SERVICE
+                        </th>
+                        <th class="text-center">
+                            @Resource.Tracking.ANGENCY
+                        </th>
+                        <th class="text-center">
+                            @Resource.Tracking.SUBMISSION_DATE
+                        </th>
+                        <th class="text-center">
+                            @Resource.Tracking.STATUS
+                        </th>
+                        <th class="text-center">
+                            @Resource.Tracking.UPDATE_DATE
+                        </th>
+                        <th class="text-center">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        var datatables;
+
+        function resendRequest(id) {
+            swal({
+                title: "ยืนยันการส่งข้อมูล",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "ส่งข้อมูล",
+                closeOnConfirm: false,
+                cancelButtonText: "ยกเลิก"
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal.disableButtons();
+                    $.ajax({
+                        url: '@Url.Content("~/Api/V2/Applications/RequestsResend")?language=@ViewBag.CurrentLang',
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ ApplicationRequestID: id}),
+                        success: function (data, status, xhr) {
+                            if (data.Type == "1") {
+                                if ("TOT" in data.ApplicationRequestData) {
+                                    notify('success', "ส่งข้อมูลสำเร็จ", true, data.ApplicationRequestData["TOT"]);
+                                    //window.location.href = data.ApplicationRequestData["TOT"];
+                                } else {
+                                    swal({title: "ส่งข้อมูลสำเร็จ", type: "success"});
+                                }
+                            } else {
+                                swal({title: "ส่งข้อมูลไม่สำเร็จ", text: "กรุณาลองใหม่อีกครั้ง", type: "error"});
+                            }
+                            datatables.ajax.reload();
+                        },
+                        error: function (xhr, status, error) {
+                            swal({title: "ส่งข้อมูลไม่สำเร็จ", text: "กรุณาลองใหม่อีกครั้ง", type: "error"});
+                            datatables.ajax.reload();
+                        }
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            //$("select").select2();
+
+            datatables = $('#dataTable').DataTable({
+                serverSide: true,
+                indexColoumn: true,
+                ajax: {
+                    url: '@Url.Content("~/api/v2/ApplicationRequests/List")?language=@ViewBag.CurrentLang',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: function (params) {
+                        //if ($('#SearchKeyword').val())
+                        //    params.SearchKeyword = $('#SearchKeyword').val();
+
+                        if ($('#ApplicationStatusID').val())
+                            params.ApplicationStatusID = $('#ApplicationStatusID').val();
+
+                        return JSON.stringify(params);
+                    }
+                },
+                columns: [
+                    { data: 'ApplicationRequestID', sortable: false, 'class': 'text-center' },
+                    { data: 'ApplicationRequestNumber', sortable: false, 'class': 'text-center' },
+                    { data: 'ApplicationName', sortable: false, 'class': 'text-left' },
+                    { data: 'OrganizationName', sortable: false, 'class': 'text-center' },
+                    { data: 'CreatedDateTxt', name: 'CreatedDate', 'class': 'text-center' },
+                    { data: 'StatusName', sortable: false, 'class': 'text-center' },
+                    { data: 'UpdatedDateTxt', name: 'UpdatedDate', 'class': 'text-center' },
+                    {
+                        data: 'ApplicationRequestID',
+                        render: function (data, type, row) {
+                            var statusOther = row.StatusOther;
+                            var btn = '<a href="@Url.Action("Detail", "Track", new { Area="", language = ViewBag.CurrentLang })/' + data + '" class="btn btn-xs btn-primary">@Html.Raw(Resource.Global.BTN_DETAIL)</a>';
+                            if (statusOther != null && statusOther == ApplicationStatusOtherValueConst.RESENDABLE) {
+                                btn += '<button type="button" class="btn btn-xs btn-warning" onclick="resendRequest(\'' + data + '\')" style="margin-top:5px;">@Html.Raw(Resource.Apps_SingleForm.BTN_REQUESTS_RESEND)</button>';
+                            }
+
+                            if (row.Status == @((int)ApplicationStatusV2Enum.DRAFT))
+                                return '<a href="@Url.Action("Id", "Goto", new { area = "Apps", id = "", language = ViewBag.CurrentLang })/' + row.ApplicationID + '" class="btn btn-xs btn-primary">@Html.Raw(Resource.Global.BTN_DETAIL)</a>';
+                            else
+                                return btn;
+                            @*return '<a href="@Url.Action("Detail", "Track", new { Area="", language = ViewBag.CurrentLang })/' + data + '" class="btn btn-xs btn-primary">@Html.Raw(Resource.Global.BTN_DETAIL)</a>';*@
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    }
+                ],
+                order: [[4, 'desc']],
+                "initComplete" : function (settings, json) {
+                    $("#dataTable_length").find("select").parent().removeClass("col-sm-3 col-lg-2").addClass("col-sm-4 col-lg-3");
+                }
+            });
+
+            $('#frmSearch').submit(function (e) {
+                e.preventDefault();
+                datatables.ajax.reload();
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ABOUT_INVESTMENT" xml:space="preserve">
+    <value>About investment in Thailand</value>
+  </data>
+  <data name="AGENCY_RESPONSIBLE" xml:space="preserve">
+    <value>หน่วยงานรับผิดชอบ(en)</value>
+  </data>
+  <data name="APPLICATION_MANAGEMENT" xml:space="preserve">
+    <value>Application Requests Approval</value>
+  </data>
+  <data name="APPLICATION_REQUEST" xml:space="preserve">
+    <value>Application Request</value>
+  </data>
+  <data name="APPS" xml:space="preserve">
+    <value>Application Manage</value>
+  </data>
+  <data name="APPS_MANAGE" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="ARTICLE" xml:space="preserve">
+    <value>Article Manage</value>
+  </data>
+  <data name="BACKEND_MANAGEMENT" xml:space="preserve">
+    <value>Go to backend site</value>
+  </data>
+  <data name="BATH" xml:space="preserve">
+    <value>Bath</value>
+  </data>
+  <data name="BROWSE" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="BTN_ACTIVE" xml:space="preserve">
+    <value>&lt;i class="fa fa-play"&gt;&lt;/i&gt; Active</value>
+  </data>
+  <data name="BTN_ADD" xml:space="preserve">
+    <value>&lt;i class="fa fa-plus-circle"&gt;&lt;/i&gt; Add</value>
+  </data>
+  <data name="BTN_BACK" xml:space="preserve">
+    <value>&lt;i class="fa fa-eject"&gt;&lt;/i&gt; Back</value>
+  </data>
+  <data name="BTN_CANCEL_REQUEST" xml:space="preserve">
+    <value>Cancel Application Request</value>
+  </data>
+  <data name="BTN_CLOSE" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="BTN_CONFIRM" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="BTN_COPY" xml:space="preserve">
+    <value>&lt;i class="fa fa-filter"&gt;&lt;/i&gt; Duplicate</value>
+  </data>
+  <data name="BTN_DELETE" xml:space="preserve">
+    <value>&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt; Delete</value>
+  </data>
+  <data name="BTN_DETAIL" xml:space="preserve">
+    <value>&lt;i class="fa fa-search"&gt;&lt;/i&gt; Detail</value>
+  </data>
+  <data name="BTN_DOWNLOAD_BILL_OSS_OWNERORG" xml:space="preserve">
+    <value>ดาวน์โหลด "ใบแจ้งชำระเงิน" (en)</value>
+  </data>
+  <data name="BTN_DOWNLOAD_BILL_PAYMENT" xml:space="preserve">
+    <value>Download "Bill Payment"</value>
+  </data>
+  <data name="BTN_DOWNLOAD_QR_CODE" xml:space="preserve">
+    <value>Download QR Code</value>
+  </data>
+  <data name="BTN_EDIT" xml:space="preserve">
+    <value>&lt;i class="fa fa-floppy-o"&gt;&lt;/i&gt; Edit</value>
+  </data>
+  <data name="BTN_INACTIVE" xml:space="preserve">
+    <value>&lt;i class="fa fa-pause"&gt;&lt;/i&gt; Inactive</value>
+  </data>
+  <data name="BTN_NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="BTN_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="BTN_PRINT" xml:space="preserve">
+    <value>&lt;i class="fa fa-print"&gt;&lt;/i&gt; Print</value>
+  </data>
+  <data name="BTN_PRINT_BILL_PAYMENT" xml:space="preserve">
+    <value>Print bill payment</value>
+  </data>
+  <data name="BTN_SEARCH" xml:space="preserve">
+    <value>&lt;i class="fa fa-search"&gt;&lt;/i&gt; Search</value>
+  </data>
+  <data name="BTN_SUBMIT" xml:space="preserve">
+    <value>&lt;i class="fa fa-edit"&gt;&lt;/i&gt; Submit</value>
+  </data>
+  <data name="BTN_UPLOADING_THUMBNAIL" xml:space="preserve">
+    <value>&lt;i class="fa fa-spinner fa fa-spin"&gt;&lt;/i&gt; Uploading thumbnail</value>
+  </data>
+  <data name="BTN_UPLOAD_THUMBNAIL" xml:space="preserve">
+    <value>&lt;i class="fa fa-upload"&gt;&lt;/i&gt; Upload thumbnail</value>
+  </data>
+  <data name="BTN_VIEW_DESCRIPTION" xml:space="preserve">
+    <value>ดูรายละเอียด</value>
+  </data>
+  <data name="BTN_YES" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="BUSINESS_CATEGORY" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="BUSINESS_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="BUSINESS_DETAILS" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="BUSINESS_INFO" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="BUSINESS_PARTNER" xml:space="preserve">
+    <value>Related organization</value>
+  </data>
+  <data name="CATEGORY" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CHANGE_PASSWORD" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="COMPANY_PROFILE" xml:space="preserve">
+    <value>Company profile</value>
+  </data>
+  <data name="CONFIRM_INFORMATION" xml:space="preserve">
+    <value>Confirm Information</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>Tel. : (+66) 0 2612 6000 Fax. : (+66) 0 2612 6011-12 Email :</value>
+  </data>
+  <data name="CONTACT_US" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="COPYRIGHTS" xml:space="preserve">
+    <value>All rights reserved {0:yyyy}. Electronic Government Agency (Public Organization) (EGA)</value>
+  </data>
+  <data name="CORPORATE_IDENTIFICATION_NUMBER" xml:space="preserve">
+    <value>Corporate Identification Number</value>
+  </data>
+  <data name="DASHBOARD" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="DDL_SELECT" xml:space="preserve">
+    <value>[------ Select ------]</value>
+  </data>
+  <data name="DDL_SELECT_ALL" xml:space="preserve">
+    <value>[------ Select all ------]</value>
+  </data>
+  <data name="DDL_SELECT_SHOWALL" xml:space="preserve">
+    <value>[------ Show all ------]</value>
+  </data>
+  <data name="DOWNLOAD_MANUAL" xml:space="preserve">
+    <value>Download manual</value>
+  </data>
+  <data name="DRAFT_REQUEST" xml:space="preserve">
+    <value>Draft Request</value>
+  </data>
+  <data name="EDIT_CONTACT_NO" xml:space="preserve">
+    <value>Edit contact number</value>
+  </data>
+  <data name="EDIT_JURISTIC_PROFILE" xml:space="preserve">
+    <value>Edit juristic profile</value>
+  </data>
+  <data name="EDIT_PROFILE" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="EXPECTED_COMPLETE_DATE" xml:space="preserve">
+    <value>คาดว่าจะแล้วเสร็จ(en)</value>
+  </data>
+  <data name="E_AUTHENTICATION" xml:space="preserve">
+    <value>e-Authentication Service</value>
+  </data>
+  <data name="FLASH_NEWS" xml:space="preserve">
+    <value>Recommended application</value>
+  </data>
+  <data name="HOW_TO_FRONT" xml:space="preserve">
+    <value>How to use and submit a request (Thai Only)</value>
+  </data>
+  <data name="HOW_TO_REGISTER_MEMBER" xml:space="preserve">
+    <value>Tutorial (Thai Only)</value>
+  </data>
+  <data name="HOW_TO_USE_DOWNLOAD" xml:space="preserve">
+    <value>Download instruction document</value>
+  </data>
+  <data name="HOW_TO_USE_PDF" xml:space="preserve">
+    <value>Instruction document</value>
+  </data>
+  <data name="HOW_TO_USE_VIEW" xml:space="preserve">
+    <value>View instruction document</value>
+  </data>
+  <data name="HOW_TO_USE_YOUTUBE" xml:space="preserve">
+    <value>View instruction video</value>
+  </data>
+  <data name="JURISTIC" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="LABEL_ALIAS" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="LABEL_PUBLISH" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="LASTEST_POST" xml:space="preserve">
+    <value>Information/Suggestion/Article</value>
+  </data>
+  <data name="LASTEST_POST_EMPTY" xml:space="preserve">
+    <value>Article not found.</value>
+  </data>
+  <data name="LAST_UPDATE_DATE" xml:space="preserve">
+    <value>Last Update</value>
+  </data>
+  <data name="LOGIN" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LOGIN_CITIZEN" xml:space="preserve">
+    <value>Login by Citizen / Agent user</value>
+  </data>
+  <data name="LOGIN_JUIRSTIC" xml:space="preserve">
+    <value>Login by Juristic user</value>
+  </data>
+  <data name="LOGOUT" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MANAGE_DRAFT_REQUEST" xml:space="preserve">
+    <value>Manage Draft Request</value>
+  </data>
+  <data name="MANUAL" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="MEMBER_MANAGE" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="MSG_ERROR_APPLICATION_NOT_FOUND" xml:space="preserve">
+    <value>Application not found.</value>
+  </data>
+  <data name="MSG_ERROR_FAILED_TO_UPDATE" xml:space="preserve">
+    <value>Failed to update an information, Please try again.</value>
+  </data>
+  <data name="MSG_SUCCESS_PROFILE_UPDATED" xml:space="preserve">
+    <value>Successfully update an information.</value>
+  </data>
+  <data name="MSG_UPLOAD_THUMBNAIL_CONFIRM" xml:space="preserve">
+    <value>Are you sure you want to upload the thumbnail?</value>
+  </data>
+  <data name="MSG_UPLOAD_THUMBNAIL_FAILED" xml:space="preserve">
+    <value>Failed to upload the thumbnail, Please try again.</value>
+  </data>
+  <data name="MSG_VALIDATE_REQUIRED" xml:space="preserve">
+    <value>{0} is required.</value>
+  </data>
+  <data name="MSG_WARNING_INVALID_ACCOUNT" xml:space="preserve">
+    <value>You have no permission to use the system.</value>
+  </data>
+  <data name="MSG_WARNING_UNAUTHORIZED" xml:space="preserve">
+    <value>You have no permission to enter this page. Please login or use an another account.</value>
+  </data>
+  <data name="NEXT" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="NEXT_ARTICLE" xml:space="preserve">
+    <value>Next article</value>
+  </data>
+  <data name="ORDER" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="ORGANIZATION" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="PAGE404_NOT_FOUND_HEADING" xml:space="preserve">
+    <value>We're sorry, but the page you were looking for doesn't exist.</value>
+  </data>
+  <data name="PAGE404_NOT_FOUND_SUGGEST_LINKS" xml:space="preserve">
+    <value>Here are some useful links</value>
+  </data>
+  <data name="PAGE_ABOUTUS" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="PAGE_CONTACTUS" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="PAGE_ERROR_HEADING1" xml:space="preserve">
+    <value>We're sorry, there is a problem on the page you requested.</value>
+  </data>
+  <data name="PAGE_FAQ" xml:space="preserve">
+    <value>Frequently Asked Question</value>
+  </data>
+  <data name="PAGE_MAIN" xml:space="preserve">
+    <value>Main Page</value>
+  </data>
+  <data name="PAGE_SEARCH_ARTICLES" xml:space="preserve">
+    <value>Search articles</value>
+  </data>
+  <data name="PAGE_TITLE_ATICLE" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="PAGE_TITLE_CATEGORY" xml:space="preserve">
+    <value>Search article</value>
+  </data>
+  <data name="PAGE_TITLE_HOME" xml:space="preserve">
+    <value>Business Portal</value>
+  </data>
+  <data name="PASSWORD" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PENDING_REQUEST" xml:space="preserve">
+    <value>Pending Requests</value>
+  </data>
+  <data name="PETITION" xml:space="preserve">
+    <value>ยื่นคำร้อง(en)</value>
+  </data>
+  <data name="PLACE_SEARCH" xml:space="preserve">
+    <value>Please enter a search keyword.</value>
+  </data>
+  <data name="PLACE_TAG" xml:space="preserve">
+    <value>Please enter a tag.</value>
+  </data>
+  <data name="POWERED_BY" xml:space="preserve">
+    <value>In association with</value>
+  </data>
+  <data name="PREVIOUS" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="PREVIOUS_ARTICLE" xml:space="preserve">
+    <value>Previous article</value>
+  </data>
+  <data name="PROFILE" xml:space="preserve">
+    <value>View Profile</value>
+  </data>
+  <data name="READ_MORE" xml:space="preserve">
+    <value>More...</value>
+  </data>
+  <data name="RELATED_DOCUMENT" xml:space="preserve">
+    <value>Related articles</value>
+  </data>
+  <data name="RELATED_LINK" xml:space="preserve">
+    <value>Related links</value>
+  </data>
+  <data name="REMARK" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="REPORT" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="REPORT_ON_PROCESS_REQUEST" xml:space="preserve">
+    <value>On Process Request</value>
+  </data>
+  <data name="REPORT_OVERALL" xml:space="preserve">
+    <value>Permit Overall</value>
+  </data>
+  <data name="REPORT_STATISTICS" xml:space="preserve">
+    <value>Request Statistics</value>
+  </data>
+  <data name="REQUEST_DENIED" xml:space="preserve">
+    <value>Request Denied</value>
+  </data>
+  <data name="REQUIRED_ATTACHMENT" xml:space="preserve">
+    <value>Required Attachment</value>
+  </data>
+  <data name="REQUIRED_INFORMATION" xml:space="preserve">
+    <value>Required Information</value>
+  </data>
+  <data name="RESPONSE_MSG_SUCCESS" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="SEARCH" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SEARCH_KEYWORD" xml:space="preserve">
+    <value>Keyword</value>
+  </data>
+  <data name="SEARCH_NOTFOUND" xml:space="preserve">
+    <value>Not found</value>
+  </data>
+  <data name="SEARCH_TAG" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="SELECT_ALL" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="SERVICE" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="STATUS_OTHER" xml:space="preserve">
+    <value>ผลการกิจรณ (en)</value>
+  </data>
+  <data name="SUCCESS_REQUEST" xml:space="preserve">
+    <value>Success Requests</value>
+  </data>
+  <data name="SYS_NAME" xml:space="preserve">
+    <value>Business Portal</value>
+  </data>
+  <data name="TABLE_ACTION_HEADING" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="TABLE_ACTIVE_HEADING" xml:space="preserve">
+    <value>Active/Inactive</value>
+  </data>
+  <data name="TRACKING_STASUS" xml:space="preserve">
+    <value>Tracking status</value>
+  </data>
+  <data name="TRACK_SUBMISSION_STATUS" xml:space="preserve">
+    <value>ติดตามสถานะคำขอที่ยื่นส่งแล้ว(en)</value>
+  </data>
+  <data name="TRACK_SUBMISSION_STATUS_APPROVE" xml:space="preserve">
+    <value>ติดตามสถานะคำขอที่อนุมัติแล้ว(en)</value>
+  </data>
+  <data name="USERNAME" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="WAIT_FOR_DOWNLOAD" xml:space="preserve">
+    <value>&lt;p id="waiting"&gt;The system will automatically response for download in &lt;span id="seconds" class="fs18 fw600"&gt;5&lt;/span&gt; seconde. &lt;a id="dlButton" href="?dl=true" target="_blank"&gt;Click here&lt;/a&gt;, if the system do not response.&lt;/p&gt;</value>
+  </data>
+  <data name="WEB_TITLE_NAME" xml:space="preserve">
+    <value>Biz Portal</value>
+  </data>
+  <data name="WELCOME" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+</root>

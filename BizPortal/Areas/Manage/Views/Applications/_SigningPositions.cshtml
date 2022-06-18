@@ -1,0 +1,557 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@model ApplicationViewModel
+
+@{
+    string x = String.Empty;
+}
+
+<style type="text/css">
+    a.dtMoveUpPosition, a.dtMoveDownPosition {
+        margin-right: 5px;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+
+    .ValidatePositions {
+        display: none;
+    }
+</style>
+
+@Html.Hidden("lsSigningPositions", new { id = "lsSigningPositon" })
+
+<br/>
+
+<div>
+    @Html.Raw(Resources.Application.SP_POSITION_TITLE)
+    <button type="button" id="btnAddSPositions" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#modalSPositions" data-backdrop="static" data-keyboard="false">@Html.Raw(Resources.Application.SP_MODAL_ADD_TITLE)</button>
+    <div class="validate-SP hide" style="margin-bottom: 10px;"><span style="color:red;"></span></div>
+</div>
+
+<div>
+    <table id="SigningPositionsTable" class="table table-striped table-bordered dataTable"></table>
+</div>
+<div id="div_positions">
+    <span id="spValidatePositions" class="text-danger ValidatePositions">กรุณาระบุตำแหน่งผู้มีอำนาจการลงลายมือชื่อแบบดิจิทัล</span>
+</div>
+
+<div class="modal fade" id="modalSPositions" role="dialog" aria-labelledby="modalSPLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalSPLabel">@Html.Raw(Resources.Application.SP_ADD_POSITION)</h4>
+            </div>
+            <div class="modal-body">
+                <div id="frmSPosition">
+                    <div class="row">
+                        <div class="col-xs-1 text-right">
+                            <label>@Resources.Application.SP_LEFT</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <input type="number" id="txtSPLeft" class="form-control" placeholder="" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_NUMBER_VAL</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-1 text-right">
+                            <label>@Resources.Application.SP_BOTTOM</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <input type="number" id="txtSPBottom" class="form-control" placeholder="" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_NUMBER_VAL</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-1 text-right">
+                            <label>
+                                @Resources.Application.SP_WIDTH
+                            </label>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <input type="number" id="txtSPWidth" class="form-control" placeholder="" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_NUMBER_VAL</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-1 text-right">
+                            <label>@Resources.Application.SP_HEIGHT</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <input type="number" id="txtSPHeight" class="form-control" placeholder="" />
+                                <span class="text-danger model-validate">@Resources.Application.SP_VALIDATE_NUMBER_VAL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnSPositionsCancel" class="btn btn-default" data-dismiss="modal">@Resources.Global.BTN_CANCEL</button>
+                <button type="button" id="btnSPositionsOK" class="btn btn-primary">@Resources.Global.BTN_OK</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+
+    var jsonDBPosition =  '@ViewBag.jsonSPositions';
+    var jsonStrPositons = '[]';
+    var index_position = 1;
+    function initSPositions() {
+        var jsonInitPosition = jsonDBPosition.replace(/&quot;/g,'"');
+        //console.log(jsonInit);
+
+        var objSPositions = JSON.parse(jsonInitPosition);
+        objSPositions.sort(function(a, b){ return a.Order - b.Order;});
+         var objStrPositons = JSON.parse(jsonStrPositons);
+         $.each(objSPositions, function (i, item) {
+            // coords.push({ 'Latitude': value, 'Longitude': longitudes[index] });
+             objStrPositons.push({
+                 "order": item.Order,"id":guid()
+                 , "left": item.Left, "bottom": item.Bottom, "width": item.Width, "height": item.Height
+             });
+             jsonStrPositons = JSON.stringify(objStrPositons);
+
+           // alert(item.name);
+         });
+         dataTableSPositions();
+        //console.log(jsonStrPositons);
+
+        var $modal = $('#modalSPositions');
+
+        $('#btnSPositionsOK', $modal).on('click', function () {
+            if (validateSPositions()) {
+                    updateSPositions($('#modalSPositions').attr('row-id'));
+                     $modal.modal('hide');
+            }
+
+
+        });
+
+        $modal.on('hide.bs.modal', function () {
+            $modal.find('.modal-title').text('@Html.Raw(Resources.Application.SP_ADD_POSITION)');
+             $('#modalSPositions').removeAttr('row-id');
+
+
+
+                $('#txtSPLeft', $modal).val('');
+                $('#txtSPBottom', $modal).val('');
+                $('#txtSPWidth', $modal).val('');
+                $('#txtSPHeight', $modal).val('');
+
+                $('.model-validate').hide();
+        });
+    }
+
+    function updateSPositions(id) {
+
+         var left  = $('#txtSPLeft').val();
+        var bottom = $('#txtSPBottom').val();
+        var width  = $('#txtSPWidth').val();
+        var height  = $('#txtSPHeight').val();
+
+        var obj = JSON.parse(jsonStrPositons);
+
+        console.log("id " + id);
+
+        if (id) {
+                 for (var i = 0; i < obj.length; i++) {
+            // look for the entry with a matching `code` value
+            if (obj[i].order == id) {
+
+                obj[i].left = left;
+                obj[i].bottom = bottom;
+                obj[i].width = width;
+                obj[i].height = height;
+
+               break;
+
+            }
+        }
+        }
+        else {
+            console.log("positions obj push length" + obj.length);
+
+            if (obj.length > 0) {
+                //console.log(obj[0].order);
+                //for (var j = 0; j < obj.length; j++) {
+                //     index = obj[j].order;
+                //}
+                index_position = obj.length + 1;
+                parseInt(index_position)
+            }
+            else {
+                index_position = 1;
+                index_position = obj.length + 1;
+                parseInt(index_position)
+            }
+
+            obj.push({ "order": parseInt(index_position) ,"id":guid(),"left": left, "bottom": bottom ,"width":width,"height":height});
+        }
+
+
+        jsonStrPositons = JSON.stringify(obj);
+
+
+
+            //index++;
+            //console.log("incres index:" + index);
+            dataTableSPositions();
+
+        }
+    function dataTableSPositions() {
+
+        var obj = JSON.parse(jsonStrPositons);
+      //  document.getElementById('CountSigningPositions').value = obj.length;
+       // alert( document.getElementById('CountSigningPositions').value);
+          var SignPositons = [];
+        $.each(obj, function (i, item) {
+            // coords.push({ 'Latitude': value, 'Longitude': longitudes[index] });
+            SignPositons.push({ 'Order': item.order, 'Left': item.left, 'Bottom': item.bottom, 'Width': item.width, 'Height': item.height });
+
+           // alert(item.name);
+        });
+
+        var jsonSingPositions = JSON.stringify(SignPositons);
+
+        console.log(jsonSingPositions);
+        $("#lsSigningPositions").val(jsonSingPositions);
+        console.log(JSON.parse(jsonStrPositons));
+             var table = $('#SigningPositionsTable').DataTable({
+             paging: false,
+           searching: false,
+            destroy: true,
+		data: JSON.parse(jsonStrPositons),
+		columns: [
+			{
+				name: 'order',
+				title:  '@Html.Raw(Resources.Application.SP_INDEX)',
+				data: 'order',
+                sortable: false,
+                 className: "text-center",
+                width : "15px"
+			},
+			{
+				name: 'order',
+				data: 'order',
+				visible: false
+            }
+            ,
+			{
+				name: 'id',
+				data: 'id',
+				visible: false
+			},
+               {
+				name: 'left',
+				data: 'left',
+				title: '@Resources.Application.SP_LEFT',
+				searchable: true,
+                   sortable: false,
+                 className: "text-center",
+                width : "15px"
+            },
+                 {
+				name: 'bottom',
+				data: 'bottom',
+				title: '@Resources.Application.SP_BOTTOM',
+				searchable: true,
+                     sortable: false,
+                 className: "text-center",
+                width : "15px"
+            },
+                   {
+				name: 'width',
+				data: 'width',
+				title: '@Resources.Application.SP_WIDTH',
+				searchable: true,
+                       sortable: false,
+                 className: "text-center",
+                width : "15px"
+            },
+                     {
+				name: 'height',
+				data: 'height',
+				title: '@Resources.Application.SP_HEIGHT',
+				searchable: true,
+                         sortable: false,
+                 className: "text-center",
+                width : "15px"
+            },
+			{
+				name: 'action',
+				data: null,
+				title: '@Resources.Application.SP_ACTION',
+				searchable: false,
+				sortable: false,
+                width: "15px",
+                 className: "text-center",
+                render: function (data, type, full, meta) {
+
+                    //console.log(type + "-meta row :" + meta.row);
+					if (type === 'display') {
+						var $span = $('<span></span>');
+
+						if (meta.row > 0) {
+                            $('<a class="dtMoveUpPosition"><i class="fa fa-arrow-circle-up" style="font-size:24px"></i></a>').appendTo($span);
+						}
+						$('<a class="dtMoveDownPosition"><i class="fa fa-arrow-circle-down" style="font-size:24px"></i></a>').appendTo($span);
+
+						return $span.html();
+					}
+					return data;
+				}
+            },
+            {
+				name: 'actionButton',
+				data: null,
+				title: '@Resources.Application.SP_ACTION_BUTTON',
+				searchable: false,
+                sortable: false,
+                width: "15px",
+
+                render: function (data, type, full, meta) {
+					if (type === 'display') {
+						var $span = $('<span></span>');
+						$('<button type="button" class="btn btn-sm btn-warning" onClick="editSPositions(\'' + data.order + '\')" > @Html.Raw(Resources.Global.BTN_EDIT)</button>').appendTo($span);
+						$('<button type="button" class="btn btn-sm btn-danger"  onClick="deleteSPositions(\'' + data.order + '\')" > @Html.Raw(Resources.Global.BTN_DELETE)</button>').appendTo($span);
+						return $span.html();
+					}
+					return data;
+				}
+			}
+		],
+		'drawCallback': function (settings) {
+			$('#SigningPositionsTable tr:last .dtMoveDownPosition').remove();
+
+			// Remove previous binding before adding it
+			$('.dtMoveUpPosition').unbind('click');
+			$('.dtMoveDownPosition').unbind('click');
+
+			// Bind clicks to functions
+			$('.dtMoveUpPosition').click(moveUpPosition);
+			$('.dtMoveDownPosition').click(moveDownPosition);
+		}
+	});
+
+	// Move the row up
+    function moveUpPosition() {
+		var tr = $(this).parents('tr');
+		moveRowPosition(tr, 'up');
+	}
+
+	// Move the row down
+	function moveDownPosition() {
+		var tr = $(this).parents('tr');
+		moveRowPosition(tr, 'down');
+	}
+
+      // Move up or down (depending...)
+      function moveRowPosition(row, direction) {
+
+        //  dataTable();
+
+
+         //   alert("Move");
+
+          console.log('direction:' + direction);
+            var index = table.row(row).index();
+
+          console.log('index:' + index);
+
+            var order = -1; // up
+            if (direction === 'down') {
+              order = 1;
+            }
+
+            var data1 = table.row(index).data();
+
+
+
+            console.log("old data1.order" + data1.order);
+
+            data1.order += order;
+
+            console.log("newe data1.order :" + data1.order);
+
+
+
+            var data2 = table.row(index + order).data();
+            data2.order += -order;
+
+            console.log("data2.order :" + data2.order)
+
+
+            table.row(index).data(data2);
+            table.row(index + order).data(data1);
+            table.page(0).draw(false);
+
+
+            var OrderObjPositons = JSON.parse(jsonStrPositons);
+
+          $('#SigningPositionsTable > tbody  > tr').each(function (index, tr) {
+                                       var currentRow = $(this).closest("tr");
+
+    var data = $('#SigningPositionsTable').DataTable().row(currentRow).data();
+    console.log(data['id']);
+
+                                      var $tds = $(this).find('td');
+                                      Order_IndexRow = $tds.eq(0).text();
+                                      //console.log("Order_IndexRow:"+Order_IndexRow);
+              ID_Card = $tds.eq(2).text();
+              ID = data['id'];
+                                  //    //Img = GetFileSigner(ID_Card);
+                                  //    // Img[0]  filenaem
+                                  //    // Img[1]  fileData
+                                      console.log("Order_IndexRow:" + Order_IndexRow + "-ID_Card:" + ID);
+                                         $.each(OrderObjPositons, function (i, item) {
+
+                                              if (item.id === ID) {
+                                                  console.log("match index" + i);
+                                                  //var key = "idcard";
+                                                  //parseInt(index)
+                                                  OrderObjPositons[i].order = parseInt(Order_IndexRow);
+                                                  //delete obj[i];
+                                                  //console.log(obj);
+                                              }
+                                              else {
+                                                  console.log("not match");
+                                                  // console.log(obj);
+                                              }
+
+                                          });
+                                          OrderObjPositons.sort((a, b) => (a.order > b.order) ? 1 : -1)
+                                          jsonStrPositons = JSON.stringify(OrderObjPositons);
+                                          console.log(jsonStrPositons);
+                                  //    //  console.log(typeof(obj));
+
+                                  });
+
+	       }
+
+    }
+    function editSPositions(id) {
+           console.log(id);
+        var $modal = $('#modalSPositions');
+        $modal.modal({backdrop: 'static', keyboard: false})
+        $modal.find('.modal-title').text('@Html.Raw(Resources.Application.SP_EDIT_POSITION)')
+       // var $row = $(el).parent('td').parent('tr');
+         var obj = JSON.parse(jsonStrPositons);
+         for (var i = 0; i < obj.length; i++){
+  // look for the entry with a matching `code` value
+             if (obj[i].order == id) {
+                 // we found it
+                 // obj[i].name is the matched result
+                 $modal.attr('row-id', obj[i].order);
+
+                 $('#txtSPLeft', $modal).val(obj[i].left);
+                 $('#txtSPBottom', $modal).val(obj[i].bottom);
+                 $('#txtSPWidth', $modal).val(obj[i].width);
+                 $('#txtSPHeight', $modal).val(obj[i].height);
+             }
+             else {
+                 console.log(obj);
+             }
+}
+
+        $modal.modal('show');
+    }
+    function deleteSPositions(id) {
+
+        console.log(id);
+        var obj = JSON.parse(jsonStrPositons);
+
+        const index = obj.findIndex(x => x.order === parseInt(id));
+            console.log(index);
+        if (index !== undefined) obj.splice(index, 1);
+        //console.log("After removal:Obj", obj);
+        obj.sort((a, b) => (a.order > b.order) ? 1 : -1)
+        jsonStrPositons = JSON.stringify(obj);
+        //console.log("After removal:", jsonStr);
+        //dataTable();
+
+
+
+        var objUpdate = JSON.parse(jsonStrPositons);
+        num = 0;
+        $('#SigningPositionsTable > tbody  > tr').each(function (row_index, tr) {
+            var $tds = $(this).find('td');
+            ID_Card = $tds.eq(2).text();
+            tdOrder = $tds.eq(0).text();
+           // alert(tdOrder);
+           // console.log("Index- " + row_index + '-' + ID_Card);
+            Objindex = objUpdate.findIndex(x => x.order === parseInt(tdOrder));
+            if (Objindex >= 0) {
+                console.log('old:' + num);
+                num = num + 1;
+                $tds.eq(0).text(num)
+                console.log("row_index:" + num + "-idcard:" + objUpdate[Objindex].idcard);
+            //    console.log("row_index: " + row_index + '-idcard:' + ID_Card);
+                objUpdate[Objindex].order = parseInt(num);
+
+                console.log(objUpdate);
+
+            }
+
+
+            objUpdate.sort((a, b) => (a.order > b.order) ? 1 : -1)
+            jsonStrPositons = JSON.stringify(objUpdate);
+            console.log("After removal:", jsonStrPositons
+            );
+
+
+        });
+
+             dataTableSPositions();
+
+    }
+
+     function validateSPositions(el) {
+        var isValid = true;
+        if (el) {
+
+            var val = $(el).val();
+            var $message = $(el).parent('.form-group').children('.model-validateDup');
+
+            $message.hide();
+
+            if (val == undefined || val == 'undefined' || val == null || val == '' || val == 0 || val == -1) {
+                $message.show();
+                isValid = false;
+            }
+        }
+        else {
+            $('#frmSPosition .form-group').each(function (i,e) {
+
+                var $message = $(e).children('.model-validate');
+                $message.hide();
+
+                if ($(e).children('input').length > 0) {
+
+                    if ($(e).children('input').attr('type') == 'number') {
+                        var val = $(e).children('input').val();
+                         if (val == undefined || val == 'undefined' || val == null || val == '' || val == 0 || val == -1) {
+                            $message.show();
+                            isValid = false;
+                        }
+                    }
+
+
+                }
+
+
+            });
+        }
+        return isValid;
+    }
+
+</script>

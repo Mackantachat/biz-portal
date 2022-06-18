@@ -1,0 +1,112 @@
+﻿
+@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resource = BizPortal.Resources
+@using BizPortal.Utils.Extensions
+@using BizPortal.AppsHook
+@{
+    IAppsHook hook = ViewBag.Hook as IAppsHook;
+    Dictionary<string, string> appTranslates = null;
+    if (hook != null)
+    {
+        appTranslates = hook.TranslateKeyValue(Model);
+    }
+}
+
+<div class="modal fade" id="modalConfirmCancelByRequestor" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ยืนยันการขอยกเลิกคำขอ</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmResponseCancelByRequestor" method="post" action="@Url.Content("~/Api/V2/Applications/Requests")">
+                    @Html.HiddenFor(o => o.ApplicationID, new { id = "ApplicationIDCancel" })
+                    @Html.HiddenFor(o => o.ApplicationRequestID, new { id = "ApplicationRequestIDCancel" })
+                    @Html.Hidden("ActionReply", ApplicationActionReplyRequestEnum.CANCELED_BY_REQUESTOR)
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @if (!string.IsNullOrEmpty(Model.Remark))
+                                {
+                                    Model.Remark = "";
+                                }
+                                <label>@Resource.ApplicationStatusRequests.USER_COMMENT_REMARK</label>
+                                @Html.CustomTextAreaFor(model => model.Remark, new { id = "RemarkCancel", @class = "form-control" })
+                                @Html.CustomValidationMessageFor(model => model.Remark)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resource.Global.BTN_CONFIRM)</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var requestManage = {
+        controls: {
+            form: '#frmResponseCancelByRequestor',
+            formApplicationID: '#frmResponseCancelByRequestor #ApplicationIDCancel',
+            formApplicationRequestID: '#frmResponseCancelByRequestor #ApplicationRequestIDCancel'
+            , formActionReply: '#frmResponseCancelByRequestor #ActionReply'
+            , formRemark: '#frmResponseCancelByRequestor #RemarkCancel'
+        },
+        functions: {
+            init: function () {
+                $(requestManage.controls.form).data('validator', null).validate();
+                $(requestManage.controls.form + ' button[type=submit]').ladda('bind');
+                $(requestManage.controls.form).ajaxForm({
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    clearForm: true,
+                    customData: function (data, jqForm, options) {
+                        var l = $(requestManage.controls.form + ' button[type=submit]').ladda();
+                        l.ladda('start');
+
+                        options.data = JSON.stringify({
+                            ApplicationID: $(requestManage.controls.formApplicationID).val(),
+                            ApplicationRequestID: $(requestManage.controls.formApplicationRequestID).val(),
+                            Remark: $(requestManage.controls.formRemark).val(),
+                            ActionReply: $(requestManage.controls.formActionReply).val()
+                        });
+                    },
+                    error: function (xhr, status, error, $form) {
+                        var data = xhr.responseJSON;
+                        $('#modalConfirmCancelByRequestor').modal('hide');
+                        $.ladda('stopAll');
+                        notify('error', data.Message);
+                    },
+                    success: function (responseText, statusText, xhr, $form) {
+                        var data = xhr.responseJSON;
+                        $('#modalConfirmCancelByRequestor').modal('hide');
+
+                        $.ladda('stopAll');
+
+                        swal({
+                            title: '',
+                            text: decodeURIComponent(data.Message),
+                            type: 'success',
+                        }, function (isConfirm) {
+                            location.reload();
+                        });
+                        $("div.sa-confirm-button-container button.confirm").text("ตกลง");
+                    }
+                });
+            }
+        }
+    };
+
+    $(document).ready(function () {
+        requestManage.functions.init();
+    });
+</script>

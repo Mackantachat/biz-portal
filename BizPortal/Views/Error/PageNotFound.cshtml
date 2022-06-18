@@ -1,0 +1,67 @@
+﻿@using Resource = BizPortal.Resources;
+@using System.Configuration;
+@{
+    ViewBag.Title = Resource.Global.PAGE404_NOT_FOUND_HEADING;
+
+    bool applyDomainRoute = bool.Parse(ConfigurationManager.AppSettings["ApplyDomainRoute"]);
+    bool citizen = false;
+    if (applyDomainRoute)
+    {
+        Uri serviceUri = new Uri(ConfigurationManager.AppSettings["ServicesDomain"]);
+        if (Request.Url.Host.ToLower() == serviceUri.Host.ToLower())
+        {
+            citizen = true;
+            Layout = "~/Areas/Landing/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<section class="page-not-found">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <div class="page-not-found-main">
+                <h2>404 <i class="fa fa-file"></i></h2>
+                <p>@Resource.Global.PAGE404_NOT_FOUND_HEADING</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4>@Resource.Global.PAGE404_NOT_FOUND_SUGGEST_LINKS</h4>
+            <ul class="nav nav-list primary">
+                @if (!citizen)
+                {
+                    <li><a href="@Url.Action("Category", "Home", new { Area = "", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.Global.PAGE_SEARCH_ARTICLES</a></li>
+
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        var _db = new BizPortal.DAL.ApplicationDbContext();
+                        var flashNews = _db.ArticleViews
+                                        .Where(o => o.CategorySysName == "Flash News"
+                                        && (o.StartPublishing == null || o.StartPublishing <= DateTime.Now)
+                                        && (o.FinishPublishing == null || o.FinishPublishing >= DateTime.Now))
+                                        .Select(o => new { o.ArticleID, o.ArticleName })
+                                        .FirstOrDefault();
+                        if (flashNews != null)
+                        {
+                            <li class="">
+                                <a class="biz" href="@Url.Action("Article", "Home", new { @area = "", id = flashNews.ArticleID, language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">
+                                    @Resource.Global.FLASH_NEWS
+                                </a>
+                            </li>
+                        }
+                    }
+                }
+                @*<li><a href="@Url.Action("Index","FAQ",new { Area="", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })">@Resource.Global.PAGE_FAQ</a></li>*@
+                <li><a href="https://www.youtube.com/watch?v=Frib2qBP6kM" target="_blank"> <i class="fa fa-youtube-play"></i>  @Resource.Global.HOW_TO_FRONT </a></li>
+                <li><a href="@Url.Content("~/Uploads/BisPortal_Employer_eForm_UserManual_03032016.pdf")" target="_blank"> <i class="fa fa-file-pdf-o"></i>  @Resource.Global.HOW_TO_FRONT </a></li>
+            </ul>
+        </div>
+    </div>
+</section>

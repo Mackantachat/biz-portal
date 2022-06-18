@@ -1,0 +1,15 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+<span id="@Model.Control-value" class="form-control form-control-static">
+</span>
+@Html.Hidden(Model.Control, Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.Control, StringHelper.DefaultIfEmpty(Model.ResourceName, "Apps_SingleForm"), Model.Control)))
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#@Model.Control').change(function (e) {
+            $('#@Model.Control-value').text($(this).val());
+        });
+    });
+</script>

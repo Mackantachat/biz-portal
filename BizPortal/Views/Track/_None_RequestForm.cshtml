@@ -1,0 +1,357 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@using System.Threading;
+@using BizPortal.DAL.MongoDB;
+@using BizPortal.ViewModels.Constant;
+
+<link href="@Url.Content("~/Content/Theme/biz-v2/css/custom-formpay.css")" rel="stylesheet" type="text/css" />
+
+<div class="row">
+    <div style="padding-top:25px;" class="col-md-12 text-center">
+        @{
+            string statusOther = Model.StatusOtherText;
+            if (string.IsNullOrEmpty(@Model.StatusOther) && Model.Status == ApplicationStatusV2Enum.WAITING)
+            {
+                statusOther = ResourceHelper.GetResourceWord("STATUS_OTHER_" + ApplicationStatusOtherValueConst.WAITING_AGENT_READ_REQUEST, "ApplicationStatusRequests", Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName);
+            }
+        }
+        <h2>@statusOther</h2>
+    </div>
+
+
+    @{
+        bool isGenModalAtOwnerOrgPreview = false;
+        bool isGenModalCreatLicensePreview = false;
+    }
+    @if (Model.Status == ApplicationStatusV2Enum.APPROVED_WAITING_PAY_FEE &&
+        Model.StatusOther != ApplicationStatusOtherValueConst.REJECT.ToString())
+    {
+        if (
+            (Model.PaymentMethod == PaymentMethodValueConst.AT_OWNER_ORG ||
+            Model.PaymentMethod == PaymentMethodValueConst.AT_OSS ||
+            Model.PaymentMethod == PaymentMethodValueConst.BILL_PAYMENT ||
+            Model.PaymentMethod == PaymentMethodValueConst.QR_CODE))
+        {
+            if (!string.IsNullOrEmpty(Model.PermitDeliveryType) && !string.IsNullOrEmpty(Model.PaymentMethod))
+            {
+                isGenModalAtOwnerOrgPreview = true;
+                <div class="col-md-12 text-center">
+                    <button data-backdrop="static" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAtOwnerOrgPreview" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resources.Global.BTN_VIEW_DESCRIPTION)</span></button>
+                </div>
+            }
+        }
+    }
+    else if (Model.Status == ApplicationStatusV2Enum.PAID_FEE_CREATING_LICENSE && (Model.StatusOther == ApplicationStatusOtherValueConst.WAITING_AGENT_WORKING))
+    {
+        if (!string.IsNullOrEmpty(Model.PermitDeliveryType))
+        {
+            isGenModalCreatLicensePreview = true;
+            <div class="col-md-12 text-center">
+                <button data-backdrop="static" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreatLicensePreview" data-style="expand-left"><span class="ladda-label">@Html.Raw(Resources.Global.BTN_VIEW_DESCRIPTION)</span></button>
+            </div>
+        }
+    }
+
+    <div class="col-md-12">
+        @{
+            if (!string.IsNullOrEmpty((string)ViewData[ViewDataDictConst.AGENT_REMARK]))
+            {
+                <strong>@Resources.ApplicationStatusRequests.AGENT_COMMENT_REMARK : </strong>
+                string remark = (string)ViewData[ViewDataDictConst.AGENT_REMARK];
+                @remark
+            }
+
+        }
+    </div>
+
+</div>
+
+@{
+    int ems = Model.EMSFee.HasValue ? Convert.ToInt16(Model.EMSFee.Value) : 0;
+    decimal fee = Model.Fee.HasValue ? (decimal)Model.Fee : 0;
+    decimal total = fee;
+    if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.BY_MAIL)
+    {
+        total = total + ems;
+    }
+    string dueDateText = Convert.ToDateTime(Model.DueDateForPayFee).ToLocalTime().ToString("dd/MM/yyyy");
+    string userCanGetAppDateText = !string.IsNullOrEmpty(Model.UserCanGetAppDate) ? Convert.ToDateTime(Model.UserCanGetAppDate).ToLocalTime().ToString("dd/MM/yyyy") : "-";
+    bool isFoundBillPaymentFileUploadFromStaff = Model.BillPaymentFiles != null && Model.BillPaymentFiles.Count() > 0;
+}
+
+@if (isGenModalAtOwnerOrgPreview)
+{
+    <div class="modal fade" id="modalAtOwnerOrgPreview" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"> @(fee > 0 ? Resources.ApplicationStatusRequests.PLEASE_PAY_FEE_MODAL_HEADER : "ช่องทางรับใบอนุญาต") </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><b>@Resources.ApplicationStatusRequests.NAME_IN_MODAL:</b> @BizPortal.Service.TrackService.GetDisPlayIdentityName(Model.IdentityType, BizPortal.Service.TrackService.GetStoreName(Model.Data), Model.IdentityName)</p>
+                        </div>
+                    </div>
+
+                    @if (fee > 0)
+                    {
+                        string pmmtText = Resources.ApplicationStatusRequests.PAYMENT_QR_CODE;
+                        if (Model.PaymentMethod == PaymentMethodValueConst.BILL_PAYMENT)
+                        {
+                            pmmtText = Resources.ApplicationStatusRequests.PAYMENT_BILL_PAYMENT;
+                        }
+                        else if (Model.PaymentMethod == PaymentMethodValueConst.AT_OSS)
+                        {
+                            pmmtText = Resources.ApplicationStatusRequests.PAYMENT_AT_OSS;
+                        }
+                        else if (Model.PaymentMethod == PaymentMethodValueConst.AT_OWNER_ORG)
+                        {
+                            pmmtText = !string.IsNullOrEmpty(Model.PaymentMethodOrgDetail) ? Model.PaymentMethodOrgDetail : Model.OrgNameTH;
+                        }
+
+                        string locationPayFee = Model.OrgAddress;
+                        if (Model.PaymentMethod == PaymentMethodValueConst.AT_OSS)
+                        {
+                            locationPayFee = System.Configuration.ConfigurationManager.AppSettings["OSSAddress"];
+                        }
+                        else if (Model.PaymentMethod == PaymentMethodValueConst.BILL_PAYMENT)
+                        {
+                            locationPayFee = Resources.ApplicationStatusRequests.BILL_PAYMENT_LOCATION_PAY_FEE;
+                        }
+                        else if (Model.PaymentMethod == PaymentMethodValueConst.QR_CODE)
+                        {
+                            locationPayFee = Resources.ApplicationStatusRequests.QR_CODE_LOCATION_PAY_FEE;
+                        }
+                        else if (Model.PaymentMethod == PaymentMethodValueConst.AT_OWNER_ORG)
+                        {
+                            locationPayFee = !string.IsNullOrEmpty(Model.PaymentMethodOrgAddress) ? Model.PaymentMethodOrgAddress : Model.OrgNameTH;
+                        }
+
+                        <p><b><u>@Resources.ApplicationStatusRequests.SUMMARY_PAY_CHANNEL_HEADER</u></b></p>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p><b>@Resources.ApplicationStatusRequests.PAY_FEE_CHANNEL:</b> <span>@pmmtText</span></p>
+                            </div>
+                            @if (Model.PaymentMethod == PaymentMethodValueConst.BILL_PAYMENT)
+                            {
+                                <div class="col-md-4 text-right cf-bill-payment-box">
+
+                                    @if (isFoundBillPaymentFileUploadFromStaff)
+                                    {
+                                        var file = Model.BillPaymentFiles.OrderByDescending(o => o.CreatedDate).FirstOrDefault();
+                                        <a class="btn btn-primary" id="bt_download_bill_payment_view" href="@Url.Action("GetV2", "File", new { id = file.FileID, rid = Model.ApplicationRequestID, area = "" })" target="_blank">
+                                            @Resources.Global.BTN_DOWNLOAD_BILL_PAYMENT <span class="fa fa-download"></span>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary" id="bt_download_bill_payment_view" href="@Url.Action("DownloadBillPayment", "File", new { appReqId = Model.ApplicationRequestID })" target="_blank">
+                                            @Resources.Global.BTN_DOWNLOAD_BILL_PAYMENT <span class="fa fa-download"></span>
+                                        </a>
+                                    }
+                                </div>
+                            }
+                            else if (Model.PaymentMethod == PaymentMethodValueConst.QR_CODE)
+                            {
+                                <div class="col-md-4 text-right cf-qr-code-box">
+                                    <a class="btn btn-primary" id="bt_download_qr_code_view" href="@Url.Action("DisplayQRCode", "Track", new { appReqId = Model.ApplicationRequestID })" target="_blank">
+                                        @Resources.Global.BTN_DOWNLOAD_QR_CODE <span class="fa fa-download"></span>
+                                    </a>
+                                </div>
+                            }
+                            else if (Model.PaymentMethod == PaymentMethodValueConst.AT_OSS || Model.PaymentMethod == PaymentMethodValueConst.AT_OWNER_ORG)
+                            {
+                                <div class="col-md-4 text-right cf-oos-or-ownerorg-box">
+                                    <a class="btn btn-primary" id="bt_download_bill_oos_or_ownerorg_view" href="@Url.Action("DownloadPaymentNote", "File", new { area = "", appReqId = Model.ApplicationRequestID })" target="_blank">
+                                        @Resources.Global.BTN_DOWNLOAD_BILL_OSS_OWNERORG <span class="fa fa-download"></span>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                        <p><b>@Resources.ApplicationStatusRequests.PAY_FEE_DETAIL</b></p>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 40px;">@Resources.ApplicationStatusRequests.RECORD_NO</th>
+                                    <th class="text-center">@Resources.ApplicationStatusRequests.TABLE_ITEM_HEADER</th>
+                                    <th class="text-center">@Resources.ApplicationStatusRequests.TABLE_ITEM_HEADER_RECORD</th>
+                                    <th class="text-center">@Resources.ApplicationStatusRequests.TABLE_TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    @{string appName = (string)ViewData[ViewDataDictConst.APPLICATION_NAME];}
+                                    <td class="text-left">@appName</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">@fee.ToString("#,##0.00")</td>
+                                </tr>
+                                @if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.BY_MAIL)
+                                {
+                                    <tr class="tr-ems">
+                                        <td class="text-center">2</td>
+                                        <td class="text-left">@Resources.ApplicationStatusRequests.TABLE_EMS_TEXT</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">@ems.ToString("#,##0.00")</td>
+                                    </tr>
+                                }
+                                @{
+                                    int totalQty = 1;
+                                    if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.BY_MAIL)
+                                    {
+                                        totalQty += 1;
+                                    }
+                                }
+                                <tr>
+                                    <td class="text-center"></td>
+                                    <td class="text-left">@Resources.ApplicationStatusRequests.TOTAL_TEXT_TABLE</td>
+                                    <td class="text-center">@totalQty</td>
+                                    <td class="text-center"><u>@total.ToString("#,##0.00")</u></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p><b>@Resources.ApplicationStatusRequests.LOCATION_FOR_PAID_FEE:</b> <span>@locationPayFee</span></p>
+                        <p><b>@Resources.ApplicationStatusRequests.DUE_DATE_PAY_FEE:</b> @dueDateText</p>
+                    }
+
+                    <p><b><u>@Resources.ApplicationStatusRequests.SUMMARY_LOCATION_GOT_APP_HEADER</u></b></p>
+                    @{
+                        string pdtText = Resources.ApplicationStatusRequests.PDT_BY_MAIL;
+                        if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OSS)
+                        {
+                            pdtText = Resources.ApplicationStatusRequests.PDT_AT_OSS;
+                        }
+                        else if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OWNER_ORG)
+                        {
+                            pdtText = !string.IsNullOrEmpty(Model.PermitDeliveryOrgDetail) ? Model.PermitDeliveryOrgDetail : Model.OrgNameTH;
+                        }
+                        else if (Model.PermitDeliveryType == "E_DOCUMENT") 
+                        {
+                            pdtText = "E-Document";
+                        }
+                    }
+                    <p><b>@Resources.ApplicationStatusRequests.RECEIVE_APP_CHANNEL:</b> <span>@pdtText</span></p>
+
+                    @{
+                        var locationGotAppText = Model.PermitDeliveryAddress;
+                        if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OSS)
+                        {
+                            locationGotAppText = System.Configuration.ConfigurationManager.AppSettings["OSSAddress"];
+                        }
+                        else if (Model.PermitDeliveryType == PermitDeliveryTypeValueConst.AT_OWNER_ORG)
+                        {
+                            locationGotAppText = !string.IsNullOrEmpty(Model.PermitDeliveryOrgAddress) ? Model.PermitDeliveryOrgAddress : Model.OrgAddress;
+                        }
+                        else if (Model.PermitDeliveryType == "E_DOCUMENT") 
+                        {
+                            locationGotAppText = "";
+                        }
+                    }
+
+                    @if (!string.IsNullOrEmpty(locationGotAppText)) 
+                    {
+                        <p>
+                            <b>@Resources.ApplicationStatusRequests.PERMIT_OWNER_ORG_ADDRESS:</b>
+                            <span>
+                                @ResourceHelper.GetResourceWordWithDefault(locationGotAppText, "ApplicationStatusRequests", locationGotAppText, Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)
+                            </span>
+                        </p>
+                    }
+
+                    @*@{
+                            string cfGotAppWhen = "-";
+                            if (BizPortal.Service.TrackService.IsCanGotApplicationNow(Model.PermitCanBeDeliveredOnPayment, Model.PaymentMethod, Model.PermitDeliveryType))
+                            {
+                                cfGotAppWhen = Resources.ApplicationStatusRequests.PERMIT_CAN_BE_DERIVERED_ON_PAYMENT;
+                            }
+                            else
+                            {
+                                cfGotAppWhen = userCanGetAppDateText;
+                            }
+                        }
+                        <p><b>@Resources.ApplicationStatusRequests.GOT_APP_WHEN:</b> <span>@cfGotAppWhen</span></p>*@
+                    <p>@Resources.ApplicationStatusRequests.ASK_AGENT_TEL</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button style="width:100px;" type="button" class="btn btn-default" data-dismiss="modal">@Resources.Global.BTN_CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+@if (isGenModalCreatLicensePreview)
+{
+    <div class="modal fade" id="modalCreatLicensePreview" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">@Resources.ApplicationStatusRequests.HEADER_MODAL_LICENSE_PREVIEW</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><b>@Resources.ApplicationStatusRequests.NAME_IN_MODAL:</b> @BizPortal.Service.TrackService.GetDisPlayIdentityName(Model.IdentityType, BizPortal.Service.TrackService.GetStoreName(Model.Data), Model.IdentityName)</p>
+                        </div>
+                    </div>
+                    <p><b><u>@Resources.ApplicationStatusRequests.SUMMARY_LOCATION_GOT_APP_HEADER</u></b></p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @{
+                                string deliveryMethod = @ViewData[ViewDataDictConst.DELIVERY_METHOD_TEXT] == null ? "-" : @ViewData[ViewDataDictConst.DELIVERY_METHOD_TEXT].ToString();
+                            }
+                            <p><b>@Resources.ApplicationStatusRequests.RECEIVE_APP_CHANNEL:</b> @ResourceHelper.GetResourceWordWithDefault(deliveryMethod, "ApplicationStatusRequests", deliveryMethod, System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @{
+                                string deliveryAddressText = @ViewData[ViewDataDictConst.DELIVERY_ADDRESS_TEXT] == null ? "-" : @ViewData[ViewDataDictConst.DELIVERY_ADDRESS_TEXT].ToString();
+                            }
+                            <p><b>@Resources.ApplicationStatusRequests.RECEIVE_APP_LOCATION:</b> @deliveryAddressText</p>
+                        </div>
+                    </div>
+                    @{
+                        string cfGotAppWhen = "-";
+                        if (BizPortal.Service.TrackService.IsCanGotApplicationNow(Model.PermitCanBeDeliveredOnPayment, Model.PaymentMethod, Model.PermitDeliveryType))
+                        {
+                            cfGotAppWhen = Resources.ApplicationStatusRequests.PERMIT_CAN_BE_DERIVERED_ON_PAYMENT;
+                        }
+                        else
+                        {
+                            cfGotAppWhen = userCanGetAppDateText;
+                        }
+                    }
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><b>@Resources.ApplicationStatusRequests.GOT_APP_WHEN:</b> @cfGotAppWhen</p>
+                        </div>
+                    </div>
+
+                    <p>@Resources.ApplicationStatusRequests.ASK_AGENT_TEL</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button style="width:100px;" type="button" class="btn btn-default" data-dismiss="modal">@Resources.Global.BTN_CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

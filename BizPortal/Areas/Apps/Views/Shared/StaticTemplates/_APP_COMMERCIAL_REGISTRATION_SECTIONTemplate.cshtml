@@ -1,0 +1,25 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="APP_COMMERCIAL_REGISTRATION_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12">
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_COMMERCIAL_REGISTRATION_SECTION_TYPE :</label>
+            {{this.APP_COMMERCIAL_REGISTRATION_SECTION_TYPE}}
+            <br />
+            <label>@BizPortal.Resources.Apps_SingleForm.APP_COMMERCIAL_REGISTRATION_SECTION_CODE_FOR_OFFICER :</label>
+            {{this.APP_COMMERCIAL_REGISTRATION_SECTION_CODE_FOR_OFFICER}}
+        </div>
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่มีข้อมูลการจดทะเบียนพาณิชย์
+        </div>
+    </div>
+    {{/xif}}
+
+</script>

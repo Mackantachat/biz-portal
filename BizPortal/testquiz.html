@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+   <form id="frmQuiz">
+       <button type="submit">Submit</button>
+   </form>
+
+    <form id="frmApps" method="post" action="/th/Apps/SingleForm/List">
+        <!--<label> <input type="checkbox" name="Apps[]" value="แบบฟอร์มขอจดทะเบียนภาษีมูลค่าเพิ่ม" /> แบบฟอร์มขอจดทะเบียนภาษีมูลค่าเพิ่ม </label>
+        <label> <input type="checkbox" name="Apps[]" value="SSO Register Employer" /> แบบฟอร์มขึ้นทะเบียนนายจ้าง  (สปส. 1-01) </label>
+        <label> <input type="checkbox" name="Apps[]" value="SSO Register Employee" /> แบบฟอร์มขึ้นทะเบียนผู้ประกันตน (สปส. 1-03) </label>
+        <label> <input type="checkbox" name="Apps[]" value="การยื่นข้อบังคับการทำงาน" /> แบบฟอร์มยื่นข้อบังคับการทำงาน </label>-->
+
+        <input type="hidden" name="Apps[0].AppSysName" value="แบบฟอร์มขอจดทะเบียนภาษีมูลค่าเพิ่ม" />
+        <input type="hidden" name="Apps[0].OnlineRequestAllowed" value="true" />
+        <input type="hidden" name="Apps[0].NotAllowedReason" value="" />
+
+        <input type="hidden" name="Apps[1].AppSysName" value="SSO Register Employer" />
+        <input type="hidden" name="Apps[1].OnlineRequestAllowed" value="false" />
+        <input type="hidden" name="Apps[1].NotAllowedReason" value="ต้องไปยื่นที่หน้าเว็บ" />
+
+        
+    </form>
+
+    <script>
+        $('#frmQuiz').submit(function (e) {
+            e.preventDefault();
+
+            // generate hidden fields
+
+            $('#frmApps').submit();
+        });
+    </script>
+</body>
+
+</html>

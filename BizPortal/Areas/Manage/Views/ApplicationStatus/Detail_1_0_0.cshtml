@@ -1,0 +1,456 @@
+﻿@using Resource = BizPortal.Resources
+@model JuristicApplicationStatusRequestViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+@section ContentHeader{
+    <i class="fa fa-file-text-o fa fa-2x "></i>
+    <h4 class="m-t-xs inline padder">@string.Format("{0} {1}", BizPortal.Resources.ApplicationStatusRequests.APPLICATION_REQUEST, Model.ApplicationName)</h4>
+}
+
+
+@using (Html.BeginForm("Detail", "ApplicationStatus", new { Area = "Manage" }, FormMethod.Post, new { id = "frmApplicationStatus" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.JuristicApplicationStatusRequestID)
+    <div class="bg-white clearfix">
+        <div class="row">
+            <div class="h4 col-md-12" style="margin-bottom:10px;">
+                <strong> @Resource.ApplicationStatusRequests.REQUEST_BY  </strong> :
+                @Model.CreatedFullName (@Model.JuristicID)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <strong> @Resource.ApplicationStatusRequests.SUBMIT_DATE  </strong>:
+                @Model.CreatedDateTxt
+            </div>
+            <div class="col-md-6">
+                <strong> @Resource.ApplicationStatusRequests.APPLICATION_STATUS_REQUEST  </strong> :
+                @Model.ApplicationStatusTxt
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <strong> @Resource.Global.REMARK  </strong>:
+                @Model.Remark
+            </div>
+        </div>
+    </div>
+
+
+    <div class="line line-dashed line-lg pull-in"></div>
+    <header class="header bg-white clearfix">
+        <div class="row">
+            <h4>
+                @Resource.ApplicationStatusRequests.ATTACH_DOCUMENT
+                รายการเอกสารแนบ
+            </h4>
+
+        </div>
+        <div class="table-responsive clearfix">
+            <table id="documentDataTables" class="table table-striped table-bordered" data-ride="datatables">
+                <thead>
+                    <tr>
+                        <th style="">#</th>
+                        <th style="width:30% !important">@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                        <th style="">@BizPortal.Resources.ApplicationStatusRequests.REFER_NAME</th>
+                        <th style="width:50% !important">@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                        <th style="">@BizPortal.Resources.Global.TABLE_ACTION_HEADING</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </header>
+
+
+
+    <div class="line line-dashed line-lg pull-in"></div>
+    <header class="header bg-white clearfix">
+        <div class="row">
+            <h4>
+                @Resource.ApplicationStatusRequests.APPROVE_STAGE_HISTORY
+            </h4>
+        </div>
+        <table id="dataTable" class="table table-striped table-bordered" data-ride="datatables">
+            <thead>
+                <tr>
+                    <th style="width:100px;">
+                        ลำดับ
+                    </th>
+                    <th>
+                        สถานะ
+                    </th>
+                    <th>
+                        วันที่
+                    </th>
+                    <th style="width:50%">
+                        หมายเหตุ
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </header>
+
+    if (Model.ApplicationStatusID == (int)(ApplicationStatusEnum.PENDING))
+    {
+        <div class="line line-dashed line-lg pull-in"></div>
+        <header class="header bg-white clearfix">
+            <div class="row">
+                <h4>
+                    @Resource.ApplicationStatusRequests.APPROVE_STAGE
+                </h4>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.ApplicationStatusID)
+                    @Html.CustomDropDownListFor(model => model.ApplicationStatusID, (SelectList)ViewBag.ApplicationStatusList, new { @style = "width: 100%;" })
+                    @Html.ValidationMessageFor(model => model.ApplicationStatusID, "", new { @class = "text-danger" })
+                </div>
+                <div id="pnlApplicationStatusOther" class="form-group col-md-6" style="display:none">
+                    @Html.LabelFor(model => model.ApplicationStatusOther)
+                    @Html.CustomTextBoxFor(model => model.ApplicationStatusOther, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApplicationStatusOther, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.ApproveRemark)
+                    @Html.CustomTextAreaFor(model => model.ApproveRemark, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApproveRemark, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="pnlUploadFile" class="row" style="display:none">
+                @{JuristicRequestFileUploadType[] fileLists = (JuristicRequestFileUploadType[])ViewBag.FileList; }
+                @for (int i = 0; i < fileLists.Length; i++)
+                    {
+                    <div class="form-group col-md-12">
+                        <label class="text-weight-bold">@fileLists[i].Name</label>
+                        <div id="Warn_FileUpload_@fileLists[i].Code">
+                            <a href="#" id="FileUpload_@fileLists[i].Code" data-filetype="@fileLists[i].Code" class="btn btn-default uploader"> @Html.Raw(Resource.Application.BTN_ADD_FILE)  </a>
+                            <i class="font-size-sm">รองรับเอกสารชนิด pdf, png, jpg และมีขนาดของเอกสารไม่เกิน 5 เมกะไบต์</i>
+                            <input type="text" id="Val_FileUpload_@fileLists[i].Code" name="Val_FileUpload_@fileLists[i].Code" class="invisibility" required data-msg-required="กรุณาเลือกเอกสาร หรือหากกำลังนำเอกสารเข้าสู่ระบบกรุณารอสักครู่" />
+                            <span class="field-validation-valid text-danger" style="text-align:left;" data-valmsg-for="Val_FileUpload_@fileLists[i].Code" data-valmsg-replace="true"></span>
+                        </div>
+                        <div id="Ctrl_FileUpload_@fileLists[i].Code" style="display:none"></div>
+                    </div>
+                }
+
+            </div>
+        </header>
+                    }
+                    else if (Model.ApplicationStatusID == (int)ApplicationStatusEnum.COMPLETED)
+                    {
+                        <header class="header bg-white clearfix">
+
+                            <div class="row">
+                                <h4>
+                                    @Resource.ApplicationStatusRequests.RESPONSE_DOCUMENT
+                                </h4>
+                            </div>
+                            <table id="documentResponseDataTables" class="table table-striped table-bordered" data-ride="datatables">
+                                <thead>
+                                    <tr>
+                                        <th style="width:50px;">#</th>
+                                        <th style="width:30% !important">@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                                        <th style="width:50% !important">@BizPortal.Resources.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                        <th style="width:180px;">@BizPortal.Resources.Global.TABLE_ACTION_HEADING</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </header>
+
+
+                    }
+
+                    <p></p>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 text-right">
+                                @if (Model.ApplicationStatusID == (int)(ApplicationStatusEnum.PENDING))
+                                {
+                                    <button id="btnSubmit" type="submit" class="btn btn-s-md btn-primary">@Html.Raw(BizPortal.Resources.Global.BTN_SUBMIT)</button>
+                                }
+                                <a href="@Url.Action("Index", "ApplicationStatus", new { Area = "Manage" })" class="btn btn-s-md btn-default">@Html.Raw(BizPortal.Resources.Global.BTN_BACK)</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    @Html.Hidden("FileIDs")
+                    }
+
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        var documentDataTables;
+        var datatables;
+        var documentResponseDataTables;
+        var uploaders = new Array();
+        var fileUploaded = [];
+
+        $(document).ready(function () {
+            initComponent();
+            initDatatable();
+        });
+
+        function initComponent() {
+            $("#btnSubmit").prop("disabled", true);
+
+            $('#btnSubmit').click(function (e) {
+                $("#FileIDs").val(JSON.stringify(fileUploaded));
+            });
+
+            $("#ApplicationStatusID").select2().on("change", function (e) {
+                if ($(this).val() == "@((int)ApplicationStatusEnum.OTHER)") {
+                    $("#pnlApplicationStatusOther").show();
+                }
+                else {
+                    $("#pnlApplicationStatusOther").hide();
+                }
+
+                if ($(this).val() == "@((int)ApplicationStatusEnum.COMPLETED)") {
+                    $("#pnlUploadFile").show();
+                    if(uploaders.length == 0)
+                    {
+                        initUploaders(uploaders);
+                    }
+                }
+                else{
+                    $("#pnlUploadFile").hide();
+                }
+
+                if ($(this).val() == "@Model.ApplicationStatusID") {
+                    $("#btnSubmit").prop("disabled", true);
+                }
+                else {
+                    $("#btnSubmit").prop("disabled", false);
+                }
+            });
+        }
+
+        function initUploaders(uploaders) {
+            $(".uploader").each(function () {
+                var el = $(this);
+                var button = el.attr("id");
+                var uploader = new plupload.Uploader({
+                    browse_button: button,
+                    runtimes: 'html5,flash,silverlight,html4',
+                    flash_swf_url: '@Url.Content("~/Script/plupload/Moxie.swf")',
+                    silverlight_xap_url: '@Url.Content("~/Script/plupload/Moxie.xap")',
+                    url: '@Url.Action("PLUpload","File", new { area ="Apps"})',
+                    max_file_size: '5mb',
+                    chunk_size: '1mb',
+                    multi_selection:false,
+                    filters: [
+                        { title: "Document files", extensions: "pdf,jpg,gif,png" }
+                    ]
+                });
+
+                uploader.bind('FilesAdded', function (up, file) {
+                    var $button = $(up.settings.browse_button[0]);
+                    $button.html('@Html.Raw(Resource.Application.BTN_BROWSE_FILE_UPLOADING)').attr('disabled', true);
+                    up.disableBrowse(true);
+                    setTimeout(function () {
+                        up.start();
+                    }, 100);
+                });
+
+                uploader.bind('BeforeUpload', function (up, file) {
+                    $("#btnSubmit").prop("disabled", true);
+                    $("#ApplicationStatusID").prop("disabled", true);
+                    var $button = $(up.settings.browse_button[0]);
+                    var type = $button.attr('data-filetype');
+                    //var name = $button.attr('data-filedescription');
+                    up.settings.multipart_params = {requestType:'@((int)FileRequestTypeEnum.Response)',type:type, appId: @ViewBag.AppID, fileName: file.name };
+                });
+
+                uploader.bind("FileUploaded", function (up, file, result) {
+                    var $button = $(up.settings.browse_button[0]);
+                    var browseButtonId = $button.attr('id');
+                    var fileCode = $button.attr('data-filetype');
+                    //var fileName = $button.attr('data-fileDescription') + " (" + file.name + ")";
+                    var resObj = JSON.parse(result.response);
+
+                    resObj['BrowseButtonId'] = browseButtonId;
+                    fileUploaded.push(resObj);
+                    var $ctrl = $('#Ctrl_' + $button.attr('id'));
+                    $ctrl.show();
+                    $ctrl.html(resObj.FileName+" <button class='btn btn-danger btn-delete' style='margin-left:20px;' onclick='removeFileList(\"" + fileCode + "\")'> <i class='fa fa-trash-o'></i> ลบ </button>");
+                    var $warn = $('#Warn_' + $button.attr('id'));
+                    $warn.hide();
+                    $button.hide();
+
+                });
+
+                uploader.bind('UploadComplete', function (up, files) {
+                    var $button = $(up.settings.browse_button[0]);
+                    var $val = $('#Val_' + $button.attr('id'));
+
+                    up.disableBrowse(false);
+                    $button.html('@Html.Raw(Resource.Application.BTN_BROWSE_FILE)').attr('disabled', false);
+                    $("#btnSubmit").prop("disabled", $("#ApplicationStatusID").val() == "@((int)ApplicationStatusEnum.PENDING)");
+                    $("#ApplicationStatusID").prop("disabled", false);
+                    $val.val('true').valid();
+
+
+                });
+
+                uploader.bind('Error', function (up, err) {
+                    var msg = '';
+                    if (err.code == -600) {
+                        msg = 'ขนาดของเอกสาร ' + err.file.name + ' ไม่ถูกต้อง ระบบรองรับเอกสารที่มีขนาดสูงสุดไม่เกิน 5 เมกะไบต์';
+                    }
+                    else if (err.code == -601) {
+                        msg = 'ประเภทของเอกสาร ' + err.file.name + ' ไม่ถูกต้อง ระบบรองรับเอกสารประเภท .pdf, .png และ .jpg เท่านั้น';
+                    }
+                    else {
+                        msg = 'ไม่สามารถนำเอกสาร ' + err.file.name + ' เข้าสู่ระบบได้กรุณาตรวจสอบอีกครั้ง';
+                    }
+
+                    swal({ type: 'warning', title: "", text: msg });
+                });
+
+                uploader.init();
+
+                uploaders.push(uploader);
+            });
+
+
+        }
+
+        function initDatatable(){
+            documentDataTables = $('#documentDataTables').DataTable({
+                serverSide: true,
+                searching: false,
+                indexColoumn: true,
+                ajax: {
+                    url: '@Url.Content("~/Api/JuristicApplicationStatusRequest/Document/List")?language=@ViewBag.CurrentLang',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: function (params) {
+                        // Provided as a function to manipulate the data DataTables sends to the server.
+                        if ($('#JuristicApplicationStatusRequestID').val())
+                            params.JuristicApplicationStatusRequestID = $('#JuristicApplicationStatusRequestID').val();
+                        return JSON.stringify(params);
+                    }
+                },
+                columns: [
+                    { data: 'DocumentID', sortable: false, 'class': 'text-center' },
+                    { data: 'DocumentType' },
+                    { data: 'OwnerReferCode', 'class': 'text-center' },
+                    { data: 'DocumentName' },
+                    {
+                        data: 'DocumentPath',
+                        render: function (data, type, row) {
+                            var template = '<a href="' + data + '" target="_blank" class="btn btn-xs btn-info">@Html.Raw(BizPortal.Resources.Global.BTN_DETAIL)</a>';
+                            return template;
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    }
+                ],
+                dom: '<"top">rt<"clear">',
+            });
+
+            datatables = $('#dataTable').DataTable({
+                serverSide: true,
+                indexColoumn: true,
+                ajax: {
+                    url: '@Url.Content("~/api/JuristicApplicationStatusRequest/Log")?language=@ViewBag.CurrentLang',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: function (params) {
+                        if ($('#JuristicApplicationStatusRequestID').val())
+                            params.JuristicApplicationStatusRequestID = $('#JuristicApplicationStatusRequestID').val();
+                        return JSON.stringify(params);
+                    }
+                },
+                columns: [
+                    { data: 'JuristicApplicationStatusRequestLogID', sortable: false, 'class': 'text-center' },
+                    { data: 'Status', sortable: false, 'class': 'text-center' },
+                    { data: 'SubmitDateTxt', name: 'SubmitDate', sortable: false, 'class': 'text-center' },
+
+                    { data: 'Remark', sortable: false, 'class': 'text-left' },
+                ],
+                order: [[2, 'asc']],
+                dom: '<"top">rt<"clear">',
+
+            });
+
+            @if (Model.ApplicationStatusID == (int)ApplicationStatusEnum.COMPLETED)
+            {
+
+
+            <text>
+            documentResponseDataTables = $('#documentResponseDataTables').DataTable({
+                serverSide: true,
+                searching: false,
+                indexColoumn: true,
+                ajax: {
+                    url: '@Url.Content("~/Api/JuristicApplicationStatusRequest/Document/List/Response")?language=@ViewBag.CurrentLang',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: function (params) {
+                        // Provided as a function to manipulate the data DataTables sends to the server.
+                        if ($('#JuristicApplicationStatusRequestID').val())
+                            params.JuristicApplicationStatusRequestID = $('#JuristicApplicationStatusRequestID').val();
+                        return JSON.stringify(params);
+                    }
+                },
+                columns: [
+                    { data: 'DocumentID', sortable: false, 'class': 'text-center' },
+                    { data: 'DocumentType', sortable: false },
+                    { data: 'DocumentName', sortable: false },
+                    {
+                        data: 'DocumentPath',
+                        render: function (data, type, row) {
+                            var template = '<a href="' + data + '" target="_blank" class="btn btn-xs btn-info">@Html.Raw(BizPortal.Resources.Global.BTN_DETAIL)</a>';
+                            return template;
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    }
+                ],
+                dom: '<"top">rt<"clear">',
+            });
+            </text>
+                }
+        }
+
+        function removeFileList(code){
+            var $button = $('#FileUpload_' + code);
+            var $warn = $('#Warn_' + $button.attr('id'));
+            var $ctrl = $('#Ctrl_' + $button.attr('id'));
+            var $val = $('#Val_' + $button.attr('id'));
+
+
+            // remove file
+            fileUploaded = $.grep(fileUploaded, function (e) {
+                if(e.Extras.Type == code) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteFiles", "File", new { area = "Apps" })' + '?' + $.param({ appId: '@ViewBag.AppID', fileIds: e.FileID }),
+                        type: 'DELETE'
+                    });
+                }
+
+                return (e.Extras.Type != code);
+            });
+
+            $warn.show();
+            $ctrl.html("");
+            $ctrl.hide();
+            $val.val("");
+            $button.show();
+        }
+    </script>
+}

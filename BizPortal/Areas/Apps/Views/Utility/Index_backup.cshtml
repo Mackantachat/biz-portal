@@ -1,0 +1,1464 @@
+﻿
+@model UtilityForm
+@using Resources = BizPortal.Resources
+@using BizPortal.ViewModels.Apps
+@{
+    int appID = 4;
+    ViewBag.Title = Resources.Apps_Utility.APPS_FORM_UTILITY;
+    ViewBag.Logo = Url.Content("~/Content/Images/logo/mea_mwa.png");
+    Layout = "~/Areas/Apps/Views/Shared/_AppsLayout.cshtml";
+
+    UserTypeEnum type = ViewBag.IdentityType;
+    JuristicProfile juristic = ViewBag.Juristic;
+
+    List<SelectListItem> mwaBranches = new List<SelectListItem>()
+    {
+        new SelectListItem () { Value = "", Text = Resources.Apps_Utility.MWA_BRANCH_REQUIRED },
+        new SelectListItem () { Value = "01", Text = "บางกอกน้อย" },
+        new SelectListItem () { Value = "02", Text = "ตากสิน" },
+        new SelectListItem () { Value = "03", Text = "พญาไท" },
+        new SelectListItem () { Value = "04", Text = "นนทบุรี" },
+        new SelectListItem () { Value = "05", Text = "ทุ่งมหาเมฆ" },
+        new SelectListItem () { Value = "06", Text = "แม้นศรี" },
+        new SelectListItem () { Value = "07", Text = "สุขุมวิท" },
+        new SelectListItem () { Value = "09", Text = "ราชการ" },
+        new SelectListItem () { Value = "11", Text = "ภาษีเจริญ" },
+        new SelectListItem () { Value = "12", Text = "ลาดพร้าว" },
+        new SelectListItem () { Value = "13", Text = "พระโขนง" },
+        new SelectListItem () { Value = "14", Text = "สุขสวัสดิ์" },
+        new SelectListItem () { Value = "15", Text = "ประชาชื่น" },
+        new SelectListItem () { Value = "16", Text = "บางเขน" },
+        new SelectListItem () { Value = "17", Text = "สมุทรปราการ" },
+        new SelectListItem () { Value = "53", Text = "มีนบุรี" },
+        new SelectListItem () { Value = "54", Text = "บางบัวทอง" },
+        new SelectListItem () { Value = "55", Text = "สุวรรณภูมิ" },
+        new SelectListItem () { Value = "56", Text = "มหาสวัสดิ์" },
+        new SelectListItem () { Value = "91", Text = "กองการเงิน" },
+        new SelectListItem () { Value = "92", Text = "ฝ่ายมาตรวัดน้ำ" }
+    };
+}
+<form id="frmUtility" method="post" action="@Url.Content("~/Api/V2/Applications/Requests/Utility")">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_CHOOSE_REQUEST</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="checkbox">
+                                <div class="col-md-6 form-group">
+                                    <label for="chkMEA">
+                                        <input type="checkbox" id="chkMEA" />@Resources.Apps_Utility.APPS_CHOOSE_MEA
+                                    </label>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="chkMWA">
+                                        <input type="checkbox" id="chkMWA" />@Resources.Apps_Utility.APPS_CHOOSE_MWA
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.BIZ_APPLICANT_INFOMATION</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.BIZ_TAX_ID <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.IdentityID, new { @class = "form-control", @id = "bizTaxId", Name = "bizTaxId" })
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Juristic)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_REG_ID <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.IdentityID, new { @class = "form-control", @readonly = true, @id = "bizRegId" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_TYPE <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(x => juristic.JuristicType, new { @class = "form-control", @readonly = true, @id = "bizType" })
+                                </div>
+                            </div>
+                        }
+                        @if (type == UserTypeEnum.Citizen)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.CITIZEN_ID <span class="text-danger">*</span></label>
+                                    @Html.TextBoxFor(model => model.IdentityID, new { @class = "form-control", @readonly = true, @id = "bizCitizenId" })
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.BIZ_NAME <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.IdentityName, new { @class = "form-control", @readonly = true, @id = "bizName" })
+                            </div>
+                        </div>
+                        @if (type == UserTypeEnum.Juristic)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label>@Resources.Apps_Utility.BIZ_BRANCH</label>
+                                    <input type="text" id="bizBranch" name="bizBranch" value="" placeholder="@Resources.Apps_Utility.BIZ_BRANCH_PLACEHOLDER" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group" id="commiteeBox">
+                                    <label>@Resources.Apps_Utility.BIZ_COMMITTEES <span class="text-danger">*</span></label>
+                                    @{
+                                        var committeeIdx = 0;
+                                        foreach (var committee in juristic.CommitteeInformation.Committees)
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="checkbox">
+                                                        <label for="chkboxCommittee_@committeeIdx">
+                                                            <input type="checkbox" id="chkboxCommittee_@committeeIdx" name="chkboxCommittee_@committeeIdx" onchange="uploadControl.functions.committeeUploadFiles(@committeeIdx)" />@committee.Title@committee.Name @committee.LastName
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @if (committee.CitizenID != null)
+                                                    {
+                                                        <input type="text" id="committeeCitizenId_@committeeIdx" name="committeeCitizenId_@committeeIdx" value="@committee.CitizenID" class="form-control" readonly />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" id="committeeCitizenId_@committeeIdx" name="committeeCitizenId_@committeeIdx" value="" class="form-control" placeholder="@Resources.Apps_Utility.CITIZEN_ID" />
+                                                    }
+                                                </div>
+                                                <div id="committee-@(committeeIdx)-container" class="col-md-12">
+                                                </div>
+                                            </div>
+                                            committeeIdx++;
+                                        }
+                                        foreach (var description in juristic.AuthorizeDescription.AuthorizeDescriptions)
+                                        {
+                                            <span class="help-block fs12">@description.Description</span>
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+                                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.CONTACT_INFORMATION</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_FIRSTNAME <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.ContactFirstName, new { @class = "form-control", @id = "contactFirstName" })
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_LASTNAME <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.ContactLastName, new { @class = "form-control", @id = "contactLastName" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_ID <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.ContactIdentityID, new { @class = "form-control", @id = "contactId" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_TEL <span class="text-danger">*</span></label>
+                                <input type="text" id="contactTel" name="contactTel" value="" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.CONTACT_EMAIL <span class="text-danger">*</span></label>
+                                <input type="text" id="contactEmail" name="contactEmail" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.ADDRESS_INFORMATION</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#mapModal"><i class="fa fa-map-marker"></i> @Resources.Apps_Utility.BTN_GMAPS</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_LAT <span class="text-danger">*</span></label>
+                                <input type="text" value="" name="currentLat" id="currentLat" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_LNG <span class="text-danger">*</span></label>
+                                <input type="text" value="" name="currentLng" id="currentLng" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_HOUSE_REG_ID</label>
+                                @Html.TextBoxFor(model => model.AddressID, new { @class = "form-control", @id = "AddressHouseRegId" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_NUMBER <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_MOO</label>
+                                @Html.TextBoxFor(model => model.Moo, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_SOI</label>
+                                @Html.TextBoxFor(model => model.Soi, new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_STREET</label>
+                                @Html.TextBoxFor(model => model.Road, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_PROVINCE <span class="text-danger">*</span></label>
+                                <select id="reqProvince" name="reqProvince" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_AMPHUR <span class="text-danger">*</span></label>
+                                <select id="reqAmphur" name="reqAmphur" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_TAMBOL <span class="text-danger">*</span></label>
+                                <select id="reqTambol" name="reqTambol" style="width: 100%;">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>@Resources.Apps_Utility.ADDRESS_ZIP_CODE <span class="text-danger">*</span></label>
+                                <input type="text" id="AddressZipCode" name="AddressZipCode" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12" id="MEAControl" hidden>
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_MEA_DETAIL</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 form-group btn-group">
+                                <input type="radio" id="meaOwnerOption" name="meaAddressOption" value="Owner" checked />
+                                <label for="meaOwnerOption">@Resources.Apps_Utility.MEA_OPTION_OWNER</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group btn-group">
+                                <input type="radio" id="meaResidentOption" name="meaAddressOption" value="Resident" />
+                                <label for="meaResidentOption">@Resources.Apps_Utility.MEA_OPTION_RESIDENT</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group btn-group">
+                                <input type="radio" id="meaRentOption" name="meaAddressOption" value="Rent" />
+                                <label for="meaRentOption">@Resources.Apps_Utility.MEA_OPTION_RENT</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group btn-group">
+                                <input type="radio" id="meaOperatorOption" name="meaAddressOption" value="Operator" />
+                                <label for="meaOperatorOption">@Resources.Apps_Utility.MEA_OPTION_OPERATOR</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.APPS_MEA_BRANCH</label>
+                                <input type="text" id="meaBranch" name="meaBranch" value="" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.APPS_MEA_SERVICE_TYPE <span class="text-danger">*</span></label>
+                                <select class="form-control">
+                                    <option>@Resources.Apps_Utility.APPS_MEA_NEW_APPLICATION</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.APPS_MEA_MEASUREMENT <span class="text-danger">*</span></label>
+                                <select class="form-control">
+                                    <option>@Resources.Apps_Utility.APPS_MEA_MEASUREMENT_OPTION</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" id="MWAControl" hidden>
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_MWA_DETAIL</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6 form-group btn-group">
+                                <input type="radio" id="addressOwnerOption" name="mwaAddressOption" value="Owner" checked />
+                                <label for="addressOwnerOption">@Resources.Apps_Utility.ADDRESS_OWNER</label>
+                            </div>
+                            <div class="col-md-6 form-group btn-group">
+                                <input type="radio" id="addressRentOption" name="mwaAddressOption" value="Rent" />
+                                <label for="addressRentOption">@Resources.Apps_Utility.ADDRESS_RENT</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>@Resources.Apps_Utility.APPS_MWA_BRANCH <span class="text-danger">*</span></label>
+                                @Html.DropDownList("mwaBranches", new SelectList(mwaBranches, "Value", "Text"), new { @class = "form-control", @disabled = true })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" id="attachBox">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Apps_Utility.APPS_ATTACH_FILES</div>
+                    <div class="panel-body">
+                        <div id="uploaderContainer">
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p><span class="text-danger">@Resources.Apps_Utility.APPS_ATTACH_REMARK</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <table id="uploadedFileTables" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 30px;">#</th>
+                                                <th>@Resources.ApplicationStatusRequests.DOCUMENT_NAME</th>
+                                                <th style="width:100px;">@Resources.ApplicationStatusRequests.DOCUMENT_TYPE</th>
+                                                <th style="width:80px;">@Resources.ApplicationStatusRequests.DOCUMENT_SIZE</th>
+                                                <th style="width: 80px;">@Resources.Global.TABLE_ACTION_HEADING</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mb20">
+            <div class="checkbox checkbox-inline">
+                <label>
+                    <input type="checkbox" id="chkSubmit" /> @Resources.Apps_Utility.STRING_BEFOR_SUBMIT_1<a data-toggle="modal" data-target="#termsModal">@Resources.Apps_Utility.STRING_BEFOR_SUBMIT_2</a>@Resources.Apps_Utility.STRING_BEFOR_SUBMIT_3
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12 text-center mb20">
+            <input type="hidden" id="Status" name="Status" value="@ApplicationStatusV2Enum.DRAFT.ToString()" />
+            <button type="submit" id="btnSaveDraftUtilityForm" class="btn btn-default" onclick="$(uploadControl.controls.formStatus).val('@ApplicationStatusV2Enum.DRAFT.ToString()')">@Html.Raw(Resources.Application.BTN_SAVE_DRAFT)</button>
+            <button type="submit" id="btnSubmitUtilityForm" class="btn btn-success" onclick="$(uploadControl.controls.formStatus).val('@ApplicationStatusV2Enum.WAITING.ToString()')">@Html.Raw(Resources.Application.BTN_SUBMIT_FILE)</button>
+        </div>
+    </div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mapModalLabel">@Resources.Apps_Utility.ADDRESS_INFORMATION</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6>@Resources.Apps_Utility.MAP_MODAL_HOWTO</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 br-n" id="map" style="height: 350px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnMapModalOk">@Resources.Apps_Utility.BTN_OK</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnMapModalCancel">@Resources.Apps_Utility.BTN_CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="termsModalLabel">@Resources.Apps_Utility.APPS_TERM_OF_USE</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            เงื่อนไขบริการ
+                        </p>
+                        <p>
+                            ข้อ 1 xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx
+                            <br />
+                            ช้อ 2 xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx
+                            <br />
+                            ข้อ 3 xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx
+                        </p>
+                        <p>
+                            ผู้ใช้บริการตกลงยอมรับว่ากรณีที่ผู้ใช้บริการสมัครหรือยื่นคำขอใช้บริการอื่นใดที่
+                            เกี่ยวเนื่องกับการใช้บริการ xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxxx หรือบริการอื่นใดที่ผู้ให้บริการจะเปิดให้บริการในอนาคต ผู้ใช้บริการยังต้องปฏิบัติตาม
+                            ข้อตกลงและเงื่อนไขการใช้บริการที่ฉบับนี้ทุกประการ
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" data-dismiss="modal" id="btnTermsModalAccept">@Resources.Apps_Utility.BTN_ACCEPT</button>
+                        <button class="btn btn-danger" data-dismiss="modal" id="btnTermsModalDecline">@Resources.Apps_Utility.BTN_DECLINE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageScripts {
+    <script language="javascript">
+        $(function () {
+            uploadControl.functions.init();
+
+            $("#chkMEA").change(function () {
+                $("#MEAControl").toggle();
+                uploadControl.functions.renderUploaders();
+            });
+
+            $("#chkMWA").change(function () {
+                $("#MWAControl").toggle();
+                uploadControl.functions.renderUploaders();
+            });
+
+            $('input[name=mwaAddressOption]').change(function () {
+                uploadControl.functions.renderUploaders();
+            });
+
+            $('input[name=meaAddressOption]').change(function () {
+                uploadControl.functions.renderUploaders();
+            });
+
+            $("#btnTermsModalAccept").click(function (e) {
+                document.getElementById("chkSubmit").checked = true;
+            });
+
+            $("#btnTermsModalDecline").click(function (e) {
+                document.getElementById("chkSubmit").checked = false;
+            });
+
+            $('#reqProvince').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_PROVINCE',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Provinces")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#reqAmphur').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_AMPHUR',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Amphurs")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $('#reqProvince').val()
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#reqTambol').select2({
+                allowClear: true,
+                placeholder: '@Resources.Apps_Utility.ADDRESS_CHOOSE_TAMBOL',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/Geo/Tambols")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            pCode: $('#reqProvince').val(),
+                            aCode: $('#reqAmphur').val()
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                }
+            });
+
+            $('#reqProvince').change(function () {
+                $("#reqAmphur").prepend("<option value='' selected='selected'></option>");
+                $("#reqTambol").prepend("<option value='' selected='selected'></option>");
+            });
+
+            $('#reqAmphur').change(function () {
+                $("#reqTambol").prepend("<option value='' selected='selected'></option>");
+            });
+
+        });
+
+        var uploadControl = {
+            controls: {
+                uploaderContainer: '#uploaderContainer',
+                uploadedFileTables: '#uploadedFileTables',
+                form: '#frmUtility',
+                formBizTaxId: '#frmUtility #bizTaxId',
+                formBizType: '#frmUtility #bizType',
+                formBizRegId: '#frmUtility #bizRegId',
+                formBizCitizenId: '#frmUtility #bizCitizenId',
+                formBizName: '#frmUtility #bizName',
+                formBizBranch: '#frmUtility #bizBranch',
+                formContactFirstName: '#frmUtility #contactFirstName',
+                formContactLastName: '#frmUtility #contactLastName',
+                formContactId: '#frmUtility #contactId',
+                formContactTel: '#frmUtility #contactTel',
+                formContactEmail: '#frmUtility #contactEmail',
+                formAddressHouseRegId: '#frmUtility #AddressHouseRegId',
+                formAddressNumber: '#frmUtility #Address',
+                formAddressMoo: '#frmUtility #JuristicMoo',
+                formAddressSoi: '#frmUtility #JuristicSoi',
+                formAddressRoad: '#frmUtility #JuristicRoad',
+                formAddressProvince: '#frmUtility #reqProvince',
+                formAddressAmphur: '#frmUtility #reqAmphur',
+                formAddressTambol: '#frmUtility #reqTambol',
+                formAddressZipCode: '#frmUtility #AddressZipCode',
+                formStatus: '#frmUtility #Status'
+            },
+            variables: {
+                uploader: Array(),
+                uploadedFiles: Array(),
+                fileGroupId: {},
+                appRequestId: String,
+                formDocuments: [
+                    {
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Juristic' ],
+                        supportMwaTypesOfAddress: [ 'Owner', 'Rent' ],
+                        supportMeaTypesOfAddress: [ 'Owner', 'Resident', 'Rent', 'Operator' ],
+                        fileTypeCode: 'CERTIFICATION_OF_COMPANY_REGISTRATION_COPY',
+                        fileTypeName: '@Resources.Apps_Utility.FILE_CERTIFICATION_OF_COMPANY_REGISTRATION_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    {
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Citizen' ],
+                        supportMwaTypesOfAddress: [ 'Owner', 'Rent' ],
+                        supportMeaTypesOfAddress: [ 'Owner', 'Resident', 'Rent', 'Operator' ],
+                        fileTypeCode: 'IDENTITY_COPY',
+                        fileTypeName: '@Resources.FileType.IDENTITY_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    {
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Citizen','@UserTypeEnum.Juristic' ],
+                        supportMwaTypesOfAddress: [ 'Owner', 'Rent' ],
+                        supportMeaTypesOfAddress: [ 'Resident' ],
+                        fileTypeCode: 'HOUSEHOLD_REGISTRATION_COPY',
+                        fileTypeName: '@Resources.Apps_Utility.FILE_HOUSEHOLD_REGISTRATION_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    {
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Citizen','@UserTypeEnum.Juristic' ],
+                        supportMwaTypesOfAddress: [ 'Rent' ],
+                        supportMeaTypesOfAddress: [ 'Rent' ],
+                        fileTypeCode: 'RENTAL_AGREEMENT_COPY',
+                        fileTypeName: '@Resources.FileType.RENTAL_AGREEMENT_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    {
+                        supportServices: [ 'MEA', 'MWA' ],
+                        supportTypes: [ '@UserTypeEnum.Citizen','@UserTypeEnum.Juristic' ],
+                        supportMwaTypesOfAddress: [ 'Owner' ],
+                        supportMeaTypesOfAddress: [ 'Owner' ],
+                        fileTypeCode: 'HOUSE_OWNER_DOCUMENT_COPY',
+                        fileTypeName: '@Resources.Apps_Utility.FILE_HOUSE_OWNER_DOCUMENT_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    {
+                        supportServices: [ 'MEA' ],
+                        supportTypes: [ '@UserTypeEnum.Citizen' ],
+                        supportMwaTypesOfAddress: [],
+                        supportMeaTypesOfAddress: [ 'Owner', 'Resident', 'Rent', 'Operator' ],
+                        fileTypeCode: 'HOUSEHOLD_REGISTRATION_OF_APPLICANT_COPY',
+                        fileTypeName: '@Resources.Apps_Utility.FILE_MEA_HOUSEHOLD_REGISTRATION_OF_APPLICANT_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },{
+                        supportServices: [ 'MEA' ],
+                        supportTypes: [ '@UserTypeEnum.Citizen','@UserTypeEnum.Juristic' ],
+                        supportMwaTypesOfAddress: [],
+                        supportMeaTypesOfAddress: [ 'Operator' ],
+                        fileTypeCode: 'CERTIFICATION_OF_OPERATOR_COPY',
+                        fileTypeName: '@Resources.Apps_Utility.FILE_MEA_CERTIFICATION_OF_OPERATOR_COPY',
+                        fileGroup: 'ATTACHMENTS',
+                        file: null,
+                        uploader: null,
+                        container: '#uploaderContainer',
+                        required: true,
+                        rules: {
+                            customrequiredif: {
+                                dependentproperty: 'Status',
+                                targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                            },
+                            messages: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                            }
+                        }
+                    },
+                    @if (type == UserTypeEnum.Juristic)
+                    {
+                        for (int i = 0; i < juristic.CommitteeInformation.Committees.Length; i++)
+                        {
+                            var committee = juristic.CommitteeInformation.Committees[i];
+                            <text>
+                            {
+                                committeeIdx: @i,
+                                supportTypes: [ '@UserTypeEnum.Juristic' ],
+                                fileTypeCode: 'IDENTITY_COPY',
+                                fileTypeName: '@Resources.Apps_Utility.APPS_ATTACH_COPY_OF_CITIZEN_CARD @committee.Title@committee.Name @committee.LastName',
+                                fileGroup: 'COMMITTEES',
+                                extras: {
+                                    'committee_title': '@committee.Title',
+                                    'committee_name': '@committee.Name',
+                                    'committee_lastname': '@committee.LastName'
+                                },
+                                file: null,
+                                uploader: null,
+                                container: '#committee-@(i)-container',
+                                rules: {
+                                    customrequiredif: {
+                                        dependentproperty: 'Status',
+                                        targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                    },
+                                    messages: {
+                                        customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_ATTACHFILES'
+                                    }
+                                }
+                            },
+                            </text>
+                        }
+                    }
+                ]
+            },
+            functions: {
+                init: function () {
+                    $(uploadControl.controls.form + ' button[type=submit]').ladda('bind');
+                    $(uploadControl.controls.form).ajaxForm({
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        clearForm: false,
+                        beforeSubmit: function (data, jqForm, options) {
+                            if ($(uploadControl.controls.formStatus).val() == '@ApplicationStatusV2Enum.DRAFT.ToString()') {
+                                $.ladda('stopAll');
+                                return true;
+                            }
+
+                            var accepted = jqForm.validate().form();
+
+                            // check terms & conditions
+                            if (accepted && !document.getElementById('chkSubmit').checked) {
+                                $("#termsModal").modal('show');
+                                $.ladda('stopAll');
+                                accepted = false;
+                            }
+
+                            return accepted;
+                        },
+                        customData: function (data, jqForm, options) {
+                            var l = $(uploadControl.controls.form + ' button[type=submit]').ladda();
+                            l.ladda('start');
+
+                            var committeeData = {};
+                            committeeData['COMMITTEE_TOTAL'] =  @(juristic != null ? juristic.NumberOfCommittee : 0);
+                            for (var i = 0; i < committeeData['COMMITTEE_TOTAL']; i++) {
+                                committeeData['COMMITTEE_' + i + '_SELECTED'] = document.getElementById("chkboxCommittee_" + i).checked;
+                                committeeData['COMMITTEE_' + i + '_ID'] = $("#committeeCitizenId_" + i).val();
+                                committeeData['COMMITTEE_' + i + '_NAME'] = $('#chkboxCommittee_' + i).parent().text().trim();
+                            }
+
+                            uploadControl.variables.uploadedFiles = Array();
+                            for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                                var doc = uploadControl.variables.formDocuments[i];
+                                if (doc.file) {
+                                    var group = $.grep(uploadControl.variables.uploadedFiles, function (obj) { return obj.Description == doc.fileGroup; });
+                                    if (!group.length) {
+                                        group = {
+                                            FileGroupID: uploadControl.variables.fileGroupId[doc.fileGroup],
+                                            Description: doc.fileGroup,
+                                            Files: Array()
+                                        };
+                                        uploadControl.variables.uploadedFiles.push(group);
+                                    }
+                                    else {
+                                        group = group[0];
+                                    }
+                                    doc.file.FileTypeCode = doc.fileTypeCode;
+                                    group.Files.push(doc.file);
+                                }
+                            }
+
+                            var data = {
+                                ApplicationID: @appID,
+                                Status: $(uploadControl.controls.formStatus).val(),
+                                Data: {
+                                    APPLICATION_REQUEST: {
+                                        GroupName: "APPLICATION_REQUEST",
+                                        Data: {
+                                            REQUEST_MEA: document.getElementById("chkMEA").checked,
+                                            REQUEST_MWA: document.getElementById("chkMWA").checked
+                                        }
+                                    },
+                                    APPLICANT_INFORMATION: {
+                                        GroupName: "APPLICANT_INFORMATION",
+                                        Data: {
+                                            BIZ_TAX_ID: $(uploadControl.controls.formBizTaxId).val(),
+                                            BIZ_TYPE: $(uploadControl.controls.formBizType).val(),
+                                            BIZ_REGISTRATION_ID: $(uploadControl.controls.formBizRegId).val(),
+                                            BIZ_CITIZEN_ID: $(uploadControl.controls.formBizCitizenId).val(),
+                                            BIZ_NAME: $(uploadControl.controls.formBizName).val(),
+                                            BIZ_BRANCH: $(uploadControl.controls.formBizBranch).val()
+                                        }
+                                    },
+                                    CONTACT_INFORMATION: {
+                                        GroupName: "CONTACT_INFORMATION",
+                                        Data: {
+                                            CONTACT_FIRSTNAME: $(uploadControl.controls.formContactFirstName).val(),
+                                            CONTACT_LASTNAME: $(uploadControl.controls.formContactLastName).val(),
+                                            CONTACT_ID: $(uploadControl.controls.formContactId).val(),
+                                            CONTACT_TEL: $(uploadControl.controls.formContactTel).val(),
+                                            CONTACT_EMAIL: $(uploadControl.controls.formContactEmail).val()
+                                        }
+                                    },
+                                    ADDRESS_INFORMATION: {
+                                        GroupName: "ADDRESS_INFORMATION",
+                                        Data: {
+                                            ADDRESS_LAT: $("#currentLat").val(),
+                                            ADDRESS_LNG: $("#currentLng").val(),
+                                            ADDRESS_HOUSE_REGISTRATION_ID: $(uploadControl.controls.formAddressHouseRegId).val(),
+                                            ADDRESS_NUMBER: $(uploadControl.controls.formAddressNumber).val(),
+                                            ADDRESS_MOO: $(uploadControl.controls.formAddressMoo).val(),
+                                            ADDRESS_SOI: $(uploadControl.controls.formAddressSoi).val(),
+                                            ADDRESS_ROAD: $(uploadControl.controls.formAddressRoad).val(),
+                                            ADDRESS_PROVINCE: $("#reqProvince option:selected").text(),
+                                            ADDRESS_PROVINCE_ID: $("#reqProvince").val(),
+                                            ADDRESS_AMPHUR: $("#reqAmphur option:selected").text(),
+                                            ADDRESS_AMPHUR_ID: $("#reqAmphur").val(),
+                                            ADDRESS_TAMBOL: $("#reqTambol option:selected").text(),
+                                            ADDRESS_TAMBOL_ID: $("#reqTambol").val(),
+                                            ADDRESS_ZIP_CODE: $(uploadControl.controls.formAddressZipCode).val(),
+                                            MWA_ADDRESS_OPTION: $('input[name="mwaAddressOption"]:checked').val(),
+                                            MEA_ADDRESS_OPTION: $('input[name="meaAddressOption"]:checked').val()
+                                        }
+                                    },
+                                    @if (type == UserTypeEnum.Juristic)
+                                    {
+                                        <text>
+                                    COMMITTEE_INFORMATION: {
+                                        GroupName: "COMMITTEE_INFORMATION",
+                                        Data: committeeData
+                                    }
+                                    </text>
+                                    }
+                                },
+                                UploadedFiles: uploadControl.variables.uploadedFiles
+                            };
+
+
+
+                            if (document.getElementById("chkMWA").checked) {
+                                data.Data.MWA_INFORMATION = {
+                                    GroupName: 'MWA_INFORMATION',
+                                    Data: {
+                                        BRANCH_ID: $('#mwaBranches').val(),
+                                        BRANCH: $('#mwaBranches option:selected').text()
+                                    }
+                                };
+                            }
+
+                            options.data = JSON.stringify(data);
+                        },
+                        error: function (xhr, status, error, $form) {
+                            var data = xhr.responseJSON;
+                            $.ladda('stopAll');
+                            notify('error', data.Message);
+                        },
+                        success: function (responseText, statusText, xhr, $form) {
+                            var data = xhr.responseJSON;
+                            uploadControl.functions.renderUploadTable();
+                            $('.multi_container').not(':eq(0)').remove()
+                            $('.multi_container a.remove-request-file').hide();
+
+                            $.ladda('stopAll');
+                            notify('success', data.Message);
+                        }
+                    });
+
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        var $container = $(doc.container);
+
+                        var $row = $('<div class="row" style="display: none;"></div>');
+                        var $col = $('<div class="col-md-12 form-group"></div>');
+                        $row.append($col);
+                        if (doc.required) {
+                            $col.append('<label>' + doc.fileTypeName + ' <span class="text-danger">*</span></label>');
+                        }
+                        else {
+                            $col.append('<label>' + doc.fileTypeName + '</label>');
+                        }
+                        var $input = $('<input type="text" id="form-document-' + i + '" name="form-document-' + i + '" class="btn btn-default" />');
+                        $input.data('filetypecode', doc.fileTypeCode);
+                        $input.data('filetypename', doc.fileTypeName);
+                        if (doc.extras) {
+                            for (var key in doc.extras) {
+                                var extra = doc.extras[key];
+                                $input.data(key, extra);
+                            }
+                        }
+                        $col.append($input);
+                        $container.append($row);
+
+                        doc.uploader = $input;
+                        doc.uploader.uploader({
+                            url: {
+                                fileConsumerKey: '@System.Configuration.ConfigurationManager.AppSettings["FileConsumerKey"]',
+                                fileServiceUrl: '@Url.Action("Upload","File", new { Area="", language = ViewBag.CurrentLang })', 
+                                fileSignedInfoUrl: '@Url.Content("~/Api/V2/File/SignedFileInfo")',
+                                fileUploadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceUploadTokenPath"]',
+                                fileDownloadTokenUrl: '@System.Configuration.ConfigurationManager.AppSettings["FileServiceDownloadTokenPath"]',
+                                fileOldUploadUrl: '@Url.Content("~/Api/v2/FileExplorer/List")'
+                            },
+                            events: {
+                                onFileSelected: uploadControl.functions.onFileSelected
+                            }
+                        });
+                    }
+
+                    uploadControl.functions.setAddressFromWS();
+                    uploadControl.functions.getDraft();
+                    uploadControl.functions.formValidate();
+                    uploadControl.functions.renderUploaders();
+                    uploadControl.functions.renderUploadTable()
+                },
+                renderUploaders: function () {
+                    var currentServices = Array();
+                    var mwaTypeOfAddress = $('input[name=mwaAddressOption]:checked').val();
+                    var meaTypeOfAddress = $('input[name=meaAddressOption]:checked').val();
+                    if ($('#chkMEA').prop('checked'))
+                        currentServices.push('MEA');
+                    if ($('#chkMWA').prop('checked'))
+                        currentServices.push('MWA');
+
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        var uploader = $(doc.uploader);
+
+                        // Support Services
+                        var serviceSupported = true;
+                        if (doc.supportServices) {
+                            serviceSupported = $.grep(currentServices, function (obj) { return doc.supportServices.indexOf(obj) >= 0; }).length > 0;
+                        }
+                        var typeSupported = true;
+                        if (doc.supportTypes) {
+                            typeSupported = $.grep(doc.supportTypes, function (obj) { return obj == '@type.ToString()'; } ).length > 0;
+                        }
+                        var mwaTypeOfAddressSupported = true;
+                        if (doc.supportMwaTypesOfAddress) {
+                            mwaTypeOfAddressSupported = $.grep(doc.supportMwaTypesOfAddress, function (obj) { return obj == mwaTypeOfAddress; } ).length > 0;
+                        }
+                        mwaTypeOfAddressSupported = $('#chkMWA').prop('checked') && mwaTypeOfAddressSupported;
+                        var meaTypeOfAddressSupported = true;
+                        if (doc.supportMeaTypesOfAddress) {
+                            meaTypeOfAddressSupported = $.grep(doc.supportMeaTypesOfAddress, function (obj) { return obj == meaTypeOfAddress; } ).length > 0;
+                        }
+                        meaTypeOfAddressSupported = $('#chkMEA').prop('checked') && meaTypeOfAddressSupported;
+                        var committeeSupport = true;
+                        if (doc.committeeIdx != null && doc.committeeIdx >= 0) {
+                            var $chk = $('#chkboxCommittee_' + doc.committeeIdx);
+                            committeeSupport = $chk.prop('checked');
+                        }
+                        if (!doc.file && serviceSupported && typeSupported && (mwaTypeOfAddressSupported || meaTypeOfAddressSupported) && committeeSupport) {
+                            if (doc.required) {
+                                uploader.rules('remove'); // clear rules
+                                uploader.rules('add', doc.rules);
+                            }
+                            uploader.closest('.row').show();
+                        }
+                        else {
+                            if (doc.required) {
+                                uploader.rules('remove'); // clear rules
+                            }
+                            uploader.closest('.row').hide();
+                        }
+                    }
+                },
+                renderUploadTable: function () {
+                    var $body = $(uploadControl.controls.uploadedFileTables + ' > tbody');
+                    $body.html(''); // clear table
+
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        var file = doc.file;
+
+                        if (file != null) {
+                            var $tr = $('<tr />');
+                            // row number column
+                            $tr.append('<td class="text-center">' + (i + 1) + '</td>');
+                            var $td = $('<td />');
+                            // file column
+                            var $aFile = $('<a href="javascript:void(0)" class="file-link">' + file.FileName + '</a>');
+                            $aFile.data('file', file);
+                            $td.append($aFile);
+                            $tr.append($td);
+                            // file type column
+                            if (file.FileTypeName) {
+                                $td = $('<td class="text-center">' + file.FileTypeName + '</td>');
+                            } else {
+                                $td = $('<td class="text-center">' + file.Extras.filetypename + '</td>');
+                            }
+                            //$td = $('<td class="text-center" />');
+                            $tr.append($td); // empty type
+                            // file size column
+                            $td = $('<td class="text-center">' + plupload.formatSize(file.FileSize) + '</td>');
+                            $tr.append($td);
+                            // actions column
+                            $td = $('<td class="text-center"></td>');
+                            var $del_btn = $('<button type="button" class="btn btn-xs btn-danger">@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>');
+                            $del_btn.data('file', file);
+                            $del_btn.click(function () {
+                                var $this = $(this);
+                                var file = $this.data('file');
+                                uploadControl.functions.removeFile(file.FileID);
+                            });
+                            $td.append($del_btn);
+                            $tr.append($td);
+
+                            $body.append($tr);
+                        }
+                    }
+                },
+                onFileSelected: function (data) {
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        if ($(doc.uploader).prop('id') == data.UploaderID) {
+                            doc.file = data;
+                            break;
+                        }
+                    }
+                    //uploadControl.variables.uploadedFiles.push(data);
+                    uploadControl.functions.renderUploaders();
+                    uploadControl.functions.renderUploadTable();
+                },
+                removeFile: function (fileId) {
+                    for (var i = 0; i < uploadControl.variables.formDocuments.length; i++) {
+                        var doc = uploadControl.variables.formDocuments[i];
+                        if (doc.file != null && doc.file.FileID == fileId) {
+                            for (var group in uploadControl.variables.fileGroupId) {
+                                if (group == doc.fileGroup) {
+                                    $.ajax({
+                                        url: '@Url.Content("~/Api/V2/Applications/Requests")/' + uploadControl.variables.appRequestId + "/files/uploaded/" + fileId + "/" + uploadControl.variables.fileGroupId[group],
+                                        type: 'DELETE',
+                                        success: function (res) { console.log("file is deleted from server"); }
+                                    });
+                                }
+                            }
+                            $(doc.uploader).val('');
+                            doc.file = null;
+                            break;
+                        }
+                    }
+                    uploadControl.functions.renderUploaders();
+                    uploadControl.functions.renderUploadTable();
+                },
+                getDraft: function () {
+                    $.get('@Url.Content("~/Api/V2/ApplicationRequests/" + appID + "/Draft")', function (data) {
+                        if (data) {
+                            uploadControl.variables.appRequestId = data.ApplicationRequestID;
+
+                            if (data.Data.APPLICATION_REQUEST.Data.REQUEST_MEA == "true") {
+                                $('#chkMEA').prop('checked', true).trigger('change');
+                            }
+                            if (data.Data.APPLICATION_REQUEST.Data.REQUEST_MWA == "true") {
+                                $('#chkMWA').prop('checked', true).trigger('change');
+                                $('#mwaBranches').val(data.Data.MWA_INFORMATION.Data.BRANCH_ID).trigger('change');
+                            }
+
+                            $('#bizRegId').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_REGISTRATION_ID);
+                            $('#JuristicName').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_NAME);
+                            $('#bizBranch').val(data.Data.APPLICANT_INFORMATION.Data.BIZ_BRANCH);
+
+                            $('#contactFirstName').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_FIRSTNAME);
+                            $('#contactLastName').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_LASTNAME);
+                            $('#contactId').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_ID);
+                            $('#contactTel').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_TEL);
+                            $('#contactEmail').val(data.Data.CONTACT_INFORMATION.Data.CONTACT_EMAIL);
+
+                            $('#currentLat').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_LAT);
+                            $('#currentLng').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_LNG);
+                            $('#AddressHouseRegId').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_HOUSE_REGISTRATION_ID);
+                            $('#Address').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_NUMBER);
+                            $('#JuristicMoo').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_MOO);
+                            $('#JuristicSoi').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_SOI);
+                            $('#JuristicRoad').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_ROAD);
+
+                            $('#reqProvince')
+                                .prepend("<option value='" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_PROVINCE_ID + "'>" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_PROVINCE + "</option>")
+                                .val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_PROVINCE_ID);
+                            $('#reqAmphur')
+                                .prepend("<option value='" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_AMPHUR_ID + "'>" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_AMPHUR + "</option>")
+                                .val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_AMPHUR_ID);
+                            $('#reqTambol')
+                                .prepend("<option value='" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_TAMBOL_ID + "'>" + data.Data.ADDRESS_INFORMATION.Data.ADDRESS_TAMBOL + "</option>")
+                                .val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_TAMBOL_ID);
+                            $('#AddressZipCode').val(data.Data.ADDRESS_INFORMATION.Data.ADDRESS_ZIP_CODE);
+
+                            @if (type == UserTypeEnum.Juristic)
+                            {
+                                <text>
+                            var numberOfCommittee = data.Data.COMMITTEE_INFORMATION.Data["COMMITTEE_TOTAL"];
+
+                            for (var i = 0; i < numberOfCommittee; i++)
+                            {
+                                var strSelected = data.Data.COMMITTEE_INFORMATION.Data["COMMITTEE_" + i + "_SELECTED"];
+                                var strID = data.Data.COMMITTEE_INFORMATION.Data["COMMITTEE_" + i + "_ID"];
+                                var strName = data.Data.COMMITTEE_INFORMATION.Data["COMMITTEE_" + i + "_NAME"];
+
+                                if (strSelected == "true")
+                                {
+                                    document.getElementById("chkboxCommittee_" + i).checked = true;
+                                }
+                                $("#committeeCitizenId_" + i).val(strID);
+                            }
+                            </text>
+                            }
+
+                            if (data.UploadedFiles != null && data.UploadedFiles.length > 0) {
+                                for (var i = 0; i < data.UploadedFiles.length; i++) {
+                                    var group = data.UploadedFiles[i];
+                                    if (group.Description == "ATTACHMENTS") {
+                                        uploadControl.variables.fileGroupId[group.Description] = group.FileGroupID;
+                                        for (var j = 0; j < group.Files.length; j++) {
+                                            var file = group.Files[j];
+                                            for (var k = 0; k < uploadControl.variables.formDocuments.length; k++) {
+                                                var doc = uploadControl.variables.formDocuments[k];
+                                                if (doc.fileTypeCode == file.FileTypeCode) {
+                                                    doc.file = file;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        uploadControl.variables.fileGroupId[group.Description] = group.FileGroupID;
+                                        for (var j = 0; j < group.Files.length; j++) {
+                                            var file = group.Files[j];
+                                            for (var k = 0; k < uploadControl.variables.formDocuments.length; k++) {
+                                                var doc = uploadControl.variables.formDocuments[k];
+                                                if (doc.fileTypeCode == file.FileTypeCode &&
+                                                    doc.fileTypeName.includes(file.Extras.COMMITTEE_TITLE) &&
+                                                    doc.fileTypeName.includes(file.Extras.COMMITTEE_NAME) &&
+                                                    doc.fileTypeName.includes(file.Extras.COMMITTEE_LASTNAME)) {
+                                                    doc.file = file;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                uploadControl.functions.renderUploaders();
+                                uploadControl.functions.renderUploadTable();
+                            }
+                        }
+                    });
+                },
+                formValidate: function () {
+                    $(uploadControl.controls.form).validate({
+                        invalidHandler: function (e, validator) {
+                            $.ladda('stopAll');
+                        },
+                        rules: {
+                            bizTaxId: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            bizRegId: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            JuristicName: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            bizBranch: {
+                                regex: '[0-9]{5}'
+                            },
+                            ContactFirstName: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            ContactLastName: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            ContactIdentityID: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            contactTel: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            contactEmail: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            currentLat: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            currentLng: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            Address: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            reqProvince: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            reqAmphur: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            reqTambol: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            },
+                            AddressZipCode: {
+                                customrequiredif: {
+                                    dependentproperty: 'Status',
+                                    targetvalue: '@ApplicationStatusV2Enum.WAITING.ToString()'
+                                }
+                            }
+                        },
+                        messages: {
+                            bizTaxId: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.BIZ_TAX_ID@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            bizRegId: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.BIZ_REG_ID@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            JuristicName: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.BIZ_NAME@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            bizBranch: {
+                                regex: '@Resources.Apps_Utility.FIELD_REQUIRED_BIZ_BRANCH'
+                            },
+                            ContactFirstName: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_FIRSTNAME@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            ContactLastName: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_LASTNAME@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            ContactIdentityID: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_ID@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            contactTel: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_TEL@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            contactEmail: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.CONTACT_EMAIL@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            currentLat: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_LATLNG'
+                            },
+                            currentLng: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_LATLNG'
+                            },
+                            Address: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.ADDRESS_NUMBER@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            },
+                            reqProvince: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_PROVINCE'
+                            },
+                            reqAmphur: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_AMPHUR'
+                            },
+                            reqTambol: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_SELECTFORM@Resources.Apps_Utility.ADDRESS_TAMBOL'
+                            },
+                            AddressZipCode: {
+                                customrequiredif: '@Resources.Apps_Utility.FIELD_REQUIRED_1@Resources.Apps_Utility.ADDRESS_ZIP_CODE@Resources.Apps_Utility.FIELD_REQUIRED_2'
+                            }
+                        }
+                    });
+                },
+                committeeUploadFiles: function (idx) {
+                    uploadControl.functions.renderUploaders();
+                },
+                setAddressFromWS: function () {
+                    var pCode, aCode;
+                    $.ajax({
+                        url: '@Url.Content("~/Api/v2/Geo/GetProvinceId")',
+                        dataType: 'json',
+                        data: function () {
+                            return query = '@Model.Province'
+                        },
+                        success: function (pData) {
+                            pCode = pData.results;
+
+                            $.ajax({
+                                url: '@Url.Content("~/Api/v2/Geo/GetAmphurId")?pCode=' + pCode + '&query=@HttpUtility.UrlEncode(Model.Amphur)',
+                                dataType: 'json',
+                                success: function (aData) {
+                                    aCode = aData.results;
+
+                                    $.ajax({
+                                        url: '@Url.Content("~/Api/v2/Geo/GetTambolId")?pCode=' + pCode + '&aCode=' + aCode + '&query=@HttpUtility.UrlEncode(Model.Tumbol)',
+                                        dataType: 'json',
+                                        success: function (tData) {
+                                            return $("#reqTambol")
+                                                .prepend("<option value='" + tData.results + "'>@Model.Tumbol</option>")
+                                                .val(tData.results);
+                                        }
+                                    });
+
+                                    return $("#reqAmphur")
+                                        .prepend("<option value='" + aCode + "'>@Model.Amphur</option>")
+                                        .val(aCode);
+                                }
+                            });
+
+                            return $("#reqProvince")
+                                .prepend("<option value='" + pCode + "'>@Model.Province</option>")
+                                .val(pCode);
+                        }
+                    });
+                }
+            }
+        };
+    </script>
+    <script>
+        function initMap() {
+            var initLatLng = new google.maps.LatLng(13.753790, 100.520465);
+            var mapOptions = {
+                zoom: 12,
+                center: initLatLng
+            }
+
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+            if ($("#currentLat").val() != null && $("#currentLng").val() != null) {
+                var currentLatLng = new google.maps.LatLng($("#currentLat").val(), $("#currentLng").val());
+                var marker = new google.maps.Marker({
+                    position: initLatLng,
+                    draggable: true
+                });
+            } else {
+                var marker = new google.maps.Marker({
+                    position: initLatLng,
+                    draggable: true
+                });
+            }
+
+            $("#btnMapModalOk").click(function () {
+                var currentPosition = marker.getPosition().toString();
+                latlng = currentPosition.match(/\((-?[0-9\.]+), (-?[0-9\.]+)\)/);
+                var lat = parseFloat(latlng[1]).toFixed(3);
+                var lng = parseFloat(latlng[2]).toFixed(3);
+                $('#currentLat').val(lat);
+                $('#currentLng').val(lng);
+
+                $.get('@Url.Content("~/Api/v2/MWA/GetBranch")', {
+                    lat: lat,
+                    lng: lng
+                }, function (data) {
+                    $('#mwaBranches').val(data.id).trigger('change');
+                }, 'json');
+
+            });
+
+            $('#mapModal').on('shown.bs.modal', function () {
+                var currentCenter = map.getCenter();
+                google.maps.event.trigger(map, "resize");
+                map.setCenter(currentCenter);
+            });
+
+            //map.setCenter(marker.position);
+            marker.setMap(map);
+        }
+
+
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC85LX9fy6pv1cEHFSxmFZU0G81nwwHKIM&callback=initMap"></script>
+}
+

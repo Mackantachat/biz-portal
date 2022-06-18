@@ -1,0 +1,135 @@
+﻿@model BizPortal.ViewModels.V2.ApplicationRequestViewModel
+@using Resource = BizPortal.Resources
+@using BizPortal.Service;
+
+
+@section Styles {
+    <link href="@Url.Content("~/Content/Theme/biz-v2/css/fonts/font-awesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+}
+
+<form id="frmStaffChat" method="post" action="@Url.Content("~/Api/V2/Applications/Chat")">
+    @Html.HiddenFor(o => o.ApplicationID, new { id = "ApplicationIDForStaffChat" })
+    @Html.HiddenFor(o => o.ApplicationRequestID, new { id = "ApplicationRequestIDForStaffChat" })
+    <div class="panel-body chat-panel">
+        <ul class="chat">
+            @{
+                if (Model.Chats != null && Model.Chats.Length > 0)
+                {
+                    foreach (var item in Model.Chats)
+                    {
+                        string userType = item.ChatUserType.ToLower();
+                        if (userType == "citizen" || userType == "juristicperson")
+                        {
+                            <li class="left ">
+                                <span class="chat-img pull-left">
+                                    <i class="fa fa-user icon-user-chat"></i>
+                                </span>
+                                <div class="chat-body ">
+                                    <div class="header">
+                                        <strong class="primary-font">@item.ChatUserFullName</strong> <small class="pull-right text-muted">
+                                            <span class="fa fa-clock-o"></span> @item.CreateDate.ToLocalTime().ToString("dd/MM/yyyy, HH.mm")
+                                        </small>
+                                    </div>
+                                    <p>
+                                        @item.ChatText
+                                    </p>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="right ">
+                                <div class="chat-body ">
+                                    <div class="header">
+                                        <small class="text-muted"><span class="fa fa-clock-o"></span> @item.CreateDate.ToLocalTime().ToString("dd/MM/yyyy, HH.mm")</small>
+                                        <strong class="pull-right primary-font">@item.ChatUserFullName</strong>
+                                    </div>
+                                    <p class="text-right">
+                                        @item.ChatText
+                                    </p>
+                                </div>
+                            </li>
+                        }
+                    }
+                }
+            }
+
+        </ul>
+    </div>
+    <div class="panel-body">
+        <label>@Resource.ApplicationStatusRequests.LABEL_TEXTAREA_CHAT</label>
+        <textarea class="form-control" id="txtUserChatText" name="ChatText"></textarea>
+        <button type="submit" id="btnChat" class="pull-right btn btn-primary" style="margin-top:5px;">@Resource.ApplicationStatusRequests.BTN_SUBMIT_CHAT</button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    var requestChat = {
+        controls: {
+            form: '#frmStaffChat',
+            formApplicationID: '#frmStaffChat #ApplicationIDForStaffChat',
+            formApplicationRequestID: '#frmStaffChat #ApplicationRequestIDForStaffChat',
+            formChatText: '#frmStaffChat #txtUserChatText',
+            chatBox: '.chat-panel .chat'
+        },
+        variables: {
+
+        },
+        functions: {
+            init: function () {
+                $(requestChat.controls.form + ' #btnChat').ladda('bind');
+                $(requestChat.controls.form).ajaxForm({
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    clearForm: true,
+                    customData: function (data, jqForm, options) {
+                        var l = $(requestChat.controls.form + ' #btnChat').ladda();
+                        l.ladda('start');
+
+                        options.data = JSON.stringify({
+                            ApplicationID: $(requestChat.controls.formApplicationID).val(),
+                            ApplicationRequestID: $(requestChat.controls.formApplicationRequestID).val(),
+                            ChatText: $(requestChat.controls.formChatText).val()
+                        });
+                    },
+                    error: function (xhr, status, error, $form) {
+                        var data = xhr.responseJSON;
+                        $.ladda('stopAll');
+                        notify('error', data.Message);
+                    },
+                    success: function (responseText, statusText, xhr, $form) {
+                        var data = xhr.responseJSON;
+                        requestChat.functions.bindingLastChat(data.Data);
+                        $.ladda('stopAll');
+                        swal({
+                            title: decodeURIComponent(data.Message),
+                            text: '',
+                            type: 'success',
+                        });
+                    }
+                });
+            },
+            bindingLastChat: function (chatList) {
+                if (chatList != null && chatList.length > 0) {
+                    var lastIndex = chatList.length-1;
+                    var lastChatRow = chatList[lastIndex];
+                    var chatHtml = '<li class="right ">\
+                                        <div class="chat-body ">\
+                                            <div class="header">\
+                                                <small class="text-muted"><span class="fa fa-clock-o"></span> @DateTime.Now.ToLocalTime().ToString("dd/MM/yyyy, HH.mm")</small>\
+                                                <strong class="pull-right primary-font">' + lastChatRow.ChatUserFullName + '</strong>\
+                                            </div>\
+                                            <p class="text-right">' + lastChatRow.ChatText + '</p>\
+                                        </div>\
+                                    </li>';
+
+                    $(requestChat.controls.chatBox).append(chatHtml);
+                }
+            }
+        }
+    };
+
+    $(document).ready(function () {
+        requestChat.functions.init();
+    });
+</script>

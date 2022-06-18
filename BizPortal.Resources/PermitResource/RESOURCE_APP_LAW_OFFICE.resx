@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APP_LAW_OFFICE" xml:space="preserve">
+    <value>ข้อมูลคําขอขึ้นทะเบียนสํานักงานทนายความ</value>
+    <comment>SectionGroup: APP_LAW_OFFICE</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_LAW_OFFICE_INFO_SECTION</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_REQUEST_DATETIME" xml:space="preserve">
+    <value>วันที่มายื่นเรื่องก่อตั้ง ณ สภาทนายความ</value>
+    <comment>FieldID: F36_01_01</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_LAWYER_SECTION" xml:space="preserve">
+    <value>ข้อมูลทนายความประจำสำนักงาน</value>
+    <comment>Section: APP_LAW_OFFICE_LAWYER_SECTION</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_LAWYER_SECTION_EMPTY" xml:space="preserve">
+    <value>&lt;div&gt;ไม่มีข้อมูล ข้อมูลทนายความประจำสำนักงาน ในขณะนี้ คุณสามารถเพิ่มข้อมูลข้อมูลทนายความประจำสำนักงาน&lt;/div&gt;
+&lt;div&gt;โดยคลิกที่ปุ่ม"เพิ่มข้อมูลทนายความประจำสำนักงาน"&lt;/div&gt;</value>
+    <comment>Section: APP_LAW_OFFICE_LAWYER_SECTION</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_LAWYER_SECTION_ADD" xml:space="preserve">
+    <value>เพิ่มข้อมูลทนายความประจำสำนักงาน</value>
+    <comment>Section: APP_LAW_OFFICE_LAWYER_SECTION</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_LAWYER_SECTION_SUBMIT" xml:space="preserve">
+    <value>เพิ่มข้อมูลทนายความประจำสำนักงาน</value>
+    <comment>Section: APP_LAW_OFFICE_LAWYER_SECTION</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_LAWYER_SECTION_TITLE" xml:space="preserve">
+    <value>คำนำหน้า</value>
+    <comment>FieldID: F36_01_02</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_LAWYER_SECTION_FIRSTNAME" xml:space="preserve">
+    <value>ชื่อ</value>
+    <comment>FieldID: F36_01_03</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_LAWYER_SECTION_LASTNAME" xml:space="preserve">
+    <value>นามสกุล</value>
+    <comment>FieldID: F36_01_04</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_LAWYER_SECTION_LICENSE_NUMBER" xml:space="preserve">
+    <value>เลขที่ใบอนุญาต</value>
+    <comment>FieldID: F36_01_05</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_2" xml:space="preserve">
+    <value>ข้อมูลกิจการ</value>
+    <comment>Section: APP_LAW_OFFICE_INFO_SECTION_2</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_2_TOTAL_AMOUNT" xml:space="preserve">
+    <value>จำนวนรวม (คน)</value>
+    <comment>FieldID: F36_01_06</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_2_IS_REQUEST" xml:space="preserve">
+    <value>การขอขึ้นทะเบียนสำนักงานข้าพเจ้า</value>
+    <comment>FieldID: F36_01_07</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_2_IS_REQUEST_TEXT" xml:space="preserve">
+    <value>ขอรับใบสำคัญการขึ้นทะเบียน โดยได้ชำระค่าธรรมเนียม จำนวน 1,200.- บาท มาด้วยแล้ว</value>
+    <comment>FieldID: F36_01_07</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_2_CONFIRM" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า</value>
+    <comment>FieldID: F36_01_08</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_2_CONFIRM_INFO" xml:space="preserve">
+    <value>&lt;div class="row"&gt;
+    &lt;div class="col-xs-12"&gt;เงื่อนไขและหลักฐานที่ต้องใช้ประกอบคำขอ&lt;/div&gt;
+    &lt;div class="col-xs-1" style="text-align: center; padding: 0px"&gt;1.&lt;/div&gt;
+    &lt;div class="col-xs-11" style="padding: 0px"&gt;ผู้ยื่นคำขอต้องเกี่ยวข้องเป็นเจ้าของสำนักงาน หรือหัวหน้าสำนักงาน หรือเป็นผู้มีอำนาจกระทำการแทนสำนักงานในกรณีที่เป็น นิติบุคคล&lt;/div&gt;
+    &lt;div class="col-xs-1" style="text-align: center; padding: 0px"&gt;2.&lt;/div&gt;
+    &lt;div class="col-xs-11" style="padding: 0px"&gt;สำเนาภาพถ่ายบัตรประจำตัวตัวทนายความ สำเนาบัตรประชาชนของผู้ยื่นคำขอ อย่างละ 1 ชุด&lt;/div&gt;
+    &lt;div class="col-xs-1" style="text-align: center; padding: 0px"&gt;3.&lt;/div&gt;
+    &lt;div class="col-xs-11" style="padding: 0px"&gt;รูปถ่ายสีหน้าตรง ไม่ใส่หมวก สวมชุดครุยเนติบัณฑิตยสภา ของผู้ยื่นคำขอ ขนาด 2 นิ้ว จำนวน 2 รูป&lt;/div&gt;
+    &lt;div class="col-xs-1" style="text-align: center; padding: 0px"&gt;4.&lt;/div&gt;
+    &lt;div class="col-xs-11" style="padding: 0px"&gt;ภายถ่ายขนาดโปสการ์ดแสดงที่ตั้งสำนักงาน โดยให้เห็นป้ายชื่อสำนักงานอย่างชัดเจน จำนวน 1 รูป ถ่ายชื่อสำนักงานให้เห็น        เลขที่บ้าน 1 รูป ถ่ายในสำนักงาน 1 รูป&lt;/div&gt;
+    &lt;div class="col-xs-1" style="text-align: center; padding: 0px"&gt;5.&lt;/div&gt;
+    &lt;div class="col-xs-11" style="padding: 0px"&gt;หนังสือยินยอมให้ใช้สถานที่ หรือหลักฐานแสดงถึงสิทธิในสถานที่ซึ่งใช้เป็นที่ตั้งสำนักงาน จำนวน 1 ชุด&lt;/div&gt;
+    &lt;div class="col-xs-1" style="text-align: center; padding: 0px"&gt;6.&lt;/div&gt;
+    &lt;div class="col-xs-11" style="padding: 0px"&gt;สำเนาทะเบียนบ้าน สำเนาบัตรประชาชน ที่ใช้เป็นที่ตั้งสำนักงาน จำนวน 1 ชุด&lt;/div&gt;
+    &lt;div class="col-xs-1" style="text-align: center; padding: 0px"&gt;7.&lt;/div&gt;
+    &lt;div class="col-xs-11" style="padding: 0px"&gt;กรณียื่นคำขอขึ้นทะเบียนสำนักงานเป็นนิติบุคคล&lt;/div&gt;
+    &lt;div class="col-xs-1 col-xs-offset-1" style="text-align: center; padding: 0px"&gt;7.1&lt;/div&gt;
+    &lt;div class="col-xs-10" style="padding: 0px"&gt;หนังสือรับรองการจดทะเบียนเป็นนิติบุคคล จำนวน 1 ชุด&lt;/div&gt;
+    &lt;div class="col-xs-1 col-xs-offset-1" style="text-align: center; padding: 0px"&gt;7.2&lt;/div&gt;
+    &lt;div class="col-xs-10" style="padding: 0px"&gt;บัญรายชื่อผู้ถือหุ้น จำนวน 1 ชุด&lt;/div&gt;
+    &lt;div class="col-xs-1 col-xs-offset-1" style="text-align: center; padding: 0px"&gt;7.3&lt;/div&gt;
+    &lt;div class="col-xs-10" style="padding: 0px"&gt;ตัวอย่างตราสำคัญจดทะเบียน&lt;/div&gt;
+&lt;/div&gt;</value>
+    <comment>FieldID: F36_01_08</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_2_CONFIRM_TRUE" xml:space="preserve">
+    <value>ข้าพเจ้าขอรับรองว่า ข้อมูลที่ข้าพเจ้าให้ไว้ต่อสภาทนายความเป็นจริงทั้งสิ้น หากเป็นเท็จยินยอมให้สภาทนายความดำเนินการตามที่เห็นสมควรได้ทันที และข้าพเจ้ายินดีให้ปฏิบัติตามกฎ ระเบียบ ที่สำนักงานทะเบียนสภาทนายความได้ประกาศใช้แล้ว หรือที่จะประกาศใช้ต่อไปทุกประการ</value>
+    <comment>FieldID: F36_01_08</comment>
+  </data>
+  <data name="APP_LAW_OFFICE_INFO_SECTION_2_SIGNATURE" xml:space="preserve">
+    <value>&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+    (ลายมือชื่อ) ............................................. ผู้ยื่นคำขอ
+&lt;/div&gt;
+&lt;div class="col-xs-12 col-md-6 col-md-offset-3 center"&gt;
+            (................................................)
+&lt;/div&gt;</value>
+    <comment>FieldID: F36_01_09</comment>
+  </data>
+</root>

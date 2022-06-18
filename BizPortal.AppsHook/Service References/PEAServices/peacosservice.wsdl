@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Insert_Req">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationReqId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserNameLogin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="REQ_NO_EGA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Customer_Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Card_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TitleCustomer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NameCustomer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SurnameCustomer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BirthDayCustomer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TAX_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Branch_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EntityName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IsVAT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TSIC_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileAddress_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileAddress_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileHouse_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileVillage_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileRoom_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileFloor_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileRoad_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileLane_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileSoi_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileTMB_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileMobile_Number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProfileEmail_Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationAddress_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationAddress_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationHouse_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationVillage_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationRoom_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationFloor_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationRoad_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationLane_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationSoi_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LocationTMB_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InstallPointLatitude" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InstallPointLongitude" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="METER_TYPE_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="METER_SIZE_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerSign" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_ReqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_ReqResult" type="tns:insert_response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="insert_response">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicationReqId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="REQ_NO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OFFICE_NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Jobstatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobStatus_Desc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OFFICE_CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Select_Tsic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tsic_Tgsc_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tsic_Tgsc_Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Select_TsicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Select_TsicResult" type="tns:tsic_response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="tsic_response">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="tsic_List" type="tns:ArrayOfTsic" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTsic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tsic" type="tns:tsic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tsic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SeqSeqRowNum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tsic_Tgsc_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tsic_Tgsc_Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Insert_ReqSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Req" />
+  </wsdl:message>
+  <wsdl:message name="Insert_ReqSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_ReqResponse" />
+  </wsdl:message>
+  <wsdl:message name="Select_TsicSoapIn">
+    <wsdl:part name="parameters" element="tns:Select_Tsic" />
+  </wsdl:message>
+  <wsdl:message name="Select_TsicSoapOut">
+    <wsdl:part name="parameters" element="tns:Select_TsicResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PeaCosServiceSoap">
+    <wsdl:operation name="Insert_Req">
+      <wsdl:input message="tns:Insert_ReqSoapIn" />
+      <wsdl:output message="tns:Insert_ReqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Select_Tsic">
+      <wsdl:input message="tns:Select_TsicSoapIn" />
+      <wsdl:output message="tns:Select_TsicSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PeaCosServiceSoap" type="tns:PeaCosServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Insert_Req">
+      <soap:operation soapAction="http://tempuri.org/Insert_Req" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Select_Tsic">
+      <soap:operation soapAction="http://tempuri.org/Select_Tsic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PeaCosServiceSoap12" type="tns:PeaCosServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Insert_Req">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Req" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Select_Tsic">
+      <soap12:operation soapAction="http://tempuri.org/Select_Tsic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PeaCosService">
+    <wsdl:port name="PeaCosServiceSoap" binding="tns:PeaCosServiceSoap">
+      <soap:address location="http://e-services.pea.co.th/pea_cos/peacosservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PeaCosServiceSoap12" binding="tns:PeaCosServiceSoap12">
+      <soap12:address location="http://e-services.pea.co.th/pea_cos/peacosservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,414 @@
+﻿@model ArticleViewModel
+@{
+    ViewBag.Title = BizPortal.Resources.Article.ARTICLE_HEADER_ADD;
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+
+    SelectList emptyList = new SelectList(new SelectListItem[] { });
+}
+
+@section ContentHeader{
+    <i class="fa fa-file-text-o fa fa-2x "></i>
+    <h4 class="m-t-xs inline padder">@BizPortal.Resources.Article.ARTICLE_HEADER_ADD</h4>
+}
+
+@using (Html.BeginForm("Add", "Article", FormMethod.Post, new { id = "frmArticleAdd" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ArticleSysName)
+        @Html.CustomTextBoxFor(model => model.ArticleSysName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ArticleSysName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ArticleName)
+        @Html.CustomTextBoxFor(model => model.ArticleName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ArticleName, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.SectionID)
+            @Html.DropDownListFor(model => model.SectionID, (SelectList)ViewBag.Sections, new { @style = "width: 100%;" })
+            @Html.ValidationMessageFor(model => model.SectionID, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.CategoryID)
+            @Html.DropDownListFor(model => model.CategoryID, (SelectList)ViewBag.Categories, new { @style = "width: 100%;" })
+            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.ApplicationID)
+            @Html.DropDownListFor(model => model.ApplicationID, (SelectList)ViewBag.Aapplication, new { @class = "form-control", @style = "width: 100%;" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ArticleIntroText)
+        @Html.CustomTextAreaFor(model => model.ArticleIntroText, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ArticleBody)
+        <div id="ArticleBodyEditor"></div>
+        @Html.HiddenFor(model => model.ArticleBody)
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.PreviousArticleID)
+            @Html.DropDownListFor(model => model.PreviousArticleID, emptyList, new { @class = "form-control", @style = "width: 100%;" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.NextArticleID)
+            @Html.DropDownListFor(model => model.NextArticleID, emptyList, new { @class = "form-control", @style = "width: 100%;" })
+        </div>
+    </div>
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(model => model.Published) @BizPortal.Resources.Global.LABEL_PUBLISH
+        </label>
+    </div>
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(model => model.Unlisted) @BizPortal.Resources.Article.ARTICLE_UNLIST
+        </label>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.StartPublishing)
+            <div class="input-group m-b">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                @Html.CustomTextBoxFor(model => model.StartPublishing, new { @class = "form-control datepicker-input" })
+                @Html.ValidationMessageFor(model => model.StartPublishing, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.FinishPublishing)
+            <div class="input-group m-b">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                @Html.CustomTextBoxFor(model => model.FinishPublishing, new { @class = "form-control datepicker-input" })
+                @Html.ValidationMessageFor(model => model.FinishPublishing, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Tags)
+            @Html.DropDownListFor(model => model.Tags, emptyList, new { @class = "form-control", @style = "width: 100%;", multiple = true })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.HiddenFor(model => model.ThumbnailID)
+                <button type="button" class="btn btn-xs btn-info" id="btnUploadThumbnail">@Html.Raw(BizPortal.Resources.Global.BTN_UPLOAD_THUMBNAIL)</button>
+                <br class="pb10" />
+                <img class="img-responsive" id="imgThumbnail" style="max-width: 400px; max-height: 400px;" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-s-md btn-primary">@Html.Raw(BizPortal.Resources.Global.BTN_ADD)</button>
+                <a href="@Url.Action("Index","Article",new { Area="Manage"})" class="btn btn-s-md btn-default">@Html.Raw(BizPortal.Resources.Global.BTN_BACK)</a>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Modal -->
+<div class="modal" id="setIDModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Set ID</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Enter ID</label>
+                    <input type="text" id="setIDModalIDText" class="form-control" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="setIDtoElement()">Set</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+    var $selectedCtrl;
+    function setIDtoElement() {
+        var id = $('#setIDModalIDText').val();
+        if ($selectedCtrl)
+            $selectedCtrl.prop('id', id);
+        $selectedCtrl = null;
+        $('#setIDModal').modal('hide');
+    }
+
+    function bindCategoryOptions(data) {
+        var $cate = $('#CategoryID');
+        $cate.find('option[value!=""]').remove();
+
+        if (data) {
+            for (var i = 0; i < data.length; i++) {
+                var type = data[i];
+                $opt = $('<option />');
+
+                $opt.attr('value', type.Value);
+                $opt.text(type.Text);
+                $cate.append($opt);
+            }
+        }
+
+        // Reset Selected
+        $cate.val('');
+        $cate.select2();
+    }
+
+    var $fileUploader;
+
+    $(document).ready(function () {
+        $('#frmArticleAdd').validate().settings.ignore = [];
+        $('#frmArticleAdd').submit(function () {
+           // e.preventDefault();
+            //showLoader(true);
+
+            $('#ArticleBody').val($('#ArticleBodyEditor').summernote('code'));
+
+            @*$.post($(this).attr('action'), $(this).serialize(), function (res) {
+                if (res.Status == true) {
+                    swal('', res.Message, 'success');
+                }
+                else {
+                    swal('', res.Message, 'error');
+                }
+                showLoader(false);
+                }).fail(function () {
+                showLoader(false);
+                swal('', '@BizPortal.Resources.Global.MSG_ERROR', 'error');
+            });
+
+            return false;*@
+        });
+
+        $('#StartPublishing, #FinishPublishing').datetimepicker();
+        $('#ArticleBodyEditor').summernote({
+            height: 400,
+            toolbar: [
+                ['style', ['style']],
+                ['para', ['ol', 'ul', 'paragraph', 'height']],
+                ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                //['font', ['fontname', 'fontsize', 'color']],
+                ['font', ['fontsize', 'color']],
+                ['insert', ['picture', 'link', 'video']],
+                ['hr', ['hr']],
+                ['table', ['table']],
+                ['misc', ['fullscreen', 'codeview', 'undo', 'redo']],
+                //['mybutton', ['setID', 'cleaner']]
+                ['mybutton', ['setID']]
+            ],
+            buttons: {
+                setID: function (context) {
+                    var ui = $.summernote.ui;
+
+                    // create button
+                    var button = ui.button({
+                        contents: '<i class="fa fa-key"/>',
+                        tooltip: 'Set ID to element',
+                        click: function () {
+                            if (document.getSelection().anchorNode) {
+                                $selectedCtrl = $(document.getSelection().anchorNode.parentNode).parents("*[id!='']:eq(0)");
+                                var id = $selectedCtrl.prop('id');
+                                $('#setIDModalIDText').val(id);
+                            }
+                            $('#setIDModal').modal('show');
+                        }
+                    });
+
+                    return button.render();   // return button as jquery object
+                }
+            },
+            callbacks: {
+                onImageUpload: function (files, editor, welEditable) {
+                    data = new FormData();
+                    data.append("file", files[0]);
+                    $.ajax({
+                        data: data,
+                        type: "POST",
+                        url: "@Url.Action("FormUpload", "File", new { @id = 0 })?type=article-image",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            var imgNode = document.createElement('img');
+                            imgNode.setAttribute('src', '@Url.Action("Get", "File", new { @area = "" })/' + data.FileID);
+                            imgNode.setAttribute('class', 'img-responsive');
+                            $('#ArticleBodyEditor').summernote('insertNode', imgNode);
+                        }
+                    });
+                }
+            }
+        });
+
+        $('#ApplicationID').select2();
+
+        $('#PreviousArticleID').select2({
+            allowClear: true,
+            placeholder: '@BizPortal.Resources.Article.ARTICLE_PREVIOUS_PLACEHOLDER',
+            ajax: {
+                url: "@Url.Content("~/Api/Article/GroupOptions")",
+                dataType: 'json',
+                delay: 250,
+                data: function (data) {
+                    return {
+                        query: data.term
+                    };
+                },
+                results: function (data, page) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+
+        $('#NextArticleID').select2({
+            allowClear: true,
+            placeholder: '@BizPortal.Resources.Article.ARTICLE_NEXT_PLACEHOLDER',
+            ajax: {
+                url: "@Url.Content("~/Api/Article/GroupOptions")",
+                dataType: 'json',
+                delay: 250,
+                data: function (data) {
+                    return {
+                        query: data.term
+                    };
+                },
+                results: function (data, page) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+
+
+
+     $('#Tags').select2({
+            allowClear: true,
+            placeholder: '@BizPortal.Resources.Article.ARTICLE_TGAS_PLACEHOLDER',
+            tags: true,
+            createSearchChoice: function (term, data) {
+                if ($(data).filter(function () {
+                  return this.text.localeCompare(term) === 0;
+                }).length === 0) {
+                    return {
+                        id: '$new_' + term,
+                        text: term
+                    };
+                }
+            },
+            ajax: {
+                url: "@Url.Content("~/Api/Tag/Options")",
+                dataType: 'json',
+                delay: 250,
+                data: function (data) {
+                    return {
+                        query: data.term
+                    };
+                },
+                results: function (data, page) {
+                    return data;
+                },
+                cache: true
+            }
+        });
+
+    var $section = $('#SectionID');
+    $section.select2();
+    $section.change(function () {
+        var val = $(this).val();
+        if (val) {
+            select2Spinner('CategoryID', true);
+            $.get('@Url.Content("~/Api/Category/Options")/' + val,
+            function (data) {
+                bindCategoryOptions(data);
+                select2Reset('CategoryID');
+            });
+        }
+        else {
+            bindCategoryOptions(null);
+        }
+    });
+    $('#CategoryID').select2();
+
+    $fileUploader = new plupload.Uploader({
+        runtimes: 'html5,flash,silverlight,html4',
+
+        browse_button: 'btnUploadThumbnail', // you can pass in id...
+        multi_selection: false,
+        chunk_size: '1mb',
+
+        url: "@Url.Action("PLUpload", "File", new { @id = 0 })?type=article-thumbnail",
+
+        filters: {
+            max_file_size: '5mb',
+            mime_types: [
+                { title: "Image files", extensions: "jpg,gif,png" }
+            ]
+        },
+
+        // Flash settings
+        flash_swf_url: '@Url.Content("~/Script/plupload/Moxie.swf")',
+
+        // Silverlight settings
+        silverlight_xap_url: '@Url.Content("~/Script/plupload/Moxie.xap")',
+
+        init: {
+            FilesAdded: function (up, files) {
+                if (confirm('@BizPortal.Resources.Global.MSG_UPLOAD_THUMBNAIL_CONFIRM')) {
+                    var $bbtn = $('#btnUploadThumbnail');
+                    $bbtn.html('@Html.Raw(@BizPortal.Resources.Global.BTN_UPLOADING_THUMBNAIL)');
+                    $bbtn.prop('disabled', true);
+                    $fileUploader.start();
+                }
+                else
+                    $fileUploader.splice();
+            },
+
+            FileUploaded: function (up, file, info) {
+                // Called when a file has finished uploading
+                var json = eval('(' + info.response + ')');
+                if (json.Result.Status) {
+                    $('#frmArticleAdd #ThumbnailID').val(json.Result.FileID);
+
+                    $('#imgThumbnail').attr('src', '@Url.Action("Get", "File", new { @area = "" })/' + json.Result.FileID);
+
+                    var $bbtn = $('#btnUploadThumbnail');
+                    $bbtn.html('@Html.Raw(BizPortal.Resources.Global.BTN_UPLOAD_THUMBNAIL)');
+                    $bbtn.prop('disabled', false);
+                }
+            },
+
+            Error: function (up, err) {
+                alert('@BizPortal.Resources.Global.MSG_UPLOAD_THUMBNAIL_FAILED');
+            }
+        }
+    });
+
+    $fileUploader.init();
+    });
+    </script>
+}

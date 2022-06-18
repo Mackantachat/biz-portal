@@ -1,0 +1,2056 @@
+﻿@using Resource = BizPortal.Resources;
+@using BizPortal.Utils.Extensions;
+@using BizPortal.DAL.MongoDB;
+@using BizPortal.ViewModels.Report;
+
+@{
+    ViewBag.Title = @Resource.GlobalV2.TITLE_PAGE_BUSINESS_INFO;
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+@{
+    bool isShowSection = BizPortal.Service.BusinessService.IsShowSectionChoice1And2();
+    bool isUsingLogicCheckBoxCanCheckedOnlyOne = BizPortal.Service.BusinessService.IsCheckBoxCanCheckedOnlyOne();
+}
+
+@section PageStyles {
+    <style>
+        .ps .icon.checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #5CA1BF;
+            border-radius: 3px;
+        }
+
+        .ps .icon.checkbox-disabled {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #DEDEDE;
+            background: #DEDEDE;
+            border-radius: 3px;
+        }
+
+        a.disable-info {
+            color: #5CA1BF;
+            margin-left: 0.5em;
+        }
+
+        .ps .fa.fa-user {
+            color: #DEDEDE;
+            font-size: 16.5px;
+        }
+
+        .external-link span {
+            color: #6F6F6F;
+        }
+
+        .external-link i.fa.fa-user {
+            color: #DEDEDE;
+            font-size: 25px;
+        }
+
+        .mr-checkbox-disble {
+            margin-right: 54px;
+        }
+    </style>
+}
+<section class="banner-subpage" style="background: transparent url('@Url.Content("~/Content/SingleForm-frontis/v2/images/landing.png")') no-repeat center center;
+        background-size: cover;"></section>
+
+<section class="landing-component">
+    @{
+        string viewName = "PermitListCancel";
+    }
+    <div class="container">
+        <h2>ยกเลิกใบอนุญาต/งานบริการ</h2>
+        <div class="row">
+            <div class="D-10 T-12 D-offset-1 T-offset-0">
+                <hr>
+                <div class="header">
+                    กรุณาเลือกเรื่องที่ทำการติดต่อ
+                </div>
+                @if (IdentityType == UserTypeEnum.Citizen)
+                {
+                    if (isShowSection)
+                    {
+                        <div class="choice-block">
+                            <div class="choice-item" data-target="1">
+                                <input type="radio" class="biz-radio choice" id="choice-1" name="choice" value="1"><label for="choice-1"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/c1.svg")"></object> เริ่มต้นธุรกิจ</label>
+                            </div>
+                            <form action="@Url.ServiceAction("List2", "SingleForm", new { area = "Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                  method="post" class="form-landing">
+                                <div class="choice-form choice-form-1" data-id="1">
+                                    <input type="hidden" name="bid" value="@BusinessGroupID.STARTINGBUSINESS" />
+                                    <input type="hidden" name="appList" />
+                                    <input type="hidden" name="viewName" value="@viewName" />
+                                    <p class="title">เลือกใบอนุญาตที่คุณต้องการ</p>
+                                    <div class="form">
+                                        <a href="https://ereg.dbd.go.th/ERegistMemberWeb/nonmemberpages/home.xhtml" class="external-link" target="_blank">
+                                            <i class="fa fa-external-link"></i><span>ขอจดทะเบียนนิติบุคคล (ผ่านระบบ "E-Registration" ของกรมพัฒนาธุรกิจการค้า)</span>
+                                        </a>
+                                        <input type="radio" class="biz-radio" id="c4" name="g1" value="" disabled="">
+                                        <label for="c4">
+                                            <span>ขอจดทะเบียนพาณิชย์ (ที่เขต/เทศบาล/อบต. ที่ร้านค้าตั้งอยู่) </span>
+                                            <a target="_blank"
+                                               href="https://www.info.go.th/#!/th/search/329/%E0%B8%88%E0%B8%94%E0%B8%97%E0%B8%B0%E0%B9%80%E0%B8%9A%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C/" class="disable-info">
+                                                <i class="fa fa-info-circle"></i> ดูรายละเอียด
+                                            </a>
+                                        </label>
+                                        <a href="@Url.ServiceAction("EmployerRegis", "SSO", new { area = "Apps" })" class="external-link" target="_blank">
+                                            <i class="fa fa-external-link"></i><span>ขอขึ้นทะเบียนนายจ้าง</span>
+                                        </a>
+                                        <a href="@Url.ServiceAction("EmployeeRegis", "SSO", new { area = "Apps" })" class="external-link" target="_blank">
+                                            <i class="fa fa-external-link"></i><span>ขอขึ้นทะเบียนลูกจ้าง</span>
+                                        </a>
+                                        <input type="checkbox" class="biz-checkbox app-item" id="c5" name="APP26" value="แบบฟอร์มขอจดทะเบียนภาษีมูลค่าเพิ่ม"><label for="c5">ขอจดทะเบียนภาษีมูลค่าเพิ่ม</label>
+                                    </div>
+                                    <div class="ps text-right">
+                                        <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                        <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                        <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                        <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                                    </div>
+                                    <hr>
+                                    <div class="btn-hold">
+                                        <button type="submit"
+                                                style="margin: 0 10px"
+                                                class="button-icon primary">
+                                            ดำเนินการต่อ
+                                        </button>
+                                        @*<button href="@Url.BizAction("Business", "Quiz", new { area = "", id = "STARTINGBUSINESS", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                        type="button"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary btn-goto-quiz">
+                                    <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                                </button>*@
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                }
+                @if (isShowSection)
+                {
+                    <div class="choice-block">
+                        <div class="choice-item" data-target="2">
+                            <input type="radio" class="biz-radio choice" id="choice-2" name="choice" value="2"><label for="choice-2"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/c2.svg")"></object> ขอใช้สาธารณูปโภค</label>
+                        </div>
+                        <form action="@Url.ServiceAction("List2", "SingleForm", new { area = "Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                              method="post" class="form-landing">
+                            <div class="choice-form choice-form-2" data-id="2">
+                                <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                                <div class="form">
+                                    <input type="hidden" name="bid" value="@BusinessGroupID.UTILITIES" />
+                                    <input type="hidden" name="appList" />
+                                    <input type="hidden" name="viewName" value="@viewName" />
+                                    <input type="checkbox" class="biz-checkbox bkk app-item" id="a3" name="APP25" value="แบบฟอร์มขอใช้ไฟฟ้า" disabled><label for="a3">ขอใช้ไฟฟ้า เขตกทม. นนทบุรี สมุทรปราการ</label>
+                                    <input type="checkbox" class="biz-checkbox bkk app-item" id="a4" name="APP26" value="แบบฟอร์มขอใช้น้ำประปา" disabled><label for="a4">ขอใช้น้ำประปา เขตกทม. นนทบุรี สมุทรปราการ</label>
+                                    <input type="checkbox" class="biz-checkbox province app-item" id="a5" name="APP28" value="แบบฟอร์มขอใช้ไฟฟ้า (ภูมิภาค)" disabled><label for="a5">ขอใช้ไฟฟ้า เขตภูมิภาค</label>
+                                    <input type="checkbox" class="biz-checkbox province app-item" id="a6" name="APP210" value="แบบฟอร์มขอใช้น้ำประปา (ภูมิภาค)" disabled><label for="a6">ขอใช้น้ำประปา เขตภูมิภาค</label>
+                                    <input type="checkbox" class="biz-checkbox app-item" id="a7" name="APP27" value="ขอใช้บริการโทรศัพท์พื้นฐาน และอินเทอร์เน็ต" disabled><label for="a7">ขอใช้โทรศัพท์/อินเทอร์เน็ต</label>
+                                    <input type="checkbox" class="biz-checkbox" id="a8" name="z3" value="" disabled>
+                                    <label for="a8">
+                                        ขอใช้ไฟฟ้าชั่วคราว เขตกทม. นนทบุรี สมุทรปราการ (ที่การไฟฟ้าสาขา ในพื้นที่ ที่ขอใช้ไฟฟ้า)
+                                        <a target="_blank"
+                                           href="https://info.go.th/#!/th/search/7627/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%A7%E0%B8%A2%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%95%E0%B9%88%E0%B8%B3%E0%B9%83%E0%B8%99%E0%B8%9E%E0%B8%B7%E0%B9%89%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%88%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B9%81%E0%B8%A3%E0%B8%87%E0%B8%94%E0%B8%B1%E0%B8%99%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AD%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A8%20%E0%B8%82%E0%B8%99%E0%B8%B2%E0%B8%94%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%80%E0%B8%81%E0%B8%B4%E0%B8%99%2015(45)%20%E0%B9%81%E0%B8%AD%E0%B8%A1%E0%B9%81%E0%B8%9B%E0%B8%A3%E0%B9%8C%201%20%E0%B9%80%E0%B8%9F%E0%B8%AA%202%20%E0%B8%AA%E0%B8%B2%E0%B8%A2%20%E0%B9%81%E0%B8%A5%E0%B8%B0%203%20%E0%B9%80%E0%B8%9F%E0%B8%AA%204%20%E0%B8%AA%E0%B8%B2%E0%B8%A2%20%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%94%E0%B8%B3%E0%B9%80%E0%B8%99%E0%B8%B4%E0%B8%99%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%99%E0%B8%AD%E0%B8%81/" class="disable-info">
+                                            <i class="fa fa-info-circle"></i> ดูรายละเอียด
+                                        </a>
+                                    </label>
+                                    <input type="checkbox" class="biz-checkbox" id="a9" name="z3" value="" disabled>
+                                    <label for="a9">
+                                        ขอใช้ไฟฟ้าชั่วคราว เขตภูมิภาค (ที่การไฟฟ้าสาขา ในพื้นที่ ที่ขอใช้ไฟฟ้า)
+                                        <a target="_blank"
+                                           href="https://info.go.th/#!/th/search/69297/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%A0%E0%B8%97%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%A1%E0%B8%B4%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2%20%E0%B8%82%E0%B8%99%E0%B8%B2%E0%B8%94%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%80%E0%B8%81%E0%B8%B4%E0%B8%99%2030%20%E0%B9%81%E0%B8%AD%E0%B8%A1%E0%B8%9B%E0%B9%8C%20%E0%B9%83%E0%B8%99%E0%B9%80%E0%B8%82%E0%B8%95%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%20%E0%B8%81%E0%B8%A3%E0%B8%93%E0%B8%B5%E0%B8%8A%E0%B8%B3%E0%B8%A3%E0%B8%B0%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B8%98%E0%B8%A3%E0%B8%A3%E0%B8%A1%E0%B9%80%E0%B8%99%E0%B8%B5%E0%B8%A2%E0%B8%A1%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%A3%E0%B8%A7%E0%B8%88%E0%B8%AA%E0%B8%AD%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%94%E0%B8%B4%E0%B8%99%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%A0%E0%B8%B2%E0%B8%A2%E0%B9%83%E0%B8%99%20(%E0%B8%99%E0%B8%B4%E0%B8%95%E0%B8%B4%E0%B8%9A%E0%B8%B8%E0%B8%84%E0%B8%84%E0%B8%A5)/" class="disable-info">
+                                            <i class="fa fa-info-circle"></i> ดูรายละเอียด
+                                        </a>
+                                    </label>
+                                    <input type="checkbox" class="biz-checkbox" id="a10" name="z3" value="" disabled>
+                                    <label for="a10">
+                                        ขอใช้น้ำประปาชั่วคราว เขตกทม. นนทบุรี สมุทรปราการ (ที่การประปาสาขา ในพื้นที่ ที่ขอใช้น้ำประปา)
+                                        <a target="_blank"
+                                           href="https://info.go.th/#!/th/search/12270/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%9B%E0%B8%B2%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%20%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A7%E0%B8%B2%E0%B8%87%E0%B8%97%E0%B9%88%E0%B8%AD%E0%B8%88%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%99%E0%B9%89%E0%B8%B3%20(%E0%B8%A1%E0%B8%B2%E0%B8%95%E0%B8%A3%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%82%E0%B8%99%E0%B8%B2%E0%B8%94%E0%B9%80%E0%B8%AA%E0%B9%89%E0%B8%99%E0%B8%9C%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%A8%E0%B8%B9%E0%B8%99%E0%B8%A2%E0%B9%8C%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87%201%C2%BD%20%E0%B8%99%E0%B8%B4%E0%B9%89%E0%B8%A7%20%E2%80%93%208%20%E0%B8%99%E0%B8%B4%E0%B9%89%E0%B8%A7)/" class="disable-info">
+                                            <i class="fa fa-info-circle"></i> ดูรายละเอียด
+                                        </a>
+                                    </label>
+                                    <input type="checkbox" class="biz-checkbox" id="a11" name="z3" value="" disabled>
+                                    <label for="a11">
+                                        ขอใช้น้ำประปาชั่วคราว เขตภูมิภาค (ที่การประปาสาขา ในพื้นที่ ที่ขอใช้น้ำประปา)
+                                        <a target="_blank"
+                                           href="https://info.go.th/#!/th/search/12578/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%9B%E0%B8%B2%E0%B8%96%E0%B8%B2%E0%B8%A7%E0%B8%A3/" class="disable-info">
+                                            <i class="fa fa-info-circle"></i> ดูรายละเอียด
+                                        </a>
+                                    </label>
+                                </div>
+                                <div class="ps text-right">
+                                    <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                    <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                    <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                    <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                                </div>
+                                <hr>
+                                <div class="btn-hold">
+                                    <button type="submit"
+                                            style="margin: 0 10px"
+                                            class="button-icon primary">
+                                        ดำเนินการต่อ
+                                    </button>
+                                    @*<button href="@Url.BizAction("Business", "Quiz", new { area = "", id = "UTILITIES", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                    type="button"
+                                    style="margin: 0 10px"
+                                    class="button-icon primary btn-goto-quiz">
+                                <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                            </button>*@
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="3">
+                        <input type="radio" class="biz-radio choice" id="choice-3" name="choice" value="3"><label for="choice-3"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/c3.svg")"></object> ธุรกิจร้านอาหารและเครื่องดื่ม</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+                        <div class="choice-form choice-form-3" data-id="3">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.RESTAURANT" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="RESTAURANT-12" name="APP312" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="RESTAURANT-12">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox c4-lt app-item" id="RESTAURANT-1" name="APP301" value="@AppSystemNameTextConst.APP_SELL_FOOD_LT_200_CANCEL"><label for="RESTAURANT-1">ขอยกเลิกหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)</label>
+                                <input type="checkbox" class="biz-checkbox c4-ge app-item" id="RESTAURANT-2" name="APP302" value="@AppSystemNameTextConst.APP_SELL_FOOD_GE_200_CANCEL"><label for="RESTAURANT-2">ขอยกเลิกใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตขายสุรา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตขายยาสูบ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="RESTAURANT-3" name="APP303" value=""><label for="RESTAURANT-3">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับอาหาร เครื่องดื่ม น้ำดื่ม</label>
+                                <div id="RESTAURANT-3-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทอาหาร เครื่องดื่ม น้ำดื่ม:</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_DANGER_FOOD_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="RESTAURANT-3-@i" name="APP303-@(i + 1)" value="@AppSystemNameTextConst.ALL_APP_DANGER_FOOD_CANCEL[i]" />
+                                        <label for="RESTAURANT-3-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_ITEM_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                                <input type="checkbox" class="biz-checkbox app-item" id="RESTAURANT-4" name="APP319" value=""><label for="RESTAURANT-4">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับการบริการ</label>
+                                <div id="RESTAURANT-4-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ:</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_BUSINESS_BAD_HEALTH_SERVICE_RESTAURANT_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="RESTAURANT-4-@i" name="APP3@(19+i)" value="@AppSystemNameTextConst.ALL_APP_BUSINESS_BAD_HEALTH_SERVICE_RESTAURANT_CANCEL[i]" />
+                                        <label for="RESTAURANT-4-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_RESTAURANT_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตประกอบกิจการร้านวีดิทัศน์ (คาราโอเกะ) </span>
+                                </a>
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="h11" name="APP325" value="@AppSystemNameTextConst.APP_SELL_PRODUCT_IN_PUBLIC_AREA_CANCEL"><label for="h11">ขอยกเลิกใบอนุญาตจำหน่ายสินค้าในที่หรือทางสาธารณะ</label>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบรับแจ้งการประกอบกิจการควบคุมประเภทที่ 2 (500 ลิตรขึ้นไป แต่ไม่เกิน 1,000 ลิตร)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตประกอบกิจการสถานที่เก็บรักษาก๊าซปิโตรเลียมเหลว ประเภทสถานที่ใช้ลักษณะที่สาม (1,000 ลิตรขึ้นไป)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตตั้งสถานบริการในท้องที่กรุงเทพมหานคร (ที่กองบัญชาการตำรวจนครบาล)</span>
+                                </a>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Restaurant", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="4">
+                        <input type="radio" class="biz-radio choice" id="choice-4" name="choice" value="4"><label for="choice-4"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/c4.svg")"></object> ธุรกิจร้านค้าปลีก</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+                        <div class="choice-form choice-form-4" data-id="4">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.RETAIL" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="o20" name="APP620" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="o20">ขอปลดป้าย</label>
+                                @*<input type="checkbox" class="biz-checkbox app-item" id="o12" name="APP602" value="@AppSystemNameTextConst.APP_COMMERCIAL_CANCEL"><label for="o12">ขอยกเลิกทะเบียนพาณิชย์</label>*@
+                                <input type="checkbox" class="biz-checkbox app-item" id="RETRAILLER_APP_ELECTRONIC_COMMERCIAL" value="@AppSystemNameTextConst.APP_ELECTRONIC_COMMERCIAL_CANCEL">
+                                <label for="RETRAILLER_APP_ELECTRONIC_COMMERCIAL">ขอยกเลิกทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</label>
+                                <input type="checkbox" class="biz-checkbox c4-lt app-item" id="o16" name="APP418" value="@AppSystemNameTextConst.APP_SELL_FOOD_LT_200_CANCEL"><label for="o16">ขอยกเลิกหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)</label>
+                                <input type="checkbox" class="biz-checkbox c4-ge app-item" id="o17" name="APP419" value="@AppSystemNameTextConst.APP_SELL_FOOD_GE_200_CANCEL"><label for="o17">ขอยกเลิกใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตขายสุรา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตขายยาสูบ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตขายไพ่</label>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตประกอบกิจการให้เช่า แลกเปลี่ยน หรือจำหน่ายภาพยนตร์ และวีดิทัศน์</span>
+                                </a>
+                                @*<a target="_blank"
+           href="https://info.go.th/#!/th/search/6719/A/" class="disable-info">
+            <i class="fa fa-info-circle"></i> ดูรายละเอียดหมวดภาพยนตร์
+        </a>
+        <a target="_blank"
+           href="https://info.go.th/#!/th/search/6721/A/" class="disable-info">
+            <i class="fa fa-info-circle"></i> ดูรายละเอียดหมวดวีดิทัศน์
+        </a>*@
+                                <input type="checkbox" class="biz-checkbox app-item" id="o21" name="APP620" value=""><label for="o21">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับปิโตรเลียม ปิโตรเคมี ถ่านหิน ถ่านโค้ก และสารเคมีต่างๆ</label>
+                                <div id="o21-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_BUSINESS_BAD_HEALTH_PETROLEUM_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="o21-@i" name="APP6@(20+i)" value="@AppSystemNameTextConst.ALL_APP_BUSINESS_BAD_HEALTH_PETROLEUM_CANCEL[i]" />
+                                        <label for="o21-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_PETRO_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                                <input type="checkbox" class="biz-checkbox app-item" id="o-32" name="APP902" value=""><label for="o-32">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับหิน ดิน ทราย ซีเมนต์ หรือวัตถุที่คล้ายคลึง</label>
+                                <div id="o-32-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ:</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_BUSINESS_BAD_HEALTH_CONSTRUCTION_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="o-32-@i" name="APP9@(68+i)" value="@AppSystemNameTextConst.ALL_APP_BUSINESS_BAD_HEALTH_CONSTRUCTION_CANCEL[i]" />
+                                        <label for="o-32-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_CONST_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                                <input type="checkbox" class="biz-checkbox app-item" id="o4" name="APP430" value="@AppSystemNameTextConst.APP_DIRECT_SELL_CANCEL"><label for="o4">ขอยกเลิกจดทะเบียนการประกอบธุรกิจขายตรง</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="o5" name="APP431" value="@AppSystemNameTextConst.APP_DIRECT_MARKETING_CANCEL"><label for="o5">ขอยกเลิกทะเบียนการประกอบธุรกิจตลาดแบบตรง</label>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตขายอาหารสัตว์ควบคุมเฉพาะ (ผ่านระบบ "มาตรฐานปศุสัตว์" ของกรมปศุสัตว์)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตทำการค้าหรือหากำไรในลักษณะคนกลาง<b><u>ซึ่งสัตว์</u></b> (ผ่านระบบ "E-Movement" ของกรมปศุสัตว์)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตทำการค้าหรือหากำไรในลักษณะคนกลาง<b><u>ซึ่งซากสัตว์</u></b> (ผ่านระบบ "E-Movement" ของกรมปศุสัตว์)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตจำหน่ายปุ๋ย (ผ่านระบบ "National Single Window" ของกรมวิชาการเกษตร)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตจำหน่ายเมล็ดพันธุ์ควบคุม (ผ่านระบบ "National Single Window" ของกรมวิชาการเกษตร)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตขายยาแผนปัจจุบัน (ผ่านระบบ "SKYNET" ของสำนักงานคณะกรรมการอาหารและยา)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกจดแจ้งรายละเอียดการผลิตเพื่อขายหรือนำเข้าเพื่อขายเครื่องสำอางควบคุม (ผ่านระบบ "SKYNET"  ของสำนักงานคณะกรรมการอาหารและยา)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบรับแจ้งการประกอบกิจการควบคุมประเภทที่ 2 (500 ลิตรขึ้นไป แต่ไม่เกิน 1,000 ลิตร)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตประกอบกิจการสถานที่เก็บรักษาก๊าซปิโตรเลียมเหลว ประเภทสถานที่ใช้ลักษณะที่สาม (1,000 ลิตรขึ้นไป)</span>
+                                </a>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="5">
+                        <input type="radio" class="biz-radio choice" id="choice-5" name="choice" value="5"><label for="choice-5"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/RESORT.png")"></object> ธุรกิจรีสอร์ทขนาดเล็ก/โรงแรม</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form choice-form-5" data-id="5">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.HOTEL" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="resort9" name="APP509" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="resort9">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="resort6" name="APP506" value="@AppSystemNameTextConst.APP_HOTEL_CANCEL"><label for="resort6">ขอยกเลิกใบอนุญาตประกอบธุรกิจโรงแรม</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="resort4" name="APP504" value=""><label for="resort4">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับการบริการ</label>
+                                <div id="resort4-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ:</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_BUSINESS_BAD_HEALTH_SERVICE_HOTEL_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="resort4-@i" name="APP5@(04+i)" value="@AppSystemNameTextConst.ALL_APP_BUSINESS_BAD_HEALTH_SERVICE_HOTEL_CANCEL[i]" />
+                                        <label for="resort4-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_HOTEL_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                                <input type="checkbox" class="biz-checkbox c4-lt app-item" id="resort1" name="APP501" value="@AppSystemNameTextConst.APP_SELL_FOOD_LT_200_CANCEL"><label for="resort1">ขอยกเลิกหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)</label>
+                                <input type="checkbox" class="biz-checkbox c4-ge app-item" id="resort2" name="APP502" value="@AppSystemNameTextConst.APP_SELL_FOOD_GE_200_CANCEL"><label for="resort2">ขอยกเลิกใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="resort3" name="APP503" value=""><label for="resort3">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับอาหาร เครื่องดื่ม น้ำดื่ม</label>
+                                <div id="resort3-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทอาหาร เครื่องดื่ม น้ำดื่ม:</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_DANGER_FOOD_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="resort3-@i" name="APP3@(68+i)" value="@AppSystemNameTextConst.APP_Danger_Food[i]" />
+                                        <label for="resort3-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_ITEM_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตขายสุรา</label>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบรับแจ้งการประกอบกิจการควบคุมประเภทที่ 2 (500 ลิตรขึ้นไป แต่ไม่เกิน 1,000 ลิตร)</span>
+                                </a>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตประกอบกิจการสถานที่เก็บรักษาก๊าซปิโตรเลียมเหลว ประเภทสถานที่ใช้ลักษณะที่สาม (1,000 ลิตรขึ้นไป)</span>
+                                </a>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="6">
+                        <input type="radio" class="biz-radio choice" id="choice-6" name="choice" value="6"><label for="choice-6"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SPA.png")"></object> ธุรกิจสปา</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form choice-form-6" data-id="6">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.SPA" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="spa3" name="APP603" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="spa3">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_HEALTH_CANCEL" name="APP_HEALTH_CANCEL" value="@AppSystemNameTextConst.APP_HEALTH_CANCEL"><label for="APP_HEALTH_CANCEL">ขอยกเลิกใบอนุญาตประกอบกิจการสถานประกอบการเพื่อสุขภาพ : ประเภทกิจการ สปา</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="7">
+                        <input type="radio" class="biz-radio choice" id="choice-7" name="choice" value="7"><label for="choice-7"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/PetClinic.png")"></object> สถานพยาบาลสัตว์</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form choice-form-7" data-id="7">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.VETERINARY" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="vh4" name="APP704" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="vh4">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกหนังสืออนุมัติแผนการจัดตั้งสถานพยาบาลสัตว์</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="vh1" name="APP701" value="@AppSystemNameTextConst.APP_ANIMAL_MED_CANCEL"><label for="vh1">ขอยกเลิกใบอนุญาตให้ตั้งสถานพยาบาลสัตว์</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="vh2" name="APP702" value="@AppSystemNameTextConst.APP_ANIMAL_LICENSE_CANCEL"><label for="vh2">ขอยกเลิกใบอนุญาตดำเนินการสถานพยาบาลสัตว์</label>
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตขายอาหารสัตว์ควบคุมเฉพาะ (ผ่านระบบ "มาตรฐานปศุสัตว์" ของกรมปศุสัตว์)</span>
+                                </a>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="8">
+                        <input type="radio" class="biz-radio choice" id="choice-8" name="choice" value="8"><label for="choice-8"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/ICON_COFFEE.png")"></object> ธุรกิจ Co-Working Space</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form choice-form-8" data-id="8">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.COFFEESHOP" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="coffee4" name="APP804" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="coffee4">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox c4-lt app-item" id="coffee1" name="APP801" value="@AppSystemNameTextConst.APP_SELL_FOOD_LT_200_CANCEL"><label for="coffee1">ขอยกเลิกหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)</label>
+                                <input type="checkbox" class="biz-checkbox c4-ge app-item" id="coffee2" name="APP802" value="@AppSystemNameTextConst.APP_SELL_FOOD_GE_200_CANCEL"><label for="coffee2">ขอยกเลิกใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="9">
+                        <input type="radio" class="biz-radio choice" id="choice-9" name="choice" value="9"><label for="choice-9"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/CONSTRUCTION_BUSINESS.png")"></object> ธุรกิจก่อสร้างและรับเหมาก่อสร้าง</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form choice-form-9" data-id="9">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.CONSTRUCTION" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="cb3" name="APP903" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="cb3">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="cb2" name="APP902" value=""><label for="cb2">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับหิน ดิน ทราย ซีเมนต์ หรือวัตถุที่คล้ายคลึง</label>
+                                <div id="cb2-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ:</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_BUSINESS_BAD_HEALTH_CONSTRUCTION_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="cb2-@i" name="APP9@(68+i)" value="@AppSystemNameTextConst.ALL_APP_BUSINESS_BAD_HEALTH_CONSTRUCTION_CANCEL[i]" />
+                                        <label for="cb2-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_CONST_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="10">
+                        <input type="radio" class="biz-radio choice" id="choice-10" name="choice" value="10"><label for="choice-10"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/ELECTRONIC.png")"></object> ธุรกิจซ่อมและขายอุปกรณ์อิเล็กทรอนิกส์</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form choice-form-10" data-id="10">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.ELECTRONIC" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="el3" name="APP903" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="el3">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="el2" name="APP902" value="@AppSystemNameTextConst.APP_RADIO_CANCEL"><label for="el2">ขอยกเลิกใบอนุญาตให้ค้า/ให้ค้าเพื่อการซ่อมแซมซึ่งเครื่องวิทยุคมนาคม</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="e14" name="APP904" value=""><label for="e14">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการอื่น ๆ</label>
+                                <div id="e14-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ:</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_BUSINESS_BAD_HEALTH_OTHER_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="e14-@i" name="APP904-@(i + 1)" value="@AppSystemNameTextConst.ALL_APP_BUSINESS_BAD_HEALTH_OTHER_CANCEL[i]" />
+                                        <label for="e14-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_OTHER_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="11">
+                        <input type="radio" class="biz-radio choice" id="choice-11" name="choice" value="11"><label for="choice-11"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/FITNESS.png")"></object> ธุรกิจฟิตเนส</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form choice-form-11" data-id="11">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.FITNESS" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="fn4" name="APP1104" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="fn4">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="fn5" name="APP1105" value=""><label for="fn5">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับการบริการ</label>
+                                <div id="fn5-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_BUSINESS_BAD_HEALTH_SERVICE_FITNESS_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="fn5-@i" name="APP11@(05+i)" value="@AppSystemNameTextConst.ALL_APP_BUSINESS_BAD_HEALTH_SERVICE_FITNESS_CANCEL[i]" />
+                                        <label for="fn5-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_FITNESS_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                                <input type="checkbox" class="biz-checkbox c4-lt app-item" id="fn1" name="APP1101" value="@AppSystemNameTextConst.APP_SELL_FOOD_LT_200_CANCEL"><label for="fn1">ขอยกเลิกหนังสือรับรองการแจ้งจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (ไม่เกิน 200 ตร.ม.)</label>
+                                <input type="checkbox" class="biz-checkbox c4-ge app-item" id="fn2" name="APP1102" value="@AppSystemNameTextConst.APP_SELL_FOOD_GE_200_CANCEL"><label for="fn2">ขอยกเลิกใบอนุญาตจัดตั้งสถานที่ จำหน่ายหรือสะสมอาหาร (เกิน 200 ตร.ม.)</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="12">
+                        <input type="radio" class="biz-radio choice" id="choice-12" name="choice" value="12"><label for="choice-12"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/CARCARE.svg")"></object> ธุรกิจคาร์แคร์</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form choice-form-12" data-id="12">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้ครั้งละ 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.CARCARE" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีพิเศษ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักการโยธา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอาคารขนาดใหญ่ ยื่นที่สำนักงานเขต</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตก่อสร้างอาคาร ดัดแปลงอาคาร หรือรื้อถอนอาคาร: กรณีอื่นๆ</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="CARCARE-2" name="APP1202" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="CARCARE-2">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="CARCARE-1" name="CARCARE-1" value=""><label for="CARCARE-1">ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับยานยนต์ เครื่องจักรหรือเครื่องกล</label>
+                                <div id="CARCARE-1-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ</p>
+                                    @for (int i = 0; i < AppSystemNameTextConst.APP_BUSINESS_BAD_HEALTH_AUTOMOTIVE_CNT; i++)
+                                    {
+                                        <input type="checkbox" class="biz-checkbox" id="CARCARE-1-@i" name="CARCARE-1-@(i)" value="@AppSystemNameTextConst.ALL_APP_BUSINESS_BAD_HEALTH_AUTOMOTIVE_CANCEL[i]" />
+                                        <label for="CARCARE-1-@i">@BizPortal.Utils.Helpers.ResourceHelper.GetResourceWordWithDefault("QUESTION_RESTUARANT_DANGER_AUTO_C" + (i + 1), "Apps_SmartQuiz")</label>
+                                    }
+                                </div>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Retail", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="14">
+                        <input type="radio" class="biz-radio choice" id="choice-14" name="choice" value="14">
+                        <label for="choice-14">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/10 lipstick.svg")"></object>
+                            ธุรกิจผลิตครีมบำรุง เครื่องสำอาง น้ำหอม
+                        </label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="14">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.COSMETICS" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="RESTAURANT-001" name="APP312" value="ยกเลิกภาษีป้าย"><label for="RESTAURANT-001">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="DANGER001" name="DANGER001" value="">
+                                <label for="DANGER001">
+                                    ขอยกเลิกใบอนุญาตประกอบกิจการที่เป็นอันตรายต่อสุขภาพ: กิจการที่เกี่ยวกับยา เวชภัณฑ์ อุปกรณ์การแพทย์ เครื่องสำอาง ผลิตภัณฑ์ทำความสะอาด
+                                </label>
+                                <div id="DANGER001-choices" style="border: 1px solid #DEDEDE; padding: 25px 25px 25px 50px; margin-bottom: 25px; display: none;">
+                                    <p style="font-weight: bold; margin-bottom: 10px;">กรุณาระบุประเภทกิจการ:</p>
+                                    <input type="checkbox" class="biz-checkbox" id="DANGER001-1" name="DANGER001-1" value="@AppSystemNameTextConst.APP_FRT_CANCEL_001" />
+                                    <label for="DANGER001-1">
+                                        การผลิต บรรจุยาสีฟัน แชมพู ผ้าเย็น กระดาษเย็น เครื่องสำอาง รวมทั้งสบู่ที่ใช้กับร่างกาย
+                                    </label>
+                                </div>
+                            </div>
+                            <a href="https://privus.fda.moph.go.th/index.aspx" class="external-link" target="_blank">
+                                <i class="fa fa-external-link"></i>
+                                <span>ขอยกเลิกการจดแจ้งรายละเอียดการผลิตเพื่อขายหรือนำเข้าเพื่อขายเครื่องสำอางควบคุม (ผ่านระบบ "SKYNET" ของสำนักงานคณะกรรมการอาหารและยา)</span>
+                            </a>
+                            <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตประกอบกิจการโรงงานจำพวกที่ 3</label>
+                            <input type="checkbox" class="biz-checkbox app-item" disabled><label>หนังสือแจ้งผลการรับฟังความคิดเห็นของประชาชนในการพิจารณาเกี่ยวกับโรงงานจำพวกที่ 3</label>
+                            <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกการแจ้งเริ่มประกอบกิจการโรงงานจำพวกที่ 3</label>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Cosmatic", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="accounting">
+                        <input type="radio" class="biz-radio choice" id="choice-accounting" name="choice" value="accounting"><label for="choice-accounting"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/Accounting.svg")"></object> ธุรกิจให้คำปรึกษาด้านกฎหมายและบัญชี</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="accounting">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.LEGAL" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                @*<input type="checkbox" class="biz-checkbox app-item" id="ACC_CANCEL" name="ACC_CANCEL" value="@AppSystemNameTextConst.APP_ACCOUNTING_SERVICE_CANCEL"><label for="ACC_CANCEL">ขอยกเลิกทะเบียนนิติบุคคลเพื่อประกอบกิจการให้บริการด้านวิชาชีพบัญชี</label>*@
+                                <input type="checkbox" class="biz-checkbox app-item" id="accounting_002" name="accounting_002" value="@AppSystemNameTextConst.APP_LAW_OFFICE_CANCEL"><label for="accounting_002">ขอยกเลิกขึ้นทะเบียนสำนักงานทนายความ</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="LEGAL", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="transport">
+                        <input type="radio" class="biz-radio choice" id="choice-transport" name="choice" value="transport"><label for="choice-transport"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/Transport.svg")"></object> ธุรกิจขนส่ง Logistics</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="transport">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.LOGISTICS" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="TRAN_10" name="TRAN_10" value="ยกเลิกภาษีป้าย"><label for="TRAN_10">ขอปลดป้าย</label>
+                                @*<input type="checkbox" class="biz-checkbox app-item" id="transport_001" name="transport_001" value="@AppSystemNameTextConst.APP_TRANSPORT_NON_REGULAR_TRUCK_CANCEL"><label for="transport_001">ขอยกเลิกใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก</label>*@
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตประกอบการขนส่งไม่ประจำทางด้วยรถบรรทุก</span>
+                                </a>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Animal", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="elderly_people_care">
+                        <input type="radio" class="biz-radio choice" id="choice-elderly_people_care" name="choice" value="elderly_people_care"><label for="choice-elderly_people_care"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/elderly.svg")"></object> ธุรกิจสถานพยาบาล</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="elderly_people_care">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.ELDERLYCARE" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="MED_01" name="MED_01" value="ยกเลิกภาษีป้าย"><label for="MED_01">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="elderly_clinic_104" name="elderly_clinic_104" value="@AppSystemNameTextConst.APP_HOSPITAL_PERMISSION_CANCEL"><label for="elderly_clinic_104">ขอแจ้งเลิกกิจการสถานพยาบาล (โรงพยาบาล)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="elderly_clinic_004" name="elderly_clinic_004" value="@AppSystemNameTextConst.APP_CLINIC_CANCEL"><label for="elderly_clinic_004">ขอแจ้งเลิกกิจการสถานพยาบาล (คลินิก)</label>
+
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="Software", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="beauty_clinic">
+                        <input type="radio" class="biz-radio choice" id="choice-beauty_clinic" name="choice" value="beauty_clinic"><label for="choice-beauty_clinic"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/beauty.svg")"></object> ธุรกิจคลินิกเสริมความงาม (แบบไม่ค้างคืน)</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="beauty_clinic">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="BEAUTYCLINIC" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="PermitListCancel" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="BEAUTYCLINIC_tax" name="BEAUTYCLINIC_tax" value="ยกเลิกภาษีป้าย"><label for="BEAUTYCLINIC_tax">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="elderly_clinic_004_1" name="elderly_clinic_004_1" value="APP_CLINIC_CANCEL"><label for="elderly_clinic_004_1">ขอแจ้งเลิกกิจการสถานพยาบาล (คลินิก)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกหนังสือรับรองประกอบการนำเข้าเครื่องมือแพทย์</label>
+
+
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="SAGV_DATA_TARGET">
+                        <input type="radio" class="biz-radio choice" id="choice-SAGV_DATA_TARGET" name="choice" value="SAGV_DATA_TARGET">
+                        <label for="choice-SAGV_DATA_TARGET"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/SAG.svg")"></object> ธุรกิจแปรรูปสินค้าเกษตรขนาดเล็ก</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="SAGV_DATA_TARGET">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+
+                            <div class="form">
+                                <input type="hidden" name="bid" value="SMALLAGRICULTURAL" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="PermitListCancel" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="RESTAURANT-005" name="APP312" value="ยกเลิกภาษีป้าย"><label for="RESTAURANT-005">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกหนังสือแจ้งผลการรับฟังความคิดเห็นของประชาชนในการพิจารณาเกี่ยวกับโรงงานจำพวกที่ 2</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="SAGV_ID_NAME" name="SAGV_ID_NAME" value="@AppSystemNameTextConst.APP_FACTORY_CLASS_2_CANCEL"><label for="SAGV_ID_NAME">ขอแจ้งเลิกประกอบกิจการโรงงานจำพวกที่ 2</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตจดทะเบียน/แจ้งรายละเอียด (สบ.7)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตแก้ไขใบจดทะเบียน/แจ้งรายละเอียด (สบ.8)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตโฆษณาอาหาร (ฆอ.2)</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตหนังสือรับรองผลิตภัณฑ์อาหาร (Certificate of Free Sale)</label>
+
+                            </div>
+
+                            <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตประกอบกิจการโรงงานจำพวกที่ 3</label>
+                            <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกหนังสือแจ้งผลการรับฟังความคิดเห็นของประชาชนในการพิจารณาเกี่ยวกับโรงงานจำพวกที่ 3</label>
+                            <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกการแจ้งเริ่มประกอบกิจการโรงงานจำพวกที่ 3</label>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit" style="margin: 0 10px" class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="organic">
+                        <input type="radio" class="biz-radio choice" id="choice-organic" name="choice" value="organic">
+                        <label for="choice-organic"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/organic.svg")"></object>ธุรกิจเกษตรปลอดสารพิษ</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="organic">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="ORGANICFARMING" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="PermitListCancel" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="app_organic" name="app_organic" value="APP_ORGANIC_PLANT_PRODUCTION_CANCEL">
+                                <label for="app_organic">ขอยกเลิกใบรับรองแหล่งผลิตพืชอินทรีย์ (แปลงเดียว)</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit" style="margin: 0 10px" class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="School">
+                        <input type="radio" class="biz-radio choice" id="choice-School" name="choice" value="School">
+                        <label for="choice-School"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/education.svg")"></object> ธุรกิจการศึกษา</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="School">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ(เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="EDUCATION" />
+                                <input type="hidden" name="appList" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="o20_1" name="APP620_1" value="ยกเลิกภาษีป้าย"><label for="o20_1">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกใบอนุญาตจัดตั้งโรงเรียนเอกชนแบบออนไลน์</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit" style="margin: 0 10px" class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="medical_device">
+                        <input type="radio" class="biz-radio choice" id="choice-medical_device" name="choice" value="medical_device">
+                        <label for="choice-medical_device">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/medical_device.svg")"></object> ธุรกิจอุปกรณ์เครื่องมือทางการแพทย์
+                        </label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="medical_device">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ(เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="MEDICALTOOLS" />
+                                <input type="hidden" name="appList" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="o20_med" name="APP620_1" value="ยกเลิกภาษีป้าย"><label for="o20_med">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" disabled><label>ขอยกเลิกหนังสือรับรองประกอบการนำเข้าเครื่องมือแพทย์</label>
+                            </div>
+
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit" style="margin: 0 10px" class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="financial_institution">
+                        <input type="radio" class="biz-radio choice" id="choice-financial_institution" name="choice" value="financial_institution"><label for="choice-financial_institution"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/Financial.svg")"></object> ธุรกิจทางการเงิน</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="financial_institution">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ(เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.FINANCE" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                @*<input type="checkbox" class="biz-checkbox app-item" id="APP_40_4" name="APP_40_4" value="@AppSystemNameTextConst.APP_SECURITIES_BUSINESS_CANCEL"><label for="APP_40_4">ขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</label>*@
+
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_A" name="APP_SEC_CANCEL_A" value="@AppSystemNameTextConst.APP_SEC_CANCEL_A"><label for="APP_SEC_CANCEL_A">ขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ก และใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_B" name="APP_SEC_CANCEL_B" value="@AppSystemNameTextConst.APP_SEC_CANCEL_B"><label for="APP_SEC_CANCEL_B">ขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ข และใบอนุญาตประกอบกิจสัญญาซื้อขายล่วงหน้าแบบ ส-2</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_C" name="APP_SEC_CANCEL_C" value="@AppSystemNameTextConst.APP_SEC_CANCEL_C"><label for="APP_SEC_CANCEL_C">ขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ค และใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ประเภทการเป็นผู้จัดการทุนสัญญาซื้อขายล่วงหน้าผู้จัดการเงินทุนสัญญา</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_D" name="APP_SEC_CANCEL_D" value="@AppSystemNameTextConst.APP_SEC_CANCEL_D"><label for="APP_SEC_CANCEL_D">ขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์ แบบ ง</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_E" name="APP_SEC_CANCEL_E" value="@AppSystemNameTextConst.APP_SEC_CANCEL_E"><label for="APP_SEC_CANCEL_E">ขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการเป็นที่ปรึกษาการลงทุน และใบอนุญาตประกอบธุรกิจที่ปรึกษาสัญญาซื้อขายล่วงหน้า</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_F" name="APP_SEC_CANCEL_F" value="@AppSystemNameTextConst.APP_SEC_CANCEL_F"><label for="APP_SEC_CANCEL_F">ขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทกิจการการยืมและให้ยืมหลักทรัพย์</label>
+                                <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_G" name="APP_SEC_CANCEL_G" value="@AppSystemNameTextConst.APP_SEC_CANCEL_G"><label for="APP_SEC_CANCEL_G">ขอยกเลิกใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                                @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="FINANCE", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                                style="margin: 0 10px"
+                                type="button"
+                                class="button-icon primary btn-goto-quiz">
+                            <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                        </button>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="power_backup">
+                        <input type="radio" class="biz-radio choice" id="choice-power_backup" name="choice" value="power_backup"><label for="choice-power_backup"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/PowerBackup.svg")"></object> ธุรกิจผลิตพลังงานสำรอง และพลังงานทดแทน และขายกระแสไฟฟ้าให้ภาครัฐ</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="power_backup">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.ENERGY" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="power_backup_004" name="power_backup_004" value="@AppSystemNameTextConst.APP_ENERGY_PRODUCTION_CANCEL"><label for="power_backup_004">ยกเลิกใบอนุญาตให้ผลิตพลังงานควบคุม</label>
+
+                            </div>
+
+                            <a href="http://www.erc.or.th/ERCWeb2/" class="external-link" target="_blank">
+                                <i class="fa fa-external-link"></i><span>ขอยกเลิกการรับแจ้งการประกอบกิจการพลังงานที่ได้รับการยกเว้นไม่ต้องขอรับใบอนุญาต</span>
+                            </a>
+
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                @*<div class="choice-block">
+            <div class="choice-item" data-target="software_house">
+                <input type="radio" class="biz-radio choice" id="choice-software_house" name="choice" value="software_house"><label for="choice-software_house"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/sw house.svg")"></object> ธุรกิจการพัฒนาแอปพลิเคชัน ซอฟต์แวร์ ซื้อมา-ขายไป</label>
+            </div>
+            <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                  method="post" class="form-landing">
+
+                <div class="choice-form" data-id="software_house">
+                    <p class="title">เลือกใบอนุญาตที่คุณต้องการ(เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                    <div class="form">
+                        <input type="hidden" name="bid" value="@BusinessGroupID.SOFTWARE" />
+                        <input type="hidden" name="appList" />
+                        <input type="checkbox" class="biz-checkbox app-item" id="software_house_001" name="software_house_001" value="@AppSystemNameTextConst.APP_SOFTWARE_HOUSE_NEW" disabled><label for="software_house_001">ขอยกเลิกมีเลขประจำตัวซอฟต์แวร์เฮ้าส์</label>
+
+                    </div>
+                    <div class="ps text-right">
+                        <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                        <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                        <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                        <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                    </div>
+                    <hr>
+                    <div class="btn-hold">
+                        <button type="submit"
+                                style="margin: 0 10px"
+                                class="button-icon primary">
+                            ดำเนินการต่อ
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>*@
+
+                <div class="choice-block">
+                    <div class="choice-item" data-target="tourism">
+                        <input type="radio" class="biz-radio choice" id="choice-tourism" name="choice" value="tourism"><label for="choice-tourism"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/Tourism.svg")"></object> ธุรกิจการท่องเที่ยว</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="tourism">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ (เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.TOURISM" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="tourism00" name="tourism00" value="@AppSystemNameTextConst.APP_TAX_CANCEL"><label for="tourism00">ขอปลดป้าย</label>
+                                <input type="checkbox" class="biz-checkbox app-item" value="@AppSystemNameTextConst.APP_TOURISM_BUSINESS_CANCEL" style="display: none;" checked />
+
+                                <a class="external-link">
+                                    <i class="fa fa-user"></i>
+                                    <span>ขอยกเลิกใบอนุญาตประกอบธุรกิจนำเที่ยว</span>
+                                </a>
+                                <div style="color: #41a7d3; margin-top: 10px; padding-left: 35px;">
+                                    <i class="fa fa-info-circle"></i>
+                                    <a style="color: #41a7d3;" href="https://info.go.th/#!/th/search/72560/%E0%B8%99%E0%B8%B3%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7/">ดูรายละเอียดกรณีเป็นบุคคลธรรมดา</a>
+
+                                    <i class="fa fa-info-circle" style="margin-left: 50px;"></i>
+                                    <a style="color: #41a7d3;" href="https://info.go.th/#!/th/search/72561/%E0%B8%99%E0%B8%B3%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7/">ดูรายละเอียดกรณีเป็นนิติบุคคล</a>
+                                </div>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit"
+                                        style="margin: 0 10px"
+                                        class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                @* E-Commerce Cloth *@
+                <div class="choice-block">
+                    <div class="choice-item" data-target="ecom-cloth">
+                        <input type="radio" class="biz-radio choice" id="choice-ecom-cloth" name="choice" value="ecom-cloth">
+                        <label for="choice-ecom-cloth"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/e-com-cloth.svg")"></object>ธุรกิจ E-commerce (ด้านเสื้อผ้า)</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="ecom-cloth">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ(เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.ECOMCLOTHES" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="app_ecom_cloth" name="app_ecom_cloth" value="@AppSystemNameTextConst.APP_ELECTRONIC_COMMERCIAL_CANCEL">
+                                <label for="app_ecom_cloth">ขอยกเลิกทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit" style="margin: 0 10px" class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                @* Online Cosmatic *@
+                <div class="choice-block">
+                    <div class="choice-item" data-target="online-cosmatic">
+                        <input type="radio" class="biz-radio choice" id="choice-online-cosmatic" name="choice" value="online-cosmatic">
+                        <label for="choice-online-cosmatic"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/online-cosmatic.svg")"></object>ธุรกิจขายสินค้า Online (ด้านเครื่องสำอาง)</label>
+                    </div>
+                    <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                          method="post" class="form-landing">
+
+                        <div class="choice-form" data-id="online-cosmatic">
+                            <p class="title">เลือกใบอนุญาตที่คุณต้องการ(เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                            <div class="form">
+                                <input type="hidden" name="bid" value="@BusinessGroupID.ONLINECOSMETIC" />
+                                <input type="hidden" name="appList" />
+                                <input type="hidden" name="viewName" value="@viewName" />
+                                <input type="checkbox" class="biz-checkbox app-item" id="app_online_cosmatic" name="app_online_cosmatic" value="@AppSystemNameTextConst.APP_ELECTRONIC_COMMERCIAL_CANCEL">
+                                <label for="app_online_cosmatic">ขอยกเลิกทะเบียนพาณิชย์ หรือพาณิชย์อิเล็กทรอนิกส์</label>
+                            </div>
+                            <div class="ps text-right">
+                                <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                                <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                                <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                                <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                            </div>
+                            <hr>
+                            <div class="btn-hold">
+                                <button type="submit" style="margin: 0 10px" class="button-icon primary">
+                                    ดำเนินการต่อ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Close123
+
+    <div class="choice-block">
+        <div class="choice-item" data-target="financial_institution">
+            <input type="radio" class="biz-radio choice" id="choice-financial_institution" name="choice" value="financial_institution"><label for="choice-financial_institution"><object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/Financial.svg")"></object> ธุรกิจทางการเงิน</label>
+        </div>
+        <form action="@Url.ServiceAction("List2", "SingleForm", new { area="Apps", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+              method="post" class="form-landing">
+
+            <div class="choice-form" data-id="financial_institution">
+                <p class="title">เลือกใบอนุญาตที่คุณต้องการ(เลือกได้มากกว่า 1 ใบอนุญาต)</p>
+                <div class="form">
+                    <input type="hidden" name="bid" value="@BusinessGroupID.FINANCE" />
+                    <input type="hidden" name="appList" />
+                    <input type="hidden" name="viewName" value="@viewName" />
+                    @*<input type="checkbox" class="biz-checkbox app-item" id="APP_40_4" name="APP_40_4" value="@AppSystemNameTextConst.APP_SECURITIES_BUSINESS_CANCEL"><label for="APP_40_4">ขอยกเลิกใบอนุญาตประกอบธุรกิจหลักทรัพย์และสัญญาซื้อขายล่วงหน้า</label>*@
+
+                    <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_A" name="APP_SEC_CANCEL_A" value="@AppSystemNameTextConst.APP_SEC_CANCEL_A"><label for="APP_SEC_CANCEL_A">ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ก และใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1</label>
+                    <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_B" name="APP_SEC_CANCEL_B" value="@AppSystemNameTextConst.APP_SEC_CANCEL_B"><label for="APP_SEC_CANCEL_B">ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ข และใบอนุญาตประกอบกิจสัญญาซื้อขายล่วงหน้าแบบ ส-2</label>
+                    <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_C" name="APP_SEC_CANCEL_C" value="@AppSystemNameTextConst.APP_SEC_CANCEL_C"><label for="APP_SEC_CANCEL_C">ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์แบบ ค และใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้า ประเภทการเป็นผู้จัดการทุนสัญญาซื้อขายล่วงหน้าผู้จัดการเงินทุนสัญญา</label>
+                    <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_D" name="APP_SEC_CANCEL_D" value="@AppSystemNameTextConst.APP_SEC_CANCEL_D"><label for="APP_SEC_CANCEL_D">ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์ แบบ ง</label>
+                    <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_E" name="APP_SEC_CANCEL_E" value="@AppSystemNameTextConst.APP_SEC_CANCEL_E"><label for="APP_SEC_CANCEL_E">ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทการเป็นที่ปรึกษาการลงทุน และใบอนุญาตประกอบธุรกิจที่ปรึกษาสัญญาซื้อขายล่วงหน้า</label>
+                    <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_F" name="APP_SEC_CANCEL_F" value="@AppSystemNameTextConst.APP_SEC_CANCEL_F"><label for="APP_SEC_CANCEL_F">ขอใบอนุญาตประกอบธุรกิจหลักทรัพย์ประเภทกิจการการยืมและให้ยืมหลักทรัพย์</label>
+                    <input type="checkbox" class="biz-checkbox app-item" id="APP_SEC_CANCEL_G" name="APP_SEC_CANCEL_G" value="@AppSystemNameTextConst.APP_SEC_CANCEL_G"><label for="APP_SEC_CANCEL_G">ขอใบอนุญาตประกอบธุรกิจสัญญาซื้อขายล่วงหน้าแบบ ส-1</label>
+                </div>
+                <div class="ps text-right">
+                    <p class="mr"><span class="icon checkbox"></span>ยื่นคำขอได้ที่ Biz Portal</p>
+                    <p><i class="fa fa-external-link"></i>ยื่นคำขอได้ที่ e-service หน่วยงาน</p>
+                    <p><i class="fa fa-user"></i>ยื่นคำขอได้ที่หน่วยงานเจ้าของเรื่อง</p>
+                    <p class="mr-checkbox-disble"><span class="icon checkbox-disabled"></span>ไม่มีงานบริการดังกล่าว</p>
+                </div>
+                <hr>
+                <div class="btn-hold">
+                    <button type="submit"
+                            style="margin: 0 10px"
+                            class="button-icon primary">
+                        ดำเนินการต่อ
+                    </button>
+                    @*<button href="@Url.BizAction("Business", "Quiz", new { area="", id="FINANCE", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })"
+                            style="margin: 0 10px"
+                            type="button"
+                            class="button-icon primary btn-goto-quiz">
+                        <object data="@Url.Content("~/Content/SingleForm-frontis/v2/images/smartquiz.svg")"></object> <p>ถ้าไม่แน่ใจ ให้ระบบช่วยแนะนำคุณ</p>
+                    </button>*@
+                </div>
+            </div>
+        </form>
+    </div>
+    -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        window.$zopim || (function (d, s) {
+            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+                d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                    z.set.
+                        _.push(o)
+                }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+            $.src = "https://v2.zopim.com/?51QWbJHtlTd1CZbVRcYvrExRiI1ShrJo"; z.t = +new Date; $.
+                type = "text/javascript"; e.parentNode.insertBefore($, e)
+        })(document, "script");
+
+        var userImage = document.getElementById('chat-up');
+        userImage.onclick = function (e) {
+            e.preventDefault();
+            $zopim.livechat.window.show();
+        };
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".form-landing").submit(function (e) {
+                var appList = [];
+                $(this).find('input.app-item:checked').each(function () {
+                    appList.push($(this).val());
+                });
+                $(this).find('input[name=appList]').val(JSON.stringify(appList));
+                showAlertGoingNextPage();
+
+                var self = this;
+                window.setTimeout(function () {
+                    self.submit();
+                }, 1500);
+
+                return false;
+            });
+            $('#btn-g1').on('click', function (e) {
+                var targetUrl = "";
+                var opt = $('input[name=g1]:checked').val();
+                if (opt == "EmployerRegis") {
+                    targetUrl = "@Url.ServiceAction("EmployerRegis", "SSO", new { area = "Apps" })";
+                }
+                else if (opt == "EmployeeRegis") {
+                    targetUrl = "@Url.ServiceAction("EmployeeRegis", "SSO", new { area = "Apps" })";
+                }
+                else if (opt == "VAT") {
+                    targetUrl = "@Url.ServiceAction("Index", "VAT", new { area = "Apps" })";
+                }
+                showAlertGoingNextPage();
+                window.setTimeout(function () {
+                    window.location.href = targetUrl;
+                }, 1000);
+            });
+
+            if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 0) {
+                $('input.bkk').click(function () {
+                    if ($('input.bkk:checked').length > 0) {
+                        $('input.province').attr('disabled', 'disabled');
+                    }
+                    else {
+                        $('input.province').removeAttr('disabled', 'disabled');
+                    }
+                });
+                $('input.province').click(function () {
+                    if ($('input.province:checked').length > 0) {
+                        $('input.bkk').attr('disabled', 'disabled');
+                    }
+                    else {
+                        $('input.bkk').removeAttr('disabled', 'disabled');
+                    }
+                });
+
+                //$('input.c3-lt').click(function () {
+                //    if ($('input.c3-lt:checked').length > 0) {
+                //        $('input.c3-ge').attr('disabled', 'disabled');
+                //    }
+                //    else {
+                //        $('input.c3-ge').removeAttr('disabled', 'disabled');
+                //    }
+                //});
+                //$('input.c3-ge').click(function () {
+                //    if ($('input.c3-ge:checked').length > 0) {
+                //        $('input.c3-lt').attr('disabled', 'disabled');
+                //    }
+                //    else {
+                //        $('input.c3-lt').removeAttr('disabled', 'disabled');
+                //    }
+                //});
+
+                //$('input.c4-lt').click(function () {
+                //    if ($('input.c4-lt:checked').length > 0) {
+                //        $('input.c4-ge').attr('disabled', 'disabled');
+                //    }
+                //    else {
+                //        $('input.c4-ge').removeAttr('disabled', 'disabled');
+                //    }
+                //});
+                //$('input.c4-ge').click(function () {
+                //    if ($('input.c4-ge:checked').length > 0) {
+                //        $('input.c4-lt').attr('disabled', 'disabled');
+                //    }
+                //    else {
+                //        $('input.c4-lt').removeAttr('disabled', 'disabled');
+                //    }
+                //});
+
+            }
+
+            $("#o30").change(function () {
+                if (this.checked) {
+                    $('#o30-choices input').addClass('app-item');
+                    $('#o30-choices').slideDown();
+                }
+                else {
+                    $('#o30-choices input').removeClass('app-item');
+                    $('#o30-choices').slideUp();
+                }
+            });
+
+            $("#o21").change(function () {
+                if (this.checked) {
+                    $('#o21-choices input').addClass('app-item');
+                    $('#o21-choices').slideDown();
+                }
+                else {
+                    $('#o21-choices input').removeClass('app-item');
+                    $('#o21-choices').slideUp();
+                }
+            });
+
+            $("#o20").change(function () {
+                if (this.checked) {
+                    $('#o20-choices input').addClass('app-item');
+                    $('#o20-choices').slideDown();
+                }
+                else {
+                    $('#o20-choices input').removeClass('app-item');
+                    $('#o20-choices').slideUp();
+                }
+            });
+
+            $('.btn-goto-quiz').on('click', function (e) {
+                showAlertGoingNextPage();
+                var url = $(this).attr('href');
+                window.setTimeout(function () {
+                    window.location.href = url;
+                }, 1500);
+            });
+            $('.btn-goto-business-utility').on('click', function (e) {
+                showAlertGoingNextPage();
+                window.setTimeout(function () {
+                    window.location.href = "@Url.BizAction("Business", "Quiz", new { area = "", id = "Restaurant", language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })";
+                }, 1500);
+            });
+
+            $('.btn-goto-business-restaurant').on('click', function (e) {
+                showAlertGoingNextPage();
+                window.setTimeout(function () {
+                    window.location.href = "@Url.BizAction("Business", "Quiz", new { area = "", id = "Retail" })";
+                }, 1500);
+            });
+            $('.btn-goto-business-retail').on('click', function (e) {
+                showAlertGoingNextPage();
+                window.setTimeout(function () {
+                    window.location.href = "@Url.BizAction("Business", "Quiz", new { area = "", id = "Retail" })";
+                }, 1500);
+            });
+
+            $("#RESTAURANT-3").change(function () {
+                //console.log(this.checked);
+                if (this.checked) {
+                    $('#RESTAURANT-3-choices input').addClass('app-item');
+                    $('#RESTAURANT-3-choices').slideDown();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        bindingDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-3 #RESTAURANT-3-choices');
+                    }
+                }
+                else {
+                    $('#RESTAURANT-3-choices input').removeClass('app-item');
+                    $('#RESTAURANT-3-choices').slideUp();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        removeDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-3 #RESTAURANT-3-choices');
+                    }
+                }
+            });
+            $("#RESTAURANT-4").change(function () {
+                //console.log(this.checked);
+                if (this.checked) {
+                    $('#RESTAURANT-4-choices input').addClass('app-item');
+                    $('#RESTAURANT-4-choices').slideDown();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        bindingDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-3 #RESTAURANT-4-choices');
+                    }
+                }
+                else {
+                    $('#RESTAURANT-4-choices input').removeClass('app-item');
+                    $('#RESTAURANT-4-choices').slideUp();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        removeDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-3 #RESTAURANT-4-choices');
+                    }
+                }
+            });
+
+            $("#resort3").change(function () {
+                if (this.checked) {
+                    $('#resort3-choices input').addClass('app-item');
+                    $('#resort3-choices').slideDown();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        bindingDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-5 #resort3-choices');
+                    }
+                }
+                else {
+                    $('#resort3-choices input').removeClass('app-item');
+                    $('#resort3-choices').slideUp();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        removeDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-5 #resort3-choices');
+                    }
+                }
+            });
+            $("#resort4").change(function () {
+                if (this.checked) {
+                    $('#resort4-choices input').addClass('app-item');
+                    $('#resort4-choices').slideDown();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        bindingDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-5 #resort4-choices');
+                    }
+                }
+                else {
+                    $('#resort4-choices input').removeClass('app-item');
+                    $('#resort4-choices').slideUp();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        removeDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-5 #resort4-choices');
+                    }
+                }
+            });
+            $("#fn5").change(function () {
+                if (this.checked) {
+                    $('#fn5-choices input').addClass('app-item');
+                    $('#fn5-choices').slideDown();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        bindingDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-11 #fn5-choices');
+                    }
+                }
+                else {
+                    $('#fn5-choices input').removeClass('app-item');
+                    $('#fn5-choices').slideUp();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        removeDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-11 #fn5-choices');
+                    }
+                }
+            });
+
+            $("#CARCARE-1").change(function () {
+                if (this.checked) {
+                    $('#CARCARE-1-choices input').addClass('app-item');
+                    $('#CARCARE-1-choices').slideDown();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        bindingDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-12 #CARCARE-1-choices');
+                    }
+                }
+                else {
+                    $('#CARCARE-1-choices input').removeClass('app-item');
+                    $('#CARCARE-1-choices').slideUp();
+                    if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+                        removeDelegateEventCheckBoxAllowSelectOnlyOneItem('.choice-form-12 #CARCARE-1-choices');
+                    }
+                }
+            });
+
+            $("#cb2").change(function () {
+                if (this.checked) {
+                    $('#cb2-choices input').addClass('app-item');
+                    $('#cb2-choices').slideDown();
+                }
+                else {
+                    $('#cb2-choices input').removeClass('app-item');
+                    $('#cb2-choices').slideUp();
+                }
+            });
+
+            $("#e14").change(function () {
+                if (this.checked) {
+                    $('#e14-choices input').addClass('app-item');
+                    $('#e14-choices').slideDown();
+                }
+                else {
+                    $('#e14-choices input').removeClass('app-item');
+                    $('#e14-choices').slideUp();
+                }
+            });
+
+            $("#coffee3").change(function () {
+                if (this.checked) {
+                    $('#coffee3-choices input').addClass('app-item');
+                    $('#coffee3-choices').slideDown();
+                }
+                else {
+                    $('#coffee3-choices input').removeClass('app-item');
+                    $('#coffee3-choices').slideUp();
+                }
+            });
+
+            $("#cb2").change(function () {
+                if (this.checked) {
+                    $('#cb2-choices input').addClass('app-item');
+                    $('#cb2-choices').slideDown();
+                }
+                else {
+                    $('#cb2-choices input').removeClass('app-item');
+                    $('#cb2-choices').slideUp();
+                }
+            });
+
+            $("#e14").change(function () {
+                if (this.checked) {
+                    $('#e14-choices input').addClass('app-item');
+                    $('#e14-choices').slideDown();
+                }
+                else {
+                    $('#e14-choices input').removeClass('app-item');
+                    $('#e14-choices').slideUp();
+                }
+            });
+
+            $("#o-32").change(function () {
+                if (this.checked) {
+                    $('#o-32-choices input').addClass('app-item');
+                    $('#o-32-choices').slideDown();
+                }
+                else {
+                    $('#o-32-choices input').removeClass('app-item');
+                    $('#o-32-choices').slideUp();
+                }
+            });
+
+
+             $("#DANGER001").change(function () {
+              if (this.checked) {
+                  $('#DANGER001-choices input').addClass('app-item');
+                  $('#DANGER001-choices').slideDown();
+              }
+              else {
+                  $('#DANGER001-choices input').removeClass('app-item');
+                  $('#DANGER001-choices').slideUp();
+              }
+          });
+
+
+            $(".permit-list-shortcut").click(function () {
+                setTimeout(selectAsHashValue, 300);
+            });
+
+            var selectAsHashValue = function () {
+                //console.log("GO: " + window.location.hash);
+                if (window.location.hash) {
+                    // Fragment exists
+                    $("input[name=choice]").removeAttr('checked');
+                    var choice = null;
+                    switch (window.location.hash.toLowerCase()) {
+                       @if (IdentityType != UserTypeEnum.Citizen)
+                           {
+                                // แสดงทุกกรณียกเว้น "ประชาชน"
+                                <text>
+                        case "#starting_business": {
+                            choice = $("#choice-1");
+                        }
+                            break;
+                          </text>
+                           }
+                        case "#utilities": {
+                            choice = $("#choice-2");
+                        }
+                            break;
+                        case "#restaurant": {
+                            choice = $("#choice-3");
+                        }
+                            break;
+                        case "#retail": {
+                            choice = $("#choice-4");
+                        }
+                            break;
+                        case "#resort": {
+                            choice = $("#choice-5");
+                        }
+                            break;
+                        case "#spa": {
+                            choice = $("#choice-6");
+                        }
+                            break;
+                        case "#veterinary_hospital": {
+                            choice = $("#choice-7");
+                        }
+                            break;
+                        case "#coffee": {
+                            choice = $("#choice-8");
+                        }
+                            break;
+                        case "#construction_business": {
+                            choice = $("#choice-9");
+                        }
+                            break;
+                        case "#electronic": {
+                            choice = $("#choice-10");
+                        }
+                            break;
+                        case "#fitness": {
+                            choice = $("#choice-11");
+                        }
+                            break;
+                        case "#carcare": {
+                            choice = $("#choice-12");
+                        }
+                            break;
+                        case "#ecommerce_cloth": {
+                            choice = $("#choice-ecom-cloth");
+                        }
+                            break;
+                        case "#online_cosmatic": {
+                            choice = $("#choice-online-cosmatic");
+                        }
+                          break;
+                        default: {
+                            break;
+                        }
+                    }
+                    choice.click();
+
+                    if (choice != null) {
+                        var val = choice.val();
+                        $('.choice-form').slideUp();
+                        $('.choice-form[data-id=' + val + ']').slideDown();
+                    }
+
+                } else {
+                    // Fragment doesn't exist
+                }
+            }
+
+            selectAsHashValue();
+            bindingEventAllCheckBoxAllowSelectOnlyOneItem();
+
+        });
+
+        function bindingEventAllCheckBoxAllowSelectOnlyOneItem() {
+            if (@Convert.ToInt16(isUsingLogicCheckBoxCanCheckedOnlyOne) == 1) {
+
+              if (@Convert.ToInt16(isShowSection) == 1) {
+                  checkBoxAllowSelectOnlyOneItem('.choice-form-1');
+                  checkBoxAllowSelectOnlyOneItem('.choice-form-2');
+              }
+              checkBoxAllowSelectOnlyOneItem('.choice-form-3');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-4');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-5');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-6');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-7');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-8');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-9');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-10');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-11');
+              checkBoxAllowSelectOnlyOneItem('.choice-form-12');
+          }
+        }
+
+        function checkBoxAllowSelectOnlyOneItem(choiceForm) {
+            $(choiceForm).find('.app-item').on('click', function (e) {
+                $(choiceForm).find('.app-item').not(this).prop('checked', false);
+                $(choiceForm).find('.app-item').not(this).trigger('change');
+
+                //if (choiceForm == '.choice-form-3'
+                //    || choiceForm == '.choice-form-4') {
+                //    // toggle enable or disabled some checkbox
+                //    allStateChecking(choiceForm);
+                //}
+            });
+        }
+        function bindingDelegateEventCheckBoxAllowSelectOnlyOneItem(choiceForm) {
+            $(choiceForm).find('.app-item').on('click', function (e) {
+                $(choiceForm).find('.app-item').not(this).prop('checked', false);
+            });
+        }
+        function removeDelegateEventCheckBoxAllowSelectOnlyOneItem(choiceForm) {
+            $(choiceForm).find('.app-item').off('click');
+        }
+
+        /* ไม่ใช้ เก็บไว้เผื่อ
+        function allStateChecking(choiceForm){
+            bkkStateChecking(choiceForm);
+            provinceStateChecking(choiceForm);
+            c3ltStateChecking(choiceForm);
+            c3geStateChecking(choiceForm);
+            c4ltStateChecking(choiceForm);
+            c4geStateChecking(choiceForm);
+        }
+        function getFormChoiceId(choiceForm) {
+            var formId = '';
+            if (choiceForm != '') {
+                formId = choiceForm + ' ';
+            }
+            return formId;
+        }
+        function bkkStateChecking(choiceForm) {
+            var formId = getFormChoiceId(choiceForm);
+            if ($(formId +'input.bkk:checked').length > 0) {
+                $(formId + 'input.province').attr('disabled', 'disabled');
+            }
+            else {
+                $(formId + 'input.province').removeAttr('disabled', 'disabled');
+            }
+        }
+        function provinceStateChecking(choiceForm) {
+            var formId = getFormChoiceId(choiceForm);
+            if ($(formId + 'input.province:checked').length > 0) {
+                $(formId + 'input.bkk').attr('disabled', 'disabled');
+            }
+            else {
+                $(formId + 'input.bkk').removeAttr('disabled', 'disabled');
+            }
+        }
+        function c3ltStateChecking(choiceForm) {
+            var formId = getFormChoiceId(choiceForm);
+            if ($(formId + 'input.c3-lt:checked').length > 0) {
+                $(formId + 'input.c3-ge').attr('disabled', 'disabled');
+            }
+            else {
+                $(formId + 'input.c3-ge').removeAttr('disabled', 'disabled');
+            }
+        }
+        function c3geStateChecking(choiceForm) {
+            var formId = getFormChoiceId(choiceForm);
+            if ($(formId + 'input.c3-ge:checked').length > 0) {
+                $(formId + 'input.c3-lt').attr('disabled', 'disabled');
+            }
+            else {
+                $(formId + 'input.c3-lt').removeAttr('disabled', 'disabled');
+            }
+        }
+        function c4ltStateChecking(choiceForm) {
+            var formId = getFormChoiceId(choiceForm);
+            if ($(formId + 'input.c4-lt:checked').length > 0) {
+                $(formId + 'input.c4-ge').attr('disabled', 'disabled');
+            }
+            else {
+                $(formId + 'input.c4-ge').removeAttr('disabled', 'disabled');
+            }
+        }
+        function c4geStateChecking(choiceForm) {
+            var formId = getFormChoiceId(choiceForm);
+            if ($(formId + 'input.c4-ge:checked').length > 0) {
+                $(formId + 'input.c4-lt').attr('disabled', 'disabled');
+            }
+            else {
+                $(formId + 'input.c4-lt').removeAttr('disabled', 'disabled');
+            }
+        }
+         */
+
+      function showAlertGoingNextPage(){
+        swal({
+            title: "กำลังไปยังหน้าถัดไป",
+            type: "success",
+            showConfirmButton: false
+        });
+      }
+    </script>
+}

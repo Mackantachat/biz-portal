@@ -1,0 +1,263 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+@model FormSection
+@{
+    var rd = string.Empty;
+    var rd2 = string.Empty;
+    if (Model.PartialReadonly)
+    {
+        rd = "disabled";
+        rd2 = "readonly";
+    }
+}
+<div class="col-md-12 form-group">
+    <label>@ResourceHelper.GetResourceWordWithDefault("FIRST_EMPLOYEE_DATE", "Apps_SingleForm", "FIRST_EMPLOYEE_DATE") :</label>
+    <input type="text" class="form-control" name="FIRST_EMPLOYEE_DATE" id="FIRST_EMPLOYEE_DATE" readonly />
+</div>
+<div class="col-md-12 form-group">
+    <label>@ResourceHelper.GetResourceWordWithDefault("SSO_SUM_WAGE", "Apps_SingleForm", "SSO_SUM_WAGE") :</label>
+    <input type="text" class="form-control" name="SSO_SUM_WAGE" id="SSO_SUM_WAGE" readonly />
+    <span class="text-danger" style="line-height:1.3em;">หมายเหตุ จำนวนเงินที่แสดงเป็นเพียงการประมาณการ อาจมีการเปลี่ยนแปลงอีกครั้ง</span>
+</div>
+<div class="col-md-12 form-group">
+    <label>@ResourceHelper.GetResourceWordWithDefault("SSO_ALL_WAGE", "Apps_SingleForm", "SSO_ALL_WAGE") :</label>
+    <input type="text" class="form-control" name="SSO_ALL_WAGE" id="SSO_ALL_WAGE" readonly />
+    <span class="text-danger" style="line-height:1.3em;">หมายเหตุ จำนวนเงินที่แสดงเป็นเพียงการประมาณการ อาจมีการเปลี่ยนแปลงอีกครั้ง</span>
+</div>
+<div class="col-md-12 form-group">
+    
+</div>
+
+@if (string.IsNullOrEmpty(rd))
+{
+    <script type="text/javascript">
+        $(function () {
+            $(window).load(function () {
+                if (singleForm.variables.arrObjSSO_EMPLOYEE_INFORMATION != null && singleForm.variables.arrObjSSO_EMPLOYEE_INFORMATION.data.length > 0) {
+                    $.ajax({
+                        url: '@Url.Content("~/Api/v2/SSO/GetMinimumWage")',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    var emp = data[i];
+                                    for (var j = 0; j < singleForm.variables.arrObjSSO_EMPLOYEE_INFORMATION.data.length; j++) {
+                                        var est = singleForm.variables.arrObjSSO_EMPLOYEE_INFORMATION.data[j];
+                                        if (est.ARR_IDX == emp.ARR_IDX) {
+                                            if (emp.MIN_WAGE == "null") {
+                                                est.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE = "";
+                                                est.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE = "";
+
+                                                est.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE_TEXT = "";
+                                                est.AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE_TEXT = "";
+
+                                                est.SSO_EMPLOYEE_BRANCH_MIN_WAGE_TRUE = "";
+                                                est.SSO_EMPLOYEE_BRANCH_MIN_WAGE_FALSE = "";
+                                            } else {
+                                                if (est.SSO_EMPLOYEE_REG_STATUS == "true") {
+                                                    est.SSO_EMPLOYEE_BRANCH_MIN_WAGE_TRUE = emp.MIN_WAGE;
+                                                } else if (est.SSO_EMPLOYEE_REG_STATUS == "false") {
+                                                    est.SSO_EMPLOYEE_BRANCH_MIN_WAGE_FALSE = emp.MIN_WAGE;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                ssoEmployeeCheck();
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('#frmSSO_EMPLOYEE_INFORMATION').submit(function (e) {
+                e.preventDefault();
+                ssoEmployeeCheck();
+            });
+
+            //$('[name=SSO_EMPLOYEE_REMOVE_BTN]').click(function (e) {
+            //    e.preventDefault();
+            //    console.log("click!!");
+            //    ssoEmployeeCheck();
+            //});
+        });
+
+        function ssoWageCalculate(type, wage, branchMinWage) {
+            var monthlyWage = 0;
+
+            if (type && wage && branchMinWage) {
+                wage = parseFloat(wage.replace(/,/g, ""));
+                branchMinWage = parseFloat(branchMinWage);
+
+                if (type == "DAILY") {
+                    if (wage < branchMinWage) {
+                        wage = branchMinWage;
+                    }
+                    monthlyWage = wage * 26;
+                } else if (type == "MONTHLY") {
+                    if (wage < branchMinWage * 26) {
+                        wage = branchMinWage * 26;
+                    }
+                    monthlyWage = wage;
+                } else if (type == "HOURLY") {
+                    if (branchMinWage > wage * 8) {
+                        wage = branchMinWage;
+                    } else {
+                        wage = wage * 8;
+                    }
+                    monthlyWage = wage * 26;
+                } else if (type == "ETC") {
+                    if (branchMinWage > wage) {
+                        wage = branchMinWage;
+                    }
+                    monthlyWage = wage * 30;
+                }
+
+                if (monthlyWage > 20000) {
+                    monthlyWage = 20000;
+                }
+            }
+            return monthlyWage;
+        }
+
+        function ssoEmployeeCheck() {
+            var minDate = new Date();
+            var thisyear = new Date().getFullYear();
+            var sumWage = 0;
+            var allWage = 0;
+            var dateEmpty = true;
+
+            var form = $('#frmSSO_EMPLOYEE_INFORMATION');
+            var idx = $('#ARR_IDX', form).val();
+
+            // Creating/editing employee
+            if (form.valid()) {
+
+                // First day of work
+                var sDate = "";
+                var fdFalse = $('#SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE', form).val();
+                var fdTrue = $('#SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE', form).val();
+
+                if (fdFalse.trim() || fdTrue.trim()) {
+                    if (fdFalse.trim()) {
+                        sDate = fdFalse;
+                    } else if (fdTrue.trim()) {
+                        sDate = fdTrue;
+                    }
+                    if (sDate.trim()) {
+                        sDate = stringToDate(sDate, "th");
+                        if (moment(minDate).isAfter(sDate)) {
+                            minDate = sDate;
+                        }
+                    }
+                }
+                dateEmpty = false;
+
+                // Wage calculation
+                var multi = parseFloat($('#SSO_TSIC_MULTIPLIER', form).val());
+
+                var typeFalse = $('[name=SSO_EMPLOYMENT_TYPE_FALSE]:checked', form).val();
+                var wageFalse = $('#SSO_EMPLOYEE_WAGE_FALSE', form).val();
+                var branchWageFalse = $('#SSO_EMPLOYEE_BRANCH_MIN_WAGE_FALSE', form).val();
+
+                var typeTrue = $('[name=SSO_EMPLOYMENT_TYPE_TRUE]:checked', form).val();
+                var wageTrue = $('#SSO_EMPLOYEE_WAGE_TRUE', form).val();
+                var branchWageTrue = $('#SSO_EMPLOYEE_BRANCH_MIN_WAGE_TRUE', form).val();
+
+                var type = "";
+                var wage = "";
+                var branchMinWage = "";
+
+                if (typeFalse && wageFalse) {
+                    type = typeFalse;
+                    wage = wageFalse;
+                    branchMinWage = branchWageFalse;
+                } else if (typeTrue && wageTrue) {
+                    type = typeTrue;
+                    wage = wageTrue;
+                    branchMinWage = branchWageTrue;
+                }
+                var calWage = ssoWageCalculate(type, wage, branchMinWage);
+
+                var diffMonth = moment(thisyear + "-12-31").diff(moment(sDate), 'months') + 1;
+                //console.log("idx", idx, ", calWage", calWage);
+
+                sumWage = sumWage + calWage;
+                allWage = allWage + (calWage * diffMonth * multi);
+            }
+
+
+            // Existing employee
+            if (singleForm.variables.arrObjSSO_EMPLOYEE_INFORMATION != null && singleForm.variables.arrObjSSO_EMPLOYEE_INFORMATION.data.length > 0) {
+                for (var i = 0; i < singleForm.variables.arrObjSSO_EMPLOYEE_INFORMATION.data.length; i++) {
+                    var emp = singleForm.variables.arrObjSSO_EMPLOYEE_INFORMATION.data[i];
+
+                    if (emp.ARR_IDX != idx) {
+
+                        // First day of work
+                        var sDate = "";
+                        var fdFalse = emp.SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE;
+                        var fdTrue = emp.SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE;
+
+                        if (fdFalse.trim() || fdTrue.trim()) {
+                            if (fdFalse.trim()) {
+                                sDate = fdFalse;
+                            } else if (fdTrue.trim()) {
+                                sDate = fdTrue;
+                            }
+                            if (sDate.trim()) {
+                                sDate = stringToDate(sDate, "th");
+                                if (moment(minDate).isAfter(sDate)) {
+                                    minDate = sDate;
+                                }
+                            }
+                        }
+                        dateEmpty = false;
+
+                        // Wage calculation
+                        var multi = parseFloat(emp.SSO_TSIC_MULTIPLIER);
+
+                        var typeFalse = emp.SSO_EMPLOYMENT_TYPE_FALSE;
+                        var wageFalse = emp.SSO_EMPLOYEE_WAGE_FALSE;
+                        var branchWageFalse = emp.SSO_EMPLOYEE_BRANCH_MIN_WAGE_FALSE;
+
+                        var typeTrue = emp.SSO_EMPLOYMENT_TYPE_TRUE;
+                        var wageTrue = emp.SSO_EMPLOYEE_WAGE_TRUE;
+                        var branchWageTrue = emp.SSO_EMPLOYEE_BRANCH_MIN_WAGE_TRUE;
+
+                        var type = "";
+                        var wage = "";
+                        var branchMinWage = "";
+
+                        if (typeFalse && wageFalse) {
+                            type = typeFalse;
+                            wage = wageFalse;
+                            branchMinWage = branchWageFalse;
+                        } else if (typeTrue && wageTrue) {
+                            type = typeTrue;
+                            wage = wageTrue;
+                            branchMinWage = branchWageTrue;
+                        }
+                        var calWage = ssoWageCalculate(type, wage, branchMinWage);
+
+                        var diffMonth = moment(thisyear + "-12-31").diff(moment(sDate), 'months') + 1;
+                        //console.log("idx", emp.ARR_IDX, ", calWage", calWage);
+
+                        sumWage = sumWage + calWage;
+                        allWage = allWage + (calWage * diffMonth * multi);
+                    }
+                }
+            }
+
+            if (dateEmpty) {
+                $('#FIRST_EMPLOYEE_DATE').val("");
+            } else {
+                $('#FIRST_EMPLOYEE_DATE').val(dateToString(minDate, "DD/MM/YYYY", "th"));
+            }
+
+            $('#SSO_SUM_WAGE').val(sumWage != 0 ? sumWage : "");
+            $('#SSO_ALL_WAGE').val(allWage != 0 ? allWage : "");
+        }
+    </script>
+}
+

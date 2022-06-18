@@ -1,0 +1,40 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@model FormControl
+
+@if (Model.DisplayRepeater)
+{
+    <div class="@string.Format("{0}-repeater", Model.DataKey)">
+        <div data-repeater-list="@Model.DataKey">
+            <div data-repeater-item style="margin-bottom: 1px;">
+                <div class="row">
+                    <div class="col-md-10" style="padding-right: 0px;">
+                        @Html.TextBox(Model.DataKey, null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2" style="padding-left: 0px;">
+                        <button type="button" data-repeater-delete class="btn btn-danger repeater-delbtn"><i class="fa fa-minus-circle"> ลบ</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" data-repeater-create class="btn btn-primary repeater-addbtn"><i class="fa fa-plus-circle"> เพิ่ม</i></button>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $@string.Format("rpt{0}", Model.DataKey) = $(".@string.Format("{0}-repeater", Model.DataKey)").repeater({
+                isFirstItemUndeletable: true,
+                show: function () {
+                    $(this).slideDown();
+                },
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                }
+            });
+        });
+    </script>
+}
+else
+{
+    @Html.TextBox(Model.DataKey, null, new { @class = "form-control", id = Model.ClientID })
+}

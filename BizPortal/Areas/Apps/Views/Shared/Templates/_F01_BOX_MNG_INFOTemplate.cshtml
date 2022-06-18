@@ -1,0 +1,154 @@
+﻿@using BizPortal.Utils.Helpers
+<script id="F01_BOX_MNG_INFOTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    @*<div class="row">
+            <div class="col-md-3">
+                <label>@BizPortal.Resources.Apps_SingleForm.MANAGER_TITLE_PREFIX :</label>
+            </div>
+            <div class="col-md-2">
+                <label>@BizPortal.Resources.Apps_SingleForm.MANAGER_FIRSTNAME :</label>
+            </div>
+            <div class="col-md-3">
+                <label>@BizPortal.Resources.Apps_SingleForm.MANAGER_LASTNAME :</label>
+            </div>
+        </div>*@
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-8">
+            <span class="bold form-control-static">ข้อมูลผู้จัดการลำดับที่ {{ARR_IDX}}:</span>
+        </div>
+        <div class="col-md-2 pr5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#MODAL_{{../section}}" onclick="singleForm.functions.editDataArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">แก้ไขข้อมูล</button>
+        </div>
+        <div class="col-md-2 pl5">
+            <button type="button" class="btn btn-danger" onclick="singleForm.functions.removeArrayObj(singleForm.variables.arrObj{{../section}}, {{ARR_IDX}})">ลบรายการ</button>
+        </div>
+
+        <div class="col-md-3">
+            <span class="form-control-static">{{this.DROPDOWN_MANAGER_TITLE_PREFIX_TEXT}} {{this.MANAGER_FIRSTNAME}} {{this.MANAGER_LASTNAME}}</span>
+        </div>
+        <div class="col-md-9">
+            <div>
+                <span class="bold form-control-static">อายุ:</span>
+                <span class="form-control-static">{{this.MANAGER_AGE}}</span>
+                <span class="bold form-control-static">ปี</span>
+            </div>
+            <div>
+                <span class="bold form-control-static">สัญชาติ:</span>
+                <span class="form-control-static">{{this.DROPDOWN_MANAGER_NATIONALITY_TEXT}}</span>
+            </div>
+        </div>
+
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <div>
+                {{#xif " fieldExist(this.MANAGER_CITIZEN_ID_TEXT) " }}
+                <span class="bold form-control-static">เลขบัตรประจำตัวประชาชน 13 หลัก:</span>
+                <span class="form-control-static">{{this.MANAGER_CITIZEN_ID_TEXT}}</span>
+                {{/xif}}
+                {{#xif " fieldExist(this.MANAGER_PASSPORT_ID_TEXT) " }}
+                <span class="bold form-control-static">เลขที่หนังสือเดินทาง:</span>
+                <span class="form-control-static">{{this.MANAGER_PASSPORT_ID_TEXT}}</span>
+                {{/xif}}
+            </div>
+        </div>
+
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <div>
+                <span class="bold form-control-static">เลขที่:</span>
+                <span class="form-control-static">{{this.ADDRESS_MANAGER_CITIZEN_ADDRESS}}</span>
+
+                {{#if this.ADDRESS_MOO_MANAGER_CITIZEN_ADDRESS}}
+                <span class="bold form-control-static">หมู่ที่:</span>
+                <span class="form-control-static">{{this.ADDRESS_MOO_MANAGER_CITIZEN_ADDRESS}}</span>
+                {{/if}}
+
+                {{#if this.ADDRESS_VILLAGE_MANAGER_CITIZEN_ADDRESS}}
+                <span class="bold form-control-static">หมู่บ้าน:</span>
+                <span class="form-control-static">{{this.ADDRESS_VILLAGE_MANAGER_CITIZEN_ADDRESS}}</span>
+                {{/if}}
+
+                {{#if this.ADDRESS_SOI_MANAGER_CITIZEN_ADDRESS}}
+                <span class="bold form-control-static">ตรอก/ซอย:</span>
+                <span class="form-control-static">{{this.ADDRESS_SOI_MANAGER_CITIZEN_ADDRESS}}</span>
+                {{/if}}
+
+
+                {{#if this.ADDRESS_BUILDING_MANAGER_CITIZEN_ADDRESS}}
+                <span class="bold form-control-static">อาคาร:</span>
+                <span class="form-control-static">{{this.ADDRESS_BUILDING_MANAGER_CITIZEN_ADDRESS}}</span>
+                {{/if}}
+
+                {{#if this.ADDRESS_ROOMNO_MANAGER_CITIZEN_ADDRESS}}
+                <span class="bold form-control-static">ห้องเลขที่:</span>
+                <span class="form-control-static">{{this.ADDRESS_ROOMNO_MANAGER_CITIZEN_ADDRESS}}</span>
+                {{/if}}
+
+
+                {{#if this.ADDRESS_FLOOR_MANAGER_CITIZEN_ADDRESS}}
+                <span class="bold form-control-static">ชั้น:</span>
+                <span class="form-control-static">{{this.ADDRESS_FLOOR_MANAGER_CITIZEN_ADDRESS}}</span>
+                {{/if}}
+
+
+                {{#if this.ADDRESS_ROAD_MANAGER_CITIZEN_ADDRESS}}
+                <span class="bold form-control-static">ถนน:</span>
+                <span class="form-control-static">{{this.ADDRESS_ROAD_MANAGER_CITIZEN_ADDRESS}}</span>
+                {{/if}}
+
+                <span class="bold form-control-static">ตำบล/แขวง:</span>
+                <span class="form-control-static">{{this.ADDRESS_TUMBOL_MANAGER_CITIZEN_ADDRESS_TEXT}}</span>
+
+                <span class="bold form-control-static">อำเภอ/เขต:</span>
+                <span class="form-control-static">{{this.ADDRESS_AMPHUR_MANAGER_CITIZEN_ADDRESS_TEXT}}</span>
+
+                <span class="bold form-control-static">จังหวัด:</span>
+                <span class="form-control-static">{{this.ADDRESS_PROVINCE_MANAGER_CITIZEN_ADDRESS_TEXT}}</span>
+
+                <span class="bold form-control-static">รหัสไปรษณีย์:</span>
+                <sapn class="form-control-static">{{this.ADDRESS_POSTCODE_MANAGER_CITIZEN_ADDRESS}}</sapn>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <div>
+                <span class="bold form-control-static">โทรศัพท์:</span>
+                <span class="form-control-static">{{this.ADDRESS_TELEPHONE_MANAGER_CITIZEN_ADDRESS}}</span>
+
+                {{#if this.ADDRESS_TELEPHONE_EXT_MANAGER_CITIZEN_ADDRESS}}
+                <span class="bold form-control-static">ต่อ:</span>
+                <span class="form-control-static">{{this.ADDRESS_TELEPHONE_EXT_MANAGER_CITIZEN_ADDRESS}}</span>
+                {{/if}}
+            </div>
+        </div>
+
+        {{#if this.ADDRESS_FAX_MANAGER_CITIZEN_ADDRESS}}
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <span class="bold form-control-static">โทรสาร:</span>
+            <sapn class="form-control-static">{{this.ADDRESS_FAX_MANAGER_CITIZEN_ADDRESS}}</sapn>
+        </div>
+        {{/if}}
+
+        {{#if this.MANAGER_EMAIL}}
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <span class="bold form-control-static">อีเมล:</span>
+            <span class="form-control-static">{{this.MANAGER_EMAIL}}</span>
+        </div>
+        {{/if}}
+    </div>
+
+        {{/each}}
+        {{else}}
+        <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+            <div class="col-md-12 text-center">
+                @Html.Raw(ResourceHelper.GetResourceWordWithDefault(Model.EmptyDataMessage, "Apps_SingleForm_Template", Model.EmptyDataMessage))
+            </div>
+        </div>
+        {{/xif}}
+
+</script>
+

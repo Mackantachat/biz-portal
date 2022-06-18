@@ -1,0 +1,47 @@
+﻿@using BizPortal.Utils.Helpers
+
+<script id="APP_FACTORY_TYPE2_PRODUCT_INFORMATION_SECTIONTemplate" type="text/x-handlebars-template">
+    {{#xif " data.length > 0 " }}
+    {{#each data}}
+
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label>ชื่อผลิตภัณฑ์ :</label>
+                {{ this.APP_FACTORY_TYPE2_PRODUCT_NAME_MODAL }}
+            </div>
+
+            <div class="col-md-4">
+                <label>ปริมาณที่ผลิตต่อปี :</label>
+                {{ this.APP_FACTORY_TYPE2_PRODUCT_DOSE_PER_YAER_MODAL }}
+            </div>
+
+            <div class="col-md-4">
+                <label>หน่วย :</label>
+                {{ this.DROPDOWN_APP_FACTORY_TYPE2_PRODUCT_UNIT_MODAL_TEXT }}
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label>สถานที่จำหน่าย (ระบุประเทศ) :</label>
+                {{ this.DROPDOWN_APP_FACTORY_TYPE2_PRODUCT_COUNTY_LIST_MODAL_TEXT }}
+            </div>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+    {{else}}
+    <div class="row form-group pt10 pb10" style="margin: 0 0 5px 0 !important; border:solid 1px #000000; border-radius: 4px;">
+        <div class="col-md-12 text-center">
+            ไม่พบข้อมูล
+        </div>
+    </div>
+    {{/xif}}
+</script>

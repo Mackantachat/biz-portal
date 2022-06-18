@@ -1,0 +1,1199 @@
+﻿@using Resources = BizPortal.Resources
+@using BizPortal.Utils.Helpers
+
+<div class="row">
+    <div class="col-md-10 form-group">
+        <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_CITIZEN_ID", "Apps_SingleForm", "SSO_EMPLOYEE_CITIZEN_ID") * :</label>
+        <input type="text" class="form-control" id="SSO_EMPLOYEE_CITIZEN_ID" name="SSO_EMPLOYEE_CITIZEN_ID" />
+        <input type="hidden" id="SSO_EMPLOYEE_REG_STATUS" name="SSO_EMPLOYEE_REG_STATUS" />
+        <span id="SSO_EMPLOYEE_CITIZEN_ID-error" class="error text-danger"></span>
+    </div>
+    <div class="col-md-2 form-group text-center">
+        <label style="display:block;">&nbsp;</label>
+        <button type="button" class="btn btn-default" id="btnStatusCheck">ตรวจสอบ</button>
+        <button type="button" class="btn btn-danger" id="btnStatusRemove" hidden>ยกเลิก</button>
+    </div>
+</div>
+<div id="ssotrue" hidden>
+    <div class="row">
+        <div class="col-md-2">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_TITLE", "Apps_SingleForm", "SSO_EMPLOYEE_TITLE") * :</label>
+            <select class="form-control" id="SSO_EMPLOYEE_TITLE_TRUE" name="SSO_EMPLOYEE_TITLE_TRUE">
+                <option></option>
+            </select>
+            <input type="hidden" id="SSO_EMPLOYEE_TITLE_TRUE_TEXT" name="SSO_EMPLOYEE_TITLE_TRUE_TEXT" />
+        </div>
+        <div class="col-md-5">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_NAME", "Apps_SingleForm", "SSO_EMPLOYEE_NAME") * :</label>
+            <input type="text" class="form-control" id="SSO_EMPLOYEE_NAME_TRUE" name="SSO_EMPLOYEE_NAME_TRUE" />
+        </div>
+        <div class="col-md-5">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_LASTNAME", "Apps_SingleForm", "SSO_EMPLOYEE_LASTNAME") * :</label>
+            <input type="text" class="form-control" id="SSO_EMPLOYEE_LASTNAME_TRUE" name="SSO_EMPLOYEE_LASTNAME_TRUE" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_BRANCH", "Apps_SingleForm", "SSO_EMPLOYEE_BRANCH") * :</label>
+            <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_BRANCH_TRUE" name="AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE">
+                <option></option>
+            </select>
+            <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_BRANCH_TRUE_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE_TEXT" value="" />
+            <input type="hidden" id="SSO_EMPLOYEE_BRANCH_MIN_WAGE_TRUE" name="SSO_EMPLOYEE_BRANCH_MIN_WAGE_TRUE" value="" />
+        </div>
+        <div class="col-md-6">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FIRSTDAYOFWORK", "Apps_SingleForm", "SSO_EMPLOYEE_FIRSTDAYOFWORK") * :</label>
+            <div class="input-group date">
+                <input type="text" id="SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE" name="SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE" value="" class="form-control" readonly />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE") * :</label>
+            <span id="SSO_EMPLOYMENT_TYPE_TRUE-error" class="error text-danger"></span>
+            <div class="row">
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYMENT_TYPE_DAILY_TRUE">@Html.RadioButton("SSO_EMPLOYMENT_TYPE_TRUE", "DAILY", new { id = "SSO_EMPLOYMENT_TYPE_DAILY_TRUE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_DAILY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_DAILY")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYMENT_TYPE_MONTHLY_TRUE">@Html.RadioButton("SSO_EMPLOYMENT_TYPE_TRUE", "MONTHLY", new { id = "SSO_EMPLOYMENT_TYPE_MONTHLY_TRUE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_MONTHLY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_MONTHLY")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYMENT_TYPE_HOURLY_TRUE">@Html.RadioButton("SSO_EMPLOYMENT_TYPE_TRUE", "HOURLY", new { id = "SSO_EMPLOYMENT_TYPE_HOURLY_TRUE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_HOURLY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_HOURLY")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYMENT_TYPE_ETC_TRUE">@Html.RadioButton("SSO_EMPLOYMENT_TYPE_TRUE", "ETC", new { id = "SSO_EMPLOYMENT_TYPE_ETC_TRUE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_ETC", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_ETC")</label>
+                        <input type="text" class="form-control" id="SSO_EMPLOYMENT_TYPE_ETC_TRUE_TEXT" name="SSO_EMPLOYMENT_TYPE_ETC_TRUE_TEXT" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_WAGE", "Apps_SingleForm", "SSO_EMPLOYEE_WAGE") * :</label>
+            <input type="text" class="form-control" id="SSO_EMPLOYEE_WAGE_TRUE" name="SSO_EMPLOYEE_WAGE_TRUE" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_CURRENT_HOSPITAL", "Apps_SingleForm", "SSO_EMPLOYEE_CURRENT_HOSPITAL") * :</label>
+            <div class="row mb10">
+                <div class="col-md-2 text-center">
+                    <label>ลำดับที่ 1</label>
+                </div>
+                <div class="col-md-10">
+                    <select class="form-control mb10" id="ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_1" name="AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_1">
+                        <option></option>
+                    </select>
+                    <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_1_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_1_TEXT" />
+                </div>
+            </div>
+            <div class="row mb10">
+                <div class="col-md-2 text-center">
+                    <label>ลำดับที่ 2</label>
+                </div>
+                <div class="col-md-10">
+                    <select class="form-control mb10" id="ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_2" name="AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_2">
+                        <option></option>
+                    </select>
+                    <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_2_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_2_TEXT" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <label>ลำดับที่ 3</label>
+                </div>
+                <div class="col-md-10">
+                    <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_3" name="AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_3">
+                        <option></option>
+                    </select>
+                    <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_3_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_3_TEXT" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ssofalse" hidden>
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_TITLE", "Apps_SingleForm", "SSO_EMPLOYEE_TITLE") * :</label>
+            <select class="form-control" id="SSO_EMPLOYEE_TITLE_FALSE" name="SSO_EMPLOYEE_TITLE_FALSE">
+                <option></option>
+            </select>
+            <input type="hidden" id="SSO_EMPLOYEE_TITLE_FALSE_TEXT" name="SSO_EMPLOYEE_TITLE_FALSE_TEXT" />
+        </div>
+        <div class="col-md-5 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_NAME", "Apps_SingleForm", "SSO_EMPLOYEE_NAME") * :</label>
+            <input type="text" class="form-control" id="SSO_EMPLOYEE_NAME_FALSE" name="SSO_EMPLOYEE_NAME_FALSE" />
+        </div>
+        <div class="col-md-5 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_LASTNAME", "Apps_SingleForm", "SSO_EMPLOYEE_LASTNAME") * :</label>
+            <input type="text" class="form-control" id="SSO_EMPLOYEE_LASTNAME_FALSE" name="SSO_EMPLOYEE_LASTNAME_FALSE" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_NATIONALITY", "Apps_SingleForm", "SSO_EMPLOYEE_NATIONALITY") * :</label>
+            <input type="text" class="form-control" id="SSO_EMPLOYEE_NATIONALITY_FALSE" name="SSO_EMPLOYEE_NATIONALITY_FALSE" />
+        </div>
+        <div class="col-md-6 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_BIRTHDATE", "Apps_SingleForm", "SSO_EMPLOYEE_BIRTHDATE") * :</label>
+            <div class="input-group date">
+                <input type="text" id="SSO_EMPLOYEE_BIRTHDATE_FALSE" name="SSO_EMPLOYEE_BIRTHDATE_FALSE" value="" class="form-control" readonly />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_BRANCH", "Apps_SingleForm", "SSO_EMPLOYEE_BRANCH") * :</label>
+            <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_BRANCH_FALSE" name="AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE">
+                <option></option>
+            </select>
+            <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_BRANCH_FALSE_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE_TEXT" value="" />
+            <input type="hidden" id="SSO_EMPLOYEE_BRANCH_MIN_WAGE_FALSE" name="SSO_EMPLOYEE_BRANCH_MIN_WAGE_FALSE" value="" />
+        </div>
+        <div class="col-md-6 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FIRSTDAYOFWORK", "Apps_SingleForm", "SSO_EMPLOYEE_FIRSTDAYOFWORK") * :</label>
+            <div class="input-group date">
+                <input type="text" id="SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE" name="SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE" value="" class="form-control" readonly />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE") * :</label>
+            <div class="row">
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYMENT_TYPE_DAILY_FALSE">@Html.RadioButton("SSO_EMPLOYMENT_TYPE_FALSE", "DAILY", new { id = "SSO_EMPLOYMENT_TYPE_DAILY_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_DAILY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_DAILY")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYMENT_TYPE_MONTHLY_FALSE">@Html.RadioButton("SSO_EMPLOYMENT_TYPE_FALSE", "MONTHLY", new { id = "SSO_EMPLOYMENT_TYPE_MONTHLY_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_MONTHLY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_MONTHLY")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYMENT_TYPE_HOURLY_FALSE">@Html.RadioButton("SSO_EMPLOYMENT_TYPE_FALSE", "HOURLY", new { id = "SSO_EMPLOYMENT_TYPE_HOURLY_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_HOURLY", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_HOURLY")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYMENT_TYPE_ETC_FALSE">@Html.RadioButton("SSO_EMPLOYMENT_TYPE_FALSE", "ETC", new { id = "SSO_EMPLOYMENT_TYPE_ETC_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYMENT_TYPE_ETC", "Apps_SingleForm", "SSO_EMPLOYMENT_TYPE_ETC")</label>
+                        <input type="text" class="form-control" id="SSO_EMPLOYMENT_TYPE_ETC_FALSE_TEXT" name="SSO_EMPLOYMENT_TYPE_ETC_FALSE_TEXT" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_WAGE", "Apps_SingleForm", "SSO_EMPLOYEE_WAGE") * :</label>
+            <input type="text" class="form-control" id="SSO_EMPLOYEE_WAGE_FALSE" name="SSO_EMPLOYEE_WAGE_FALSE" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <input type="checkbox" name="SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE" id="SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE" value="true" />
+            <label for="SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE">@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE", "Apps_SingleForm", "SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE")</label>
+        </div>
+        <div class="col-md-8 form-group">
+            <input type="text" class="form-control" name="SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE_TEXT" id="SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE_TEXT" disabled />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS") * :</label>
+            <div class="row">
+                <div class="col-md-4 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYEE_FAMILY_STATUS_SINGLE_FALSE">@Html.RadioButton("SSO_EMPLOYEE_FAMILY_STATUS_FALSE", "SINGLE", new { id = "SSO_EMPLOYEE_FAMILY_STATUS_SINGLE_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_SINGLE", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_SINGLE")</label>
+                    </div>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYEE_FAMILY_STATUS_MARRIED_FALSE">@Html.RadioButton("SSO_EMPLOYEE_FAMILY_STATUS_FALSE", "MARRIED", new { id = "SSO_EMPLOYEE_FAMILY_STATUS_MARRIED_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_MARRIED", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_MARRIED")</label>
+                    </div>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYEE_FAMILY_STATUS_WIDOW_FALSE">@Html.RadioButton("SSO_EMPLOYEE_FAMILY_STATUS_FALSE", "WIDOW", new { id = "SSO_EMPLOYEE_FAMILY_STATUS_WIDOW_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_WIDOW", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_WIDOW")</label>
+                    </div>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYEE_FAMILY_STATUS_DIVORCE_FALSE">@Html.RadioButton("SSO_EMPLOYEE_FAMILY_STATUS_FALSE", "DIVORCE", new { id = "SSO_EMPLOYEE_FAMILY_STATUS_DIVORCE_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_DIVORCE", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_DIVORCE")</label>
+                    </div>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYEE_FAMILY_STATUS_SEPARATED_FALSE">@Html.RadioButton("SSO_EMPLOYEE_FAMILY_STATUS_FALSE", "SEPARATED", new { id = "SSO_EMPLOYEE_FAMILY_STATUS_SEPARATED_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FAMILY_STATUS_SEPARATED", "Apps_SingleForm", "SSO_EMPLOYEE_FAMILY_STATUS_SEPARATED")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_HAS_KID", "Apps_SingleForm", "SSO_EMPLOYEE_HAS_KID") * :</label>
+            <div class="radio">
+                <label for="SSO_EMPLOYEE_HAS_KID_FALSE">@Html.RadioButton("SSO_EMPLOYEE_HAS_KID", "false", new { id = "SSO_EMPLOYEE_HAS_KID_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_HAS_KID_FALSE", "Apps_SingleForm", "SSO_EMPLOYEE_HAS_KID_FALSE")</label>
+            </div>
+            <div class="radio">
+                <label for="SSO_EMPLOYEE_HAS_KID_TRUE">@Html.RadioButton("SSO_EMPLOYEE_HAS_KID", "true", new { id = "SSO_EMPLOYEE_HAS_KID_TRUE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_HAS_KID_TRUE", "Apps_SingleForm", "SSO_EMPLOYEE_HAS_KID_TRUE")</label>
+            </div>
+        </div>
+        <div class="col-md-6 form-group" id="kidsRepeater" hidden>
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_HAS_KID_6Y", "Apps_SingleForm", "SSO_EMPLOYEE_HAS_KID_6Y") :</label>
+            <div class="SSO_EMPLOYEE_HAS_KID_6Y_REPEATER-repeater">
+                <div data-repeater-list="SSO_EMPLOYEE_HAS_KID_6Y_REPEATER">
+                    <div data-repeater-item style="margin-bottom: 1px;">
+                        <div class="row">
+                            <div class="col-md-10" style="padding-right: 0px;">
+                                @Html.TextBox("SSO_EMPLOYEE_HAS_KID_6Y_REPEATER", null, new { @class = "form-control repeater-datepicker" })
+                            </div>
+                            <div class="col-md-2" style="padding-left: 0px;">
+                                <button type="button" data-repeater-delete class="btn btn-danger repeater-delbtn"><i class="fa fa-minus-circle"> ลบ</i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" data-repeater-create class="btn btn-primary repeater-addbtn"><i class="fa fa-plus-circle"> เพิ่ม</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_BODY_CONDITION", "Apps_SingleForm", "SSO_EMPLOYEE_BODY_CONDITION") * :</label>
+            <div class="row">
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYEE_BODY_CONDITION_NORMAL_FALSE">@Html.RadioButton("SSO_EMPLOYEE_BODY_CONDITION_FALSE", "NORMAL", new { id = "SSO_EMPLOYEE_BODY_CONDITION_NORMAL_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_BODY_CONDITION_NORMAL", "Apps_SingleForm", "SSO_EMPLOYEE_BODY_CONDITION_NORMAL")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <div class="radio">
+                        <label for="SSO_EMPLOYEE_BODY_CONDITION_DISABILITY_FALSE">@Html.RadioButton("SSO_EMPLOYEE_BODY_CONDITION_FALSE", "DISABILITY", new { id = "SSO_EMPLOYEE_BODY_CONDITION_DISABILITY_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_BODY_CONDITION_DISABILITY", "Apps_SingleForm", "SSO_EMPLOYEE_BODY_CONDITION_DISABILITY")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="row_SSO_EMPLOYEE_DISABILITY" hidden>
+        <div class="col-md-12 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_DISABILITY", "Apps_SingleForm", "SSO_EMPLOYEE_DISABILITY") :</label>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="SSO_EMPLOYEE_DISABILITY_VISUAL_DISABILITY">
+                            <input type="checkbox" name="SSO_EMPLOYEE_DISABILITY_CHECKBOXES" id="SSO_EMPLOYEE_DISABILITY_VISUAL_DISABILITY" value="VISUAL_DISABILITY" />
+                            @ResourceHelper.GetResourceWordWithDefault("VISUAL_DISABILITY", "Apps_SingleForm", "VISUAL_DISABILITY")
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="SSO_EMPLOYEE_DISABILITY_HEARING_DISABILITY">
+                            <input type="checkbox" name="SSO_EMPLOYEE_DISABILITY_CHECKBOXES" id="SSO_EMPLOYEE_DISABILITY_HEARING_DISABILITY" value="HEARING_DISABILITY" />
+                            @ResourceHelper.GetResourceWordWithDefault("HEARING_DISABILITY", "Apps_SingleForm", "HEARING_DISABILITY")
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="SSO_EMPLOYEE_DISABILITY_PHYSICAL_DISABILITY">
+                            <input type="checkbox" name="SSO_EMPLOYEE_DISABILITY_CHECKBOXES" id="SSO_EMPLOYEE_DISABILITY_PHYSICAL_DISABILITY" value="PHYSICAL_DISABILITY" />
+                            @ResourceHelper.GetResourceWordWithDefault("PHYSICAL_DISABILITY", "Apps_SingleForm", "PHYSICAL_DISABILITY")
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="SSO_EMPLOYEE_DISABILITY_MENTALHEALTH_DISABILITY">
+                            <input type="checkbox" name="SSO_EMPLOYEE_DISABILITY_CHECKBOXES" id="SSO_EMPLOYEE_DISABILITY_MENTALHEALTH_DISABILITY" value="MENTALHEALTH_DISABILITY" />
+                            @ResourceHelper.GetResourceWordWithDefault("MENTALHEALTH_DISABILITY", "Apps_SingleForm", "MENTALHEALTH_DISABILITY")
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="SSO_EMPLOYEE_DISABILITY_INTELLECTUAL_DISABILITY">
+                            <input type="checkbox" name="SSO_EMPLOYEE_DISABILITY_CHECKBOXES" id="SSO_EMPLOYEE_DISABILITY_INTELLECTUAL_DISABILITY" value="INTELLECTUAL_DISABILITY" />
+                            @ResourceHelper.GetResourceWordWithDefault("INTELLECTUAL_DISABILITY", "Apps_SingleForm", "INTELLECTUAL_DISABILITY")
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="SSO_EMPLOYEE_DISABILITY_LEARNING_DISABILITY">
+                            <input type="checkbox" name="SSO_EMPLOYEE_DISABILITY_CHECKBOXES" id="SSO_EMPLOYEE_DISABILITY_LEARNING_DISABILITY" value="LEARNING_DISABILITY" />
+                            @ResourceHelper.GetResourceWordWithDefault("LEARNING_DISABILITY", "Apps_SingleForm", "LEARNING_DISABILITY")
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label for="SSO_EMPLOYEE_DISABILITY_AUTISM_DISABILITY">
+                            <input type="checkbox" name="SSO_EMPLOYEE_DISABILITY_CHECKBOXES" id="SSO_EMPLOYEE_DISABILITY_AUTISM_DISABILITY" value="AUTISM_DISABILITY" />
+                            @ResourceHelper.GetResourceWordWithDefault("AUTISM_DISABILITY", "Apps_SingleForm", "AUTISM_DISABILITY")
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FOREIGNER", "Apps_SingleForm", "SSO_EMPLOYEE_FOREIGNER")</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FOREIGNER_WORKPERMIT", "Apps_SingleForm", "SSO_EMPLOYEE_FOREIGNER_WORKPERMIT") :</label>
+            @Html.TextBox("SSO_EMPLOYEE_FOREIGNER_WORKPERMIT_FALSE", null, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FOREIGNER_PASSPORT", "Apps_SingleForm", "SSO_EMPLOYEE_FOREIGNER_PASSPORT") :</label>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <div class="radio">
+                            <label for="SSO_EMPLOYEE_FOREIGNER_PASSPORT_PASSPORT_FALSE">@Html.RadioButton("SSO_EMPLOYEE_FOREIGNER_PASSPORT_FALSE", "PASSPORT", new { id = "SSO_EMPLOYEE_FOREIGNER_PASSPORT_PASSPORT_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FOREIGNER_PASSPORT_PASSPORT", "Apps_SingleForm", "SSO_EMPLOYEE_FOREIGNER_PASSPORT_PASSPORT")</label>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control mt10 mb10" name="SSO_EMPLOYEE_FOREIGNER_PASSPORT_PASSPORT_FALSE_TEXT" id="SSO_EMPLOYEE_FOREIGNER_PASSPORT_PASSPORT_FALSE_TEXT" disabled />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <div class="radio">
+                            <label for="SSO_EMPLOYEE_FOREIGNER_PASSPORT_ETC_FALSE">@Html.RadioButton("SSO_EMPLOYEE_FOREIGNER_PASSPORT_FALSE", "ETC", new { id = "SSO_EMPLOYEE_FOREIGNER_PASSPORT_ETC_FALSE" }) @ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_FOREIGNER_PASSPORT_ETC", "Apps_SingleForm", "SSO_EMPLOYEE_FOREIGNER_PASSPORT_ETC")</label>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control mt10 mb10" name="SSO_EMPLOYEE_FOREIGNER_PASSPORT_ETC_FALSE_TEXT" id="SSO_EMPLOYEE_FOREIGNER_PASSPORT_ETC_FALSE_TEXT" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_SELECT_HOSPITAL", "Apps_SingleForm", "SSO_EMPLOYEE_SELECT_HOSPITAL") * :</label>
+            <div class="row mb10">
+                <div class="col-md-2 text-center">
+                    <label>ลำดับที่ 1</label>
+                </div>
+                <div class="col-md-10">
+                    <select class="form-control mb10" id="ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_1" name="AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_1">
+                        <option></option>
+                    </select>
+                    <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_1_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_1_TEXT" />
+                </div>
+            </div>
+            <div class="row mb10">
+                <div class="col-md-2 text-center">
+                    <label>ลำดับที่ 2</label>
+                </div>
+                <div class="col-md-10">
+                    <select class="form-control mb10" id="ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_2" name="AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_2">
+                        <option></option>
+                    </select>
+                    <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_2_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_2_TEXT" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <label>ลำดับที่ 3</label>
+                </div>
+                <div class="col-md-10">
+                    <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_3" name="AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_3">
+                        <option></option>
+                    </select>
+                    <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_3_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_3_TEXT" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ssoTSIC" hidden>
+    <div class="row">
+        <div class="col-md-12">
+            <label>@ResourceHelper.GetResourceWordWithDefault("SSO_EMPLOYEE_TSIC", "Apps_SingleForm", "SSO_EMPLOYEE_TSIC") * :</label>
+        </div>
+        <div class="col-md-12 form-group mb5">
+            <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_1" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_1">
+                <option></option>
+            </select>
+            <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_1_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_1_TEXT" value="" />
+        </div>
+        <div class="col-md-12 form-group mb5">
+            <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_2" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_2">
+                <option></option>
+            </select>
+            <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_2_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_2_TEXT" value="" />
+        </div>
+        <div class="col-md-12 form-group mb5">
+            <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_3" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_3">
+                <option></option>
+            </select>
+            <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_3_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_3_TEXT" value="" />
+        </div>
+        <div class="col-md-12 form-group mb5">
+            <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_4" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_4">
+                <option></option>
+            </select>
+            <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_4_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_4_TEXT" value="" />
+        </div>
+        <div class="col-md-12 form-group mb5">
+            <select class="form-control" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_5" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_5">
+                <option></option>
+            </select>
+            <input type="hidden" id="ajax_dropdown_SSO_EMPLOYEE_TSIC_5_TEXT" name="AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_5_TEXT" value="" />
+            <input type="hidden" id="SSO_TSIC_MULTIPLIER" name="SSO_TSIC_MULTIPLIER" value="" />
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#SSO_EMPLOYEE_TITLE_TRUE, #SSO_EMPLOYEE_TITLE_FALSE").select2({
+            data: [{ "id": "01", "text": "นาย" }, { "id": "02", "text": "นาง" }, { "id": "03", "text": "นางสาว" }, { "id": "11", "text": "Mr." }, { "id": "12", "text": "Mrs." }, { "id": "13", "text": "Miss" }],
+            allowClear: true,
+            placeholder: '',
+            width: '100%'
+        });
+
+        $("#frmSSO_EMPLOYEE_INFORMATION").submit(function (e) {
+            var errors = 0;
+            if ($("#SSO_EMPLOYEE_REG_STATUS").val() != "true" && $("#SSO_EMPLOYEE_REG_STATUS").val() != "false") {
+                $("#SSO_EMPLOYEE_CITIZEN_ID-error").text("กรุณาตรวจสอบเลขบัตรประจำตัวประชาชน 13 หลัก");
+                errors++;
+            }
+            if (!$(this).valid()) {
+                errors++;
+            }
+            if (errors == 0) {
+                return true;
+            }
+            e.preventDefault();
+        });
+
+        function formDataClear() {
+            $form = $("#frmSSO_EMPLOYEE_INFORMATION");
+            $(":input", $form).each(function () {
+                var $this = $(this);
+                if ($this[0].name != "SSO_EMPLOYEE_CITIZEN_ID") {
+                    if (!$this.is(':radio') && !$this.is(':checkbox')) {
+                        $this.val('');
+                    } else {
+                        $this.prop('checked', false);
+                    }
+                    if ($this[0].tagName === 'SELECT') {
+                        $this.trigger("change");
+                    }
+                }
+            });
+        }
+
+        function toggleDiv(x, y) {
+            $("#ssotrue").prop("hidden", x);
+            $("#ssofalse").prop("hidden", y);
+        }
+
+        function toggleBtn(x) {
+            $("#SSO_EMPLOYEE_CITIZEN_ID").prop("readonly", x);
+            $("#btnStatusCheck").prop("hidden", x);
+            $("#btnStatusRemove").prop("hidden", !x);
+            $("#ssoTSIC").prop("hidden", !x);
+        }
+
+        $("#SSO_EMPLOYEE_CITIZEN_ID").mask("0-0000-00000-00-0", {
+            clearIfNotMatch: true
+        });
+
+        $("#btnStatusCheck").click(function () {
+            formDataClear();
+            $("#SSO_EMPLOYEE_CITIZEN_ID-error").empty();
+            $("#SSO_EMPLOYEE_REG_STATUS-error").empty();
+            var $field = $("#SSO_EMPLOYEE_CITIZEN_ID");
+            var citid = $field.val().replace(/-/g, "");
+            if (citid.length == 13) {
+                showLoader(true);
+                $.ajax({
+                    url: '@Url.Content("~/Api/v2/SSO/EmployeeRegStatusCheck")',
+                    data: {
+                        IdentityID: citid
+                    },
+                    success: function (data) {
+                        if (data) {
+                            //console.log(data);
+                            if (data.result) {
+                                toggleDiv(false, true);
+                                $("#SSO_EMPLOYEE_REG_STATUS").val("true");
+                            } else {
+                                toggleDiv(true, false);
+                                $("#SSO_EMPLOYEE_REG_STATUS").val("false");
+                            }
+                            $field.prop("readonly", true);
+                            toggleBtn(true);
+                        } else {
+                            toggleDiv(true, true);
+                            $("#SSO_EMPLOYEE_REG_STATUS").val("");
+                            $("#SSO_EMPLOYEE_CITIZEN_ID-error").text("ไม่พบเลขบัตรประจำตัวประชาชนนี้ กรุณาตรวจสอบใหม่อีกครั้ง").css('display', 'block');
+                        }
+                        showLoader(false);
+                    },
+                    error: function () {
+                        //console.log("error");
+                        $("#SSO_EMPLOYEE_REG_STATUS").val("");
+                        $("#SSO_EMPLOYEE_CITIZEN_ID-error").text("ไม่สามารถตรวจสอบสถานะการจะทะเบียนของลูกจ้างได้ กรุณาลองใหม่อีกครั้ง").css('display', 'block');
+                        showLoader(false);
+                    }
+                });
+            } else {
+                $("#SSO_EMPLOYEE_CITIZEN_ID-error").text("กรุณากรอกเลขบัตรประจำตัวประชาชน 13 หลัก").css('display', 'block');
+            }
+        });
+
+        $("#btnStatusRemove").click(function () {
+            formDataClear();
+            toggleDiv(true, true);
+            toggleBtn(false);
+        });
+
+        $("#frmSSO_EMPLOYEE_INFORMATION").on("shown.bs.modal", function () {
+            var status = $("#SSO_EMPLOYEE_REG_STATUS").val();
+            if (status == "true") {
+                toggleDiv(false, true);
+                toggleBtn(true);
+            } else if (status == "false") {
+                toggleDiv(true, false);
+                toggleBtn(true);
+            }
+        });
+
+        $("#frmSSO_EMPLOYEE_INFORMATION").on("hidden.bs.modal", function () {
+            $("#SSO_EMPLOYEE_CITIZEN_ID").val("");
+            $("#SSO_EMPLOYEE_CITIZEN_ID-error").empty();
+            $("#frmSSO_EMPLOYEE_INFORMATION span.error").empty();
+            $('#kidsRepeater [data-repeater-list]').empty();
+            $('#kidsRepeater [data-repeater-create]').click();
+            formDataClear();
+            toggleDiv(true, true);
+            toggleBtn(false);
+        });
+
+        /*--- Start SSO TRUE ---*/
+
+        $('#SSO_EMPLOYEE_TITLE_TRUE').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#SSO_EMPLOYEE_TITLE_TRUE_TEXT').val(data.text);
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_BRANCH_TRUE").select2({
+            ajax: {
+                url: '@Url.Content("~/Api/v2/SSO/JuristicBranch")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            allowClear: true,
+            placeholder: 'เลือกสาขาหรือสถานที่ทำงาน',
+            width: '100%'
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_BRANCH_TRUE').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_BRANCH_TRUE_TEXT').val(data.text);
+            $('#SSO_EMPLOYEE_BRANCH_MIN_WAGE_TRUE').val(data.MinimumWage);
+        });
+
+        $('#SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE').datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm/yyyy',
+            startView: 'decade',
+            endDate: new Date()
+        });
+
+        $("#SSO_EMPLOYEE_WAGE_TRUE").mask('#,##0', { clearIfNotMatch: true, reverse: true });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_1, #ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_2, #ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_3").select2({
+            ajax: {
+                url: '@Url.Content("~/Api/v2/SSO/HospitalList")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            allowClear: true,
+            placeholder: 'เลือกสาขาหรือสถานที่ทำงาน',
+            width: '100%'
+        });
+
+        $('[name=SSO_EMPLOYMENT_TYPE_TRUE]').change(function () {
+            var val = $('[name=SSO_EMPLOYMENT_TYPE_TRUE]:checked').val();
+            $('#SSO_EMPLOYMENT_TYPE_ETC_TRUE_TEXT').val("");
+            if (val == "ETC") {
+                $('#SSO_EMPLOYMENT_TYPE_ETC_TRUE_TEXT').prop('readonly', false);
+            } else {
+                $('#SSO_EMPLOYMENT_TYPE_ETC_TRUE_TEXT').prop('readonly', true);
+            }
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_1').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_1_TEXT').val(data.text);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_2').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_2_TEXT').val(data.text);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_3').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_CURRENT_HOSPITAL_3_TEXT').val(data.text);
+        });
+
+        /*--- End SSO TRUE ---*/
+        //
+        //
+        //
+        /*--- Start SSO FALSE ---*/
+
+        $('#SSO_EMPLOYEE_TITLE_FALSE').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#SSO_EMPLOYEE_TITLE_FALSE_TEXT').val(data.text);
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_BRANCH_FALSE").select2({
+            ajax: {
+                url: '@Url.Content("~/Api/v2/SSO/JuristicBranch")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            allowClear: true,
+            placeholder: 'เลือกสาขาหรือสถานที่ทำงาน',
+            width: '100%'
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_BRANCH_FALSE').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_BRANCH_FALSE_TEXT').val(data.text);
+            $('#SSO_EMPLOYEE_BRANCH_MIN_WAGE_FALSE').val(data.MinimumWage);
+        });
+
+        $('#SSO_EMPLOYEE_BIRTHDATE_FALSE').datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm/yyyy',
+            startView: 'decade',
+            endDate: new Date()
+        });
+
+        $('#SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE').datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm/yyyy',
+            startView: 'decade',
+            endDate: new Date()
+        });
+
+        $('[name=SSO_EMPLOYMENT_TYPE_FALSE]').change(function () {
+            var val = $('[name=SSO_EMPLOYMENT_TYPE_FALSE]:checked').val();
+            $('#SSO_EMPLOYMENT_TYPE_ETC_FALSE_TEXT').val("");
+            if (val == "ETC") {
+                $('#SSO_EMPLOYMENT_TYPE_ETC_FALSE_TEXT').prop('readonly', false);
+            } else {
+                $('#SSO_EMPLOYMENT_TYPE_ETC_FALSE_TEXT').prop('readonly', true);
+            }
+        });
+
+        $("#SSO_EMPLOYEE_WAGE_FALSE").mask('#,##0', { clearIfNotMatch: true, reverse: true });
+
+        $("input[name=SSO_EMPLOYEE_HAS_KID]").change(function () {
+            if ($("input[name=SSO_EMPLOYEE_HAS_KID]:checked").val() == "true") {
+                $("#kidsRepeater").show();
+            } else {
+                $("#kidsRepeater").hide();
+                $('#kidsRepeater [data-repeater-list]').empty();
+                $('#kidsRepeater [data-repeater-create]').click();
+            }
+        });
+
+        $rptSSO_EMPLOYEE_HAS_KID_6Y_REPEATER = $(".SSO_EMPLOYEE_HAS_KID_6Y_REPEATER-repeater").repeater({
+            isFirstItemUndeletable: true,
+            show: function () {
+                $(this).slideDown();
+                $(".repeater-datepicker").datepicker({
+                    autoclose: true,
+                    language: "th-th",
+                    format: 'dd/mm/yyyy',
+                    startView: 'decade',
+                    endDate: new Date()
+                });
+            },
+            hide: function (deleteElement) {
+                $(this).slideUp(deleteElement);
+            }
+        });
+
+        $(".repeater-datepicker").datepicker({
+            autoclose: true,
+            language: "th-th",
+            format: 'dd/mm/yyyy',
+            startView: 'decade',
+            endDate: new Date()
+        });
+
+        $("input[name=SSO_EMPLOYEE_BODY_CONDITION_FALSE]").change(function () {
+            if ($("input[name=SSO_EMPLOYEE_BODY_CONDITION_FALSE]:checked").val() == "DISABILITY") {
+                $("#row_SSO_EMPLOYEE_DISABILITY").show();
+            } else {
+                $("#row_SSO_EMPLOYEE_DISABILITY").hide();
+            }
+        });
+
+        $("input[name=SSO_EMPLOYEE_FOREIGNER_PASSPORT_FALSE]").change(function () {
+            if ($("input[name=SSO_EMPLOYEE_FOREIGNER_PASSPORT_FALSE]:checked").val() == "PASSPORT") {
+                $("#SSO_EMPLOYEE_FOREIGNER_PASSPORT_PASSPORT_FALSE_TEXT").prop('disabled', false);
+                $("#SSO_EMPLOYEE_FOREIGNER_PASSPORT_ETC_FALSE_TEXT").prop('disabled', true);
+            } else {
+                $("#SSO_EMPLOYEE_FOREIGNER_PASSPORT_PASSPORT_FALSE_TEXT").prop('disabled', true);
+                $("#SSO_EMPLOYEE_FOREIGNER_PASSPORT_ETC_FALSE_TEXT").prop('disabled', false);
+            }
+        });
+
+        $("#SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE").on('change', function () {
+            if (document.getElementById("SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE").checked) {
+                $("#SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE_TEXT").prop("disabled", false);
+            } else {
+                $("#SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE_TEXT").prop("disabled", true);
+                $("#SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE_TEXT").val("");
+            }
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_1, #ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_2, #ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_3").select2({
+            ajax: {
+                url: '@Url.Content("~/Api/v2/SSO/HospitalList")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            allowClear: true,
+            placeholder: 'เลือกสถานพยาบาล',
+            width: '100%'
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_1').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_1_TEXT').val(data.text);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_2').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_2_TEXT').val(data.text);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_3').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_SELECT_HOSPITAL_3_TEXT').val(data.text);
+        });
+        /*--- End SSO FALSE ---*/
+        //
+        //
+        //
+        /*--- Start SSO TSIC ---*/
+        function clearCDTSIC(x) {
+            $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_5").val("").trigger('change');
+            $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_5 option[value]").remove();
+            $("#SSO_TSIC_MULTIPLIER").val("");
+
+            if (x <= 2) {
+                $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_4").val("").trigger('change');
+                $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_4 option[value]").remove();
+            }
+            if (x <= 1) {
+                $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_3").val("").trigger('change');
+                $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_3 option[value]").remove();
+            }
+            if (x == 0) {
+                $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_2").val("").trigger('change');
+                $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_2 option[value]").remove();
+            }
+        }
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_1").select2({
+            allowClear: true,
+            placeholder: 'กรุณาเลือกหมวดใหญ่',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/TSICs/Categories")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_2").select2({
+            allowClear: true,
+            placeholder: 'กรุณาเลือกหมวดย่อย',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/TSICs/Categories/{id}/SubCategories")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        id: $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_1").val()
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_3").select2({
+            allowClear: true,
+            placeholder: 'กรุณาเลือกหมู่ใหญ่',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/TSICs/SubCategories/{id}/Groups")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        id: $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_2").val()
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_4").select2({
+            allowClear: true,
+            placeholder: 'กรุณาเลือกหมู่ย่อย',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/TSICs/Groups/{id}/SubGroups")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        id: $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_3").val()
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_5").select2({
+            allowClear: true,
+            placeholder: 'กรุณาเลือกกิจกรรม',
+            ajax: {
+                url: '@Url.Content("~/Api/v2/TSICs/SubGroups/{id}/Codes")',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        query: params.term,
+                        id: $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_4").val()
+                    }
+                },
+                processResults: function (data, params) {
+                    return data;
+                },
+                cache: true
+            },
+            width: '100%'
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_1").change(function () {
+            clearCDTSIC(0);
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_2").change(function () {
+            clearCDTSIC(1);
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_3").change(function () {
+            clearCDTSIC(2);
+        });
+
+        $("#ajax_dropdown_SSO_EMPLOYEE_TSIC_4").change(function () {
+            clearCDTSIC(3);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_1').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_1_TEXT').val(data.text);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_2').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_2_TEXT').val(data.text);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_3').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_3_TEXT').val(data.text);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_4').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_4_TEXT').val(data.text);
+        });
+
+        $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_5').on('select2:select', function (e) {
+            var data = e.params.data;
+            $('#ajax_dropdown_SSO_EMPLOYEE_TSIC_5_TEXT').val(data.text);
+            $("#SSO_TSIC_MULTIPLIER").val(data.Multiple);
+        });
+
+        /*--- End SSO TSIC ---*/
+        //
+        //
+        //
+        /*--- Start Validation Callbacks ---*/
+
+        singleForm.customRules['SSO_EMPLOYEE_CITIZEN_ID'] = {
+            required: true, messages: { required: 'กรุณากรอกเลขบัตรประจำตัวประชาชน 13 หลัก' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_REG_STATUS'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_CITIZEN_ID").val().length == 17 }, messages: { required: 'กรุณาตรวจสอบเลขบัตรประจำตัวประชาชน 13 หลัก' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_TITLE_TRUE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณาเลือกคำนำหน้า' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_NAME_TRUE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณากรอกชื่อ' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_LASTNAME_TRUE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณากรอกนามสกุล' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_TRUE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณาเลือกสาขาหรือสถานที่ทำงานของลูกจ้าง' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_FIRSTDAYOFWORK_TRUE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณาเลือกวันที่ผู้ประกันตนเข้าทำงาน' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYMENT_TYPE_TRUE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณาเลือกประเภทการจ้าง' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYMENT_TYPE_ETC_TRUE_TEXT'] = {
+            required: "#SSO_EMPLOYMENT_TYPE_ETC_TRUE:checked", messages: { required: 'กรุณาระบุประเภทการจ้างอื่นๆ' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_WAGE_TRUE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณากรอกจำนวนเงินค่าจ้าง' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_1'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณาเลือกสถานพยาบาลที่ประสงค์จะใช้สิทธิลำดับที่ 1' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_2'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณาเลือกสถานพยาบาลที่ประสงค์จะใช้สิทธิลำดับที่ 2' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_CURRENT_HOSPITAL_3'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" }, messages: { required: 'กรุณาเลือกสถานพยาบาลที่ประสงค์จะใช้สิทธิลำดับที่ 3' }
+        };
+
+        ///
+
+        singleForm.customRules['SSO_EMPLOYEE_TITLE_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกคำนำหน้า' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_NAME_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณากรอกชื่อ' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_LASTNAME_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณากรอกนามสกุล' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_NATIONALITY_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณากรอกสัญชาติ' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_BIRTHDATE_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกวัน เดือน ปีเกิด' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_BRANCH_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกสาขาหรือสถานที่ทำงานของลูกจ้าง' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_FIRSTDAYOFWORK_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกวันที่ผู้ประกันตนเข้าทำงาน' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYMENT_TYPE_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกประเภทการจ้าง' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYMENT_TYPE_ETC_FALSE_TEXT'] = {
+            required: "#SSO_EMPLOYMENT_TYPE_ETC_FALSE:checked", messages: { required: 'กรุณาระบุประเภทการจ้างอื่นๆ' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_WAGE_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณากรอกจำนวนเงินค่าจ้าง' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE_TEXT'] = {
+            required: "#SSO_EMPLOYEE_IS_MULTIPLE_WORKPLACE_FALSE:checked", messages: { required: 'กรุณากรอกสถานที่ทำงานอื่น' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_FAMILY_STATUS_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกสถานภาพครอบครัว' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_HAS_KID'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกบุตร' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_BODY_CONDITION_FALSE'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกสภาพร่างกาย' }
+        };
+
+        singleForm.customRules['SSO_EMPLOYEE_DISABILITY_SELECT'] = {
+            required: "#SSO_EMPLOYEE_BODY_CONDITION_DISABILITY_FALSE:checked", messages: { required: 'กรุณาระบุประเภทความพิการ' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_1'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกสถานพยาบาลที่ประสงค์จะใช้สิทธิลำดับที่ 1' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_2'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกสถานพยาบาลที่ประสงค์จะใช้สิทธิลำดับที่ 2' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_SELECT_HOSPITAL_3'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกสถานพยาบาลที่ประสงค์จะใช้สิทธิลำดับที่ 3' }
+        };
+
+        ///
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_1'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" || $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกหมวดใหญ่' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_2'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" || $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกหมวดย่อย' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_3'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" || $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกหมู่ใหญ่' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_4'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" || $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกหมู่ย่อย' }
+        };
+
+        singleForm.customRules['AJAX_DROPDOWN_SSO_EMPLOYEE_TSIC_5'] = {
+            required: function (e) { return $("#SSO_EMPLOYEE_REG_STATUS").val() == "true" || $("#SSO_EMPLOYEE_REG_STATUS").val() == "false" }, messages: { required: 'กรุณาเลือกกิจกรรม' }
+        };
+
+        /*--- End Validation Callbacks ---*/
+
+        singleForm.callbacks.customDatas.push(function (data) {
+            data.SSO_EMPLOYEE_DISABILITY_CHECKBOXES = Array();
+
+            $('[name=SSO_EMPLOYEE_DISABILITY_CHECKBOXES]:checked').each(function () {
+                data.SSO_EMPLOYEE_DISABILITY_CHECKBOXES.push($(this).val());
+            });
+        });
+
+    });
+</script>

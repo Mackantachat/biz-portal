@@ -1,0 +1,50 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.ControlData
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+
+@if (Model.Textbox_Rows > 0)
+{
+    @Html.TextArea(Model.DataKey, Model.Data != null ? Model.Data.ToString() : string.Empty, new { @class = "form-control", id = Model.ClientID, @rows = Model.Textbox_Rows, @readonly = "readonly" })
+}
+else
+{
+    if (Model.Type == ControlType.DatePicker && Model.IsShowAge)
+    {
+        Dictionary<string, object> values = this.ViewData.ContainsKey("DataValues") ? (Dictionary<string, object>)this.ViewData["DataValues"] : new Dictionary<string, object>();
+        string ageKey = string.Format("{0}::{1}_AGE", Model.SectionName, Model.DataKey);
+        string ageValue = values.ContainsKey(ageKey) ? (string)values[ageKey] : "-";
+        <text>
+            <div>
+                @Html.TextBox(Model.DataKey, Model.Data, new { @class = "form-control", id = Model.ClientID, @readonly = "readonly", @style = "float: left; width: 60%;" })
+                <label style="margin-left: 20px;">@ResourceHelper.GetResourceWordWithDefault("BIRTH_DATE_AGE", "Apps_SingleForm", "อายุ"):</label> <span id="@(Model.DataKey)_AGE">@ageValue</span>
+            </div>
+            @*  // Streaming 2019-06-05: Use age value from MongoDB instead of re-calculate from current date.
+                <script type="text/javascript">
+                    $(function () {
+                        var calculateYearDiff = function(date1, date2) {
+                            var diff = date2 - date1;    // get diff in timestamp
+                            return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));  // convert to years
+                        }
+
+                        var dateStr = '@Model.Data';
+                        if (dateStr) {
+                            // Calculate age based on string formatted as dd/MM/yyyy
+                            var parts = dateStr.split('/');
+                            var year = parseInt(parts[2]);
+                            if (year > 2300) year -= 543;
+                            var mydate = new Date(year, parseInt(parts[1]) - 1, parseInt(parts[0]));
+                            var age = calculateYearDiff(mydate.getTime(), new Date().getTime());
+                            $('#age_@Model.ClientID').text(age);
+                        }
+                    });
+                </script>
+            *@
+        </text>
+    }
+    else
+    {
+        @Html.TextBox(Model.DataKey, Model.Data, new { @class = "form-control", id = Model.ClientID, @readonly = "readonly" })
+    }
+}

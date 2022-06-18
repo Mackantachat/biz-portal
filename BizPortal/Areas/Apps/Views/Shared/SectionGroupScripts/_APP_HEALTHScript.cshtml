@@ -1,0 +1,117 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript">
+
+    $(document).ready(function (e) {
+
+        $('input[name="APP_HEALTH_CARE_MANAGER_ID"]').change(function () {
+            if ($(this).val() == "") {
+                return null;
+            }
+
+            var l = $('.modal-submit, .modal-edit').ladda();
+            l.ladda('start');
+
+            $.ajax({
+                url: '@Url.Content("~/Api/v2/HSS/SPA/CheckManager")',
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "IdCard": $(this).val(),
+                }),
+                timeout: 30000,
+                success: function (data) {
+                    if (data['RESULT'] == "True") {
+                        $('input[name="APP_HEALTH_CARE_MANAGER_NAME"]').val(data['VALUE']);
+                        $('input[type="hidden"][name="APP_HEALTH_CARE_MANAGER_CHECK"]').val("TRUE");
+                    } else {
+                        $('input[name="APP_HEALTH_CARE_MANAGER_NAME"]').val();
+                        $('input[type="hidden"][name="APP_HEALTH_CARE_MANAGER_CHECK"]').val("FALSE");
+                        swal("ไม่พบเลขประจำตัวประชาชนนี้ในระบบ", "ไม่พบเลขประจำตัวประชาชนนี้ในระบบทะเบียนผู้ดำเนินการสปาเพื่อสุขภาพ หากท่านต้องการขึ้นทะเบียนผู้ดำเนินการสปาเพื่อสุขภาพ สามารถศึกษาข้อมูลเพิ่มเติมได้ที่เว็บไซต์ http://www.thaispa.go.th/spa2013/web/web_new/ หรือติดต่อกองสถานประกอบการเพื่อสุขภาพ กรมสนับสนุนบริการสุขภาพ โทร. 021937000 ต่อ 18408", "warning");
+                    }
+                    $.ladda('stopAll');
+                },
+                error: function () {
+                    $('input[name="APP_HEALTH_CARE_MANAGER_NAME"]').val("");
+                    $('input[type="hidden"][name="APP_HEALTH_CARE_MANAGER_CHECK"]').val("FALSE");
+                    swal("ไม่พบเลขประจำตัวประชาชนนี้ในระบบ", "ไม่พบเลขประจำตัวประชาชนนี้ในระบบทะเบียนผู้ดำเนินการสปาเพื่อสุขภาพ หากท่านต้องการขึ้นทะเบียนผู้ดำเนินการสปาเพื่อสุขภาพ สามารถศึกษาข้อมูลเพิ่มเติมได้ที่เว็บไซต์ http://www.thaispa.go.th/spa2013/web/web_new/ หรือติดต่อกองสถานประกอบการเพื่อสุขภาพ กรมสนับสนุนบริการสุขภาพ โทร. 021937000 ต่อ 18408", "warning");
+                    $.ladda('stopAll');
+                }
+            });
+        });
+
+        window.singleFormHelpers.form.onArrayOfFormModalDataBound('APP_HEALTH_CARE_MANAGER_PART', function (sectionName, data, datalist, action) {
+            if (action == "ADD") {
+                $('input[type="hidden"][name="APP_HEALTH_CARE_MANAGER_CHECK"]').val("FALSE");
+            }
+        });
+
+        window.APP_HEALTH_CARE_MANAGER_CHECKED = function () {
+            var result = $('input[type="hidden"][name="APP_HEALTH_CARE_MANAGER_CHECK"]').val();
+            if (result == "FALSE") {
+                swal("ไม่พบเลขประจำตัวประชาชนนี้ในระบบ", "ไม่พบเลขประจำตัวประชาชนนี้ในระบบทะเบียนผู้ดำเนินการสปาเพื่อสุขภาพ หากท่านต้องการขึ้นทะเบียนผู้ดำเนินการสปาเพื่อสุขภาพ สามารถศึกษาข้อมูลเพิ่มเติมได้ที่เว็บไซต์ http://www.thaispa.go.th/spa2013/web/web_new/ หรือติดต่อกองสถานประกอบการเพื่อสุขภาพ กรมสนับสนุนบริการสุขภาพ โทร. 021937000 ต่อ 18408", "warning");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_ID"]').change(function () {
+            if ($(this).val() == "") {
+                return null;
+            }
+
+            var l = $('.modal-submit, .modal-edit').ladda();
+            l.ladda('start');
+
+            $.ajax({
+                url: '@Url.Content("~/Api/v2/HSS/SPA/CheckPersonal")',
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "IdCard": $(this).val(),
+                }),
+                timeout: 30000,
+                success: function (data) {
+                    if (data['RESULT'] == "True") {
+                        $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_NAME"]').val(data['VALUE']);
+                        $('input[type="hidden"][name="APP_HEALTH_CARE_SERVICE_PROVIDER_CHECK"]').val("TRUE");
+                    } else {
+                        $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_NAME"]').val();
+                        $('input[type="hidden"][name="APP_HEALTH_CARE_SERVICE_PROVIDER_CHECK"]').val("FALSE");
+                        swal("ไม่พบเลขประจำตัวประชาชนนี้ในระบบ", "ไม่พบเลขประจำตัวประชาชนนี้ในระบบทะเบียนผู้ให้บริการสปาเพื่อสุขภาพ หากท่านต้องการขึ้นทะเบียนผู้ให้บริการสปาเพื่อสุขภาพ สามารถศึกษาข้อมูลเพิ่มเติมได้ที่เว็บไซต์ http://www.thaispa.go.th/spa2013/web/web_new/ หรือติดต่อกองสถานประกอบการเพื่อสุขภาพ กรมสนับสนุนบริการสุขภาพ โทร. 021937000 ต่อ 18408", "warning");
+                    }
+                    $.ladda('stopAll');
+                },
+                error: function () {
+                    $('input[name="APP_HEALTH_CARE_SERVICE_PROVIDER_NAME"]').val("");
+                    $('input[type="hidden"][name="APP_HEALTH_CARE_SERVICE_PROVIDER_CHECK"]').val("FALSE");
+                    swal("ไม่พบเลขประจำตัวประชาชนนี้ในระบบ", "ไม่พบเลขประจำตัวประชาชนนี้ในระบบทะเบียนผู้ให้บริการสปาเพื่อสุขภาพ หากท่านต้องการขึ้นทะเบียนผู้ให้บริการสปาเพื่อสุขภาพ สามารถศึกษาข้อมูลเพิ่มเติมได้ที่เว็บไซต์ http://www.thaispa.go.th/spa2013/web/web_new/ หรือติดต่อกองสถานประกอบการเพื่อสุขภาพ กรมสนับสนุนบริการสุขภาพ โทร. 021937000 ต่อ 18408", "warning");
+                    $.ladda('stopAll');
+                }
+            });
+        });
+
+        window.singleFormHelpers.form.onArrayOfFormModalDataBound('APP_HEALTH_CARE_SERVICE', function (sectionName, data, datalist, action) {
+            if (action == "ADD") {
+                $('input[type="hidden"][name="APP_HEALTH_CARE_SERVICE_PROVIDER_CHECK"]').val("FALSE");
+            }
+        });
+
+        window.APP_HEALTH_CARE_SERVICE_PROVIDER_CHECKED = function () {
+            var result = $('input[type="hidden"][name="APP_HEALTH_CARE_SERVICE_PROVIDER_CHECK"]').val();
+            if (result == "FALSE") {
+                swal("ไม่พบเลขประจำตัวประชาชนนี้ในระบบ", "ไม่พบเลขประจำตัวประชาชนนี้ในระบบทะเบียนผู้ให้บริการสปาเพื่อสุขภาพ หากท่านต้องการขึ้นทะเบียนผู้ให้บริการสปาเพื่อสุขภาพ สามารถศึกษาข้อมูลเพิ่มเติมได้ที่เว็บไซต์ http://www.thaispa.go.th/spa2013/web/web_new/ หรือติดต่อกองสถานประกอบการเพื่อสุขภาพ กรมสนับสนุนบริการสุขภาพ โทร. 021937000 ต่อ 18408", "warning");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    });
+
+</script>

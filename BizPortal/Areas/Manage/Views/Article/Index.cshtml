@@ -1,0 +1,235 @@
+﻿@{
+    ViewBag.Title = BizPortal.Resources.Article.ARTICLE;
+    Layout = "~/Views/Shared/_LayoutBackend.cshtml";
+}
+
+@section ContentHeader
+{
+    <i class="fa fa-file-text-o fa fa-2x "></i>
+    <h4 class="m-t-xs inline padder">@BizPortal.Resources.Article.ARTICLE</h4>
+}
+
+<header class="header bg-white clearfix">
+    <div class="row m-t-sm">
+        <form id="frmSearchArticle" class="form-horizontal col-sm-12 m-b-xs">
+            <div class="form-group">
+                @Html.Label(BizPortal.Resources.Global.SEARCH_KEYWORD + " : ", new { @class = "col-sm-2 control-label font-bold" })
+                <div class="col-sm-10">
+                    @Html.TextBox("SearchArticleKeyword", "", new { @id = "SearchArticleKeyword", @class = "form-control", @placeholder = BizPortal.Resources.Global.SEARCH_KEYWORD, @autocomplete = "off" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <button type="submit" id="btnSearch" class="btn btn-s-md btn-primary"><i class="fa fa-search"></i> @BizPortal.Resources.Global.SEARCH</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</header>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-primary" id="btnSetListStatus" data-unlist-status="false">@Html.Raw(BizPortal.Resources.Article.BTN_LIST)</button>
+            <button type="button" class="btn btn-danger" id="btnSetUnlistStatus" data-unlist-status="true">@Html.Raw(BizPortal.Resources.Article.BTN_UNLIST)</button>
+        </div>
+
+        <div class="btn-group pull-right pr10">
+            <button type="button" onclick="updateOrdering()" class="btn btn-info" data-unlist-status="false">@Html.Raw(BizPortal.Resources.Article.BTN_ORDER)</button>
+        </div>
+
+        <div class="btn-group pull-right pr10">
+            <a href="@Url.Action("Add", "Article", new { language = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName })" class="btn btn-primary">@Html.Raw(BizPortal.Resources.Global.BTN_ADD)</a>
+            <button class="btn btn-danger" id="btnDeleteAccountType">@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive clearfix">
+    <table id="articleDataTables" class="table table-striped table-bordered" data-ride="datatables">
+        <thead>
+            <tr>
+                <th style="">#</th>
+                <th style=""><input id="articleCheckAll" type="checkbox" /></th>
+                <th style="">@BizPortal.Resources.Article.ARTICLE_SYS_NAME</th>
+                <th style="">@BizPortal.Resources.Section.SECTION_SYS_NAME</th>
+                <th style="">@BizPortal.Resources.Category.CATEGORY_SYS_NAME</th>
+                <th style="width:50px !important;">@BizPortal.Resources.Global.ORDER</th>
+                <th style="">@BizPortal.Resources.Article.ARTICLE_UNLIST</th>
+                <th style="">@BizPortal.Resources.Global.TABLE_ACTION_HEADING</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section PageScripts
+{
+    <script type="text/javascript">
+        var articleDataTables;
+
+        $(document).ready(function () {
+            $('#articleCheckAll').checkAll({ container: $('#articleDataTables'), showIndeterminate: true });
+            articleDataTables = $('#articleDataTables').DataTable({
+                serverSide: true,
+                searching: false,
+                indexColoumn: true,
+                ajax: {
+                    url: '@Url.Content("~/Api/Article/List")',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: function (params) {
+                        // Provided as a function to manipulate the data DataTables sends to the server.
+                        if ($('#SearchArticleKeyword').val()) {
+                            params.SearchKeyword = $('#SearchArticleKeyword').val();
+                        }
+
+                        return JSON.stringify(params);
+                    }
+                },
+                columns: [
+                    { data: 'ArticleID', sortable: false, 'class': 'text-center' },
+                    {
+                        data: 'ArticleID',
+                        render: function (data, type, row) {
+                            return '<input type="checkbox" data-article-id="' + data + '" />';
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    },
+                    { data: 'ArticleSysName' },
+                    { data: 'SectionSysName' },
+                    { data: 'CategorySysName' },
+                    {
+                        data: 'ArticleID',
+                        render: function (data, type, row) {
+
+                            return '<input data-id="' + row.ArticleID + '" name="Order" type="text" class="form-control input-sm" required="true" digits="true" value="' + row.Ordering + '">';
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    },
+                    {
+                        data: 'ArticleID',
+                        render: function (data, type, row) {
+                            if (!row.Unlisted) {
+                                return '<button type="button" class="btn btn-xs btn-success" onclick="return setUnlistStatus(' + data + ', ' + !row.Unlisted + ');">@Html.Raw(BizPortal.Resources.Article.BTN_LIST)</button>';
+                            }
+                            else {
+                                return '<button type="button" class="btn btn-xs btn-danger" onclick="return setUnlistStatus(' + data + ', ' + !row.Unlisted + ');">@Html.Raw(BizPortal.Resources.Article.BTN_UNLIST)</button>';
+                            }
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    },
+                    {
+                        data: 'ArticleID',
+                        render: function (data, type, row) {
+                            var template = '<a href="@Url.Action("Edit", "Article", new { Area="Manage", Language= ViewBag.CurrentLang })/' + data + '" class="btn btn-xs btn-warning">@Html.Raw(BizPortal.Resources.Global.BTN_EDIT)</a>\
+                                            <button type="button" class="btn btn-xs btn-danger" onclick="return deleteArticle(' + data + ');">@Html.Raw(BizPortal.Resources.Global.BTN_DELETE)</button>';
+                            return template;
+                        },
+                        sortable: false,
+                        'class': 'text-center'
+                    }
+                ],
+                order: [[4,'asc'],[5, 'asc']],
+            });
+
+            $('#frmSearchArticle').submit(function (e) {
+                e.preventDefault();
+                articleDataTables.ajax.reload();
+                return false;
+            });
+
+            $('#btnSetListStatus, #btnSetUnlistStatus').click(function () {
+                var articles = getSelectedArticleIDs();
+                if (articles.length > 0) {
+                    setUnlistStatus(articles.toString(), $(this).data('unlist-status'));
+                }
+                else {
+                    swal('', '@BizPortal.Resources.Article.MSG_REQUIRED_ATLEAST', 'warning');
+
+                }
+            });
+
+            $('#btnDeleteAccountType').click(function () {
+                var articles = getSelectedArticleIDs();
+                if (articles.length > 0) {
+                    deleteArticle(articles.toString());
+                }
+                else {
+                    swal('', '@BizPortal.Resources.Article.MSG_REQUIRED_ATLEAST', 'warning');
+                }
+            });
+        });
+
+        function getSelectedArticleIDs() {
+            var $articleCheck = $('#articleDataTables input[id!=articleCheckAll]:checked');
+            var articles = Array();
+            for (var i = 0; i < $articleCheck.length; i++) {
+                var $check = $($articleCheck[i]);
+                articles.push($check.data('article-id'));
+            }
+            return articles;
+        }
+
+        function deleteArticle(id) {
+            if (confirm('@BizPortal.Resources.Article.MSG_DELETED_CONFIRM')) {
+                $.ajax('@Url.Content("~/Api/Article")/' + id, {
+                    method: 'DELETE',
+                    dataType: 'json',
+                    success: function (data, status) {
+                        articleDataTables.ajax.reload();
+                        swal('', data.Message, 'success');
+                    },
+                    error: function (xhr, status, error) {
+                        swal('', '@BizPortal.Resources.Global.MSG_ERROR', 'error');
+                    }
+                });
+            }
+        }
+
+        function setUnlistStatus(id, unlist) {
+            $.ajax('@Url.Content("~/Api/Article")/' + id + '/unlist/' + unlist.toString(), {
+                method: 'PUT',
+                dataType: 'json',
+                success: function (data, status) {
+                    articleDataTables.ajax.reload();
+                    swal('', data.Message, 'success');
+                },
+                error: function (xhr, status, error) {
+                    swal('', '@BizPortal.Resources.Global.MSG_ERROR', 'error');
+                }
+            });
+
+            return false;
+        }
+
+        function updateOrdering() {
+            var order = [];
+            var ordering = $('#articleDataTables input[name="Order"]');
+            var oTable = articleDataTables;
+            if (ordering != null || ordering != undefined) {
+                for (var i = 0; i < ordering.length; i++) {
+                    order.push({
+                        id: $(ordering[i]).data('id'),
+                        order: (isNumber($(ordering[i]).val()) ? $(ordering[i]).val() : 0)
+                    });
+                }
+            }
+
+            $.post('@Url.Content("~/api/Article/Order")/', {
+                Orders: JSON.stringify(order)
+            }
+            ).done(function (data, status) {
+                articleDataTables.ajax.reload();
+                swal('', data.Message, 'success');
+            })
+            .fail(function (xhr, status, error) {
+                swal('', '@BizPortal.Resources.Global.MSG_ERROR', 'error');
+            });
+        }
+
+    </script>
+}

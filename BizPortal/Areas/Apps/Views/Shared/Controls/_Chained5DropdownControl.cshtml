@@ -1,0 +1,214 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.ViewModels.Select2;
+@using BizPortal.Utils.Helpers
+@model FormControl
+
+<div class="row pb5">
+    <div class="form-group">
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown1-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN1_{0}", Model.DataKey)">
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown2-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN2_{0}", Model.DataKey)">
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown3-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN3_{0}", Model.DataKey)">
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown4-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN4_{0}", Model.DataKey)">
+                <option></option>
+            </select>
+        </div>
+        <div class="col-md-12 mb5">
+            <select class="form-control" id="@string.Format("ajax_dropdown5-{0}", Model.ClientID)" name="@string.Format("AJAX_DROPDOWN5_{0}", Model.DataKey)">
+                <option></option>
+            </select>
+        </div>
+    </div>
+</div>
+
+@if (Model.IsAjaxDropdown)
+{
+    /*--- สำหรับ TSIC API เท่านั้น ---*/
+    <script type="text/javascript">
+        $(function () {
+
+            function clearCDTSIC(x) {
+                $("#@string.Format("ajax_dropdown5-{0}", Model.ClientID)").val("").trigger('change');
+                $("#@string.Format("ajax_dropdown5-{0}", Model.ClientID) option[value]").remove();
+
+                if (x <= 2) {
+                    $("#@string.Format("ajax_dropdown4-{0}", Model.ClientID)").val("").trigger('change');
+                    $("#@string.Format("ajax_dropdown4-{0}", Model.ClientID) option[value]").remove();
+                }
+                if (x <= 1) {
+                    $("#@string.Format("ajax_dropdown3-{0}", Model.ClientID)").val("").trigger('change');
+                    $("#@string.Format("ajax_dropdown3-{0}", Model.ClientID) option[value]").remove();
+                }
+                if (x == 0) {
+                    $("#@string.Format("ajax_dropdown2-{0}", Model.ClientID)").val("").trigger('change');
+                    $("#@string.Format("ajax_dropdown2-{0}", Model.ClientID) option[value]").remove();
+                }
+            }
+
+            $("#@string.Format("ajax_dropdown1-{0}", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'กรุณาเลือกหมวดใหญ่',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/TSICs/Categories")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("ajax_dropdown2-{0}", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'กรุณาเลือกหมวดย่อย',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/TSICs/Categories/{id}/SubCategories")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            id: $("#@string.Format("ajax_dropdown1-{0}", Model.ClientID)").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("ajax_dropdown3-{0}", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'กรุณาเลือกหมู่ใหญ่',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/TSICs/SubCategories/{id}/Groups")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            id: $("#@string.Format("ajax_dropdown2-{0}", Model.ClientID)").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("ajax_dropdown4-{0}", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'กรุณาเลือกหมู่ย่อย',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/TSICs/Groups/{id}/SubGroups")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            id: $("#@string.Format("ajax_dropdown3-{0}", Model.ClientID)").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("ajax_dropdown5-{0}", Model.ClientID)").select2({
+                allowClear: true,
+                placeholder: 'กรุณาเลือกกิจกรรม',
+                ajax: {
+                    url: '@Url.Content("~/Api/v2/TSICs/SubGroups/{id}/Codes")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            query: params.term,
+                            id: $("#@string.Format("ajax_dropdown4-{0}", Model.ClientID)").val()
+                        }
+                    },
+                    processResults: function (data, params) {
+                        return data;
+                    },
+                    cache: true
+                },
+                width: '100%'
+            });
+
+            $("#@string.Format("ajax_dropdown1-{0}", Model.ClientID)").change(function () {
+                clearCDTSIC(0);
+            });
+
+            $("#@string.Format("ajax_dropdown2-{0}", Model.ClientID)").change(function () {
+                clearCDTSIC(1);
+            });
+
+            $("#@string.Format("ajax_dropdown3-{0}", Model.ClientID)").change(function () {
+                clearCDTSIC(2);
+            });
+
+            $("#@string.Format("ajax_dropdown4-{0}", Model.ClientID)").change(function () {
+                clearCDTSIC(3);
+            });
+
+        });
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#@string.Format("ajax_dropdown1-{0}", Model.ClientID)").select2({
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+                allowClear: true,
+                placeholder: '@Model.PlaceholderText'
+            });
+            $("#@string.Format("ajax_dropdown2-{0}", Model.ClientID)").select2({
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+                allowClear: true,
+                placeholder: '@Model.PlaceholderText'
+            });
+            $("#@string.Format("ajax_dropdown3-{0}", Model.ClientID)").select2({
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+                allowClear: true,
+                placeholder: '@Model.PlaceholderText'
+            });
+            $("#@string.Format("ajax_dropdown4-{0}", Model.ClientID)").select2({
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+                allowClear: true,
+                placeholder: '@Model.PlaceholderText'
+            });
+            $("#@string.Format("ajax_dropdown5-{0}", Model.ClientID)").select2({
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject( Model.Select2Opts )),
+                allowClear: true,
+                placeholder: '@Model.PlaceholderText'
+            });
+        });
+    </script>
+}

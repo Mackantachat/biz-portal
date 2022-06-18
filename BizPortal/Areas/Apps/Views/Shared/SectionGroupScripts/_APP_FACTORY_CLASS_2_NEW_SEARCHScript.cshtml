@@ -1,0 +1,59 @@
+﻿@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+@*<style>
+    #FACTORY_CLASS_2_SEARCH_RESULT {
+  color: forestgreen;
+}
+</style>*@
+<script type="text/javascript">
+     $(document).ready(function (e) {
+        document.getElementById("btnNextAppSingleForm").disabled = true;
+    });
+   $('[name=FACTORY_CLASS_2_SEARCH_BUTTON]').click(function ()
+   {
+       var txt_search = $('[name=AJAX_DROPDOWN_BOOK_ID_OPINION]').val();
+       $.ajax(
+           {
+                cache: false,
+                type: "GET",
+               // url: "@(Url.Action("ApplicationRequest_return", "SingleForm"))",
+                 url: '@Url.Content("~/Api/v2/ApplicationRequests/ApplictionRequestReturn")',
+                data: { "txt_search": txt_search,"appsysname" : "APP_FACTORY_TYPE2" },
+                success: function (data)
+                {
+                    if (data != "Data not found")
+                    {
+                        document.getElementById("btnNextAppSingleForm").disabled = false;
+                        var fac_name = data.Data.APP_FACTORY_TYPE2_INFO.Data.FACTORY_TYPE2_NAME;
+                        var fac_p = data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_PROVINCE_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT == "" ? "" : " จ." + data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_PROVINCE_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT;
+                        var fac_a = data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_AMPHUR_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT == "" ? "" : " อ." + data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_AMPHUR_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT;
+                        var fac_t = data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_TUMBOL_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT == "" ? "" : " ต." + data.Data.APP_FACTORY_TYPE2_PLANT_LOCATION_INFO.Data.ADDRESS_TUMBOL_FACTORY_TYPE2_AREA_INFORMATION_FORM_TEXT;
+                        document.getElementById('FACTORY_CLASS_2_SEARCH_RESULT').style.color = "forestgreen";
+                        document.getElementById('FACTORY_CLASS_2_SEARCH_RESULT').innerHTML = "ดำเนินการแจ้งประกอบกิจการโรงงาน : " + fac_name + fac_t + fac_a + fac_p;
+                        //alert(data);
+                    }
+                    else
+                    {
+                        //alert('ไม่พบข้อมูล');
+                        document.getElementById('FACTORY_CLASS_2_SEARCH_RESULT').style.color = "red";
+                        document.getElementById('FACTORY_CLASS_2_SEARCH_RESULT').innerHTML = "ไม่พบข้อมูล";
+                        document.getElementById("btnNextAppSingleForm").disabled = true;
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError)
+                {
+                    //alert('error');
+                    document.getElementById('FACTORY_CLASS_2_SEARCH_RESULT').style.color = "red";
+                    document.getElementById('FACTORY_CLASS_2_SEARCH_RESULT').innerHTML = "ไม่พบข้อมูล" + ajaxOptions;
+                    document.getElementById("btnNextAppSingleForm").disabled = true;
+                }
+           }
+       );
+   });
+
+</script>
+
+
+

@@ -1,0 +1,963 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACTION_ADJUST" xml:space="preserve">
+    <value>แก้ไข</value>
+  </data>
+  <data name="ACTION_APPROVE" xml:space="preserve">
+    <value>อนุมัติ</value>
+  </data>
+  <data name="ACTION_CANCELED_BY_REQUESTOR" xml:space="preserve">
+    <value>ยกเลิกคำขอ</value>
+  </data>
+  <data name="ACTION_DECLINE" xml:space="preserve">
+    <value>ปฏิเสธ</value>
+  </data>
+  <data name="ACTION_DECLINE_CANCELED_BY_REQUESTOR" xml:space="preserve">
+    <value>ไม่อนุญาตให้ยกเลิกคำขอ</value>
+  </data>
+  <data name="ACTION_PAID_FEE" xml:space="preserve">
+    <value>ชำระค่าธรรมเนียมแล้ว</value>
+  </data>
+  <data name="ACTION_SENT_APPLICATION_BY_EMAIL" xml:space="preserve">
+    <value>ส่งใบอนุญาตทางไปรษณีย์แล้ว</value>
+  </data>
+  <data name="ACTION_SENT_APPLICATION_TO_OSS" xml:space="preserve">
+    <value>ส่งใบอนุญาตให้ OSS แล้ว</value>
+  </data>
+  <data name="ACTION_TELL_USER_TO_GET_APPLICATION" xml:space="preserve">
+    <value>ให้ผู้ประกอบการมารับใบอนุญาตได้</value>
+  </data>
+  <data name="ACTION_USER_GOT_APPLICATION" xml:space="preserve">
+    <value>ผู้ประกอบการมารับใบอนุญาตแล้ว</value>
+  </data>
+  <data name="AGENT_COMMENT_REMARK" xml:space="preserve">
+    <value>ความคิดเห็นของเจ้าหน้าที่</value>
+  </data>
+  <data name="AGENT_READ_APPLICATION" xml:space="preserve">
+    <value>เจ้าหน้าที่เปิดอ่านคำขอ</value>
+  </data>
+  <data name="APPLICATION_ACTION_REPLY" xml:space="preserve">
+    <value>ผลการพิจารณา</value>
+  </data>
+  <data name="APPLICATION_INFORMATION_APPHOOK_HEADER" xml:space="preserve">
+    <value>ข้อมูลใบคำร้อง/คำขอ</value>
+  </data>
+  <data name="APPLICATION_NAME" xml:space="preserve">
+    <value>ชื่อบริการ</value>
+  </data>
+  <data name="APPLICATION_REQUEST" xml:space="preserve">
+    <value>รายการคำร้อง/คำขอ</value>
+  </data>
+  <data name="APPLICATION_REQUEST_LATEST_REMARK" xml:space="preserve">
+    <value>ความเห็นล่าสุด</value>
+  </data>
+  <data name="APPLICATION_REQUEST_NUMBER" xml:space="preserve">
+    <value>เลขที่คำร้อง/คำขอ (Biz Portal)</value>
+  </data>
+  <data name="APPLICATION_STATUS_OTHER" xml:space="preserve">
+    <value>สถานะอื่นๆ โปรดระบุ</value>
+  </data>
+  <data name="APPLICATION_STATUS_OTHER_REQUEST" xml:space="preserve">
+    <value>สถานะย่อย</value>
+  </data>
+  <data name="APPLICATION_STATUS_REQUEST" xml:space="preserve">
+    <value>สถานะหลัก</value>
+  </data>
+  <data name="APPROVE_STAGE" xml:space="preserve">
+    <value>พิจารณาคำร้อง</value>
+  </data>
+  <data name="APPROVE_STAGE_HISTORY" xml:space="preserve">
+    <value>ประวัติการพิจารณาคำร้อง/คำขอ</value>
+  </data>
+  <data name="ATTACH_DOCUMENT" xml:space="preserve">
+    <value>รายการเอกสารแนบ</value>
+  </data>
+  <data name="ATTACH_FILES" xml:space="preserve">
+    <value>ใบ/ รายละเอียดคำขอ/ เอกสารแนบ</value>
+  </data>
+  <data name="DATE" xml:space="preserve">
+    <value>วันที่</value>
+  </data>
+  <data name="DOCUMENT_NAME" xml:space="preserve">
+    <value>ชื่อเอกสาร</value>
+  </data>
+  <data name="DOCUMENT_REASON" xml:space="preserve">
+    <value>เหตุผลที่ต้องส่งเพิ่ม</value>
+  </data>
+  <data name="DOCUMENT_SIZE" xml:space="preserve">
+    <value>ขนาดไฟล์</value>
+  </data>
+  <data name="DOCUMENT_TYPE" xml:space="preserve">
+    <value>ประเภทเอกสาร</value>
+  </data>
+  <data name="GOV_FILES" xml:space="preserve">
+    <value>เอกสารของหน่วยงาน</value>
+  </data>
+  <data name="JURISTIC_PERSON" xml:space="preserve">
+    <value>ผู้ประกอบการ {0}</value>
+  </data>
+  <data name="KHUN" xml:space="preserve">
+    <value>คุณ {0}</value>
+  </data>
+  <data name="MAIL_JURISTIC_REQUEST_APPROVED" xml:space="preserve">
+    <value>[Gov Channel] ใบคำร้องได้รับการอนุมัติ/Your request was approved.</value>
+  </data>
+  <data name="MAIL_JURISTIC_REQUEST_REJECTED" xml:space="preserve">
+    <value>[Gov Channel] ใบคำร้องไม่ได้รับการอนุมัติ/Your request was rejected.</value>
+  </data>
+  <data name="MAIL_JURISTIC_REQUEST_SUBMITED" xml:space="preserve">
+    <value>[Gov Channel] คำร้องของท่านได้ถูกส่งถึงเจ้าหน้าที่แล้ว/Your request was submitted.</value>
+  </data>
+  <data name="MSG_ADD_FAILED" xml:space="preserve">
+    <value>ไม่สามารถยื่นคำร้องได้ กรุณาลองใหม่อีกครั้งในภายหลัง</value>
+  </data>
+  <data name="MSG_ADD_SUCCESS" xml:space="preserve">
+    <value>คำขอถูกสร้างสำเร็จ</value>
+  </data>
+  <data name="MSG_DELETED" xml:space="preserve">
+    <value>ลบคำร้องการยื่นขออนุญาติความสำเร็จ</value>
+  </data>
+  <data name="MSG_DELETED_CONFIRM" xml:space="preserve">
+    <value>ท่านต้องการลบคำร้องการยื่นขออนุญาติที่เลือกหรือไม่</value>
+  </data>
+  <data name="MSG_DUPLICATE_REF_ID" xml:space="preserve">
+    <value>หมายเลขอ้างอิงซ้ำ</value>
+  </data>
+  <data name="MSG_NOT_FOUND" xml:space="preserve">
+    <value>ไม่พบคำร้องการยื่นขออนุญาติที่ต้องการ</value>
+  </data>
+  <data name="MSG_PENDING_APPROVE" xml:space="preserve">
+    <value>รายการรอพิจารณา {0} รายการ</value>
+  </data>
+  <data name="MSG_REMOVE_FILE_FAILED" xml:space="preserve">
+    <value>ไม่สามารถลบไฟล์ได้</value>
+  </data>
+  <data name="MSG_REMOVE_FILE_SUCCESS" xml:space="preserve">
+    <value>ลบไฟล์สำเร็จ</value>
+  </data>
+  <data name="MSG_REQUIRED_ATLEAST" xml:space="preserve">
+    <value>กรุณาเลือกคำร้องการยื่นขออนุญาติอย่างน้อย 1 รายการ</value>
+  </data>
+  <data name="MSG_SAVE_DARFT_SUCCESS" xml:space="preserve">
+    <value>บันทึกแบบร่างสำเร็จ</value>
+  </data>
+  <data name="MSG_SET_LIST_SUCCESS" xml:space="preserve">
+    <value>คำร้องการยื่นขออนุญาติถูกแสดงในรายการแล้ว</value>
+  </data>
+  <data name="MSG_SET_UNLIST_SUCCESS" xml:space="preserve">
+    <value>คำร้องการยื่นขออนุญาติถูกซ่อนจากรายการแล้ว</value>
+  </data>
+  <data name="MSG_UPDATE_ORDER_SUCESS" xml:space="preserve">
+    <value>เรียงลำดับคำร้องการยื่นขออนุญาติสำเร็จ</value>
+  </data>
+  <data name="MSG_UPDATE_STATUS_COMPLETED" xml:space="preserve">
+    <value>แก้ไขสถานะสำเร็จ</value>
+  </data>
+  <data name="MSG_USER_EMAIL_REQUIRED" xml:space="preserve">
+    <value>กรุณากรอกอีเมล์ของท่านก่อนส่งคำร้อง เนื่องจากระบบอาจมีการส่งข้อความแจ้งสถานะการยื่นคำร้องให้ท่านผ่านอีเมล์</value>
+  </data>
+  <data name="PAYMENT_AT_OSS" xml:space="preserve">
+    <value>ศูนย์รับคำขออนุญาต (OSS)</value>
+  </data>
+  <data name="PAYMENT_AT_OWNER_ORG" xml:space="preserve">
+    <value>สำนักงานเขตดุสิต กรุงเทพฯ</value>
+  </data>
+  <data name="PAYMENT_BILL_PAYMENT" xml:space="preserve">
+    <value>บิลเพย์เมนต์</value>
+  </data>
+  <data name="PAYMENT_MEDTHOD" xml:space="preserve">
+    <value>ช่องทางการชำระเงิน</value>
+  </data>
+  <data name="PAYMENT_QR_CODE" xml:space="preserve">
+    <value>คิวอาร์โค๊ด</value>
+  </data>
+  <data name="PAY_FEE_CHANNEL" xml:space="preserve">
+    <value>ช่องทางชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="PDT_AT_OSS" xml:space="preserve">
+    <value>ศูนย์รับคำขออนุญาต (OSS)</value>
+  </data>
+  <data name="PDT_AT_OWNER_ORG" xml:space="preserve">
+    <value>สำนักงานเขตดุสิต กรุงเทพฯ</value>
+  </data>
+  <data name="PDT_BY_MAIL" xml:space="preserve">
+    <value>รับทางไปรษณีย์</value>
+  </data>
+  <data name="PERMIT_DELIVERY_TYPE" xml:space="preserve">
+    <value>ช่องทางการชำระเงิน</value>
+  </data>
+  <data name="PLEASE_ENTER_APPLICATION_STATUS_OTHER" xml:space="preserve">
+    <value>กรุณาระบุสถานะอื่นๆ</value>
+  </data>
+  <data name="PROCESSING_HEADER" xml:space="preserve">
+    <value>ดำเนินการ</value>
+  </data>
+  <data name="RECEIVE_APP_CHANNEL" xml:space="preserve">
+    <value>ช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="RECEIVE_APP_LOCATION" xml:space="preserve">
+    <value>สถานที่รับใบอนุญาต</value>
+  </data>
+  <data name="REFER_NAME" xml:space="preserve">
+    <value>ชื่ออ้างอิง</value>
+  </data>
+  <data name="REMARK" xml:space="preserve">
+    <value>หมายเหตุ</value>
+  </data>
+  <data name="REQUESTOR_NAME" xml:space="preserve">
+    <value>ผู้ขออนุญาต</value>
+  </data>
+  <data name="REQUESTOR_TEL" xml:space="preserve">
+    <value>เบอร์ติดต่อผู้ขออนุญาต</value>
+  </data>
+  <data name="REQUEST_BY" xml:space="preserve">
+    <value>ยื่นคำร้อง/คำขอโดย</value>
+  </data>
+  <data name="REQUEST_BY_CITIZEN" xml:space="preserve">
+    <value>บุคคลธรรมดา</value>
+  </data>
+  <data name="REQUEST_BY_JURISTIC" xml:space="preserve">
+    <value>นิติบุคคล</value>
+  </data>
+  <data name="REQUEST_FILE" xml:space="preserve">
+    <value>ขอเอกสารเพิ่มเติม</value>
+  </data>
+  <data name="RESPONSE_DOCUMENT" xml:space="preserve">
+    <value>เอกสารตอบรับ</value>
+  </data>
+  <data name="SENT_UPLOAD_FILE_TO_AGENT" xml:space="preserve">
+    <value>เอกสารที่ส่ง</value>
+  </data>
+  <data name="STATUS" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="STATUS_APPROVED_WAITING_PAY_FEE" xml:space="preserve">
+    <value>ชำระค่าธรรมเนียมหรือเลือกช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="STATUS_CHECK" xml:space="preserve">
+    <value>ตรวจสอบคำขอเบื้องต้น</value>
+  </data>
+  <data name="STATUS_COMPLETED" xml:space="preserve">
+    <value>ดำเนินการสำเร็จ</value>
+    <comment>ของเดิมเป็น ยื่นเรื่องเสร็จสมบูรณ์ แก้ไขตาม BIZ-168 // เสร็จสิ้น</comment>
+  </data>
+  <data name="STATUS_DRAFT" xml:space="preserve">
+    <value>แบบร่างคำร้อง</value>
+  </data>
+  <data name="STATUS_FAILED" xml:space="preserve">
+    <value>ยื่นคำร้องไม่สำเร็จ</value>
+  </data>
+  <data name="STATUS_INCOMPLETE" xml:space="preserve">
+    <value>คำร้องยังไม่สมบูรณ์</value>
+  </data>
+  <data name="STATUS_OTHER_DONE" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+  </data>
+  <data name="STATUS_OTHER_REJECT" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+  </data>
+  <data name="STATUS_OTHER_WAITING_AGENT_APPROVE_CANCEL" xml:space="preserve">
+    <value>รอเจ้าหน้าที่ยืนยันการขอยกเลิกคำขอ</value>
+  </data>
+  <data name="STATUS_OTHER_WAITING_AGENT_READ_REQUEST" xml:space="preserve">
+    <value>รอเจ้าหน้าที่รับเรื่อง</value>
+  </data>
+  <data name="STATUS_OTHER_WAITING_AGENT_WORKING" xml:space="preserve">
+    <value>เจ้าหน้าที่พิจารณาสั่งการ</value>
+  </data>
+  <data name="STATUS_OTHER_WAITING_USER_WORKING" xml:space="preserve">
+    <value>ผู้ประกอบการดำเนินการตามสั่งการ</value>
+  </data>
+  <data name="PAID_FEE_CREATING_LICENSE" xml:space="preserve">
+    <value>ออกใบอนุญาต&lt;br/&gt;หรือใบอื่นๆ</value>
+  </data>
+  <data name="STATUS_PENDING" xml:space="preserve">
+    <value>พิจารณา</value>
+  </data>
+  <data name="STATUS_REJECTED" xml:space="preserve">
+    <value>ปฏิเสธคำขอ</value>
+  </data>
+  <data name="STATUS_WAITING" xml:space="preserve">
+    <value>ยื่นคำขอ</value>
+  </data>
+  <data name="SUBMIT_DATE" xml:space="preserve">
+    <value>วันที่ยื่นเรื่อง</value>
+  </data>
+  <data name="SLA_DATE" xml:space="preserve">
+    <value>คาดว่าจะแล้วเสร็จ</value>
+  </data>
+  <data name="SUMMARY_RESOURCE" xml:space="preserve">
+    <value>พบใบคำร้องทั้งหมด &lt; b class='text-danger'&gt;{0} รายการ&lt;/b&gt; จาก&lt;b class='text-danger'&gt;{1} รายการ&lt;/b&gt;&lt;br /&gt; อยู่ระหว่างดำเนินการ&lt;b class='text-danger'&gt;{2} รายการ&lt;/b&gt; สำเร็จ&lt;b class='text-danger'&gt;{3} รายการ&lt;/b&gt; ตีกลับ&lt;b class='text-danger'&gt;{4} รายการ&lt;/b&gt; และอื่นๆ&lt;b class='text-danger'&gt;{5} รายการ&lt;/b&gt;</value>
+  </data>
+  <data name="UPDATE_SATUS_SECTION_HEADER" xml:space="preserve">
+    <value>บันทึกการปรับปรุงสถานะ</value>
+  </data>
+  <data name="UPLOAD_FILE" xml:space="preserve">
+    <value>อัปโหลดไฟล์</value>
+  </data>
+  <data name="UPLOAD_FILE_DOC_DESC" xml:space="preserve">
+    <value>คำอธิบายเอกสาร</value>
+  </data>
+  <data name="UPLOAD_FILE_DOC_NAME" xml:space="preserve">
+    <value>ชื่อเอกสาร</value>
+  </data>
+  <data name="UPLOAD_FILE_DOC_NAME_HEADER_TEXT" xml:space="preserve">
+    <value>เอกสารที่ต้องการส่งให้ผู้ประกอบการ</value>
+  </data>
+  <data name="UPLOAD_FILE_DOC_NAME_VALIDATE_MSG" xml:space="preserve">
+    <value>กรุณากรอกชื่อเอกสารก่อนทำการอัปโหลดไฟล์</value>
+  </data>
+  <data name="USER_COMMENT_REMARK" xml:space="preserve">
+    <value>ส่งข้อความถึงเจ้าหน้าที่</value>
+  </data>
+  <data name="PAYMENT_Null" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="PDT_Null" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="REQUEST_FILE_DOC_NAME_HEADER_TEXT" xml:space="preserve">
+    <value>ไฟล์เอกสารที่ต้องการให้ผู้ประกอบการส่งกลับ</value>
+  </data>
+  <data name="PAY_FEE_STEP1_HEADER" xml:space="preserve">
+    <value>ขั้นตอนที่ 1 เลือกช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="PAY_FEE_STEP2_HEADER" xml:space="preserve">
+    <value>ขั้นตอนที่ 2 เลือกช่องทางชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="PLEASE_CONFIRM_HEADER" xml:space="preserve">
+    <value>กรุณายืนยันข้อมูล</value>
+  </data>
+  <data name="PMD_ADDRESS_BY_MAIL" xml:space="preserve">
+    <value>สถานที่จัดส่ง</value>
+  </data>
+  <data name="DOCUMENT_FILE_NAME" xml:space="preserve">
+    <value>ชื่อไฟล์</value>
+  </data>
+  <data name="DOCUMENT_DESCRIPTION" xml:space="preserve">
+    <value>คำอธิบาย</value>
+  </data>
+  <data name="EMS_TRACKING" xml:space="preserve">
+    <value>หมายเลขพัสดุ</value>
+  </data>
+  <data name="ADD_REQUESTED_FILES" xml:space="preserve">
+    <value>เพิ่มเอกสาร</value>
+  </data>
+  <data name="ERROR_MSG_ACTION_REPLY" xml:space="preserve">
+    <value>กรุณาเลือกผลพิจรณา</value>
+  </data>
+  <data name="FEE_OF_APPLICATION" xml:space="preserve">
+    <value>ค่าธรรมเนียมใบอนุญาต</value>
+  </data>
+  <data name="EMS_FEE_PAYMENT_ENABLED_CHOICE" xml:space="preserve">
+    <value>ผู้รับผิดชอบค่าธรรมเนียมการจัดส่ง</value>
+  </data>
+  <data name="EMS_FEE_PAYMENT_BY" xml:space="preserve">
+    <value>ผู้รับผิดชอบค่าธรรมเนียมการจัดส่ง</value>
+  </data>
+  <data name="EMS_FEE_PAYMENT_BY_USER" xml:space="preserve">
+    <value>ผู้ประกอบการ</value>
+  </data>
+  <data name="EMS_FEE_PAYMENT_BY_OWENR_ORG" xml:space="preserve">
+    <value>หน่วยงานผู้ออกใบอนุญาต</value>
+  </data>
+  <data name="EMS_FEE_PAYMENT_BY_USER_TEXT" xml:space="preserve">
+    <value>ผู้ประกอบการรับผิดชอบค่าธรรมเนียมการจัดส่ง</value>
+  </data>
+  <data name="EMS_FEE_PAYMENT_BY_OWENR_ORG_TEXT" xml:space="preserve">
+    <value>หน่วยงานผู้ออกใบอนุญาตรับผิดชอบค่าธรรมเนียมการจัดส่ง</value>
+  </data>
+  <data name="EMS_FEE_OF_APPLICATION" xml:space="preserve">
+    <value>ค่าธรรมเนียมการจัดส่งใบอนุญาตทางไปรษณีย์</value>
+  </data>
+  <data name="UPLOAD_FILE_DOC_EXPLANATION" xml:space="preserve">
+    <value>คำชี้แจงจากเจ้าหน้าที่</value>
+  </data>
+  <data name="DOCUMENT_DATETIME" xml:space="preserve">
+    <value>วันที่/เวลา</value>
+  </data>
+  <data name="ACTION_APPROVE_CANCEL" xml:space="preserve">
+    <value>ยืนยันการยกเลิกคำขอ</value>
+  </data>
+  <data name="ASK_AGENT_TEL" xml:space="preserve">
+    <value>สอบถามเพิ่มเติม ติดต่อเจ้าหน้าที่ OSS โทร. 02-356-9999</value>
+  </data>
+  <data name="AT_DEPARTMENT_MODAL_HEADER" xml:space="preserve">
+    <value>ชำระที่หน่วยงาน</value>
+  </data>
+  <data name="BILL_PAYMENT_MODAL_HEADER" xml:space="preserve">
+    <value>ชำระด้วย Bill Payment</value>
+  </data>
+  <data name="DOCUMENT_HAVE_TO_PREPARE" xml:space="preserve">
+    <value>เอกสารที่ต้องเตรียม</value>
+  </data>
+  <data name="DOCUMENT_HAVE_TO_PREPARE_TEXT" xml:space="preserve">
+    <value>1. ใบรับคำขอ  2. เอกสารขอชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="DUE_DATE_PAY_FEE" xml:space="preserve">
+    <value>ชำระเงินภายในวันที่</value>
+  </data>
+  <data name="LOCATION_FOR_PAID_FEE" xml:space="preserve">
+    <value>สถานที่ชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="NAME_IN_MODAL" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="PAY_FEE_DETAIL" xml:space="preserve">
+    <value>รายละเอียดค่าธรรมเนียม</value>
+  </data>
+  <data name="QR_CODE_ACC_NAME" xml:space="preserve">
+    <value>ชื่อบัญชี</value>
+  </data>
+  <data name="QR_CODE_ACC_NAME_TEXT" xml:space="preserve">
+    <value>ศูนย์รับคำขออนุญาต (OSS)</value>
+  </data>
+  <data name="QR_CODE_MODAL_HEADER" xml:space="preserve">
+    <value>ชำระด้วย QR Code</value>
+  </data>
+  <data name="QR_CODE_PROMNTPAY_NUMBER" xml:space="preserve">
+    <value>หมายเลขพร้อมเพย์</value>
+  </data>
+  <data name="QR_CODE_TABLE_HEADER" xml:space="preserve">
+    <value>QR Code ธนาคารกรุงไทย</value>
+  </data>
+  <data name="RECORD_NO" xml:space="preserve">
+    <value>ลำดับ</value>
+  </data>
+  <data name="TABLE_EMS_TEXT" xml:space="preserve">
+    <value>ค่าธรรมเนียมการจัดส่งใบอนุญาตทางไปรษณีย์</value>
+  </data>
+  <data name="TABLE_ITEM_HEADER" xml:space="preserve">
+    <value>รายการ</value>
+  </data>
+  <data name="TABLE_ITEM_HEADER_RECORD" xml:space="preserve">
+    <value>จำนวนรายการ</value>
+  </data>
+  <data name="TABLE_TOTAL" xml:space="preserve">
+    <value>จำนวนเงิน (บาท)</value>
+  </data>
+  <data name="TOTAL_PAY_FEE" xml:space="preserve">
+    <value>จำนวนเงินที่ต้องชำระ (รวม)</value>
+  </data>
+  <data name="ATTACH_DOCUMENT_OF_STAFF" xml:space="preserve">
+    <value>รายการเอกสารแนบของหน่วยงาน</value>
+  </data>
+  <data name="CITIZEN_ADDRESS" xml:space="preserve">
+    <value>เลขที่</value>
+  </data>
+  <data name="USER_COMMENT_REMARK_IN_HISTORY" xml:space="preserve">
+    <value>ความคิดเห็นของผู้ประกอบการ</value>
+  </data>
+  <data name="SHOP_AREA" xml:space="preserve">
+    <value>พื้นที่</value>
+  </data>
+  <data name="PERMIT_GET_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่</value>
+  </data>
+  <data name="PERMIT_OWNER_ORG_ADDRESS" xml:space="preserve">
+    <value>ที่อยู่ของหน่วยงาน</value>
+  </data>
+  <data name="AT_OSS_MODAL_HEADER" xml:space="preserve">
+    <value>ชำระที่ OSS</value>
+  </data>
+  <data name="CONGRAT_AT_ADDITIONAL" xml:space="preserve">
+    <value>ทั้งนี้เจ้าหน้าที่ได้ส่งข้อมูลใบอนุญาตไปยัง &lt;a target="_blank" href="mailto:{0}"&gt;{0}&lt;/a&gt;</value>
+  </data>
+  <data name="CONGRAT_AT_OSS" xml:space="preserve">
+    <value>ผู้ประกอบการสามารถรับใบอนุญาตได้ที่ศูนย์รับคำขออนุญาต (OSS)</value>
+  </data>
+  <data name="CONGRAT_AT_OWNER_ORG" xml:space="preserve">
+    <value>ผู้ประกอบการสามารถรับใบอนุญาตได้ที่ {0}</value>
+  </data>
+  <data name="CONGRAT_SENT_BY_MAIL_NO_EMAIL" xml:space="preserve">
+    <value>เจ้าหน้าที่ได้จัดส่งใบอนุญาตไปยังผู้ประกอบการ</value>
+  </data>
+  <data name="CONGRAT_SENT_BY_MAIL_REMARK" xml:space="preserve">
+    <value>ติดตามสถานะการส่งไปรษณีย์ได้ที่ &lt;a target="_blank" href="http://track.thailandpost.co.th/tracking/default.aspx"&gt;http://track.thailandpost.co.th/tracking/default.aspx&lt;/a&gt;</value>
+  </data>
+  <data name="CONGRAT_SENT_BY_MAIL_WITH_EMAIL" xml:space="preserve">
+    <value>เจ้าหน้าที่ได้จัดส่งใบอนุญาตไปยังผู้ประกอบการ และส่งข้อมูลเกี่ยวกับใบอนุญาตไปยัง &lt;a target="_blank" href="mailto:{0}"&gt;{0}&lt;/a&gt;</value>
+  </data>
+  <data name="CONGRAT_TITLE" xml:space="preserve">
+    <value>ขอแสดงความยินดี</value>
+  </data>
+  <data name="ACTION_EMPTY" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="CONGRAT_FINISH" xml:space="preserve">
+    <value>ดำเนินการสำเร็จ</value>
+  </data>
+  <data name="UPDATE_BY_AGENT_DATE" xml:space="preserve">
+    <value>วันที่บันทึกข้อมูลล่าสุด</value>
+  </data>
+  <data name="UPDATE_BY_REQUESTOR_DATE" xml:space="preserve">
+    <value>วันที่บันทึกข้อมูลล่าสุด</value>
+  </data>
+  <data name="STATUS_OTHER_CANCEL_COMPLETED" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+  </data>
+  <data name="ACTION_ADJUST_CHECK" xml:space="preserve">
+    <value>ให้ผู้ประกอบการแก้ไขคำขอ</value>
+  </data>
+  <data name="ACTION_ADJUST_PENDING" xml:space="preserve">
+    <value>ให้ผู้ประกอบการดำเนินการเพิ่มเติม</value>
+  </data>
+  <data name="ACTION_APPROVE_CHECK" xml:space="preserve">
+    <value>แบบฟอร์มและเอกสารครบถ้วน</value>
+  </data>
+  <data name="ACTION_APPROVE_PENDING" xml:space="preserve">
+    <value>อนุมัติ</value>
+  </data>
+  <data name="ACTION_DECLINE_CHECK" xml:space="preserve">
+    <value>ปฏิเสธ</value>
+  </data>
+  <data name="ACTION_DECLINE_PENDING" xml:space="preserve">
+    <value>ปฏิเสธ</value>
+  </data>
+  <data name="AFTER_PAID_FEE" xml:space="preserve">
+    <value>* หลังจากชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="AGENT_NAME_TC_APP" xml:space="preserve">
+    <value>เจ้าหน้าที่</value>
+  </data>
+  <data name="AGENT_TEL_TC_APP" xml:space="preserve">
+    <value>เบอร์ติดต่อเจ้าหน้าที่</value>
+  </data>
+  <data name="AT_COUNTER_KTB" xml:space="preserve">
+    <value>ณ เคาเตอร์ธนาคารกรุงไทยทุกสาขา/ ATM ธนาคารกรุงไทย /Internet Banking</value>
+  </data>
+  <data name="BATH" xml:space="preserve">
+    <value>บาท</value>
+  </data>
+  <data name="BY_MAIL_SUGGEST_TEXT" xml:space="preserve">
+    <value>กรุณากรอกที่อยู่สำหรับจัดส่งใบอนุญาตทางไปรษณีย์</value>
+  </data>
+  <data name="CONFIRM_PAY_FEE_EMS" xml:space="preserve">
+    <value>ค่าธรรมเนียมการจัดส่งใบอนุญาตทางไปรษณีย์</value>
+  </data>
+  <data name="GOT_APP_WHEN" xml:space="preserve">
+    <value>รับใบอนุญาตได้ในวันที่</value>
+  </data>
+  <data name="PERMIT_CAN_BE_DERIVERED_ON_PAYMENT" xml:space="preserve">
+    <value>รับใบอนุญาตได้ทันทีหลังชำระเงิน</value>
+  </data>
+  <data name="PAY_FEE_FORM_HEADER" xml:space="preserve">
+    <value>กรุณาเลือกช่องทางรับใบอนุญาต และช่องทางชำระค่าธรรมเนียมของคุณ</value>
+  </data>
+  <data name="SCAN_VIA_KTB_BANK" xml:space="preserve">
+    <value>สแกน ผ่าน Application "KTB Netbank"</value>
+  </data>
+  <data name="PLEASE_SEND_REQUEST_DOC" xml:space="preserve">
+    <value>โปรดส่งไฟล์เอกสาร</value>
+  </data>
+  <data name="GOT_APP_DATE" xml:space="preserve">
+    <value>รับใบอนุญาตได้ในวันที่</value>
+  </data>
+  <data name="OTHER_OUTCOME" xml:space="preserve">
+    <value>ค่าใช้จ่ายอื่นๆ (เช่น ค่า EMS)</value>
+  </data>
+  <data name="EXPECTED_FINISH_DATE" xml:space="preserve">
+    <value>วันที่คาดว่าจะแล้วเสร็จ</value>
+  </data>
+  <data name="CONGRAT_DESC_HEADER" xml:space="preserve">
+    <value>กรุณารับใบอนุญาต</value>
+  </data>
+  <data name="NEW_MODAL_CONFIRM_HEADER" xml:space="preserve">
+    <value>กรุณายืนยันช่องทางชำระค่าธรรมเนียมและช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="SUMMARY_LOCATION_GOT_APP_HEADER" xml:space="preserve">
+    <value>สรุปข้อมูลช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="SUMMARY_PAY_CHANNEL_HEADER" xml:space="preserve">
+    <value>สรุปข้อมูลช่องทางชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="USER_CAN_GET_APP_DATE" xml:space="preserve">
+    <value>รับใบอนุญาตได้ในวันที่</value>
+  </data>
+  <data name="WARNING_DESCRIPTION" xml:space="preserve">
+    <value>เมื่อกด ยืนยัน คุณจะไม่สามารถเปลี่ยนช่องทางการชำระค่าธรรมเนียมและช่องทางรับใบอนุญาตได้</value>
+  </data>
+  <data name="WARNING_HEADER" xml:space="preserve">
+    <value>คำเตือน</value>
+  </data>
+  <data name="PLEASE_PAY_FEE_MODAL_HEADER" xml:space="preserve">
+    <value>กรุณาชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="TOTAL_TEXT_TABLE" xml:space="preserve">
+    <value>รวม</value>
+  </data>
+  <data name="BILL_PAYMENT_LOCATION_PAY_FEE" xml:space="preserve">
+    <value>เคาเตอร์ธนาคารกรุงไทยทุกสาชา/ ATM ธนาคารกรุงไทย/ Internet Banking</value>
+  </data>
+  <data name="QR_CODE_LOCATION_PAY_FEE" xml:space="preserve">
+    <value>สแกน ผ่าน Application "KTB Netbank"</value>
+  </data>
+  <data name="QR_CODE_HEADER_TEXT1" xml:space="preserve">
+    <value>กรุณาใช้ Application "KTB Netbank"</value>
+  </data>
+  <data name="QR_CODE_HEADER_TEXT2" xml:space="preserve">
+    <value>ในการสแกน QR Code เพื่อชำระค่าธรรมเนียม</value>
+  </data>
+  <data name="PASS_STEP_WAITING_REMARK_HEADER" xml:space="preserve">
+    <value>ในกรณีที่ผู้ประกอบการมีความจำเป็นต้องมาติดต่อที่หน่วยงานและต้องใช้เอกสารสำคัญขอให้เจ้าหน้าที่ระบุเอกสารที่จำเป็น</value>
+  </data>
+  <data name="PLEASE_SELECT" xml:space="preserve">
+    <value>กรุณาเลือก</value>
+  </data>
+  <data name="PROGRESS_AWAIT_USER" xml:space="preserve">
+    <value>ผู้ประกอบการดำเนินการตามสั่งการ</value>
+  </data>
+  <data name="HEADER_MODAL_LICENSE_PREVIEW" xml:space="preserve">
+    <value>รายละเอียด</value>
+  </data>
+  <data name="SHOW_COMPLETED" xml:space="preserve">
+    <value>แสดงคำร้อง/คำขอที่ดำเนินการเสร็จสิ้นแล้ว</value>
+  </data>
+  <data name="STATUS_OTHER_WAITING_AGENT_WORKING::WAITING_USER_WORKING" xml:space="preserve">
+    <value>เจ้าหน้าที่ตรวจสอบการแก้ไข</value>
+  </data>
+  <data name="REQUEST_FILE_LIST" xml:space="preserve">
+    <value>รายการเอกสารที่ต้องแก้ไข/เพิ่มเติม</value>
+  </data>
+  <data name="STATUS_OTHER_" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="STATUS_PENDING_VAT" xml:space="preserve">
+    <value>รอพิจารณา</value>
+  </data>
+  <data name="CHAT_SECTION_HEADER" xml:space="preserve">
+    <value>ติดต่อเจ้าหน้าที่</value>
+  </data>
+  <data name="MSG_CHAT_SUCCESS" xml:space="preserve">
+    <value>ส่งข้อความสำเร็จ</value>
+  </data>
+  <data name="BTN_SUBMIT_CHAT" xml:space="preserve">
+    <value>ส่งข้อความ</value>
+  </data>
+  <data name="LABEL_TEXTAREA_CHAT" xml:space="preserve">
+    <value>ข้อความ</value>
+  </data>
+  <data name="PLEASE_CHOOSE" xml:space="preserve">
+    <value>กรุณาเลือกข้อมูล</value>
+  </data>
+  <data name="ACTION_UPLOAD_EPERMIT" xml:space="preserve">
+    <value>อัปโหลด e-Permit</value>
+  </data>
+  <data name="HISTORY_SECTION_EPERMIT_HEADER" xml:space="preserve">
+    <value>รายการเอกสาร e-Permit</value>
+  </data>
+  <data name="HISTORY_SECTION_HEADER_COLUMN_EPERMIT_DESC" xml:space="preserve">
+    <value>คำอธิบาย e-Permit</value>
+  </data>
+  <data name="HISTORY_SECTION_HEADER_COLUMN_EPERMIT_EXPIREDATE" xml:space="preserve">
+    <value>วันหมดอายุ</value>
+  </data>
+  <data name="HISTORY_SECTION_HEADER_COLUMN_EPERMIT_FILENAME" xml:space="preserve">
+    <value>ชื่อเอกสาร e-Permit</value>
+  </data>
+  <data name="SECTION_EPERMIT_HEADER" xml:space="preserve">
+    <value>เอกสาร e-Permit</value>
+  </data>
+  <data name="VALIDATE_ERR_MSG_EPERMIT_FILENAME" xml:space="preserve">
+    <value>กรุณากรอกชื่อเอกสาร e-Permit</value>
+  </data>
+  <data name="VALIDATE_ERR_MSG_EXPIRE_EPERMIT_WRONG_FORMAT" xml:space="preserve">
+    <value>กรุณาเลือกวันที่จากปฏิทินเนื่องจากฟอแมตวันที่ที่คุณกรอกผิด</value>
+  </data>
+  <data name="PAYMENT_ENABLED_CHOICE" xml:space="preserve">
+    <value>ช่องทางชำระเงิน</value>
+  </data>
+  <data name="PAYMENT_ENABLED_CHOICE_ERRMSG" xml:space="preserve">
+    <value>พบช่องทางการชำระเงินที่ไม่ได้มีอยู่จริง</value>
+  </data>
+  <data name="INVALID_PAYMENT_ENABLED_CHOICE" xml:space="preserve">
+    <value>โปรดเลือกช่องทางการชำระเงิน</value>
+  </data>
+  <data name="BILLPAYMENT_UPLOADED_HEADER" xml:space="preserve">
+    <value>รายการเอกสารบิลเพย์เมนต์</value>
+  </data>
+  <data name="PERMIT_DELIVERY_TYPE_ENABLED_CHOICE" xml:space="preserve">
+    <value>ช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="INVALID_PERMIT_DELIVERY_TYPE_ENABLED_CHOICE" xml:space="preserve">
+    <value>โปรดเลือกช่องทางการรับใบอนุญาต</value>
+  </data>
+  <data name="PERMIT_DELIVERY_TYPE_ENABLED_CHOICE_ERRMSG" xml:space="preserve">
+    <value>พบช่องทางการรับใบอนุญาตที่ไม่ได้มีอยู่จริง</value>
+  </data>
+  <data name="INVALID_SELECTED_PAYMENT_METHOD_ENABLED_CHOICE" xml:space="preserve">
+    <value>ช่องทางการชำระเงินที่ท่านเลือกไม่ได้ถูกเปิดให้สามารถเลือกได้</value>
+  </data>
+  <data name="INVALID_SELECTED_PERMIT_DELIVERY_TYPE_ENABLED_CHOICE" xml:space="preserve">
+    <value>ช่องทางการรับใบอนุญาตที่ท่านเลือกไม่ได้ถูกเปิดให้สามารถเลือกได้</value>
+  </data>
+  <data name="HISTORY_SECTION_HEADER_COLUMN_EPERMIT_FILENAME_UPLOAD_ALREADY" xml:space="preserve">
+    <value>เอกสาร e-Permit ที่เคยอัปโหลดไปแล้ว</value>
+  </data>
+  <data name="UPLOAD_BILL_PAYMENT" xml:space="preserve">
+    <value>อัปโหลดไฟล์บิลเพย์เมนต์</value>
+  </data>
+  <data name="IDENTITY_ID" xml:space="preserve">
+    <value>เลขบัตรประชาชน/เลขนิติบุคคล</value>
+  </data>
+  <data name="APPLICATION_REQUEST_NUMBER_AGENT" xml:space="preserve">
+    <value>เลขที่คำร้อง/คำขอ (หน่วยงาน)</value>
+  </data>
+  <data name="BTN_SUBMIT_APP_REQ_NUMBER_AGENT" xml:space="preserve">
+    <value>บันทึก</value>
+  </data>
+  <data name="MSG_UPDATE_APP_REQ_NUMBER_AGENT_SUCCESS" xml:space="preserve">
+    <value>บันทึกเลขที่คำร้อง/คำขอ (หน่วยงาน) สำเร็จ</value>
+  </data>
+  <data name="CHAT_SECTION_HEADER_STAFF" xml:space="preserve">
+    <value>ติดต่อผู้ประกอบการ</value>
+  </data>
+  <data name="TEXT_BILL_PAYMENT_TYPE_CGD" xml:space="preserve">
+    <value>กรมบัญชีกลาง</value>
+  </data>
+  <data name="TEXT_BILL_PAYMENT_TYPE_OWNER_ORG" xml:space="preserve">
+    <value>ของหน่วยงาน</value>
+  </data>
+  <data name="PERMIT_DELIVERY_METHOD" xml:space="preserve">
+    <value>ช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="CGD_ACTION" xml:space="preserve">
+    <value>คำสั่ง</value>
+  </data>
+  <data name="CGD_ADD_ITEM" xml:space="preserve">
+    <value>เพิ่มรายการ</value>
+  </data>
+  <data name="CGD_AMOUNT" xml:space="preserve">
+    <value>จำนวน (บาท)</value>
+  </data>
+  <data name="CGD_AMOUNT_VAL" xml:space="preserve">
+    <value>กรุณาระบุจำนวน</value>
+  </data>
+  <data name="CGD_HOME_COST_CENTER" xml:space="preserve">
+    <value>ศุนย์ต้นทุน</value>
+  </data>
+  <data name="CGD_HOME_COST_CENTER_VAL" xml:space="preserve">
+    <value>กรุณาเลือกศุนย์ต้นทุน</value>
+  </data>
+  <data name="CGD_ITEM" xml:space="preserve">
+    <value>รายการ</value>
+  </data>
+  <data name="CGD_ITEM_NOT_FOUND" xml:space="preserve">
+    <value>ไม่พบรายการ</value>
+  </data>
+  <data name="CGD_ITEM_VAL" xml:space="preserve">
+    <value>กรุณาเลือกรายการ</value>
+  </data>
+  <data name="STATUS_PAID_FEE_CREATING_LICENSE" xml:space="preserve">
+    <value>ออกใบอนุญาตหรือใบอื่นๆ</value>
+  </data>
+  <data name="CGD_MODAL_ADD_TITLE" xml:space="preserve">
+    <value>เพิ่มรายการ</value>
+  </data>
+  <data name="MSG_CONFIRM_UPDATE_STATUS" xml:space="preserve">
+    <value>ยืนยันการส่งข้อมูล</value>
+  </data>
+  <data name="ACTION_COMPLETED" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+  </data>
+  <data name="PLEASE" xml:space="preserve">
+    <value>กรุณา</value>
+  </data>
+  <data name="PLEASE_FILL" xml:space="preserve">
+    <value>กรุณากรอก</value>
+  </data>
+  <data name="PLEASE_IDENTIFY" xml:space="preserve">
+    <value>กรุณาระบุ</value>
+  </data>
+  <data name="MSG_CHAT_FAILD" xml:space="preserve">
+    <value>ไม่สามารถส่งข้อความได้ กรุณาลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="ACTION_CREATING_LICENSE" xml:space="preserve">
+    <value>ดำเนินการออกใบอนุญาต</value>
+  </data>
+  <data name="ACTION_PAID_FEE_CHECK" xml:space="preserve">
+    <value>ชำระค่าธรรมเนียมแล้ว ดำเนินการตรวจสอบเอกสาร</value>
+  </data>
+  <data name="ACTION_PAID_FEE_PENDING" xml:space="preserve">
+    <value>ชำระค่าธรรมเนียมแล้ว ดำเนินการพิจารณา</value>
+  </data>
+  <data name="FEE" xml:space="preserve">
+    <value>ค่าธรรมเนียม</value>
+  </data>
+  <data name="DUE_DATE_FOR_PAY_FEE" xml:space="preserve">
+    <value>ชำระเงินภายในวันที่</value>
+  </data>
+  <data name="CGD_COMFIRM_PAYMENT" xml:space="preserve">
+    <value>ยืนยันการชำระเงินจากกรมบัญชีกลางเรียบร้อยแล้ว &lt;br/&gt; จำนวนเงิน {0}บาท ณ วันที่ : </value>
+  </data>
+  <data name="APPLICATION_STATUS_REMARK" xml:space="preserve">
+    <value>รายละเอียด</value>
+  </data>
+  <data name="PAYMENT_CHECK_STATUS" xml:space="preserve">
+    <value>ตรวจสอบผลการชำระเงิน</value>
+  </data>
+  <data name="CGD_PENDING_PAYMENT" xml:space="preserve">
+    <value>ไม่พบข้อมูลการชำระเงิน</value>
+  </data>
+  <data name="EMS_TRACKING_THAIPOST" xml:space="preserve">
+    <value>ติดตามสถานะการจัดส่งพัสดุได้ที่</value>
+  </data>
+  <data name="PAID_FEE_CREATING_LICENSE_2" xml:space="preserve">
+    <value>ออกใบอนุญาต&lt;br/&gt;หรือใบอื่นๆ</value>
+  </data>
+  <data name="STATUS_APPROVED_WAITING_PAY_FEE_2" xml:space="preserve">
+    <value>ชำระค่าธรรมเนียม&lt;br/&gt;หรือเลือกช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="STATUS_OTHER_PAID_FEE" xml:space="preserve">
+    <value>รอเจ้าหน้าที่ออกใบอนุญาต</value>
+  </data>
+  <data name="STATUS_OTHER_WAITING_AGENT_PROCESS" xml:space="preserve">
+    <value>รอเจ้าหน้าที่ดำเนินการ</value>
+  </data>
+  <data name="STATUS_OTHER_AGENT_APPROVE" xml:space="preserve">
+    <value>รอเจ้าหน้าที่แจ้งช่องทางชำระเงิน 
+หรือช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="STATUS_OTHER_EMAIL_COMPLETED" xml:space="preserve">
+    <value>ผู้ประกอบการรับใบอนุญาตแล้ว</value>
+  </data>
+  <data name="STATUS_OTHER_EMAIL_WAITING_AGENT_PAID_FEE" xml:space="preserve">
+    <value>เจ้าหน้าที่พิจารณาคำขอ</value>
+  </data>
+  <data name="STATUS_OTHER_EMAIL_WAITING_AGENT_WORKING" xml:space="preserve">
+    <value>เอกสารครบถ้วน เจ้าหน้าที่กำลังพิจารณาคำขอ</value>
+  </data>
+  <data name="STATUS_OTHER_EMAIL_WAITING_AGENT_WORKING::WAITING_USER_WORKING" xml:space="preserve">
+    <value>เจ้าหน้าที่ตรวจสอบคำขอ</value>
+  </data>
+  <data name="STATUS_OTHER_EMAIL_WAITING_USER_PAID_FEE" xml:space="preserve">
+    <value>รอผู้ประกอบการชำระค่าธรรมเนียม
+หรือเลือกช่องทางรับใบอนุญาต</value>
+  </data>
+  <data name="STATUS_OTHER_EMAIL_WAITING_USER_WORKING" xml:space="preserve">
+    <value>รอผู้ประกอบการส่งเอกสารเพิ่มเติม</value>
+  </data>
+  <data name="STATUS_OTHER_EMAIL_WAITING_AGENT_READ_REQUEST" xml:space="preserve">
+    <value>รอเจ้าหน้าที่รับเรื่อง</value>
+  </data>
+  <data name="STATUS_OTHER_EMAIL_REJECT" xml:space="preserve">
+    <value>คำขอถูกยกเลิกแล้ว</value>
+  </data>
+</root>

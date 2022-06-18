@@ -1,0 +1,248 @@
+﻿
+@using BizPortal.DAL.MongoDB
+@using BizPortal.Utils.Helpers
+@model FormSectionGroup
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/SingleForm-frontis/helpers/DBD-helper.js")" >
+</script>
+
+<script type="text/javascript">
+
+    window.APP_ELECTRONIC_COMMERCIAL_EDIT_validateType = function () {
+        
+        var typeFromDBD = $("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_FROM_DBD']").val();
+        var currentType = $("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_OPTION']:checked").val();
+
+        @* ไม่สามารถเปลี่ยนประเภทจากพาณิชย์อิเล็กทรอนิกส์ ไปเป็นพาณิชย์ธรรมดาได้ *@
+        if (typeFromDBD == 'ELECTRONIC' && currentType == 'NORMAL') return false;
+
+        return true;
+    };
+
+    window.APP_ELECTRONIC_COMMERCIAL_EDIT_validateSeparatedTo = function () {
+        var groupContainer = $(document);
+        var strStocks = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_SEPERATED_TO']").val();
+
+        if (!strStocks) strStocks = '0';
+
+        // Get stock summary from ArrayOfForm
+        var totalStock = 0.0;
+        $(window.singleForm.variables['arrObjAPP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2'].data || []).each(function (index, data) {
+            totalStock += parseFloat(data.APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_2_SHARE.replace(',', ''));
+        });
+        
+        // จำนวนหุ้นรวมแล้วต้องเท่ากับรายการใน ArrayOfForm
+        return parseFloat(strStocks.replace(',', '')) == totalStock;
+    }
+
+    window.APP_ELECTRONIC_COMMERCIAL_EDIT_validateRegisteredCapital = function () {
+        var groupContainer = $(document);
+
+        var strCapital = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_REGISTERED_CAPITAL']").val();
+        var strStocks = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_SEPERATED_TO']").val();
+        var strPrice = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_SHARE_BATH']").val();
+
+        if (!strCapital) strCapital = '0';
+        if (!strStocks) strStocks = '0';
+        if (!strPrice) strPrice = '0';
+        
+        // จำนวนหุ้นรวมแล้วต้องเท่ากับรายการใน ArrayOfForm
+        return parseFloat(strCapital.replace(',', '')) == (parseFloat(strStocks.replace(',', '')) * parseFloat(strPrice.replace(',', '')));
+    }
+
+    window.APP_ELECTRONIC_COMMERCIAL_EDIT_validateBudget = function () {
+        var groupContainer = $(document);
+        var strAmount = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_INVESTMENT_SECTION_AMOUNT']").val();
+        var strBudget = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_BUDGET']").val();
+
+        if (!strAmount) strAmount = '0';
+        if (!strBudget) strBudget = '0';
+
+
+        @* จำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ ต้องมากกว่า จำนวนเงินทุน(ที่ใช้ในการทำพาณิชย์อิเล็กทรอนิกส์)  *@
+        return parseFloat(strAmount.replace(',', '')) >= parseFloat(strBudget.replace(',', ''));
+    }
+    
+    $(document).ready(function (e) {
+
+        var hasEditGeneralInfo = false;
+        var groupContainer = $("section[data-section-name='APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION']");        
+        $(groupContainer).find("button[name='APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_SEARCH']").click(function (e) {
+
+            var commerceNo = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_COMMERCIAL_NUMBER']").val();
+            var regisNo = $(groupContainer).find("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_TRANSFER_SECTION_REQUEST_NUMBER']").val();
+
+            window.singleFormHelpers.DBD.checkTransferCommerceById('@Model.SectionGroup', commerceNo, regisNo, this, function (data) {
+                //console.log(data);
+                window.singleForm.functions.setSectionData(data.Data);
+            });
+        });
+
+        // User cannot manually select request type.
+        window.singleFormHelpers.form.setRadioCheckboxReadonly($('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_OPTION"]'), true);
+
+        @* ห้ามแก้ไขข้อมูลวันที่ *@
+        window.singleFormHelpers.form.setDatePickerReadonly($("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_START_IN_THAILAND_SECTION_DATE']"), true);
+        window.singleFormHelpers.form.setDatePickerReadonly($("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_REQUEST_SECTION_DATE']"), true);
+
+        @*  ทุนจดทะเบียน (บาท) จะเท่ากับ จำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ (บาท) *@
+        $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_REGISTERED_CAPITAL"]').prop('readonly', true);
+        $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_INVESTMENT_SECTION_AMOUNT"]').change(function (e) {
+            $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_STOCK_SECTION_REGISTERED_CAPITAL"]').val($(this).val());
+        });
+
+        @* Listening on datatable-binded event to determine request type automatically. *@
+        $('#APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_TYPE').on('datatable-binded', function (e, datalist, selectOptions) {
+            
+            if (!datalist || datalist.length == 0) {
+                $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_OPTION"]').attr('checked', false);
+            } else {
+                var hasElect = false;
+                $(datalist).each(function (index, data) {
+                    for (var i = 0; i < selectOptions.APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_TYPE_TYPE.length; i++) {
+                        if (data.TYPE == selectOptions.APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_TYPE_TYPE[i].id
+                            && selectOptions.APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_TYPE_TYPE[i].Flag == 'W') {
+                            hasElect = true;
+                            break;
+                        }
+                    }
+                });
+
+                var reqType = hasElect ? 'ELECTRONIC' : 'NORMAL';
+                $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_OPTION"]').val([reqType]);
+                $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_OPTION"][value="' + reqType + '"]').trigger('change');
+
+                // store actual value in hidden field.
+                $('input[type="hidden"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_OPTION"]').val(reqType).trigger('change');
+            }
+
+        });
+
+        // Defualt text on select facebook or instragram
+        $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA_OPTION"]').change(function (e) {
+            switch ($(this).val()) {
+                case '01':    // website
+                    if ($('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_WEBSITE"]').val() == '') {
+                        $('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_WEBSITE"]').val('http://');
+                    }
+                    break;
+                case '02':    // FACEBOOK
+                    if ($('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_FACEBOOK"]').val() == '') {
+                        $('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_FACEBOOK"]').val('www.facebook.com/');
+                    }
+                    break;
+                case '03':    // Line
+                    if ($('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_LINE"]').val() == '') {
+                        $('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_LINE"]').val('www.line.com/');
+                    }
+                    break;
+                case '04':
+                    if ($('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_INSTRAGRAM"]').val() == '') {
+                        $('input[type="text"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_INSTRAGRAM"]').val('www.instagram.com/');
+                    }
+                    break;
+            }
+        });
+
+        // หากมีการแก้ไขข้อมูลจำนวนเงินที่นำมาใช้ในการประกอบพาณิชยกิจเป็นประจำ  จะต้องแก้ไขข้อมูลมูลค่าหุ้น
+        $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INVESTMENT_SECTION_CHECKBOX_EDIT_EDIT_INVESTMENT_SECTION_CHECKED"]').change(function (e) {
+            var isChecked = $(this).prop('checked');
+
+            @* บังคับให้ check แก้ไขข้อมูลมูลค่าหุ้นด้วย *@
+            $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_STOCK_SECTION_CHECKBOX_EDIT_EDIT_STOCK_SECTION_CHECKED"]').prop('checked', isChecked).trigger('change');
+        });
+
+        $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_STOCK_SECTION_CHECKBOX_EDIT_EDIT_STOCK_SECTION_CHECKED"]').click(function (e) {
+            var isEditInvestment = $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_INVESTMENT_SECTION_CHECKBOX_EDIT_EDIT_INVESTMENT_SECTION_CHECKED"]').prop('checked');
+
+            if (isEditInvestment) return false;                  
+        });
+
+        window.singleFormHelpers.form.onArrayOfFormDataBound('APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION', function (sectionName, datalist) {
+            
+            $(datalist || []).each(function (index, data) {
+                if ("" + data.APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_IS_FROM_DBD == 'true') {
+                    // Cannot delete data pulled from DBD
+                    var row = $("section[data-section-name='APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION'").find('div.item_APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION')[index];
+                    $(row).find('button.btn-danger').hide();
+                }
+            });
+        });
+
+        window.singleFormHelpers.form.onArrayOfFormModalDataBound('APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION', function (sectionName, data) {
+            // For manually adding record, we set APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_IS_FROM_DBD to false
+            if (data == null) {
+                $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_IS_FROM_DBD"]').val('false');
+                $('select[name="DROPDOWN_APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_STATUS"]').val('1').trigger('change');    // เลือกได้แค่ "อยู่" เท่านั้น
+                window.singleFormHelpers.form.setSelect2Readonly($('select[name="DROPDOWN_APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_STATUS"]'), true);
+            } else {
+                var fromDBD = $('input[name="APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_IS_FROM_DBD"]').val() == 'true';
+                window.singleFormHelpers.form.setSelect2Readonly($('select[name="DROPDOWN_APP_ELECTRONIC_COMMERCIAL_EDIT_PARTNER_SECTION_STATUS"]'), !fromDBD);
+            }
+        });
+       
+        window.singleFormHelpers.form.onDraftDataBound(function (data) {
+
+            // Enable some fields on Website address
+            $("input[name$='_APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ADDRESS_EN']").prop('readonly', true);
+            $("select[name$='_APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ADDRESS_EN']").each(function (index, elm) {
+                window.singleFormHelpers.form.setSelect2Readonly(elm, true);
+            });
+
+            $("select[name='ADDRESS_EN_POSTCODE_APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ADDRESS_EN']").each(function (index, elm) {
+                window.singleFormHelpers.form.setSelectReadonly(elm, true);
+            });
+
+            $("input[name='ADDRESS_EN_SOI_APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ADDRESS_EN']").prop('readonly', false);
+            $("input[name='ADDRESS_EN_BUILDING_APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ADDRESS_EN']").prop('readonly', false);
+            $("input[name='ADDRESS_EN_ROAD_APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_ADDRESS_EN']").prop('readonly', false);
+
+            @* ถ้าข้อมูลเดิมที่มาจาก DBD เป็นพาณิชย์อิเล็คฯ ต้องไม่ให้แก้ไขข้อมูลเว็บไซต์  *@
+            var isElecFromDBD = $("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_FROM_DBD']").val() == 'ELECTRONIC';
+            window.singleFormHelpers.form.setRadioCheckboxReadonly($("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_OTHER_SECTION_ELECTRONIC_MEDIA_OPTION']"), isElecFromDBD);
+            $("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_WEBSITE_SECTION_NAME_WEBSITE']").prop('readonly', isElecFromDBD);
+
+            var typeFromDBD = $("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_FROM_DBD']").val();
+            $('input[type="radio"][name="APP_ELECTRONIC_COMMERCIAL_EDIT_INFO_SECTION_REQUEST_TYPE_OPTION"]').change(function (e) {
+                var type = $(this).val();
+                if (typeFromDBD != type && typeFromDBD == 'NORMAL' && type == 'ELECTRONIC') {
+                    @* ถ้าเปลี่ยนจากธรรมดา เป็นอิเล็กทรอกนิกส์ต้องบังคับกรอก field ที่เกี่ยวกับอิเล็กทรอนิกส์ *@
+                    $("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_OTHER_SECTION_CHECKBOX_EDIT_EDIT_OTHER_SECTION_CHECKED'").prop('checked', true).trigger('change');
+                    window.singleFormHelpers.form.setRadioCheckboxReadonly($("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_OTHER_SECTION_CHECKBOX_EDIT_EDIT_OTHER_SECTION_CHECKED'"), true);
+
+                    $("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WEBSITE_SECTION_CHECKBOX_EDIT_EDIT_WEBSITE_SECTION_CHECKED'").prop('checked', true).trigger('change');
+                    window.singleFormHelpers.form.setRadioCheckboxReadonly($("input[name='APP_ELECTRONIC_COMMERCIAL_EDIT_EDIT_WEBSITE_SECTION_CHECKBOX_EDIT_EDIT_WEBSITE_SECTION_CHECKED'"), true);
+                }
+            });
+
+            @* Check if user edit general infomation (store name and address) *@
+            $(data.SectionData).each(function (index, sec) {
+                if (sec.SectionName == 'INFORMATION_STORE') {
+                    if (sec.FormData && sec.FormData.hasOwnProperty('CHECKBOX_SHOW_INFORMATION_STORE_NAME')) {
+                        hasEditGeneralInfo = hasEditGeneralInfo || ("" + sec.FormData.CHECKBOX_SHOW_INFORMATION_STORE_NAME).toLowerCase() == 'true';
+                    }
+
+                    if (sec.FormData && sec.FormData.hasOwnProperty('CHECKBOX_SHOW_INFORMATION_STORE_ADDRESS')) {
+                        hasEditGeneralInfo = hasEditGeneralInfo || ("" + sec.FormData.CHECKBOX_SHOW_INFORMATION_STORE_ADDRESS).toLowerCase() == 'true';
+                    }
+                }
+            });
+
+        });
+        
+        window.singleForm.sectionGroupValidators.push({
+            sectionGroup: '@Model.SectionGroup',
+            validate: function () {
+                if (!hasEditGeneralInfo && $("input[type='checkbox'][name$='_SECTION_CHECKED']:checked").length == 0) {
+                    return 'กรุณาเลือกแก้ไขข้อมูลอย่างน้อยหนึ่งรายการ';
+                } else {
+                    return '';
+                }
+            }
+        });
+	});
+	
+</script>
+
+
+

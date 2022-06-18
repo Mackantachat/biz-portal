@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="T1545A230400V3P4W" xml:space="preserve">
+    <value>15(45)แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="T1545A230V1P2W" xml:space="preserve">
+    <value>15(45)แอมแปร์ 230โวลต์ 1เฟส 2สาย</value>
+  </data>
+  <data name="T200A230400V3P4W" xml:space="preserve">
+    <value>200แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="T30100A230400V3P4W" xml:space="preserve">
+    <value>30(100)แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="T30100A230V1P2W" xml:space="preserve">
+    <value>30(100)แอมแปร์ 230โวลต์ 1เฟส 2สาย</value>
+  </data>
+  <data name="T400A230400V3P4W" xml:space="preserve">
+    <value>400แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="T50150A230400V3P4W" xml:space="preserve">
+    <value>50(150)แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="T50150A230V1P2W" xml:space="preserve">
+    <value>50(150)แอมแปร์ 230โวลต์ 1เฟส 2สาย</value>
+  </data>
+  <data name="T515A230V1P2W" xml:space="preserve">
+    <value>5(15)แอมแปร์ 230โวลต์ 1เฟส 2สาย</value>
+  </data>
+  <data name="WM01010" xml:space="preserve">
+    <value>5(15)แอมแปร์ 230โวลต์ 1เฟส 2สาย</value>
+  </data>
+  <data name="WM01020" xml:space="preserve">
+    <value>15(45)แอมแปร์ 230โวลต์ 1เฟส 2สาย</value>
+  </data>
+  <data name="WM01030" xml:space="preserve">
+    <value>30(100)แอมแปร์ 230โวลต์ 1เฟส 2สาย</value>
+  </data>
+  <data name="WM01040" xml:space="preserve">
+    <value>50(150)แอมแปร์ 230โวลต์ 1เฟส 2สาย</value>
+  </data>
+  <data name="WM02010" xml:space="preserve">
+    <value>15(45)แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="WM02020" xml:space="preserve">
+    <value>30(100)แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="WM02030" xml:space="preserve">
+    <value>50(150)แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="WM02040" xml:space="preserve">
+    <value>200แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="WM02050" xml:space="preserve">
+    <value>400แอมแปร์ 230/400โวลต์ 3เฟส 4สาย</value>
+  </data>
+  <data name="WM03030" xml:space="preserve">
+    <value>300เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03040" xml:space="preserve">
+    <value>400เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03050" xml:space="preserve">
+    <value>500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03060" xml:space="preserve">
+    <value>600เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03070" xml:space="preserve">
+    <value>700เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03080" xml:space="preserve">
+    <value>800เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03090" xml:space="preserve">
+    <value>1000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03100" xml:space="preserve">
+    <value>1200เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03110" xml:space="preserve">
+    <value>1400เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03120" xml:space="preserve">
+    <value>1600เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03130" xml:space="preserve">
+    <value>2000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03140" xml:space="preserve">
+    <value>2500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03150" xml:space="preserve">
+    <value>3000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03160" xml:space="preserve">
+    <value>3500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03170" xml:space="preserve">
+    <value>4000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03180" xml:space="preserve">
+    <value>4500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03190" xml:space="preserve">
+    <value>5000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03200" xml:space="preserve">
+    <value>5500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03210" xml:space="preserve">
+    <value>6000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03220" xml:space="preserve">
+    <value>6500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03230" xml:space="preserve">
+    <value>7000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03240" xml:space="preserve">
+    <value>7500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03250" xml:space="preserve">
+    <value>8000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03260" xml:space="preserve">
+    <value>8500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03270" xml:space="preserve">
+    <value>9000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03280" xml:space="preserve">
+    <value>9500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03290" xml:space="preserve">
+    <value>10000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03300" xml:space="preserve">
+    <value>10500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03310" xml:space="preserve">
+    <value>11000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03320" xml:space="preserve">
+    <value>11500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03330" xml:space="preserve">
+    <value>12000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03340" xml:space="preserve">
+    <value>12500เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03350" xml:space="preserve">
+    <value>13000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03360" xml:space="preserve">
+    <value>14000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM03370" xml:space="preserve">
+    <value>15000เควีเอ 12เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04020" xml:space="preserve">
+    <value>300เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04030" xml:space="preserve">
+    <value>400เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04040" xml:space="preserve">
+    <value>500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04050" xml:space="preserve">
+    <value>600เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04060" xml:space="preserve">
+    <value>700เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04070" xml:space="preserve">
+    <value>800เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04080" xml:space="preserve">
+    <value>1000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04090" xml:space="preserve">
+    <value>1200เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04100" xml:space="preserve">
+    <value>1400เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04110" xml:space="preserve">
+    <value>1600เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04120" xml:space="preserve">
+    <value>2000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04130" xml:space="preserve">
+    <value>2500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04140" xml:space="preserve">
+    <value>3000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04150" xml:space="preserve">
+    <value>3500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04160" xml:space="preserve">
+    <value>4000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04170" xml:space="preserve">
+    <value>4500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04180" xml:space="preserve">
+    <value>5000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04190" xml:space="preserve">
+    <value>5500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04200" xml:space="preserve">
+    <value>6000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04210" xml:space="preserve">
+    <value>6500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04220" xml:space="preserve">
+    <value>7000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04230" xml:space="preserve">
+    <value>7500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04240" xml:space="preserve">
+    <value>8000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04250" xml:space="preserve">
+    <value>8500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04260" xml:space="preserve">
+    <value>9000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04270" xml:space="preserve">
+    <value>9500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04280" xml:space="preserve">
+    <value>10000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04290" xml:space="preserve">
+    <value>10500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04300" xml:space="preserve">
+    <value>11000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04310" xml:space="preserve">
+    <value>11500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04320" xml:space="preserve">
+    <value>12000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04330" xml:space="preserve">
+    <value>12500เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04340" xml:space="preserve">
+    <value>13000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04350" xml:space="preserve">
+    <value>14000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+  <data name="WM04360" xml:space="preserve">
+    <value>15000เควีเอ 24เควี  3เฟส 3สาย</value>
+  </data>
+</root>
